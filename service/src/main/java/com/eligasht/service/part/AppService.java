@@ -12,6 +12,11 @@ public class AppService extends BasePart {
         super(serviceGenerator);
     }
 
+    @Override
+    protected BasePart getPart() {
+        return this;
+    }
+
 
     public void startUp(OnServiceStatus<StartupServiceResponse> listener, StartupServiceRequest req) {
         start(getServiceGenerator().createService().startUp(req), listener);
