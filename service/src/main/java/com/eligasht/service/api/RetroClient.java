@@ -17,13 +17,25 @@ import com.eligasht.service.helper.Const;
 import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight;
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
+import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
+import com.eligasht.service.model.hotel.detail.response.GetHotelDetailResult;
+import com.eligasht.service.model.hotel.detail.response.HotelDetailResponse;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
+import com.eligasht.service.model.hotel.room.request.GetRoomRequest;
+import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
+import com.eligasht.service.model.hotelflight.request.HotelFlightRequest;
+import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
+import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
 import com.eligasht.service.model.insurance.request.GetCountry.RequestGetCountry;
 import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPurchaseInsurance;
 import com.eligasht.service.model.insurance.response.GetCountry.ResponseGetCountry;
 import com.eligasht.service.model.insurance.response.PurchaseInsurance.ResponsePurchaseInsurance;
 import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
+import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
+import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
+import com.eligasht.service.model.startup.request.StartupServiceRequest;
+import com.eligasht.service.model.startup.response.StartupServiceResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -35,20 +47,44 @@ import retrofit2.http.POST;
  */
 
 public interface RetroClient {
+    //*************start up*************
+    @POST(Const.StartUp)
+    Observable<StartupServiceResponse> startUp(
+            @Body StartupServiceRequest startupServiceRequest
+    );
 
     //*************hotel flight*************
     @POST(Const.HotelFlightSearch)
     Observable<HotelFlightResponse> hotelFlight(
-            @Body HotelAvailReq hotelAvailReq
+            @Body HotelFlightRequest hotelFlightRequest
     );
 
-
+    @POST(Const.LoadFlight)
+    Observable<LoadFlightResponse> loadFlight(
+            @Body LoadFlightRequest loadFlightRequest
+    );
     //*************hotel*************
-
     @POST(Const.HotelAvail)
     Observable<HotelAvailRes> hotelAvail(
             @Body HotelAvailReq hotelAvailReq
     );
+
+    @POST(Const.HotelPolicy)
+    Observable<HotelPolicyResponse> hotelPolicy(
+            @Body HotelPolicyRequest hotelPolicyRequest
+    );
+
+    @POST(Const.GetRoomsList)
+    Observable<GetRoomResponse> getRoomsList(
+            @Body GetRoomRequest getRoomRequest
+    );
+
+    @POST(Const.GetHotelDetail)
+    Observable<HotelDetailResponse> getHotelDetail(
+            @Body HotelDetailRequest hotelDetailRequest
+    );
+    //*************flight*************
+
 
     @POST(Const.AirportAvail)
     Observable<ResponsAirports> responsAirports(

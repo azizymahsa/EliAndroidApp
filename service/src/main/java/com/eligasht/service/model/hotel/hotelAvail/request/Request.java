@@ -2,6 +2,8 @@
 package com.eligasht.service.model.hotel.hotelAvail.request;
 
 import java.util.List;
+
+import com.eligasht.service.model.identity.Identity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -124,7 +126,7 @@ public class Request {
 
     @Override
     public String toString() {
-        return "Request{" +
+        return "HotelFlightSubRequest{" +
                 "checkinString='" + checkinString + '\'' +
                 ", checkoutString='" + checkoutString + '\'' +
                 ", culture='" + culture + '\'' +

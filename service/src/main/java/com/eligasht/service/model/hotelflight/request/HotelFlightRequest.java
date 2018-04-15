@@ -8,13 +8,13 @@ public class HotelFlightRequest {
 
     @SerializedName("request")
     @Expose
-    private Request request;
+    private HotelFlightSubRequest request;
 
-    public Request getRequest() {
+    public HotelFlightSubRequest getRequest() {
         return request;
     }
 
-    public void setRequest(Request request) {
+    public void setRequest(HotelFlightSubRequest request) {
         this.request = request;
     }
 

@@ -29,7 +29,7 @@ import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
-import com.eligasht.service.model.hotel.hotelAvail.request.Identity;
+import com.eligasht.service.model.identity.Identity;
 import com.eligasht.service.model.hotel.hotelAvail.request.Request;
 import com.eligasht.service.model.hotel.hotelAvail.request.Room;
 import com.eligasht.service.model.hotel.hotelAvail.response.Facility;
@@ -49,7 +49,8 @@ import java.util.List;
 import java.util.Set;
 
 import mehdi.sakout.fancybuttons.FancyButton;
-public class SelectHotelActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener, OnServiceStatus<HotelAvailRes> {
+public class SelectHotelActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener,
+        OnServiceStatus<HotelAvailRes> {
     private RelativeLayout rlLoading, rlRoot, rlList;
     private TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
     private Window window;
@@ -116,6 +117,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         raftFa = SingletonDate.getInstance().getStartDate().getDescription();
         bargashtFa = SingletonDate.getInstance().getEndDate().getDescription();
         rooms.add(new Room(getIntent().getExtras().getInt("Adult"), getIntent().getExtras().getInt("Child")));
+
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
@@ -545,6 +547,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         request.setDepart(Prefs.getString("Value-Hotel-City-Code", "c25972"));
         request.setRoomsString(getIntent().getExtras().getString("Rooms"));
         Identity identity = new Identity();
+        identity.setPassword("123qwe!@#QWE");
+        identity.setTermianlId("Mobile");
+        identity.setUserName("EligashtMlb");
         request.setIdentity(identity);
         request.setRooms(rooms);
         request.setSource("");
@@ -558,6 +563,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     @Override
     public void onReady(HotelAvailRes hotelAvailRes) {
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.colorPrimaryDark));
         }
@@ -690,6 +696,11 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     @Override
     public void onError(String message) {
         Log.e("OnError", message);
+        new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.colorPrimaryDark));
+        }
         list.setVisibility(View.GONE);
         rlList.setVisibility(View.GONE);
         elNotFound.setVisibility(View.VISIBLE);

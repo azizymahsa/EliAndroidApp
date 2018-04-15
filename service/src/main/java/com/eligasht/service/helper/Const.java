@@ -6,10 +6,20 @@ package com.eligasht.service.helper;
 
 public class Const {
     public final static String BASEURL = "http://mobilews.eligasht.com/LightServices/Rest/";
+
+    //*************start up*************
+    public final static String StartUp = "Common/StaticDataService.svc/MobileAppStartupService";
+
     //*************hotel*************
     public final static String HotelAvail = "Hotel/HotelService.svc/HotelAvail";
+    public final static String GetRoomsList = "Hotel/HotelService.svc/GetRoomsList";
+    public final static String GetHotelDetail = "Hotel/HotelService.svc/GetHotelDetail";
+
     //*************hotel flight*************
     public final static String HotelFlightSearch = "HotelFlight/HotelFlightService.svc/HotelFlightSearch";
+    public final static String LoadFlight = "HotelFlight/HotelFlightService.svc/LoadFlight";
+    public final static String HotelPolicy = "Hotel/HotelService.svc/GetHotelPolicy";
+    public final static String HoldSelectedRoom = "Hotel/HotelService.svc/HoldSelectedRoom";
 
     //*************flight*************
     public final static String AirportAvail = "Common/StaticDataService.svc/GetAirportWithParentsWithCulture";

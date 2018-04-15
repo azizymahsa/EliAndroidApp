@@ -1,9 +1,11 @@
 
 package com.eligasht.service.model.hotelflight.response;
 
+import com.eligasht.service.model.hotel.hotelAvail.response.Error;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
 public class HotelFlightSearchResult {
 
     @SerializedName("Comments")
@@ -11,7 +13,7 @@ public class HotelFlightSearchResult {
     private Object comments;
     @SerializedName("Errors")
     @Expose
-    private Object errors;
+    private List<Error> errors;
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
@@ -33,11 +35,11 @@ public class HotelFlightSearchResult {
         this.comments = comments;
     }
 
-    public Object getErrors() {
+    public List<Error> getErrors() {
         return errors;
     }
 
-    public void setErrors(Object errors) {
+    public void setErrors(List<Error> errors) {
         this.errors = errors;
     }
 
