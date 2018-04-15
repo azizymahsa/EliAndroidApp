@@ -27,7 +27,7 @@ public class Flight extends BasePart {
     protected BasePart getPart() {
         return this;
     }
-
+    @Mock(jsonName = "get_airport_with_parents_with_culture", response = ResponsAirports.class)
     public void airPortsAvail(OnServiceStatus<ResponsAirports> listener, RequestAirports req) {
         start(getServiceGenerator().createService().responsAirports(req), listener);
     }

@@ -27,7 +27,7 @@ public class SingletonService {
     ContactUs contactUs;
     AboutService aboutService;
     private Context context;
-    private Boolean mock=true;
+    private Boolean mock=false;
 
     private static final SingletonService ourInstance = new SingletonService();
 
