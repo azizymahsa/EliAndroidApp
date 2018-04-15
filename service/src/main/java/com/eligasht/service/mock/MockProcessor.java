@@ -35,7 +35,7 @@ public class MockProcessor<T> {
             try {
                 if (method.isAnnotationPresent(Mock.class)) {
                     Mock mock = method.getAnnotation(Mock.class);
-                    if (mock.response().getName().equals(selectedType.getName())) ;
+                    if (mock.response().getName().equals(selectedType.getName()))
                     {
                         return mock;
                     }
@@ -54,7 +54,7 @@ public class MockProcessor<T> {
                         "raw", SingletonService.getInstance().getContext().getPackageName()));
     }
 
-    private String loadJSONFromAsset() {
+    public String loadJSONFromAsset() {
         String json = null;
         try {
             InputStream is = getFromString(getRawRes().jsonName());

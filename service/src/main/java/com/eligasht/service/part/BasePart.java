@@ -1,5 +1,6 @@
 package com.eligasht.service.part;
 
+import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.annotation.RawRes;
 import android.util.Log;
@@ -44,13 +45,13 @@ public abstract class BasePart {
 
     public <T> void start(Observable<T> observable, OnServiceStatus<T> listener) {
         MockProcessor<T> mockProcessor = new MockProcessor<>(listener, getPart());
-        if (BuildConfig.DEBUG && SingletonService.getInstance().isMock() && mockProcessor.getRawRes() != null) {
+        if (BuildConfig.DEBUG && SingletonService.getInstance().isMock() && mockProcessor.getRawRes() != null && mockProcessor.loadJSONFromAsset()!=null) {
             T model = mockProcessor.getMockModel();
             if (model == null) {
                 call(observable, listener);
                 return;
             }
-            listener.onReady(model);
+            new Handler().postDelayed(() -> listener.onReady(model), 50);
             return;
         }
         call(observable, listener);
