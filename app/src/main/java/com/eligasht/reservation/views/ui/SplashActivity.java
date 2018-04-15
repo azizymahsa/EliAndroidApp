@@ -80,7 +80,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
 
     @Override
     public void returnRestartAppValue() {
-        Log.e("runrun1111", "run: ");
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -182,7 +181,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         startupServiceRequest.setRequest(request);
         avi.setVisibility(View.VISIBLE);
         SingletonService.getInstance().getAppService().startUp(this, startupServiceRequest);
-        Log.e("reeeeeeeeeeeeeeeqqqqqqq", new Gson().toJson(startupServiceRequest));
     }
 
     @Override
