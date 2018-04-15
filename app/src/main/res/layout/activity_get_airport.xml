@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     xmlns:swipe="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:background="#ffffff"
     android:orientation="vertical">
 
@@ -13,18 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="15"
-        android:orientation="horizontal"
-        android:background="@color/toolbar_color">
+        android:background="@color/toolbar_color"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="@dimen/toolbar_bottom_width_50dp"
             android:layout_height="@dimen/toolbar_bottom_width_50dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
-            android:gravity="center"
-            >
-            <com.wang.avi.AVLoadingIndicatorView
+            android:gravity="center">
 
+            <com.wang.avi.AVLoadingIndicatorView
                 android:id="@+id/avi"
                 style="@style/AVLoadingIndicatorView"
                 android:layout_width="@dimen/_30dp"
@@ -37,14 +36,12 @@
         </LinearLayout>
 
 
-
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="@dimen/_30dp_search"
-
+            android:layout_gravity="center_vertical"
             android:layout_weight="100"
             android:background="@drawable/edittext"
-            android:layout_gravity="center_vertical"
             android:orientation="horizontal"
 
             >
@@ -60,45 +57,43 @@
                 android:textSize="@dimen/_14dp_txtSize"
 
                 />
+
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/btnMic"
                 android:layout_width="@dimen/_35dp"
                 android:layout_height="@dimen/_35dp"
                 android:layout_gravity="right|center"
+                android:layout_marginBottom="1dp"
                 android:gravity="right"
                 fancy:fb_defaultColor="@android:color/transparent"
                 fancy:fb_focusColor="@color/focusColor"
-                android:layout_marginBottom="1dp"
-
                 fancy:fb_radius="200dp"
                 fancy:fb_text=" "
                 fancy:fb_textColor="@color/text_color_4d"
                 fancy:fb_textSize="@dimen/_14dp_txtSize" />
 
 
-
         </RelativeLayout>
+
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnBack"
             android:layout_width="@dimen/toolbar_bottom_width_50dp"
             android:layout_height="@dimen/toolbar_bottom_width_50dp"
+            android:layout_gravity="right|center"
+            android:gravity="right"
             fancy:fb_defaultColor="@android:color/transparent"
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="200dp"
-            fancy:fb_textColor="#FFFFFF"
-
-            android:layout_gravity="right|center"
-            fancy:fb_textSize="@dimen/_25dp_normal_iconSize"
             fancy:fb_text=" "
-            android:gravity="right"
-            />
+            fancy:fb_textColor="#FFFFFF"
+            fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@drawable/shadow"/>
-
+        android:background="@drawable/shadow" />
 
 
     <ListView
@@ -107,8 +102,6 @@
         android:layout_height="0dp"
         android:layout_weight="100"
         android:dividerHeight="1dp"
-
-
         />
 
 </LinearLayout>

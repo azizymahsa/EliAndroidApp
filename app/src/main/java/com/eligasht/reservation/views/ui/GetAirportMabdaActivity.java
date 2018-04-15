@@ -42,7 +42,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class GetAirportMabdaActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener , OnServiceStatus<ResponsAirports> {
+public class GetAirportMabdaActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnServiceStatus<ResponsAirports> {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     private static final String TAG = "GetAirport";
@@ -56,7 +56,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
     GetAirPortMabdaAdapter mAdapter;
     private EditText searchtxt;
     AVLoadingIndicatorView avi;
-    FancyButton btnBack,btnMic;
+    FancyButton btnBack, btnMic;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
 
@@ -178,7 +178,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
                                                     GetAirportMabdaActivity.searchText = d.toLowerCase();
                                                     //new AsyncFetch().execute();
-                                                    sendRequest( GetAirportMabdaActivity.searchText);
+                                                    sendRequest(GetAirportMabdaActivity.searchText);
 
 
                                                 } else {
@@ -228,20 +228,20 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
 
         String GetError = "";
-            List<Country> data = new ArrayList<Country>();
-            ListView listAirPort;
-    try{
-            if ( responsAirports.getGetAirportWithParentsWithCultureResult().getErrors()!= null) {
+        List<Country> data = new ArrayList<Country>();
+        ListView listAirPort;
+        try {
+            if (responsAirports.getGetAirportWithParentsWithCultureResult().getErrors() != null) {
                 GetError = responsAirports.getGetAirportWithParentsWithCultureResult().getErrors().get(0).getMessage();
             }
             if (GetError.length() > 1) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
-                AlertDialogPassenger.setText(GetError,getString(R.string.massege));
+                AlertDialogPassenger.setText(GetError, getString(R.string.massege));
 
             } else {
 
                 //AirportCode //AirportName//CityName ":
-               // responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().
+                // responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().
                 for (int i = 0; i < responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().size(); i++) {
                     Country fishData = new Country();
                     fishData.setCityName(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getCityName());
@@ -271,20 +271,20 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                 mAdapter.setData(data);
                 listAirPort.setAdapter(mAdapter);
             }
-    } catch (Exception e) {
+        } catch (Exception e) {
             if (!Utility.isNetworkAvailable(GetAirportMabdaActivity.this)) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
-                AlertDialogPassenger.setText(getString(R.string.InternetError),getString(R.string.massege));
+                AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
 
 
             } else {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
-                AlertDialogPassenger.setText(getString(R.string.ErrorServer),getString(R.string.massege));
+                AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
 
 
             }
-     }
- }
+        }
+    }
 
     @Override
     public void onError(String message) {//get Errors from api
@@ -292,22 +292,21 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
         if (!Utility.isNetworkAvailable(GetAirportMabdaActivity.this)) {
             AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
-            AlertDialogPassenger.setText(getString(R.string.InternetError),getString(R.string.massege));
+            AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
 
 
         } else {
             AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
-            AlertDialogPassenger.setText(getString(R.string.ErrorServer),getString(R.string.massege));
+            AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
 
 
         }
     }
 
 
-
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnBack:
                 finish();
                 break;
@@ -316,7 +315,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                         RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, com.eligasht.reservation.tools.Prefs.getString("lang","fa"));
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, com.eligasht.reservation.tools.Prefs.getString("lang", "fa"));
         /*        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
                         "لطفا مکان مورد نظر را اعلام نمایید...");*/
                 try {
@@ -340,7 +339,6 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                 if (resultCode == RESULT_OK && null != data) {
 
 
-
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     searchtxt.setText(result.get(0));
@@ -350,6 +348,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
         }
     }
+
     @Override
     public void searchTextChanged(String searchText) {
 

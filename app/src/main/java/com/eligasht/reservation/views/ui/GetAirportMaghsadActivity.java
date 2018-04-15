@@ -43,7 +43,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
-public class GetAirportMaghsadActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener , OnServiceStatus<ResponsAirports> {
+public class GetAirportMaghsadActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnServiceStatus<ResponsAirports> {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     private final int REQ_CODE_SPEECH_INPUT = 100;
@@ -54,7 +54,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
     public ListView list_airport;
     ArrayList<HashMap<String, String>> mylist = null;
     public static String searchText = "";
-    FancyButton btnBack,btnMic;
+    FancyButton btnBack, btnMic;
 
     GetAirPortMaghsadAdapter mAdapter;
     private EditText searchtxt;
@@ -84,7 +84,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         btnBack.setOnClickListener(this);
         btnMic.setOnClickListener(this);
         //////////////////show recent
-        
+
         ListView listAirPort = findViewById(R.id.listAirPort);
         List<Country> data = new ArrayList<>();
         RecentCity_Table recentCity_table = new RecentCity_Table(this);
@@ -118,12 +118,9 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         listAirPort = findViewById(R.id.listAirPort);
         mAdapter = new GetAirPortMaghsadAdapter(GetAirportMaghsadActivity.this, data, Value_Mabda_City, Value_Mabda_Airport, Value_Mabda_Airport_Code, GetAirportMaghsadActivity.this);
 
-        //mAdapter = new GetAirPortMaghsadAdapter(GetAirportMaghsadActivity.this, data,  GetAirportMaghsadActivity.this);
-
         mAdapter.setData(data);
         listAirPort.setAdapter(mAdapter);
 
-        //////////////////////////
         //////////////////////////Remove recent
         CursorManager cursorManager1 = recentCity_table.getCountRow();
         System.out.println("count:" + cursorManager1.getInt("COUNT(Id)"));
@@ -183,8 +180,8 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                                                 if (d.length() > 2) {
 
                                                     GetAirportMaghsadActivity.searchText = d.toLowerCase();
-                                                  //  new AsyncFetch().execute();
-                                                    sendRequest( GetAirportMaghsadActivity.searchText);
+                                                    //  new AsyncFetch().execute();
+                                                    sendRequest(GetAirportMaghsadActivity.searchText);
 
                                                 }
                                                 if (d.length() < 0 || d.length() == 0) {
@@ -207,6 +204,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 }
         );
     }//end oncreate
+
     private void sendRequest(String searchText) {
         avi.setVisibility(View.VISIBLE);
 
@@ -230,13 +228,13 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         String GetError = "";
         List<Country> data = new ArrayList<Country>();
         ListView listAirPort;
-        try{
-            if ( responsAirports.getGetAirportWithParentsWithCultureResult().getErrors()!= null) {
+        try {
+            if (responsAirports.getGetAirportWithParentsWithCultureResult().getErrors() != null) {
                 GetError = responsAirports.getGetAirportWithParentsWithCultureResult().getErrors().get(0).getMessage();
             }
             if (GetError.length() > 1) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this);
-                AlertDialogPassenger.setText(GetError,getString(R.string.massege));
+                AlertDialogPassenger.setText(GetError, getString(R.string.massege));
 
             } else {
 
@@ -276,12 +274,12 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         } catch (Exception e) {
             if (!Utility.isNetworkAvailable(GetAirportMaghsadActivity.this)) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this);
-                AlertDialogPassenger.setText(getString(R.string.InternetError),getString(R.string.massege));
+                AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
 
 
             } else {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this);
-                AlertDialogPassenger.setText(getString(R.string.ErrorServer),getString(R.string.massege));
+                AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
 
 
             }
@@ -293,17 +291,16 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 
         if (!Utility.isNetworkAvailable(GetAirportMaghsadActivity.this)) {
             AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this);
-            AlertDialogPassenger.setText(getString(R.string.InternetError),getString(R.string.massege));
+            AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
 
 
         } else {
             AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this);
-            AlertDialogPassenger.setText(getString(R.string.ErrorServer),getString(R.string.massege));
+            AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
 
 
         }
     }
-
 
 
     @Override
@@ -319,7 +316,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                         RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, com.eligasht.reservation.tools.Prefs.getString("lang","fa"));
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, com.eligasht.reservation.tools.Prefs.getString("lang", "fa"));
         /*        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
                         "لطفا مکان مورد نظر را اعلام نمایید...");*/
                 try {
@@ -333,6 +330,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 break;
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -340,7 +338,6 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         switch (requestCode) {
             case REQ_CODE_SPEECH_INPUT: {
                 if (resultCode == RESULT_OK && null != data) {
-
 
 
                     ArrayList<String> result = data
