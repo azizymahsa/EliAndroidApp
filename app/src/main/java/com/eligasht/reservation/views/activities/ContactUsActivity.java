@@ -50,7 +50,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     ExpandableRelativeLayout expandableLayout;
     public ImageView txtInstagram,txtAparat,txtTweeter,txtPintrest,txtLinkdin,txtGoogleP,txtFacebook,txtTelegram;
     ProgressDialog pdLoading;
-       LatLng location;
+    LatLng location;
     private ResponseContactUs responseContactUs;
 
     @Override
@@ -114,12 +114,9 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         {
             e.printStackTrace();
         }
-
         RequestContactUs requestContactUs = new RequestContactUs();
         com.eligasht.service.model.flight.request.contactUs.RequestContactUs request = new com.eligasht.service.model.flight.request.contactUs.RequestContactUs();
-
         request.setCulture(getString(R.string.culture));
-
         SingletonService.getInstance().getContactUs().contactUsAvail(this,request);
     }
 
@@ -137,7 +134,6 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
             case R.id.txtInstagram:
                 Uri uri = Uri.parse("https://instagram.com/eligashtco/");
                 Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
-
                 likeIng.setPackage("com.instagram.android");
 
                 try {
@@ -222,9 +218,6 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                     Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", responseContactUs.getGetContactUsWithCutureResult().getPhoneNumber(), null));
                     startActivity(intent2);
                 }
-
-
-
 
         }
     }

@@ -56,7 +56,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     LinearLayout layout_duringTrip;
     TextView txt_during_trip;
     TextView txt_count_passenger;
-    Country country;
+    com.eligasht.service.model.insurance.response.GetCountry.Country country;
     private ArrayList<BirthDateList> passengers;
     private Gson gson;
     private String departureDate;
@@ -78,7 +78,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         super.onResume();
         country = Hawk.get("Value-Insurance-Country", null);
         if (country != null && txtCity != null)
-            txtCity.setText(country.getCountryNameFa());
+            txtCity.setText(country.getCountryName());
     }
 
     @Override
@@ -147,6 +147,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         btnSearchInsurance.setOnClickListener(this);
         txtCity.setOnClickListener(this);
     }
+
     private void initCheckInCheckOutAnim() {
         lottieCheckin.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
@@ -172,6 +173,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
         lottieCheckin.playAnimation();
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -190,7 +192,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                 break;
 
             case R.id.layout_depart_date:
-                this.dialog.create(getActivity(), getContext(), this,SingletonDate.getInstance().getStartDate() , TypeUsageOfCalendar.InternationalFlight);
+                this.dialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), TypeUsageOfCalendar.InternationalFlight);
                 break;
             case R.id.btnSearchInsurance:
                 if (country == null) {
