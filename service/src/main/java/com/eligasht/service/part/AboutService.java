@@ -16,6 +16,11 @@ public class AboutService extends BasePart {
         super(serviceGenerator);
     }
 
+    @Override
+    protected BasePart getPart() {
+        return this;
+    }
+
 
     public void aboutAvail(OnServiceStatus<ResponseAbout> listener, RequestAbout req) {
         start(getServiceGenerator().createService().responseAboutObservable(req), listener);

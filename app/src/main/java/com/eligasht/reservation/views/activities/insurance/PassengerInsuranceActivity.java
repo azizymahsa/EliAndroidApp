@@ -611,7 +611,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             e.printStackTrace();
         }
         requestPreFactorDetails.setRequest(request);
-        Log.e("PreFactorDetailsInsurance:", new Gson().toJson(requestPreFactorDetails));
+      //  Log.e("PreFactorDetailsInsurance:", new Gson().toJson(requestPreFactorDetails));
 
         SingletonService.getInstance().getInsurance().PreFactorDetailInsuranceAvail(new OnServiceStatus<ResponsePreFactorDetails>() {
             @Override

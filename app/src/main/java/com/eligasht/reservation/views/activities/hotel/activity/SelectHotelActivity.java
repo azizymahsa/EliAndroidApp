@@ -677,6 +677,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             }
             adapter.notifyDataSetChanged();
         } catch (Exception e) {
+            e.printStackTrace();
             list.setVisibility(View.GONE);
             rlList.setVisibility(View.GONE);
             elNotFound.setVisibility(View.VISIBLE);

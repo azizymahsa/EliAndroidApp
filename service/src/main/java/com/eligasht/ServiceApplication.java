@@ -19,6 +19,7 @@ public class ServiceApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        SingletonService.getInstance().setContext(this);
         mNetComponent = DaggerNetComponent.builder()
                 .appModule(new AppModule(this))
                 .netModule(new NetModule(Const.BASEURL))
