@@ -1,0 +1,66 @@
+{
+  "MobileAppStartupServiceResult": {
+    "Comments": null,
+    "Errors": null,
+    "ResultKey": null,
+    "Warningss": null,
+    "AdjustEnabled": false,
+    "AppVersion": null,
+    "Brand": null,
+    "Culture": null,
+    "CultureDefault": "fa-IR",
+    "DeviceName": null,
+    "DeviceOSType": 0,
+    "DeviceProduct": null,
+    "ID": 15113,
+    "IMEI": "864587029867000",
+    "IMSI": "432350362417055",
+    "Message": null,
+    "OpratorName": null,
+    "SDKVersion": 0,
+    "ServerID": 2,
+    "UserEntranceResponse": {
+      "CanEnter": true,
+      "MinAppVersion": "1.0.5",
+      "SearchNotes": [
+        {
+          "Notes": [
+            "گارانتی بهترین قیمت",
+            "با بیش از 900 ایرلاین در 70 کشور",
+            "رزرو بلیط هواپیما بهمراه هتل",
+            "خرید خدمات سفر مانند ویزا، ترانسفر فرودگاهی و ..."
+          ],
+          "Section": "F"
+        },
+        {
+          "Notes": [
+            "با بیش از 900 ایرلاین و 200,000 هتل در دنیـا",
+            "بیش از 200,000 هتـل در سراسر دنیا",
+            "مشاهده کلیه اطلاعات مربوط به هتل ها",
+            "صدور آنی واچر بعد از ثبت رزرو"
+          ],
+          "Section": "H"
+        },
+        {
+          "Notes": [
+            "با بیش از 900 ایرلاین و 200,000 هتل در دنیـا",
+            "بیش از 200,000 هتـل در سراسر دنیا",
+            "مشاهده کلیه اطلاعات مربوط به هتل ها",
+            "صدور آنی واچر بعد از ثبت رزرو"
+          ],
+          "Section": "FH"
+        },
+        {
+          "Notes": [
+            "با بیش از 900 ایرلاین و 200,000 هتل در دنیـا",
+            "بیش از 200,000 هتـل در سراسر دنیا",
+            "مشاهده کلیه اطلاعات مربوط به هتل ها",
+            "صدور آنی واچر بعد از ثبت رزرو"
+          ],
+          "Section": "P"
+        }
+      ]
+    },
+    "identity": null
+  }
+}

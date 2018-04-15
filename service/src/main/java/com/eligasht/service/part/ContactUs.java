@@ -2,10 +2,13 @@ package com.eligasht.service.part;
 
 import com.eligasht.service.generator.ServiceGenerator;
 import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.mock.Mock;
 import com.eligasht.service.model.flight.request.airPort.RequestAirports;
 import com.eligasht.service.model.flight.request.contactUs.RequestContactUs;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
+import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
+import com.eligasht.service.model.startup.response.StartupServiceResponse;
 
 import java.util.List;
 
@@ -23,11 +26,10 @@ public class ContactUs extends BasePart {
         return this;
     }
 
-
+    @Mock(jsonName = "get_contact_us_with_cuture", response = ResponseContactUs.class)
     public void contactUsAvail(OnServiceStatus<ResponseContactUs> listener, RequestContactUs req) {
         start(getServiceGenerator().createService().responsContactUs(req), listener);
     }
-
 
 
 }
