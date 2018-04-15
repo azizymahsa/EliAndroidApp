@@ -802,6 +802,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         loadFlightSubRequest.setIdentity(identity);
         loadFlightSubRequest.setSearchKey(searchKey);
         loadFlightRequest.setRequest(loadFlightSubRequest);
+        Log.e("loadFlightRequest", new Gson().toJson(loadFlightRequest));
         SingletonService.getInstance().getHotelService().loadFlight(new OnServiceStatus<LoadFlightResponse>() {
             @Override
             public void onReady(LoadFlightResponse loadFlightResponse) {
@@ -892,7 +893,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                         adapter.notifyDataSetChanged();
                     }
                 } catch (Exception e) {
-
                     onErrors();
                 }
             }
@@ -1021,8 +1021,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         }
     }
 
-    public void onErrors(){
-
+    public void onErrors() {
         new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.colorPrimaryDark));
@@ -1039,6 +1038,5 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         btnOk.setVisibility(View.VISIBLE);
         rlEr.setVisibility(View.VISIBLE);
         tvAlertDesc.setVisibility(View.GONE);
-
     }
 }

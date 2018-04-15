@@ -9,6 +9,9 @@ public class Request {
     @SerializedName("AppVersion")
     @Expose
     private String appVersion;
+    @SerializedName("ID")
+    @Expose
+    private String ID;
     @SerializedName("Brand")
     @Expose
     private String brand;
@@ -39,6 +42,14 @@ public class Request {
     @SerializedName("identity")
     @Expose
     private Identity identity;
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public String getAppVersion() {
         return appVersion;

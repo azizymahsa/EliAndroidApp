@@ -1097,7 +1097,7 @@
                             android:background="@drawable/background_strock_white"
                             android:gravity="center|center_vertical"
                             android:paddingRight="10dp"
-                            android:text="iranian"
+                            android:text="IR"
                             android:textSize="@dimen/_14dp" />
                     </LinearLayout>
                     <!-- mahale eghamat -->

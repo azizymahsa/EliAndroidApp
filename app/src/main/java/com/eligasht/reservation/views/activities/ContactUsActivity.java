@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.flight.request.contactUs.RequestContactUs;
@@ -215,7 +217,14 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                     Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "۰۲۱-۸۵۴۰", null));
                     startActivity(intent2);
                 }else {
-                    Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", responseContactUs.getGetContactUsWithCutureResult().getPhoneNumber(), null));
+
+                    String[] phone = responseContactUs.getGetContactUsWithCutureResult().getPhoneNumber().split("\r\n");
+
+                    String phoneCall = phone[0];
+
+
+                    Log.e("phone", phoneCall+"" );
+                    Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel",phoneCall, null));
                     startActivity(intent2);
                 }
 
@@ -261,9 +270,10 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
         map = googleMap;
         // map.getUiSettings().setScrollGesturesEnabled(false);
-        map.getUiSettings().setTiltGesturesEnabled(false);
-        map.getUiSettings().setScrollGesturesEnabled(false);
-        map.getUiSettings().setZoomGesturesEnabled(false);
+        googleMap.getUiSettings().setTiltGesturesEnabled(false);
+        googleMap.getUiSettings().setScrollGesturesEnabled(false);
+        googleMap.getUiSettings().setZoomGesturesEnabled(false);
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
         map.clear();
         if (responseContactUs != null) {
             location=new LatLng(responseContactUs.getGetContactUsWithCutureResult().getLatitude(),responseContactUs.getGetContactUsWithCutureResult().getLongitude());

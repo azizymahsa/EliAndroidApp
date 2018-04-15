@@ -20,6 +20,8 @@ import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlig
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.eligasht.service.model.hotelflight.request.HotelFlightRequest;
+import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
+import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
 import com.eligasht.service.model.insurance.request.GetCountry.RequestGetCountry;
 import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPurchaseInsurance;
 import com.eligasht.service.model.insurance.request.SearchInsurance.RequestSearchInsurance;
@@ -54,7 +56,7 @@ public interface RetroClient {
             @Body HotelFlightRequest hotelFlightRequest
     );
 
-    @POST(Const.HotelFlightSearch)
+    @POST(Const.LoadFlight)
     Observable<LoadFlightResponse> loadFlight(
             @Body LoadFlightRequest loadFlightRequest
     );
@@ -64,6 +66,15 @@ public interface RetroClient {
     Observable<HotelAvailRes> hotelAvail(
             @Body HotelAvailReq hotelAvailReq
     );
+
+    @POST(Const.HotelPolicy)
+    Observable<HotelPolicyResponse> hotelPolicy(
+            @Body HotelPolicyRequest hotelPolicyRequest
+    );
+
+
+    //*************flight*************
+
 
     @POST(Const.AirportAvail)
     Observable<ResponsAirports> responsAirports(

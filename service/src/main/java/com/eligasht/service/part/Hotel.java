@@ -6,6 +6,8 @@ import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.eligasht.service.model.hotelflight.request.HotelFlightRequest;
 import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
+import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
+import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
 /**
@@ -27,5 +29,7 @@ public class Hotel extends BasePart {
     public void loadFlight(OnServiceStatus<LoadFlightResponse> listener, LoadFlightRequest req) {
         start(getServiceGenerator().createService().loadFlight(req), listener);
     }
-
+    public void hotelPolicy(OnServiceStatus<HotelPolicyResponse> listener, HotelPolicyRequest req) {
+        start(getServiceGenerator().createService().hotelPolicy(req), listener);
+    }
 }

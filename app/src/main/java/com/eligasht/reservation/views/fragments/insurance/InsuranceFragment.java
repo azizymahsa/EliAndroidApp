@@ -15,7 +15,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
-import com.eligasht.reservation.models.model.Country;
+
 import com.eligasht.reservation.models.model.insurance.BirthDateList;
 import com.eligasht.reservation.tools.GlideAppModule;
 import com.eligasht.reservation.tools.Prefs;
@@ -31,6 +31,7 @@ import com.eligasht.reservation.views.picker.global.model.CustomDate;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ui.GetCountriesForInsuranceActivity;
+import com.eligasht.service.model.insurance.response.GetCountry.Country;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
