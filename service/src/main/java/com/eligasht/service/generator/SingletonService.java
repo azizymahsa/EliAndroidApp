@@ -9,6 +9,7 @@ import com.eligasht.service.part.ContactUs;
 import com.eligasht.service.part.Flight;
 import com.eligasht.service.part.Hotel;
 import com.eligasht.service.part.Insurance;
+import com.eligasht.service.part.LoginProfile;
 
 import javax.inject.Inject;
 /**
@@ -18,10 +19,11 @@ public class SingletonService {
     private NetComponent netComponent;
     @Inject
     ServiceGenerator serviceGenerator;
-    Hotel hotel;
-    ContactUs contactUs;
-    AboutService aboutService;
-    AppService appService;
+    private Hotel hotel;
+    private ContactUs contactUs;
+    private AboutService aboutService;
+    private AppService appService;
+    private LoginProfile loginProfile;
 
     private Context context;
     private Boolean mock=false;
@@ -95,5 +97,10 @@ public class SingletonService {
 
 }
 
+    public LoginProfile getLoginProfile() {
+        if (loginProfile == null)
+            loginProfile = new LoginProfile(serviceGenerator);
+        return loginProfile;
 
+    }
 }

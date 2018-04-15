@@ -26,6 +26,8 @@ import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.eligasht.service.model.hotel.room.request.GetRoomRequest;
 import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
+import com.eligasht.service.model.hotel.transport.request.TransportRequest;
+import com.eligasht.service.model.hotel.transport.response.TransportResponse;
 import com.eligasht.service.model.hotelflight.request.HotelFlightRequest;
 import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
 import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
@@ -38,6 +40,9 @@ import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
 import com.eligasht.service.model.insurance.response.SearchInsurance.ResponseSearchInsurance;
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
+import com.eligasht.service.model.login.request.LoginListReq;
+import com.eligasht.service.model.login.request.LoginRequestModel;
+import com.eligasht.service.model.login.response.LoginResponse;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
 import com.eligasht.service.model.startup.response.StartupServiceResponse;
 
@@ -66,6 +71,10 @@ public interface RetroClient {
     @POST(Const.LoadFlight)
     Observable<LoadFlightResponse> loadFlight(
             @Body LoadFlightRequest loadFlightRequest
+    );
+    @POST(Const.AirportTransportServicePrice)
+    Observable<TransportResponse> transportService(
+            @Body TransportRequest transportRequest
     );
 
     //*************hotel*************
@@ -160,6 +169,15 @@ public interface RetroClient {
     @POST(Const.SearchInsuranceAvil)
     Observable<ResponseSearchInsurance> RESPONSE_SEARCH_INSURANCE_OBSERVABLE(
             @Body RequestSearchInsurance requestSearchInsurance2
+    );
+
+
+
+    //*************Login & Profile*************
+
+    @POST(Const.Login)
+    Observable<LoginResponse> login(
+            @Body LoginRequestModel loginRequestModel
     );
 
 }

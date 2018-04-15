@@ -9,6 +9,8 @@ public class Const {
 
     //*************start up*************
     public final static String StartUp = "Common/StaticDataService.svc/MobileAppStartupService";
+    //*************profile & login*************
+    public final static String Login = "Common/StaticDataService.svc/Login";
 
     //*************hotel*************
     public final static String HotelAvail = "Hotel/HotelService.svc/HotelAvail";
@@ -20,6 +22,7 @@ public class Const {
     public final static String LoadFlight = "HotelFlight/HotelFlightService.svc/LoadFlight";
     public final static String HotelPolicy = "Hotel/HotelService.svc/GetHotelPolicy";
     public final static String HoldSelectedRoom = "Hotel/HotelService.svc/HoldSelectedRoom";
+    public final static String AirportTransportServicePrice = "HotelFlight/HotelFlightService.svc/AirportTransportServicePrice";
 
     //*************flight*************
     public final static String AirportAvail = "Common/StaticDataService.svc/GetAirportWithParentsWithCulture";

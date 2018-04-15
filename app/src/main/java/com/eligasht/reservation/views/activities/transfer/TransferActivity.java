@@ -1,18 +1,14 @@
 package com.eligasht.reservation.views.activities.transfer;
-
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -21,11 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eligasht.R;
-import com.eligasht.reservation.api.hotel.AirportTransportServicePrice;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.hotel.api.airportTransportServicePrice.request.AirportPriceRequest;
 import com.eligasht.reservation.models.hotel.api.airportTransportServicePrice.request.AirportTransportServicePriceRequest;
-import com.eligasht.reservation.models.hotel.api.airportTransportServicePrice.request.Param;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
@@ -36,6 +30,12 @@ import com.eligasht.reservation.views.ui.GetAirportMabdaActivity;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.app.SplashDialog;
+import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.hotel.transport.request.Param;
+import com.eligasht.service.model.hotel.transport.request.TransportReq;
+import com.eligasht.service.model.hotel.transport.request.TransportRequest;
+import com.eligasht.service.model.hotel.transport.response.TransportResponse;
 import com.google.gson.Gson;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
@@ -47,8 +47,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-public class TransferActivity extends BaseActivity implements View.OnClickListener, TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+public class TransferActivity extends BaseActivity implements View.OnClickListener, TimePickerDialog.OnTimeSetListener,
+        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, OnServiceStatus<TransportResponse> {
     TextView tvDepurtureAirport, tvHotel, tvDepurtureDate, tvReturnDate, tvDepurtureTime, tvReturnTime;
     String DepurtureAirport, Hotel, DepurtureDate, ReturnAirportDate, DepurtureTime, ReturnTime, DepurtureFlt, ReturnFlt, Hotelcode, TmpRq, AirPortCode, ReturnDate, ServiceID, PassengerList, CityId, HotelId;
     DatePickerDialog datePickerDialog;
@@ -66,7 +66,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
     boolean geo;
     EditText tvDepurtureFlt, tvReturnFlt;
-    AirportTransportServicePrice airportTransportServicePrice;
     Button btnCal;
     RelativeLayout rlLoading2;
     SplashDialog splashDialog;
@@ -74,7 +73,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
     public static String date_server(int y, int m, int d) {
         Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);
-
         SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
         String formatted = format1.format(date.getTime());
         String[] dateGrg = formatted.split("/");
@@ -92,9 +90,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         initValues();
         initCalenndar();
         InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.calculate_price));
-
         splashDialog = new SplashDialog(TransferActivity.this, null);
-
     }
 
     public void initViews() {
@@ -109,7 +105,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         btnCal = findViewById(R.id.btnCal);
         rlLoading2 = findViewById(R.id.rlLoading2);
         llRoot = findViewById(R.id.llRoot);
-
         tvDepurtureAirport.setOnClickListener(this);
         tvHotel.setOnClickListener(this);
         tvDepurtureDate.setOnClickListener(this);
@@ -121,17 +116,13 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         btnCal.setOnClickListener(this);
         rlLoading2.setOnClickListener(this);
         Utility.setAnimLoading(this);
-
         tvDepurtureFlt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
                 if (ValidationTools.isEmptyOrNull(tvDepurtureFlt.getText().toString())) {
                     Typeface t = Typeface.createFromAsset(getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
                     tvDepurtureFlt.setTypeface(t);
@@ -139,24 +130,19 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     Typeface t = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
                     tvDepurtureFlt.setTypeface(t);
                 }
-
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
         tvReturnFlt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
                 if (ValidationTools.isEmptyOrNull(tvReturnFlt.getText().toString())) {
                     Typeface t = Typeface.createFromAsset(getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
                     tvReturnFlt.setTypeface(t);
@@ -164,36 +150,27 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     Typeface t = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Medium.ttf");
                     tvReturnFlt.setTypeface(t);
                 }
-
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
     }
 
     public void initCalenndar() {
-
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
         //  Date currentTime = Calendar.getInstance().getTime();
         //=================================================================================================
         PersianCalendar persianCalendar = new PersianCalendar();
-
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay() + 1);
-
-
         month = persianCalendarDatePicker.getPersianMonth();
         year_ = persianCalendarDatePicker.getPersianYear();
         day = persianCalendarDatePicker.getPersianDay();
-
         datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
         datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
-
         // datePickerDialogGregorian2.setOnDateSetListener(this);
         //  datePickerDialogGregorian2.setOnCalandarChangeListener(this);
-
         datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
         datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
         timePickerDialog = TimePickerDialog.newInstance(this, persianCalendar.getTime().getHours(), persianCalendar.getTime().getMinutes(), true);
@@ -202,16 +179,12 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onTimeSet(com.wdullaer.materialdatetimepicker.time.RadialPickerLayout view, int hourOfDay, int minute, int second) {
                 tvDepurtureTime.setText(hourOfDay + ":" + minute);
-
-
             }
         });
         timePickerDialog2.setOnTimeSetListener(new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(com.wdullaer.materialdatetimepicker.time.RadialPickerLayout view, int hourOfDay, int minute, int second) {
                 tvReturnTime.setText(hourOfDay + ":" + minute);
-
-
             }
         });
         datePickerDialog = DatePickerDialog.newInstance(
@@ -220,10 +193,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay()
         );
-
         datePickerDialog.setMinDate(persianCalendarDatePicker);
-
-
         datePickerDialog2 = DatePickerDialog.newInstance(
                 this,
                 persianCalendar.getPersianYear(),
@@ -231,70 +201,45 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 persianCalendar.getPersianDay()
         );
         datePickerDialog2.setMinDate(persianCalendar);
-
-
         raft = date_server(persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay());
-
-
         bargasht = date_server(persianCalendar.getPersianYear(),
                 persianCalendar.getPersianMonth(),
                 persianCalendar.getPersianDay());
-
         //=====================================================================================================
-
-
         datePickerDialog.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
             @Override
             public void onCalendarChanged(boolean isGregorian) {
                 datePickerDialogGregorian1.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
             }
         });
-
-
         datePickerDialogGregorian1.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
             @Override
             public void onCalendarChanged(boolean isGregorian) {
                 datePickerDialog.show(getSupportFragmentManager(), "DatepickerdialogRaft");
-
-
             }
         });
-
-
 //=====================================================================================================
-
         datePickerDialog2.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
             @Override
             public void onCalendarChanged(boolean isGregorian) {
                 datePickerDialogGregorian2.show(getFragmentManager(), "DatePickerDialogGregorianBargasht");
             }
         });
-
-
         datePickerDialogGregorian2.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
             @Override
             public void onCalendarChanged(boolean isGregorian) {
                 datePickerDialog2.show(getSupportFragmentManager(), "DatepickerdialogBargasht");
-
-
             }
         });
         datePickerDialog2.setTitle(getResources().getString(R.string.select_return_date));
-
-
 //=====================================================================================================
-
-
         datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-
                 geo = true;
                 Log.e("GGGGGGGRaft", year + "==" + monthOfYear + 1 + "==" + dayOfMonth);
-
-
                 String str_date = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;//2018-01-16
                 DateFormat formatter;
                 Date date;
@@ -304,25 +249,16 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date);
                     datePickerDialogGregorian2.setMinDate(cal);
-
-
                     tvDepurtureDate.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
-
                     raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
                     Log.e("GGGGGGG", raft);
-
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-
                 tvReturnDate.setText(tvDepurtureDate.getText().toString());
-
                 Prefs.putString("bargashtfa", tvDepurtureDate.getText().toString());
-
                 Prefs.putString("raft", raft);
                 Prefs.putString("raftfa", tvDepurtureDate.getText().toString());
-
-
             }
         });
         datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
@@ -331,93 +267,57 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 Log.e("GGGGGGGBar", year + "==" + (monthOfYear + 1) + "==" + dayOfMonth);
                 geo = true;
                 tvReturnDate.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
-
                 bargasht = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
-
-
                 Prefs.putString("bargasht", bargasht);
                 Prefs.putString("bargashtfa", tvReturnDate.getText().toString());
-
             }
-
-
         });
-
-
 //=====================================================================================================
-
-
 //=====================================================================================================
         if (Prefs.getString("bargashtfa", "null").equals("null")) {
             //    tvReturnDate.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
-
         } else {
-
             //    tvReturnDate.setText(Prefs.getString("bargashtfa", "null"));
             bargasht = Prefs.getString("bargasht", "null").replaceAll("-", "/");
-
-
-          //  Log.e("testdate", bargasht);
-
+            //  Log.e("testdate", bargasht);
             String[] dateSplite2 = bargasht.split("/");
-
             String dayMF = dateSplite2[2];
             String monthMF = dateSplite2[1];
             String yearMF = dateSplite2[0];
             String[] dateSplite3 = SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF), Integer.valueOf(monthMF) - 1, Integer.valueOf(dayMF) + 1).split("/");
-
             String dayMF1 = dateSplite3[2];
             String monthMF1 = dateSplite3[1];
             String yearMF1 = dateSplite3[0];
-
-
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
-           // Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
+            // Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
             datePickerDialog2.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
-
-
         }
-
-
         if (Prefs.getString("raftfa", "null").equals("null")) {
             // tvDepurtureDate.setText(persianCalendar.getPersianWeekDayName()+" "+persianCalendar.getPersianDay()+" "+persianCalendar.getPersianMonthName());
-
         } else {
             // tvDepurtureDate.setText(Prefs.getString("raftfa", "null"));
             raft = Prefs.getString("raft", "null").replaceAll("-", "/");
-        //    Log.e("testdate", raft);
-
+            //    Log.e("testdate", raft);
             String[] dateSplite2 = raft.split("/");
-
             String dayMF = dateSplite2[2];
             String monthMF = dateSplite2[1];
             String yearMF = dateSplite2[0];
             String[] dateSplite3 = SolarCalendar.calSolarCalendar(Integer.valueOf(yearMF), Integer.valueOf(monthMF) - 1, Integer.valueOf(dayMF) + 1).split("/");
-
             String dayMF1 = dateSplite3[2];
             String monthMF1 = dateSplite3[1];
             String yearMF1 = dateSplite3[0];
-
-
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
-           // Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
+            // Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
             datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
-
-
         }
-
     }
 
     public void initValues() {
-
         DepurtureAirport = getIntent().getExtras().getString("ArrialAirportName");
-
         ReturnFlt = getIntent().getExtras().getString("ArrivalFltNo");
-
         DepurtureFlt = getIntent().getExtras().getString("DepartureFltNo");
-
         DepurtureTime = getIntent().getExtras().getString("DepartureFltTime");
         ReturnTime = getIntent().getExtras().getString("ArrivalFltTime");
         ReturnAirportDate = getIntent().getExtras().getString("ArrivalFltDate");
@@ -429,32 +329,25 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         Log.e("hotelTest3", ReturnAirportDate);
         Log.e("hotelTest4", DepurtureTime);
         Log.e("hotelTest4", DepurtureDate);
-
         CityId = getIntent().getExtras().getString("CityID");
-
         Hotelcode = getIntent().getExtras().getString("HotelID");
         getIntent().getExtras().getString("HotelNameEn");
         AirPortCode = getIntent().getExtras().getString("ArrialAirportCode");
-
         ServiceID = getIntent().getExtras().getString("ServiceID");
         PassengerList = getIntent().getExtras().getString("PassengerList");
         TmpRq = getIntent().getExtras().getString("BookingCode");
-
         if (!ValidationTools.isEmptyOrNull(DepurtureAirport)) {
             tvDepurtureAirport.setText(DepurtureAirport);
             tvDepurtureAirport.setClickable(false);
             tvDepurtureAirport.setEnabled(false);
-
         } else {
             tvDepurtureAirport.setClickable(true);
             tvDepurtureAirport.setEnabled(true);
         }
-
         if (!ValidationTools.isEmptyOrNull(ReturnAirportDate)) {
             tvReturnDate.setText(DateUtil.getLongStringDate(ReturnAirportDate, "yyyy/MM/dd", false));
             tvReturnDate.setClickable(false);
             tvReturnDate.setEnabled(false);
-
         } else {
             tvReturnDate.setClickable(true);
             tvReturnDate.setEnabled(true);
@@ -463,7 +356,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             tvReturnFlt.setText(ReturnFlt);
             tvReturnFlt.setClickable(false);
             tvReturnFlt.setEnabled(false);
-
         } else {
             tvReturnFlt.setClickable(true);
             tvReturnFlt.setEnabled(true);
@@ -472,7 +364,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             tvDepurtureFlt.setText(DepurtureFlt);
             tvDepurtureFlt.setClickable(false);
             tvDepurtureFlt.setEnabled(false);
-
         } else {
             tvDepurtureFlt.setClickable(true);
             tvDepurtureFlt.setEnabled(true);
@@ -481,7 +372,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             tvDepurtureTime.setText(DepurtureTime);
             tvDepurtureTime.setClickable(false);
             tvDepurtureTime.setEnabled(false);
-
         } else {
             tvDepurtureTime.setClickable(true);
             tvDepurtureTime.setEnabled(true);
@@ -490,7 +380,6 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             tvReturnTime.setText(ReturnTime);
             tvReturnTime.setClickable(false);
             tvReturnTime.setEnabled(false);
-
         } else {
             tvReturnTime.setClickable(true);
             tvReturnTime.setEnabled(true);
@@ -499,17 +388,14 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             tvDepurtureDate.setText(DateUtil.getLongStringDate(DepurtureDate, "yyyy/MM/dd", false));
             tvDepurtureDate.setClickable(false);
             tvDepurtureDate.setEnabled(false);
-
         } else {
             tvDepurtureDate.setClickable(true);
             tvDepurtureDate.setEnabled(true);
         }
         if (!ValidationTools.isEmptyOrNull(Hotel)) {
             tvHotel.setText(Hotel);
-
             tvHotel.setClickable(false);
             tvHotel.setEnabled(false);
-
         } else {
             tvHotel.setClickable(true);
             tvHotel.setEnabled(true);
@@ -521,19 +407,14 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             tvReturnDate.setText(getString(R.string.please_select_one));
             tvReturnDate.setClickable(true);
             tvReturnDate.setEnabled(true);
-
         }
-
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         if (ValidationTools.isEmptyOrNull(DepurtureAirport)) {
             tvDepurtureAirport.setText(Prefs.getString("Value-Mabda-City2", getString(R.string.please_select_one)));
-
         }
         if (ValidationTools.isEmptyOrNull(Hotel)) {
             tvHotel.setText(Prefs.getString("HotelName", getString(R.string.please_select_one)));
@@ -541,13 +422,10 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         if (ValidationTools.isEmptyOrNull(AirPortCode)) {
             if (Prefs.getString("Value-Mabda-Airport-Code2", "").equals(""))
                 AirPortCode = Prefs.getString("Value-Maghsad-Airport-Code2", "");
-
         }
         if (ValidationTools.isEmptyOrNull(Hotelcode)) {
             Hotelcode = Prefs.getString("HotelCode", "");
-
         }
-
         tvDepurtureFlt.clearFocus();
         tvReturnFlt.clearFocus();
         llRoot.clearFocus();
@@ -559,17 +437,14 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         Prefs.putString("HotelName", getString(R.string.please_select_one));
         Prefs.putString("Value-Mabda-Airport-Code2", "");
         Prefs.putString("Value-Mabda-City2", getString(R.string.please_select_one));
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.tvDepurtureAirport:
                 Intent intent = new Intent(this, GetAirportMabdaActivity.class);
                 startActivity(intent);
-
                 break;
             case R.id.tvHotel:
                 startActivity(new Intent(TransferActivity.this, GetHotelActivity.class));
@@ -577,40 +452,29 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             case R.id.tvDepurtureDate:
                 if (geo) {
                     datePickerDialogGregorian1.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
-
                 } else {
                     datePickerDialog.show(getSupportFragmentManager(), "DatepickerdialogRaft");
-
                 }
                 break;
             case R.id.tvReturnDate:
                 if (geo) {
                     datePickerDialogGregorian2.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
-
                 } else {
                     datePickerDialog2.show(getSupportFragmentManager(), "DatepickerdialogBargasht");
-
                 }
-
                 break;
             case R.id.tvDepurtureTime:
                 timePickerDialog.show(getFragmentManager(), "timeRaft");
-
                 break;
             case R.id.tvReturnTime:
                 timePickerDialog2.show(getFragmentManager(), "timeBargasht");
-
                 break;
             case R.id.tvDepurtureFlt:
-
-
                 break;
             case R.id.tvReturnFlt:
-
                 break;
             case R.id.btnCal:
                 boolean cal = true;
-
                 if (tvDepurtureAirport.getText().toString().contains(getString(R.string.please_select_one))) {
                     cal = false;
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureAirport.getBackground();
@@ -620,64 +484,49 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureAirport.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
-
                 if (tvDepurtureTime.getText().toString().contains(getString(R.string.please_select_one))) {
                     cal = false;
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureTime.getBackground();
                     drawable.setStroke(4, Color.RED); // se
                     // tvDepurtureTime.setError("ساعت رفت را انتخاب کنید");
-
                 } else {
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureTime.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
-
                 if (tvReturnTime.getText().toString().contains(getString(R.string.please_select_one))) {
                     //  tvReturnTime.setError("ساعت برگشت را انتخاب کنید");
                     GradientDrawable drawable = (GradientDrawable) tvReturnTime.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                     cal = false;
-
                 } else {
                     GradientDrawable drawable = (GradientDrawable) tvReturnTime.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
-
-
                 if (ValidationTools.isEmptyOrNull(tvDepurtureFlt.getText().toString())) {
                     cal = false;
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
                     //    tvDepurtureFlt.setError("شماره پرواز رفت را انتخاب کنید");
-                //    Log.e("test1", tvDepurtureFlt.getHint().toString());
-
-
+                    //    Log.e("test1", tvDepurtureFlt.getHint().toString());
                 } else if (tvDepurtureFlt.getText().toString().length() >= 8) {
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
-                 //   Log.e("test2", tvDepurtureFlt.getText().toString().length() + "");
-
+                    //   Log.e("test2", tvDepurtureFlt.getText().toString().length() + "");
                     cal = false;
                     //  Toast.makeText(this, "شماره پرواز رفت را به درستی وارد نمایید", Toast.LENGTH_SHORT).show();
-
                     splashDialog.seeText(getString(R.string.flight_number_correctly));
                     splashDialog.setBtnText();
                     splashDialog.showAlert();
                 } else {
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureFlt.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
-               //     Log.e("test4", tvDepurtureFlt.getText().toString() + "");
-
+                    //     Log.e("test4", tvDepurtureFlt.getText().toString() + "");
                 }
-
-
                 if (ValidationTools.isEmptyOrNull(tvReturnFlt.getText().toString())) {
                     GradientDrawable drawable = (GradientDrawable) tvReturnFlt.getBackground();
                     drawable.setStroke(4, Color.RED);
                     cal = false;
                     //  tvReturnFlt.setError("شماره پرواز برگشت را وارد نمایید");
-
-
                 } else if (tvReturnFlt.getText().toString().length() >= 8) {
                     cal = false;
                     GradientDrawable drawable = (GradientDrawable) tvReturnFlt.getBackground();
@@ -688,14 +537,10 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     splashDialog.seeText(getString(R.string.flight_return_number_correctly));
                     splashDialog.showAlert();
                     splashDialog.setBtnText();
-
-
                 } else {
                     GradientDrawable drawable = (GradientDrawable) tvReturnFlt.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
-
-
                 if (tvReturnDate.getText().toString().contains(getString(R.string.please_select_one))) {
                     cal = false;
                     //  tvReturnDate.setError("شماره پرواز برگشت را وارد نمایید");
@@ -705,14 +550,11 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     GradientDrawable drawable = (GradientDrawable) tvReturnDate.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
                 }
-
-
                 if (tvDepurtureDate.getText().toString().contains(getString(R.string.please_select_one))) {
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureDate.getBackground();
                     drawable.setStroke(4, Color.RED);
                     cal = false;
                     // tvDepurtureDate.setError("تاریخ برگشت را انتخاب کنید");
-
                 } else {
                     GradientDrawable drawable = (GradientDrawable) tvDepurtureDate.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.text_color));
@@ -737,13 +579,10 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                 }
                 if (cal) {
                     DepurtureAirport = tvDepurtureAirport.getText().toString();
-
                     if (Prefs.getString("IST", "H").equals("H")) {
                         AirPortCode = Prefs.getString("Value-Maghsad-Airport-Code2", "");
                         Log.e("okok", "ffsdf");
-
                     }
-
                     DepurtureDate = raft;
                     ReturnAirportDate = bargasht;
                     DepurtureTime = tvDepurtureTime.getText().toString();
@@ -751,34 +590,26 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
                     DepurtureFlt = tvDepurtureFlt.getText().toString();
                     ReturnFlt = tvReturnFlt.getText().toString();
                     ReturnDate = bargasht;
-                    new GetPriceAsync().execute();
+                    getPriceTransport();
                     break;
                 }
         }
-
     }
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
         geo = false;
-
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
         PersianCalendar persianCalendar = new PersianCalendar();
         persianCalendar.set(year, month, day);
-
-
         if (view.getTag().equals("DatepickerdialogBargasht")) {
             tvReturnDate.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
             bargasht = date_server(year, monthOfYear, dayOfMonth);
             Prefs.putString("bargashtfa", tvReturnDate.getText().toString());
             Prefs.putString("bargasht", bargasht);
-
-
         }
-
-
         if (view.getTag().equals("DatepickerdialogRaft")) {
             year_Min = year;
             monthMin = monthOfYear;
@@ -788,28 +619,20 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
-
-
             if (Utility.campareDate(raft, bargasht)) {
                 tvReturnDate.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
                 datePickerDialog2.initialize(this, year_, month, day);
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
             }
-
-
             Prefs.putString("bargashtfa", tvReturnDate.getText().toString());
-
             Prefs.putString("raft", raft);
             Prefs.putString("raftfa", tvDepurtureDate.getText().toString());
-
-
         }
-
     }
 
     @Override
     public void onTimeSet(com.wdullaer.materialdatetimepicker.time.RadialPickerLayout view, int hourOfDay, int minute, int second) {
-    //    Log.e("test", view.getTag() + "");
+        //    Log.e("test", view.getTag() + "");
       /*  if (view.getTag().equals("timeRaft")) {
             tvDepurtureTime.setText(hourOfDay + ":" + minute);
 
@@ -821,79 +644,76 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         }*/
     }
 
-
-    private class GetPriceAsync extends AsyncTask<String, Void, String> {
-
-        protected void onPreExecute() {
-            rlLoading2.setVisibility(View.VISIBLE);
-            Log.e("logeeeeee", new Gson().toJson(new AirportTransportServicePriceRequest
-                    (new AirportPriceRequest(TmpRq, new Param(DepurtureAirport, AirPortCode, DepurtureDate, DepurtureTime, DepurtureFlt, ReturnDate, ServiceID, ReturnTime, ReturnFlt, CityId, Hotelcode, PassengerList, "true"), getString(R.string.culture), new Identity("EligashtMlb",
-                            "123qwe!@#QWE", "Mobile")))));
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-
-                airportTransportServicePrice = new AirportTransportServicePrice(new AirportTransportServicePriceRequest
-                        (new AirportPriceRequest(TmpRq, new Param(DepurtureAirport, AirPortCode, DepurtureDate, DepurtureTime, DepurtureFlt, ReturnDate, ServiceID, ReturnTime, ReturnFlt, CityId, Hotelcode, PassengerList, "true"), getString(R.string.culture), new Identity("EligashtMlb",
-                                "123qwe!@#QWE", "Mobile"))));
-
-            } catch (Exception e) {
-
-
-            }
-            return "Executed";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                rlLoading2.setVisibility(View.GONE);
-
-                if (airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getErrors().size()!=0){
-                    Toast.makeText(TransferActivity.this, airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getErrors().get(0).Message, Toast.LENGTH_SHORT).show();
-                    Prefs.putLong("Tprice", 0);
-                    finish();
-
-                }else{
-                    Prefs.putLong("Tprice", Long.valueOf(airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getTransferAvailabilityRoundtripResults().get(0).getTotalPrice().getAmount()));
-                //    Log.e("testTra",airportTransportServicePrice.airportTransportRespone.AirportTransportServicePriceResult.getTransferAvailabilityRoundtripResults().get(0).getTotalPrice().getAmount()+"");
-                    Prefs.putString("Flag_First_Computing", "F");
-
-                    finish();
-                }
-
-
-
-
-
-
-
-            } catch (Exception e) {
-                //flag first computing
-                Prefs.putString("Flag_First_Computing", "F");
-
-
+    @Override
+    public void onReady(TransportResponse transportResponse) {
+        try {
+            rlLoading2.setVisibility(View.GONE);
+            if (transportResponse.getAirportTransportServicePriceResult().getErrors().size() != 0) {
+                Toast.makeText(TransferActivity.this, transportResponse.getAirportTransportServicePriceResult().getErrors().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                 Prefs.putLong("Tprice", 0);
                 finish();
-                if (Utility.isNetworkAvailable(TransferActivity.this)) {
-
-                    Toast.makeText(TransferActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
-
-                } else {
-                    Toast.makeText(TransferActivity.this, R.string.InternetError, Toast.LENGTH_SHORT).show();
-                }
-
-
-
-
+            } else {
+                Prefs.putLong("Tprice", Long.valueOf(transportResponse.getAirportTransportServicePriceResult().getTransferAvailabilityRoundtripResults().get(0).getTotalPrice().getAmount()));
+                Prefs.putString("Flag_First_Computing", "F");
+                finish();
             }
-
-
+        } catch (Exception e) {
+            Prefs.putString("Flag_First_Computing", "F");
+            Prefs.putLong("Tprice", 0);
+            finish();
+            if (Utility.isNetworkAvailable(TransferActivity.this)) {
+                Toast.makeText(TransferActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(TransferActivity.this, R.string.InternetError, Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
+    @Override
+    public void onError(String message) {
+        Prefs.putString("Flag_First_Computing", "F");
+        Prefs.putLong("Tprice", 0);
+        finish();
+        if (Utility.isNetworkAvailable(TransferActivity.this)) {
+            Toast.makeText(TransferActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(TransferActivity.this, R.string.InternetError, Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    public void getPriceTransport() {
+        TransportRequest transportRequest = new TransportRequest();
+        TransportReq transportReq = new TransportReq();
+        Param transportParam = new Param();
+        com.eligasht.service.model.identity.Identity identity = new com.eligasht.service.model.identity.Identity();
+        identity.setUserName("EligashtMlb");
+        identity.setTermianlId("Mobile");
+        identity.setPassword("123qwe!@#QWE");
+        transportParam.setHasHotel("true");
+        transportParam.setPassengerAirportCode(AirPortCode);
+        transportParam.setPassengerArrDate(ReturnDate);
+        transportParam.setPassengerArrFltNo(ReturnFlt);
+        transportParam.setPassengerArrTime(ReturnTime);
+        transportParam.setPassengerCityCode(CityId);
+        transportParam.setPassengerDepAirport(DepurtureAirport);
+        transportParam.setPassengerDepDate(DepurtureDate);
+        transportParam.setPassengerDepFltNo(DepurtureFlt);
+        transportParam.setPassengerDepTime(DepurtureTime);
+        transportParam.setPassengerHotelId(Hotelcode);
+        transportParam.setPassengerList(PassengerList);
+        transportParam.setServiceID(ServiceID);
+        transportReq.setCulture(getString(R.string.culture));
+        transportReq.setParam(transportParam);
+        transportReq.setTmpRq(TmpRq);
+        transportReq.setIdentity(identity);
+        transportRequest.setRequest(transportReq);
+        SingletonService.getInstance().getHotelService().getTransport(this, transportRequest);
+        Log.e("logeeeeee2", new Gson().toJson(transportRequest) );
+        Log.e("logeeeeee", new Gson().toJson(new AirportTransportServicePriceRequest
+                (new AirportPriceRequest(TmpRq, new com.eligasht.reservation.models.hotel.api.airportTransportServicePrice.request.Param(DepurtureAirport, AirPortCode, DepurtureDate, DepurtureTime, DepurtureFlt, ReturnDate, ServiceID, ReturnTime, ReturnFlt, CityId, Hotelcode, PassengerList, "true"), getString(R.string.culture), new Identity("EligashtMlb",
+                        "123qwe!@#QWE", "Mobile")))));
+
+
+
+    }
 }
