@@ -58,20 +58,20 @@ import java.util.UUID;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class SplashActivity extends ConnectionBuddyActivity implements
         SplashDialog.TryDialogListener, OnServiceStatus<StartupServiceResponse>, PermissionListener, Animator.AnimatorListener, DialogInterface.OnCancelListener {
-    AVLoadingIndicatorView avi;
-    LottieAnimationView lottieAnimationView;
-    String deviceId;
-    String deviceSubscriberID;
-    String operator;
-    String sdkVersion;
-    String model;
-    String brand;
-    String product;
-    InternetAlert internetAlert;
-    SplashDialog splashDialog;
-    UpdateAlert updateAlert;
-    String DeviceOSType;
-    TextView tvVer;
+    private AVLoadingIndicatorView avi;
+    private LottieAnimationView lottieAnimationView;
+    private String deviceId;
+    private String deviceSubscriberID;
+    private String operator;
+    private String sdkVersion;
+    private String model;
+    private String brand;
+    private String product;
+    private InternetAlert internetAlert;
+    private SplashDialog splashDialog;
+    private UpdateAlert updateAlert;
+    private String DeviceOSType;
+    private TextView tvVer;
 
     @Override
     public void onReturnValue() {
