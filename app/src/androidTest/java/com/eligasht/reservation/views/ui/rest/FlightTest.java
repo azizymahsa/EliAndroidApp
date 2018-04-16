@@ -44,9 +44,9 @@ public class FlightTest {
 
     @Test
     public void runFlightTest() {
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(12000);
         } catch (InterruptedException e) {
@@ -63,9 +63,9 @@ public class FlightTest {
                         isDisplayed()));
         linearLayout.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -82,9 +82,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText.perform(replaceText("تهران"), closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(4500);
         } catch (InterruptedException e) {
@@ -101,9 +101,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatTextView.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -120,9 +120,9 @@ public class FlightTest {
                         isDisplayed()));
         linearLayout2.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -139,9 +139,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText2.perform(replaceText("استان"), closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -168,9 +168,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText4.perform(closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
@@ -187,9 +187,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatTextView2.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -350,9 +350,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatTextView3.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
@@ -382,9 +382,9 @@ public class FlightTest {
                 .atPosition(2);
         frameLayout6.perform(click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatRadioButton = onView(
@@ -396,9 +396,9 @@ public class FlightTest {
                                 1)));
         appCompatRadioButton.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText5 = onView(
@@ -410,9 +410,9 @@ public class FlightTest {
                                 1)));
         appCompatEditText5.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText6 = onView(
@@ -424,9 +424,9 @@ public class FlightTest {
                                 1)));
         appCompatEditText6.perform(scrollTo(), replaceText("احمد"), closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText7 = onView(
@@ -447,9 +447,9 @@ public class FlightTest {
                                 1)));
         appCompatEditText8.perform(scrollTo(), replaceText("نعم"), closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
         ViewInteraction appCompatEditText9 = onView(
                 allOf(withId(R.id.txtfamilyP), withText("نعم"),
@@ -470,9 +470,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText10.perform(closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText11 = onView(
@@ -493,9 +493,9 @@ public class FlightTest {
                                 1)));
         appCompatEditText12.perform(scrollTo(), replaceText("0"), closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText13 = onView(
@@ -517,9 +517,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText14.perform(closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText15 = onView(
@@ -541,9 +541,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText16.perform(closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText17 = onView(
@@ -555,9 +555,9 @@ public class FlightTest {
                                 1)));
         appCompatEditText17.perform(pressImeActionButton());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText18 = onView(
@@ -569,9 +569,9 @@ public class FlightTest {
                                 1)));
         appCompatEditText18.perform(scrollTo(), replaceText("0480747"), closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
         ViewInteraction appCompatEditText19 = onView(
                 allOf(withId(R.id.txtkodemeliP), withText("0480747"),
@@ -592,9 +592,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText20.perform(closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText21 = onView(
@@ -606,9 +606,9 @@ public class FlightTest {
                                 1)));
         appCompatEditText21.perform(pressImeActionButton());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText22 = onView(
@@ -620,9 +620,9 @@ public class FlightTest {
                                 1)));
         appCompatEditText22.perform(scrollTo(), replaceText("n"), closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText23 = onView(
@@ -644,9 +644,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText24.perform(closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText25 = onView(
@@ -668,9 +668,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText26.perform(closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText27 = onView(
@@ -691,9 +691,9 @@ public class FlightTest {
                                 6)));
         linearLayout5.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatRadioButton2 = onView(
@@ -705,9 +705,9 @@ public class FlightTest {
                                 1)));
         appCompatRadioButton2.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText28 = onView(
@@ -719,9 +719,9 @@ public class FlightTest {
                                 1)));
         appCompatEditText28.perform(scrollTo(), replaceText("ahmad"), closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText29 = onView(
@@ -742,9 +742,9 @@ public class FlightTest {
                                 1)));
         appCompatEditText30.perform(scrollTo(), replaceText("n"), closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText31 = onView(
@@ -766,9 +766,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText32.perform(closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText33 = onView(
@@ -790,9 +790,9 @@ public class FlightTest {
                                 1)));
         appCompatEditText34.perform(scrollTo(), replaceText("d1"), closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText35 = onView(
@@ -816,9 +816,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText36.perform(closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatEditText37 = onView(
@@ -831,9 +831,9 @@ public class FlightTest {
                                 1)));
         appCompatEditText37.perform(pressImeActionButton());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
 
         ViewInteraction appCompatTextView4 = onView(
@@ -845,9 +845,9 @@ public class FlightTest {
                                 1)));
         appCompatTextView4.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -878,9 +878,9 @@ public class FlightTest {
 
         }
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -897,9 +897,9 @@ public class FlightTest {
                                 1)));
         appCompatTextView5.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -929,9 +929,9 @@ public class FlightTest {
 
         }
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -968,9 +968,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText39.perform(closeSoftKeyboard());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
 
         ViewInteraction appCompatRadioButton3 = onView(
                 allOf(withId(R.id.mard), withText("مرد"),
@@ -1055,9 +1055,9 @@ public class FlightTest {
                                 1)));
         appCompatTextView6.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -1097,9 +1097,9 @@ public class FlightTest {
                                 1)));
         appCompatTextView7.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -1242,9 +1242,9 @@ public class FlightTest {
                                 1)));
         appCompatTextView8.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -1284,9 +1284,9 @@ public class FlightTest {
                                 1)));
         appCompatTextView9.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -1420,9 +1420,9 @@ public class FlightTest {
                                 1)));
         appCompatTextView10.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -1462,9 +1462,9 @@ public class FlightTest {
                                 1)));
         appCompatTextView11.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -1607,9 +1607,9 @@ public class FlightTest {
                                 1)));
         appCompatTextView12.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -1649,9 +1649,9 @@ public class FlightTest {
                                 1)));
         appCompatTextView13.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -1784,9 +1784,9 @@ public class FlightTest {
                                 1)));
         appCompatTextView14.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -1826,9 +1826,9 @@ public class FlightTest {
                                 1)));
         appCompatTextView15.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -1867,9 +1867,9 @@ public class FlightTest {
                                 11)));
         linearLayout11.perform(scrollTo(), click());
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        
+       
+        
         try {
             Thread.sleep(14000);
         } catch (InterruptedException e) {
