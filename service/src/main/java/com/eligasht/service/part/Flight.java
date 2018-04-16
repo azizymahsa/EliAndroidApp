@@ -46,6 +46,7 @@ public class Flight extends BasePart {
     public void purchaseFlightAvail(OnServiceStatus<ResponsePurchaseFlight> listener, RequestPurchaseFlight req) {
         start(getServiceGenerator().createService().responsePurchaseFlightObservable(req), listener);
     }
+
     @Mock(jsonName = "purchase_service", response = com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight.class)
     public void flightPurchaseAvail(OnServiceStatus<com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight> listener, com.eligasht.service.model.flight.request.purchaseServiceFlight.RequestPurchaseFlight req) {
         start(getServiceGenerator().createService().responsePurchaseFlight(req), listener);

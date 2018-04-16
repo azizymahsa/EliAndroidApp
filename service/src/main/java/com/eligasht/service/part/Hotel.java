@@ -34,15 +34,19 @@ public class Hotel extends BasePart {
     public void hotelAvail(OnServiceStatus<HotelAvailRes> listener, HotelAvailReq req) {
         start(getServiceGenerator().createService().hotelAvail(req), listener);
     }
+
     public void hotelFlight(OnServiceStatus<HotelFlightResponse> listener, HotelFlightRequest req) {
         start(getServiceGenerator().createService().hotelFlight(req), listener);
     }
+
     public void loadFlight(OnServiceStatus<LoadFlightResponse> listener, LoadFlightRequest req) {
         start(getServiceGenerator().createService().loadFlight(req), listener);
     }
+
     public void hotelPolicy(OnServiceStatus<HotelPolicyResponse> listener, HotelPolicyRequest req) {
         start(getServiceGenerator().createService().hotelPolicy(req), listener);
     }
+
     public void getRoom(OnServiceStatus<GetRoomResponse> listener, GetRoomRequest req) {
         start(getServiceGenerator().createService().getRoomsList(req), listener);
     }
