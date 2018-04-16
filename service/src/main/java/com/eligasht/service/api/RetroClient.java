@@ -1,6 +1,8 @@
 package com.eligasht.service.api;
 
+import com.eligasht.service.model.XPackage.request.GetPreFactorDetails.RequestGePreFactorDetails;
 import com.eligasht.service.model.XPackage.request.PurchasePackage.RequestPurchasePackage;
+import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.ResponseGePreFactorDetails;
 import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
 import com.eligasht.service.model.about.request.RequestAbout;
 import com.eligasht.service.model.about.response.ResponseAbout;
@@ -166,5 +168,9 @@ public interface RetroClient {
     @POST(Const.PurchasePackageAvil)
     Observable<ResponsePurchasePackage> RESPONSE_PURCHASE_PACKAGE_OBSERVABLE(
             @Body RequestPurchasePackage requestPurchasePackage
+    );
+    @POST(Const.GetPreFactorDetailsPackageAvil)
+    Observable<ResponseGePreFactorDetails> RESPONSE_GE_PRE_FACTOR_DETAILS_OBSERVABLE(
+            @Body RequestGePreFactorDetails requestGePreFactorDetailsPack
     );
 }
