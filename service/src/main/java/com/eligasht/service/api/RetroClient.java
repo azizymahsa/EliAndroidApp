@@ -4,14 +4,12 @@ import com.eligasht.service.model.XPackage.request.GetPreFactorDetails.RequestGe
 import com.eligasht.service.model.XPackage.request.PurchasePackage.RequestPurchasePackage;
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.ResponseGePreFactorDetails;
 import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
-import com.eligasht.service.model.XPackage.request.PurchasePackage.RequestPurchasePackage;
 import com.eligasht.service.model.XPackage.request.searchXPackage.RequestSearchXPackage;
-import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
 import com.eligasht.service.model.XPackage.response.searchXPackage.ResponseSearchXPackage;
 import com.eligasht.service.model.about.request.RequestAbout;
 import com.eligasht.service.model.about.response.ResponseAbout;
-import com.eligasht.service.model.addReview.request.AddHotelReviewRequest;
-import com.eligasht.service.model.addReview.response.AddHotelReviewResponse;
+import com.eligasht.service.model.hotel.addReview.request.AddHotelReviewRequest;
+import com.eligasht.service.model.hotel.addReview.response.AddHotelReviewResponse;
 import com.eligasht.service.model.flight.request.ChangeFlight.RequestChangeFlight;
 import com.eligasht.service.model.flight.request.DomesticFlight.RequestDomesticFlight;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
@@ -31,6 +29,8 @@ import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
 import com.eligasht.service.model.hotel.detail.response.HotelDetailResponse;
 import com.eligasht.service.model.hotel.getHotelList.request.GetHotelListRequest;
 import com.eligasht.service.model.hotel.getHotelList.response.GetHotelListResponse;
+import com.eligasht.service.model.hotel.getHotelReview.request.GetHotelReviewRequest;
+import com.eligasht.service.model.hotel.getHotelReview.response.GetHotelReviewResponse;
 import com.eligasht.service.model.hotel.hold.request.HoldRoomRequest;
 import com.eligasht.service.model.hotel.hold.response.HoldRoomResponse;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
@@ -51,11 +51,6 @@ import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
 import com.eligasht.service.model.insurance.response.SearchInsurance.ResponseSearchInsurance;
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
-import com.eligasht.service.model.login.request.LoginListReq;
-import com.eligasht.service.model.login.request.LoginRequestModel;
-import com.eligasht.service.model.login.response.LoginResponse;
-import com.eligasht.service.model.XPackage.request.searchXPackage.RequestSearchXPackage;
-import com.eligasht.service.model.XPackage.response.searchXPackage.ResponseSearchXPackage;
 import com.eligasht.service.model.login.request.LoginRequestModel;
 import com.eligasht.service.model.login.response.LoginResponse;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
@@ -123,6 +118,10 @@ public interface RetroClient {
     @POST(Const.GetHotelList)
     Observable<GetHotelListResponse> getHotelList(
             @Body GetHotelListRequest hotelReviewRequest
+    );
+    @POST(Const.GetHotelReview)
+    Observable<GetHotelReviewResponse> getHotelReview(
+            @Body GetHotelReviewRequest hotelAvailReq
     );
 
     //*************flight*************

@@ -19,12 +19,10 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.comment.AddComment;
 import com.eligasht.reservation.base.BaseActivity;
-import com.eligasht.reservation.models.hotel.api.addcomment.call.HotelReviewModel;
 import com.eligasht.reservation.models.hotel.api.addcomment.call.RequestAdd;
 import com.eligasht.reservation.models.hotel.api.addcomment.call.RequsetAddComment;
 import com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewComment;
 import com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewScores;
-import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.ui.InitUi;
@@ -32,16 +30,22 @@ import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.hotel.AddCommnetDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertRating;
+import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.addReview.request.AddHotelReviewRequest;
-import com.eligasht.service.model.addReview.response.AddHotelReviewResponse;
-import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
+import com.eligasht.service.model.hotel.addReview.request.AddHReviewReq;
+import com.eligasht.service.model.hotel.addReview.request.AddHotelReviewRequest;
+import com.eligasht.service.model.hotel.addReview.request.HotelReviewModel;
+import com.eligasht.service.model.hotel.addReview.request.Review;
+import com.eligasht.service.model.hotel.addReview.request.ReviewScore;
+import com.eligasht.service.model.hotel.addReview.response.AddHotelReviewResponse;
+import com.eligasht.service.model.identity.Identity;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.eligasht.reservation.tools.Prefs;
 import com.xw.repo.BubbleSeekBar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 public class CommentActivity extends BaseActivity implements AlertRating.RatingHotelDialogListener, View.OnClickListener,OnServiceStatus<AddHotelReviewResponse> {
@@ -55,8 +59,9 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
     RelativeLayout rlRoot, rlLoading;
     Float star;
     String hotelId;
-    ArrayList<ReviewScores> reviewScores = new ArrayList<>();
+    List<ReviewScore> reviewScores = new ArrayList<>();
     ArrayList<ReviewComment> ReviewComment = new ArrayList<>();
+    List<Review> reviews = new ArrayList<>();
     BubbleSeekBar ScoreParameterID1, ScoreParameterID2, ScoreParameterID3, ScoreParameterID4, ScoreParameterID5, ScoreParameterID6, ScoreParameterID7, ScoreParameterID8;
     cn.refactor.library.SmoothCheckBox cbSubmitName, cbIsRecommended;
     boolean isRecommended = false;
@@ -135,14 +140,14 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnToComment:
-                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID1.getProgress()), "0", "1", "0"));
-                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID2.getProgress()), "0", "2", "0"));
-                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID3.getProgress()), "0", "3", "0"));
-                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID4.getProgress()), "0", "4", "0"));
-                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID5.getProgress()), "0", "5", "0"));
-                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID6.getProgress()), "0", "6", "0"));
-                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID7.getProgress()), "0", "7", "0"));
-                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID8.getProgress()), "0", "8", "0"));
+                reviewScores.add(new ReviewScore(hotelId, "0", String.valueOf(ScoreParameterID1.getProgress()), "0", "1", "0"));
+                reviewScores.add(new ReviewScore(hotelId, "0", String.valueOf(ScoreParameterID2.getProgress()), "0", "2", "0"));
+                reviewScores.add(new ReviewScore(hotelId, "0", String.valueOf(ScoreParameterID3.getProgress()), "0", "3", "0"));
+                reviewScores.add(new ReviewScore(hotelId, "0", String.valueOf(ScoreParameterID4.getProgress()), "0", "4", "0"));
+                reviewScores.add(new ReviewScore(hotelId, "0", String.valueOf(ScoreParameterID5.getProgress()), "0", "5", "0"));
+                reviewScores.add(new ReviewScore(hotelId, "0", String.valueOf(ScoreParameterID6.getProgress()), "0", "6", "0"));
+                reviewScores.add(new ReviewScore(hotelId, "0", String.valueOf(ScoreParameterID7.getProgress()), "0", "7", "0"));
+                reviewScores.add(new ReviewScore(hotelId, "0", String.valueOf(ScoreParameterID8.getProgress()), "0", "8", "0"));
                 YoYo.with(Techniques.FadeOut).duration(200).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(android.animation.Animator animation) {
@@ -220,10 +225,19 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     if (cbSubmitName.isChecked()) {
                         name = "";
                     }
-                    //  Log.e("test3333", Prefs.getString("userId","-1"));
-                    ReviewComment.add(new ReviewComment(0, message,
-                            0, 1, mail, name, title, Prefs.getString("userId", "-1"), reviewScores, String.valueOf(isRecommended)));
-                    new AddCommentAsync().execute();
+                    Review review = new Review();
+                    review.setAgcUserID(0);
+                    review.setContent(message);
+                    review.setIsRecommended(String.valueOf(isRecommended));
+                    review.setReviewCommentID(0);
+                    review.setReviewID(1);
+                    review.setReviewScores(reviewScores);
+                    review.setSubmitEmail(mail);
+                    review.setSubmitName(name);
+                    review.setTitle(title);
+                    review.setWebUserID(Prefs.getString("userId", "-1"));
+                    reviews.add(review);
+                    request();
                 } else {
                     AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(CommentActivity.this);
                     alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.massege));
@@ -299,53 +313,57 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
 
     public void request(){
         AddHotelReviewRequest addHotelReviewRequest = new AddHotelReviewRequest();
+        AddHReviewReq addHReviewReq = new AddHReviewReq();
+        HotelReviewModel hotelReviewModel = new HotelReviewModel();
+        hotelReviewModel.setAverageScore( String.valueOf(star));
+        hotelReviewModel.setHotelID(hotelId);
+        hotelReviewModel.setRecommendedPercent("0");
+        hotelReviewModel.setReviews(reviews);
+        Identity identity = new Identity();
+        identity.setPassword("123qwe!@#QWE");
+        identity.setUserName("EligashtMlb");
+        identity.setTermianlId("Mobile");
+
+        addHReviewReq.setCulture(getString(R.string.culture));
+        addHReviewReq.setHotelReviewModel(hotelReviewModel);
+        addHReviewReq.setIdentity(identity);
+
+        addHotelReviewRequest.setRequest(addHReviewReq);
+        Log.e("test", new Gson().toJson(addHotelReviewRequest) );
+        SingletonService.getInstance().getHotelService().addHotelReview(this, addHotelReviewRequest);
+
 
     }
 
     @Override
     public void onReady(AddHotelReviewResponse addHotelReviewResponse) {
-
+        rlLoading.setVisibility(View.GONE);
+        try {
+            if (addHotelReviewResponse.getAddHotelReviewResult().getErrors() != null) {
+                addCommnetDialog.setTitle(addHotelReviewResponse.getAddHotelReviewResult().getErrors().get(0).getDetailedMessage(), false);
+            } else {
+                addCommnetDialog.setTitle(addHotelReviewResponse.getAddHotelReviewResult().getResultText(), true);
+            }
+        } catch (Exception e) {
+            if (!Utility.isNetworkAvailable(CommentActivity.this)) {
+                addCommnetDialog.setTitle(getString(R.string.InternetError), false);
+            } else {
+                addCommnetDialog.setTitle(getString(R.string.ErrorServer), false);
+            }
+        }
 
 
     }
 
     @Override
     public void onError(String message) {
-    }
+        rlLoading.setVisibility(View.GONE);
 
-    private class AddCommentAsync extends AsyncTask<String, Void, String> {
-        protected void onPreExecute() {
-            rlLoading.setVisibility(View.VISIBLE);
-            Log.e("requestTest", new Gson().toJson(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
-                    "123qwe!@#QWE", "Mobile"), getString(R.string.culture), new HotelReviewModel(ReviewComment, String.valueOf(star), hotelId, "0")))));
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                addComment = new AddComment(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
-                        "123qwe!@#QWE", "Mobile"), getString(R.string.culture), new HotelReviewModel(ReviewComment, String.valueOf(star), hotelId, "0"))));
-            } catch (Exception e) {
-            }
-            return "Executed";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            rlLoading.setVisibility(View.GONE);
-            try {
-                if (addComment.addCommentsResult.AddHotelReviewResult.Errors != null) {
-                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewResult.Errors.get(0).DetailedMessage, false);
-                } else {
-                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewResult.ResultText, true);
-                }
-            } catch (Exception e) {
-                if (!Utility.isNetworkAvailable(CommentActivity.this)) {
-                    addCommnetDialog.setTitle(getString(R.string.InternetError), false);
-                } else {
-                    addCommnetDialog.setTitle(getString(R.string.ErrorServer), false);
-                }
-            }
+        if (!Utility.isNetworkAvailable(CommentActivity.this)) {
+            addCommnetDialog.setTitle(getString(R.string.InternetError), false);
+        } else {
+            addCommnetDialog.setTitle(getString(R.string.ErrorServer), false);
         }
     }
+
 }

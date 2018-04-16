@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.addReview.response;
+package com.eligasht.service.model.hotel.addReview.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

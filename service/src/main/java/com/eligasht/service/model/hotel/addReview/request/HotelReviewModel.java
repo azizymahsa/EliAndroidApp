@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.addReview.request;
+package com.eligasht.service.model.hotel.addReview.request;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
