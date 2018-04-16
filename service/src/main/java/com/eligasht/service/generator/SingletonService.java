@@ -23,9 +23,8 @@ public class SingletonService {
     ContactUs contactUs;
     AboutService aboutService;
     AppService appService;
-
     private Context context;
-    private Boolean mock = true;
+
 
     private static final SingletonService ourInstance = new SingletonService();
 
@@ -51,13 +50,7 @@ public class SingletonService {
     }
 
 
-    public Boolean isMock() {
-        return mock;
-    }
 
-    public void setMock(Boolean mock) {
-        this.mock = mock;
-    }
 
     public void setContext(Context context) {
         this.context = context;

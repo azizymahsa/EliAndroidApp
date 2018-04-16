@@ -8,6 +8,7 @@ import android.util.Log;
 import com.eligasht.service.BuildConfig;
 import com.eligasht.service.generator.ServiceGenerator;
 import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.helper.Const;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.mock.Mock;
 import com.eligasht.service.mock.MockProcessor;
@@ -45,7 +46,7 @@ public abstract class BasePart {
 
     public <T> void start(Observable<T> observable, OnServiceStatus<T> listener) {
         MockProcessor<T> mockProcessor = new MockProcessor<>(listener, getPart());
-        if (BuildConfig.DEBUG && SingletonService.getInstance().isMock() && mockProcessor.getRawRes() != null && mockProcessor.loadJSONFromAsset()!=null) {
+        if (BuildConfig.DEBUG && Const.MOCK && mockProcessor.getRawRes() != null && mockProcessor.loadJSONFromAsset()!=null) {
             T model = mockProcessor.getMockModel();
             if (model == null) {
                 call(observable, listener);
