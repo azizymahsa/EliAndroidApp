@@ -4,8 +4,14 @@ import com.eligasht.service.model.XPackage.request.GetPreFactorDetails.RequestGe
 import com.eligasht.service.model.XPackage.request.PurchasePackage.RequestPurchasePackage;
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.ResponseGePreFactorDetails;
 import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
+import com.eligasht.service.model.XPackage.request.PurchasePackage.RequestPurchasePackage;
+import com.eligasht.service.model.XPackage.request.searchXPackage.RequestSearchXPackage;
+import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
+import com.eligasht.service.model.XPackage.response.searchXPackage.ResponseSearchXPackage;
 import com.eligasht.service.model.about.request.RequestAbout;
 import com.eligasht.service.model.about.response.ResponseAbout;
+import com.eligasht.service.model.addReview.request.AddHotelReviewRequest;
+import com.eligasht.service.model.addReview.response.AddHotelReviewResponse;
 import com.eligasht.service.model.flight.request.ChangeFlight.RequestChangeFlight;
 import com.eligasht.service.model.flight.request.DomesticFlight.RequestDomesticFlight;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
@@ -23,10 +29,16 @@ import com.eligasht.service.model.flight.response.purchaseServiceFlight.Response
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
 import com.eligasht.service.model.hotel.detail.response.HotelDetailResponse;
+import com.eligasht.service.model.hotel.getHotelList.request.GetHotelListRequest;
+import com.eligasht.service.model.hotel.getHotelList.response.GetHotelListResponse;
+import com.eligasht.service.model.hotel.hold.request.HoldRoomRequest;
+import com.eligasht.service.model.hotel.hold.response.HoldRoomResponse;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.eligasht.service.model.hotel.room.request.GetRoomRequest;
 import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
+import com.eligasht.service.model.hotel.transport.request.TransportRequest;
+import com.eligasht.service.model.hotel.transport.response.TransportResponse;
 import com.eligasht.service.model.hotelflight.request.HotelFlightRequest;
 import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
 import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
@@ -39,8 +51,13 @@ import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
 import com.eligasht.service.model.insurance.response.SearchInsurance.ResponseSearchInsurance;
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
+import com.eligasht.service.model.login.request.LoginListReq;
+import com.eligasht.service.model.login.request.LoginRequestModel;
+import com.eligasht.service.model.login.response.LoginResponse;
 import com.eligasht.service.model.XPackage.request.searchXPackage.RequestSearchXPackage;
 import com.eligasht.service.model.XPackage.response.searchXPackage.ResponseSearchXPackage;
+import com.eligasht.service.model.login.request.LoginRequestModel;
+import com.eligasht.service.model.login.response.LoginResponse;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
 import com.eligasht.service.model.startup.response.StartupServiceResponse;
 
@@ -70,6 +87,10 @@ public interface RetroClient {
     Observable<LoadFlightResponse> loadFlight(
             @Body LoadFlightRequest loadFlightRequest
     );
+    @POST(Const.AirportTransportServicePrice)
+    Observable<TransportResponse> transportService(
+            @Body TransportRequest transportRequest
+    );
 
     //*************hotel*************
     @POST(Const.HotelAvail)
@@ -91,6 +112,19 @@ public interface RetroClient {
     Observable<HotelDetailResponse> getHotelDetail(
             @Body HotelDetailRequest hotelDetailRequest
     );
+    @POST(Const.HoldSelectedRoom)
+    Observable<HoldRoomResponse> getHoldRoom(
+            @Body HoldRoomRequest holdRoomRequest
+    );
+    @POST(Const.AddHotelReview)
+    Observable<AddHotelReviewResponse> addHotelReview(
+            @Body AddHotelReviewRequest hotelReviewRequest
+    );
+    @POST(Const.GetHotelList)
+    Observable<GetHotelListResponse> getHotelList(
+            @Body GetHotelListRequest hotelReviewRequest
+    );
+
     //*************flight*************
 
 
@@ -173,4 +207,17 @@ public interface RetroClient {
     Observable<ResponseGePreFactorDetails> RESPONSE_GE_PRE_FACTOR_DETAILS_OBSERVABLE(
             @Body RequestGePreFactorDetails requestGePreFactorDetailsPack
     );
+
+
+
+    //*************Login & Profile*************
+
+    @POST(Const.Login)
+    Observable<LoginResponse> login(
+            @Body LoginRequestModel loginRequestModel
+    );
+
+
+
+
 }

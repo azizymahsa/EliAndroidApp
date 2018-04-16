@@ -3,7 +3,6 @@ package com.eligasht.reservation.views.activities.hotel.activity;
  * Reza Nejati <reza.n.j.t.i@gmail.com>
  */
 import android.graphics.Typeface;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -12,7 +11,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -25,18 +23,11 @@ import android.widget.Toast;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
-import com.eligasht.reservation.api.hotel.GetHotelDetail;
-import com.eligasht.reservation.api.hotel.room.GetRoomsList;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.eventbus.CommentModelBus;
 import com.eligasht.reservation.models.eventbus.HotelProprtiesBus;
 import com.eligasht.reservation.models.eventbus.RoomsModelBus;
-import com.eligasht.reservation.models.hotel.api.detail.ImageHotel;
-import com.eligasht.reservation.models.hotel.api.detail.call.GetHotelDRequest;
-import com.eligasht.reservation.models.hotel.api.detail.call.GetHotelDetailRequest;
-import com.eligasht.reservation.models.hotel.api.rooms.call.GetRoomsHotelRequest;
-import com.eligasht.reservation.models.hotel.api.rooms.call.IdentityRooms;
-import com.eligasht.reservation.models.hotel.api.rooms.call.RoomRequest;
+import com.eligasht.service.model.hotel.detail.response.HotelImage;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.model.hotel.detail.request.HotelDetailReq;
 import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
@@ -57,29 +48,27 @@ import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
 import com.eligasht.service.model.identity.Identity;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Collections;
-public class DetailHotelActivity extends BaseActivity implements View.OnClickListener ,OnServiceStatus<GetRoomResponse> {
+public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnServiceStatus<GetRoomResponse> {
     private TextView tvTitle;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private RelativeLayout rlLoading2;
-    private CoordinatorLayout rlRoot;
     private Window window;
     private HotelDetailViewPager hotelDetailViewPager;
-    private ViewPager view_pager;
-    private Toolbar toolbar;
+    protected ViewPager view_pager;
+    protected Toolbar toolbar;
     private LatLng location;
     private TextView tvHotelName, tvCityName, tvAdress, tvAlertError;
     private ImageView ivImage;
-    private TextView tvDateDetail;
+    protected TextView tvDateDetail;
     private RelativeLayout elNotFound;
     private CardView cvHotel;
     private FrameLayout flViewPager;
-    private TabLayout tab_layout;
+    protected TabLayout tab_layout;
     private CommentModelBus commentModelBus;
     private SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
@@ -108,7 +97,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_hotel);
-
         helper.setEdgeMode(true)
                 .setParallaxMode(true)
                 .setParallaxRatio(3)
@@ -127,7 +115,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     public void initView() {
         flViewPager = findViewById(R.id.flViewPager);
         cvHotel = findViewById(R.id.cvHotel);
-        rlRoot = findViewById(R.id.rlRoot);
         tvAdress = findViewById(R.id.tvAdress);
         ivImage = findViewById(R.id.ivImage);
         tvHotelName = findViewById(R.id.tvHotelName);
@@ -147,7 +134,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         view_pager.setCurrentItem(3);
         try {
             if (getIntent().getExtras().getString("Type").equals("Pakage")) {
-                // lvRooms.setVisibility(View.GONE);
                 hotelDetailViewPager = new HotelDetailViewPager(this, getSupportFragmentManager(), true);
                 view_pager.setAdapter(hotelDetailViewPager);
                 tab_layout.setupWithViewPager(view_pager);
@@ -155,7 +141,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             }
         } catch (Exception e) {
         }
-
         view_pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -171,14 +156,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         hotelDetailViewPager.getMapHotelFragment().setMarker(location, commentModelBus);
                         break;
                 }
-
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
             }
         });
-
         tab_layout.setOnTabSelectedListener(onTabSelectedListener);
         ViewGroup vg = (ViewGroup) tab_layout.getChildAt(0);
         int tabsCount = vg.getChildCount();
@@ -206,12 +189,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 break;
         }
     }
-    public void getRoomRequest(){
+
+    public void getRoomRequest() {
         rlLoading2.setVisibility(View.VISIBLE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.blue2));
         }
-        GetRoomRequest getRoomRequest =new GetRoomRequest();
+        GetRoomRequest getRoomRequest = new GetRoomRequest();
         GetRoomReq getRoomReq = new GetRoomReq();
         getRoomReq.setCulture(getString(R.string.culture));
         getRoomReq.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
@@ -223,17 +207,14 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         identity.setUserName("EligashtMlb");
         getRoomReq.setIdentity(identity);
         getRoomReq.setResultUniqID(getIntent().getExtras().getString("ResultUniqID"));
-
-
         getRoomRequest.setRequest(getRoomReq);
         SingletonService.getInstance().getHotelService().getRoom(this, getRoomRequest);
-
     }
 
     @Override
     public void onReady(GetRoomResponse getRoomResponse) {
         try {
-            if (getRoomResponse.getGetRoomsListResult().getErrors()!= null) {
+            if (getRoomResponse.getGetRoomsListResult().getErrors() != null) {
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlertError.setText(getRoomResponse.getGetRoomsListResult().getErrors().get(0).getMessage());
             } else {
@@ -242,7 +223,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                             roomList.getOfferId(), roomList.getHotelId(), getRoomResponse.getGetRoomsListResult().getSearchKey()));
                 }
                 EventBus.getDefault().post(new RoomsModelBus(roomsModels));
-                new GetHoldDetailAsync().execute();
+                getHotelDetailRequest();
             }
         } catch (Exception e) {
             elNotFound.setVisibility(View.VISIBLE);
@@ -258,25 +239,18 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tvAlertError.setText(R.string.ErrorServer);
     }
 
-
-
-
-/*    public void getHotelDetailRequest(){
+    public void getHotelDetailRequest() {
         HotelDetailRequest hotelDetailRequest = new HotelDetailRequest();
         HotelDetailReq getRoomRequest = new HotelDetailReq();
         getRoomRequest.setCulture(getString(R.string.culture));
         getRoomRequest.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
         hotelDetailRequest.setRequest(getRoomRequest);
-
         SingletonService.getInstance().getHotelService().getHotelDetail(new OnServiceStatus<HotelDetailResponse>() {
             @Override
             public void onReady(HotelDetailResponse hotelDetailResponse) {
-
-
                 rlLoading2.setVisibility(View.GONE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.colorPrimaryDark));
-
                 }
                 ArrayList<ImageModel> imageModels = new ArrayList<>();
                 try {
@@ -293,20 +267,19 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                                 Double.valueOf(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getLongitude()));
                     } catch (Exception e) {
                     }
-                    for (ImageHotel imageHotel : hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelImages()) {
-                        imageModels.add(new ImageModel(imageHotel.HotelImagesURL));
+                    for (HotelImage imageHotel : hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelImages()) {
+                        imageModels.add(new ImageModel(imageHotel.getHotelImagesURL()));
                     }
-                    EventBus.getDefault().post(new HotelProprtiesBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelProprties));
-                    commentModelBus = new CommentModelBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName, String.valueOf(getIntent().getExtras().getInt("HotelId")));
-                    EventBus.getDefault().post(new CommentModelBus(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName, String.valueOf(getIntent().getExtras().getInt("HotelId"))));
+                    EventBus.getDefault().post(new HotelProprtiesBus(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelProprties()));
+                    commentModelBus = new CommentModelBus(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName(), String.valueOf(getIntent().getExtras().getInt("HotelId")));
+                    EventBus.getDefault().post(new CommentModelBus(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName(), String.valueOf(getIntent().getExtras().getInt("HotelId"))));
                     YoYo.with(Techniques.FadeIn)
                             .duration(400)
                             .playOn(flViewPager);
                     Collections.reverse(imageModels);
-                    new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager, getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.HotelName);
-                    tvCityName.setText(getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CityName + " " + getString(R.string.comma) + " " + getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.CountryName);
-                    Log.e("star", getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating + "");
-                    switch (getHotelDetail.getHotelDetailResult.GetHotelDetailResult.HotelDetail.StarRating) {
+                    new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager, hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName());
+                    tvCityName.setText(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getCityName() + " " + getString(R.string.comma) + " " + hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getCountryName());
+                    switch (Integer.valueOf(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getStarRating())) {
                         case 1:
                             //todo change this
                             ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._1star));
@@ -331,11 +304,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     Toast.makeText(DetailHotelActivity.this, R.string.ErrorServer, Toast.LENGTH_SHORT).show();
                     finish();
                 }
-
-
-
-
-
             }
 
             @Override
@@ -344,49 +312,6 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 finish();
             }
         }, hotelDetailRequest);
-
-
-    }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private class GetHoldDetailAsync extends AsyncTask<String, Void, String> {
-        protected void onPreExecute() {
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-            //    getHotelDetail = new GetHotelDetail(new GetHotelDetailRequest(new GetHotelDRequest(getString(R.string.culture), String.valueOf(getIntent().getExtras().getInt("HotelId")))));
-                Log.e("j2j2j2", new Gson().toJson(new GetHotelDetailRequest(new GetHotelDRequest(getString(R.string.culture), String.valueOf(getIntent().getExtras().getInt("HotelId"))))));
-            } catch (Exception e) {
-            }
-            return "Executed";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-        }
     }
 
     protected void initToolbar(Toolbar toolbar) {

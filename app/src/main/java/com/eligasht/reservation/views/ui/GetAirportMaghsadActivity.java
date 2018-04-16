@@ -352,10 +352,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 
     @Override
     public void searchTextChanged(String searchText) {
-			/*this.searchText = searchText;
-			if(searchText.length()>2)
-			new AsyncFetch().execute();*/
-        //mAdapter.setData(searchText);
+
 
     }
 }

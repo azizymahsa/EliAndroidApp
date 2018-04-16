@@ -25,8 +25,8 @@ android {
                                 onesignal_google_project_number: "REMOTE"]
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 11
-        versionName "1.1.0"
+        versionCode 12
+        versionName "1.1.1"
         multiDexEnabled true
 
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'

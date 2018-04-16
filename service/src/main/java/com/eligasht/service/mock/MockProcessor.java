@@ -35,8 +35,7 @@ public class MockProcessor<T> {
             try {
                 if (method.isAnnotationPresent(Mock.class)) {
                     Mock mock = method.getAnnotation(Mock.class);
-                    if (mock.response().getName().equals(selectedType.getName()))
-                    {
+                    if (mock.response().getName().equals(selectedType.getName())) {
                         return mock;
                     }
                 }

@@ -1,4 +1,4 @@
-package com.eligasht.reservation.views.ui;
+package com.eligasht.reservation.views.ui.mock;
 
 
 import android.support.test.espresso.DataInteraction;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.ui.SplashActivity;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -37,13 +38,13 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class SplashActivityTest10 {
+public class FlightTest {
 
     @Rule
     public ActivityTestRule<SplashActivity> mActivityTestRule = new ActivityTestRule<>(SplashActivity.class);
 
     @Test
-    public void splashActivityTest10() {
+    public void runMockFlightTest() {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
@@ -853,16 +854,35 @@ public class SplashActivityTest10 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton6 = onView(
-                allOf(withId(R.id.ok), withText("OK"),
-                        childAtPosition(
-                                allOf(withId(R.id.done_background),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatButton6.perform(click());
+
+
+
+
+        try {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    2),
+                            isDisplayed())).perform(click());
+        }
+
+        catch (Exception e)
+        {
+             onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    2)),
+                                    2),
+                            isDisplayed())).perform(click());
+
+        }
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
@@ -892,16 +912,31 @@ public class SplashActivityTest10 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton7 = onView(
-                allOf(withId(R.id.ok), withText("OK"),
-                        childAtPosition(
-                                allOf(withId(R.id.done_background),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatButton7.perform(click());
+        try {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    2),
+                            isDisplayed())).perform(click());
+        }
+
+        catch (Exception e)
+        {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    2)),
+                                    2),
+                            isDisplayed())).perform(click());
+
+        }
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
@@ -1038,16 +1073,31 @@ public class SplashActivityTest10 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton8 = onView(
-                allOf(withId(R.id.ok), withText("OK"),
-                        childAtPosition(
-                                allOf(withId(R.id.done_background),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatButton8.perform(click());
+        try {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    2),
+                            isDisplayed())).perform(click());
+        }
+
+        catch (Exception e)
+        {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    2)),
+                                    2),
+                            isDisplayed())).perform(click());
+
+        }
 
         ViewInteraction appCompatTextView7 = onView(
                 allOf(withId(R.id.txtexp_passport),
@@ -1068,16 +1118,31 @@ public class SplashActivityTest10 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton9 = onView(
-                allOf(withId(R.id.ok), withText("OK"),
-                        childAtPosition(
-                                allOf(withId(R.id.done_background),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatButton9.perform(click());
+        try {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    2),
+                            isDisplayed())).perform(click());
+        }
+
+        catch (Exception e)
+        {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    2)),
+                                    2),
+                            isDisplayed())).perform(click());
+
+        }
 
         ViewInteraction linearLayout7 = onView(
                 allOf(withId(R.id.btn_nextm),
@@ -1201,16 +1266,31 @@ public class SplashActivityTest10 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton10 = onView(
-                allOf(withId(R.id.ok), withText("OK"),
-                        childAtPosition(
-                                allOf(withId(R.id.done_background),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatButton10.perform(click());
+        try {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    2),
+                            isDisplayed())).perform(click());
+        }
+
+        catch (Exception e)
+        {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    2)),
+                                    2),
+                            isDisplayed())).perform(click());
+
+        }
 
         ViewInteraction appCompatTextView9 = onView(
                 allOf(withId(R.id.txtexp_passport),
@@ -1231,16 +1311,31 @@ public class SplashActivityTest10 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton11 = onView(
-                allOf(withId(R.id.ok), withText("OK"),
-                        childAtPosition(
-                                allOf(withId(R.id.done_background),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatButton11.perform(click());
+        try {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    2),
+                            isDisplayed())).perform(click());
+        }
+
+        catch (Exception e)
+        {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    2)),
+                                    2),
+                            isDisplayed())).perform(click());
+
+        }
 
         ViewInteraction linearLayout8 = onView(
                 allOf(withId(R.id.btn_nextm),
@@ -1250,7 +1345,6 @@ public class SplashActivityTest10 {
                                         0),
                                 11)));
         linearLayout8.perform(scrollTo(), click());
-
 
 
         ViewInteraction appCompatEditText57 = onView(
@@ -1356,16 +1450,31 @@ public class SplashActivityTest10 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton12 = onView(
-                allOf(withId(R.id.ok), withText("OK"),
-                        childAtPosition(
-                                allOf(withId(R.id.done_background),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatButton12.perform(click());
+        try {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    2),
+                            isDisplayed())).perform(click());
+        }
+
+        catch (Exception e)
+        {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    2)),
+                                    2),
+                            isDisplayed())).perform(click());
+
+        }
 
         ViewInteraction appCompatTextView11 = onView(
                 allOf(withId(R.id.txtexp_passport),
@@ -1386,16 +1495,31 @@ public class SplashActivityTest10 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton13 = onView(
-                allOf(withId(R.id.ok), withText("OK"),
-                        childAtPosition(
-                                allOf(withId(R.id.done_background),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatButton13.perform(click());
+        try {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    2),
+                            isDisplayed())).perform(click());
+        }
+
+        catch (Exception e)
+        {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    2)),
+                                    2),
+                            isDisplayed())).perform(click());
+
+        }
 
         ViewInteraction linearLayout9 = onView(
                 allOf(withId(R.id.btn_nextm),
@@ -1405,7 +1529,6 @@ public class SplashActivityTest10 {
                                         0),
                                 11)));
         linearLayout9.perform(scrollTo(), click());
-
 
 
         ViewInteraction appCompatEditText66 = onView(
@@ -1520,16 +1643,31 @@ public class SplashActivityTest10 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton14 = onView(
-                allOf(withId(R.id.ok), withText("OK"),
-                        childAtPosition(
-                                allOf(withId(R.id.done_background),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatButton14.perform(click());
+        try {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    2),
+                            isDisplayed())).perform(click());
+        }
+
+        catch (Exception e)
+        {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    2)),
+                                    2),
+                            isDisplayed())).perform(click());
+
+        }
 
         ViewInteraction appCompatTextView13 = onView(
                 allOf(withId(R.id.txtexp_passport),
@@ -1549,17 +1687,31 @@ public class SplashActivityTest10 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        try {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    2),
+                            isDisplayed())).perform(click());
+        }
 
-        ViewInteraction appCompatButton15 = onView(
-                allOf(withId(R.id.ok), withText("OK"),
-                        childAtPosition(
-                                allOf(withId(R.id.done_background),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatButton15.perform(click());
+        catch (Exception e)
+        {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    2)),
+                                    2),
+                            isDisplayed())).perform(click());
+
+        }
 
         ViewInteraction linearLayout10 = onView(
                 allOf(withId(R.id.btn_nextm),
@@ -1674,16 +1826,31 @@ public class SplashActivityTest10 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton16 = onView(
-                allOf(withId(R.id.ok), withText("OK"),
-                        childAtPosition(
-                                allOf(withId(R.id.done_background),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatButton16.perform(click());
+        try {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    2),
+                            isDisplayed())).perform(click());
+        }
+
+        catch (Exception e)
+        {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    2)),
+                                    2),
+                            isDisplayed())).perform(click());
+
+        }
 
         ViewInteraction appCompatTextView15 = onView(
                 allOf(withId(R.id.txtexp_passport),
@@ -1704,16 +1871,31 @@ public class SplashActivityTest10 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton17 = onView(
-                allOf(withId(R.id.ok), withText("OK"),
-                        childAtPosition(
-                                allOf(withId(R.id.done_background),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                1)),
-                                2),
-                        isDisplayed()));
-        appCompatButton17.perform(click());
+        try {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    1)),
+                                    2),
+                            isDisplayed())).perform(click());
+        }
+
+        catch (Exception e)
+        {
+            onView(
+                    allOf(withId(R.id.ok), withText("OK"),
+                            childAtPosition(
+                                    allOf(withId(R.id.done_background),
+                                            childAtPosition(
+                                                    withClassName(is("android.widget.LinearLayout")),
+                                                    2)),
+                                    2),
+                            isDisplayed())).perform(click());
+
+        }
 
         ViewInteraction linearLayout11 = onView(
                 allOf(withId(R.id.btn_nextm),

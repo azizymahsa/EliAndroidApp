@@ -23,6 +23,7 @@ import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.Hotel
 import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.HotelProprtiesModels;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.ui.NonScrollGridView;
+import com.eligasht.service.model.hotel.detail.response.HotelProprty;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -103,22 +104,22 @@ public class HotelFacilityFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void setDataFacility(HotelProprtiesBus hotel) {
-        for (HotelProprties hotelProprties : hotel.getHotel()) {
-            if (hotelProprties.CategoryID != 4) {
+        for (HotelProprty hotelProprties : hotel.getHotel()) {
+            if (hotelProprties.getCategoryID() != 4) {
 
 
-                arrayStringList.add(hotelProprties.Category);
-                if (hotelProprties.CategoryID != 2) {
-                    hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont, hotelProprties.PropertyDescription, hotelProprties.CategoryID));
+                arrayStringList.add(hotelProprties.getCategory());
+                if (hotelProprties.getCategoryID() != 2) {
+                    hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.getPropertyTitle(), hotelProprties.getCategory(), hotelProprties.getPropertyIconFont(), hotelProprties.getPropertyDescription(), hotelProprties.getCategoryID()));
 
 
                 } else {
 
-                    if (hotelProprties.PropertyDescription.equals("0") || hotelProprties.PropertyDescription.equals(" ") ||
-                            hotelProprties.PropertyDescription.equals("") || TextUtils.isEmpty(hotelProprties.PropertyDescription)) {
+                    if (hotelProprties.getPropertyDescription().equals("0") || hotelProprties.getPropertyDescription().equals(" ") ||
+                            hotelProprties.getPropertyDescription().equals("") || TextUtils.isEmpty(hotelProprties.getPropertyDescription())) {
 
                     } else {
-                        hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.PropertyTitle, hotelProprties.Category, hotelProprties.PropertyIconFont, hotelProprties.PropertyDescription, hotelProprties.CategoryID));
+                        hotelProprtiesModels.add(new HotelProprtiesModels(hotelProprties.getPropertyTitle(), hotelProprties.getCategory(), hotelProprties.getPropertyIconFont(), hotelProprties.getPropertyDescription(), hotelProprties.getCategoryID()));
 
                     }
                 }

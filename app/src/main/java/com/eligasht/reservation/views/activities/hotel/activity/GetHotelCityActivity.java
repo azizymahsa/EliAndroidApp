@@ -10,6 +10,7 @@ import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -24,7 +25,15 @@ import com.eligasht.reservation.tools.db.local.RecentCityHotel_Table;
 import com.eligasht.reservation.tools.db.main.CursorManager;
 import com.eligasht.reservation.views.adapters.GetHotelCityAdapter;
 import com.eligasht.reservation.views.components.Header;
-
+import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.hotel.getHotelList.request.GetHListRequest;
+import com.eligasht.service.model.hotel.getHotelList.request.GetHotelListRequest;
+import com.eligasht.service.model.hotel.getHotelList.response.City;
+import com.eligasht.service.model.hotel.getHotelList.response.GetHotelListResponse;
+import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
+import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
+import com.eligasht.service.model.identity.Identity;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -56,24 +65,18 @@ import java.util.TimerTask;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class GetHotelCityActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener {
+public class GetHotelCityActivity extends BaseActivity implements  OnClickListener,OnServiceStatus<GetHotelListResponse> {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
-    Handler handler;
-    ProgressDialog progressBar;
-    private Handler progressBarHandler = new Handler();
     public ListView listCityHotel;
     ArrayList<HashMap<String, String>> mylist = null;
-    public static String searchText = "";
     FancyButton btnBack,btnMic;
 
     GetHotelCityAdapter mAdapter;
     private EditText searchtxt;
     AVLoadingIndicatorView avLoadingIndicatorView;
     private final int REQ_CODE_SPEECH_INPUT = 100;
-
-
-
+    ListView listAirPort;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +88,6 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
                 .setParallaxRatio(3)
                 .setNeedBackgroundShadow(true)
                 .init(this);
-
 
         avLoadingIndicatorView = findViewById(R.id.avi);
         btnBack = findViewById(R.id.btnBack);
@@ -134,7 +136,7 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
                     }
 
                     private Timer timer = new Timer();
-                    private final long DELAY = 5; // milliseconds
+                    private final long DELAY = 5;
 
                     @Override
                     public void afterTextChanged(final Editable s) {
@@ -149,24 +151,13 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
                                             public void run() {
                                                 String d = s.toString().trim();
                                                 if (d.length() > 1) {
-
-                                                    GetHotelCityActivity.searchText = d.toLowerCase();
-                                                    new AsyncFetch().execute();
+                                                    request(searchtxt.getText().toString());
 
                                                 } else {
                                                     if (d.length() < 0 || d.length() == 0) {
-                                                        ////
-                                                        /*ListView listAirPort = (ListView) findViewById(R.id.listAirPort);
-														List<HotelCity> data=null;
-														mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, data,  GetHotelCityActivity.this);
-
-														mAdapter.setData(data);
-														listAirPort.setAdapter(mAdapter);*/
-                                                        GetHotelCityActivity.searchText = "";
                                                         List<HotelCity> data = null;
                                                         ListView listAirPort = findViewById(R.id.listCityHotel);
                                                         mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, data, GetHotelCityActivity.this);
-                                                        //mAdapter.setAdapter(mAdapter);
                                                         mAdapter.setData(data);
                                                         listAirPort.setAdapter(mAdapter);
                                                     }
@@ -180,194 +171,68 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
                     }
                 }
         );
-    }//end oncreate
-
-    private class AsyncFetch extends AsyncTask<String, String, String> {
-
-        HttpURLConnection conn;
-        URL url = null;
-        private ListView listAirPort;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            avLoadingIndicatorView.setVisibility(View.VISIBLE);
-            //this method will be running on UI thread
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-
-                // Enter URL address where your json file resides
-                // Even you can make call to php file which returns json data
-                url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetHotelList");
-
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return e.toString();
-            }
-            try {
-
-                // Setup HttpURLConnection class to send and receive data from php and mysql
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                // conn.setRequestMethod("GET");
-                conn.setRequestMethod("POST");
-                // setDoOutput to true as we recieve data from json file
-                conn.setDoOutput(true);
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-                return e1.toString();
-            }
-
-            try {
-
-                int response_code = conn.getResponseCode();
-
-                String serial = null;
-
-                JSONObject errorObj = new JSONObject();
-
-                try {
-                    errorObj.put("Success", false);
-
-                    Class<?> c = Class.forName("android.os.SystemProperties");
-                    Method get = c.getMethod("get", String.class);
-                    serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-                } catch (Exception ignored) {
-                }
-
-
-                String data = OrderToJson();
-
-
-                HttpClient client = new DefaultHttpClient();
-
-
-                HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetHotelList");
-                post.setHeader("Content-Type", "application/json; charset=UTF-8");
-                post.setHeader("Accept", "application/json; charset=UTF-8");
-
-
-                StringEntity se = null;
-                try {
-                    se = new StringEntity(data, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                post.setEntity(se);
-                ByteArrayOutputStream os = new ByteArrayOutputStream();
-                //{"GetAirportWithParentsResult":{"Errors":[],"List":[{"Key":"IST|Istanbul, Turkey (IST-All Airports)","Value":"استانبول ( همه فرودگاه ها ),نزدیک استانبول, ترکیه"},{"Key":"IST|Istan
-                //try {
-                HashMap<String, String> airport = null;
-                mylist = new ArrayList<HashMap<String, String>>();
-                HttpResponse res = client.execute(post);
-                String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
-
-                return (retSrc);
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return e.toString();
-            } finally {
-                conn.disconnect();
-            }
-
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            //this method will be running on UI thread
-
-            //     pdLoading.dismiss();
-            avLoadingIndicatorView.setVisibility(View.INVISIBLE);
-
-            List<HotelCity> data = new ArrayList<HotelCity>();
-
-            //   pdLoading.dismiss();
-            try {
-                if (!TextUtils.isEmpty(searchtxt.getText())) {
-////////////////////////////
-                    JSONObject jsonObj = new JSONObject(result);
-
-                    // JSONObject jsonObj = new JSONObject(retSrc);
-
-                    // Getting JSON Array node
-                    JSONObject GetAirportsResult = jsonObj.getJSONObject("GetHotelListResult");
-                    JSONArray jArray = GetAirportsResult.getJSONArray("Cities");//AirportCode //AirportName//CityName ":
-                    //////////////////////////////
-
-                    // Extract data from json and store into ArrayList as class objects
-                    for (int i = 0; i < jArray.length(); i++) {
-                        JSONObject json_data = jArray.getJSONObject(i);
-                        HotelCity hotelCity = new HotelCity();
-                        hotelCity.setCityCode(json_data.getString("CityCode"));
-                        hotelCity.setCityID(json_data.getInt("CityID"));
-                        hotelCity.setCityNameEn(json_data.getString("CityNameEn"));
-                        hotelCity.setCityNameFa(json_data.getString("CityNameFa"));
-                        hotelCity.setCountryID(json_data.getInt("CountryID"));
-
-                        data.add(hotelCity);
-                    }
-
-
-                    ////
-                    listAirPort = findViewById(R.id.listCityHotel);
-                    mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, GetHotelCityActivity.this, data, getIntent().getExtras().getInt("type"));
-                    //mAdapter.setAdapter(mAdapter);
-                    mAdapter.setData(data);
-                    listAirPort.setAdapter(mAdapter);
-                    //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
-                }
-            } catch (JSONException e) {
-                Toast.makeText(GetHotelCityActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_LONG).show();
-            }
-
-        }
-
-    }//end asynTask
-
-    public String OrderToJson() {
-        JSONObject jsone = new JSONObject();
-        JSONObject manJson = new JSONObject();
-        JSONObject identityJson = new JSONObject();
-
-
-        try {
-
-            manJson.put("city", GetHotelCityActivity.searchText);
-
-
-            identityJson.put("Password", "123qwe!@#QWE");
-            identityJson.put("TermianlId", "Mobile");
-            identityJson.put("UserName", "EligashtMlb");
-            manJson.put("identity", identityJson);
-            //manJson.put("CityCode",URLEncoder.encode(GetAirportActivity.searchText,"UTF-8"));
-            jsone.put("request", manJson);
-
-
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return jsone.toString();
     }
 
     @Override
+    public void onReady(GetHotelListResponse getHotelListResponse) {
+        avLoadingIndicatorView.setVisibility(View.INVISIBLE);
+        List<HotelCity> data = new ArrayList<HotelCity>();
+        try {
+            if (!TextUtils.isEmpty(searchtxt.getText())) {
+                for (City city : getHotelListResponse.getGetHotelListResult().getCities() ) {
+                    HotelCity hotelCity = new HotelCity();
+                    hotelCity.setCityCode(city.getCityCode());
+                    hotelCity.setCityID(city.getCityID());
+                    hotelCity.setCityNameEn(city.getCityNameEn());
+                    hotelCity.setCityNameFa(city.getCityNameFa());
+                    hotelCity.setCountryID(city.getCountryID());
+
+                    data.add(hotelCity);
+                }
+
+                listAirPort = findViewById(R.id.listCityHotel);
+                mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, GetHotelCityActivity.this, data, getIntent().getExtras().getInt("type"));
+                mAdapter.setData(data);
+                listAirPort.setAdapter(mAdapter);
+            }
+        } catch (Exception e) {
+            Toast.makeText(GetHotelCityActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    @Override
+    public void onError(String message) {
+        avLoadingIndicatorView.setVisibility(View.INVISIBLE);
+        Toast.makeText(GetHotelCityActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_LONG).show();
+
+    }
+
+
+
+
+    public void request(String text){
+        avLoadingIndicatorView.setVisibility(View.VISIBLE);
+
+        GetHotelListRequest hotelListRequest = new GetHotelListRequest();
+        GetHListRequest getHListRequest = new GetHListRequest();
+        Identity identity = new Identity();
+        identity.setUserName("EligashtMlb");
+        identity.setTermianlId("Mobile");
+        identity.setPassword("123qwe!@#QWE");
+        getHListRequest.setCity(text.toLowerCase());
+        getHListRequest.setIdentity(identity);
+        hotelListRequest.setRequest(getHListRequest);
+        SingletonService.getInstance().getHotelService().getHList(this, hotelListRequest);
+
+
+    }
+
+
+
+
+    @Override
     public void onClick(View v) {
-        // TODO Auto-generated method stub
         switch (v.getId()){
             case R.id.btnBack:
                 finish();
@@ -378,8 +243,6 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                         RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Prefs.getString("lang","fa"));
-        /*        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                        "لطفا مکان مورد نظر را اعلام نمایید...");*/
                 try {
                     startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
                 } catch (ActivityNotFoundException a) {
@@ -395,13 +258,9 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         switch (requestCode) {
             case REQ_CODE_SPEECH_INPUT: {
                 if (resultCode == RESULT_OK && null != data) {
-
-
-
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     searchtxt.setText(result.get(0));
@@ -412,12 +271,4 @@ public class GetHotelCityActivity extends BaseActivity implements Header.onSearc
         }
     }
 
-    @Override
-    public void searchTextChanged(String searchText) {
-			/*this.searchText = searchText;
-			if(searchText.length()>2)
-			new AsyncFetch().execute();*/
-        //mAdapter.setData(searchText);
-
-    }
 }

@@ -1,5 +1,4 @@
 package com.eligasht.service.generator;
-
 import android.content.Context;
 
 import com.eligasht.service.di.component.NetComponent;
@@ -9,10 +8,10 @@ import com.eligasht.service.part.ContactUs;
 import com.eligasht.service.part.Flight;
 import com.eligasht.service.part.Hotel;
 import com.eligasht.service.part.Insurance;
+import com.eligasht.service.part.LoginProfile;
 import com.eligasht.service.part.XPackage;
 
 import javax.inject.Inject;
-
 /**
  * Created by Ahmad.nemati on 3/26/2018.
  */
@@ -20,14 +19,7 @@ public class SingletonService {
     private NetComponent netComponent;
     @Inject
     ServiceGenerator serviceGenerator;
-    Hotel hotel;
-    ContactUs contactUs;
-    AboutService aboutService;
-    AppService appService;
-    XPackage xPackage;
     private Context context;
-
-
     private static final SingletonService ourInstance = new SingletonService();
 
     public static SingletonService getInstance() {
@@ -51,9 +43,6 @@ public class SingletonService {
         return context;
     }
 
-
-
-
     public void setContext(Context context) {
         this.context = context;
     }
@@ -67,34 +56,26 @@ public class SingletonService {
     }
 
     public Hotel getHotelService() {
-        if (hotel == null)
-            hotel = new Hotel(serviceGenerator);
-        return hotel;
+        return new Hotel(serviceGenerator);
     }
 
     public ContactUs getContactUs() {
-        if (contactUs == null)
-            contactUs = new ContactUs(serviceGenerator);
-        return contactUs;
+        return new ContactUs(serviceGenerator);
     }
 
     public AboutService getAboutService() {
-        if (aboutService == null)
-            aboutService = new AboutService(serviceGenerator);
-        return aboutService;
+        return new AboutService(serviceGenerator);
     }
 
     public AppService getAppService() {
-        if (appService == null)
-            appService = new AppService(serviceGenerator);
-        return appService;
-
+        return new AppService(serviceGenerator);
     }
+
     public XPackage getXPackage() {
-        if (xPackage == null)
-            xPackage = new XPackage(serviceGenerator);
-        return xPackage;
-
+        return new XPackage(serviceGenerator);
     }
 
+    public LoginProfile getLoginProfile() {
+        return new LoginProfile(serviceGenerator);
+    }
 }
