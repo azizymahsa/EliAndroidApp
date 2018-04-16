@@ -225,6 +225,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 finish();
             }
         }
+
+
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
         iconFilter = findViewById(R.id.iconFilter);
@@ -241,6 +243,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         btnHome.setOnClickListener(this);
         txtNoResult = findViewById(R.id.txtNoResult);
         txtNoResult.setOnClickListener(this);
+        RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
+        txtNoResult.setText(R.string.NoResult);
+        linear_no_result.setVisibility(View.GONE);
         txtFilter = findViewById(R.id.txtFilter);
         txtRuzeBad = findViewById(R.id.txtRuzeBad);
         txtRuzeBad.setOnClickListener(this);
@@ -337,7 +342,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         // get the listview
         expListViewExpanding = findViewById(R.id.lvExp);
         // preparing list data
-        expandingListData();
+       expandingListData(true);
         listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
         // setting list adapter
         expListViewExpanding.setAdapter(listAdapterExpanding);
@@ -941,7 +946,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         }
     }
 
-    private void expandingListData() {
+    private void expandingListData(boolean flag) {
         linear_expand = findViewById(R.id.linear_expand);
         linear_expand.setVisibility(View.VISIBLE);
         RelativeLayout linear_no_resultt = findViewById(R.id.linear_no_result);
@@ -1070,7 +1075,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             linear_expand.setVisibility(View.GONE);
             RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             txtNoResult.setText(R.string.NoResult);
-            linear_no_result.setVisibility(View.VISIBLE);
+            if(flag)
+            linear_no_result.setVisibility(View.GONE);
+            else
+             linear_no_result.setVisibility(View.VISIBLE);
+
         }
     }//end expanding listdata
 
@@ -1214,7 +1223,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
     public void showDataExpanding() {
         // preparing list data
-        expandingListData();
+        expandingListData(false);
         listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
         runOnUiThread(new Runnable() {
             @Override
@@ -2195,7 +2204,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
         private void showDataExpanding() {
             // preparing list data
-            expandingListData();
+            expandingListData(false);
             listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
             runOnUiThread(new Runnable() {
                 @Override

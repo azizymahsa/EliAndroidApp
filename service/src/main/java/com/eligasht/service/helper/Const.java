@@ -40,7 +40,7 @@ public class Const {
     //*************static page*************
     public final static String AboutAvil="Common/StaticDataService.svc/GetAboutUsWithCulture";
     public final static String ContactUsAvil="Common/StaticDataService.svc/GetContactUsWithCuture";
-    //*************pachage*************
+    //*************pachage*****************
     public final static String SearchXPackageAvil="Package/PackageService.svc/SearchXPackage";
     public final static String PurchasePackageAvil="Package/PackageService.svc/PurchasePackage";
 

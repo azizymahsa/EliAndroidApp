@@ -1,0 +1,162 @@
+{
+  "HotelPlusFlightChangeFltResult": {
+    "Comments": null,
+    "Errors": null,
+    "ResultKey": null,
+    "Warningss": null,
+    "Flights": [
+      {
+        "AccountID": "26",
+        "AdlBaseFare": {
+          "Amount": 13010000,
+          "CurrencyCode": "IRR"
+        },
+        "AdlCost": {
+          "Amount": 14627800,
+          "CurrencyCode": "IRR"
+        },
+        "AdlTotalFare": {
+          "Amount": 14627800,
+          "CurrencyCode": "IRR"
+        },
+        "Adults": 0,
+        "BaseFare": {
+          "Amount": 14627800,
+          "CurrencyCode": "IRR"
+        },
+        "ChdBaseFare": {
+          "Amount": 14627800,
+          "CurrencyCode": "IRR"
+        },
+        "ChdCost": {
+          "Amount": 14627800,
+          "CurrencyCode": "IRR"
+        },
+        "ChdTotalFare": {
+          "Amount": 14627800,
+          "CurrencyCode": "IRR"
+        },
+        "Childs": 0,
+        "FareTypeID": 3,
+        "FlightGUID": "49382d69-e6ae-420a-a860-b48b68dc3e60",
+        "FlightID": "49382d69-e6ae-420a-a860-b48b68dc3e60",
+        "FlightTypeID": 11,
+        "InfBaseFare": {
+          "Amount": 14627800,
+          "CurrencyCode": "IRR"
+        },
+        "InfCost": {
+          "Amount": 14627800,
+          "CurrencyCode": "IRR"
+        },
+        "InfTotalFare": {
+          "Amount": 14627800,
+          "CurrencyCode": "IRR"
+        },
+        "Infants": 0,
+        "IsCharter": false,
+        "IsIntegration": false,
+        "IsOpenjaw": false,
+        "OneWay": false,
+        "Passengers": null,
+        "RemainSeats": 0,
+        "SegmentList": [
+          {
+            "AirlineCode": "IR",
+            "AirlineID": 16,
+            "AirlineNameEn": "Iran Air",
+            "AirlineNameFa": "ایران ایر",
+            "AirplaneName": "Airbus A320-100/200",
+            "ArrivalAirportCode": "IKA",
+            "ArrivalAirportNameEn": "Imam Khomeini",
+            "ArrivalAirportNameFa": "فرودگاه بین المللی امام خمینی",
+            "ArrivalCityCode": "IST",
+            "ArrivalCityNameEn": "Tehran",
+            "ArrivalCityNameFa": "تهران",
+            "ArrivalCountryNameEn": "Iran",
+            "ArrivalCountryNameFa": "ایران",
+            "ArrivalDate": "2018/04/23",
+            "ArrivalDateShamsi": "1397/2/3",
+            "CabinClassCode": "Y",
+            "CabinClassName": "Economy",
+            "CabinClassNameFa": "اکونومی",
+            "DepartureAirportCode": "IST",
+            "DepartureAirportNameEn": "Ataturk",
+            "DepartureAirportNameFa": "فرودگاه آتا تورک",
+            "DepartureCityCode": "THR",
+            "DepartureCityNameEn": "Istanbul",
+            "DepartureCityNameFa": "استانبول",
+            "DepartureCountryNameEn": "Turkey",
+            "DepartureCountryNameFa": "ترکیه",
+            "DepartureDate": "2018/04/23",
+            "DepartureDateShamsi": "1397/2/3",
+            "FlightArrivalTime": "14:25",
+            "FlightNumber": "718",
+            "FlightTime": "09:50",
+            "FltDateDayOfWeek": "Monday",
+            "FltDurationH": "3",
+            "FltDurationM": "5",
+            "IsDepartureSegment": true,
+            "OperatingAirlineCode": null,
+            "OperatingAirlineID": 0,
+            "OperatingAirlineNameEn": null,
+            "OperatingAirlineNameFa": null
+          },
+          {
+            "AirlineCode": "IR",
+            "AirlineID": 16,
+            "AirlineNameEn": "Iran Air",
+            "AirlineNameFa": "ایران ایر",
+            "AirplaneName": "Airbus A320-100/200",
+            "ArrivalAirportCode": "IST",
+            "ArrivalAirportNameEn": "Ataturk",
+            "ArrivalAirportNameFa": "فرودگاه آتا تورک",
+            "ArrivalCityCode": "THR",
+            "ArrivalCityNameEn": "Istanbul",
+            "ArrivalCityNameFa": "استانبول",
+            "ArrivalCountryNameEn": "Turkey",
+            "ArrivalCountryNameFa": "ترکیه",
+            "ArrivalDate": "2018/04/25",
+            "ArrivalDateShamsi": "1397/2/5",
+            "CabinClassCode": "Y",
+            "CabinClassName": "Economy",
+            "CabinClassNameFa": "اکونومی",
+            "DepartureAirportCode": "IKA",
+            "DepartureAirportNameEn": "Imam Khomeini",
+            "DepartureAirportNameFa": "فرودگاه بین المللی امام خمینی",
+            "DepartureCityCode": "IST",
+            "DepartureCityNameEn": "Tehran",
+            "DepartureCityNameFa": "تهران",
+            "DepartureCountryNameEn": "Iran",
+            "DepartureCountryNameFa": "ایران",
+            "DepartureDate": "2018/04/25",
+            "DepartureDateShamsi": "1397/2/5",
+            "FlightArrivalTime": "08:35",
+            "FlightNumber": "719",
+            "FlightTime": "06:45",
+            "FltDateDayOfWeek": "Wednesday",
+            "FltDurationH": "3",
+            "FltDurationM": "20",
+            "IsDepartureSegment": false,
+            "OperatingAirlineCode": null,
+            "OperatingAirlineID": 0,
+            "OperatingAirlineNameEn": null,
+            "OperatingAirlineNameFa": null
+          }
+        ],
+        "Taxes": {
+          "Amount": 14627800,
+          "CurrencyCode": "IRR"
+        },
+        "TotalFare": {
+          "Amount": 14627800,
+          "CurrencyCode": "IRR"
+        },
+        "TotalFareCost": {
+          "Amount": 14627800,
+          "CurrencyCode": "IRR"
+        }
+      }
+    ]
+  }
+}
