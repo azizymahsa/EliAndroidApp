@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.hotelflight;
+package com.eligasht.service.model.hotel.getHotelReview.response;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -12,7 +12,7 @@ public class HotelReview {
     private List<AverageReviewScore> averageReviewScores = null;
     @SerializedName("AverageScore")
     @Expose
-    private Double averageScore;
+    private String averageScore;
     @SerializedName("HotelID")
     @Expose
     private Integer hotelID;
@@ -43,11 +43,11 @@ public class HotelReview {
         this.averageReviewScores = averageReviewScores;
     }
 
-    public Double getAverageScore() {
+    public String getAverageScore() {
         return averageScore;
     }
 
-    public void setAverageScore(Double averageScore) {
+    public void setAverageScore(String averageScore) {
         this.averageScore = averageScore;
     }
 

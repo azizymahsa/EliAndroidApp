@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.addReview.request;
+package com.eligasht.service.model.hotel.addReview.request;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -8,13 +8,13 @@ public class AddHotelReviewRequest {
 
     @SerializedName("request")
     @Expose
-    private Request request;
+    private AddHReviewReq request;
 
-    public Request getRequest() {
+    public AddHReviewReq getRequest() {
         return request;
     }
 
-    public void setRequest(Request request) {
+    public void setRequest(AddHReviewReq request) {
         this.request = request;
     }
 

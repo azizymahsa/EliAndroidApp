@@ -1,11 +1,11 @@
 
-package com.eligasht.service.model.addReview.request;
+package com.eligasht.service.model.hotel.addReview.request;
 
 import com.eligasht.service.model.identity.Identity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Request {
+public class AddHReviewReq {
 
     @SerializedName("Culture")
     @Expose

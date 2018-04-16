@@ -4,7 +4,7 @@ package com.eligasht.service.model.hotel.getHotelReview.request;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Request {
+public class GetHReviewReq {
 
     @SerializedName("Culture")
     @Expose

@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.addReview.request;
+package com.eligasht.service.model.hotel.addReview.request;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -24,6 +24,15 @@ public class ReviewScore {
     @SerializedName("SumScore")
     @Expose
     private String sumScore;
+
+    public ReviewScore(String hotelID, String reviewID, String scoreAmount, String scoreCounts, String scoreParameterID, String sumScore) {
+        this.hotelID = hotelID;
+        this.reviewID = reviewID;
+        this.scoreAmount = scoreAmount;
+        this.scoreCounts = scoreCounts;
+        this.scoreParameterID = scoreParameterID;
+        this.sumScore = sumScore;
+    }
 
     public String getHotelID() {
         return hotelID;
