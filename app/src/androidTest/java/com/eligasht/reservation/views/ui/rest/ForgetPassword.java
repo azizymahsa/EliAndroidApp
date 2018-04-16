@@ -37,7 +37,7 @@ public class ForgetPassword extends BaseTest {
         doReplace(R.id.edit_email_resetPass, TestConst.Email_Forget);
         doPressImeActionButton(R.id.edit_email_resetPass);
         doClick(R.id.btnResetPassword);
-        sleep(2000);
+        sleep(2500);
         pressBack(3);
 
         login();

@@ -59,7 +59,6 @@ public class FlightTest extends BaseTest {
 
         sleep(1000);
         onData(anything()).inAdapterView(withId(R.id.lvExp)).atPosition(0).perform(click());
-        sleep(500);
         DataInteraction frameLayout6 = onData(anything())
                 .inAdapterView(allOf(withId(R.id.lvExp),
                         childAtPosition(
@@ -86,68 +85,55 @@ public class FlightTest extends BaseTest {
         doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "nemati");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
         doClickAndScroll(R.id.txttavalodm);
-       // sleep(500);
         doClick(R.id.ok);
-      //  sleep(500);
         doClickAndScroll(R.id.txtexp_passport);
-      //  sleep(100);
         doClick(R.id.ok);
-      //  sleep(500);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
 
 
-        ////
         doClickAndScroll(R.id.mard);
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnamem, "ali");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "nasiri");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
         doClickAndScroll(R.id.txttavalodm);
-        //sleep(500);
+
         doClick(R.id.ok);
-       // sleep(500);
+
         doClickAndScroll(R.id.txtexp_passport);
-      //  sleep(100);
         doClick(R.id.ok);
-     //   sleep(500);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
 
 
-        ///
         doClickAndScroll(R.id.zan);
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnamem, "reza");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "nejati");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
         doClickAndScroll(R.id.txttavalodm);
-      //  sleep(500);
+
         doClick(R.id.ok);
-      //  sleep(500);
+
         doClickAndScroll(R.id.txtexp_passport);
-      //  sleep(100);
+
         doClick(R.id.ok);
-     //   sleep(500);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
 
-        ///
 
         doClickAndScroll(R.id.mard);
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnamem, "mahsa");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "azizi");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
         doClickAndScroll(R.id.txttavalodm);
-       // sleep(500);
+
         doClick(R.id.ok);
-     //   sleep(500);
+
         doClickAndScroll(R.id.txtexp_passport);
-     //   sleep(100);
+
         doClick(R.id.ok);
-    //    sleep(500);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
-
-
 
 
         doClickAndScroll(R.id.mard);
@@ -155,13 +141,10 @@ public class FlightTest extends BaseTest {
         doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "farhadi");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
         doClickAndScroll(R.id.txttavalodm);
-        // sleep(500);
+
         doClick(R.id.ok);
-        //   sleep(500);
         doClickAndScroll(R.id.txtexp_passport);
-        //   sleep(100);
         doClick(R.id.ok);
-        //    sleep(500);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
 
@@ -171,108 +154,26 @@ public class FlightTest extends BaseTest {
         doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "nejati");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
         doClickAndScroll(R.id.txttavalodm);
-        // sleep(500);
         doClick(R.id.ok);
-        //   sleep(500);
         doClickAndScroll(R.id.txtexp_passport);
-        //   sleep(100);
         doClick(R.id.ok);
-        //    sleep(500);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
 
-//        doClickAndScroll(R.id.mard);
-//        doScrollAndREplaceAndCloseKeyboard(R.id.txtnamem, "ahmad");
-//        doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "nemati");
-//        doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
-//        doClickAndScroll(R.id.txttavalodm);
-//        // sleep(500);
-//        doClick(R.id.ok);
-//        //   sleep(500);
-//        doClickAndScroll(R.id.txtexp_passport);
-//        //   sleep(100);
-//        doClick(R.id.ok);
-//        //    sleep(500);
-//        doClickAndScroll(R.id.btn_nextm);
-//        doCloseSoftKeyborad(R.id.txtnumber_passport);
-
-
-
-
-
-//        onData(withId(R.id.btnAddsabad))
-//                .inAdapterView(withId(R.id.listKhadamat))
-//                .atPosition(0)
-//                .perform(click());
 
         try {
-            onView(withIndex(withId(R.id.btnAddsabad), 0)).perform(click());
-        } catch (Exception e) {
-
-        }
-
-        try {
-            onView(withIndex(withId(R.id.btnAddsabad), 1)).perform(click());
-        } catch (Exception e) {
-
-        }
-
-        try {
-            onView(withIndex(withId(R.id.btnAddsabad), 2)).perform(click());
+            doClickWithIndex(R.id.btnAddsabad, 0);
+            doClickWithIndex(R.id.btnAddsabad, 1);
+            doClickWithIndex(R.id.btnAddsabad, 2);
         } catch (Exception e) {
 
         }
 
 
-//
-//        try {
-//            Thread.sleep(500);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//
-//        onData(withId(R.id.btnAddsabad))
-//                .inAdapterView(withId(R.id.listKhadamat))
-//                .atPosition(1)
-//                .perform(click());
 
+        doClick(R.id.btn_taeed_khadamat);
 
-//        ViewInteraction relativeLayout3 = onView(
-//                allOf(withId(R.id.btnAddsabad),
-//                        childAtPosition(
-//                                childAtPosition(
-//                                        withClassName(is("android.widget.LinearLayout")),
-//                                        2),
-//                                2),
-//                        isDisplayed()));
-//        relativeLayout3.perform(click());
-//
-//        ViewInteraction relativeLayout4 = onView(
-//                allOf(withId(R.id.btnAddsabad),
-//                        childAtPosition(
-//                                childAtPosition(
-//                                        withClassName(is("android.widget.LinearLayout")),
-//                                        2),
-//                                2),
-//                        isDisplayed()));
-//        relativeLayout4.perform(click());
-
-        ViewInteraction linearLayout12 = onView(
-                allOf(withId(R.id.btn_taeed_khadamat),
-                        childAtPosition(
-                                allOf(withId(R.id.linear_list_khadamat),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                2)),
-                                2),
-                        isDisplayed()));
-        linearLayout12.perform(click());
-
-        try {
-            Thread.sleep(50000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        sleep(500000);
 
     }
 
