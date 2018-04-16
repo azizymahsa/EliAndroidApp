@@ -855,9 +855,6 @@ public class FlightTest {
         }
 
 
-
-
-
         try {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
@@ -868,11 +865,8 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
-             onView(
+        } catch (Exception e) {
+            onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
                                     allOf(withId(R.id.done_background),
@@ -922,10 +916,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1083,10 +1074,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1128,10 +1116,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1276,10 +1261,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1321,10 +1303,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1460,10 +1439,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1505,10 +1481,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1653,10 +1626,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1697,10 +1667,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1836,10 +1803,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1881,10 +1845,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
