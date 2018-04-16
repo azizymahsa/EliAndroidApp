@@ -2,20 +2,13 @@ package com.eligasht.reservation.views.ui;
 
 
 import android.support.test.espresso.DataInteraction;
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
-import android.support.test.espresso.action.ScrollToAction;
-import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.support.v4.widget.NestedScrollView;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.widget.HorizontalScrollView;
-import android.widget.ScrollView;
 
 import com.eligasht.R;
 
@@ -33,10 +26,8 @@ import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
-import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -383,8 +374,13 @@ public class SplashActivityTest10 {
 //                       ).inAdapterView(withId(R.id.lvExp)).atPosition(0);
 //        appCompatButton60.perform(click());
 
-
-        onView(withIndex(withId(R.id.btnSelect), 1)).perform(scrollTo(),click());
+        DataInteraction frameLayout6 = onData(anything())
+                .inAdapterView(allOf(withId(R.id.lvExp),
+                        childAtPosition(
+                                withId(R.id.linear_expand),
+                                0)))
+                .atPosition(2);
+        frameLayout6.perform(click());
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
@@ -1834,5 +1830,4 @@ public class SplashActivityTest10 {
             }
         };
     }
-
-
+}
