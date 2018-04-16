@@ -136,13 +136,14 @@
                     android:layout_height="0dp"
                     android:layout_weight="100"
                     android:ellipsize="end"
-                    android:text="tvCount"
                     android:gravity="center"
                     android:maxLines="1"
+                    android:text="tvCount"
                     android:textColor="@android:color/white"
-                    android:visibility="gone"
+                    android:textSize="@dimen/toolbar_desc_12dp"
 
-                    android:textSize="@dimen/toolbar_desc_12dp" />
+                    android:visibility="gone" />
+
                 <LinearLayout
                     android:id="@+id/llDateToolbar"
 
@@ -185,8 +186,8 @@
 
                         android:gravity="center"
                         android:text="  -  "
-                        android:textSize="@dimen/_12dp"
                         android:textColor="@color/white"
+                        android:textSize="@dimen/_12dp"
                         android:visibility="visible"
 
                         />
@@ -325,9 +326,8 @@
                 android:id="@+id/linear_no_result"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
-                android:layout_below="@+id/toolbarLayout"
-                >
+                android:visibility="gone"
+                android:layout_below="@+id/toolbarLayout">
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
@@ -347,26 +347,26 @@
                             android:id="@+id/txtNoResult"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_below="@+id/ivImageEr"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:padding="10dp"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/_16dp_normal_textSize"
-                            android:layout_below="@+id/ivImageEr"
-                            />
+                            android:textSize="@dimen/_16dp_normal_textSize" />
+
                         <TextView
                             android:id="@+id/tvAlertDesc"
 
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtNoResult"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:padding="10dp"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:layout_below="@+id/txtNoResult"/>
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <ImageView
                             android:id="@+id/ivImageEr"
@@ -376,12 +376,12 @@
                             android:src="@drawable/alert" />
 
                         <RelativeLayout
-                            android:layout_below="@+id/txtNoResult"
                             android:id="@+id/rlEr"
                             android:layout_width="@dimen/_100dp"
                             android:layout_height="@dimen/_40dp"
-                            android:background="@drawable/btngravity_big"
+                            android:layout_below="@+id/txtNoResult"
                             android:layout_centerHorizontal="true"
+                            android:background="@drawable/btngravity_big"
 
                             >
 
@@ -405,7 +405,6 @@
 
 
                 </android.support.v7.widget.CardView>
-
 
 
             </RelativeLayout>

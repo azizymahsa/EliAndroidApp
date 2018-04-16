@@ -1,5 +1,7 @@
 package com.eligasht.service.api;
 
+import com.eligasht.service.model.XPackage.request.PurchasePackage.RequestPurchasePackage;
+import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
 import com.eligasht.service.model.about.request.RequestAbout;
 import com.eligasht.service.model.about.response.ResponseAbout;
 import com.eligasht.service.model.flight.request.ChangeFlight.RequestChangeFlight;
@@ -18,7 +20,6 @@ import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight;
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
-import com.eligasht.service.model.hotel.detail.response.GetHotelDetailResult;
 import com.eligasht.service.model.hotel.detail.response.HotelDetailResponse;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
@@ -36,6 +37,8 @@ import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
 import com.eligasht.service.model.insurance.response.SearchInsurance.ResponseSearchInsurance;
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
+import com.eligasht.service.model.XPackage.request.searchXPackage.RequestSearchXPackage;
+import com.eligasht.service.model.XPackage.response.searchXPackage.ResponseSearchXPackage;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
 import com.eligasht.service.model.startup.response.StartupServiceResponse;
 
@@ -155,5 +158,13 @@ public interface RetroClient {
     Observable<ResponseSearchInsurance> RESPONSE_SEARCH_INSURANCE_OBSERVABLE(
             @Body RequestSearchInsurance requestSearchInsurance2
     );
-
+    //*************package*************
+    @POST(Const.SearchXPackageAvil)
+    Observable<ResponseSearchXPackage> RESPONSE_SEARCH_X_PACKAGE_OBSERVABLE(
+            @Body RequestSearchXPackage requestSearchXPackage
+    );
+    @POST(Const.PurchasePackageAvil)
+    Observable<ResponsePurchasePackage> RESPONSE_PURCHASE_PACKAGE_OBSERVABLE(
+            @Body RequestPurchasePackage requestPurchasePackage
+    );
 }
