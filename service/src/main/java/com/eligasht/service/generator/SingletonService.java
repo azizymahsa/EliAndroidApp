@@ -9,6 +9,7 @@ import com.eligasht.service.part.ContactUs;
 import com.eligasht.service.part.Flight;
 import com.eligasht.service.part.Hotel;
 import com.eligasht.service.part.Insurance;
+import com.eligasht.service.part.XPackage;
 
 import javax.inject.Inject;
 
@@ -23,6 +24,7 @@ public class SingletonService {
     ContactUs contactUs;
     AboutService aboutService;
     AppService appService;
+    XPackage xPackage;
     private Context context;
 
 
@@ -88,6 +90,11 @@ public class SingletonService {
         return appService;
 
     }
+    public XPackage getXPackage() {
+        if (xPackage == null)
+            xPackage = new XPackage(serviceGenerator);
+        return xPackage;
 
+    }
 
 }

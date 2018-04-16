@@ -1766,7 +1766,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
        requestPurchasePackage.setRequest(request);
        Log.e( "OrderToJsonPurchasePackage: ", new Gson().toJson(requestPurchasePackage));
 
-       SingletonService.getInstance().getxPackage().PurchasePackageAvail(this, requestPurchasePackage);
+       SingletonService.getInstance().getXPackage().PurchasePackageAvail(this, requestPurchasePackage);
     }
     @Override
     public void onReady(ResponsePurchasePackage responsePurchasePackage) {
