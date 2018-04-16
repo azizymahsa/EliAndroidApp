@@ -1,0 +1,14 @@
+{
+  "PurchasePackageResult": {
+    "Comments": null,
+    "Errors": null,
+    "ResultKey": null,
+    "Warningss": null,
+    "Services": null,
+    "TmpReserveResult": {
+      "BookingCode": 889328,
+      "BookingMessageEn": null,
+      "BookingMessageFa": null
+    }
+  }
+}

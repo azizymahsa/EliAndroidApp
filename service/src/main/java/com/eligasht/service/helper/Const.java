@@ -49,6 +49,7 @@ public class Const {
     //*************pachage*****************
     public final static String SearchXPackageAvil="Package/PackageService.svc/SearchXPackage";
     public final static String PurchasePackageAvil="Package/PackageService.svc/PurchasePackage";
+    public final static String GetPreFactorDetailsPackageAvil="Common/StaticDataService.svc/GetPreFactorDetails";
 
 
 

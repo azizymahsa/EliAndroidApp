@@ -35,6 +35,7 @@ public class Insurance extends BasePart {
     public void getCountryInsuranceAvail(OnServiceStatus<ResponseGetCountry> listener, RequestGetCountry req) {
         start(getServiceGenerator().createService().RESPONSE_GET_COUNTRY_OBSERVABLE(req), listener);
     }
+    @Mock(jsonName = "search_insurance_avail", response =ResponseSearchInsurance.class )
     public void getSearchInsuranceAvail(OnServiceStatus<ResponseSearchInsurance> listener, RequestSearchInsurance req) {
         start(getServiceGenerator().createService().RESPONSE_SEARCH_INSURANCE_OBSERVABLE(req), listener);
     }
