@@ -44,18 +44,7 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
 
 
     private void initViews() {
-       // num_contract = view.findViewById(R.id.contract_number);
         lvContract = view.findViewById(R.id.lvContract);
-      /*  date = view.findViewById(R.id.contract_date);
-        path = view.findViewById(R.id.contract_path);
-        depart_date = view.findViewById(R.id.contract_depart_date);
-        login_date = view.findViewById(R.id.contract_login_date);
-        sum_price = view.findViewById(R.id.contract_total_price);
-        remained_price = view.findViewById(R.id.contract_remained);
-        follower = view.findViewById(R.id.contract_follower);
-        email = view.findViewById(R.id.contract_email);
-*/
-        //set data of login for contracts
         try {
             for (int i = 0; i < WebUserTools.getInstance().getUser().getPreviousContracts().size(); i++) {
                 contractModels.add(new ContractModels((WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getRqBaseID() + ""),
@@ -92,10 +81,7 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
     }
 
     public boolean isValidForm() {
-        // check validation and if all thigs are ok return true else return false;
         return true;
     }
-
-    //request for send contract
 
 }
