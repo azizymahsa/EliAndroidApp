@@ -44,7 +44,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
-public class CommentActivity extends BaseActivity implements AlertRating.RatingHotelDialogListener, View.OnClickListener,OnServiceStatus<AddHotelReviewResponse> {
+public class CommentActivity extends BaseActivity implements AlertRating.RatingHotelDialogListener,
+        View.OnClickListener,OnServiceStatus<AddHotelReviewResponse> {
     TextView tvTitle;
     ScrollView svRating;
     LinearLayout llComment;
