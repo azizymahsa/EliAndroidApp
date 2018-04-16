@@ -27,6 +27,7 @@ public class Flight extends BasePart {
     protected BasePart getPart() {
         return this;
     }
+
     @Mock(jsonName = "get_airport_with_parents_with_culture", response = ResponsAirports.class)
     public void airPortsAvail(OnServiceStatus<ResponsAirports> listener, RequestAirports req) {
         start(getServiceGenerator().createService().responsAirports(req), listener);
@@ -37,24 +38,27 @@ public class Flight extends BasePart {
         start(getServiceGenerator().createService().responsSearchFlight(req), listener);
     }
 
+    @Mock(jsonName = "flight_pre_factor_detail_avail", response = ResponsePreFactorDetails.class)
     public void flightPreFactorDetailAvail(OnServiceStatus<ResponsePreFactorDetails> listener, RequestPreFactorDetails req) {
         start(getServiceGenerator().createService().responsePreFactorDetails(req), listener);
     }
 
-
+    @Mock(jsonName = "purchase_flight", response = ResponsePurchaseFlight.class)
     public void purchaseFlightAvail(OnServiceStatus<ResponsePurchaseFlight> listener, RequestPurchaseFlight req) {
         start(getServiceGenerator().createService().responsePurchaseFlightObservable(req), listener);
     }
 
+    @Mock(jsonName = "purchase_service", response = com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight.class)
     public void flightPurchaseAvail(OnServiceStatus<com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight> listener, com.eligasht.service.model.flight.request.purchaseServiceFlight.RequestPurchaseFlight req) {
         start(getServiceGenerator().createService().responsePurchaseFlight(req), listener);
     }
 
-
+    @Mock(jsonName = "change_flight_avail", response = ResponseChangeFlight.class)
     public void ChangeFlightAvail(OnServiceStatus<ResponseChangeFlight> listener, RequestChangeFlight req) {
         start(getServiceGenerator().createService().responsChangeFlight(req), listener);
     }
 
+    @Mock(jsonName = "get_is_domestic", response = ResponseDomesticFlight.class)
     public void domesticFlightAvail(OnServiceStatus<ResponseDomesticFlight> listener, RequestDomesticFlight req) {
         start(getServiceGenerator().createService().responseDomesticFlightObservable(req), listener);
     }

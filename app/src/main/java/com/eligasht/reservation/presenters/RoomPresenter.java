@@ -143,25 +143,16 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
 
         if(Prefs.getString("lang","fa").equals("fa")){
             holder.room_title.setText(context.getString(R.string.room) + " " + getStringPosition(position));
-
-
-
         }
         else if(Prefs.getString("lang","fa").equals("en")){
             holder.room_title.setText( getStringPosition(position) + " " +context.getString(R.string.room));
-
-
         }else{
             holder.room_title.setText( getStringPosition(position) + " " +context.getString(R.string.room));
-
-
         }
 
         if (!ValidationTools.isEmptyOrNull(room.getChildModels())) {
             ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
             holder.rcl_child.showList(childAdapter);
-
-
         }
         holder.btn_adt_mines.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,20 +188,15 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
                 if(Prefs.getString("lang","fa").equals("fa")){
                     room.addChildModel(new ChildModel(context.getString(R.string.BabyPackage) + " " + getStringPosition(room.getChildModels().size()), true));
 
-
                 }
                 else if(Prefs.getString("lang","fa").equals("en")){
                     room.addChildModel(new ChildModel(getStringPosition(room.getChildModels().size())+ " " + context.getString(R.string.BabyPackage), true));
 
-
                 }else{
                     holder.room_title.setText( getStringPosition(position) + " " +context.getString(R.string.room));
 
-
                 }
 
-
-                //  childAdapter.notifyDataSetChanged();
                 ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
                 holder.rcl_child.showList(childAdapter);
             }

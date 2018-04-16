@@ -1,5 +1,11 @@
 package com.eligasht.service.api;
 
+import com.eligasht.service.model.XPackage.request.PurchasePackage.RequestPurchasePackage;
+import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
+import com.eligasht.service.model.XPackage.request.PurchasePackage.RequestPurchasePackage;
+import com.eligasht.service.model.XPackage.request.searchXPackage.RequestSearchXPackage;
+import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
+import com.eligasht.service.model.XPackage.response.searchXPackage.ResponseSearchXPackage;
 import com.eligasht.service.model.about.request.RequestAbout;
 import com.eligasht.service.model.about.response.ResponseAbout;
 import com.eligasht.service.model.flight.request.ChangeFlight.RequestChangeFlight;
@@ -18,7 +24,6 @@ import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight;
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
-import com.eligasht.service.model.hotel.detail.response.GetHotelDetailResult;
 import com.eligasht.service.model.hotel.detail.response.HotelDetailResponse;
 import com.eligasht.service.model.hotel.hold.request.HoldRoomRequest;
 import com.eligasht.service.model.hotel.hold.response.HoldRoomResponse;
@@ -41,6 +46,10 @@ import com.eligasht.service.model.insurance.response.SearchInsurance.ResponseSea
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
 import com.eligasht.service.model.login.request.LoginListReq;
+import com.eligasht.service.model.login.request.LoginRequestModel;
+import com.eligasht.service.model.login.response.LoginResponse;
+import com.eligasht.service.model.XPackage.request.searchXPackage.RequestSearchXPackage;
+import com.eligasht.service.model.XPackage.response.searchXPackage.ResponseSearchXPackage;
 import com.eligasht.service.model.login.request.LoginRequestModel;
 import com.eligasht.service.model.login.response.LoginResponse;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
@@ -169,6 +178,15 @@ public interface RetroClient {
     @POST(Const.SearchInsuranceAvil)
     Observable<ResponseSearchInsurance> RESPONSE_SEARCH_INSURANCE_OBSERVABLE(
             @Body RequestSearchInsurance requestSearchInsurance2
+    );
+    //*************package*************
+    @POST(Const.SearchXPackageAvil)
+    Observable<ResponseSearchXPackage> RESPONSE_SEARCH_X_PACKAGE_OBSERVABLE(
+            @Body RequestSearchXPackage requestSearchXPackage
+    );
+    @POST(Const.PurchasePackageAvil)
+    Observable<ResponsePurchasePackage> RESPONSE_PURCHASE_PACKAGE_OBSERVABLE(
+            @Body RequestPurchasePackage requestPurchasePackage
     );
 
 

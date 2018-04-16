@@ -137,7 +137,6 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 Uri uri = Uri.parse("https://instagram.com/eligashtco/");
                 Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
                 likeIng.setPackage("com.instagram.android");
-
                 try {
                     startActivity(likeIng);
                 } catch (ActivityNotFoundException e) {

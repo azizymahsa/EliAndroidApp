@@ -18,6 +18,7 @@ import com.eligasht.reservation.views.activities.insurance.InsurnaceDetailsActiv
 import com.eligasht.reservation.views.viewholders.InsuranceRowHolder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by elham.bonyani on 1/15/2018.
@@ -27,18 +28,18 @@ import java.util.ArrayList;
 public class InsurancPlanAdapter extends RecyclerView.Adapter<InsuranceRowHolder> {
 
     private Context context;
-    private ArrayList<InsurancePlan_> feedItemList;
+    private List<com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_> feedItemList;
     private int count;
     private ListenerInsurancPlanAdapter listener;
 
-    public InsurancPlanAdapter(Context context, ArrayList<InsurancePlan_> feedItemList, int count) {
+    public InsurancPlanAdapter(Context context, List<com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_> feedItemList, int count) {
         this.context = context;
         this.feedItemList = feedItemList;
         this.count = count;
     }
 
     public interface ListenerInsurancPlanAdapter {
-        void onClickInsurancPlanItem(InsurancePlan_ insurancePlan);
+        void onClickInsurancPlanItem(com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_ insurancePlan);
     }
 
     public InsurancPlanAdapter setListener(ListenerInsurancPlanAdapter listener) {
@@ -56,7 +57,7 @@ public class InsurancPlanAdapter extends RecyclerView.Adapter<InsuranceRowHolder
 
     @Override
     public void onBindViewHolder(InsuranceRowHolder holder, final int position) {
-        final InsurancePlan_ item = feedItemList.get(position);
+        final com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_ item = feedItemList.get(position);
         holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getPrice() * count)));
         holder.txtPlan.setText(item.getTitle());
         holder.txtTitle.setText(item.getTitleEnglish());

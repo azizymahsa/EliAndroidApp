@@ -108,6 +108,28 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.row_select_parvaz_two_detail, parent,false);
         }
         LinearLayout llCounter = convertView.findViewById(R.id.llCounter);
+        llCounter.setOnClickListener(v -> {
+            if (isChangeFlight) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("searchKey", searchKey);
+                returnIntent.putExtra("FlightId", item.flGUID);
+                _context.setResult(Activity.RESULT_OK, returnIntent);
+                _context.finish();
+            } else {
+                Intent i4 = new Intent(_context, PassengerActivity.class);
+
+                i4.putExtra("Flight_GUID", item.flGUID + "");//current.getCityName()
+
+                // _context.startActivity(i4);
+                SwipeBackActivityHelper.activityBuilder(_context)
+                        .intent(i4)
+                        .needParallax(true)
+                        .needBackgroundShadow(true)
+                        .startActivity();
+                System.out.println("item.flGUID:" + item.flGUID);
+
+            }
+        });
         TextView lblFlightTimeR = convertView.findViewById(R.id.lblFlightTimeR);
         TextView lblFlightArrivalTimeR = convertView.findViewById(R.id.lblFlightArrivalTimeR);
         TextView lblDepurtureAirportR = convertView.findViewById(R.id.lblDepurtureAirportR);

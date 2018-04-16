@@ -1,0 +1,10 @@
+{
+  "PurchaseServiceResult": {
+    "Comments": null,
+    "Errors": null,
+    "ResultKey": null,
+    "Warningss": null,
+    "ResultText": "Temp Contract Saved Successfully!",
+    "SuccessResult": 888383
+  }
+}

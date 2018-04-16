@@ -316,8 +316,8 @@
                 android:id="@+id/linear_no_result"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
-                android:layout_below="@+id/toolbarLayout">
+                android:layout_below="@+id/toolbarLayout"
+                android:visibility="gone">
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
@@ -563,9 +563,9 @@
                 android:id="@+id/llSort"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/_5_flight_dp"
                 android:layout_weight="100"
                 android:gravity="center"
-                android:layout_marginRight="@dimen/_5_flight_dp"
                 android:orientation="horizontal">
 
                 <TextView
