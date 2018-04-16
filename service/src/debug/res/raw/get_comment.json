@@ -1,1 +1,1929 @@
-{"GetHotelReviewResult":{"Comments":null,"Errors":null,"ResultKey":null,"Warningss":null,"HotelReview":{"AverageReviewScores":[{"HotelID":767,"ParamTitle":"امکانات هتل","ReviewID":0,"ScoreAmount":8.4,"ScoreCounts":20,"ScoreParameterID":1,"SumScore":169},{"HotelID":767,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":0,"ScoreAmount":9,"ScoreCounts":17,"ScoreParameterID":2,"SumScore":153},{"HotelID":767,"ParamTitle":"کیفیت خواب","ReviewID":0,"ScoreAmount":9.1,"ScoreCounts":16,"ScoreParameterID":3,"SumScore":145},{"HotelID":767,"ParamTitle":"ارزش در برابر قیمت","ReviewID":0,"ScoreAmount":9,"ScoreCounts":16,"ScoreParameterID":4,"SumScore":144},{"HotelID":767,"ParamTitle":"وضعیت خدمات","ReviewID":0,"ScoreAmount":9,"ScoreCounts":16,"ScoreParameterID":5,"SumScore":144},{"HotelID":767,"ParamTitle":"وضعیت نظافت","ReviewID":0,"ScoreAmount":8.8,"ScoreCounts":16,"ScoreParameterID":6,"SumScore":140},{"HotelID":767,"ParamTitle":"خوشرویی کارکنان","ReviewID":0,"ScoreAmount":8.9,"ScoreCounts":16,"ScoreParameterID":7,"SumScore":143},{"HotelID":767,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":0,"ScoreAmount":9.1,"ScoreCounts":16,"ScoreParameterID":8,"SumScore":145}],"AverageScore":8.5,"HotelID":767,"HotelName":"لارس پارک هتل","RecommendedPercent":70,"ReviewFilterItems":[{"ReviewCategoryID":1,"ReviewCategoryItemsID":1,"ReviewCategoryItemsTitle":"","ReviewCategoryTitle":"نوع سفر","ReviewsCount":16},{"ReviewCategoryID":1,"ReviewCategoryItemsID":4,"ReviewCategoryItemsTitle":"تنهایی","ReviewCategoryTitle":"نوع سفر","ReviewsCount":0},{"ReviewCategoryID":1,"ReviewCategoryItemsID":2,"ReviewCategoryItemsTitle":"خانوادگی","ReviewCategoryTitle":"نوع سفر","ReviewsCount":2},{"ReviewCategoryID":1,"ReviewCategoryItemsID":3,"ReviewCategoryItemsTitle":"زوج","ReviewCategoryTitle":"نوع سفر","ReviewsCount":1},{"ReviewCategoryID":1,"ReviewCategoryItemsID":5,"ReviewCategoryItemsTitle":"همراه دوستان","ReviewCategoryTitle":"نوع سفر","ReviewsCount":1},{"ReviewCategoryID":1,"ReviewCategoryItemsID":6,"ReviewCategoryItemsTitle":"کاری","ReviewCategoryTitle":"نوع سفر","ReviewsCount":0},{"ReviewCategoryID":2,"ReviewCategoryItemsID":1,"ReviewCategoryItemsTitle":"اقتصادی","ReviewCategoryTitle":"ارزیابی قیمت هتل","ReviewsCount":16},{"ReviewCategoryID":2,"ReviewCategoryItemsID":3,"ReviewCategoryItemsTitle":"لوکس و گران قیمت","ReviewCategoryTitle":"ارزیابی قیمت هتل","ReviewsCount":0},{"ReviewCategoryID":2,"ReviewCategoryItemsID":2,"ReviewCategoryItemsTitle":"متوسط","ReviewCategoryTitle":"ارزیابی قیمت هتل","ReviewsCount":4},{"ReviewCategoryID":3,"ReviewCategoryItemsID":1,"ReviewCategoryItemsTitle":"","ReviewCategoryTitle":"فصل سفر","ReviewsCount":17},{"ReviewCategoryID":3,"ReviewCategoryItemsID":2,"ReviewCategoryItemsTitle":"بهار","ReviewCategoryTitle":"فصل سفر","ReviewsCount":1},{"ReviewCategoryID":3,"ReviewCategoryItemsID":4,"ReviewCategoryItemsTitle":"پاییز","ReviewCategoryTitle":"فصل سفر","ReviewsCount":0},{"ReviewCategoryID":3,"ReviewCategoryItemsID":3,"ReviewCategoryItemsTitle":"تابستان","ReviewCategoryTitle":"فصل سفر","ReviewsCount":2},{"ReviewCategoryID":3,"ReviewCategoryItemsID":5,"ReviewCategoryItemsTitle":"زمستان","ReviewCategoryTitle":"فصل سفر","ReviewsCount":0}],"Reviews":[{"AgcUserID":0,"AverageScore":8,"CommentsCount":0,"Content":"کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.","Device":"","HelpfulAmount":4,"IsRecommended":false,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":97418,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":97418,"ScoreAmount":9,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":97418,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0}],"SubmitDate":"2018\/02\/26","SubmitEmail":"mohebbi@eligasht.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"sdfsdf sdfsdf","SubmitNickName":"","Title":"خیلی هم عالی","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":8,"CommentsCount":0,"Content":"من و خانمم امسال تابستون استانبول بودیم و در هتل لارس پارک . انتخاب هتل به پیشنهاد دوستان بود و ما خیلی از اون راضی هستیم .  اتاق واقعا تمیز و مرتب بود و تخت خواب خیلی راحت . ما هر دو روی تمیزی هتل خیلی حساس هستیم و خدار رو شکر می کنم که لارس پارک خیلی تمیز بود . به نظر من چنین هتل ۴ ستاره ای کمتر در استانبول پیدا می شه . \u000d\u000aهتل در جای خیلی خوبی قرار گرفته بود و ما در این سفر تونستیم تمام فروشگاه های خیابون استقلال رو ببینیم و خرید خوبی داشته باشیم .من خوشحال هستم که هتل لارس پارک رو تجربه کردم .","Device":"","HelpfulAmount":3,"IsRecommended":true,"PriceType":"متوسط","PriceTypeID":2,"ReviewComments":null,"ReviewID":96340,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":96340,"ScoreAmount":8,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":96340,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":96340,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":96340,"ScoreAmount":9,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":96340,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":96340,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":96340,"ScoreAmount":9,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":96340,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/02\/03","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"آرمین شوشتری","SubmitNickName":"آرمین شوشتری","Title":"بهترین ۴ ستاره استانبول","TraveSeasonID":3,"TravelSeason":"تابستان","TravelType":"زوج","TravelTypeID":3,"WebUserID":0},{"AgcUserID":0,"AverageScore":8,"CommentsCount":0,"Content":"لارس پارک هتل خیلی خوبیست - لوکیشن هتل عالیه - نزدیک میدان تکسیم و خیابان استقلال - من تا به حال ۵ بار با تور به استانبول سفر داشتم که ۳ بار آن را در هتل لارس پارک بودم - هتل تمیز وراحتی هست و من واقعا از آن راضی هستم - این که یک هتل هم موقعیت خوبی داشته باشد هم به مترو و اتوبوس نزدیک باشد و هم به مراکز خرید و این که تمیز و باکیفیت باشد ، عالیست و کمتر هتلی همه این ویژگی ها رو با هم داراست - من همیشه از الی گشت خرید می کنم و از تور ها راضی هستم - پیشنهاد می کنم شما هم این تور رو امتحان کنید ..","Device":"","HelpfulAmount":0,"IsRecommended":true,"PriceType":"متوسط","PriceTypeID":2,"ReviewComments":null,"ReviewID":96339,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":96339,"ScoreAmount":8,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":96339,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":96339,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":96339,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":96339,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":96339,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":96339,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":96339,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/07\/15","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"مرضیه اسماعیلی","SubmitNickName":"مرضیه اسماعیلی","Title":"۱۰۰٪ عالی","TraveSeasonID":1,"TravelSeason":"","TravelType":"خانوادگی","TravelTypeID":2,"WebUserID":0},{"AgcUserID":0,"AverageScore":8,"CommentsCount":0,"Content":"کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.","Device":"","HelpfulAmount":1,"IsRecommended":false,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":78436,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":78436,"ScoreAmount":9,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0}],"SubmitDate":"2018\/01\/25","SubmitEmail":"","SubmitImgURL":"","SubmitLocation":"","SubmitName":"","SubmitNickName":"","Title":"خیلی هم عالی","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":8,"CommentsCount":0,"Content":"کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.","Device":"","HelpfulAmount":0,"IsRecommended":false,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":78433,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":78433,"ScoreAmount":9,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0}],"SubmitDate":"2018\/01\/24","SubmitEmail":"","SubmitImgURL":"","SubmitLocation":"","SubmitName":"","SubmitNickName":"","Title":"خیلی هم عالی","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":8,"CommentsCount":0,"Content":"کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.","Device":"","HelpfulAmount":0,"IsRecommended":false,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":78431,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":78431,"ScoreAmount":9,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0}],"SubmitDate":"2018\/01\/24","SubmitEmail":"","SubmitImgURL":"","SubmitLocation":"","SubmitName":"","SubmitNickName":"","Title":"خیلی هم عالی","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":10,"CommentsCount":0,"Content":"به نظرمن یکی ازمزایای هتل لارسپارک خوش مسیربودنشه. من هرسری که می رم استانبول این هتل رومی گیرم. واقعابه غیرازاینکه هتل خوبیه جاشم خیلی خوبه.\u000d\u000aمن زیادازمترواستفازه نمی کنم اما ازمیدون تقسیم به راحتی هم می شه ازاتوبوس استفاده کردوهم ازتاکسی.\u000d\u000aالبته کسایی که استانبول رفتن می دونن که اونجاتاکسی خیلی گرونه.\u000d\u000aقابل توجه خانمی که گفته بودن می خوان جهیزیه بخرن، استانبول تاکسی ون زرد رنگی داره به نام دلموش که قیمتش خیلی ارزونه. مسیرهای طولانی رومی تونیدبااین دلموشا برید اونم فقط باچندلیر.\u000d\u000a","Device":"","HelpfulAmount":4,"IsRecommended":true,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":71207,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":71207,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":71207,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":71207,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":71207,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":71207,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":71207,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":71207,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":71207,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/03\/04","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"اسما توکلی","SubmitNickName":"اسما توکلی","Title":"خوش مسیر","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":10,"CommentsCount":0,"Content":"من امسال همراه دوستام درهتل لاسپارک بودیم. هتل خیلی خوبیه. تمیزباسرویس دهی خوب. صبحانه خوبی داره خوشمزه وکامل. موقعیت هتل لارسپارک رودوست دارم. اطرافش پرازهتله رستورانهای مختلف باغذاهای عالی. نزدیک میدون تقسیم نزدیک خیابون استقلال ...\u000d\u000aواقعاازهمه نظرهتل مناسبیه.","Device":"","HelpfulAmount":1,"IsRecommended":true,"PriceType":"متوسط","PriceTypeID":2,"ReviewComments":null,"ReviewID":71206,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":71206,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":71206,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":71206,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":71206,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":71206,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":71206,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":71206,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":71206,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2018\/01\/15","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"محمد آهنگرانی","SubmitNickName":"محمد آهنگرانی","Title":"تجربه ای عالی","TraveSeasonID":3,"TravelSeason":"تابستان","TravelType":"همراه دوستان","TravelTypeID":5,"WebUserID":0},{"AgcUserID":0,"AverageScore":10,"CommentsCount":0,"Content":"سلام خدمت دوستی که درموردخریدجهیزیه سوال کرده بودند\u000d\u000aمن واقعیتش تجربه ای دراین موردندارم اما می تونم درموردسفرتون نکاتی روبگم امیدوارم که کمکتون کنه\u000d\u000aبه نظرمن اولین موضوعی که شمابایددرنظربگیریدشناسایی مراکزخرید،موقعیتشون ومسیرهای حمل ونقل هست\u000d\u000a پیشنهادمن این هست که درمنطقه تکسیم هتل بگیریدمثلاهمین هتل لارسپارک\u000d\u000aپشت هتل خیابانی هست به نام  استقلال که اکثربرندهادرآن شعبه دارندمابقی مراکزخریدرو می تونیدازطریق اینترنت پیداکنید\u000d\u000aازمتروواتوبوس استفاده کنیدو حتمانقشه شهروایستگاههای مترو روهم تهیه کنید\u000d\u000a\u000d\u000a\u000d\u000a","Device":"","HelpfulAmount":2,"IsRecommended":true,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":71205,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":71205,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":71205,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":71205,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":71205,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":71205,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":71205,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":71205,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":71205,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/06\/21","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"یاسر جم","SubmitNickName":"یاسر جم","Title":"مناسب برای خرید","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":10,"CommentsCount":0,"Content":"سلام خدمت دوستان عزیز\u000d\u000aمن درحال تهیه جهیزیه هستم وتاحالااستانبول نرفتم. لطفااگه کسی اطلاعاتی داره ممنون می شم راهنماییم کنید.\u000d\u000aمرسی","Device":"","HelpfulAmount":0,"IsRecommended":false,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":71204,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":71204,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":71204,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":71204,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":71204,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":71204,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":71204,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":71204,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":71204,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/01\/20","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"مهسا رضی","SubmitNickName":"مهسا رضی","Title":"خریدجهیزیه","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":10,"CommentsCount":0,"Content":"من مغازه دارهستم وزیادبه استانبول سفردارم.\u000d\u000aتاحالاتوهتلای زیادی اقامت داشتم ولی هتل لارسپارک به نسبت هتلای زیر۵ ستاره تواستانبول واقعاهتل خیلی خوبیه. هم قیمتش مناسبه هم کیفیت هتل بالاس.\u000d\u000aدسترسیش واسه من خیلی مهمه. صبحا صبحونه هتل که انصافاباکیفیته می خورم ومی رم دنبال کارام. هرجابخوام برم برام راحتره. به همه چی دسترسی داره.\u000d\u000aالبته من ازمیدون تکسیم بیشتربامترورفت وآمدمی کنم ولی تاکسی واتوبوس هم داره. \u000d\u000aمن از هتل لارسپارک خیلی راضیم.  ","Device":"","HelpfulAmount":1,"IsRecommended":true,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":71203,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":71203,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":71203,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":71203,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":71203,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":71203,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":71203,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":71203,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":71203,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/05\/05","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"هاشم تقی زاده","SubmitNickName":"هاشم تقی زاده","Title":"هتل بسیارعالی","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":10,"CommentsCount":0,"Content":"سلام\u000d\u000aمنم بانظردوستمون موافقم که درموردحفظ قیمت هتل گفته بودند.\u000d\u000aامیدوارم که کیفیت وقیمت این هتل همچنان مناسب بمونه وصرفابه دلیل رضایت واستقبال مشتری ها تغییری درقیمت لارسپارک نداشته باشیم.\u000d\u000aباتشکر","Device":"","HelpfulAmount":0,"IsRecommended":true,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":71202,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":71202,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":71202,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":71202,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":71202,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":71202,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":71202,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":71202,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":71202,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/03\/28","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"لیلا سادات محمدی","SubmitNickName":"لیلا سادات محمدی","Title":"حفظ قیمت ","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":10,"CommentsCount":0,"Content":"من تاحالا ۲ باردرهتل لارسپارک اقامت داشتم وواقعاازکیفیت وخدماتش راضی بودم. استخرسرپوشیده خوبی داره. \u000d\u000aمن ازباشگاه بدنسازیش هم استفاده کردم. قبلا فکرنمی کردم کیفیت هتلهای استانبول بتونه دراین سطح باشه.\u000d\u000aسونا، حموم ترکی و خدمات ماساژهم داره که من ازحموم ترکیش استفاده کردم عالی بودوحسابی خستگی سفرروازتنم بیرون کرد. صبحونه هتل هم که خیلی خوب وکامل بودوبعدازورزش واقعامغذی بود.\u000d\u000aخیلی خوبه که می تونم هتل لارسپارک رو هربار باقیمت مناسب ازسایت الی گشت بخرم. امیدوارم که این کیفیت وقیمت مناسب همیشه حفظ بشه.","Device":"","HelpfulAmount":0,"IsRecommended":true,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":71201,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":71201,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":71201,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":71201,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":71201,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":71201,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":71201,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":71201,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":71201,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/10\/29","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"یاقرگنجی","SubmitNickName":"یاقرگنجی","Title":"هتل کامل","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":8,"CommentsCount":0,"Content":"hotele larespark vaghean hotele kheili khoobie. nesbat be 4* haie istanbul keifiate kheili balaii dare. hotele tamiz ba ghazaie khoob va location aali.\u000d\u000ataghriban dar 100 ghadamie hotel koli resturan hast ba ghazahaie sonati va beinol melali.\u000d\u000abe mahze inke az hotel kharej mishi dastresi be hame ja rahate.\u000d\u000anazdik boodane hotele larespark be meidoone taksim karo kheili rahat mikone.\u000d\u000ahar jaii k bekhai beri az taksim momkene. ham metro dare ham taxi va ham bus.\u000d\u000ahotelesh harf nadare.","Device":"","HelpfulAmount":0,"IsRecommended":true,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":71200,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":71200,"ScoreAmount":8,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":71200,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":71200,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":71200,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":71200,"ScoreAmount":9,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":71200,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":71200,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":71200,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2018\/01\/04","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"فرانک یگانه","SubmitNickName":"فرانک یگانه","Title":"harf nadare","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":10,"CommentsCount":0,"Content":"من امسال تواین هتل اقامت داشتم. واقعاهتل خیلی خوبیه. هم خودهتل هم دسترسیش به جاهای مختلف.\u000d\u000aازنظرتمیزی وصبونه که عالی بود. ولی چیزی که غیرازاینا واسه من خیلی مهم بودموقعیتش بود. هتل لارسپارک دقیقاپشت خیابون استقلاله. من صبح که می رفتم واسه خریدوقتی خسته می شدم راحت می تونستم برگردم هتل واسه استراحت. دوباره می رفتم تاشب خریدمی کردم. شبم چون هتل نزدیک بوداسترس امنیت رو نداشتم وسریع می رسیدم . واقعااین هتل واسه کسی که برای خرید می ره استانبول خیلی مناسبه.\u000d\u000a\u000d\u000a","Device":"","HelpfulAmount":0,"IsRecommended":true,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":71199,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":71199,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":71199,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":71199,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":71199,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":71199,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":71199,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":71199,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":71199,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/01\/08","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"یاشار فرنشان","SubmitNickName":"یاشار فرنشان","Title":"دسترسی عالی","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":8,"CommentsCount":0,"Content":"لارسپارک واقعاهتل خیلی خوبیه. بسیارتمیزبانظافت مرتب روزانه. فضای اتاقهامناسب بوده وازنظرمن به نسبت قیمت کیفیت بسیاربالایی داره.\u000d\u000aصبحانه این هتل مفصل وباطعم عالی بوده وبرای شروع روزواقعامناسبه.\u000d\u000aپرسنل بسیارمؤدبی داره ودرکل اقامت درهتل لارسپارک واقعا راضی کننده هست. من به همه این هتل روپیشنهادمی کنم. ","Device":"","HelpfulAmount":0,"IsRecommended":false,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":71198,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":71198,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":71198,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":71198,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":71198,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":71198,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":71198,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":71198,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":71198,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/11\/14","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"ابراهیم کیا","SubmitNickName":"ابراهیم کیا","Title":"عالی","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":8,"CommentsCount":0,"Content":"من هتل لارسپارک روخیلی دوست دارم. تاحالاچندین باردراین هتل اقامت داشتم.\u000d\u000aنزدیکی این هتل به مترو (تقریبا ۵ دقیقه) اتوبوس تاکسی و به میدان تکسیم واقعانقاط مثبتی واسه این هتله.\u000d\u000aازهمه جای شهرواسه میدون تکسیم ماشین  هست. هم اتوبوس وهم تاکسی.\u000d\u000aواقعاهتل خوش مسیریه من به همه پیشهادش می کنم. ","Device":"","HelpfulAmount":0,"IsRecommended":true,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":71197,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":71197,"ScoreAmount":9,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":71197,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":71197,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":71197,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":71197,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":71197,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":71197,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":71197,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/05\/08","SubmitEmail":"test@test.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"سارا  رحیمی","SubmitNickName":"سارا  رحیمی","Title":"هتلی بسیارخوب","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":0,"CommentsCount":0,"Content":"هتلي بسيار عالي و تر و تميز\u000d\u000aبا پرسنلي بسيار جنتل من با تسلط كامل به زبان انگليسي براي افرادي مثل من كه تركي بلد نيستم\u000d\u000aفضاي اتاق در اندازه اي متناسب\u000d\u000aبا سرويس خوب \u000d\u000aدسترسي خوب\u000d\u000a","Device":"","HelpfulAmount":4,"IsRecommended":true,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":54168,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":54168,"ScoreAmount":9,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":54168,"ScoreAmount":8,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":54168,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":54168,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":54168,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":54168,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":54168,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":54168,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/11\/08","SubmitEmail":"l_h7579@yahoo.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"کاربر مهمان","SubmitNickName":"","Title":"كيفيت هتل","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":8,"CommentsCount":0,"Content":"من سال گذشته دو بار رفتم به این هتل. عالیییییی. مخصوصا صبحانه اش یک تجربه خوب رو برام گذاشت","Device":"","HelpfulAmount":19,"IsRecommended":true,"PriceType":"اقتصادی","PriceTypeID":1,"ReviewComments":null,"ReviewID":12149,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":12149,"ScoreAmount":7,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":12149,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":12149,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":12149,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":12149,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":12149,"ScoreAmount":5,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":12149,"ScoreAmount":9,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":12149,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2017\/03\/11","SubmitEmail":"sadegh@ifto.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"کاربر مهمان","SubmitNickName":"","Title":"بهترین 4 ستاره استانبول","TraveSeasonID":1,"TravelSeason":"","TravelType":"","TravelTypeID":1,"WebUserID":0},{"AgcUserID":0,"AverageScore":10,"CommentsCount":0,"Content":"من به همراه خانواده برای 6 روز در این هتل اقامت داشتیم. محلش خوب بود، در نزدیکی میدان تکسیم. صبحانه بسیار غنی و تازه بود.  تخت و بالش اتاق ها بسیار راحت بود. کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.","Device":"","HelpfulAmount":21,"IsRecommended":true,"PriceType":"متوسط","PriceTypeID":2,"ReviewComments":null,"ReviewID":110,"ReviewScores":[{"HotelID":0,"ParamTitle":"امکانات هتل","ReviewID":110,"ScoreAmount":9,"ScoreCounts":0,"ScoreParameterID":1,"SumScore":0},{"HotelID":0,"ParamTitle":"دسترسی به نقاط مهم","ReviewID":110,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":2,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت خواب","ReviewID":110,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":3,"SumScore":0},{"HotelID":0,"ParamTitle":"ارزش در برابر قیمت","ReviewID":110,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":4,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت خدمات","ReviewID":110,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":5,"SumScore":0},{"HotelID":0,"ParamTitle":"وضعیت نظافت","ReviewID":110,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":6,"SumScore":0},{"HotelID":0,"ParamTitle":"خوشرویی کارکنان","ReviewID":110,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":7,"SumScore":0},{"HotelID":0,"ParamTitle":"کیفیت غذا و پذیرایی","ReviewID":110,"ScoreAmount":10,"ScoreCounts":0,"ScoreParameterID":8,"SumScore":0}],"SubmitDate":"2016\/08\/03","SubmitEmail":"shahinnejad@eligasht.com","SubmitImgURL":"","SubmitLocation":"","SubmitName":"مونا شاهین نژاد","SubmitNickName":"مونا شاهین نژاد","Title":"تجربه بسیار عالی","TraveSeasonID":2,"TravelSeason":"بهار","TravelType":"خانوادگی","TravelTypeID":2,"WebUserID":0}],"ReviewsCount":20,"ScoreText":null}}}
+{
+  "GetHotelReviewResult": {
+    "Comments": null,
+    "Errors": null,
+    "ResultKey": null,
+    "Warningss": null,
+    "HotelReview": {
+      "AverageReviewScores": [
+        {
+          "HotelID": 767,
+          "ParamTitle": "امکانات هتل",
+          "ReviewID": 0,
+          "ScoreAmount": 8.4,
+          "ScoreCounts": 20,
+          "ScoreParameterID": 1,
+          "SumScore": 169
+        },
+        {
+          "HotelID": 767,
+          "ParamTitle": "دسترسی به نقاط مهم",
+          "ReviewID": 0,
+          "ScoreAmount": 9,
+          "ScoreCounts": 17,
+          "ScoreParameterID": 2,
+          "SumScore": 153
+        },
+        {
+          "HotelID": 767,
+          "ParamTitle": "کیفیت خواب",
+          "ReviewID": 0,
+          "ScoreAmount": 9.1,
+          "ScoreCounts": 16,
+          "ScoreParameterID": 3,
+          "SumScore": 145
+        },
+        {
+          "HotelID": 767,
+          "ParamTitle": "ارزش در برابر قیمت",
+          "ReviewID": 0,
+          "ScoreAmount": 9,
+          "ScoreCounts": 16,
+          "ScoreParameterID": 4,
+          "SumScore": 144
+        },
+        {
+          "HotelID": 767,
+          "ParamTitle": "وضعیت خدمات",
+          "ReviewID": 0,
+          "ScoreAmount": 9,
+          "ScoreCounts": 16,
+          "ScoreParameterID": 5,
+          "SumScore": 144
+        },
+        {
+          "HotelID": 767,
+          "ParamTitle": "وضعیت نظافت",
+          "ReviewID": 0,
+          "ScoreAmount": 8.8,
+          "ScoreCounts": 16,
+          "ScoreParameterID": 6,
+          "SumScore": 140
+        },
+        {
+          "HotelID": 767,
+          "ParamTitle": "خوشرویی کارکنان",
+          "ReviewID": 0,
+          "ScoreAmount": 8.9,
+          "ScoreCounts": 16,
+          "ScoreParameterID": 7,
+          "SumScore": 143
+        },
+        {
+          "HotelID": 767,
+          "ParamTitle": "کیفیت غذا و پذیرایی",
+          "ReviewID": 0,
+          "ScoreAmount": 9.1,
+          "ScoreCounts": 16,
+          "ScoreParameterID": 8,
+          "SumScore": 145
+        }
+      ],
+      "AverageScore": 8.5,
+      "HotelID": 767,
+      "HotelName": "لارس پارک هتل",
+      "RecommendedPercent": 70,
+      "ReviewFilterItems": [
+        {
+          "ReviewCategoryID": 1,
+          "ReviewCategoryItemsID": 1,
+          "ReviewCategoryItemsTitle": "",
+          "ReviewCategoryTitle": "نوع سفر",
+          "ReviewsCount": 16
+        },
+        {
+          "ReviewCategoryID": 1,
+          "ReviewCategoryItemsID": 4,
+          "ReviewCategoryItemsTitle": "تنهایی",
+          "ReviewCategoryTitle": "نوع سفر",
+          "ReviewsCount": 0
+        },
+        {
+          "ReviewCategoryID": 1,
+          "ReviewCategoryItemsID": 2,
+          "ReviewCategoryItemsTitle": "خانوادگی",
+          "ReviewCategoryTitle": "نوع سفر",
+          "ReviewsCount": 2
+        },
+        {
+          "ReviewCategoryID": 1,
+          "ReviewCategoryItemsID": 3,
+          "ReviewCategoryItemsTitle": "زوج",
+          "ReviewCategoryTitle": "نوع سفر",
+          "ReviewsCount": 1
+        },
+        {
+          "ReviewCategoryID": 1,
+          "ReviewCategoryItemsID": 5,
+          "ReviewCategoryItemsTitle": "همراه دوستان",
+          "ReviewCategoryTitle": "نوع سفر",
+          "ReviewsCount": 1
+        },
+        {
+          "ReviewCategoryID": 1,
+          "ReviewCategoryItemsID": 6,
+          "ReviewCategoryItemsTitle": "کاری",
+          "ReviewCategoryTitle": "نوع سفر",
+          "ReviewsCount": 0
+        },
+        {
+          "ReviewCategoryID": 2,
+          "ReviewCategoryItemsID": 1,
+          "ReviewCategoryItemsTitle": "اقتصادی",
+          "ReviewCategoryTitle": "ارزیابی قیمت هتل",
+          "ReviewsCount": 16
+        },
+        {
+          "ReviewCategoryID": 2,
+          "ReviewCategoryItemsID": 3,
+          "ReviewCategoryItemsTitle": "لوکس و گران قیمت",
+          "ReviewCategoryTitle": "ارزیابی قیمت هتل",
+          "ReviewsCount": 0
+        },
+        {
+          "ReviewCategoryID": 2,
+          "ReviewCategoryItemsID": 2,
+          "ReviewCategoryItemsTitle": "متوسط",
+          "ReviewCategoryTitle": "ارزیابی قیمت هتل",
+          "ReviewsCount": 4
+        },
+        {
+          "ReviewCategoryID": 3,
+          "ReviewCategoryItemsID": 1,
+          "ReviewCategoryItemsTitle": "",
+          "ReviewCategoryTitle": "فصل سفر",
+          "ReviewsCount": 17
+        },
+        {
+          "ReviewCategoryID": 3,
+          "ReviewCategoryItemsID": 2,
+          "ReviewCategoryItemsTitle": "بهار",
+          "ReviewCategoryTitle": "فصل سفر",
+          "ReviewsCount": 1
+        },
+        {
+          "ReviewCategoryID": 3,
+          "ReviewCategoryItemsID": 4,
+          "ReviewCategoryItemsTitle": "پاییز",
+          "ReviewCategoryTitle": "فصل سفر",
+          "ReviewsCount": 0
+        },
+        {
+          "ReviewCategoryID": 3,
+          "ReviewCategoryItemsID": 3,
+          "ReviewCategoryItemsTitle": "تابستان",
+          "ReviewCategoryTitle": "فصل سفر",
+          "ReviewsCount": 2
+        },
+        {
+          "ReviewCategoryID": 3,
+          "ReviewCategoryItemsID": 5,
+          "ReviewCategoryItemsTitle": "زمستان",
+          "ReviewCategoryTitle": "فصل سفر",
+          "ReviewsCount": 0
+        }
+      ],
+      "Reviews": [
+        {
+          "AgcUserID": 0,
+          "AverageScore": 8,
+          "CommentsCount": 0,
+          "Content": "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
+          "Device": "",
+          "HelpfulAmount": 4,
+          "IsRecommended": false,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 97418,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 97418,
+              "ScoreAmount": 9,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 97418,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2018/02/26",
+          "SubmitEmail": "mohebbi@eligasht.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "sdfsdf sdfsdf",
+          "SubmitNickName": "",
+          "Title": "خیلی هم عالی",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 8,
+          "CommentsCount": 0,
+          "Content": "من و خانمم امسال تابستون استانبول بودیم و در هتل لارس پارک . انتخاب هتل به پیشنهاد دوستان بود و ما خیلی از اون راضی هستیم .  اتاق واقعا تمیز و مرتب بود و تخت خواب خیلی راحت . ما هر دو روی تمیزی هتل خیلی حساس هستیم و خدار رو شکر می کنم که لارس پارک خیلی تمیز بود . به نظر من چنین هتل ۴ ستاره ای کمتر در استانبول پیدا می شه . \r\nهتل در جای خیلی خوبی قرار گرفته بود و ما در این سفر تونستیم تمام فروشگاه های خیابون استقلال رو ببینیم و خرید خوبی داشته باشیم .من خوشحال هستم که هتل لارس پارک رو تجربه کردم .",
+          "Device": "",
+          "HelpfulAmount": 3,
+          "IsRecommended": true,
+          "PriceType": "متوسط",
+          "PriceTypeID": 2,
+          "ReviewComments": null,
+          "ReviewID": 96340,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 96340,
+              "ScoreAmount": 8,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 96340,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 96340,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 96340,
+              "ScoreAmount": 9,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 96340,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 96340,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 96340,
+              "ScoreAmount": 9,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 96340,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/02/03",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "آرمین شوشتری",
+          "SubmitNickName": "آرمین شوشتری",
+          "Title": "بهترین ۴ ستاره استانبول",
+          "TraveSeasonID": 3,
+          "TravelSeason": "تابستان",
+          "TravelType": "زوج",
+          "TravelTypeID": 3,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 8,
+          "CommentsCount": 0,
+          "Content": "لارس پارک هتل خیلی خوبیست - لوکیشن هتل عالیه - نزدیک میدان تکسیم و خیابان استقلال - من تا به حال ۵ بار با تور به استانبول سفر داشتم که ۳ بار آن را در هتل لارس پارک بودم - هتل تمیز وراحتی هست و من واقعا از آن راضی هستم - این که یک هتل هم موقعیت خوبی داشته باشد هم به مترو و اتوبوس نزدیک باشد و هم به مراکز خرید و این که تمیز و باکیفیت باشد ، عالیست و کمتر هتلی همه این ویژگی ها رو با هم داراست - من همیشه از الی گشت خرید می کنم و از تور ها راضی هستم - پیشنهاد می کنم شما هم این تور رو امتحان کنید ..",
+          "Device": "",
+          "HelpfulAmount": 0,
+          "IsRecommended": true,
+          "PriceType": "متوسط",
+          "PriceTypeID": 2,
+          "ReviewComments": null,
+          "ReviewID": 96339,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 96339,
+              "ScoreAmount": 8,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 96339,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 96339,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 96339,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 96339,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 96339,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 96339,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 96339,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/07/15",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "مرضیه اسماعیلی",
+          "SubmitNickName": "مرضیه اسماعیلی",
+          "Title": "۱۰۰٪ عالی",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "خانوادگی",
+          "TravelTypeID": 2,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 8,
+          "CommentsCount": 0,
+          "Content": "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
+          "Device": "",
+          "HelpfulAmount": 1,
+          "IsRecommended": false,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 78436,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 78436,
+              "ScoreAmount": 9,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2018/01/25",
+          "SubmitEmail": "",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "",
+          "SubmitNickName": "",
+          "Title": "خیلی هم عالی",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 8,
+          "CommentsCount": 0,
+          "Content": "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
+          "Device": "",
+          "HelpfulAmount": 0,
+          "IsRecommended": false,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 78433,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 78433,
+              "ScoreAmount": 9,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2018/01/24",
+          "SubmitEmail": "",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "",
+          "SubmitNickName": "",
+          "Title": "خیلی هم عالی",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 8,
+          "CommentsCount": 0,
+          "Content": "کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
+          "Device": "",
+          "HelpfulAmount": 0,
+          "IsRecommended": false,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 78431,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 78431,
+              "ScoreAmount": 9,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2018/01/24",
+          "SubmitEmail": "",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "",
+          "SubmitNickName": "",
+          "Title": "خیلی هم عالی",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 10,
+          "CommentsCount": 0,
+          "Content": "به نظرمن یکی ازمزایای هتل لارسپارک خوش مسیربودنشه. من هرسری که می رم استانبول این هتل رومی گیرم. واقعابه غیرازاینکه هتل خوبیه جاشم خیلی خوبه.\r\nمن زیادازمترواستفازه نمی کنم اما ازمیدون تقسیم به راحتی هم می شه ازاتوبوس استفاده کردوهم ازتاکسی.\r\nالبته کسایی که استانبول رفتن می دونن که اونجاتاکسی خیلی گرونه.\r\nقابل توجه خانمی که گفته بودن می خوان جهیزیه بخرن، استانبول تاکسی ون زرد رنگی داره به نام دلموش که قیمتش خیلی ارزونه. مسیرهای طولانی رومی تونیدبااین دلموشا برید اونم فقط باچندلیر.\r\n",
+          "Device": "",
+          "HelpfulAmount": 4,
+          "IsRecommended": true,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 71207,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 71207,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 71207,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 71207,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 71207,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 71207,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 71207,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 71207,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 71207,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/03/04",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "اسما توکلی",
+          "SubmitNickName": "اسما توکلی",
+          "Title": "خوش مسیر",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 10,
+          "CommentsCount": 0,
+          "Content": "من امسال همراه دوستام درهتل لاسپارک بودیم. هتل خیلی خوبیه. تمیزباسرویس دهی خوب. صبحانه خوبی داره خوشمزه وکامل. موقعیت هتل لارسپارک رودوست دارم. اطرافش پرازهتله رستورانهای مختلف باغذاهای عالی. نزدیک میدون تقسیم نزدیک خیابون استقلال ...\r\nواقعاازهمه نظرهتل مناسبیه.",
+          "Device": "",
+          "HelpfulAmount": 1,
+          "IsRecommended": true,
+          "PriceType": "متوسط",
+          "PriceTypeID": 2,
+          "ReviewComments": null,
+          "ReviewID": 71206,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 71206,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 71206,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 71206,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 71206,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 71206,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 71206,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 71206,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 71206,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2018/01/15",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "محمد آهنگرانی",
+          "SubmitNickName": "محمد آهنگرانی",
+          "Title": "تجربه ای عالی",
+          "TraveSeasonID": 3,
+          "TravelSeason": "تابستان",
+          "TravelType": "همراه دوستان",
+          "TravelTypeID": 5,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 10,
+          "CommentsCount": 0,
+          "Content": "سلام خدمت دوستی که درموردخریدجهیزیه سوال کرده بودند\r\nمن واقعیتش تجربه ای دراین موردندارم اما می تونم درموردسفرتون نکاتی روبگم امیدوارم که کمکتون کنه\r\nبه نظرمن اولین موضوعی که شمابایددرنظربگیریدشناسایی مراکزخرید،موقعیتشون ومسیرهای حمل ونقل هست\r\n پیشنهادمن این هست که درمنطقه تکسیم هتل بگیریدمثلاهمین هتل لارسپارک\r\nپشت هتل خیابانی هست به نام  استقلال که اکثربرندهادرآن شعبه دارندمابقی مراکزخریدرو می تونیدازطریق اینترنت پیداکنید\r\nازمتروواتوبوس استفاده کنیدو حتمانقشه شهروایستگاههای مترو روهم تهیه کنید\r\n\r\n\r\n",
+          "Device": "",
+          "HelpfulAmount": 2,
+          "IsRecommended": true,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 71205,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 71205,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 71205,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 71205,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 71205,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 71205,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 71205,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 71205,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 71205,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/06/21",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "یاسر جم",
+          "SubmitNickName": "یاسر جم",
+          "Title": "مناسب برای خرید",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 10,
+          "CommentsCount": 0,
+          "Content": "سلام خدمت دوستان عزیز\r\nمن درحال تهیه جهیزیه هستم وتاحالااستانبول نرفتم. لطفااگه کسی اطلاعاتی داره ممنون می شم راهنماییم کنید.\r\nمرسی",
+          "Device": "",
+          "HelpfulAmount": 0,
+          "IsRecommended": false,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 71204,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 71204,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 71204,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 71204,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 71204,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 71204,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 71204,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 71204,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 71204,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/01/20",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "مهسا رضی",
+          "SubmitNickName": "مهسا رضی",
+          "Title": "خریدجهیزیه",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 10,
+          "CommentsCount": 0,
+          "Content": "من مغازه دارهستم وزیادبه استانبول سفردارم.\r\nتاحالاتوهتلای زیادی اقامت داشتم ولی هتل لارسپارک به نسبت هتلای زیر۵ ستاره تواستانبول واقعاهتل خیلی خوبیه. هم قیمتش مناسبه هم کیفیت هتل بالاس.\r\nدسترسیش واسه من خیلی مهمه. صبحا صبحونه هتل که انصافاباکیفیته می خورم ومی رم دنبال کارام. هرجابخوام برم برام راحتره. به همه چی دسترسی داره.\r\nالبته من ازمیدون تکسیم بیشتربامترورفت وآمدمی کنم ولی تاکسی واتوبوس هم داره. \r\nمن از هتل لارسپارک خیلی راضیم.  ",
+          "Device": "",
+          "HelpfulAmount": 1,
+          "IsRecommended": true,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 71203,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 71203,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 71203,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 71203,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 71203,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 71203,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 71203,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 71203,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 71203,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/05/05",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "هاشم تقی زاده",
+          "SubmitNickName": "هاشم تقی زاده",
+          "Title": "هتل بسیارعالی",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 10,
+          "CommentsCount": 0,
+          "Content": "سلام\r\nمنم بانظردوستمون موافقم که درموردحفظ قیمت هتل گفته بودند.\r\nامیدوارم که کیفیت وقیمت این هتل همچنان مناسب بمونه وصرفابه دلیل رضایت واستقبال مشتری ها تغییری درقیمت لارسپارک نداشته باشیم.\r\nباتشکر",
+          "Device": "",
+          "HelpfulAmount": 0,
+          "IsRecommended": true,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 71202,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 71202,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 71202,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 71202,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 71202,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 71202,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 71202,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 71202,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 71202,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/03/28",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "لیلا سادات محمدی",
+          "SubmitNickName": "لیلا سادات محمدی",
+          "Title": "حفظ قیمت ",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 10,
+          "CommentsCount": 0,
+          "Content": "من تاحالا ۲ باردرهتل لارسپارک اقامت داشتم وواقعاازکیفیت وخدماتش راضی بودم. استخرسرپوشیده خوبی داره. \r\nمن ازباشگاه بدنسازیش هم استفاده کردم. قبلا فکرنمی کردم کیفیت هتلهای استانبول بتونه دراین سطح باشه.\r\nسونا، حموم ترکی و خدمات ماساژهم داره که من ازحموم ترکیش استفاده کردم عالی بودوحسابی خستگی سفرروازتنم بیرون کرد. صبحونه هتل هم که خیلی خوب وکامل بودوبعدازورزش واقعامغذی بود.\r\nخیلی خوبه که می تونم هتل لارسپارک رو هربار باقیمت مناسب ازسایت الی گشت بخرم. امیدوارم که این کیفیت وقیمت مناسب همیشه حفظ بشه.",
+          "Device": "",
+          "HelpfulAmount": 0,
+          "IsRecommended": true,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 71201,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 71201,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 71201,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 71201,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 71201,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 71201,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 71201,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 71201,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 71201,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/10/29",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "یاقرگنجی",
+          "SubmitNickName": "یاقرگنجی",
+          "Title": "هتل کامل",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 8,
+          "CommentsCount": 0,
+          "Content": "hotele larespark vaghean hotele kheili khoobie. nesbat be 4* haie istanbul keifiate kheili balaii dare. hotele tamiz ba ghazaie khoob va location aali.\r\ntaghriban dar 100 ghadamie hotel koli resturan hast ba ghazahaie sonati va beinol melali.\r\nbe mahze inke az hotel kharej mishi dastresi be hame ja rahate.\r\nnazdik boodane hotele larespark be meidoone taksim karo kheili rahat mikone.\r\nhar jaii k bekhai beri az taksim momkene. ham metro dare ham taxi va ham bus.\r\nhotelesh harf nadare.",
+          "Device": "",
+          "HelpfulAmount": 0,
+          "IsRecommended": true,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 71200,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 71200,
+              "ScoreAmount": 8,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 71200,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 71200,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 71200,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 71200,
+              "ScoreAmount": 9,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 71200,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 71200,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 71200,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2018/01/04",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "فرانک یگانه",
+          "SubmitNickName": "فرانک یگانه",
+          "Title": "harf nadare",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 10,
+          "CommentsCount": 0,
+          "Content": "من امسال تواین هتل اقامت داشتم. واقعاهتل خیلی خوبیه. هم خودهتل هم دسترسیش به جاهای مختلف.\r\nازنظرتمیزی وصبونه که عالی بود. ولی چیزی که غیرازاینا واسه من خیلی مهم بودموقعیتش بود. هتل لارسپارک دقیقاپشت خیابون استقلاله. من صبح که می رفتم واسه خریدوقتی خسته می شدم راحت می تونستم برگردم هتل واسه استراحت. دوباره می رفتم تاشب خریدمی کردم. شبم چون هتل نزدیک بوداسترس امنیت رو نداشتم وسریع می رسیدم . واقعااین هتل واسه کسی که برای خرید می ره استانبول خیلی مناسبه.\r\n\r\n",
+          "Device": "",
+          "HelpfulAmount": 0,
+          "IsRecommended": true,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 71199,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 71199,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 71199,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 71199,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 71199,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 71199,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 71199,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 71199,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 71199,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/01/08",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "یاشار فرنشان",
+          "SubmitNickName": "یاشار فرنشان",
+          "Title": "دسترسی عالی",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 8,
+          "CommentsCount": 0,
+          "Content": "لارسپارک واقعاهتل خیلی خوبیه. بسیارتمیزبانظافت مرتب روزانه. فضای اتاقهامناسب بوده وازنظرمن به نسبت قیمت کیفیت بسیاربالایی داره.\r\nصبحانه این هتل مفصل وباطعم عالی بوده وبرای شروع روزواقعامناسبه.\r\nپرسنل بسیارمؤدبی داره ودرکل اقامت درهتل لارسپارک واقعا راضی کننده هست. من به همه این هتل روپیشنهادمی کنم. ",
+          "Device": "",
+          "HelpfulAmount": 0,
+          "IsRecommended": false,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 71198,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 71198,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 71198,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 71198,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 71198,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 71198,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 71198,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 71198,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 71198,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/11/14",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "ابراهیم کیا",
+          "SubmitNickName": "ابراهیم کیا",
+          "Title": "عالی",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 8,
+          "CommentsCount": 0,
+          "Content": "من هتل لارسپارک روخیلی دوست دارم. تاحالاچندین باردراین هتل اقامت داشتم.\r\nنزدیکی این هتل به مترو (تقریبا ۵ دقیقه) اتوبوس تاکسی و به میدان تکسیم واقعانقاط مثبتی واسه این هتله.\r\nازهمه جای شهرواسه میدون تکسیم ماشین  هست. هم اتوبوس وهم تاکسی.\r\nواقعاهتل خوش مسیریه من به همه پیشهادش می کنم. ",
+          "Device": "",
+          "HelpfulAmount": 0,
+          "IsRecommended": true,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 71197,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 71197,
+              "ScoreAmount": 9,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 71197,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 71197,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 71197,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 71197,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 71197,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 71197,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 71197,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/05/08",
+          "SubmitEmail": "test@test.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "سارا  رحیمی",
+          "SubmitNickName": "سارا  رحیمی",
+          "Title": "هتلی بسیارخوب",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 0,
+          "CommentsCount": 0,
+          "Content": "هتلي بسيار عالي و تر و تميز\r\nبا پرسنلي بسيار جنتل من با تسلط كامل به زبان انگليسي براي افرادي مثل من كه تركي بلد نيستم\r\nفضاي اتاق در اندازه اي متناسب\r\nبا سرويس خوب \r\nدسترسي خوب\r\n",
+          "Device": "",
+          "HelpfulAmount": 4,
+          "IsRecommended": true,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 54168,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 54168,
+              "ScoreAmount": 9,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 54168,
+              "ScoreAmount": 8,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 54168,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 54168,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 54168,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 54168,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 54168,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 54168,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/11/08",
+          "SubmitEmail": "l_h7579@yahoo.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "کاربر مهمان",
+          "SubmitNickName": "",
+          "Title": "كيفيت هتل",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 8,
+          "CommentsCount": 0,
+          "Content": "من سال گذشته دو بار رفتم به این هتل. عالیییییی. مخصوصا صبحانه اش یک تجربه خوب رو برام گذاشت",
+          "Device": "",
+          "HelpfulAmount": 19,
+          "IsRecommended": true,
+          "PriceType": "اقتصادی",
+          "PriceTypeID": 1,
+          "ReviewComments": null,
+          "ReviewID": 12149,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 12149,
+              "ScoreAmount": 7,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 12149,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 12149,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 12149,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 12149,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 12149,
+              "ScoreAmount": 5,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 12149,
+              "ScoreAmount": 9,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 12149,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2017/03/11",
+          "SubmitEmail": "sadegh@ifto.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "کاربر مهمان",
+          "SubmitNickName": "",
+          "Title": "بهترین 4 ستاره استانبول",
+          "TraveSeasonID": 1,
+          "TravelSeason": "",
+          "TravelType": "",
+          "TravelTypeID": 1,
+          "WebUserID": 0
+        },
+        {
+          "AgcUserID": 0,
+          "AverageScore": 10,
+          "CommentsCount": 0,
+          "Content": "من به همراه خانواده برای 6 روز در این هتل اقامت داشتیم. محلش خوب بود، در نزدیکی میدان تکسیم. صبحانه بسیار غنی و تازه بود.  تخت و بالش اتاق ها بسیار راحت بود. کارکنان بسیار خوش برخورد بودند و با خوشرویی هر اون چیزی که ما نیاز داشتیم رو فراهم می کردند.من به شدت اقامت در این هتل رو توصیه می کنم.",
+          "Device": "",
+          "HelpfulAmount": 21,
+          "IsRecommended": true,
+          "PriceType": "متوسط",
+          "PriceTypeID": 2,
+          "ReviewComments": null,
+          "ReviewID": 110,
+          "ReviewScores": [
+            {
+              "HotelID": 0,
+              "ParamTitle": "امکانات هتل",
+              "ReviewID": 110,
+              "ScoreAmount": 9,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 1,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "دسترسی به نقاط مهم",
+              "ReviewID": 110,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 2,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت خواب",
+              "ReviewID": 110,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 3,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "ارزش در برابر قیمت",
+              "ReviewID": 110,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 4,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت خدمات",
+              "ReviewID": 110,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 5,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "وضعیت نظافت",
+              "ReviewID": 110,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 6,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "خوشرویی کارکنان",
+              "ReviewID": 110,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 7,
+              "SumScore": 0
+            },
+            {
+              "HotelID": 0,
+              "ParamTitle": "کیفیت غذا و پذیرایی",
+              "ReviewID": 110,
+              "ScoreAmount": 10,
+              "ScoreCounts": 0,
+              "ScoreParameterID": 8,
+              "SumScore": 0
+            }
+          ],
+          "SubmitDate": "2016/08/03",
+          "SubmitEmail": "shahinnejad@eligasht.com",
+          "SubmitImgURL": "",
+          "SubmitLocation": "",
+          "SubmitName": "مونا شاهین نژاد",
+          "SubmitNickName": "مونا شاهین نژاد",
+          "Title": "تجربه بسیار عالی",
+          "TraveSeasonID": 2,
+          "TravelSeason": "بهار",
+          "TravelType": "خانوادگی",
+          "TravelTypeID": 2,
+          "WebUserID": 0
+        }
+      ],
+      "ReviewsCount": 20,
+      "ScoreText": null
+    }
+  }
+}

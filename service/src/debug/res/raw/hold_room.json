@@ -1,1 +1,44 @@
-{"HoldSelectedRoomResult":{"Comments":null,"Errors":null,"ResultKey":null,"Warningss":null,"Board":"BreakFast included","BoardID":"675","CurrencyCode":"USD","CurrencyPrice":143.88,"Description":"***Please note: if cancelled,modified or in case of no-show, the hotel price of the reservation will be charged*** .  Check-in hour 14:00-.Car park NO.","EHotelId":"168011","EId":"","HotelId":"168011","Id":"","IsSelected":false,"Load":0,"OfferId":"f9c00638-41e0-49b0-aa60-abc289f42fcb","OldPrice":0,"Price":8800000,"Rooms":[{"AdultCount":1,"BoardID":"675","CategoryID":0,"ChildAges":[],"ChildCount":0,"CurrencyCode":"USD","CurrencyPrice":143.88,"ERoomNo":"K5eNJsnd5QqKfMsafpsb-1-g-2--2-","OldPrice":0,"Price":8800000,"RoomNo":"1,0,0,0,0,0","SourcePrice":8057280.00,"Title":"SINGLE STANDARD"}],"Source":8,"SourcePrice":8057280.00,"Status":"Available","Summery":null,"Title":null}}
+{
+  "HoldSelectedRoomResult": {
+    "Comments": null,
+    "Errors": null,
+    "ResultKey": null,
+    "Warningss": null,
+    "Board": "BreakFast included",
+    "BoardID": "675",
+    "CurrencyCode": "USD",
+    "CurrencyPrice": 143.88,
+    "Description": "***Please note: if cancelled,modified or in case of no-show, the hotel price of the reservation will be charged*** .  Check-in hour 14:00-.Car park NO.",
+    "EHotelId": "168011",
+    "EId": "",
+    "HotelId": "168011",
+    "Id": "",
+    "IsSelected": false,
+    "Load": 0,
+    "OfferId": "f9c00638-41e0-49b0-aa60-abc289f42fcb",
+    "OldPrice": 0,
+    "Price": 8800000,
+    "Rooms": [
+      {
+        "AdultCount": 1,
+        "BoardID": "675",
+        "CategoryID": 0,
+        "ChildAges": [],
+        "ChildCount": 0,
+        "CurrencyCode": "USD",
+        "CurrencyPrice": 143.88,
+        "ERoomNo": "K5eNJsnd5QqKfMsafpsb-1-g-2--2-",
+        "OldPrice": 0,
+        "Price": 8800000,
+        "RoomNo": "1,0,0,0,0,0",
+        "SourcePrice": 8057280,
+        "Title": "SINGLE STANDARD"
+      }
+    ],
+    "Source": 8,
+    "SourcePrice": 8057280,
+    "Status": "Available",
+    "Summery": null,
+    "Title": null
+  }
+}
