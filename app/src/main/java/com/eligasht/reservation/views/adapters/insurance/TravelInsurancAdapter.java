@@ -18,6 +18,7 @@ import com.eligasht.reservation.views.activities.insurance.InsurnaceDetailsActiv
 import com.eligasht.reservation.views.viewholders.InsuranceRowHolder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by elham.bonyani on 1/15/2018.
@@ -27,18 +28,18 @@ import java.util.ArrayList;
 public class TravelInsurancAdapter extends RecyclerView.Adapter<InsuranceRowHolder> {
 
     private Context context;
-    private ArrayList<TravelInsurance_> feedItemList;
+    private List<com.eligasht.service.model.insurance.response.SearchInsurance.TravelInsurance_> feedItemList;
     private int count;
     private ListenerTravelInsurancAdapter listener;
 
-    public TravelInsurancAdapter(Context context, ArrayList<TravelInsurance_> feedItemList , int count) {
+    public TravelInsurancAdapter(Context context, List<com.eligasht.service.model.insurance.response.SearchInsurance.TravelInsurance_> feedItemList , int count) {
         this.context = context;
         this.feedItemList = feedItemList;
         this.count = count;
     }
 
     public interface ListenerTravelInsurancAdapter {
-        void onClickTravelInsurancItem(TravelInsurance_ travelInsurance);
+        void onClickTravelInsurancItem(com.eligasht.service.model.insurance.response.SearchInsurance.TravelInsurance_ travelInsurance);
     }
 
     public TravelInsurancAdapter setListener(ListenerTravelInsurancAdapter listener) {
@@ -56,13 +57,13 @@ public class TravelInsurancAdapter extends RecyclerView.Adapter<InsuranceRowHold
 
     @Override
     public void onBindViewHolder(InsuranceRowHolder holder, final int position) {
-        final TravelInsurance_ item = feedItemList.get(position);
+        final com.eligasht.service.model.insurance.response.SearchInsurance.TravelInsurance_ item = feedItemList.get(position);
         holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getTravelInsurancePricePP().getAmount() * count)));
         String[] titles = item.getTravelInsuranceTile().split("-");
         holder.txtPlan.setText(titles[1]);
         holder.txtTitle.setText(titles[0]);
 
-        switch (item.getTravelInsuranceID()){
+        switch (Integer.valueOf(item.getTravelInsuranceID())){
             case -1:
                 holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.blue_border));
                 holder.txtPlan.setTextColor(ContextCompat.getColor(context, R.color.pressed_color));

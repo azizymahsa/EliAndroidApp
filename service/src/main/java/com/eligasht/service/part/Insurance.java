@@ -6,8 +6,10 @@ import com.eligasht.service.mock.Mock;
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.eligasht.service.model.insurance.request.GetCountry.RequestGetCountry;
 import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPurchaseInsurance;
+import com.eligasht.service.model.insurance.request.SearchInsurance.RequestSearchInsurance;
 import com.eligasht.service.model.insurance.response.GetCountry.ResponseGetCountry;
 import com.eligasht.service.model.insurance.response.PurchaseInsurance.ResponsePurchaseInsurance;
+import com.eligasht.service.model.insurance.response.SearchInsurance.ResponseSearchInsurance;
 
 public class Insurance extends BasePart {
     public Insurance(ServiceGenerator serviceGenerator) {
@@ -32,5 +34,8 @@ public class Insurance extends BasePart {
     @Mock(jsonName = "get_country_ajax_with_culture", response = ResponseGetCountry.class)
     public void getCountryInsuranceAvail(OnServiceStatus<ResponseGetCountry> listener, RequestGetCountry req) {
         start(getServiceGenerator().createService().RESPONSE_GET_COUNTRY_OBSERVABLE(req), listener);
+    }
+    public void getSearchInsuranceAvail(OnServiceStatus<ResponseSearchInsurance> listener, RequestSearchInsurance req) {
+        start(getServiceGenerator().createService().RESPONSE_SEARCH_INSURANCE_OBSERVABLE(req), listener);
     }
 }

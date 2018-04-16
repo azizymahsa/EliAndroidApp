@@ -1,5 +1,7 @@
 package com.eligasht.service.api;
 
+import com.eligasht.service.model.XPackage.request.PurchasePackage.RequestPurchasePackage;
+import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
 import com.eligasht.service.model.about.request.RequestAbout;
 import com.eligasht.service.model.about.response.ResponseAbout;
 import com.eligasht.service.model.flight.request.ChangeFlight.RequestChangeFlight;
@@ -18,7 +20,6 @@ import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight;
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
-import com.eligasht.service.model.hotel.detail.response.GetHotelDetailResult;
 import com.eligasht.service.model.hotel.detail.response.HotelDetailResponse;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
@@ -29,11 +30,15 @@ import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
 import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
 import com.eligasht.service.model.insurance.request.GetCountry.RequestGetCountry;
 import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPurchaseInsurance;
+import com.eligasht.service.model.insurance.request.SearchInsurance.RequestSearchInsurance;
 import com.eligasht.service.model.insurance.response.GetCountry.ResponseGetCountry;
 import com.eligasht.service.model.insurance.response.PurchaseInsurance.ResponsePurchaseInsurance;
 import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
+import com.eligasht.service.model.insurance.response.SearchInsurance.ResponseSearchInsurance;
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
+import com.eligasht.service.model.XPackage.request.searchXPackage.RequestSearchXPackage;
+import com.eligasht.service.model.XPackage.response.searchXPackage.ResponseSearchXPackage;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
 import com.eligasht.service.model.startup.response.StartupServiceResponse;
 
@@ -63,6 +68,7 @@ public interface RetroClient {
     Observable<LoadFlightResponse> loadFlight(
             @Body LoadFlightRequest loadFlightRequest
     );
+
     //*************hotel*************
     @POST(Const.HotelAvail)
     Observable<HotelAvailRes> hotelAvail(
@@ -88,40 +94,51 @@ public interface RetroClient {
 
     @POST(Const.AirportAvail)
     Observable<ResponsAirports> responsAirports(
-                    @Body RequestAirports requestAirports
-            );
+            @Body RequestAirports requestAirports
+    );
+    //*************flight*************
     @POST(Const.FlightSearchAvail)
     Observable<ResponsSearchFlight> responsSearchFlight(
             @Body RequestSearchFlight requestSearchFlight
     );
+
     @POST(Const.PurchaseServiceFlightAvil)
     Observable<ResponsePurchaseFlight> responsePurchaseFlight(
             @Body RequestPurchaseFlight requestPurchaseFlight
     );
+
     @POST(Const.PreFactorDetailsAvil)
     Observable<ResponsePreFactorDetails> responsePreFactorDetails(
             @Body RequestPreFactorDetails requestPreFactorDetails
     );
+
     @POST(Const.CheckFlightAvail)
     Observable<ResponseDomesticFlight> responseDomesticFlightObservable(
             @Body RequestDomesticFlight requestDomesticFlight
     );
+
     @POST(Const.PurchaseFlightAvil)
     Observable<com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight> responsePurchaseFlightObservable(
             @Body com.eligasht.service.model.flight.request.PurchaseFlight.RequestPurchaseFlight requestPurchaseFlightPassenger
     );
-    @POST(Const.ContactUsAvil)
-    Observable<ResponseContactUs> responsContactUs(
-            @Body RequestContactUs requestContactUs
-    );
-    @POST(Const.AboutAvil)
-    Observable<ResponseAbout> responseAboutObservable(
-            @Body RequestAbout requestAbout
-    );
+
     @POST(Const.ChangeFlightAvil)
     Observable<ResponseChangeFlight> responsChangeFlight(
             @Body RequestChangeFlight requestChangeFlight
     );
+
+    //*************contactUs*************
+    @POST(Const.ContactUsAvil)
+    Observable<ResponseContactUs> responsContactUs(
+            @Body RequestContactUs requestContactUs
+    );
+    //*************About*************
+    @POST(Const.AboutAvil)
+    Observable<ResponseAbout> responseAboutObservable(
+            @Body RequestAbout requestAbout
+    );
+
+    //*************insurance*************
     @POST(Const.PurchaseInsuranceAvil)
     Observable<ResponsePurchaseInsurance> RESPONSE_PURCHASE_INSURANCE_OBSERVABLE(
             @Body RequestPurchaseInsurance requestPurchaseInsurance
@@ -131,9 +148,23 @@ public interface RetroClient {
     Observable<com.eligasht.service.model.insurance.response.ResponsePreFactorDetail.ResponsePreFactorDetails> responsePreFactorDetailsInsurance(
             @Body com.eligasht.service.model.insurance.request.RequestPreFactorDetail.RequestPreFactorDetails requestPreFactorDetails
     );
+
     @POST(Const.GetCountryInsuranceAvil)
     Observable<ResponseGetCountry> RESPONSE_GET_COUNTRY_OBSERVABLE(
             @Body RequestGetCountry requestGetCountry
     );
 
+    @POST(Const.SearchInsuranceAvil)
+    Observable<ResponseSearchInsurance> RESPONSE_SEARCH_INSURANCE_OBSERVABLE(
+            @Body RequestSearchInsurance requestSearchInsurance2
+    );
+    //*************package*************
+    @POST(Const.SearchXPackageAvil)
+    Observable<ResponseSearchXPackage> RESPONSE_SEARCH_X_PACKAGE_OBSERVABLE(
+            @Body RequestSearchXPackage requestSearchXPackage
+    );
+    @POST(Const.PurchasePackageAvil)
+    Observable<ResponsePurchasePackage> RESPONSE_PURCHASE_PACKAGE_OBSERVABLE(
+            @Body RequestPurchasePackage requestPurchasePackage
+    );
 }

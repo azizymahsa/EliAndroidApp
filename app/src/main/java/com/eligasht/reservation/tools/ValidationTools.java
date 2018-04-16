@@ -1,6 +1,7 @@
 package com.eligasht.reservation.tools;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,7 +11,9 @@ public class ValidationTools {
     public static boolean isEmptyOrNull(String input){
         return input == null || input.isEmpty() || input.trim().equals("") || input.trim().toLowerCase().equals("null");
     }
-
+    public static boolean isEmptyOrNull(List arrayList){
+        return arrayList == null || arrayList.size() == 0;
+    }
     public static boolean isEmptyOrNull(ArrayList arrayList){
         return arrayList == null || arrayList.size() == 0;
     }

@@ -53,7 +53,7 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
     public static final int READ_TIMEOUT = 15000;
     Handler handler;
     ProgressDialog progressBar;
-    ArrayList<HashMap<String,String>> mylist=null;
+    ArrayList<HashMap<String, String>> mylist = null;
     AboutAdapter mAdapter;
     private FancyButton btnBack;
     private Handler progressBarHandler = new Handler();
@@ -65,21 +65,13 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
         setContentView(R.layout.activity_condition);
 
 
-       /* textView12 = findViewById(R.id.textView12);
-        Typeface face = Typeface.createFromAsset(this.getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
-        textView12.setTypeFace(face);
-        textView12.setTextSize(1,16);
-        textView12.setTextColor(ContextCompat.getColor(ConditionActivity.this,R.color.gray_dark_2));
-
-        textView12.setLineSpacing(30);*/
-
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
 
 
-       new GetAboutAsync().execute();
+        new GetAboutAsync().execute();
 
 
     }
@@ -91,7 +83,7 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v){
+    public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.btnBack:
@@ -102,15 +94,13 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
     }
 
 
-
-
-
     private class GetAboutAsync extends AsyncTask<String, Void, String> {
 
         ProgressDialog pdLoading = new ProgressDialog(ConditionActivity.this);
         HttpURLConnection conn;
         URL url = null;
         private NonScrollRecyclerView listAirPort;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -179,38 +169,38 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
                     serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
                 } catch (Exception ignored) {
                 }
-                try{
+                try {
 
-                    if(Locale.getDefault().getLanguage().equals("en")){
+                    if (Locale.getDefault().getLanguage().equals("en")) {
                         JSONObject jsone = new JSONObject();
                         JSONObject manJson = new JSONObject();
                         manJson.put("culture", "en-");
                         // jsone.put("", manJson);
-                        data=manJson.toString();
-                    }else if(Locale.getDefault().getLanguage().equals("fa")) {
+                        data = manJson.toString();
+                    } else if (Locale.getDefault().getLanguage().equals("fa")) {
                         JSONObject jsone = new JSONObject();
                         JSONObject manJson = new JSONObject();
                         manJson.put("culture", "fa-");
                         // jsone.put("", manJson);
-                        data=manJson.toString();
-                    }else if(Locale.getDefault().getLanguage().equals("tr")) {
+                        data = manJson.toString();
+                    } else if (Locale.getDefault().getLanguage().equals("tr")) {
                         JSONObject jsone = new JSONObject();
                         JSONObject manJson = new JSONObject();
                         manJson.put("culture", "tr-TR");
                         // jsone.put("", manJson);
-                        data=manJson.toString();
-                    }else if(Locale.getDefault().getLanguage().equals("ar")) {
+                        data = manJson.toString();
+                    } else if (Locale.getDefault().getLanguage().equals("ar")) {
                         JSONObject jsone = new JSONObject();
                         JSONObject manJson = new JSONObject();
                         manJson.put("culture", "ar-");
                         //jsone.put("", manJson);
-                        data=manJson.toString();
+                        data = manJson.toString();
                     }
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                System.out.println("culture:"+data);
+                System.out.println("culture:" + data);
 
 
                 HttpClient client = new DefaultHttpClient();
@@ -240,7 +230,6 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
                 return (retSrc);
 
 
-
             } catch (IOException e) {
                 e.printStackTrace();
                 return e.toString();
@@ -257,22 +246,19 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
             //this method will be running on UI thread
 
             pdLoading.dismiss();
-            List<SectionModel> data=new ArrayList<SectionModel>();
+            List<SectionModel> data = new ArrayList<SectionModel>();
 
             pdLoading.dismiss();
             try {
-////////////////////////////
-                JSONObject jsonObj = new JSONObject(result);
 
-                // JSONObject jsonObj = new JSONObject(retSrc);
+                JSONObject jsonObj = new JSONObject(result);
 
                 // Getting JSON Array node
                 JSONObject GetAirportsResult = jsonObj.getJSONObject("GetTermsAndConditionsResult");
                 JSONArray jArray = GetAirportsResult.getJSONArray("Sections");
-                //////////////////////////////
 
                 // Extract data from json and store into ArrayList as class objects
-                for(int i=0;i<jArray.length();i++){
+                for (int i = 0; i < jArray.length(); i++) {
                     JSONObject json_data = jArray.getJSONObject(i);
                     SectionModel sectionModel = new SectionModel();
                     sectionModel.setDescription(json_data.getString("Description"));
@@ -281,17 +267,16 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
 
                     data.add(sectionModel);
                 }
-                //textView12.setText(data.get(0).getDescription()+"");
+
                 listAirPort = findViewById(R.id.lvExp);
                 listAirPort.addItemDecoration(new DividerItemDecoration(ConditionActivity.this, 1));
                 listAirPort.setLayoutManager(new LinearLayoutManager(ConditionActivity.this));
                 mAdapter = new AboutAdapter(data);
-                //mAdapter.setAdapter(mAdapter);
+
                 listAirPort.setAdapter(mAdapter);
                 listAirPort.setClickable(false);
                 listAirPort.setEnabled(false);
                 listAirPort.setScrollContainer(false);
-                //mAdapter.setLayoutManager(new LinearLayoutManager(GetAirportActivity.this));
                 listAirPort.setOnFlingListener(new RecyclerView.OnFlingListener() {
                     @Override
                     public boolean onFling(int velocityX, int velocityY) {
@@ -307,8 +292,6 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
         }
 
     }//end asynTask
-
-
 
 
 }

@@ -12,6 +12,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.model.pack.LstAvailableDate;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
+import com.eligasht.reservation.views.activities.pack.SearchPackActivity;
 import com.eligasht.reservation.views.viewholders.LstAvailableDateRowHolder;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
     private ListenerLstAvailableDateAdapter listener;
 
 
-    public LstAvailableDateAdapter(Context context, ArrayList<LstAvailableDate> NameItem) {
+    public LstAvailableDateAdapter(SearchPackActivity context, ArrayList<LstAvailableDate> NameItem) {
 
         this.context = context;
         this.feedItemList = NameItem;
@@ -42,6 +43,9 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
         }
 
     }
+
+
+
 
     public interface ListenerLstAvailableDateAdapter {
         void onClickLstAvailableDateItem(LstAvailableDate lstAvailableDate);

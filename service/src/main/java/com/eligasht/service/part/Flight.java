@@ -38,6 +38,7 @@ public class Flight extends BasePart {
         start(getServiceGenerator().createService().responsSearchFlight(req), listener);
     }
 
+    @Mock(jsonName = "flight_pre_factor_detail_avail", response = ResponsePreFactorDetails.class)
     public void flightPreFactorDetailAvail(OnServiceStatus<ResponsePreFactorDetails> listener, RequestPreFactorDetails req) {
         start(getServiceGenerator().createService().responsePreFactorDetails(req), listener);
     }
@@ -52,11 +53,12 @@ public class Flight extends BasePart {
         start(getServiceGenerator().createService().responsePurchaseFlight(req), listener);
     }
 
-
+    @Mock(jsonName = "change_flight_avail", response = ResponseChangeFlight.class)
     public void ChangeFlightAvail(OnServiceStatus<ResponseChangeFlight> listener, RequestChangeFlight req) {
         start(getServiceGenerator().createService().responsChangeFlight(req), listener);
     }
 
+    @Mock(jsonName = "get_is_domestic", response = ResponseDomesticFlight.class)
     public void domesticFlightAvail(OnServiceStatus<ResponseDomesticFlight> listener, RequestDomesticFlight req) {
         start(getServiceGenerator().createService().responseDomesticFlightObservable(req), listener);
     }

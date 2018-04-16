@@ -546,6 +546,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
     @Override
     public void onReady(ResponsePurchaseInsurance responsePurchaseInsurance) {
+        Log.e("PurchaseInsurance:", new Gson().toJson(responsePurchaseInsurance));
         rlLoading.setVisibility(View.GONE);
         try {
 
@@ -612,10 +613,13 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         }
         requestPreFactorDetails.setRequest(request);
       //  Log.e("PreFactorDetailsInsurance:", new Gson().toJson(requestPreFactorDetails));
+        Log.e("PreFsInsurance:", new Gson().toJson(requestPreFactorDetails));
 
         SingletonService.getInstance().getInsurance().PreFactorDetailInsuranceAvail(new OnServiceStatus<ResponsePreFactorDetails>() {
             @Override
             public void onReady(ResponsePreFactorDetails responsePreFactorDetails) {
+                Log.e("PreFactorDetails:", new Gson().toJson(responsePreFactorDetails));
+
                 FlagMosaferan = false;
                 rlLoading.setVisibility(View.GONE);
                 try {
