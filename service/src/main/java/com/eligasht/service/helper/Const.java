@@ -5,6 +5,9 @@ package com.eligasht.service.helper;
  */
 
 public class Const {
+
+    public final static Boolean MOCK = false;
+
     public final static String BASEURL = "http://mobilews.eligasht.com/LightServices/Rest/";
 
     //*************start up*************

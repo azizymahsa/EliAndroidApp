@@ -11,6 +11,7 @@ import com.eligasht.service.part.Hotel;
 import com.eligasht.service.part.Insurance;
 
 import javax.inject.Inject;
+
 /**
  * Created by Ahmad.nemati on 3/26/2018.
  */
@@ -22,9 +23,8 @@ public class SingletonService {
     ContactUs contactUs;
     AboutService aboutService;
     AppService appService;
-
     private Context context;
-    private Boolean mock=false;
+
 
     private static final SingletonService ourInstance = new SingletonService();
 
@@ -50,13 +50,7 @@ public class SingletonService {
     }
 
 
-    public Boolean isMock() {
-        return mock;
-    }
 
-    public void setMock(Boolean mock) {
-        this.mock = mock;
-    }
 
     public void setContext(Context context) {
         this.context = context;
@@ -93,7 +87,7 @@ public class SingletonService {
             appService = new AppService(serviceGenerator);
         return appService;
 
-}
+    }
 
 
 }

@@ -108,6 +108,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.row_select_parvaz_two_detail, parent,false);
         }
         LinearLayout llCounter = convertView.findViewById(R.id.llCounter);
+
         TextView lblFlightTimeR = convertView.findViewById(R.id.lblFlightTimeR);
         TextView lblFlightArrivalTimeR = convertView.findViewById(R.id.lblFlightArrivalTimeR);
         TextView lblDepurtureAirportR = convertView.findViewById(R.id.lblDepurtureAirportR);
