@@ -1,5 +1,4 @@
 package com.eligasht.reservation.views.fragments.hotelDetail;
-
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
@@ -26,6 +25,13 @@ import com.eligasht.reservation.tools.NonScrollRecyclerView;
 import com.eligasht.reservation.views.activities.hotel.activity.CommentActivity;
 import com.eligasht.reservation.models.CommentModel;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.hotel.getHotelReview.request.GetHReviewReq;
+import com.eligasht.service.model.hotel.getHotelReview.request.GetHotelReviewRequest;
+import com.eligasht.service.model.hotel.getHotelReview.response.GetHotelReviewResponse;
+import com.eligasht.service.model.hotel.getHotelReview.response.Review;
+import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -37,35 +43,29 @@ import java.util.Comparator;
 
 import at.grabner.circleprogress.CircleProgressView;
 import mehdi.sakout.fancybuttons.FancyButton;
-
 /**
  * Created by Reza.nejati on 4/7/2018.
  */
-
-public class CommentHotelFragment extends Fragment implements View.OnClickListener {
+public class CommentHotelFragment extends Fragment implements View.OnClickListener, OnServiceStatus<GetHotelReviewResponse> {
     private View view;
     private CircleProgressView circleView;
-    private TextView  tvAlertComment, tvCommentCount, tvVoteCount, tvRecommendedPercent,tvSortComment;
+    private TextView tvAlertComment, tvCommentCount, tvVoteCount, tvRecommendedPercent, tvSortComment;
     private CommentAdapterRecycle commentAdapter;
     boolean isNew = false;
-    private GetComment getComment;
-    private boolean isComment = true,isFirst=true;
-    private String hotelName=null;
-    private String hotelId=null;
-    private FancyButton btnComment,btnOneComment,btnSortComment;
-
-
+    private boolean isFirst = true;
+    private String hotelName = null;
+    private String hotelId = null;
+    private FancyButton btnComment, btnOneComment, btnSortComment;
     private AVLoadingIndicatorView aviComment;
     private ArrayList<CommentModel> commentModels = new ArrayList<>();
     private NonScrollRecyclerView lvComments;
     private LinearLayout llCommentContent;
+
     public static CommentHotelFragment instance() {
         CommentHotelFragment fragment = new CommentHotelFragment();
-      //  EventBus.getDefault().register(fragment);
-
+        //  EventBus.getDefault().register(fragment);
         return fragment;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,41 +74,31 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
             return view;
         view = inflater.inflate(R.layout.fragment_room_comment, container, false);
         initView();
-
         return view;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
-
     public void setDataComment(CommentModelBus hotel) {
-        this.hotelName=hotel.getHotelName();
-        this.hotelId=hotel.getHotelId();
-        if ((hotelName!=null||hotelId!=null)&&isFirst && view != null){
-            isFirst=false;
-            new GetCommentAsync().execute();
-
+        this.hotelName = hotel.getHotelName();
+        this.hotelId = hotel.getHotelId();
+        if ((hotelName != null || hotelId != null) && isFirst && view != null) {
+            isFirst = false;
+            request();
         }
-
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
     }
 
     public void initView() {
@@ -130,32 +120,20 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
         btnComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOneComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnSortComment.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
-
-
-
     }
-
-
-
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
-
             case R.id.btnSortComment:
                 try {
                     if (isNew) {
-
-
                         tvSortComment.setText(R.string.BenefitComment);
-
                         isNew = false;
                         Collections.sort(commentModels, new Comparator<CommentModel>() {
                             public int compare(CommentModel o1, CommentModel o2) {
@@ -165,15 +143,9 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
                             }
                         });
                         commentAdapter.notifyDataSetChanged();
-
                     } else {
-
-
                         isNew = true;
-
-
                         tvSortComment.setText(R.string.NewComment);
-
                         Collections.sort(commentModels, new Comparator<CommentModel>() {
                             @Override
                             public int compare(CommentModel p1, CommentModel p2) {
@@ -181,12 +153,9 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
                             }
                         });
                         commentAdapter.notifyDataSetChanged();
-
                     }
                 } catch (Exception e) {
                 }
-
-
                 break;
             case R.id.btnComment:
                 Intent intent = new Intent(getActivity(), CommentActivity.class);
@@ -211,86 +180,62 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
         }
     }
 
-    private class GetCommentAsync extends AsyncTask<String, Void, String> {
+    public void request() {
+        aviComment.setVisibility(View.VISIBLE);
+        GetHotelReviewRequest getHotelReviewRequest = new GetHotelReviewRequest();
+        GetHReviewReq getHReviewReq = new GetHReviewReq();
+        getHReviewReq.setCulture(getString(R.string.culture));
+        getHReviewReq.setEHotelId(hotelId);
+        getHotelReviewRequest.setRequest(getHReviewReq);
+        SingletonService.getInstance().getHotelService().getComment(this, getHotelReviewRequest);
+    }
 
-        protected void onPreExecute() {
-            aviComment.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                GetCommentRequest getCommentRequest = new GetCommentRequest();
-                Request request = new Request();
-                request.setCulture(getString(R.string.culture));
-                request.setEHotelId(hotelId);
-                getCommentRequest.setRequest(request);
-                Log.e("testtt", new Gson().toJson(getCommentRequest).toString());
-                getComment = new GetComment(getCommentRequest);
-
-            } catch (Exception e) {
-
-            }
-            return "Executed";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            llCommentContent.setVisibility(View.VISIBLE);
-            aviComment.setVisibility(View.GONE);
-            isComment = false;
-
+    @Override
+    public void onReady(GetHotelReviewResponse getHotelReviewResponse) {
+        llCommentContent.setVisibility(View.VISIBLE);
+        aviComment.setVisibility(View.GONE);
         try {
-                circleView.setDecimalFormat(new DecimalFormat("0.0"));
-                //todo change this
-                Typeface face = Typeface.createFromAsset(getActivity().getAssets(), "fonts/iran_sans_normal.ttf");
-                circleView.setTextTypeface(face);
-
-                circleView.setMaxValue(10);
-                //circleView.setUnitVisible(false);
-
-
-                for (int i = 0; i < getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length; i++) {
-                    commentModels.add(new CommentModel(Integer.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].HelpfulAmount),
-                            5, getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Title,
-                            getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].Content,
-                            getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].SubmitDate,
-                            getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews[i].SubmitNickName));
-
-
-                }
-
-
-                lvComments.addItemDecoration(new DividerItemDecoration(getActivity(), 1));
-                lvComments.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-                commentAdapter = new CommentAdapterRecycle(commentModels);
-                lvComments.setAdapter(commentAdapter);
-                lvComments.setFocusable(false);
-
-                tvVoteCount.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.ReviewsCount +" "+ getString(R.string.UserRate));
-                tvCommentCount.setText(getString(R.string.CommentUser)+" "+ getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length +" "+ getString(R.string.Comment));
-                tvRecommendedPercent.setText(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.RecommendedPercent +" "+ getString(R.string.RecomandUser));
-                circleView.setValueAnimated(Float.valueOf(getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.AverageScore));
-
-            if (getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews == null || getComment.getHotelReviewResult.GetHotelReviewResult.HotelReview.Reviews.length == 0) {
-
+            circleView.setDecimalFormat(new DecimalFormat("0.0"));
+            //todo change this
+            Typeface face = Typeface.createFromAsset(getActivity().getAssets(), "fonts/iran_sans_normal.ttf");
+            circleView.setTextTypeface(face);
+            circleView.setMaxValue(10);
+            //circleView.setUnitVisible(false);
+            for (Review review : getHotelReviewResponse.getGetHotelReviewResult().getHotelReview().getReviews()) {
+                commentModels.add(new CommentModel(review.getHelpfulAmount(),
+                        5, review.getTitle(),
+                        review.getContent(),
+                        review.getSubmitDate(),
+                        review.getSubmitNickName()));
+            }
+            lvComments.addItemDecoration(new DividerItemDecoration(getActivity(), 1));
+            lvComments.setLayoutManager(new LinearLayoutManager(getActivity()));
+            commentAdapter = new CommentAdapterRecycle(commentModels);
+            lvComments.setAdapter(commentAdapter);
+            lvComments.setFocusable(false);
+            tvVoteCount.setText(getHotelReviewResponse.getGetHotelReviewResult().getHotelReview().getReviewsCount() + " " + getString(R.string.UserRate));
+            tvCommentCount.setText(getString(R.string.CommentUser) + " " + getHotelReviewResponse.getGetHotelReviewResult().getHotelReview().getReviews().size() + " " + getString(R.string.Comment));
+            tvRecommendedPercent.setText(getHotelReviewResponse.getGetHotelReviewResult().getHotelReview().getRecommendedPercent() + " " + getString(R.string.RecomandUser));
+            circleView.setValueAnimated(Float.valueOf(getHotelReviewResponse.getGetHotelReviewResult().getHotelReview().getAverageScore()));
+            if (getHotelReviewResponse.getGetHotelReviewResult().getHotelReview().getReviews() == null || getHotelReviewResponse.getGetHotelReviewResult().getHotelReview().getReviews().size() == 0) {
                 tvAlertComment.setVisibility(View.VISIBLE);
                 btnOneComment.setVisibility(View.VISIBLE);
                 llCommentContent.setVisibility(View.GONE);
             }
-
-                lvComments.setOnFlingListener(new RecyclerView.OnFlingListener() {
-                    @Override
-                    public boolean onFling(int velocityX, int velocityY) {
-                        lvComments.dispatchNestedFling(velocityX, velocityY, false);
-                        return false;
-                    }
-                });
-
-            } catch (Exception e) {
-
-            }
+            lvComments.setOnFlingListener(new RecyclerView.OnFlingListener() {
+                @Override
+                public boolean onFling(int velocityX, int velocityY) {
+                    lvComments.dispatchNestedFling(velocityX, velocityY, false);
+                    return false;
+                }
+            });
+        } catch (Exception e) {
         }
+    }
+
+    @Override
+    public void onError(String message) {
+        llCommentContent.setVisibility(View.VISIBLE);
+        aviComment.setVisibility(View.GONE);
     }
 }
