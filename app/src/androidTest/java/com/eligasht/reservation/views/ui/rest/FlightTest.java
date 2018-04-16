@@ -1,4 +1,4 @@
-package com.eligasht.reservation.views.ui;
+package com.eligasht.reservation.views.ui.rest;
 
 
 import android.support.test.espresso.DataInteraction;
@@ -30,7 +30,6 @@ import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
@@ -49,7 +48,7 @@ public class FlightTest {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(7000);
+            Thread.sleep(12000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -87,7 +86,7 @@ public class FlightTest {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(100);
+            Thread.sleep(4500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -173,7 +172,7 @@ public class FlightTest {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(100);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -355,7 +354,7 @@ public class FlightTest {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(500);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -856,9 +855,6 @@ public class FlightTest {
         }
 
 
-
-
-
         try {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
@@ -869,11 +865,8 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
-             onView(
+        } catch (Exception e) {
+            onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
                                     allOf(withId(R.id.done_background),
@@ -923,10 +916,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1084,10 +1074,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1129,10 +1116,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1277,10 +1261,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1322,10 +1303,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1461,10 +1439,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1506,10 +1481,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1654,10 +1626,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1698,10 +1667,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1837,10 +1803,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1882,10 +1845,7 @@ public class FlightTest {
                                                     1)),
                                     2),
                             isDisplayed())).perform(click());
-        }
-
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             onView(
                     allOf(withId(R.id.ok), withText("OK"),
                             childAtPosition(
@@ -1911,7 +1871,7 @@ public class FlightTest {
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(500);
+            Thread.sleep(14000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -1922,8 +1882,25 @@ public class FlightTest {
 //                .atPosition(0)
 //                .perform(click());
 
-        onView(withIndex(withId(R.id.btnAddsabad), 0)).perform(click());
-        onView(withIndex(withId(R.id.btnAddsabad), 1)).perform(click());
+        try {
+            onView(withIndex(withId(R.id.btnAddsabad), 0)).perform(click());
+        } catch (Exception e) {
+
+        }
+
+        try {
+            onView(withIndex(withId(R.id.btnAddsabad), 1)).perform(click());
+        } catch (Exception e) {
+
+        }
+
+        try {
+            onView(withIndex(withId(R.id.btnAddsabad), 2)).perform(click());
+        } catch (Exception e) {
+
+        }
+
+
 //
 //        try {
 //            Thread.sleep(500);
