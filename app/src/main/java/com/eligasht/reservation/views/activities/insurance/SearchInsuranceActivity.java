@@ -224,7 +224,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         insuranceListReq.setCulture(culture);
         Log.d("TAG", "showInsurance: "+culture);*/
 
-//send Request Insurance search
+//send GetHListRequest Insurance search
         //Call<InsuranceRes> call = service.showInsurance(new InsuranceRequestModel(insuranceListReq));
         RequestSearchInsurance requestSearchInsurance = new RequestSearchInsurance();
         com.eligasht.service.model.insurance.request.SearchInsurance.Request request = new com.eligasht.service.model.insurance.request.SearchInsurance.Request();

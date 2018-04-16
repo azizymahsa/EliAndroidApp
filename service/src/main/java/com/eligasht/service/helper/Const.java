@@ -19,6 +19,9 @@ public class Const {
     public final static String HotelAvail = "Hotel/HotelService.svc/HotelAvail";
     public final static String GetRoomsList = "Hotel/HotelService.svc/GetRoomsList";
     public final static String GetHotelDetail = "Hotel/HotelService.svc/GetHotelDetail";
+    public final static String AddHotelReview = "Hotel/HotelService.svc/AddHotelReview";
+    public final static String GetHotelList = "http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetHotelList";
+
 
     //*************hotel flight*************
     public final static String HotelFlightSearch = "HotelFlight/HotelFlightService.svc/HotelFlightSearch";

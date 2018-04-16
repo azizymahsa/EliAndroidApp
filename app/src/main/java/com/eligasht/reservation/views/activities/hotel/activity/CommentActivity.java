@@ -1,5 +1,4 @@
 package com.eligasht.reservation.views.activities.hotel.activity;
-
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
@@ -33,6 +32,10 @@ import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.hotel.AddCommnetDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertRating;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.addReview.request.AddHotelReviewRequest;
+import com.eligasht.service.model.addReview.response.AddHotelReviewResponse;
+import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.eligasht.reservation.tools.Prefs;
@@ -41,8 +44,7 @@ import com.xw.repo.BubbleSeekBar;
 import java.util.ArrayList;
 
 import mehdi.sakout.fancybuttons.FancyButton;
-
-public class CommentActivity extends BaseActivity implements AlertRating.RatingHotelDialogListener, View.OnClickListener {
+public class CommentActivity extends BaseActivity implements AlertRating.RatingHotelDialogListener, View.OnClickListener,OnServiceStatus<AddHotelReviewResponse> {
     TextView tvTitle;
     ScrollView svRating;
     LinearLayout llComment;
@@ -50,18 +52,15 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
     AddComment addComment;
     EditText etName, etMail, etTitle, etMessage;
     String name, mail, title, message;
-    RelativeLayout rlRoot,rlLoading;
+    RelativeLayout rlRoot, rlLoading;
     Float star;
     String hotelId;
-    ArrayList<ReviewScores> reviewScores=new ArrayList<>();
-    ArrayList<ReviewComment> ReviewComment=new ArrayList<>();
-    BubbleSeekBar ScoreParameterID1,ScoreParameterID2,ScoreParameterID3,ScoreParameterID4,ScoreParameterID5,ScoreParameterID6,ScoreParameterID7,ScoreParameterID8;
-    cn.refactor.library.SmoothCheckBox cbSubmitName,cbIsRecommended;
-    boolean isRecommended=false;
+    ArrayList<ReviewScores> reviewScores = new ArrayList<>();
+    ArrayList<ReviewComment> ReviewComment = new ArrayList<>();
+    BubbleSeekBar ScoreParameterID1, ScoreParameterID2, ScoreParameterID3, ScoreParameterID4, ScoreParameterID5, ScoreParameterID6, ScoreParameterID7, ScoreParameterID8;
+    cn.refactor.library.SmoothCheckBox cbSubmitName, cbIsRecommended;
+    boolean isRecommended = false;
     AddCommnetDialog addCommnetDialog;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +74,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                 .init(this);
         InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.PostComment));
         init_view();
-        new AlertRating(this, this,star);
+        new AlertRating(this, this, star);
     }
 
     public void init_view() {
@@ -93,15 +92,15 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         btnToComment = findViewById(R.id.btnToComment);
         rlRoot = findViewById(R.id.rlRoot);
         btnBack = findViewById(R.id.btnBack);
-        ScoreParameterID1=findViewById(R.id.ScoreParameterID1);
-        ScoreParameterID2=findViewById(R.id.ScoreParameterID2);
-        ScoreParameterID3=findViewById(R.id.ScoreParameterID3);
-        ScoreParameterID4=findViewById(R.id.ScoreParameterID4);
-        ScoreParameterID5=findViewById(R.id.ScoreParameterID5);
-        ScoreParameterID6=findViewById(R.id.ScoreParameterID6);
-        ScoreParameterID7=findViewById(R.id.ScoreParameterID7);
-        ScoreParameterID8=findViewById(R.id.ScoreParameterID8);
-        rlLoading=findViewById(R.id.rlLoading);
+        ScoreParameterID1 = findViewById(R.id.ScoreParameterID1);
+        ScoreParameterID2 = findViewById(R.id.ScoreParameterID2);
+        ScoreParameterID3 = findViewById(R.id.ScoreParameterID3);
+        ScoreParameterID4 = findViewById(R.id.ScoreParameterID4);
+        ScoreParameterID5 = findViewById(R.id.ScoreParameterID5);
+        ScoreParameterID6 = findViewById(R.id.ScoreParameterID6);
+        ScoreParameterID7 = findViewById(R.id.ScoreParameterID7);
+        ScoreParameterID8 = findViewById(R.id.ScoreParameterID8);
+        rlLoading = findViewById(R.id.rlLoading);
         btnToComment.setOnClickListener(this);
         btnConfirm.setOnClickListener(this);
         rlLoading.setOnClickListener(this);
@@ -111,94 +110,71 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         btnBack.setOnClickListener(this);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            tvTitle.setText(getString(R.string.CommentFor)+" "+ extras.getString("HotelName"));
-            hotelId=extras.getString("HotelId");
-            Log.e("UserID",Prefs.getString("uesrId","-1"));
+            tvTitle.setText(getString(R.string.CommentFor) + " " + extras.getString("HotelName"));
+            hotelId = extras.getString("HotelId");
+            Log.e("UserID", Prefs.getString("uesrId", "-1"));
         }
-
-        if ( !Prefs.getString("userId","-1").equals("-1")){
+        if (!Prefs.getString("userId", "-1").equals("-1")) {
             etMail.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
             etMail.setEnabled(false);
-            etName.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF()+" "+WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+            etName.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
             etName.setEnabled(false);
-
         }
-
         addCommnetDialog = new AddCommnetDialog(CommentActivity.this);
-
-
-
     }
 
     @Override
     public void onReturnValue(int type, Float rate) {
         this.star = rate;
         if (type == 1) {
-            Log.e("rateTest", rate+"");
-
-
+            Log.e("rateTest", rate + "");
         }
-
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnToComment:
-                reviewScores.add(new ReviewScores(hotelId,"0",String.valueOf(ScoreParameterID1.getProgress()),"0","1","0"));
-                reviewScores.add(new ReviewScores(hotelId,"0",String.valueOf(ScoreParameterID2.getProgress()),"0","2","0"));
-                reviewScores.add(new ReviewScores(hotelId,"0",String.valueOf(ScoreParameterID3.getProgress()),"0","3","0"));
-                reviewScores.add(new ReviewScores(hotelId,"0",String.valueOf(ScoreParameterID4.getProgress()),"0","4","0"));
-                reviewScores.add(new ReviewScores(hotelId,"0",String.valueOf(ScoreParameterID5.getProgress()),"0","5","0"));
-                reviewScores.add(new ReviewScores(hotelId,"0",String.valueOf(ScoreParameterID6.getProgress()),"0","6","0"));
-                reviewScores.add(new ReviewScores(hotelId,"0",String.valueOf(ScoreParameterID7.getProgress()),"0","7","0"));
-                reviewScores.add(new ReviewScores(hotelId,"0",String.valueOf(ScoreParameterID8.getProgress()),"0","8","0"));
+                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID1.getProgress()), "0", "1", "0"));
+                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID2.getProgress()), "0", "2", "0"));
+                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID3.getProgress()), "0", "3", "0"));
+                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID4.getProgress()), "0", "4", "0"));
+                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID5.getProgress()), "0", "5", "0"));
+                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID6.getProgress()), "0", "6", "0"));
+                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID7.getProgress()), "0", "7", "0"));
+                reviewScores.add(new ReviewScores(hotelId, "0", String.valueOf(ScoreParameterID8.getProgress()), "0", "8", "0"));
                 YoYo.with(Techniques.FadeOut).duration(200).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
-
-
                     @Override
                     public void onAnimationStart(android.animation.Animator animation) {
-
-
                     }
 
                     @Override
                     public void onAnimationEnd(android.animation.Animator animation) {
-
-
                         llComment.setVisibility(View.VISIBLE);
                         svRating.setVisibility(View.GONE);
                         YoYo.with(Techniques.FadeIn)
                                 .duration(200)
                                 .playOn(llComment);
-
-
                     }
 
                     @Override
                     public void onAnimationCancel(android.animation.Animator animation) {
-
                     }
 
                     @Override
                     public void onAnimationRepeat(android.animation.Animator animation) {
-
                     }
-
                 })
                         .playOn(svRating);
-
                 break;
             case R.id.btnConfirm:
-                String errorMessage="";
+                String errorMessage = "";
                 boolean isOk = true;
                 if (TextUtils.isEmpty(etName.getText())) {
                     GradientDrawable drawable = (GradientDrawable) etName.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
-                    errorMessage=errorMessage+"\n"+getString(R.string.Please_enter_the_correct_name);
-
+                    errorMessage = errorMessage + "\n" + getString(R.string.Please_enter_the_correct_name);
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etName.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.strokeGray));
@@ -209,181 +185,147 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     GradientDrawable drawable = (GradientDrawable) etMail.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
-                    errorMessage=errorMessage+"\n"+getString(R.string.Email_format_is_correct);
-
+                    errorMessage = errorMessage + "\n" + getString(R.string.Email_format_is_correct);
                 } else {
                     //((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
                     GradientDrawable drawable = (GradientDrawable) etMail.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.strokeGray));
-
                 }
-
                 if (TextUtils.isEmpty(etTitle.getText())) {
                     GradientDrawable drawable = (GradientDrawable) etTitle.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
-                    errorMessage=errorMessage+"\n"+getString(R.string.Please_enter_the_title_correctly);
-
+                    errorMessage = errorMessage + "\n" + getString(R.string.Please_enter_the_title_correctly);
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etTitle.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.strokeGray));
-
-
                 }
                 if (TextUtils.isEmpty(etMessage.getText())) {
                     GradientDrawable drawable = (GradientDrawable) etMessage.getBackground();
                     drawable.setStroke(4, Color.RED); // set stroke width and stroke color
                     isOk = false;
-                    errorMessage=errorMessage+"\n"+getString(R.string.Please_enter_the_correct_message);
-
+                    errorMessage = errorMessage + "\n" + getString(R.string.Please_enter_the_correct_message);
                 } else {
                     GradientDrawable drawable = (GradientDrawable) etMessage.getBackground();
                     drawable.setStroke(4, ContextCompat.getColor(this, R.color.strokeGray));
-
-
                 }
-
-
                 if (isOk) {
-
-
-
                     name = etName.getText().toString();
                     mail = etMail.getText().toString();
                     title = etTitle.getText().toString();
                     message = etMessage.getText().toString();
-                    if (cbIsRecommended.isChecked()){
-                        isRecommended=true;
+                    if (cbIsRecommended.isChecked()) {
+                        isRecommended = true;
                     }
-                    if (cbSubmitName.isChecked()){
-                        name="";
+                    if (cbSubmitName.isChecked()) {
+                        name = "";
                     }
-                  //  Log.e("test3333", Prefs.getString("userId","-1"));
+                    //  Log.e("test3333", Prefs.getString("userId","-1"));
                     ReviewComment.add(new ReviewComment(0, message,
-                            0, 1, mail, name, title, Prefs.getString("userId","-1"),reviewScores,String.valueOf(isRecommended)));
+                            0, 1, mail, name, title, Prefs.getString("userId", "-1"), reviewScores, String.valueOf(isRecommended)));
                     new AddCommentAsync().execute();
-                }else{
+                } else {
                     AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(CommentActivity.this);
-                    alertDialogPassenger.setText("" + "  " + errorMessage,getString(R.string.massege));
+                    alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.massege));
                 }
                 break;
             case R.id.btnBack:
-
                 if (llComment.getVisibility() == View.VISIBLE) {
                     YoYo.with(Techniques.FadeOut).duration(200).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
-
-
                         @Override
                         public void onAnimationStart(android.animation.Animator animation) {
-
-
                         }
 
                         @Override
                         public void onAnimationEnd(android.animation.Animator animation) {
-
-
                             svRating.setVisibility(View.VISIBLE);
                             llComment.setVisibility(View.GONE);
                             YoYo.with(Techniques.FadeIn)
                                     .duration(200)
                                     .playOn(svRating);
-
-
                         }
 
                         @Override
                         public void onAnimationCancel(android.animation.Animator animation) {
-
                         }
 
                         @Override
                         public void onAnimationRepeat(android.animation.Animator animation) {
-
                         }
-
                     })
                             .playOn(llComment);
-
-
                 } else if (svRating.getVisibility() == View.VISIBLE) {
                     new AlertRating(this, this, star);
-
                 } else {
                     finish();
                 }
                 break;
         }
-
     }
 
     @Override
     public void onBackPressed() {
-
         if (llComment.getVisibility() == View.VISIBLE) {
             YoYo.with(Techniques.FadeOut).duration(200).interpolate(new AccelerateDecelerateInterpolator()).withListener(new android.animation.Animator.AnimatorListener() {
-
-
                 @Override
                 public void onAnimationStart(android.animation.Animator animation) {
-
-
                 }
 
                 @Override
                 public void onAnimationEnd(android.animation.Animator animation) {
-
-
                     svRating.setVisibility(View.VISIBLE);
                     llComment.setVisibility(View.GONE);
                     YoYo.with(Techniques.FadeIn)
                             .duration(200)
                             .playOn(svRating);
-
-
                 }
 
                 @Override
                 public void onAnimationCancel(android.animation.Animator animation) {
-
                 }
 
                 @Override
                 public void onAnimationRepeat(android.animation.Animator animation) {
-
                 }
-
             })
                     .playOn(llComment);
-
-
         } else if (svRating.getVisibility() == View.VISIBLE) {
             new AlertRating(this, this, star);
-
         } else {
             super.onBackPressed();
         }
+    }
+
+
+    public void request(){
+        AddHotelReviewRequest addHotelReviewRequest = new AddHotelReviewRequest();
+
+    }
+
+    @Override
+    public void onReady(AddHotelReviewResponse addHotelReviewResponse) {
+
 
 
     }
 
-    private class AddCommentAsync extends AsyncTask<String, Void, String> {
+    @Override
+    public void onError(String message) {
+    }
 
+    private class AddCommentAsync extends AsyncTask<String, Void, String> {
         protected void onPreExecute() {
             rlLoading.setVisibility(View.VISIBLE);
-            Log.e("requestTest",new Gson().toJson(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
-                    "123qwe!@#QWE", "Mobile"), getString(R.string.culture), new HotelReviewModel(ReviewComment,String.valueOf(star),hotelId,"0")))));
-
+            Log.e("requestTest", new Gson().toJson(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
+                    "123qwe!@#QWE", "Mobile"), getString(R.string.culture), new HotelReviewModel(ReviewComment, String.valueOf(star), hotelId, "0")))));
         }
 
         @Override
         protected String doInBackground(String... params) {
             try {
                 addComment = new AddComment(new RequsetAddComment(new RequestAdd(new Identity("EligashtMlb",
-                        "123qwe!@#QWE", "Mobile"), getString(R.string.culture), new HotelReviewModel(ReviewComment,String.valueOf(star),hotelId,"0"))));
-
+                        "123qwe!@#QWE", "Mobile"), getString(R.string.culture), new HotelReviewModel(ReviewComment, String.valueOf(star), hotelId, "0"))));
             } catch (Exception e) {
-
             }
             return "Executed";
         }
@@ -391,36 +333,19 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         @Override
         protected void onPostExecute(String result) {
             rlLoading.setVisibility(View.GONE);
-
             try {
-
-
                 if (addComment.addCommentsResult.AddHotelReviewResult.Errors != null) {
-                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewResult.Errors.get(0).DetailedMessage,false);
-
-
+                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewResult.Errors.get(0).DetailedMessage, false);
                 } else {
-
-                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewResult.ResultText,true);
-
-
+                    addCommnetDialog.setTitle(addComment.addCommentsResult.AddHotelReviewResult.ResultText, true);
                 }
-
-
             } catch (Exception e) {
                 if (!Utility.isNetworkAvailable(CommentActivity.this)) {
-
-                    addCommnetDialog.setTitle(getString(R.string.InternetError),false);
-
+                    addCommnetDialog.setTitle(getString(R.string.InternetError), false);
                 } else {
-
-                    addCommnetDialog.setTitle(getString(R.string.ErrorServer),false);
-
+                    addCommnetDialog.setTitle(getString(R.string.ErrorServer), false);
                 }
-
             }
-
         }
-
     }
 }

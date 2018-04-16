@@ -8,6 +8,8 @@ import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurc
 import com.eligasht.service.model.XPackage.response.searchXPackage.ResponseSearchXPackage;
 import com.eligasht.service.model.about.request.RequestAbout;
 import com.eligasht.service.model.about.response.ResponseAbout;
+import com.eligasht.service.model.addReview.request.AddHotelReviewRequest;
+import com.eligasht.service.model.addReview.response.AddHotelReviewResponse;
 import com.eligasht.service.model.flight.request.ChangeFlight.RequestChangeFlight;
 import com.eligasht.service.model.flight.request.DomesticFlight.RequestDomesticFlight;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
@@ -25,6 +27,8 @@ import com.eligasht.service.model.flight.response.purchaseServiceFlight.Response
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
 import com.eligasht.service.model.hotel.detail.response.HotelDetailResponse;
+import com.eligasht.service.model.hotel.getHotelList.request.GetHotelListRequest;
+import com.eligasht.service.model.hotel.getHotelList.response.GetHotelListResponse;
 import com.eligasht.service.model.hotel.hold.request.HoldRoomRequest;
 import com.eligasht.service.model.hotel.hold.response.HoldRoomResponse;
 import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
@@ -110,6 +114,15 @@ public interface RetroClient {
     Observable<HoldRoomResponse> getHoldRoom(
             @Body HoldRoomRequest holdRoomRequest
     );
+    @POST(Const.AddHotelReview)
+    Observable<AddHotelReviewResponse> addHotelReview(
+            @Body AddHotelReviewRequest hotelReviewRequest
+    );
+    @POST(Const.GetHotelList)
+    Observable<GetHotelListResponse> getHotelList(
+            @Body GetHotelListRequest hotelReviewRequest
+    );
+
     //*************flight*************
 
 
@@ -197,5 +210,8 @@ public interface RetroClient {
     Observable<LoginResponse> login(
             @Body LoginRequestModel loginRequestModel
     );
+
+
+
 
 }

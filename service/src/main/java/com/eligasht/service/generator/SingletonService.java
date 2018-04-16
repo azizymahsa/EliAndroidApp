@@ -1,5 +1,4 @@
 package com.eligasht.service.generator;
-
 import android.content.Context;
 
 import com.eligasht.service.di.component.NetComponent;
@@ -13,7 +12,6 @@ import com.eligasht.service.part.LoginProfile;
 import com.eligasht.service.part.XPackage;
 
 import javax.inject.Inject;
-
 /**
  * Created by Ahmad.nemati on 3/26/2018.
  */
@@ -21,15 +19,7 @@ public class SingletonService {
     private NetComponent netComponent;
     @Inject
     ServiceGenerator serviceGenerator;
-    private Hotel hotel;
-    private ContactUs contactUs;
-    private AboutService aboutService;
-    private AppService appService;
-    private LoginProfile loginProfile;
-
     private Context context;
-
-
     private static final SingletonService ourInstance = new SingletonService();
 
     public static SingletonService getInstance() {
@@ -52,7 +42,6 @@ public class SingletonService {
     public Context getContext() {
         return context;
     }
-
 
     public void setContext(Context context) {
         this.context = context;
@@ -85,10 +74,8 @@ public class SingletonService {
     public XPackage getXPackage() {
         return new XPackage(serviceGenerator);
     }
-    public LoginProfile getLoginProfile() {
-        if (loginProfile == null)
-            loginProfile = new LoginProfile(serviceGenerator);
-        return loginProfile;
 
+    public LoginProfile getLoginProfile() {
+        return new LoginProfile(serviceGenerator);
     }
 }
