@@ -53,7 +53,7 @@ public class Hotel extends BasePart {
     public void loadFlight(OnServiceStatus<LoadFlightResponse> listener, LoadFlightRequest req) {
         start(getServiceGenerator().createService().loadFlight(req), listener);
     }
-
+    @Mock(jsonName = "hotel_policy", response = HotelPolicyResponse.class)
     public void hotelPolicy(OnServiceStatus<HotelPolicyResponse> listener, HotelPolicyRequest req) {
         start(getServiceGenerator().createService().hotelPolicy(req), listener);
     }
@@ -65,6 +65,7 @@ public class Hotel extends BasePart {
     public void getHotelDetail(OnServiceStatus<HotelDetailResponse> listener, HotelDetailRequest req) {
         start(getServiceGenerator().createService().getHotelDetail(req), listener);
     }
+    @Mock(jsonName = "hold_room", response = HoldRoomRequest.class)
     public void getHoldRoom(OnServiceStatus<HoldRoomResponse> listener, HoldRoomRequest req) {
         start(getServiceGenerator().createService().getHoldRoom(req), listener);
     }
@@ -72,7 +73,7 @@ public class Hotel extends BasePart {
     public void getTransport(OnServiceStatus<TransportResponse> listener, TransportRequest req) {
         start(getServiceGenerator().createService().transportService(req), listener);
     }
-    @Mock(jsonName = "add_review.json", response = AddHotelReviewResponse.class)
+    @Mock(jsonName = "add_review", response = AddHotelReviewResponse.class)
     public void addHotelReview(OnServiceStatus<AddHotelReviewResponse> listener, AddHotelReviewRequest req) {
         start(getServiceGenerator().createService().addHotelReview(req), listener);
     }
