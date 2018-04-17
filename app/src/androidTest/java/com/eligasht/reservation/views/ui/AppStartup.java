@@ -18,6 +18,5 @@ public class AppStartup extends BaseTest {
     public void runTest() {
         Prefs.remove("WEB_USER");
         sleep(Const.MOCK ? 7000 : 10000);
-
     }
 }

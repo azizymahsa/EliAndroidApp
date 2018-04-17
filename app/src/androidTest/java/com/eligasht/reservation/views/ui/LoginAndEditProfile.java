@@ -13,8 +13,7 @@ import static org.hamcrest.Matchers.is;
 
 public class LoginAndEditProfile extends BaseTest {
     public static LoginAndEditProfile newInstance() {
-        LoginAndEditProfile fragment = new LoginAndEditProfile();
-        return fragment;
+        return new LoginAndEditProfile();
     }
 
     @Override
@@ -53,5 +52,6 @@ public class LoginAndEditProfile extends BaseTest {
         doScrollAndClickInScrollView(R.id.chB_woman);
         doClick(R.id.btnSaveInfo);
         sleep(3000);
+        pressBack(TestConst.LoginAndProfile_Back);
     }
 }

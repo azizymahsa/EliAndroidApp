@@ -19,8 +19,7 @@ import static org.hamcrest.Matchers.anything;
 public class Flight extends BaseTest {
 
     public static Flight newInstance() {
-        Flight fragment = new Flight();
-        return fragment;
+        return new Flight();
     }
 
     @Override
@@ -163,5 +162,6 @@ public class Flight extends BaseTest {
 
         doClick(R.id.btn_taeed_khadamat);
         sleep(Const.MOCK ? 2000 : 5000);
+        pressBack(TestConst.Flight_Back);
     }
 }
