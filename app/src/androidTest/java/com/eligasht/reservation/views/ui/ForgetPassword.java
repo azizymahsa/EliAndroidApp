@@ -26,8 +26,7 @@ import static org.hamcrest.Matchers.is;
 public class ForgetPassword extends BaseTest {
 
     public static ForgetPassword newInstance() {
-        ForgetPassword fragment = new ForgetPassword();
-        return fragment;
+       return new ForgetPassword();
     }
     @Override
     public void runTest() {
@@ -39,5 +38,6 @@ public class ForgetPassword extends BaseTest {
         doPressImeActionButton(R.id.edit_email_resetPass);
         doClick(R.id.btnResetPassword);
         sleep(2500);
+        pressBack(TestConst.Forgetpassword_Back);
     }
 }
