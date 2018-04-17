@@ -1,1 +1,10 @@
-{"AddHotelReviewResult":{"Comments":null,"Errors":null,"ResultKey":null,"Warningss":null,"ResultText":"نظر شما پس از تایید نمایش داده خواهد شد. از شما متشکریم.","SuccessResult":97720}}
+{
+  "AddHotelReviewResult": {
+    "Comments": null,
+    "Errors": null,
+    "ResultKey": null,
+    "Warningss": null,
+    "ResultText": "نظر شما پس از تایید نمایش داده خواهد شد. از شما متشکریم.",
+    "SuccessResult": 97720
+  }
+}

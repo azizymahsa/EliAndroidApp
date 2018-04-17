@@ -1,0 +1,64 @@
+{
+  "GetHotelPolicyResult": {
+    "Comments": null,
+    "Errors": null,
+    "ResultKey": null,
+    "Warningss": null,
+    "HCancellationPolicies": [
+      {
+        "HCancellationPolicy": [
+          {
+            "Currency": "USD",
+            "DescriptionEn": null,
+            "DescriptionFa": null,
+            "FromDate": "2018/04/16 01:04",
+            "FromDate_d": "/Date(1523825940000+0430)/",
+            "ReturnAmount": 143.88,
+            "RoomNo": "1",
+            "ToDate": "2018/04/21 00:04",
+            "ToDate_d": "/Date(1524252600000+0430)/"
+          },
+          {
+            "Currency": null,
+            "DescriptionEn": "***Please note: if cancelled,modified or in case of no-show, the hotel price of the reservation will be charged***",
+            "DescriptionFa": null,
+            "FromDate": "",
+            "FromDate_d": "/Date(0)/",
+            "ReturnAmount": 0,
+            "RoomNo": null,
+            "ToDate": "",
+            "ToDate_d": "/Date(0)/"
+          }
+        ],
+        "Key": "نکات مهم"
+      },
+      {
+        "HCancellationPolicy": [
+          {
+            "Currency": "USD",
+            "DescriptionEn": null,
+            "DescriptionFa": null,
+            "FromDate": "2018/04/16 01:04",
+            "FromDate_d": "/Date(1523825940000+0430)/",
+            "ReturnAmount": 143.88,
+            "RoomNo": "1",
+            "ToDate": "2018/04/21 00:04",
+            "ToDate_d": "/Date(1524252600000+0430)/"
+          },
+          {
+            "Currency": null,
+            "DescriptionEn": "***Please note: if cancelled,modified or in case of no-show, the hotel price of the reservation will be charged***",
+            "DescriptionFa": null,
+            "FromDate": "",
+            "FromDate_d": "/Date(0)/",
+            "ReturnAmount": 0,
+            "RoomNo": null,
+            "ToDate": "",
+            "ToDate_d": "/Date(0)/"
+          }
+        ],
+        "Key": "نکات مهم"
+      }
+    ]
+  }
+}

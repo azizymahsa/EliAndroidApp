@@ -13,16 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
 import com.eligasht.reservation.api.hotel.comment.AddComment;
 import com.eligasht.reservation.base.BaseActivity;
-import com.eligasht.reservation.models.hotel.api.addcomment.call.RequestAdd;
-import com.eligasht.reservation.models.hotel.api.addcomment.call.RequsetAddComment;
 import com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewComment;
-import com.eligasht.reservation.models.hotel.api.addcomment.call.ReviewScores;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.ui.InitUi;
@@ -48,7 +44,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
-public class CommentActivity extends BaseActivity implements AlertRating.RatingHotelDialogListener, View.OnClickListener,OnServiceStatus<AddHotelReviewResponse> {
+public class CommentActivity extends BaseActivity implements AlertRating.RatingHotelDialogListener,
+        View.OnClickListener,OnServiceStatus<AddHotelReviewResponse> {
     TextView tvTitle;
     ScrollView svRating;
     LinearLayout llComment;
@@ -313,12 +310,15 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
 
     public void request(){
         AddHotelReviewRequest addHotelReviewRequest = new AddHotelReviewRequest();
+
         AddHReviewReq addHReviewReq = new AddHReviewReq();
         HotelReviewModel hotelReviewModel = new HotelReviewModel();
-        hotelReviewModel.setAverageScore( String.valueOf(star));
+
+        hotelReviewModel.setAverageScore(String.valueOf(star));
         hotelReviewModel.setHotelID(hotelId);
         hotelReviewModel.setRecommendedPercent("0");
         hotelReviewModel.setReviews(reviews);
+
         Identity identity = new Identity();
         identity.setPassword("123qwe!@#QWE");
         identity.setUserName("EligashtMlb");
@@ -329,7 +329,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         addHReviewReq.setIdentity(identity);
 
         addHotelReviewRequest.setRequest(addHReviewReq);
-        Log.e("test", new Gson().toJson(addHotelReviewRequest) );
+        Log.e("test", new Gson().toJson(addHotelReviewRequest));
         SingletonService.getInstance().getHotelService().addHotelReview(this, addHotelReviewRequest);
 
 

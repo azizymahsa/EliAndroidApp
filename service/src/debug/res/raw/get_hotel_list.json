@@ -1,1 +1,55 @@
-{"GetHotelListResult":{"Comments":null,"Errors":null,"ResultKey":null,"Warningss":null,"Cities":[{"CityCode":"c25972","CityID":1,"CityNameEn":"Istanbul, Turkey","CityNameFa":"استانبول, ترکیه","CountryID":0,"CountryNameEn":null,"CountryNameFa":null},{"CityCode":"c24480","CityID":2,"CityNameEn":"Stockholm, Sweden","CityNameFa":"استکهلم, سوئد","CountryID":0,"CountryNameEn":null,"CountryNameFa":null},{"CityCode":"c1558","CityID":3,"CityNameEn":"Strasbourg, France","CityNameFa":"استراسبورگ, فرانسه","CountryID":0,"CountryNameEn":null,"CountryNameFa":null},{"CityCode":"c15407","CityID":4,"CityNameEn":"Estepona, Spain","CityNameFa":"استپنا, اسپانیا","CountryID":0,"CountryNameEn":null,"CountryNameFa":null},{"CityCode":"c8846","CityID":5,"CityNameEn":"Stavanger, Norway","CityNameFa":"استاوانگر, نروژ","CountryID":0,"CountryNameEn":null,"CountryNameFa":null}]}}
+{
+  "GetHotelListResult": {
+    "Comments": null,
+    "Errors": null,
+    "ResultKey": null,
+    "Warningss": null,
+    "Cities": [
+      {
+        "CityCode": "c25972",
+        "CityID": 1,
+        "CityNameEn": "Istanbul, Turkey",
+        "CityNameFa": "استانبول, ترکیه",
+        "CountryID": 0,
+        "CountryNameEn": null,
+        "CountryNameFa": null
+      },
+      {
+        "CityCode": "c24480",
+        "CityID": 2,
+        "CityNameEn": "Stockholm, Sweden",
+        "CityNameFa": "استکهلم, سوئد",
+        "CountryID": 0,
+        "CountryNameEn": null,
+        "CountryNameFa": null
+      },
+      {
+        "CityCode": "c1558",
+        "CityID": 3,
+        "CityNameEn": "Strasbourg, France",
+        "CityNameFa": "استراسبورگ, فرانسه",
+        "CountryID": 0,
+        "CountryNameEn": null,
+        "CountryNameFa": null
+      },
+      {
+        "CityCode": "c15407",
+        "CityID": 4,
+        "CityNameEn": "Estepona, Spain",
+        "CityNameFa": "استپنا, اسپانیا",
+        "CountryID": 0,
+        "CountryNameEn": null,
+        "CountryNameFa": null
+      },
+      {
+        "CityCode": "c8846",
+        "CityID": 5,
+        "CityNameEn": "Stavanger, Norway",
+        "CityNameFa": "استاوانگر, نروژ",
+        "CountryID": 0,
+        "CountryNameEn": null,
+        "CountryNameFa": null
+      }
+    ]
+  }
+}
