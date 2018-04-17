@@ -159,11 +159,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public List<PurchaseFlightResult> data;
 	int counter=2;
 	private ImageView textView4;
-
 	String paymentUrl;
 	private boolean FlagTab=false;
 	private boolean FlagMosaferan=true;
-
 	private RadioButton btnzan,btnmard,btnzanS,btnmardS;
 	RelativeLayout rlLoading,rlRoot;
 	com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;

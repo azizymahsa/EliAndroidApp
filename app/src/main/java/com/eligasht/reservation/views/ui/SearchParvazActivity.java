@@ -494,20 +494,46 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             flightsList.clear();
         }
         try {
-            System.out.println("Response: " + responsSearchFlight.getSearchFlightsResult().getFlights().size());
+            //System.out.println("Response: " + responsSearchFlight.getSearchFlightsResult().getFlights().size());
             new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
                 window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
             }
-            if (Locale.getDefault().getLanguage().equals("fa")) {
-                getDataFaJson(responsSearchFlight);
-            } else if (Locale.getDefault().getLanguage().equals("en")) {
-                getDataEnJson(responsSearchFlight);
-            }
+
+            if(responsSearchFlight.getSearchFlightsResult().getErrors()!=null){
+                new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
+                // Log.e("date", result);
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                    window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+                }
+                linear_expand = findViewById(R.id.linear_expand);
+                linear_expand.setVisibility(View.GONE);
+                RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
+                txtNoResult.setText(responsSearchFlight.getSearchFlightsResult().getErrors().get(0).getDetailedMessage());
+                linear_no_result.setVisibility(View.VISIBLE);
+            }else{
             if (responsSearchFlight.getSearchFlightsResult().getFlights().size() > 0)
                 responsSearchFlight.getSearchFlightsResult().getFlights().get(0).getBaseFare();
+
+                if (Locale.getDefault().getLanguage().equals("fa")) {
+                    getDataFaJson(responsSearchFlight);
+                } else if (Locale.getDefault().getLanguage().equals("en")) {
+                    getDataEnJson(responsSearchFlight);
+                }
+            }
         } catch (Exception e) {
             System.out.println("Exception: " + e);
+
+            new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
+            // Log.e("date", result);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+            }
+            linear_expand = findViewById(R.id.linear_expand);
+            linear_expand.setVisibility(View.GONE);
+            RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
+            txtNoResult.setText(getString(R.string.NoResult));
+            linear_no_result.setVisibility(View.VISIBLE);
         }
     }
 
@@ -519,6 +545,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
             window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
         }
+        linear_expand = findViewById(R.id.linear_expand);
+        linear_expand.setVisibility(View.GONE);
+        RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
+        txtNoResult.setText(message);
+        linear_no_result.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -990,12 +1021,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                                 , SegmentListFalseAvali.size() > 0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0", false
                                 , SegmentListtrueAkhari
                                 , SegmentListFalseAkhari);//ArrivalCityNameEnR baraye sort bayad en bashe
-                        //parentItem.Header.add(header);
                         parentItem.setHeader(header);
-                        //fore Detail item
                         for (int j = 0; j < SegmentList.size(); j++) {
                             System.out.println("Detail j=" + j);
-                            //////////
                             ItemExpandingPlan item = new ItemExpandingPlan();
                             //Item
                             item.DepartureAirportNameFaR = SegmentList.get(j).getDepartureAirportNameFa();
@@ -1072,11 +1100,17 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             }
         }
         if (flightsList.size() == 0 || flightsList == null) {
+            new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+            }
             linear_expand.setVisibility(View.GONE);
             RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             txtNoResult.setText(R.string.NoResult);
-            if(flag)
-            linear_no_result.setVisibility(View.GONE);
+            if(flag && flightsList==null )
+            linear_no_result.setVisibility(View.VISIBLE);
+            else if (flag && flightsList.size()>0)
+                linear_no_result.setVisibility(View.GONE);
             else
              linear_no_result.setVisibility(View.VISIBLE);
 
@@ -1484,7 +1518,17 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             @Override
             public void onError(String message) {
+                new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
+                // Log.e("date", result);
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+                    window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+                }
                 Log.e("changeFlight:", "onError: " + message);
+                linear_expand = findViewById(R.id.linear_expand);
+                linear_expand.setVisibility(View.GONE);
+                RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
+                txtNoResult.setText(message);
+                linear_no_result.setVisibility(View.VISIBLE);
             }
         }, requestChangeFlight);
     }
@@ -2553,6 +2597,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
                     window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
                 }
+                linear_expand = findViewById(R.id.linear_expand);
+                linear_expand.setVisibility(View.GONE);
+                RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
+                txtNoResult.setText(message);
+                linear_no_result.setVisibility(View.VISIBLE);
             }
         }, requestDomesticFlight);
     }

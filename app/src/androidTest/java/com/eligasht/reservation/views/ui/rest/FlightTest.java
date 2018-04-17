@@ -45,6 +45,7 @@ public class FlightTest {
     @Test
     public void runFlightTest() {
 
+
         try {
             Thread.sleep(12000);
         } catch (InterruptedException e) {
@@ -60,6 +61,9 @@ public class FlightTest {
                                 1),
                         isDisplayed()));
         linearLayout.perform(click());
+
+
+
 
         try {
             Thread.sleep(500);
@@ -77,6 +81,9 @@ public class FlightTest {
                         isDisplayed()));
         appCompatEditText.perform(replaceText("تهران"), closeSoftKeyboard());
 
+
+
+
         try {
             Thread.sleep(4500);
         } catch (InterruptedException e) {
@@ -92,6 +99,8 @@ public class FlightTest {
                                 0),
                         isDisplayed()));
         appCompatTextView.perform(click());
+
+
 
         
         try {
@@ -110,6 +119,9 @@ public class FlightTest {
                         isDisplayed()));
         linearLayout2.perform(click());
 
+
+
+
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -125,6 +137,9 @@ public class FlightTest {
                                 0),
                         isDisplayed()));
         appCompatEditText2.perform(replaceText("استان"), closeSoftKeyboard());
+
+
+
 
         try {
             Thread.sleep(100);
@@ -151,6 +166,9 @@ public class FlightTest {
                                 0),
                         isDisplayed()));
         appCompatEditText4.perform(closeSoftKeyboard());
+
+
+
 
         try {
             Thread.sleep(5000);
