@@ -1,13 +1,22 @@
 package com.eligasht.reservation.views.ui;
 
 import android.support.annotation.IdRes;
+import android.support.test.espresso.DataInteraction;
+import android.support.test.espresso.UiController;
+import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.action.ScrollToAction;
 import android.support.test.espresso.action.ViewActions;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v4.widget.NestedScrollView;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.HorizontalScrollView;
+import android.widget.ScrollView;
 
 import com.eligasht.R;
 
@@ -20,7 +29,9 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.Espresso.pressBack;
+import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
+import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 import static android.support.test.espresso.Espresso.onData;
@@ -30,11 +41,13 @@ import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
+import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 
@@ -108,45 +121,89 @@ public abstract class BaseTest {
         sleep(5000);
     }
 
-    protected void doClickAndScroll(@IdRes int view) {
+    public void doClickAndScroll(@IdRes int view) {
         onView(withId(view)).perform(ViewActions.scrollTo(), ViewActions.click());
     }
 
-    protected void doClick(@IdRes int view) {
+    public void doClick(@IdRes int view) {
         onView(withId(view)).perform(ViewActions.click());
     }
 
-    protected void doScroll(@IdRes int view) {
+    public void doScroll(@IdRes int view) {
         onView(withId(view)).perform(ViewActions.scrollTo());
     }
 
 
-    protected void doCloseSoftKeyborad(@IdRes int view) {
+    public void doCloseSoftKeyborad(@IdRes int view) {
         onView(withId(view)).perform(ViewActions.closeSoftKeyboard());
     }
 
-    protected void doPressImeActionButton(@IdRes int view) {
+    public void doPressImeActionButton(@IdRes int view) {
         onView(withId(view)).perform(ViewActions.pressImeActionButton());
     }
 
-    protected void doReplace(@IdRes int view, String text) {
+    public void doReplace(@IdRes int view, String text) {
         onView(withId(view)).perform(replaceText(text));
     }
 
 
-    protected void doReplaceAndCloseKeyboard(@IdRes int view, String text) {
+    public void doReplaceAndCloseKeyboard(@IdRes int view, String text) {
         onView(withId(view)).perform(replaceText(text), closeSoftKeyboard());
     }
 
-    protected void doScrollAndREplaceAndCloseKeyboard(@IdRes int view, String text) {
+    public void doScrollAndREplaceAndCloseKeyboard(@IdRes int view, String text) {
         onView(withId(view)).perform(scrollTo(), replaceText(text), closeSoftKeyboard());
     }
 
+    public void doScrollAndClickInScrollView(@IdRes int view) {
+        onView(withId(view)).perform(customScrollTo, click());
+    }
 
-    protected void doClickWithIndex(@IdRes int view, int index) {
+    public void doClickItemInSpinner(int index) {
+        onData(anything())
+                .inAdapterView(childAtPosition(
+                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
+                        0))
+                .atPosition(index).perform(click());
+    }
+
+
+    public void doClickWithIndex(@IdRes int view, int index) {
         onView(withIndex(withId(view), index)).perform(click());
     }
 
+    public void doClickTab(@IdRes int id, int index) {
+        onView(
+                allOf(childAtPosition(
+                        childAtPosition(
+                                withId(id),
+                                0),
+                        index),
+                        isDisplayed())).perform(click());
+
+    }
+
+    ViewAction customScrollTo = new ViewAction() {
+
+        @Override
+        public Matcher<View> getConstraints() {
+            return allOf(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE), isDescendantOfA(anyOf(
+                    isAssignableFrom(ScrollView.class),
+                    isAssignableFrom(HorizontalScrollView.class),
+                    isAssignableFrom(NestedScrollView.class)))
+            );
+        }
+
+        @Override
+        public String getDescription() {
+            return null;
+        }
+
+        @Override
+        public void perform(UiController uiController, View view) {
+            new ScrollToAction().perform(uiController, view);
+        }
+    };
 
 
 }

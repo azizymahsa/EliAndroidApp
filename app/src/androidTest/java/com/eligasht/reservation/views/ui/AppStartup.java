@@ -2,6 +2,7 @@ package com.eligasht.reservation.views.ui;
 
 import android.os.Bundle;
 
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.service.helper.Const;
 
 /**
@@ -15,6 +16,8 @@ public class AppStartup extends BaseTest {
     }
     @Override
     public void runTest() {
+        Prefs.remove("WEB_USER");
         sleep(Const.MOCK ? 7000 : 10000);
+
     }
 }
