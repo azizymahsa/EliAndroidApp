@@ -1,6 +1,7 @@
-package com.eligasht.reservation.views.ui.rest;
+package com.eligasht.reservation.views.ui;
 
 
+import android.os.Bundle;
 import android.support.test.rule.ActivityTestRule;
 
 import com.eligasht.R;
@@ -24,12 +25,12 @@ import static org.hamcrest.Matchers.is;
 
 public class ForgetPassword extends BaseTest {
 
-    @Rule
-    public ActivityTestRule<SplashActivity> mActivityTestRule = new ActivityTestRule<>(SplashActivity.class);
-
-    @Test
-    public void splashActivityTest() {
-        sleep(7000);
+    public static ForgetPassword newInstance() {
+        ForgetPassword fragment = new ForgetPassword();
+        return fragment;
+    }
+    @Override
+    public void runTest() {
         doClick(R.id.btnMenu);
         doClick(R.id.lottieUserMenu);
         doClick(R.id.layout_reset_password);
@@ -38,10 +39,5 @@ public class ForgetPassword extends BaseTest {
         doPressImeActionButton(R.id.edit_email_resetPass);
         doClick(R.id.btnResetPassword);
         sleep(2500);
-        pressBack(3);
-
-        login();
     }
-
-
 }

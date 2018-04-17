@@ -1,42 +1,37 @@
-package com.eligasht.reservation.views.ui.rest;
+package com.eligasht.reservation.views.ui;
 
 
+import android.os.Bundle;
 import android.support.test.espresso.DataInteraction;
-import android.support.test.espresso.ViewInteraction;
 
 import com.eligasht.R;
-import com.eligasht.reservation.views.ui.BaseTest;
-
-import org.junit.Test;
+import com.eligasht.reservation.views.TestConst;
+import com.eligasht.service.helper.Const;
 
 import static android.support.test.espresso.Espresso.onData;
-import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
-import static android.support.test.espresso.action.ViewActions.replaceText;
-import static android.support.test.espresso.action.ViewActions.scrollTo;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.is;
 
 
-public class FlightTest extends BaseTest {
+public class Flight extends BaseTest {
 
+    public static Flight newInstance() {
+        Flight fragment = new Flight();
+        return fragment;
+    }
 
-    @Test
-    public void runFlightTest() {
-
-        sleep(7000);
+    @Override
+    public void runTest() {
         doClick(R.id.linearLayout_mabda);
-        doReplaceAndCloseKeyboard(R.id.searchtxt, "تهران");
+        doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Origin);
+        sleep(Const.MOCK ? 0 : 2000);
         doClickWithIndex(R.id.text1, 0);
         doClick(R.id.linearLayout_maghsad);
-        doReplaceAndCloseKeyboard(R.id.searchtxt, "استانبول");
+        doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Dest);
+        sleep(Const.MOCK ? 0 : 2000);
         doClickWithIndex(R.id.text1, 1);
         doClick(R.id.btnOne);
         doClick(R.id.btntwo);
@@ -51,13 +46,10 @@ public class FlightTest extends BaseTest {
         doClick(R.id.btnPlusB);
         doClick(R.id.btnPlusB);
         doClick(R.id.btnPlusB);
-
         doClick(R.id.btnPlusK);
         doClick(R.id.btnPlusN);
         doClick(R.id.searchPlan);
-
-
-        sleep(1000);
+        sleep(Const.MOCK ? 1000 : 20000);
         onData(anything()).inAdapterView(withId(R.id.lvExp)).atPosition(0).perform(click());
         DataInteraction frameLayout6 = onData(anything())
                 .inAdapterView(allOf(withId(R.id.lvExp),
@@ -66,8 +58,6 @@ public class FlightTest extends BaseTest {
                                 0)))
                 .atPosition(2);
         frameLayout6.perform(click());
-
-
         doClickAndScroll(R.id.mardS);
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnameP, "احمد");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilyP, "نعمتی");
@@ -159,6 +149,7 @@ public class FlightTest extends BaseTest {
         doClick(R.id.ok);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
+        sleep(Const.MOCK ? 0 : 5000);
 
 
         try {
@@ -170,12 +161,7 @@ public class FlightTest extends BaseTest {
         }
 
 
-
         doClick(R.id.btn_taeed_khadamat);
-
-        sleep(500000);
-
+        sleep(Const.MOCK ? 2000 : 5000);
     }
-
-
 }

@@ -1,6 +1,7 @@
 package com.eligasht.reservation.views.ui;
 
 
+import android.os.Bundle;
 import android.support.test.rule.ActivityTestRule;
 
 import com.eligasht.R;
@@ -21,19 +22,15 @@ import static org.hamcrest.Matchers.is;
 
 
 public class Login extends BaseTest {
-
-    @Rule
-    public ActivityTestRule<SplashActivity> mActivityTestRule = new ActivityTestRule<>(SplashActivity.class);
-
-    @Test
-    public void loginTest() {
-
-
+    public static Login newInstance() {
+        Login fragment = new Login();
+        return fragment;
+    }
+    @Override
+    public void runTest() {
         onView(withId(R.id.btnMenu)).perform(click());
-
-
         sleep(1000);
-doClick(R.id.lottieUserMenu);
+        doClick(R.id.lottieUserMenu);
         doClick(R.id.txt_email);
         onView(withId(R.id.txt_email)).perform(replaceText(TestConst.Email), closeSoftKeyboard());
         onView(withId(R.id.txt_email)).perform(pressImeActionButton());
@@ -41,9 +38,5 @@ doClick(R.id.lottieUserMenu);
         onView(withId(R.id.txt_password)).perform(pressImeActionButton());
         onView(withId(R.id.btnLogIn)).perform(click());
         sleep(3000);
-
-
     }
-
-
 }
