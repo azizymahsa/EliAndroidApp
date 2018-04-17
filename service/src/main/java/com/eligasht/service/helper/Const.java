@@ -14,7 +14,6 @@ public class Const {
     public final static String StartUp = "Common/StaticDataService.svc/MobileAppStartupService";
     //*************profile & login*************
     public final static String Login = "Common/StaticDataService.svc/Login";
-
     //*************hotel*************
     public final static String HotelAvail = "Hotel/HotelService.svc/HotelAvail";
     public final static String GetRoomsList = "Hotel/HotelService.svc/GetRoomsList";
@@ -22,7 +21,6 @@ public class Const {
     public final static String AddHotelReview = "Hotel/HotelService.svc/AddHotelReview";
     public final static String GetHotelList = "http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetHotelList";
     public final static String GetHotelReview = "Hotel/HotelService.svc/GetHotelReview";
-
 
     //*************hotel flight*************
     public final static String HotelFlightSearch = "HotelFlight/HotelFlightService.svc/HotelFlightSearch";
@@ -51,7 +49,5 @@ public class Const {
     public final static String SearchXPackageAvil="Package/PackageService.svc/SearchXPackage";
     public final static String PurchasePackageAvil="Package/PackageService.svc/PurchasePackage";
     public final static String GetPreFactorDetailsPackageAvil="Common/StaticDataService.svc/GetPreFactorDetails";
-
-
 
 }

@@ -108,6 +108,9 @@ public class SegmentList {
     @SerializedName("FltDurationM")
     @Expose
     private String fltDurationM;
+    @SerializedName("FreeBaggage")
+    @Expose
+    private FreeBaggage freeBaggage;
     @SerializedName("IsDepartureSegment")
     @Expose
     private Boolean isDepartureSegment;
@@ -119,7 +122,7 @@ public class SegmentList {
     private Integer operatingAirlineID;
     @SerializedName("OperatingAirlineNameEn")
     @Expose
-    private String operatingAirlineNameEn;
+    private Object operatingAirlineNameEn;
     @SerializedName("OperatingAirlineNameFa")
     @Expose
     private Object operatingAirlineNameFa;
@@ -396,6 +399,14 @@ public class SegmentList {
         this.fltDurationM = fltDurationM;
     }
 
+    public FreeBaggage getFreeBaggage() {
+        return freeBaggage;
+    }
+
+    public void setFreeBaggage(FreeBaggage freeBaggage) {
+        this.freeBaggage = freeBaggage;
+    }
+
     public Boolean getIsDepartureSegment() {
         return isDepartureSegment;
     }
@@ -420,11 +431,11 @@ public class SegmentList {
         this.operatingAirlineID = operatingAirlineID;
     }
 
-    public String getOperatingAirlineNameEn() {
+    public Object getOperatingAirlineNameEn() {
         return operatingAirlineNameEn;
     }
 
-    public void setOperatingAirlineNameEn(String operatingAirlineNameEn) {
+    public void setOperatingAirlineNameEn(Object operatingAirlineNameEn) {
         this.operatingAirlineNameEn = operatingAirlineNameEn;
     }
 

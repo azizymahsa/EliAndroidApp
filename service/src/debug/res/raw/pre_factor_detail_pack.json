@@ -1,14 +1,7 @@
 {
   "GetPreFactorDetailsResult": {
     "Comments": null,
-    "Errors": [
-      {
-        "Code": -1000,
-        "DetailedMessage": "ارتباط با پایگاه داده ناموفق است",
-        "Language": null,
-        "Message": "Connection to database failed"
-      }
-    ],
+    "Errors": null,
     "ResultKey": null,
     "Warningss": null,
     "PreFactor": {
