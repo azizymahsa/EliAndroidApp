@@ -29,7 +29,12 @@ import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
 import com.eligasht.reservation.models.hotel.api.changeflight.request.ChangeFlightApiRequest;
 import com.eligasht.reservation.models.hotel.api.changeflight.request.Request;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
+import com.eligasht.reservation.views.ui.SearchParvazActivity;
+import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.model.flight.request.DomesticFlight.RequestDomesticFlight;
+import com.eligasht.service.model.flight.response.DomesticFlight.GetIsDomesticResult;
+import com.eligasht.service.model.flight.response.DomesticFlight.ResponseDomesticFlight;
 import com.eligasht.service.model.hotelflight.request.Room;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.response.HotelTypes;
@@ -745,7 +750,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         } catch (Exception e) {
             onErrors();
         }
-        new AsyncCheckFlight().execute();
+        requestCheckFlt();
     }
 
     @Override
@@ -904,122 +909,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         }, loadFlightRequest);
     }
 
-    private class AsyncCheckFlight extends AsyncTask<String, String, String> {
-        HttpURLConnection conn;
-        URL url = null;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetIsDomestic");
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return e.toString();
-            }
-            try {
-                // Setup HttpURLConnection class to send and receive data from php and mysql
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                // conn.setRequestMethod("GET");
-                conn.setRequestMethod("POST");
-                // setDoOutput to true as we recieve data from json file
-                conn.setDoOutput(true);
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-                return e1.toString();
-            }
-            try {
-                int response_code = conn.getResponseCode();
-                String serial = null;
-                JSONObject errorObj = new JSONObject();
-                try {
-                    errorObj.put("Success", false);
-                    Class<?> c = Class.forName("android.os.SystemProperties");
-                    Method get = c.getMethod("get", String.class);
-                    serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-                } catch (Exception ignored) {
-                }
-                String data = OrderToJsonCheckFlight();
-                HttpClient client = new DefaultHttpClient();
-                HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetIsDomestic");
-                post.setHeader("Content-Type", "application/json; charset=UTF-8");
-                post.setHeader("Accept", "application/json; charset=UTF-8");
-                StringEntity se = null;
-                try {
-                    se = new StringEntity(data, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                post.setEntity(se);
-                ByteArrayOutputStream os = new ByteArrayOutputStream();
-                //{"GetAirportWithParentsResult":{"Errors":[],"List":[{"Key":"IST|Istanbul, Turkey (IST-All Airports)","Value":"استانبول ( همه فرودگاه ها ),نزدیک استانبول, ترکیه"},{"Key":"IST|Istan
-                //try {
-                //HashMap<String, String> airport = null;
-                //mylist = new ArrayList<HashMap<String, String>>();
-                HttpResponse res = client.execute(post);
-                String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-                return (retSrc);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return e.toString();
-            } finally {
-                conn.disconnect();
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            //this method will be running on UI thread
-            System.out.println("result:" + result);
-            //	avi.setVisibility(View.INVISIBLE);
-            List<Country> data = new ArrayList<Country>();
-            try {
-////////////////////////////
-                JSONObject jsonObj = new JSONObject(result);
-                //JSONObject GetAirportsResult = jsonObj.getJSONObject("GetAirportWithParentsResult");
-                /////////////////////////////////////
-                String GetError = "";
-                JSONArray jError = null;
-                // Getting JSON Array node
-                JSONObject GetAirportsResult = jsonObj.getJSONObject("GetIsDomesticResult");//Error
-                if (!GetAirportsResult.getString("Errors").equals("null")) {
-                    jError = GetAirportsResult.getJSONArray("Errors");//
-                    JSONObject jPricedItinerary = jError.getJSONObject(0);
-                    GetError = jPricedItinerary.getString("Message");
-                }
-                if (GetError.length() > 1) {
-                    try {
-                      /*  AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SelectHotelFlightActivity.this);
-                        AlertDialogPassenger.setText(GetError);*/
-                    } catch (Exception e) {
-                    }
-                } else {
-////////////////////////////////
-                    /*JSONArray jArray = GetAirportsResult.getJSONArray("Airports");//AirportCode //AirportName//CityName ":
-
-					for (int i = 0; i < jArray.length(); i++) {
-						JSONObject json_data = jArray.getJSONObject(i);
-*/
-                    boolean IsDemostic = GetAirportsResult.getBoolean("IsDomestic");//false khareji true dakheli
-                    if (IsDemostic)
-                        Prefs.putBoolean("IsDemostic", true);
-                    else
-                        Prefs.putBoolean("IsDemostic", false);
-                    //}
-                }
-            } catch (JSONException e) {
-            }
-        }
-    }
 
     public void onErrors() {
         new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
@@ -1038,5 +927,54 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         btnOk.setVisibility(View.VISIBLE);
         rlEr.setVisibility(View.VISIBLE);
         tvAlertDesc.setVisibility(View.GONE);
+    }
+
+
+
+
+
+    public void requestCheckFlt(){
+        RequestDomesticFlight requestDomesticFlight = new RequestDomesticFlight();
+        com.eligasht.service.model.flight.request.DomesticFlight.Request request = new com.eligasht.service.model.flight.request.DomesticFlight.Request();
+
+
+            request.setUserName("EligashtMlb");
+            request.setPassword("123qwe!@#QWE");
+            request.setTermianlId("Mobile");
+            request.setCode(Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));////inja esme forudgah mikhore
+            request.setToCode(Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"));
+
+        requestDomesticFlight.setRequest(request);
+
+
+        SingletonService.getInstance().getFlight().domesticFlightAvail(new OnServiceStatus<ResponseDomesticFlight>() {
+            @Override
+            public void onReady(ResponseDomesticFlight responseDomesticFlight) {
+                try {
+
+
+                    if (responseDomesticFlight.getGetIsDomesticResult().getErrors()!=null) {
+                        Toast.makeText(SelectHotelFlightActivity.this, responseDomesticFlight.getGetIsDomesticResult().getErrors().get(0).getDetailedMessage(), Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+
+
+                            Prefs.putBoolean("IsDemostic", responseDomesticFlight.getGetIsDomesticResult().getIsDomestic());
+                    }
+                } catch (Exception e) {
+                }
+
+
+            }
+
+            @Override
+            public void onError(String message) {
+                Toast.makeText(SelectHotelFlightActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
+
+
+            }
+        }, requestDomesticFlight);
+
     }
 }
