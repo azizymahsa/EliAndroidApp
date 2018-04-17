@@ -5,6 +5,7 @@ import com.eligasht.reservation.views.ui.AppStartup;
 import com.eligasht.reservation.views.ui.BaseTest;
 import com.eligasht.reservation.views.ui.Flight;
 import com.eligasht.reservation.views.ui.ForgetPassword;
+import com.eligasht.reservation.views.ui.Hotel;
 import com.eligasht.reservation.views.ui.Login;
 
 /**
@@ -14,12 +15,13 @@ public class SampleTest extends BaseTest {
     @Override
     public void runTest() {
         AppStartup.newInstance().runTest();
-        ForgetPassword.newInstance().runTest();
-        pressBack(TestConst.Forgetpassword_Back);
-        Login.newInstance().runTest();
-        pressBack(TestConst.Login_Back);
-        Flight.newInstance().runTest();
-        pressBack(TestConst.Flight_Back);
+      //  ForgetPassword.newInstance().runTest();
+       // pressBack(TestConst.Forgetpassword_Back);
+      //  Login.newInstance().runTest();
+        Hotel.newInstance().runTest();
+    //    pressBack(TestConst.Login_Back);
+     //   Flight.newInstance().runTest();
+      //  pressBack(TestConst.Flight_Back);
         sleep(5000);
         
     }
