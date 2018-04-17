@@ -16,7 +16,7 @@ public class Hotel extends BaseTest {
     public void runTest() {
         doClick(R.id.btnMenu);
         doClick(R.id.btnHotel);
-        sleep(1000);
+        sleep(500);
         doClick(R.id.citySearch);
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Dest);
         sleep(500);
@@ -28,14 +28,24 @@ public class Hotel extends BaseTest {
         doClickWithIndex(R.id.btnPlusAdt,0);
         sleep(500);
         doClick(R.id.btn_add);
-        sleep(1000);
+        sleep(500);
         doClickWithIndex(R.id.btnPlusCh,1);
         sleep(500);
         doClickWithIndex(R.id.spn_range,0);
         sleep(500);
-        doClick(android.R.id.text1);
-       // doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Dest);
+        doClickItemInSpinner(1);
+        doClick(R.id.btn_confirm);
+        sleep(200);
 
-        // sleep(Const.MOCK ? 0 : 100);
+
+        doClick(R.id.searchHotel);
+        sleep(500);
+        doClickWithIndex(R.id.rlListItem,0);
+        doClickTab(R.id.tab_layout,1);
+        doClickTab(R.id.tab_layout,2);
+        doClickTab(R.id.tab_layout,3);
+        doClickTab(R.id.tab_layout,1);
+        doClickTab(R.id.tab_layout,0);
+
     }
 }

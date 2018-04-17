@@ -6,7 +6,6 @@ import com.eligasht.reservation.views.ui.BaseTest;
 import com.eligasht.reservation.views.ui.Flight;
 import com.eligasht.reservation.views.ui.ForgetPassword;
 import com.eligasht.reservation.views.ui.Hotel;
-import com.eligasht.reservation.views.ui.Login;
 
 /**
  * Created by Ahmad.nemati on 4/17/2018.
