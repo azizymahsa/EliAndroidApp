@@ -59,6 +59,7 @@ public class Hotel extends BaseTest {
         doClick(R.id.btnOk);
         doClickWithIndex(R.id.llSelectHotel,0);
 
+        sleep(1000);
 
 
         doClickAndScroll(R.id.mardS);
