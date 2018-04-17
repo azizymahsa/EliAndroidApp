@@ -33,6 +33,8 @@ public class Hotel extends BaseTest {
 
 
         doClick(R.id.searchHotel);
+        sleep(Const.MOCK ? 30000 : 5000);
+
         doClickWithIndex(R.id.rlListItem,0);
         doClickTab(R.id.tab_layout,1);
         doClickTab(R.id.tab_layout,2);
@@ -153,7 +155,7 @@ public class Hotel extends BaseTest {
         doClick(R.id.ok);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
-        sleep(Const.MOCK ? 0 : 5000);
+         sleep(Const.MOCK ? 0 : 5000);
 
 
         try {
