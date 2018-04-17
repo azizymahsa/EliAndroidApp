@@ -329,9 +329,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         addHReviewReq.setIdentity(identity);
 
         addHotelReviewRequest.setRequest(addHReviewReq);
-        Log.e("test", new Gson().toJson(addHotelReviewRequest));
         SingletonService.getInstance().getHotelService().addHotelReview(this, addHotelReviewRequest);
-
 
     }
 
@@ -351,10 +349,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                 addCommnetDialog.setTitle(getString(R.string.ErrorServer), false);
             }
         }
-
-
     }
-
     @Override
     public void onError(String message) {
         rlLoading.setVisibility(View.GONE);
