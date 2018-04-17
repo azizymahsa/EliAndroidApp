@@ -273,7 +273,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                             }
                             Prefs.putBoolean("isFirstEntrance", false);
                         }
-             
+
                 } else {
                     updateAlert.show();
                     updateAlert.isForce(true);
