@@ -148,7 +148,7 @@ public class Flight extends BaseTest {
         doClick(R.id.ok);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
-        sleep(Const.MOCK ? 0 : 5000);
+        sleep(Const.MOCK ? 0 : 20000);
 
 
         try {
@@ -156,12 +156,12 @@ public class Flight extends BaseTest {
             doClickWithIndex(R.id.btnAddsabad, 1);
             doClickWithIndex(R.id.btnAddsabad, 2);
         } catch (Exception e) {
-
+            sleep(Const.MOCK ? 0 : 20000);
         }
 
 
         doClick(R.id.btn_taeed_khadamat);
-        sleep(Const.MOCK ? 2000 : 5000);
+        sleep(Const.MOCK ? 2000 : 20000);
         pressBack(TestConst.Flight_Back);
     }
 }
