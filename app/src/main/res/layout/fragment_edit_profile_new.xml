@@ -570,7 +570,7 @@
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_12dp_normal_textSize" />
 
-                        <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
+                        <RadioButton
                             android:id="@+id/chB_woman"
                             android:layout_width="@dimen/_20dp"
                             android:layout_height="@dimen/_20dp"
@@ -579,7 +579,7 @@
                             android:layout_marginLeft="@dimen/_5dp_margin"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            app:color_checked="@color/app_base_color" />
+                             />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -591,13 +591,13 @@
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_12dp_normal_textSize" />
 
-                        <com.eligasht.reservation.views.components.smoothcheckbox.SmoothCheckBox
+                        <RadioButton
                             android:id="@+id/chB_man"
                             android:layout_width="@dimen/_20dp"
                             android:layout_height="@dimen/_20dp"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
-                            app:color_checked="@color/app_base_color" />
+                            />
 
                     </LinearLayout>
 
