@@ -156,7 +156,7 @@ public class Flight extends BaseTest {
             doClickWithIndex(R.id.btnAddsabad, 1);
             doClickWithIndex(R.id.btnAddsabad, 2);
         } catch (Exception e) {
-
+            sleep(Const.MOCK ? 0 : 20000);
         }
 
 

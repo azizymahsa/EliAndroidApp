@@ -245,18 +245,18 @@ public class MainActivity extends Base implements View.OnClickListener {
                 //addFragment(" درباره ما ",new HotelFlightFragment());
                 // Intent myIntent = new Intent(MainActivity.this, AboutActivity.class);
                 // myIntent.putExtra("key", value); //Optional parameters
-                new Handler().postDelayed(() -> closeDrawer(), 500);
+                new Handler().postDelayed(this::closeDrawer, 500);
                 Intent intent1 = new Intent(this, AboutActivity.class);
                 startActivity(intent1);
 
                 break;
             case R.id.btnContactUs:
-                new Handler().postDelayed(() -> closeDrawer(), 500);
+                new Handler().postDelayed(this::closeDrawer, 500);
                 Intent intent2 = new Intent(this, ContactUsActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.btn_condition:
-                new Handler().postDelayed(() -> closeDrawer(), 500);
+                new Handler().postDelayed(this::closeDrawer, 500);
                 Intent intent3 = new Intent(this, ConditionActivity.class);
                 startActivity(intent3);
                 break;
@@ -312,6 +312,8 @@ public class MainActivity extends Base implements View.OnClickListener {
                 new LogOutAlert(this);
                 break;
             case R.id.btnLastBuy:
+                new Handler().postDelayed(() -> closeDrawer(), 500);
+
                 Intent intent = new Intent(this, ProfileActivity.class);
                 intent.putExtra("isLastBuy", true);
                 startActivity(intent);

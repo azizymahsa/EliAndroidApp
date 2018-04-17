@@ -164,9 +164,8 @@ public abstract class BaseTest {
     }
 
     public void doClickWithIndexInScroll(@IdRes int view, int index) {
-        onView(withIndex(withId(view), index)).perform(customScrollTo,click());
+        onView(withIndex(withId(view), index)).perform(customScrollTo, click());
     }
-
 
 
     public void doClickItemInSpinner(int index) {

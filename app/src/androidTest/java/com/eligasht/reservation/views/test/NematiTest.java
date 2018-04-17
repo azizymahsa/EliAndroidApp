@@ -17,14 +17,12 @@ public class NematiTest extends BaseTest {
     @Override
     public void runTest() {
         AppStartup.newInstance().runTest();
-//        ForgetPassword.newInstance().runTest();
-//        LoginAndEditProfile.newInstance().runTest();
-//        Contactus.newInstance().runTest();
-//        Aboutus.newInstance().runTest();
-        // Flight.newInstance().runTest();
-       // Setting.newInstance().runTest();
-       // TermsAndCond.newInstance().runTest();
-   //   Aboutus.newInstance().runTest();
-       Contactus.newInstance().runTest();
+        ForgetPassword.newInstance().runTest();
+        Flight.newInstance().runTest();
+        TermsAndCond.newInstance().runTest();
+        Aboutus.newInstance().runTest();
+        Contactus.newInstance().runTest();
+        Aboutus.newInstance().runTest();
+        runTest();
     }
 }
