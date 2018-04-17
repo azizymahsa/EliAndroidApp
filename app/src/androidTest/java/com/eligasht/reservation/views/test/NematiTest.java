@@ -23,6 +23,5 @@ public class NematiTest extends BaseTest {
         Aboutus.newInstance().runTest();
         Contactus.newInstance().runTest();
         Aboutus.newInstance().runTest();
-        runTest();
     }
 }
