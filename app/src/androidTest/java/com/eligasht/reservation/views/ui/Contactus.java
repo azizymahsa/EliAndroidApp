@@ -40,7 +40,7 @@ public class Contactus extends BaseTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-       sleep(2000);
+        sleep(2000);
 
         ViewInteraction imageView2 = onView(
                 allOf(withContentDescription("Zoom in"),
@@ -65,7 +65,7 @@ public class Contactus extends BaseTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-      sleep(2000);
+        sleep(2000);
 
         ViewInteraction imageView4 = onView(
                 allOf(withContentDescription("Zoom out"),
@@ -90,7 +90,7 @@ public class Contactus extends BaseTest {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-       sleep(2000);
+        sleep(2000);
 
         ViewInteraction imageView6 = onView(
                 allOf(withContentDescription("Zoom out"),
