@@ -34,7 +34,4 @@ dependencies {
 
 
 
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
+
