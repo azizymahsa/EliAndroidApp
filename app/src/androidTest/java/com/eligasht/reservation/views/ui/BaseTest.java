@@ -146,6 +146,10 @@ public abstract class BaseTest {
         onView(withId(view)).perform(replaceText(text));
     }
 
+    public void doSwipeDown(@IdRes int view) {
+        onView(withId(view)).perform(ViewActions.swipeDown());
+    }
+
 
     public void doReplaceAndCloseKeyboard(@IdRes int view, String text) {
         onView(withId(view)).perform(replaceText(text), closeSoftKeyboard());
@@ -158,6 +162,12 @@ public abstract class BaseTest {
     public void doScrollAndClickInScrollView(@IdRes int view) {
         onView(withId(view)).perform(customScrollTo, click());
     }
+
+    public void doClickWithIndexInScroll(@IdRes int view, int index) {
+        onView(withIndex(withId(view), index)).perform(customScrollTo,click());
+    }
+
+
 
     public void doClickItemInSpinner(int index) {
         onData(anything())

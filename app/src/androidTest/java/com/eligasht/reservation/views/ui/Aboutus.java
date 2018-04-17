@@ -18,7 +18,7 @@ public class Aboutus extends BaseTest {
     public void runTest() {
         doClick(R.id.btnMenu);
         doClick(R.id.btnAbout);
-        sleep(1000);
+        sleep(2000);
         pressBack(TestConst.Aboutus_Back);
     }
 }
