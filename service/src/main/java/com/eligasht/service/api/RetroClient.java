@@ -202,6 +202,10 @@ public interface RetroClient {
     Observable<ResponsePurchasePackage> RESPONSE_PURCHASE_PACKAGE_OBSERVABLE(
             @Body RequestPurchasePackage requestPurchasePackage
     );
+    @POST(Const.GetPreFactorDetailsPackageAvil)
+    Observable<ResponseGePreFactorDetails> RESPONSE_GE_PRE_FACTOR_DETAILS_OBSERVABLE(
+            @Body RequestGePreFactorDetails requestGePreFactorDetailsPack
+    );
 
 
 
@@ -215,8 +219,8 @@ public interface RetroClient {
 
 
 
-    @POST(Const.GetPreFactorDetailsPackageAvil)
+   /* @POST(Const.GetPreFactorDetailsPackageAvil)
     Observable<ResponseGePreFactorDetails> RESPONSE_GE_PRE_FACTOR_DETAILS_OBSERVABLE(
             @Body RequestGePreFactorDetails requestGePreFactorDetailsPack
-    );
+    );*/
 }

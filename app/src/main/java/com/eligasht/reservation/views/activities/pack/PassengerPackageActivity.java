@@ -1523,89 +1523,93 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 Utility.disableEnableControls(true, rlRoot);
                 try {
 
+                    if (responseGePreFactorDetails.getGetPreFactorDetailsResult().getErrors() != null ) {
+                        AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerPackageActivity.this);
+                        AlertDialogPassengerFlight.setText(responseGePreFactorDetails.getGetPreFactorDetailsResult().getErrors().get(0).getMessage(), getString(R.string.massege));
+                    }else {
+                        GetPreFactorDetailsResult GetAirportsResult = responseGePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
+                        PreFactor jArray = GetAirportsResult.getPreFactor();//FactorSummary
 
-                    GetPreFactorDetailsResult GetAirportsResult = responseGePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
-                    PreFactor jArray = GetAirportsResult.getPreFactor();//FactorSummary
-
-                    FactorSummary jFact = jArray.getFactorSummary();
-                    int RqBase_ID = jFact.getRqBaseID();
-                    long totalprice = jFact.getTotalPrice();
-                    if (jFact.getOnlinePaymentURL() == null || jFact.getOnlinePaymentURL().equals("") || TextUtils.isEmpty(jFact.getOnlinePaymentURL())) {
-                        btn_pardakht_factor.setVisibility(View.INVISIBLE);
-                    } else {
-                        paymentUrl = jFact.getOnlinePaymentURL();
-                    }
-                    tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " " + getString(R.string.Rial));
+                        FactorSummary jFact = jArray.getFactorSummary();
+                        int RqBase_ID = jFact.getRqBaseID();
+                        long totalprice = jFact.getTotalPrice();
+                        if (jFact.getOnlinePaymentURL() == null || jFact.getOnlinePaymentURL().equals("") || TextUtils.isEmpty(jFact.getOnlinePaymentURL())) {
+                            btn_pardakht_factor.setVisibility(View.INVISIBLE);
+                        } else {
+                            paymentUrl = jFact.getOnlinePaymentURL();
+                        }
+                        tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " " + getString(R.string.Rial));
 //for hotel==========================================================================================
-                    final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
-                    recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
-                    recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
-                    ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
-                    List<PreFactorHotel> jArray2 = jArray.getPreFactorHotels();
-                    for (int i = 0; i < jArray2.size(); i++) {
-                        hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
-                                Utility.dateShow(jArray2.get(i).getHotelChekin()),
-                                Utility.dateShow(jArray2.get(i).getHotelChekout()),
-                                jArray2.get(i).getAdlCount() + "",
-                                jArray2.get(i).getChdCount() + "", jArray2.get(i).getRoomTitleFa()));
-                    }
-                    if (!hotelPreFactorModels.isEmpty()) {
-                        recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
-                        llDetailHotel.setVisibility(View.VISIBLE);
-                    }
+                        final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
+                        recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
+                        recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
+                        ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
+                        List<PreFactorHotel> jArray2 = jArray.getPreFactorHotels();
+                        for (int i = 0; i < jArray2.size(); i++) {
+                            hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
+                                    Utility.dateShow(jArray2.get(i).getHotelChekin()),
+                                    Utility.dateShow(jArray2.get(i).getHotelChekout()),
+                                    jArray2.get(i).getAdlCount() + "",
+                                    jArray2.get(i).getChdCount() + "", jArray2.get(i).getRoomTitleFa()));
+                        }
+                        if (!hotelPreFactorModels.isEmpty()) {
+                            recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
+                            llDetailHotel.setVisibility(View.VISIBLE);
+                        }
 //for passenger======================================================================================
-                    final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
-                    recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
-                    recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
-                    ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
-                    List<RequestPassenger> jArray3 = jArray.getRequestPassenger();
-                    for (int i = 0; i < jArray3.size(); i++) {
-                        passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.get(i).getGender() + "", jArray3.get(i).getNationality(),
-                                jArray3.get(i).getRqPassengerBirthdate(), jArray3.get(i).getRqPassengerPassNo(),
-                                jArray3.get(i).getRqPassengerName(), (String) jArray3.get(i).getRqPassengerNationalCode()));
+                        final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+                        recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
+                        recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
+                        ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
+                        List<RequestPassenger> jArray3 = jArray.getRequestPassenger();
+                        for (int i = 0; i < jArray3.size(); i++) {
+                            passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.get(i).getGender() + "", jArray3.get(i).getNationality(),
+                                    jArray3.get(i).getRqPassengerBirthdate(), jArray3.get(i).getRqPassengerPassNo(),
+                                    jArray3.get(i).getRqPassengerName(), (String) jArray3.get(i).getRqPassengerNationalCode()));
+                        }
+                        if (!passengerPreFactorModels.isEmpty()) {
+                            llDetailPassanger.setVisibility(View.VISIBLE);
+                            recyclerViewPassenger.setAdapter(new PassangerPreFactorAdapter(passengerPreFactorModels));
+                        }
+                        //for Services=============================================================================
+                        final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
+                        recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
+                        recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
+                        ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
+                        List<PreFactorService> jArray4 = jArray.getPreFactorServices();
+                        for (int i = 0; i < jArray4.size(); i++) {
+                            servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
+                                    jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
+                                    jArray4.get(i).getCityFa(), jArray4.get(i).getServiceNameFa(), jArray4.get(i).getCountryFa()));
+                        }
+                        if (!servicePreFactorModels.isEmpty()) {
+                            llDetailService.setVisibility(View.VISIBLE);
+                            recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
+                        }
+                        //for flight==================================================================================
+                        final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
+                        recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
+                        recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
+                        ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
+                        List<PreFactorFlight> jArray5 = jArray.getPreFactorFlights();
+                        for (int i = 0; i < jArray5.size(); i++) {
+                            flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameFa(),
+                                    jArray5.get(i).getDepAirPortFa(),
+                                    jArray5.get(i).getArrAirPortFa(),
+                                    Utility.dateShow(jArray5.get(i).getFltDate()),
+                                    jArray5.get(i).getFltTime(),
+                                    //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+                                    jArray5.get(i).getFltCheckinTime(),
+                                    jArray5.get(i).getFltNumber(),
+                                    jArray5.get(i).getAirlineNameFa(),
+                                    jArray5.get(i).getDepartureCityFa(), jArray5.get(i).getAirlineCode()));
+                        }
+                        if (!flightPreFactorModels.isEmpty()) {
+                            llDetailFlight.setVisibility(View.VISIBLE);
+                            recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
+                        }
+                        setAnimation();
                     }
-                    if (!passengerPreFactorModels.isEmpty()) {
-                        llDetailPassanger.setVisibility(View.VISIBLE);
-                        recyclerViewPassenger.setAdapter(new PassangerPreFactorAdapter(passengerPreFactorModels));
-                    }
-                    //for Services=============================================================================
-                    final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
-                    recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
-                    recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
-                    ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
-                    List<PreFactorService> jArray4 = jArray.getPreFactorServices();
-                    for (int i = 0; i < jArray4.size(); i++) {
-                        servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
-                                jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
-                                jArray4.get(i).getCityFa(), jArray4.get(i).getServiceNameFa(), jArray4.get(i).getCountryFa()));
-                    }
-                    if (!servicePreFactorModels.isEmpty()) {
-                        llDetailService.setVisibility(View.VISIBLE);
-                        recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
-                    }
-                    //for flight==================================================================================
-                    final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
-                    recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
-                    recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
-                    ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
-                    List<PreFactorFlight> jArray5 = jArray.getPreFactorFlights();
-                    for (int i = 0; i < jArray5.size(); i++) {
-                        flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameFa(),
-                                jArray5.get(i).getDepAirPortFa(),
-                                jArray5.get(i).getArrAirPortFa(),
-                                Utility.dateShow(jArray5.get(i).getFltDate()),
-                                jArray5.get(i).getFltTime(),
-                                //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
-                                jArray5.get(i).getFltCheckinTime(),
-                                jArray5.get(i).getFltNumber(),
-                                jArray5.get(i).getAirlineNameFa(),
-                                jArray5.get(i).getDepartureCityFa(), jArray5.get(i).getAirlineCode()));
-                    }
-                    if (!flightPreFactorModels.isEmpty()) {
-                        llDetailFlight.setVisibility(View.VISIBLE);
-                        recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
-                    }
-                    setAnimation();
                 } catch (Exception e) {
                     Toast.makeText(PassengerPackageActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 }
@@ -1614,7 +1618,10 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
             @Override
             public void onError(String message) {
-                Toast.makeText(PassengerPackageActivity.this, message.toString(), Toast.LENGTH_LONG).show();
+                rlLoading.setVisibility(View.GONE);
+                Utility.disableEnableControls(true, rlRoot);
+                AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerPackageActivity.this);
+                AlertDialogPassengerFlight.setText(message.toString(), getString(R.string.massege));
             }
         }, requestGePreFactorDetails);
     }
@@ -1655,7 +1662,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         passList.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
                         passList.setNationality(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
                         passList.setNationalityID(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
-                        // passList.add("Nationality_ID", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
                         passList.setPackRoomTypeID(packageRoomNoToRequestList.get(i).getPackRoomType_ID());
                         passList.setRoomNo(packageRoomNoToRequestList.get(i).getRoom_No());
                         passList.setRqPassengerAddress(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
@@ -1672,7 +1678,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         passList.setRqPassengerTel(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
                         passLists.add(passList);
                     }
-                    request.setPassList(passLists);//"PassList", detailJsonArray);
+                    request.setPassList(passLists);
                 }
                 ////kharidar
                 PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerPackageActivity.this);
@@ -1697,11 +1703,9 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                 request.setIdentity(identity);
 
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
 
         requestPurchasePackage.setRequest(request);
@@ -1758,7 +1762,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         }
 
     }
-
 
     @Override
     public void onError(String message) {

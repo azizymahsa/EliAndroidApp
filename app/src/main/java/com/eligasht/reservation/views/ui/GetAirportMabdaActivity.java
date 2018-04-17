@@ -116,7 +116,6 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
         mAdapter.setData(data);
         listAirPort.setAdapter(mAdapter);
 
-
         //////////////////////////Remove recent
         CursorManager cursorManager1 = recentCity_table.getCountRow();
         System.out.println("count:" + cursorManager1.getInt("COUNT(Id)"));
