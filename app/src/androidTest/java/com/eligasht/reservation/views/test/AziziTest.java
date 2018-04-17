@@ -8,7 +8,7 @@ import com.eligasht.reservation.views.ui.Flight;
 import com.eligasht.reservation.views.ui.ForgetPassword;
 import com.eligasht.reservation.views.ui.Login;
 
-public class AiziTest extends BaseTest {
+public class AziziTest extends BaseTest {
     @Override
     public void runTest() {
         AppStartup.newInstance().runTest();

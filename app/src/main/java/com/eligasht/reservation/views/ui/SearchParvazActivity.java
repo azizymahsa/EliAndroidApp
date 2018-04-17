@@ -342,7 +342,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         // get the listview
         expListViewExpanding = findViewById(R.id.lvExp);
         // preparing list data
-       expandingListData(true);
+        expandingListData(true);
         listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
         // setting list adapter
         expListViewExpanding.setAdapter(listAdapterExpanding);
@@ -512,8 +512,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 txtNoResult.setText(responsSearchFlight.getSearchFlightsResult().getErrors().get(0).getDetailedMessage());
                 linear_no_result.setVisibility(View.VISIBLE);
             }else{
-            if (responsSearchFlight.getSearchFlightsResult().getFlights().size() > 0)
-                responsSearchFlight.getSearchFlightsResult().getFlights().get(0).getBaseFare();
+                if (responsSearchFlight.getSearchFlightsResult().getFlights().size() > 0)
+                    responsSearchFlight.getSearchFlightsResult().getFlights().get(0).getBaseFare();
 
                 if (Locale.getDefault().getLanguage().equals("fa")) {
                     getDataFaJson(responsSearchFlight);
@@ -1108,11 +1108,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
             txtNoResult.setText(R.string.NoResult);
             if(flag && flightsList==null )
-            linear_no_result.setVisibility(View.VISIBLE);
+                linear_no_result.setVisibility(View.VISIBLE);
             else if (flag && flightsList.size()>0)
                 linear_no_result.setVisibility(View.GONE);
             else
-             linear_no_result.setVisibility(View.VISIBLE);
+                linear_no_result.setVisibility(View.VISIBLE);
 
         }
     }//end expanding listdata
@@ -2377,7 +2377,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 flightSegment.setFltDurationH(jPricedIfdgtinerary.getFltDurationH());
                 flightSegment.setFltDurationM(jPricedIfdgtinerary.getFltDurationM());
                 flightSegment.setIsDepartureSegment(jPricedIfdgtinerary.getIsDepartureSegment());
-                flightSegment.setOperatingAirlineNameEn(jPricedIfdgtinerary.getOperatingAirlineNameEn());
+                flightSegment.setOperatingAirlineNameEn(jPricedIfdgtinerary.getOperatingAirlineNameEn()+"");
                 //List<flightSegment> SegmentList ;
                 SegmentList.add(flightSegment);
                 if (jPricedIfdgtinerary.getIsDepartureSegment()) {
@@ -2694,7 +2694,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 flightSegment.setFltDurationH(jPricedIfdgtinerary.getFltDurationH());
                 flightSegment.setFltDurationM(jPricedIfdgtinerary.getFltDurationM());
                 flightSegment.setIsDepartureSegment(jPricedIfdgtinerary.getIsDepartureSegment());
-                flightSegment.setOperatingAirlineNameEn(jPricedIfdgtinerary.getOperatingAirlineNameEn());
+                flightSegment.setOperatingAirlineNameEn(jPricedIfdgtinerary.getOperatingAirlineNameEn()+"");
                 //List<flightSegment> SegmentList ;
                 SegmentList.add(flightSegment);
                 if (jPricedIfdgtinerary.getIsDepartureSegment()) {
