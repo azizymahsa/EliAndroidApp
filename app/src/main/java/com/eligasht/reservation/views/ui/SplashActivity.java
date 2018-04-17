@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustEvent;
@@ -132,6 +133,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         lottieAnimationView = findViewById(R.id.animation_view);
         tvVer.setText(BuildConfig.VERSION_NAME);
         lottieAnimationView.addAnimatorListener(this);
+        Toast.makeText(this, ":)", Toast.LENGTH_SHORT).show();
     }
 
     @Override

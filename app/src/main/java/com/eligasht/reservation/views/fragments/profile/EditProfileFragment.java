@@ -161,21 +161,19 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    chk_gender_man.setChecked(false);
-
-                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.woman));
+                    chk_gender_woman.setChecked(false);
+                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.man));
 
                 }
             }
         });
 
-        chk_gender_man.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        chk_gender_woman.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    chk_gender_woman.setChecked(false);
-
-                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.man));
+                    chk_gender_man.setChecked(false);
+                    imageView.setImageDrawable(getResources().getDrawable(R.drawable.woman));
 
                 }
             }

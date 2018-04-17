@@ -181,7 +181,9 @@
                             android:maxLines="1"
                             android:singleLine="true"
                             android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/_15dp_normal_textSize" />
+                            android:textSize="@dimen/_15dp_normal_textSize"
+                            android:clickable="false"
+                            android:editable="false"/>
 
 
                     </android.support.design.widget.TextInputLayout>
@@ -572,8 +574,8 @@
 
                         <RadioButton
                             android:id="@+id/chB_woman"
-                            android:layout_width="@dimen/_20dp"
-                            android:layout_height="@dimen/_20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginBottom="5dp"
                             android:layout_marginLeft="@dimen/_5dp_margin"
@@ -593,8 +595,8 @@
 
                         <RadioButton
                             android:id="@+id/chB_man"
-                            android:layout_width="@dimen/_20dp"
-                            android:layout_height="@dimen/_20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_margin="5dp"
                             />
