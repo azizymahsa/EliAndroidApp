@@ -133,7 +133,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         lottieAnimationView = findViewById(R.id.animation_view);
         tvVer.setText(BuildConfig.VERSION_NAME);
         lottieAnimationView.addAnimatorListener(this);
-        Toast.makeText(this, ":)", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -249,7 +248,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                     Hawk.put("adjust", false);
                 }
                 if (startupServiceResponse.getMobileAppStartupServiceResult().getUserEntranceResponse().getCanEnter()) {
-                    try {
+
                         String app = BuildConfig.VERSION_NAME;
                         String server = startupServiceResponse.getMobileAppStartupServiceResult().getUserEntranceResponse().getMinAppVersion();
                         if (Double.valueOf(app.replace(".", "")) < Double.valueOf(server.replace(".", ""))) {
@@ -274,10 +273,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                             }
                             Prefs.putBoolean("isFirstEntrance", false);
                         }
-                    } catch (Exception e) {
-                        splashDialog.showAlert();
-                        e.printStackTrace();
-                    }
+             
                 } else {
                     updateAlert.show();
                     updateAlert.isForce(true);
