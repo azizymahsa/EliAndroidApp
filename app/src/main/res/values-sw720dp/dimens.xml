@@ -141,7 +141,7 @@
     <dimen name="_100dpleftFlight">200dp</dimen>
     <dimen name="_120dp_p">200dp</dimen>
     <dimen name="_5dp_no_tablet">0dp</dimen>
-    <dimen name="_5dp_flight_weight">25dp</dimen>
+    <dimen name="_5dp_flight_weight">10dp</dimen>
 
 
 </resources>

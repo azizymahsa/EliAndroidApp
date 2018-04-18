@@ -71,12 +71,6 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    /*
-    public void setData(String searchText) {
-        this.cursor = new Customers_Table().getCustomersFilter(searchText);
-        //initiated = true;
-        notifyDataSetChanged();
-    }*/
     @Override
     public int getCount() {
         return data == null ? 0 : data.size();
