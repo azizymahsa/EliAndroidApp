@@ -21,9 +21,9 @@
             android:id="@+id/txtOption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
             android:layout_marginBottom="@dimen/_30dp_margin"
-            android:layout_marginLeft="@dimen/_30dp_margin"
+            android:layout_marginRight="@dimen/_30dp_margin"
             android:layout_marginTop="@dimen/_30dp">
 
             <ImageView
@@ -48,8 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="@dimen/_5dp_margin"
-            android:layout_toRightOf="@+id/txtOption"
+            android:layout_marginRight="@dimen/_5dp_margin"
+            android:layout_toLeftOf="@+id/txtOption"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -60,11 +60,12 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout_maghsad"
+
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_gravity="left|center"
+                android:layout_gravity="right|center"
                 android:layout_marginTop="20dp"
-                android:layout_toRightOf="@+id/ivHotel"
+                android:layout_toLeftOf="@+id/ivHotel"
                 android:layout_weight="100"
                 android:gravity="right|center"
                 android:orientation="vertical">
@@ -74,7 +75,8 @@
                     android:id="@+id/lblProductID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
+
+                    android:gravity="right"
                     android:text="@string/departure_from"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/_15dp_normal_textSize" />
@@ -83,7 +85,7 @@
                     android:id="@+id/tvMabda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
+                    android:gravity="right"
                     android:text="@string/istanbul"
                     android:textColor="#fff"
                     android:textSize="@dimen/_20dp_normal_textSize"
@@ -91,29 +93,29 @@
 
                 <TextView
                     android:id="@+id/tvMabdaEn"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
+                    android:gravity="right"
                     android:text="Istanbul,Turkey "
                     android:textColor="#fff"
                     android:textSize="@dimen/_12dp_normal_textSize" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout_mabda"
+                android:id="@+id/linearLayout_mabda_2"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_gravity="left|center"
+                android:layout_gravity="right|center"
                 android:layout_marginBottom="10dp"
-                android:layout_toRightOf="@+id/ivHotel"
                 android:layout_weight="100"
-                android:gravity="left"
+                android:gravity="right"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
+                    android:gravity="right"
                     android:text="@string/departure_to"
                     android:textColor="#ffffff"
                     android:textSize="@dimen/_15dp_normal_textSize" />
@@ -122,7 +124,7 @@
                     android:id="@+id/txtCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
+                    android:gravity="right"
                     android:text=" استانبول "
                     android:textColor="#fff"
                     android:textSize="@dimen/_20dp_normal_textSize"
@@ -132,7 +134,7 @@
                     android:id="@+id/lbl_city_english"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
+                    android:gravity="right"
                     android:text="Istanbul,Turkey "
                     android:textColor="#fff"
                     android:textSize="@dimen/_12dp_normal_textSize" />
@@ -173,64 +175,6 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/llRaft"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tarikh_az"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_4dp_normal_margin"
-                        android:layout_marginTop="@dimen/_15dp_normal_margin"
-
-                        android:gravity="left"
-                        android:text="@string/checkin_date"
-                        android:textAppearance="@style/IrsansBold"
-                        android:textColor="@color/text_color_2"
-                        android:textSize="@dimen/_12dp_normal_textSize"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:id="@+id/btn_depart_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:id="@+id/lottie_checkin"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.2"
-                            android:gravity="center"
-                            card_view:lottie_autoPlay="false"
-                            card_view:lottie_loop="false"
-                            card_view:lottie_fileName="lottie/calendar.json"
-                            />
-
-                        <TextView
-                            android:id="@+id/tvRaft"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/_2dp_margin"
-                            android:layout_weight="0.8"
-                            android:background="#fff"
-                            android:gravity="left|center"
-                            android:text="@string/please_select_one"
-                            android:textColor="@color/text_color_2"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:textStyle="bold" />
-
-
-                    </LinearLayout>
-
-                    <!-- android:text="پیش نمایش" -->
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/linear_picker"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
@@ -244,9 +188,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
 
-                        android:layout_marginLeft="@dimen/_4dp_normal_margin"
+                        android:layout_marginRight="@dimen/_4dp_normal_margin"
                         android:layout_marginTop="@dimen/_15dp_normal_margin"
-                        android:gravity="left"
+                        android:gravity="right"
                         android:text="@string/checkout_date"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/text_color_2"
@@ -259,6 +203,18 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
+                        <TextView
+                            android:id="@+id/tvBargasht"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/_2dp_margin"
+                            android:layout_weight="0.8"
+                            android:background="#fff"
+                            android:gravity="right|center"
+                            android:text="@string/please_select_one"
+                            android:textColor="@color/text_color_2"
+                            android:textSize="@dimen/_12dp_normal_textSize"
+                            android:textStyle="bold" />
 
                         <com.airbnb.lottie.LottieAnimationView
                             android:id="@+id/lottie_checkout"
@@ -271,19 +227,6 @@
                             card_view:lottie_fileName="lottie/calendar.json"
                             />
 
-                        <TextView
-                            android:id="@+id/tvBargasht"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/_2dp_margin"
-                            android:layout_weight="0.8"
-                            android:background="#fff"
-                            android:gravity="left|center"
-                            android:text="@string/please_select_one"
-                            android:textColor="@color/text_color_2"
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:textStyle="bold" />
-
                     </LinearLayout>
 
 
@@ -291,6 +234,62 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/llRaft"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tarikh_az"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_4dp_normal_margin"
+                        android:layout_marginTop="@dimen/_15dp_normal_margin"
+
+                        android:gravity="right"
+                        android:text="@string/checkin_date"
+                        android:textAppearance="@style/IrsansBold"
+                        android:textColor="@color/text_color_2"
+                        android:textSize="@dimen/_12dp_normal_textSize"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/btn_depart_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvRaft"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/_2dp_margin"
+                            android:layout_weight="0.8"
+                            android:background="#fff"
+                            android:gravity="right|center"
+                            android:text="@string/please_select_one"
+                            android:textColor="@color/text_color_2"
+                            android:textSize="@dimen/_12dp_normal_textSize"
+                            android:textStyle="bold" />
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lottie_checkin"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:gravity="center"
+                            card_view:lottie_autoPlay="false"
+                            card_view:lottie_loop="false"
+                            card_view:lottie_fileName="lottie/calendar.json"
+                          />
+
+                    </LinearLayout>
+
+                    <!-- android:text="پیش نمایش" -->
+
+                </LinearLayout>
 
             </LinearLayout>
 
