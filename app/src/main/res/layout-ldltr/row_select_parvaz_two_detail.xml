@@ -171,21 +171,21 @@
             android:id="@+id/weightLinear"
             android:layout_width="match_parent"
             android:layout_height="22dp"
+
             android:background="#ffffff"
             android:gravity="center"
             android:minHeight="@dimen/_68dp_f"
             android:orientation="horizontal"
-            android:tag="front"
+            android:paddingLeft="@dimen/_10dpTabletSize"
             android:layout_marginBottom="@dimen/_5dp_flight_weight">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_68dp_f"
-                android:layout_above="@+id/weightLinear"
+                android:layout_above="@+id/linearLayout1"
                 android:layout_gravity="left|top"
                 android:layout_weight="10"
-                android:orientation="vertical"
-                android:visibility="invisible">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -196,11 +196,13 @@
                     android:text="11:40 AM"
                     android:textAppearance="@style/fontello_plan"
                     android:textColor="#003399"
+                    android:visibility="invisible"
                     android:textSize="@dimen/_12dp_normal_textSize" />
 
             </LinearLayout>
 
             <ImageView
+                android:visibility="invisible"
                 android:layout_width="@dimen/_8dp_f"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="2dp"
@@ -209,8 +211,7 @@
                 android:paddingBottom="3dp"
                 android:paddingTop="3dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/blb"
-                android:visibility="invisible" />
+                android:src="@drawable/blb" />
 
 
             <LinearLayout
@@ -222,14 +223,15 @@
                 android:layout_weight="80"
                 android:gravity="left|top"
                 android:orientation="horizontal"
-                android:paddingLeft="@dimen/_10dpTabletSize">
+                android:paddingLeft="@dimen/_10dpTabletSize"
+                >
 
 
                 <TextView
                     android:id="@+id/txtPieces"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginLeft="3dip"
                     android:layout_marginRight="2dp"
                     android:gravity="left|center"
 
