@@ -1,9 +1,11 @@
 package com.eligasht.reservation.views.ui;
+
 import com.eligasht.R;
 import com.eligasht.reservation.views.TestConst;
 import com.eligasht.service.helper.Const;
 
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+
 /**
  * Created by Reza Nejati on 17,April,2018
  */
@@ -17,7 +19,7 @@ public class Hotel extends BaseTest {
     public void runTest() {
         doClick(R.id.btnMenu);
         doClick(R.id.btnHotel);
-        sleep(SingletonContext.getInstance().getContext().getResources().getBoolean(R.bool.isTablet) ? 1000 : 0);
+       sleep(1000);
         doClick(R.id.citySearch);
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Dest);
         sleep(Const.MOCK ? 0 : 5000);
@@ -122,6 +124,7 @@ public class Hotel extends BaseTest {
         }
         doClick(R.id.btn_taeed_khadamat);
         sleep(Const.MOCK ? 0 : 5000);
+        doClick(R.id.llHome);
 
     }
 }
