@@ -53,7 +53,6 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_room);
         SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
-
         helper.setEdgeMode(false)
                 .setParallaxMode(true)
                 .setParallaxRatio(3)
