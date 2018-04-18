@@ -58,11 +58,13 @@ public class Hotel extends BaseTest {
             doScrollAndClickInScrollView(R.id.btnSortComment);
             doClickWithIndex(R.id.expand_text_view, 0);
             doScrollAndClickInScrollView(R.id.btnComment);
+            sleep(1000);
             doClick(R.id.btnOk);
         } catch (Exception e) {
             sleep(Const.MOCK ? 1500 : 10000);
            try {
                doClick(R.id.btnOneComment);
+               sleep(1000);
                doClick(R.id.btnOk);
            }
            catch (Exception e2)
