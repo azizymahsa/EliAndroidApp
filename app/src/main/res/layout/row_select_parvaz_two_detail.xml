@@ -82,10 +82,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="50"
                         android:gravity="right|center"
-
+                        android:textAllCaps="false"
                         android:paddingTop="2dp"
                         android:text="3h 45 m "
-
                         android:textColor="#0e874e"
                         android:textSize="@dimen/_10dp_textSize" />
                 </LinearLayout>
@@ -117,7 +116,6 @@
                 android:paddingTop="3dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/blb" />
-
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -170,7 +168,7 @@
         <LinearLayout
             android:id="@+id/weightLinear"
             android:layout_width="match_parent"
-            android:layout_height="22dp"
+            android:layout_height="23dp"
             android:layout_marginBottom="@dimen/_5dp_flight_weight"
             android:background="#ffffff"
             android:gravity="center"
@@ -184,7 +182,6 @@
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-
                 android:layout_weight="80"
                 android:gravity="right|top"
                 android:orientation="horizontal">
@@ -200,7 +197,7 @@
                     android:text="@string/weight"
                     android:textAppearance="@style/fontello_plan"
                     android:textColor="@color/light_orang"
-                    android:textSize="@dimen/_14dp_txtSize" />
+                    android:textSize="@dimen/_16dp_normal_textSize" />
 
                 <TextView
                     android:id="@+id/txtWeight"
@@ -209,7 +206,6 @@
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:gravity="right|center"
-
                     android:text="30"
                     android:textAppearance="@style/IconFonts"
                     android:textColor="#003399"
@@ -220,9 +216,8 @@
                     android:id="@+id/iconPieces"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginLeft="4dp"
                     android:layout_marginRight="2dp"
-
                     android:layout_marginTop="3dp"
                     android:gravity="left|center"
                     android:text="@string/Pieces"
@@ -235,9 +230,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="2dp"
-
                     android:gravity="right|center"
-
                     android:text="×1"
                     android:textAppearance="@style/IconFonts"
                     android:textColor="#003399"
@@ -265,7 +258,7 @@
                 android:layout_weight="10"
                 android:orientation="vertical"
                 android:visibility="invisible">
- 
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
@@ -320,7 +313,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-
                     android:layout_marginRight="2dp"
                     android:text="@string/curency"
                     android:textColor="#24b574"
