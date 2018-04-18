@@ -261,6 +261,8 @@ public class MainActivity extends Base implements View.OnClickListener {
                 startActivity(intent3);
                 break;
             case R.id.lottieUserMenu:
+                new Handler().postDelayed(this::closeDrawer, 500);
+
 
 
                 try {
@@ -278,6 +280,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
                 break;
             case R.id.rlHedaer:
+                new Handler().postDelayed(this::closeDrawer, 500);
 
 
                 try {
@@ -296,6 +299,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 break;
             case R.id.rlUser:
 
+
                 if (expandableLayout.isExpanded()) {
 
                     expandableLayout.collapse();
@@ -309,6 +313,8 @@ public class MainActivity extends Base implements View.OnClickListener {
 
                 break;
             case R.id.btnExit:
+                new Handler().postDelayed(this::closeDrawer, 500);
+
                 new LogOutAlert(this);
                 break;
             case R.id.btnLastBuy:

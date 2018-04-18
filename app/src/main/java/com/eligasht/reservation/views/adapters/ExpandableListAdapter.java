@@ -154,11 +154,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView txtPieces = convertView.findViewById(R.id.txtPieces);
         TextView txtWeight = convertView.findViewById(R.id.txtWeight);
         weightLinear.setVisibility(View.GONE);
-        if (item.weight.length()>0) {
-            weightLinear.setVisibility(View.VISIBLE);
-            txtWeight.setText(item.weight+"");
-            txtPieces.setText(item.Pieces+"×");
-        }
+        try{
+            if (item.weight.length()>0) {
+                weightLinear.setVisibility(View.VISIBLE);
+                txtWeight.setText(item.weight+"");
+                txtPieces.setText(item.Pieces+"×");
+            }
+        }catch (Exception e){}
+
         //nerkh
         if (item.AdlBaseFare > 0) {
             txtAdlCostP.setText(String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
