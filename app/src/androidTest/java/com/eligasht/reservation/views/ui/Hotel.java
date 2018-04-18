@@ -18,13 +18,10 @@ public class Hotel extends BaseTest {
     public void runTest() {
         doClick(R.id.btnMenu);
         doClick(R.id.btnHotel);
-        sleep(500);
         doClick(R.id.citySearch);
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Dest);
-        sleep(Const.MOCK ? 500 : 5000);
+        sleep(Const.MOCK ? 0 : 5000);
         doClickWithIndex(R.id.llLayout, 0);
-        sleep(500);
-
         doClick(R.id.cvRoom);
         doClickWithIndex(R.id.btnPlusAdt,0);
         doClickWithIndex(R.id.btnPlusAdt,0);

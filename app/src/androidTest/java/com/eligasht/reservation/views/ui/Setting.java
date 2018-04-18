@@ -17,8 +17,9 @@ public class Setting extends BaseTest {
         doClick(R.id.btnMenu);
         doClick(R.id.btn_setting);
         doClick(R.id.languageSpinner);
-        doClickItemInSpinner(1);
-        doClick(R.id.tvConfirm);
+//        doClickItemInSpinner(1);
+//        doClick(R.id.tvConfirm);
+        pressBack(2);
         AppStartup.newInstance().runTest();
     }
 }
