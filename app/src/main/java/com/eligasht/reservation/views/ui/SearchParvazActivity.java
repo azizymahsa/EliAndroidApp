@@ -1581,6 +1581,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 flightSegment.setFltDurationM(jPricedIfdgtinerary.getFltDurationM());
                 flightSegment.setIsDepartureSegment(jPricedIfdgtinerary.getIsDepartureSegment());
                 flightSegment.setOperatingAirlineNameEn(jPricedIfdgtinerary.getOperatingAirlineNameEn() + "");
+                try {
+                    flightSegment.setWeight(jPricedIfdgtinerary.getFreeBaggage().getWeight() + "");
+                    flightSegment.setPieces(jPricedIfdgtinerary.getFreeBaggage().getPieces() + "");
+                } catch (Exception e) {
+                }
                 //List<flightSegment> SegmentList ;
                 SegmentList.add(flightSegment);
                 if (jPricedIfdgtinerary.getIsDepartureSegment()) {
@@ -1620,6 +1625,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     flightSegmentTrue.setFltDurationH(jPricedIfdgtinerary.getFltDurationH());
                     flightSegmentTrue.setFltDurationM(jPricedIfdgtinerary.getFltDurationM());
                     flightSegmentTrue.setIsDepartureSegment(jPricedIfdgtinerary.getIsDepartureSegment());
+                    try {
+                        flightSegmentTrue.setWeight(jPricedIfdgtinerary.getFreeBaggage().getWeight() + "");
+                        flightSegmentTrue.setPieces(jPricedIfdgtinerary.getFreeBaggage().getPieces() + "");
+                    } catch (Exception e) {
+                    }
                     SegmentListTrue.add(flightSegmentTrue);
                 } else {
                     FlightSegmentFalse flightSegmentTrue = new FlightSegmentFalse();
@@ -1658,6 +1668,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     flightSegmentTrue.setFltDurationH(jPricedIfdgtinerary.getFltDurationH());
                     flightSegmentTrue.setFltDurationM(jPricedIfdgtinerary.getFltDurationM());
                     flightSegmentTrue.setIsDepartureSegment(jPricedIfdgtinerary.getIsDepartureSegment());
+                    try {
+                        flightSegmentTrue.setWeight(jPricedIfdgtinerary.getFreeBaggage().getWeight() + "");
+                        flightSegmentTrue.setPieces(jPricedIfdgtinerary.getFreeBaggage().getPieces() + "");
+                    } catch (Exception e) {
+                    }
                     SegmentListFalse.add(flightSegmentTrue);
                 }
                 flight.setSegmentList(SegmentList);
