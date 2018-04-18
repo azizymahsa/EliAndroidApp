@@ -18,9 +18,9 @@ public class FullTest extends BaseTest {
     @Override
     public void runTest() {
         AppStartup.newInstance().runTest();
-     //   ForgetPassword.newInstance().runTest();
-     //   LoginAndEditProfile.newInstance().runTest();
-       // Flight.newInstance().runTest();
+        ForgetPassword.newInstance().runTest();
+        LoginAndEditProfile.newInstance().runTest();
+        Flight.newInstance().runTest();
         Hotel.newInstance().runTest();
         TermsAndCond.newInstance().runTest();
         Setting.newInstance().runTest();
