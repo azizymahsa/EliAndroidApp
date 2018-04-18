@@ -116,6 +116,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         searchHotel = rootView.findViewById(R.id.searchHotel);
         searchHotel.setOnClickListener(this);
         ivImage.setOnClickListener(this);
+        txtCity.setOnClickListener(this);
         data = new ArrayList<ModelRowCountRoom>();
         ModelRowCountRoom model = new ModelRowCountRoom();
         model.setCountB(1);
@@ -212,7 +213,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         // TODO Auto-generated method stub
         switch (v.getId()) {
 
-            case R.id.linearLayout_mabda:
+            case R.id.txtCity:
                 Intent intent2 = new Intent(getActivity(), GetAirportHotelActivity.class);
                 intent2.putExtra("type", 1);
                 intent2.putExtra("position", "HF");
