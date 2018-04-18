@@ -24,9 +24,10 @@ public class HotelF extends BaseTest {
     public void runTest() {
         doClick(R.id.btnMenu);
         doClick(R.id.btnHotelFlight);
-        sleep(SingletonContext.getInstance().getContext().getResources().getBoolean(R.bool.isTablet) ? 1000 : 1000);
+        sleep(6000);
 
         doClick(R.id.linearLayout_mabda);
+        sleep(5000);
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Origin);
         sleep(Const.MOCK ? 0 : 2000);
         doClickWithIndex(R.id.text1, 0);
