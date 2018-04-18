@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_68dp_f"
             android:layout_marginTop="@dimen/_10dp_margin"
+            android:layout_marginBottom="@dimen/_5dp_no_tablet"
             android:background="#ffffff"
             android:gravity="center"
             android:minHeight="@dimen/_68dp_f"
@@ -169,15 +170,13 @@
         <LinearLayout
             android:id="@+id/weightLinear"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_30dp_f_h"
-            android:layout_marginBottom="@dimen/_5_flight_dp"
-
+            android:layout_height="22dp"
             android:background="#ffffff"
             android:gravity="center"
             android:minHeight="@dimen/_68dp_f"
             android:orientation="horizontal"
-
-            android:paddingLeft="@dimen/_10dpTabletSize">
+            android:tag="front"
+            android:layout_marginBottom="@dimen/_5dp_flight_weight">
 
             <LinearLayout
                 android:layout_width="0dp"
