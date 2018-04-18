@@ -213,6 +213,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         switch (v.getId()) {
 
             case R.id.linearLayout_mabda:
+                Toast.makeText(getActivity(), "asdasd", Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent(getActivity(), GetAirportHotelActivity.class);
                 intent2.putExtra("type", 1);
                 intent2.putExtra("position", "HF");

@@ -35,8 +35,21 @@ public class Hotel extends BaseTest {
         doClick(R.id.searchHotel);
         sleep(Const.MOCK ? 0 : 30000);
         doClickWithIndex(R.id.rlListItem, 0);
-        sleep(Const.MOCK ? 0 : 30000);
-        doClickTab(R.id.tab_layout, 1);
+        sleep(Const.MOCK ? 0 : 10000);
+        try{
+         doClickTab(R.id.tab_layout, 1);
+
+        }catch (Exception e){
+         sleep(Const.MOCK ? 0 : 10000);
+
+         doClickTab(R.id.tab_layout, 1);
+
+
+        }
+
+
+
+
         doClickTab(R.id.tab_layout, 2);
         doClickTab(R.id.tab_layout, 3);
         doClickTab(R.id.tab_layout, 1);
@@ -59,7 +72,7 @@ public class Hotel extends BaseTest {
         doClick(R.id.cbIsRecommended);
         doClick(R.id.cbSubmitName);
         doClick(R.id.btnConfirm);
-        sleep(Const.MOCK ? 0 : 10000);
+        sleep(Const.MOCK ? 0 : 5000);
         doClick(R.id.btnOk);
         doClickTab(R.id.tab_layout, 3);
         doClickWithIndex(R.id.btnPolicy, 0);
