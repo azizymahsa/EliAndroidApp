@@ -71,6 +71,22 @@ public class FlightSegmentTrue {
 		AirlineNameEn = airlineNameEn;
 	}
 */
+	public String getPieces() {
+		return Pieces;
+	}
+
+	public void setPieces(String pieces) {
+		Pieces = pieces;
+	}
+
+	private  String Pieces;
+	private  String weight;
+	public String getWeight() {
+		return weight;
+	}
+	public void setWeight(String weight) {
+		this.weight = weight;
+	}
 	public String getAirlineNameFa() {
 		return AirlineNameFa;
 	}

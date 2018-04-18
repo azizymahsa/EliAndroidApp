@@ -77,6 +77,24 @@ public class FlightSegment {
 	private String OperatingAirlineCode ;
 	private String OperatingAirlineNameEn ;
 	private String OperatingAirlineNameFa ;
+	private  String weight;
+	public String getWeight() {
+		return weight;
+	}
+	public void setWeight(String weight) {
+		this.weight = weight;
+	}
+
+	public String getPieces() {
+		return Pieces;
+	}
+
+	public void setPieces(String pieces) {
+		Pieces = pieces;
+	}
+
+	private  String Pieces;
+
 
     public String getAirlineCode() {
 		return AirlineCode;
@@ -388,6 +406,7 @@ public class FlightSegment {
 	public void setOperatingAirlineNameFa(String operatingAirlineNameFa) {
 		OperatingAirlineNameFa = operatingAirlineNameFa;
 	}
+
 
 
 }

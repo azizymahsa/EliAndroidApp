@@ -22,14 +22,13 @@
             android:id="@+id/fronttop"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_68dp_f"
-            android:layout_marginBottom="@dimen/_10dp_margin"
             android:layout_marginTop="@dimen/_10dp_margin"
             android:background="#ffffff"
             android:gravity="center"
             android:minHeight="@dimen/_68dp_f"
             android:orientation="horizontal"
-            android:tag="front"
-            android:paddingLeft="@dimen/_10dpTabletSize">
+            android:paddingLeft="@dimen/_10dpTabletSize"
+            android:tag="front">
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -38,7 +37,6 @@
                 android:layout_above="@+id/linearLayout1"
                 android:layout_gravity="left|top"
                 android:layout_weight="10"
-
                 android:orientation="vertical">
 
                 <TextView
@@ -78,8 +76,6 @@
 
             </LinearLayout>
 
-
-
             <ImageView
                 android:id="@+id/s1"
                 android:layout_width="@dimen/_8dp_f"
@@ -101,8 +97,8 @@
 
                 android:layout_weight="80"
                 android:gravity="left|top"
-                android:paddingLeft="@dimen/_10dpTabletSize"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_10dpTabletSize">
 
 
                 <TextView
@@ -111,12 +107,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="350"
+                    android:ellipsize="end"
                     android:gravity="left|top"
+                    android:singleLine="true"
                     android:text="استانبول"
                     android:textColor="#003399"
-                    android:textSize="@dimen/_12dp_normal_textSize"
-                    android:singleLine="true"
-                    android:ellipsize="end"/>
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
                 <LinearLayout
 
@@ -124,9 +120,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:layout_marginLeft="3dip"
+                    android:layout_marginTop="4dp"
                     android:layout_weight="50"
                     android:gravity="left|top"
-                    android:layout_marginTop="4dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -156,25 +152,141 @@
                     android:id="@+id/lblArrivalAirportR"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_marginLeft="3dip"
                     android:layout_marginTop="4dp"
                     android:layout_weight="350"
+                    android:ellipsize="end"
                     android:gravity="left|bottom"
-                    android:layout_marginLeft="3dip"
+                    android:singleLine="true"
                     android:text="استانبول"
                     android:textColor="#003399"
-                    android:textSize="@dimen/_12dp_normal_textSize"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
             </LinearLayout>
 
         </LinearLayout>
+        <!--   ////////////////////////////weight///////////////////////////////////// -->
+        <LinearLayout
+            android:id="@+id/weightLinear"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30dp_f_h"
+            android:layout_marginBottom="@dimen/_5_flight_dp"
+
+            android:background="#ffffff"
+            android:gravity="center"
+            android:minHeight="@dimen/_68dp_f"
+            android:orientation="horizontal"
+
+            android:paddingLeft="@dimen/_10dpTabletSize">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_68dp_f"
+                android:layout_above="@+id/weightLinear"
+                android:layout_gravity="left|top"
+                android:layout_weight="10"
+                android:orientation="vertical"
+                android:visibility="invisible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="350"
+                    android:gravity="center|top"
+                    android:paddingTop="3dp"
+                    android:text="11:40 AM"
+                    android:textAppearance="@style/fontello_plan"
+                    android:textColor="#003399"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/_8dp_f"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:gravity="right"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/blb"
+                android:visibility="invisible" />
+
+
+            <LinearLayout
+                android:id="@+id/linearWeight"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+
+                android:layout_weight="80"
+                android:gravity="left|top"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/_10dpTabletSize">
+
+
+                <TextView
+                    android:id="@+id/txtPieces"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:gravity="left|center"
+
+                    android:text="1×"
+                    android:textAppearance="@style/IconFonts"
+                    android:textColor="#003399"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
+
+                <TextView
+                    android:id="@+id/iconPieces"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="left|center"
+                    android:text="@string/Pieces"
+                    android:textAppearance="@style/fontello_plan"
+                    android:textColor="@color/light_orang"
+                    android:textSize="@dimen/_14dp_txtSize" />
+
+                <TextView
+                    android:id="@+id/txtWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:gravity="left|center"
+
+                    android:text="30"
+                    android:textAppearance="@style/IconFonts"
+                    android:textColor="#003399"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
+
+                <TextView
+                    android:id="@+id/iconWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:gravity="left|center"
+                    android:text="@string/weight"
+                    android:textAppearance="@style/fontello_plan"
+                    android:textColor="@color/light_orang"
+                    android:textSize="@dimen/_14dp_txtSize" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
         <!--   ////////////////////////////front bottom///////////////////////////////////// -->
 
 
         <LinearLayout
             android:id="@+id/linearTableNerkh"
+            android:layout_marginTop="@dimen/_10dp_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -184,15 +296,15 @@
                 android:id="@+id/editText1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30dp_flight"
-                android:layout_marginRight="2dp"
+                android:layout_gravity="center|center_vertical"
                 android:layout_marginBottom="@dimen/_1dp_flight"
+                android:layout_marginRight="2dp"
                 android:layout_marginTop="@dimen/_1dp_flight"
-                android:gravity="left|center_vertical"
                 android:background="#d5d9dc"
+                android:gravity="left|center_vertical"
                 android:paddingLeft="@dimen/_10dpTabletSize"
                 android:paddingRight="@dimen/_10dpTabletSize"
                 android:text="@string/costs_table"
-                android:layout_gravity="center|center_vertical"
                 android:textColor="#595959"
                 android:textSize="@dimen/_14dp_txtSize"
                 android:textStyle="bold" />
@@ -200,18 +312,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_marginLeft="@dimen/_10dpTabletSize"
-                android:layout_marginRight="@dimen/_10dpTabletSize"
                 android:layout_marginBottom="@dimen/_1dp_flight"
-              >
+                android:layout_marginLeft="@dimen/_10dpTabletSize"
+                android:layout_marginRight="@dimen/_10dpTabletSize">
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="0dp"
-                    android:layout_weight="50"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="2dp"
+                    android:layout_weight="50"
 
                     android:text="@string/base_price"
 
@@ -221,9 +332,9 @@
                 <TextView
                     android:id="@+id/txtAdlCostP"
                     android:layout_width="0dp"
-                    android:layout_weight="50"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="50"
                     android:gravity="right"
                     android:text="12,000,000"
                     android:textColor="#000000"
@@ -232,14 +343,14 @@
 
                 <TextView
                     android:id="@+id/txtAdlCostPR"
-                    android:text="@string/curency"
                     android:layout_width="0dp"
-                    android:layout_weight="8"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="8"
 
                     android:gravity="right"
-                    android:layout_marginRight="2dp"
+                    android:text="@string/curency"
 
                     android:textColor="#24b574"
                     android:textSize="@dimen/_13dp_normal_textSize" />
@@ -254,52 +365,50 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
+                android:layout_marginBottom="@dimen/_1dp_flight"
                 android:layout_marginLeft="@dimen/_10dpTabletSize"
                 android:layout_marginRight="@dimen/_10dpTabletSize"
-                android:layout_marginBottom="@dimen/_1dp_flight"
                 android:layout_marginTop="@dimen/_1dp_flight">
 
                 <TextView
                     android:id="@+id/textView5"
                     android:layout_width="0dp"
-                    android:layout_weight="50"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/_1dp_width"
                     android:layout_marginLeft="2dp"
+                    android:layout_marginTop="@dimen/_1dp_width"
+                    android:layout_weight="50"
                     android:gravity="left"
                     android:text="@string/tax"
                     android:textColor="#aaaaaa"
-                    android:layout_marginBottom="@dimen/_1dp_width"
-                    android:layout_marginTop="@dimen/_1dp_width"
                     android:textSize="@dimen/_12dp_normal_textSize" />
 
                 <TextView
                     android:id="@+id/txtTaxes"
                     android:layout_width="0dp"
-                    android:layout_weight="50"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="50"
+                    android:gravity="right"
                     android:text="12,000,000"
                     android:textColor="#000000"
-                    android:gravity="right"
                     android:textSize="@dimen/_13dp_normal_textSize"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtTaxesR"
-                    android:text="@string/curency"
                     android:layout_width="0dp"
-                    android:layout_weight="8"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="8"
 
                     android:gravity="right"
-                    android:layout_marginRight="2dp"
+                    android:text="@string/curency"
 
                     android:textColor="#24b574"
                     android:textSize="@dimen/_13dp_normal_textSize" />
-
-
 
 
             </LinearLayout>
@@ -312,52 +421,49 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
+                android:layout_marginBottom="@dimen/_1dp_flight"
                 android:layout_marginLeft="@dimen/_10dpTabletSize"
                 android:layout_marginRight="@dimen/_10dpTabletSize"
-                android:layout_marginBottom="@dimen/_1dp_flight"
                 android:layout_marginTop="@dimen/_1dp_flight">
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="0dp"
-                    android:layout_weight="50"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="2dp"
+                    android:layout_weight="50"
                     android:gravity="left"
                     android:text="@string/payable"
                     android:textColor="#000000"
                     android:textSize="@dimen/_13dp_normal_textSize"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtTotalFareCost"
                     android:layout_width="0dp"
-                    android:layout_weight="50"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="50"
+                    android:gravity="right"
                     android:text="12,000,000"
                     android:textColor="#000000"
-                    android:gravity="right"
                     android:textSize="@dimen/_13dp_normal_textSize"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/txtTotalFareCostR"
-                    android:text="@string/curency"
                     android:layout_width="0dp"
-                    android:layout_weight="8"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="8"
 
                     android:gravity="right"
-                    android:layout_marginRight="2dp"
+                    android:text="@string/curency"
 
                     android:textColor="#24b574"
                     android:textSize="@dimen/_13dp_normal_textSize" />
-
-
-
 
 
             </LinearLayout>
