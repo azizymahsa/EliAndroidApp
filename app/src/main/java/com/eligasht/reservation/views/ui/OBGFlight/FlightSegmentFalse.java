@@ -46,7 +46,22 @@ public class FlightSegmentFalse {
     private String DepartureAirportNameFa ;
 
     private String DepartureCityCode ;
+	private  String weight;
+	public String getPieces() {
+		return Pieces;
+	}
 
+	public void setPieces(String pieces) {
+		Pieces = pieces;
+	}
+
+	private  String Pieces;
+	public String getWeight() {
+		return weight;
+	}
+	public void setWeight(String weight) {
+		this.weight = weight;
+	}
     public String getAirlineCode() {
 		return AirlineCode;
 	}

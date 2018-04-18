@@ -28,7 +28,7 @@
 			android:orientation="horizontal"
 			android:tag="front"
 			android:layout_marginTop="@dimen/_10dp_margin"
-			android:layout_marginBottom="@dimen/_10dp_margin"
+
 			>
 
 
@@ -171,11 +171,129 @@
 			</LinearLayout>
 
 		</LinearLayout>
-		<!--   ////////////////////////////front bottom///////////////////////////////////// -->
+		<!--   ////////////////////////////weight///////////////////////////////////// -->
+		<LinearLayout
+			android:id="@+id/weightLinear"
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/_30dp_f_h"
+			android:background="#ffffff"
+			android:gravity="center"
+			android:minHeight="@dimen/_68dp_f"
+			android:orientation="horizontal"
+			android:tag="front"
+
+			>
+
+
+
+			<ImageView
+				android:layout_width="@dimen/_8dp_f"
+				android:layout_height="match_parent"
+				android:layout_marginLeft="2dp"
+				android:layout_marginRight="2dp"
+				android:gravity="right"
+				android:paddingBottom="3dp"
+				android:paddingTop="3dp"
+				android:scaleType="fitXY"
+				android:src="@drawable/blb"
+				android:visibility="invisible" />
+
+
+			<LinearLayout
+				android:id="@+id/linearWeight"
+				android:layout_width="0dip"
+				android:layout_height="match_parent"
+				android:layout_gravity="right"
+				android:layout_marginBottom="@dimen/_10dp_margin"
+				android:layout_weight="80"
+				android:gravity="right|top"
+				android:orientation="horizontal"
+				android:paddingRight="@dimen/_10dpTabletSize">
+
+
+
+				<TextView
+					android:id="@+id/iconWeight"
+					android:layout_width="25dp"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="2dp"
+					android:layout_marginRight="2dp"
+					android:gravity="right|center"
+					android:text="@string/weight"
+					android:textAppearance="@style/fontello_plan"
+					android:textColor="@color/light_orang"
+					android:textSize="@dimen/_14dp_txtSize" />
+
+				<TextView
+					android:id="@+id/txtWeight"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="2dp"
+					android:layout_marginRight="2dp"
+					android:gravity="right|center"
+
+					android:text="30"
+					android:textAppearance="@style/IconFonts"
+					android:textColor="#003399"
+					android:textSize="@dimen/_12dp_normal_textSize" />
+
+
+				<TextView
+					android:id="@+id/iconPieces"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="2dp"
+					android:layout_marginRight="2dp"
+
+					android:layout_marginTop="3dp"
+					android:gravity="left|center"
+					android:text="@string/Pieces"
+					android:textAppearance="@style/fontello_plan"
+					android:textColor="@color/light_orang"
+					android:textSize="@dimen/_14dp_txtSize" />
+				<TextView
+					android:id="@+id/txtPieces"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:layout_marginLeft="2dp"
+					android:layout_marginRight="2dp"
+					android:gravity="right|center"
+
+					android:text="×1"
+					android:textAppearance="@style/IconFonts"
+					android:textColor="#003399"
+					android:textSize="@dimen/_12dp_normal_textSize" />
+
+			</LinearLayout>
+			<LinearLayout
+				android:layout_width="0dp"
+				android:layout_height="@dimen/_68dp_f"
+				android:layout_above="@+id/weightLinear"
+				android:layout_gravity="right|top"
+				android:layout_weight="10"
+				android:orientation="vertical"
+				android:visibility="invisible">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="0dp"
+					android:layout_weight="350"
+					android:gravity="center|top"
+					android:paddingTop="3dp"
+					android:text="11:40 AM"
+					android:textAppearance="@style/fontello_plan"
+					android:textColor="#003399"
+					android:textSize="@dimen/_12dp_normal_textSize" />
+
+			</LinearLayout>
+		</LinearLayout>
+
+		<!-- ////////////////////////////front bottom///////////////////////////////////// -->
 
 
 		<LinearLayout
 			android:id="@+id/linearTableNerkh"
+			android:layout_marginTop="@dimen/_10dp_margin"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"

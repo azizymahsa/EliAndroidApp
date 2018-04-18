@@ -108,7 +108,6 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
             Value_Maghsad_Airport = Prefs.getString("Value-Maghsad-Airport", "");
             Value_Maghsad_Airport_Code = Prefs.getString("Value-Maghsad-Airport-Code", "");
         }
-
         ////
         listAirPort = findViewById(R.id.listAirPort);
         mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportMabdaActivity.this);
@@ -121,15 +120,11 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
         System.out.println("count:" + cursorManager1.getInt("COUNT(Id)"));
         if (cursorManager1 != null) {
             if (cursorManager1.getInt("COUNT(Id)") >= 10) {
-
                 CursorManager cursorType1 = recentCity_table.getAll(1);//mabda
                 CursorManager cursorType2 = recentCity_table.getAll(2);//maghsad
-
                 RecentCity_Table db = new RecentCity_Table(this);
                 db.dropTable();
                 db.openDB();
-
-
                 if (cursorType1 != null)
                     for (int e = cursorType1.getCount() - 1; e >= 0; e--) {
                         cursorType1.moveToPosition(e);
@@ -178,7 +173,6 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                                                     GetAirportMabdaActivity.searchText = d.toLowerCase();
                                                     //new AsyncFetch().execute();
                                                     sendRequest(GetAirportMabdaActivity.searchText);
-
 
                                                 } else {
                                                     if (d.length() < 0 || d.length() == 0) {
