@@ -64,8 +64,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private FancyButton btnHome;
     private ProfilePagerAdapter profilePagerAdapter;
     private ClientService service;
-    private RelativeLayout llHome;
-    private CoordinatorLayout coordinatorLayout;
     private ImageView imageView;
     private Toolbar toolbar;
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
@@ -112,8 +110,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         initViews();
 
         if (!ValidationTools.isEmptyOrNull(WebUserTools.getInstance().getUser().getWebUserProperties().getImgURL())){
-            GlideApp
-                    .with(this)
+            GlideApp.with(this)
                     .load(WebUserTools.getInstance().getUser().getWebUserProperties().getImgURL())
                     .centerCrop()
                     .error(R.drawable.not_found)
@@ -212,7 +209,6 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         title = findViewById(R.id.title);
         btnBack = findViewById(R.id.btnBack);
         btnHome = findViewById(R.id.btnHome);
-        coordinatorLayout = findViewById(R.id.coordinator);
         toolbar = findViewById(R.id.toolbar);
         btnSaveInfo.setOnClickListener(this);
         initToolbar(toolbar);

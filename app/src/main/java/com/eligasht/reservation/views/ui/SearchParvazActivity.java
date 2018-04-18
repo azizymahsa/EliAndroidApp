@@ -226,7 +226,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             }
         }
 
-
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
         iconFilter = findViewById(R.id.iconFilter);
@@ -982,7 +981,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         linear_expand.setVisibility(View.VISIBLE);
         RelativeLayout linear_no_resultt = findViewById(R.id.linear_no_result);
         linear_no_resultt.setVisibility(View.GONE);
-        //	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
         listDataChildExpanding = new HashMap<String, HashMap<String, ItemExpandingPlan>>();
         dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
         ArrayList<SearchParvazModelExp> searchParvazModelExps = new ArrayList<SearchParvazModelExp>();
@@ -1040,6 +1038,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                             item.DepartureCityNameFa = SegmentList.get(j).getDepartureCityNameFa();
                             item.ArrivalCityNameFa = SegmentList.get(j).getArrivalCityNameFa();
                             item.OperatingAirlineNameEn = SegmentList.get(j).getOperatingAirlineNameEn();
+                            item.weight=SegmentList.get(j).getWeight();
+                            item.Pieces=SegmentList.get(j).getPieces();
                             parentItem.Items.add(item);
                         }
                         dataExpandingList.add(parentItem);
@@ -1090,6 +1090,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                             item.OperatingAirlineNameEn = SegmentList.get(j).getOperatingAirlineNameEn();
                             item.FltDurationH = SegmentList.get(j).getFltDurationH();
                             item.FltDurationM = SegmentList.get(j).getFltDurationM();
+                            item.weight = SegmentList.get(j).getWeight();
+                            item.Pieces = SegmentList.get(j).getPieces();
                             parentItem.Items.add(item);
                         }
                         dataExpandingList.add(parentItem);
@@ -1444,7 +1446,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         public String OperatingAirlineNameEn;
         public String FltDurationH;
         public String FltDurationM;
-
+        public String weight;
+        public String Pieces;
         public ItemExpandingPlan() {
             // TODO Auto-generated constructor stub
         }
@@ -2378,6 +2381,12 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 flightSegment.setFltDurationM(jPricedIfdgtinerary.getFltDurationM());
                 flightSegment.setIsDepartureSegment(jPricedIfdgtinerary.getIsDepartureSegment());
                 flightSegment.setOperatingAirlineNameEn(jPricedIfdgtinerary.getOperatingAirlineNameEn()+"");
+                if (jPricedIfdgtinerary.getFreeBaggage() == null) {
+                    flightSegment.setWeight("");
+                }else {
+                    flightSegment.setWeight(jPricedIfdgtinerary.getFreeBaggage().getWeight() + "");
+                    flightSegment.setPieces(jPricedIfdgtinerary.getFreeBaggage().getPieces() + "");
+                }
                 //List<flightSegment> SegmentList ;
                 SegmentList.add(flightSegment);
                 if (jPricedIfdgtinerary.getIsDepartureSegment()) {
@@ -2417,6 +2426,12 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     flightSegmentTrue.setFltDurationH(jPricedIfdgtinerary.getFltDurationH());
                     flightSegmentTrue.setFltDurationM(jPricedIfdgtinerary.getFltDurationM());
                     flightSegmentTrue.setIsDepartureSegment(jPricedIfdgtinerary.getIsDepartureSegment());
+                    if (jPricedIfdgtinerary.getFreeBaggage() == null) {
+                        flightSegmentTrue.setWeight("");
+                    }else {
+                        flightSegmentTrue.setWeight(jPricedIfdgtinerary.getFreeBaggage().getWeight() + "");
+                        flightSegmentTrue.setPieces(jPricedIfdgtinerary.getFreeBaggage().getPieces() + "");
+                    }
                     SegmentListTrue.add(flightSegmentTrue);
                 } else {
                     FlightSegmentFalse flightSegmentTrue = new FlightSegmentFalse();
@@ -2455,6 +2470,13 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     flightSegmentTrue.setFltDurationH(jPricedIfdgtinerary.getFltDurationH());
                     flightSegmentTrue.setFltDurationM(jPricedIfdgtinerary.getFltDurationM());
                     flightSegmentTrue.setIsDepartureSegment(jPricedIfdgtinerary.getIsDepartureSegment());
+                    if (jPricedIfdgtinerary.getFreeBaggage() == null) {
+                        flightSegmentTrue.setWeight("");
+                    }else {
+                        flightSegmentTrue.setWeight(jPricedIfdgtinerary.getFreeBaggage().getWeight() + "");
+                        flightSegmentTrue.setPieces(jPricedIfdgtinerary.getFreeBaggage().getPieces() + "");
+
+                    }
                     SegmentListFalse.add(flightSegmentTrue);
                 }
                 flight.setSegmentList(SegmentList);
@@ -2695,6 +2717,12 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 flightSegment.setFltDurationM(jPricedIfdgtinerary.getFltDurationM());
                 flightSegment.setIsDepartureSegment(jPricedIfdgtinerary.getIsDepartureSegment());
                 flightSegment.setOperatingAirlineNameEn(jPricedIfdgtinerary.getOperatingAirlineNameEn()+"");
+                if (jPricedIfdgtinerary.getFreeBaggage() == null) {
+                    flightSegment.setWeight("");
+                }else{
+                    flightSegment.setWeight(jPricedIfdgtinerary.getFreeBaggage().getWeight()+"");
+                    flightSegment.setPieces(jPricedIfdgtinerary.getFreeBaggage().getPieces() + "");
+                }
                 //List<flightSegment> SegmentList ;
                 SegmentList.add(flightSegment);
                 if (jPricedIfdgtinerary.getIsDepartureSegment()) {
@@ -2734,6 +2762,14 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     flightSegmentTrue.setFltDurationH(jPricedIfdgtinerary.getFltDurationH());
                     flightSegmentTrue.setFltDurationM(jPricedIfdgtinerary.getFltDurationM());
                     flightSegmentTrue.setIsDepartureSegment(jPricedIfdgtinerary.getIsDepartureSegment());
+                    if (jPricedIfdgtinerary.getFreeBaggage() == null) {
+                        flightSegmentTrue.setWeight("");
+                    }else{
+                        flightSegmentTrue.setWeight(jPricedIfdgtinerary.getFreeBaggage().getWeight()+"");
+                        flightSegmentTrue.setPieces(jPricedIfdgtinerary.getFreeBaggage().getPieces() + "");
+
+                    }
+
                     SegmentListTrue.add(flightSegmentTrue);
                 } else {
                     FlightSegmentFalse flightSegmentTrue = new FlightSegmentFalse();
@@ -2772,6 +2808,14 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     flightSegmentTrue.setFltDurationH(jPricedIfdgtinerary.getFltDurationH());
                     flightSegmentTrue.setFltDurationM(jPricedIfdgtinerary.getFltDurationM());
                     flightSegmentTrue.setIsDepartureSegment(jPricedIfdgtinerary.getIsDepartureSegment());
+                    if (jPricedIfdgtinerary.getFreeBaggage() == null) {
+                        flightSegmentTrue.setWeight("");
+                        flightSegmentTrue.setPieces("");
+                    }else {
+                        flightSegmentTrue.setWeight(jPricedIfdgtinerary.getFreeBaggage().getWeight() + "");
+                        flightSegmentTrue.setPieces(jPricedIfdgtinerary.getFreeBaggage().getPieces() + "");
+
+                    }
                     SegmentListFalse.add(flightSegmentTrue);
                 }
                 flight.setSegmentList(SegmentList);
