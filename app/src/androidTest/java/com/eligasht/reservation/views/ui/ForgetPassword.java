@@ -32,6 +32,7 @@ public class ForgetPassword extends BaseTest {
     public void runTest() {
         doClick(R.id.btnMenu);
         doClick(R.id.lottieUserMenu);
+        pressBack(1);
         doClick(R.id.layout_reset_password);
         doClick(R.id.edit_email_resetPass);
         doReplace(R.id.edit_email_resetPass, TestConst.Email_Forget);
