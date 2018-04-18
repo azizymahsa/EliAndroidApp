@@ -24,7 +24,7 @@ public class HotelF extends BaseTest {
     public void runTest() {
         doClick(R.id.btnMenu);
         doClick(R.id.btnHotelFlight);
-        sleep(SingletonContext.getInstance().getContext().getResources().getBoolean(R.bool.isTablet) ? 2000 :2000);
+        sleep(750);
 
         doClick(R.id.linearLayout_mabda);
         sleep(1000);
