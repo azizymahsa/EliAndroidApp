@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -32,6 +33,7 @@ import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
+import com.google.gson.Gson;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -98,8 +100,6 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder.tvBargasht = convertView.findViewById(R.id.tvBargasht);
             holder.tvBargashtTime = convertView.findViewById(R.id.tvBargashtTime);
             holder.tvRaftTime = convertView.findViewById(R.id.tvRaftTime);
-//            holder.tvBargashtTimeWait = convertView.findViewById(R.id.tvBargashtTimeWait);
-//            holder.tvRaftTimeWait = convertView.findViewById(R.id.tvRaftTimeWait);
             holder.tvAirLines = convertView.findViewById(R.id.tvAirLines);
             holder.ivIsBestseler = convertView.findViewById(R.id.ivIsBestseler);
             holder.txt_lable_hotel = convertView.findViewById(R.id.txt_lable_hotel);
@@ -152,17 +152,6 @@ public class FlightHotelAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        //  holder.tvPlane.animate().translationX(-1000).start();
-
-        //  holder.tvPlane.animate().translationX(holder.tvANRaft1_2.getLeft()).setDuration(10000).setStartDelay(500).start();
-
-      /*  ObjectAnimator anim = ObjectAnimator.ofFloat(holder.tvPlane, "translationX", 0f, holder.tvANRaft1_2.getRight());
-        anim.setDuration(1);
-        anim.setStartDelay(500);// Duration in milliseconds
-        anim.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
-        anim.start();*/
-
-
         holder.btnChange.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
 
         YoYo.with(Techniques.FadeIn)
@@ -185,6 +174,7 @@ public class FlightHotelAdapter extends BaseAdapter {
                 intent.putExtra("FlightId", selectHotelModelArrayList.get(position).getFlightId());
                 intent.putExtra("SearchKey", selectHotelModelArrayList.get(position).getResultUniqID());
                 activity.startActivityForResult(intent, 155);
+
 
 
             }
@@ -215,10 +205,6 @@ public class FlightHotelAdapter extends BaseAdapter {
         holder.board.setText(selectHotelModelArrayList.get(position).getBoard());
 
         holder.tvPrice.setText(Utility.priceFormat(String.valueOf(Integer.valueOf(selectHotelModelArrayList.get(position).getPrice()) + Integer.valueOf(selectHotelModelArrayList.get(position).getAmount()))));
-
-//
-//        holder.tvRaft.setText(selectHotelModelArrayList.get(position).getArrRout());
-//        holder.tvBargasht.setText(selectHotelModelArrayList.get(position).getDepRout());
 
 
         if (selectHotelModelArrayList.get(position).getTypeText().contains("آپارتمان")||selectHotelModelArrayList.get(position).getTypeText().toLowerCase().contains("apart")) {
@@ -251,7 +237,6 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.linear_1.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1.setText(strings[0]);
                 holder.tvANRaft1_2.setText(strings[1]);
-               /// anim(holder.lineOnstep, holder.tvPlane, position);
 
                 break;
             case 1:
@@ -259,7 +244,6 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.tvANRaft1_1.setText(strings[0]);
                 holder.tvANRaft1_2.setText(strings[1]);
                 waitRaft = activity.getString(R.string.NonStop);
-              //  anim(holder.lineOnstep, holder.tvPlane, position);
 
                 break;
             case 2:
@@ -277,7 +261,6 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.tvANRaft2_1.setText(strings[0]);
                 holder.tvANRaft2_2.setText(strings[1]);
                 holder.tvANRaft2_3.setText(strings[2]);
-             ///   anim(holder.lineOnstep, holder.tvPlane, position);
 
                 break;
             case 4:
@@ -312,7 +295,6 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.linear_1_bargasht.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1_bargasht.setText(strings2[0]);
                 holder.tvANRaft1_2_bargasht.setText(strings2[1]);
-            //    anim(holder.lineOnstep_barhasht, holder.tvPlane_bargasht, position);
 
                 break;
             case 1:
@@ -321,7 +303,6 @@ public class FlightHotelAdapter extends BaseAdapter {
                     holder.tvANRaft1_2_bargasht.setText(strings2[1]);
                     holder.tvANRaft1_1_bargasht.setText(strings2[0]);
                     holder.linear_1_bargasht.setVisibility(View.VISIBLE);
-                 ///   anim(holder.lineOnstep_barhasht, holder.tvPlane_bargasht, position);
 
 
                 } catch (Exception e) {
@@ -375,7 +356,6 @@ public class FlightHotelAdapter extends BaseAdapter {
         holder.tvBargashtTime.setText(waitBargasht);
 
 
-//selectHotelModelArrayList.get(position).getFlights().get(1).FlightArrivalTime+"-"+
         String text = "<font color=##2e3192>" + selectHotelModelArrayList.get(position).getFlights().get(0).getFlightTime() + "</font> " +
                 "<font color=#4d4d4d>" + selectHotelModelArrayList.get(position).getFlights().get(0).getFlightNumber() + "</font>";
         holder.tvRaftTime.setText(Html.fromHtml(text));
@@ -390,22 +370,6 @@ public class FlightHotelAdapter extends BaseAdapter {
         String texttvBargashtTime2 = "<font color=##2e3192>" + selectHotelModelArrayList.get(position).getFlights().get(1).getFlightArrivalTime() + "</font> " +
                 "<font color=#4d4d4d>" + selectHotelModelArrayList.get(position).getFlights().get(1).getFlightNumber() + "</font>";
         holder.tvBargashtTime2.setText(Html.fromHtml(texttvBargashtTime2));
-
-       /* String texttvRaftTimeWait = "<font color=##2e3192>"  +selectHotelModelArrayList.get(position).getFlights().get(1).FlightTime + "</font> " +
-                "<font color=#4d4d4d>" + selectHotelModelArrayList.get(position).getFlights().get(1).FlightNumber + "</font>";
-        holder.tvRaftTimeWait.setText(Html.fromHtml(texttvRaftTimeWait));
-        String texttvBargashtTimeWait = "<font color=##2e3192>"  +selectHotelModelArrayList.get(position).getFlights().get(1).FlightTime + "</font> " +
-                "<font color=#4d4d4d>" + selectHotelModelArrayList.get(position).getFlights().get(1).FlightNumber + "</font>";
-        holder.tvBargashtTimeWait.setText(Html.fromHtml(texttvBargashtTimeWait));*/
-
-        // holder.tvRaftTime.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FlightTime+" "+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
-        // holder.tvBargashtTime.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FlightTime+" "+selectHotelModelArrayList.get(position).getFlights().get(1).FlightNumber);
-
-        // holder.tvBargashtTime1.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FlightArrivalTime+" "+selectHotelModelArrayList.get(position).getFlights().get(0).FlightNumber);
-        // holder.tvBargashtTime2.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FlightArrivalTime+" "+selectHotelModelArrayList.get(position).getFlights().get(1).FlightNumber);
-
-//        holder.tvRaftTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationH + "ساعت " + selectHotelModelArrayList.get(position).getFlights().get(0).FltDurationM + "دقیقه");
-//        holder.tvBargashtTimeWait.setText(selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationH + "ساعت " + selectHotelModelArrayList.get(position).getFlights().get(1).FltDurationM + "دقیقه");
 
 
         holder.tvAirLines.setText(selectHotelModelArrayList.get(position).getFlights().get(0).getAirlineNameFa());

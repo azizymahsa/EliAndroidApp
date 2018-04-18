@@ -97,7 +97,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     LinearLayout llFilter;
     String flightId, searchIn;
     String flId, searchKey;
-    FilterHotelDialog filterHotelDialog;
     private com.eligasht.reservation.tools.ListView list;
     private FlightHotelAdapter adapter;
     private ArrayList<SelectFlightHotelModel> selectHotelModelArrayList = new ArrayList<>();
@@ -109,7 +108,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private ArrayList<FilterHotelTypeModel> filterHotelBestOffModels = new ArrayList<>();
     private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
     private ArrayList<FilterModel> filterModels = new ArrayList<>();
-    private HotelFlightSearch hotelFlightSearch;
     private List<Room> rooms = new ArrayList<>();
     private RelativeLayout rlLoading, rlRoot;
     private TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort, tvLoading, tvAlertDesc;

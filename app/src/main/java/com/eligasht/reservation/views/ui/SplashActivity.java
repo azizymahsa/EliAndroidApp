@@ -93,6 +93,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                 System.exit(0);
             }
         }, 100);
+
     }
 
     @Override

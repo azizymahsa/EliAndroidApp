@@ -100,9 +100,6 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
                 .error(R.drawable.not_found)
                 .into(holder.ivHotelPic);
 
-     /*   AQuery aQuery=new AQuery(v);
-        aQuery.id(holder.imgPhoto).image(item.getImageUrl().toString());
-*/
 
         holder.name.setText(selectHotelModelArrayList.get(position).getName());
         holder.location.setText(selectHotelModelArrayList.get(position).getLocation() + "،" + selectHotelModelArrayList.get(position).getCity());
