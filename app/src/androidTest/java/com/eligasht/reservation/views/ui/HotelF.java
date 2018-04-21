@@ -47,7 +47,7 @@ public class HotelF extends BaseTest {
         sleep(1500);
         doClick(R.id.btn_confirm);
         doClick(R.id.searchHotel);
-        sleep(Const.MOCK ? 0 : 30000);
+        sleep(Const.MOCK ? 500 : 30000);
         doClickWithIndex(R.id.btnChange, 0);
         sleep(Const.MOCK ? 1000 : 10000);
         onData(anything()).inAdapterView(withId(R.id.lvExp)).atPosition(0).perform(click());
@@ -158,6 +158,7 @@ public class HotelF extends BaseTest {
         }
         doClick(R.id.btn_taeed_khadamat);
         sleep(Const.MOCK ? 0 : 5000);
+        pressBack(4);
 
 
     }

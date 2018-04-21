@@ -39,7 +39,9 @@ import com.eligasht.service.model.hotel.room.request.GetRoomRequest;
 import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
 import com.eligasht.service.model.hotel.transport.request.TransportRequest;
 import com.eligasht.service.model.hotel.transport.response.TransportResponse;
-import com.eligasht.service.model.hotelflight.request.HotelFlightRequest;
+import com.eligasht.service.model.hotelflight.purchase.request.HotelFlightPurchaseRequest;
+import com.eligasht.service.model.hotelflight.purchase.response.HotelFlightPurchaseResponse;
+import com.eligasht.service.model.hotelflight.search.request.HotelFlightRequest;
 import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
 import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
 import com.eligasht.service.model.insurance.request.GetCountry.RequestGetCountry;
@@ -47,7 +49,7 @@ import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPur
 import com.eligasht.service.model.insurance.request.SearchInsurance.RequestSearchInsurance;
 import com.eligasht.service.model.insurance.response.GetCountry.ResponseGetCountry;
 import com.eligasht.service.model.insurance.response.PurchaseInsurance.ResponsePurchaseInsurance;
-import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
+import com.eligasht.service.model.hotelflight.search.response.HotelFlightResponse;
 import com.eligasht.service.model.insurance.response.SearchInsurance.ResponseSearchInsurance;
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
@@ -85,6 +87,10 @@ public interface RetroClient {
     @POST(Const.AirportTransportServicePrice)
     Observable<TransportResponse> transportService(
             @Body TransportRequest transportRequest
+    );
+    @POST(Const.HotelFlightPurchase)
+    Observable<HotelFlightPurchaseResponse> HotelFlightPurchase(
+            @Body HotelFlightPurchaseRequest hotelFlightPurchaseRequest
     );
 
     //*************hotel*************

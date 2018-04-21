@@ -1,8 +1,7 @@
 package com.eligasht.reservation.models.hotel.adapter;
-import com.eligasht.service.model.hotelflight.response.FltList;
-import com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities;
-import com.eligasht.service.model.hotelflight.response.Location;
-import com.eligasht.service.model.hotelflight.response.Facility_;
+import com.eligasht.service.model.hotelflight.search.response.FltList;
+import com.eligasht.service.model.hotelflight.search.response.Location;
+import com.eligasht.service.model.hotelflight.search.response.Facility_;
 
 import java.util.ArrayList;
 import java.util.List;

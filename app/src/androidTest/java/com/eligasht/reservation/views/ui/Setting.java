@@ -20,6 +20,6 @@ public class Setting extends BaseTest {
 //        doClickItemInSpinner(1);
 //        doClick(R.id.tvConfirm);
         pressBack(2);
-        AppStartup.newInstance().runTest();
+        //AppStartup.newInstance().runTest();
     }
 }

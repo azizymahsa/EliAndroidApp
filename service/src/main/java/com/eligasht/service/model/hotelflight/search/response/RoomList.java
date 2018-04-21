@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.hotelflight.response;
+package com.eligasht.service.model.hotelflight.search.response;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
