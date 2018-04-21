@@ -93,7 +93,7 @@ public interface RetroClient {
             @Body TransportRequest transportRequest
     );
     @POST(Const.HotelFlightPurchase)
-    Observable<ResponsePurchaseService> HotelFlightPurchase(
+    Observable<Response<ResponsePurchaseService>> HotelFlightPurchase(
             @Body RequestPurchaseService hotelFlightPurchaseRequest
     );
 

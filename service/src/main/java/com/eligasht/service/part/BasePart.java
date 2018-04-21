@@ -12,6 +12,7 @@ import com.eligasht.service.helper.Const;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.mock.Mock;
 import com.eligasht.service.mock.MockProcessor;
+import com.eligasht.service.model.BaseModel;
 import com.example.type.TypeResolver;
 
 import java.lang.annotation.Annotation;

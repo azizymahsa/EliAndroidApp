@@ -66,7 +66,7 @@ import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.Response
 import com.eligasht.service.model.XPackage.response.PurchasePackage.PurchasePackageResult;
 import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
 import com.eligasht.service.model.XPackage.response.PurchasePackage.TmpReserveResult;
-
+import com.eligasht.service.model.error.Error;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -1709,7 +1709,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         }
 
         requestPurchasePackage.setRequest(request);
-        Log.e("OrderToJsonPurchasePackage: ", new Gson().toJson(requestPurchasePackage));
+        Log.e("onPurchasePackage: ", new Gson().toJson(requestPurchasePackage));
 
         SingletonService.getInstance().getXPackage().PurchasePackageAvail(this, requestPurchasePackage);
     }

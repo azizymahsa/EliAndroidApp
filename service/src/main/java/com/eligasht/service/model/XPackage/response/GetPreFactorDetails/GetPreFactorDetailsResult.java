@@ -30,7 +30,7 @@ public class GetPreFactorDetailsResult extends BaseModel {
     public void setComments(Object comments) {
         this.comments = comments;
     }
-    
+
 
     public Object getResultKey() {
         return resultKey;
