@@ -57,6 +57,7 @@ import com.eligasht.service.model.startup.request.StartupServiceRequest;
 import com.eligasht.service.model.startup.response.StartupServiceResponse;
 
 import io.reactivex.Observable;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
@@ -68,59 +69,64 @@ import retrofit2.http.POST;
 public interface RetroClient {
     //*************start up*************
     @POST(Const.StartUp)
-    Observable<StartupServiceResponse> startUp(
+    Observable<Response<StartupServiceResponse>> startUp(
             @Body StartupServiceRequest startupServiceRequest
     );
 
     //*************hotel flight*************
     @POST(Const.HotelFlightSearch)
-    Observable<HotelFlightResponse> hotelFlight(
+    Observable<Response<HotelFlightResponse>> hotelFlight(
             @Body HotelFlightRequest hotelFlightRequest
     );
 
     @POST(Const.LoadFlight)
-    Observable<LoadFlightResponse> loadFlight(
+    Observable<Response<LoadFlightResponse>> loadFlight(
             @Body LoadFlightRequest loadFlightRequest
     );
+
     @POST(Const.AirportTransportServicePrice)
-    Observable<TransportResponse> transportService(
+    Observable<Response<TransportResponse>> transportService(
             @Body TransportRequest transportRequest
     );
 
     //*************hotel*************
     @POST(Const.HotelAvail)
-    Observable<HotelAvailRes> hotelAvail(
+    Observable<Response<HotelAvailRes>> hotelAvail(
             @Body HotelAvailReq hotelAvailReq
     );
 
     @POST(Const.HotelPolicy)
-    Observable<HotelPolicyResponse> hotelPolicy(
+    Observable<Response<HotelPolicyResponse>> hotelPolicy(
             @Body HotelPolicyRequest hotelPolicyRequest
     );
 
     @POST(Const.GetRoomsList)
-    Observable<GetRoomResponse> getRoomsList(
+    Observable<Response<GetRoomResponse>> getRoomsList(
             @Body GetRoomRequest getRoomRequest
     );
 
     @POST(Const.GetHotelDetail)
-    Observable<HotelDetailResponse> getHotelDetail(
+    Observable<Response<HotelDetailResponse>> getHotelDetail(
             @Body HotelDetailRequest hotelDetailRequest
     );
+
     @POST(Const.HoldSelectedRoom)
-    Observable<HoldRoomResponse> getHoldRoom(
+    Observable<Response<HoldRoomResponse>> getHoldRoom(
             @Body HoldRoomRequest holdRoomRequest
     );
+
     @POST(Const.AddHotelReview)
-    Observable<AddHotelReviewResponse> addHotelReview(
+    Observable<Response<AddHotelReviewResponse>> addHotelReview(
             @Body AddHotelReviewRequest hotelReviewRequest
     );
+
     @POST(Const.GetHotelList)
-    Observable<GetHotelListResponse> getHotelList(
+    Observable<Response<GetHotelListResponse>> getHotelList(
             @Body GetHotelListRequest hotelReviewRequest
     );
+
     @POST(Const.GetHotelReview)
-    Observable<GetHotelReviewResponse> getHotelReview(
+    Observable<Response<GetHotelReviewResponse>> getHotelReview(
             @Body GetHotelReviewRequest hotelAvailReq
     );
 
@@ -128,91 +134,95 @@ public interface RetroClient {
 
 
     @POST(Const.AirportAvail)
-    Observable<ResponsAirports> responsAirports(
+    Observable<Response<ResponsAirports>> responsAirports(
             @Body RequestAirports requestAirports
     );
+
     //*************flight*************
     @POST(Const.FlightSearchAvail)
-    Observable<ResponsSearchFlight> responsSearchFlight(
+    Observable<Response<ResponsSearchFlight>> responsSearchFlight(
             @Body RequestSearchFlight requestSearchFlight
     );
 
     @POST(Const.PurchaseServiceFlightAvil)
-    Observable<ResponsePurchaseFlight> responsePurchaseFlight(
+    Observable<Response<ResponsePurchaseFlight>> responsePurchaseFlight(
             @Body RequestPurchaseFlight requestPurchaseFlight
     );
 
     @POST(Const.PreFactorDetailsAvil)
-    Observable<ResponsePreFactorDetails> responsePreFactorDetails(
+    Observable<Response<ResponsePreFactorDetails>> responsePreFactorDetails(
             @Body RequestPreFactorDetails requestPreFactorDetails
     );
 
     @POST(Const.CheckFlightAvail)
-    Observable<ResponseDomesticFlight> responseDomesticFlightObservable(
+    Observable<Response<ResponseDomesticFlight>> responseDomesticFlightObservable(
             @Body RequestDomesticFlight requestDomesticFlight
     );
 
     @POST(Const.PurchaseFlightAvil)
-    Observable<com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight> responsePurchaseFlightObservable(
+    Observable<Response<com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight>> responsePurchaseFlightObservable(
             @Body com.eligasht.service.model.flight.request.PurchaseFlight.RequestPurchaseFlight requestPurchaseFlightPassenger
     );
 
     @POST(Const.ChangeFlightAvil)
-    Observable<ResponseChangeFlight> responsChangeFlight(
+    Observable<Response<ResponseChangeFlight>> responsChangeFlight(
             @Body RequestChangeFlight requestChangeFlight
     );
 
     //*************contactUs*************
     @POST(Const.ContactUsAvil)
-    Observable<ResponseContactUs> responsContactUs(
+    Observable<Response<ResponseContactUs>> responsContactUs(
             @Body RequestContactUs requestContactUs
     );
+
     //*************About*************
     @POST(Const.AboutAvil)
-    Observable<ResponseAbout> responseAboutObservable(
+    Observable<Response<ResponseAbout>> responseAboutObservable(
             @Body RequestAbout requestAbout
     );
 
     //*************insurance*************
     @POST(Const.PurchaseInsuranceAvil)
-    Observable<ResponsePurchaseInsurance> RESPONSE_PURCHASE_INSURANCE_OBSERVABLE(
+    Observable<Response<ResponsePurchaseInsurance>> RESPONSE_PURCHASE_INSURANCE_OBSERVABLE(
             @Body RequestPurchaseInsurance requestPurchaseInsurance
     );
 
     @POST(Const.PreFactorDetailsInsuranceAvil)
-    Observable<com.eligasht.service.model.insurance.response.ResponsePreFactorDetail.ResponsePreFactorDetails> responsePreFactorDetailsInsurance(
+    Observable<Response<com.eligasht.service.model.insurance.response.ResponsePreFactorDetail.ResponsePreFactorDetails>> responsePreFactorDetailsInsurance(
             @Body com.eligasht.service.model.insurance.request.RequestPreFactorDetail.RequestPreFactorDetails requestPreFactorDetails
     );
 
     @POST(Const.GetCountryInsuranceAvil)
-    Observable<ResponseGetCountry> RESPONSE_GET_COUNTRY_OBSERVABLE(
+    Observable<Response<ResponseGetCountry>> RESPONSE_GET_COUNTRY_OBSERVABLE(
             @Body RequestGetCountry requestGetCountry
     );
 
     @POST(Const.SearchInsuranceAvil)
-    Observable<ResponseSearchInsurance> RESPONSE_SEARCH_INSURANCE_OBSERVABLE(
+    Observable<Response<ResponseSearchInsurance>> RESPONSE_SEARCH_INSURANCE_OBSERVABLE(
             @Body RequestSearchInsurance requestSearchInsurance2
     );
+
     //*************package*************
     @POST(Const.SearchXPackageAvil)
-    Observable<ResponseSearchXPackage> RESPONSE_SEARCH_X_PACKAGE_OBSERVABLE(
+    Observable<Response<ResponseSearchXPackage>> RESPONSE_SEARCH_X_PACKAGE_OBSERVABLE(
             @Body RequestSearchXPackage requestSearchXPackage
     );
+
     @POST(Const.PurchasePackageAvil)
-    Observable<ResponsePurchasePackage> RESPONSE_PURCHASE_PACKAGE_OBSERVABLE(
+    Observable<Response<ResponsePurchasePackage>> RESPONSE_PURCHASE_PACKAGE_OBSERVABLE(
             @Body RequestPurchasePackage requestPurchasePackage
     );
+
     @POST(Const.GetPreFactorDetailsPackageAvil)
-    Observable<ResponseGePreFactorDetails> RESPONSE_GE_PRE_FACTOR_DETAILS_OBSERVABLE(
+    Observable<Response<ResponseGePreFactorDetails>> RESPONSE_GE_PRE_FACTOR_DETAILS_OBSERVABLE(
             @Body RequestGePreFactorDetails requestGePreFactorDetailsPack
     );
-
 
 
     //*************Login & Profile*************
 
     @POST(Const.Login)
-    Observable<LoginResponse> login(
+    Observable<Response<LoginResponse>> login(
             @Body LoginRequestModel loginRequestModel
     );
 
