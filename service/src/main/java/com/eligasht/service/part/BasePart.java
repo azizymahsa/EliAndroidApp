@@ -77,6 +77,22 @@ public abstract class BasePart {
 
                     @Override
                     public void onNext(Response<T> value) {
+                        if (BuildConfig.DEBUG && value.body() != null) {
+                            Field[] fields = value.body().getClass().getFields();
+                            for (Field field : fields) {
+                                try {
+                                    BaseModel baseModel = new BaseModel();
+                                    baseModel = (BaseModel) field.get(value.body());
+                                    Log.e("Bse", baseModel.getErrors().get(0).getDetailedMessage());
+                                } catch (Exception e) {
+
+                                }
+                            }
+
+
+                        }
+
+
                         listener.onReady(value.body());
                     }
 

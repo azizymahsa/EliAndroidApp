@@ -542,7 +542,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
         HotelAvailReq hotelAvailReq = new HotelAvailReq();
         Request request = new Request();
-        request.setCheckinString(Utility.convertNumbersToEnglish(raft));
+        request.setCheckinString("0000/00/00");
         request.setCheckoutString(Utility.convertNumbersToEnglish(bargasht));
         request.setDepart(Prefs.getString("Value-Hotel-City-Code", "c25972"));
         request.setRoomsString(getIntent().getExtras().getString("Rooms"));
