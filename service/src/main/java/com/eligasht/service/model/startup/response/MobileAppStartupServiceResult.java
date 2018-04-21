@@ -1,19 +1,18 @@
 
 package com.eligasht.service.model.startup.response;
 
+import com.eligasht.service.model.BaseModel;
 import com.eligasht.service.model.hotel.hotelAvail.response.Error;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-public class MobileAppStartupServiceResult {
+public class MobileAppStartupServiceResult extends BaseModel {
 
     @SerializedName("Comments")
     @Expose
     private Object comments;
-    @SerializedName("Errors")
-    @Expose
-    private List<Error> errors;
+
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
@@ -78,14 +77,6 @@ public class MobileAppStartupServiceResult {
 
     public void setComments(Object comments) {
         this.comments = comments;
-    }
-
-    public List<Error> getErrors() {
-        return errors;
-    }
-
-    public void setErrors(List<Error> errors) {
-        this.errors = errors;
     }
 
     public Object getResultKey() {

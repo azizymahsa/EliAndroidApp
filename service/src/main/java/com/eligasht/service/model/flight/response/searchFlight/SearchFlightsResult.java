@@ -1,17 +1,17 @@
 package com.eligasht.service.model.flight.response.searchFlight;
 
 import java.util.List;
+
+import com.eligasht.service.model.BaseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SearchFlightsResult {
+public class SearchFlightsResult extends BaseModel {
 
     @SerializedName("Comments")
     @Expose
     private Object comments;
-    @SerializedName("Errors")
-    @Expose
-    private List<Error> errors = null;
+
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
@@ -80,13 +80,6 @@ public class SearchFlightsResult {
         this.comments = comments;
     }
 
-    public List<Error> getErrors() {
-        return errors;
-    }
-
-    public void setErrors(List<Error> errors) {
-        this.errors = errors;
-    }
 
 
 
