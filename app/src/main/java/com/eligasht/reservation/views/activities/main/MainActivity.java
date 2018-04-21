@@ -241,27 +241,31 @@ public class MainActivity extends Base implements View.OnClickListener {
                 addFragment(getString(R.string.hotel_reservation_and_plane_ticket), new HotelFlightFragment());
 
                 break;
+
             case R.id.btnAbout:
                 //addFragment(" درباره ما ",new HotelFlightFragment());
                 // Intent myIntent = new Intent(MainActivity.this, AboutActivity.class);
                 // myIntent.putExtra("key", value); //Optional parameters
-                new Handler().postDelayed(this::closeDrawer, 500);
+                new Handler().postDelayed(this::closeDrawer, 200);
                 Intent intent1 = new Intent(this, AboutActivity.class);
                 startActivity(intent1);
 
                 break;
+
             case R.id.btnContactUs:
-                new Handler().postDelayed(this::closeDrawer, 500);
+                new Handler().postDelayed(this::closeDrawer, 200);
                 Intent intent2 = new Intent(this, ContactUsActivity.class);
                 startActivity(intent2);
                 break;
+
             case R.id.btn_condition:
-                new Handler().postDelayed(this::closeDrawer, 500);
+                new Handler().postDelayed(this::closeDrawer, 200);
                 Intent intent3 = new Intent(this, ConditionActivity.class);
                 startActivity(intent3);
                 break;
+
             case R.id.lottieUserMenu:
-                new Handler().postDelayed(this::closeDrawer, 500);
+                new Handler().postDelayed(this::closeDrawer, 200);
 
 
                 try {
@@ -279,7 +283,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
                 break;
             case R.id.rlHedaer:
-                new Handler().postDelayed(this::closeDrawer, 500);
+                new Handler().postDelayed(this::closeDrawer, 200);
 
 
                 try {
@@ -297,7 +301,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
                 break;
             case R.id.rlUser:
-                new Handler().postDelayed(this::closeDrawer, 500);
+                new Handler().postDelayed(this::closeDrawer, 200);
 
                 if (expandableLayout.isExpanded()) {
 
@@ -312,12 +316,12 @@ public class MainActivity extends Base implements View.OnClickListener {
 
                 break;
             case R.id.btnExit:
-                new Handler().postDelayed(this::closeDrawer, 500);
+                new Handler().postDelayed(this::closeDrawer, 200);
 
                 new LogOutAlert(this);
                 break;
             case R.id.btnLastBuy:
-                new Handler().postDelayed(() -> closeDrawer(), 500);
+                new Handler().postDelayed(() -> closeDrawer(), 200);
 
                 Intent intent = new Intent(this, ProfileActivity.class);
                 intent.putExtra("isLastBuy", true);
@@ -327,7 +331,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
             case R.id.btn_setting:
 
-                new Handler().postDelayed(() -> closeDrawer(), 500);
+                new Handler().postDelayed(() -> closeDrawer(), 200);
                 Intent intent4 = new Intent(this, SettingsActivity.class);
                 intent4.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent4);
@@ -362,7 +366,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
-        new Handler().postDelayed(() -> closeDrawer(), 500);
+        new Handler().postDelayed(() -> closeDrawer(), 200);
 
     }
 

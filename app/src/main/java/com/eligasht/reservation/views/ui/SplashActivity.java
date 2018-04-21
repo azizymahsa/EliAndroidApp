@@ -200,36 +200,28 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                     if (searchNotes.getSection().equals("H")) {
                         ArrayList<String> strings = new ArrayList<>();
                         for (int i = 0; i < 8; i++) {
-                            for (String s : searchNotes.getNotes()) {
-                                strings.add(new String(s));
-                            }
+                            strings.addAll(searchNotes.getNotes());
                         }
                         Prefs.putString("H", new Gson().toJson(strings));
                     }
                     if (searchNotes.getSection().equals("F")) {
                         ArrayList<String> strings = new ArrayList<>();
                         for (int i = 0; i < 8; i++) {
-                            for (String s : searchNotes.getNotes()) {
-                                strings.add(new String(s));
-                            }
+                            strings.addAll(searchNotes.getNotes());
                         }
                         Prefs.putString("F", new Gson().toJson(strings));
                     }
                     if (searchNotes.getSection().equals("FH")) {
                         ArrayList<String> strings = new ArrayList<>();
                         for (int i = 0; i < 8; i++) {
-                            for (String s : searchNotes.getNotes()) {
-                                strings.add(new String(s));
-                            }
+                            strings.addAll(searchNotes.getNotes());
                         }
                         Prefs.putString("FH", new Gson().toJson(strings));
                     }
                     if (searchNotes.getSection().equals("P")) {
                         ArrayList<String> strings = new ArrayList<>();
                         for (int i = 0; i < 8; i++) {
-                            for (String s : searchNotes.getNotes()) {
-                                strings.add(new String(s));
-                            }
+                            strings.addAll(searchNotes.getNotes());
                         }
                         Prefs.putString("P", new Gson().toJson(strings));
                     }

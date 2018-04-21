@@ -29,27 +29,26 @@ public class HotelF extends BaseTest {
         doClick(R.id.linearLayout_mabda);
         sleep(1000);
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Origin);
-        sleep(Const.MOCK ? 0 : 2000);
         doClickWithIndex(R.id.text1, 0);
         doClick(R.id.linearLayout_maghsad);
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Dest);
-        sleep(Const.MOCK ? 0 : 2000);
         doClickWithIndex(R.id.text1, 1);
 
 
-        doClick(R.id.cvRoom);
+       /* doClick(R.id.cvRoom);
         doClickWithIndex(R.id.btnPlusAdt, 0);
         doClickWithIndex(R.id.btnPlusAdt, 0);
         doClick(R.id.btn_add);
         doClickWithIndex(R.id.btnPlusCh, 1);
         doClickWithIndex(R.id.spn_range, 0);
         doClickItemInSpinner(1);
-        sleep(1500);
-        doClick(R.id.btn_confirm);
+       ;*/
+        sleep(500);
+     //   doClick(R.id.btn_confirm);
         doClick(R.id.searchHotel);
-        sleep(Const.MOCK ? 500 : 30000);
+        sleep(500);
         doClickWithIndex(R.id.btnChange, 0);
-        sleep(Const.MOCK ? 1000 : 10000);
+        sleep(1000);
         onData(anything()).inAdapterView(withId(R.id.lvExp)).atPosition(0).perform(click());
         DataInteraction frameLayout6 = onData(anything())
                 .inAdapterView(allOf(withId(R.id.lvExp),
@@ -58,7 +57,7 @@ public class HotelF extends BaseTest {
                                 0)))
                 .atPosition(2);
         frameLayout6.perform(click());
-        sleep(Const.MOCK ? 0 : 10000);
+
         doClickWithIndex(R.id.rlListItem, 0);
 
 
@@ -69,7 +68,6 @@ public class HotelF extends BaseTest {
 
 
 
-        sleep(Const.MOCK ? 0 : 30000);
         doClickTab(R.id.tab_layout, 1);
         doClickTab(R.id.tab_layout, 2);
         doClickTab(R.id.tab_layout, 3);
@@ -81,7 +79,6 @@ public class HotelF extends BaseTest {
             doScrollAndClickInScrollView(R.id.btnComment);
             doClick(R.id.btnOk);
         } catch (Exception e) {
-            sleep(Const.MOCK ? 0 : 10000);
             doClick(R.id.btnOneComment);
             doClick(R.id.btnOk);
         }
@@ -93,11 +90,9 @@ public class HotelF extends BaseTest {
         doClick(R.id.cbIsRecommended);
         doClick(R.id.cbSubmitName);
         doClick(R.id.btnConfirm);
-        sleep(Const.MOCK ? 0 : 10000);
         doClick(R.id.btnOk);
         doClickTab(R.id.tab_layout, 3);
         doClickWithIndex(R.id.btnPolicy, 0);
-        sleep(Const.MOCK ? 0 : 3000);
         doClick(R.id.btnOk);
         doClickWithIndex(R.id.llSelectHotel, 0);
         sleep(2000);
@@ -149,7 +144,6 @@ public class HotelF extends BaseTest {
         doClick(R.id.ok);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
-        sleep(Const.MOCK ? 0 : 10000);
         try {
             doClickWithIndex(R.id.btnAddsabad, 0);
             doClickWithIndex(R.id.btnAddsabad, 1);
@@ -157,7 +151,6 @@ public class HotelF extends BaseTest {
         } catch (Exception e) {
         }
         doClick(R.id.btn_taeed_khadamat);
-        sleep(Const.MOCK ? 0 : 5000);
         pressBack(4);
 
 

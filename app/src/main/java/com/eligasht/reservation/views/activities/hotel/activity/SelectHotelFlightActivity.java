@@ -64,7 +64,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     private LinearLayout llFilter;
-    private String flightId, searchIn;
+    private String searchIn;
     private String flId, searchKey;
     private com.eligasht.reservation.tools.ListView list;
     private FlightHotelAdapter adapter;
@@ -86,10 +86,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private int maxPrice, minPrice;
     private FancyButton btnFilter, btnSort;
     private FancyButton btnOk, btnBack, btnHome;
-    private ImageView ivLoading, ivImage;
     private String raft, bargasht;
     private String raftFa, bargashtFa;
-    HotelFlightResponse hotelFlightResponse;
+    private HotelFlightResponse hotelFlightResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +113,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         tvCount = findViewById(R.id.tvCount);
         btnBack = findViewById(R.id.btnBack);
         btnHome = findViewById(R.id.btnHome);
-        ivLoading = findViewById(R.id.ivLoading);
         tvFilterIcon = findViewById(R.id.tvFilterIcon);
         btnHome = findViewById(R.id.btnHome);
         elNotFound = findViewById(R.id.elNotFound);
@@ -561,25 +559,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         }
         return selectHotelModel;
     }
-
-    private String OrderToJsonCheckFlight() {
-        JSONObject jsone = new JSONObject();
-        JSONObject manJson = new JSONObject();
-        try {
-            manJson.put("UserName", "EligashtMlb");
-            manJson.put("Password", "123qwe!@#QWE");
-            manJson.put("TermianlId", "Mobile");
-            manJson.put("Code", Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));//inja esme forudgah mikhore
-            manJson.put("ToCode", Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"));
-            jsone.put("request", manJson);
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        System.out.println("request:" + jsone.toString());
-        return jsone.toString();
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 155) {
@@ -857,7 +836,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                                     loadFlightResponse.getLoadFlightResult().getHFlight().getAmount() + "",
                                     hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getLocations(),
                                     loadFlightResponse.getLoadFlightResult().getHFlight().getFlightID()));
-                            flightId = loadFlightResponse.getLoadFlightResult().getHFlight().getFlightID();
                             //  i++;
                         }
                         adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate);
