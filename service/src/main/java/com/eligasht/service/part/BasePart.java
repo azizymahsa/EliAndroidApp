@@ -46,7 +46,7 @@ public abstract class BasePart {
 
     public <T> void start(Observable<T> observable, OnServiceStatus<T> listener) {
         MockProcessor<T> mockProcessor = new MockProcessor<>(listener, getPart());
-        if (BuildConfig.DEBUG && Const.MOCK && mockProcessor.getRawRes() != null && mockProcessor.loadJSONFromAsset()!=null) {
+        if (BuildConfig.DEBUG && Const.MOCK && mockProcessor.getRawRes() != null && mockProcessor.loadJSONFromAsset() != null) {
             T model = mockProcessor.getMockModel();
             if (model == null) {
                 call(observable, listener);

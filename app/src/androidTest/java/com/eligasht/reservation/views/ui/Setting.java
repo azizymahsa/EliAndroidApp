@@ -14,7 +14,9 @@ public class Setting extends BaseTest {
 
     @Override
     public void runTest() {
+        sleep(500);
         doClick(R.id.btnMenu);
+        sleep(750);
         doClick(R.id.btn_setting);
         doClick(R.id.languageSpinner);
 //        doClickItemInSpinner(1);

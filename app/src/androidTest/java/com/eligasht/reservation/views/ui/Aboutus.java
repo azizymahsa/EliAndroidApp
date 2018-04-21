@@ -17,6 +17,7 @@ public class Aboutus extends BaseTest {
     @Override
     public void runTest() {
         doClick(R.id.btnMenu);
+        sleep(100);
         doClick(R.id.btnAbout);
         sleep(2000);
         pressBack(TestConst.Aboutus_Back);

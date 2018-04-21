@@ -31,7 +31,14 @@ public class ForgetPassword extends BaseTest {
     }
     @Override
     public void runTest() {
-        doClick(R.id.btnMenu);
+      try {
+          doClick(R.id.btnMenu);
+      }
+      catch (Exception e)
+      {
+          sleep(10000);
+          doClick(R.id.btnMenu);
+      }
         doClick(R.id.lottieUserMenu);
         if (SingletonService.getInstance().getContext().getResources().getBoolean(R.bool.isTablet))
             pressBack(1);

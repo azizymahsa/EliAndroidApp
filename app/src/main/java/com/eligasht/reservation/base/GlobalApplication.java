@@ -40,6 +40,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import okhttp3.OkHttpClient;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
@@ -61,15 +62,15 @@ public class GlobalApplication extends ServiceApplication {
                 context.getResources().getString(R.string.mitra_ttf));
     }
 
-    public  void setLocale() {
+    public void setLocale() {
 
         String languageToLoad = Prefs.getString("lang", "fa");
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.N){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             config.setLocale(locale);
-        }else{
+        } else {
             config.locale = locale;
         }
         getResources().updateConfiguration(config,
@@ -175,7 +176,6 @@ public class GlobalApplication extends ServiceApplication {
                 .build();
 
 
-
         setLocale();
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
@@ -198,6 +198,11 @@ public class GlobalApplication extends ServiceApplication {
         }
 
         FirebaseCrash.setCrashCollectionEnabled(!BuildConfig.DEBUG);
+    }
+
+    @Override
+    public void injectEsperssoIdle(OkHttpClient okHttpClient) {
+        SingletonContext.getInstance().setOkHttpClient(okHttpClient);
     }
 
     public String getMyOperator(Context aContext) {

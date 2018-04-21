@@ -44,11 +44,12 @@ public class Insurance extends BaseTest {
     public void runTest() {
 
         doClick(R.id.btnMenu);
+        sleep(750);
         doClick(R.id.btnInsurance);
         sleep(750);
         doClick(R.id.txtCity);
         doReplaceAndCloseKeyboard(R.id.searchtxt, "ترکیه");
-        sleep(Const.MOCK ? 50 : 3000);
+        sleep(50);
         doClickWithIndex(R.id.text1, 0);
         doClick(R.id.layout_during_travel);
         doClick(R.id.btnOk);
@@ -57,7 +58,7 @@ public class Insurance extends BaseTest {
         doClick(R.id.ok);
         doClick(R.id.btn_confirm);
         doClick(R.id.btnSearchInsurance);
-        sleep(Const.MOCK ? 50 : 5000);
+        sleep(50);
         doClickWithIndex(R.id.btn_details, 0);
         pressBack(1);
         doClickWithIndex(R.id.btn_buy, 0);
@@ -81,7 +82,7 @@ public class Insurance extends BaseTest {
         doClick(R.id.ok);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
-        sleep(Const.MOCK ? 200 : 3000);
+        sleep(200);
         pressBack(4);
 
 

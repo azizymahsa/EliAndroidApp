@@ -18,11 +18,12 @@ public class Hotel extends BaseTest {
     @Override
     public void runTest() {
         doClick(R.id.btnMenu);
+        sleep(750);
         doClick(R.id.btnHotel);
         sleep(1000);
         doClick(R.id.citySearch);
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Dest);
-        sleep(Const.MOCK ? 0 : 5000);
+       // sleep(Const.MOCK ? 0 : 5000);
         doClickWithIndex(R.id.llLayout, 0);
         doClick(R.id.cvRoom);
         doClickWithIndex(R.id.btnPlusAdt, 0);
@@ -33,21 +34,25 @@ public class Hotel extends BaseTest {
         doClickItemInSpinner(1);
         doClick(R.id.btn_confirm);
         doClick(R.id.searchHotel);
-        sleep(Const.MOCK ? 0 : 30000);
-        doClickWithIndex(R.id.rlListItem, 0);
-        sleep(Const.MOCK ? 0 : 10000);
-        try{
-         doClickTab(R.id.tab_layout, 1);
+       // sleep(Const.MOCK ? 0 : 30000);
+        try {
+            doClickWithIndex(R.id.rlListItem, 0);
+        } catch (Exception e) {
+          //  sleep(20000);
+            doClickWithIndex(R.id.rlListItem, 0);
+        }
 
-        }catch (Exception e){
-         sleep(Const.MOCK ? 0 : 10000);
+      //  sleep(Const.MOCK ? 0 : 10000);
+        try {
+            doClickTab(R.id.tab_layout, 1);
 
-         doClickTab(R.id.tab_layout, 1);
+        } catch (Exception e) {
+         //   sleep(Const.MOCK ? 0 : 10000);
+
+            doClickTab(R.id.tab_layout, 1);
 
 
         }
-
-
 
 
         doClickTab(R.id.tab_layout, 2);
@@ -61,16 +66,9 @@ public class Hotel extends BaseTest {
             sleep(1000);
             doClick(R.id.btnOk);
         } catch (Exception e) {
-            sleep(Const.MOCK ? 1500 : 10000);
-           try {
-               doClick(R.id.btnOneComment);
-               sleep(1000);
-               doClick(R.id.btnOk);
-           }
-           catch (Exception e2)
-           {
-
-           }
+          //  sleep(Const.MOCK ? 0 : 10000);
+            doClick(R.id.btnOneComment);
+            doClick(R.id.btnOk);
         }
         doClick(R.id.btnToComment);
         doReplaceAndCloseKeyboard(R.id.etName, "نام");
@@ -80,14 +78,14 @@ public class Hotel extends BaseTest {
         doClick(R.id.cbIsRecommended);
         doClick(R.id.cbSubmitName);
         doClick(R.id.btnConfirm);
-        sleep(Const.MOCK ? 0 : 5000);
+       // sleep(Const.MOCK ? 0 : 5000);
         doClick(R.id.btnOk);
         doClickTab(R.id.tab_layout, 3);
         doClickWithIndex(R.id.btnPolicy, 0);
-        sleep(Const.MOCK ? 0 : 3000);
+       // sleep(Const.MOCK ? 0 : 3000);
         doClick(R.id.btnOk);
         doClickWithIndex(R.id.llSelectHotel, 0);
-        sleep(2000);
+        sleep(SingletonContext.getInstance().getContext().getResources().getBoolean(R.bool.isTablet) ? 2000 : 0);
         doClickAndScroll(R.id.mardS);
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnameP, "احمد");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilyP, "نعمتی");
@@ -136,7 +134,7 @@ public class Hotel extends BaseTest {
         doClick(R.id.ok);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
-        sleep(Const.MOCK ? 0 : 10000);
+       // sleep(Const.MOCK ? 0 : 10000);
         try {
             doClickWithIndex(R.id.btnAddsabad, 0);
             doClickWithIndex(R.id.btnAddsabad, 1);
@@ -144,7 +142,7 @@ public class Hotel extends BaseTest {
         } catch (Exception e) {
         }
         doClick(R.id.btn_taeed_khadamat);
-        sleep(Const.MOCK ? 0 : 5000);
+       // sleep(Const.MOCK ? 0 : 5000);
         pressBack(4);
 
     }

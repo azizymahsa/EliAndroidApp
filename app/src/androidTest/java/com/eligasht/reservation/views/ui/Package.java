@@ -43,18 +43,19 @@ public class Package extends BaseTest {
 
     @Override
     public void runTest() {
-
+        sleep(500);
         doClick(R.id.btnMenu);
+        sleep(750);
         doClick(R.id.btnPackage);
-        sleep(Const.MOCK ? 750 : 3000);
+        sleep(1000);
         doClick(R.id.txtCity);
         doClickWithIndex(R.id.text1, 1);
         doClick(R.id.layout_room);
         pressBack(1);
         doClick(R.id.btnSearchPackage);
-        sleep(Const.MOCK ? 200 : 4000);
+        sleep(6000);
         doClickWithIndex(R.id.ivBigImage, 0);
-        sleep(Const.MOCK ? 200 : 3000);
+        sleep(500);
         doClickTab(R.id.tab_layout, 1);
         sleep(500);
         doClickTab(R.id.tab_layout, 0);
@@ -63,36 +64,6 @@ public class Package extends BaseTest {
         sleep(500);
         pressBack(2);
 
-
-        //  doClickWithIndexInScroll(R.id.packageBooking, 0);
-
-
-
-//        doClickAndScroll(R.id.mardS);
-//        doScrollAndREplaceAndCloseKeyboard(R.id.txtnameP, "احمد");
-//        doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilyP, "نعمتی");
-//        doScrollAndREplaceAndCloseKeyboard(R.id.txtmobileP, "09375272862");
-//        doScrollAndREplaceAndCloseKeyboard(R.id.txtkodemeliP, "0480747450");
-//        doScrollAndREplaceAndCloseKeyboard(R.id.txtemeliP, "nemati@nemati.com");
-//        closeSoftKeyboard();
-//
-//
-//        doClickAndScroll(R.id.btn_next_partnerInfo);
-//
-//
-//        doClickAndScroll(R.id.mard);
-//        doScrollAndREplaceAndCloseKeyboard(R.id.txtnamem, "ahmad");
-//        doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "nemati");
-//        doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
-//        doClickAndScroll(R.id.txttavalodm);
-//        doClick(R.id.ok);
-//        doClickAndScroll(R.id.txtexp_passport);
-//        doClick(R.id.ok);
-//        doClickAndScroll(R.id.btn_nextm);
-//        doCloseSoftKeyborad(R.id.txtnumber_passport);
-//
-//        sleep(Const.MOCK ? 200 : 3000);
-        //pressBack(4);
 
     }
 

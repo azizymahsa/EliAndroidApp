@@ -26,11 +26,9 @@ public class Flight extends BaseTest {
     public void runTest() {
         doClick(R.id.linearLayout_mabda);
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Origin);
-        sleep(Const.MOCK ? 0 : 2000);
         doClickWithIndex(R.id.text1, 0);
         doClick(R.id.linearLayout_maghsad);
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Dest);
-        sleep(Const.MOCK ? 0 : 2000);
         doClickWithIndex(R.id.text1, 1);
         doClick(R.id.btnOne);
         doClick(R.id.btntwo);
@@ -48,7 +46,7 @@ public class Flight extends BaseTest {
         doClick(R.id.btnPlusK);
         doClick(R.id.btnPlusN);
         doClick(R.id.searchPlan);
-        sleep(Const.MOCK ? 1000 : 20000);
+        sleep(2000);
         onData(anything()).inAdapterView(withId(R.id.lvExp)).atPosition(0).perform(click());
         DataInteraction frameLayout6 = onData(anything())
                 .inAdapterView(allOf(withId(R.id.lvExp),
@@ -148,19 +146,19 @@ public class Flight extends BaseTest {
         doClick(R.id.ok);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
-        sleep(Const.MOCK ? 0 : 20000);
+
 
 
         try {
             doClickWithIndex(R.id.btnAddsabad, 0);
             doClickWithIndex(R.id.btnAddsabad, 1);
         } catch (Exception e) {
-            sleep(Const.MOCK ? 0 : 20000);
+           // sleep(Const.MOCK ? 0 : 20000);
         }
 
 
         doClick(R.id.btn_taeed_khadamat);
-        sleep(Const.MOCK ? 2000 : 20000);
+        sleep(2000);
         pressBack(TestConst.Flight_Back);
     }
 }

@@ -7,6 +7,7 @@ import com.eligasht.service.di.module.NetModule;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
 /**
@@ -17,6 +18,7 @@ import retrofit2.Retrofit;
 @Component(modules = {AppModule.class, NetModule.class})
 public interface NetComponent {
     Retrofit retrofit();
+    OkHttpClient okhttp();
 
 }
 

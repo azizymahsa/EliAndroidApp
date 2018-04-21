@@ -1,6 +1,7 @@
 package com.eligasht.reservation.base;
 
 import com.eligasht.reservation.conf.APIConf;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,40 +16,38 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public abstract class BaseAPI {
-    private final String TAG = "__" +this.getClass().getSimpleName().toUpperCase().toString();
+    private final String TAG = "__" + this.getClass().getSimpleName().toUpperCase().toString();
 
     protected Retrofit retrofit;
     protected Call call;
     // The result / whether is success or failed TODO: put it in try catch if response failed
+
     /**
      * Class constructor
      */
-    public BaseAPI(){
+    public BaseAPI() {
         buildUri();
     }
 
 
     /**
      * To build URI
+     *
      * @return Retrofit object
      */
-    protected Retrofit buildUri(){
+    protected Retrofit buildUri() {
         onBuildUri();
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(APIConf.CORE_REST_API_URI)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(new OkHttpClient.Builder()
-                        .readTimeout(60, TimeUnit.SECONDS)
-                        .connectTimeout(60, TimeUnit.SECONDS)
-                        .writeTimeout(60, TimeUnit.SECONDS)
-                        .build())
+                .client(SingletonContext.getInstance().getOkHttpClient())
                 .build();
-
 
 
         return retrofit;
     }
+
     private OkHttpClient getRequestHeader() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(30, TimeUnit.SECONDS)
@@ -82,7 +81,7 @@ public abstract class BaseAPI {
     /**
      * send request to server
      */
-    protected void send(){
+    protected void send() {
         onBeforeExecute();
         execute();
         onAfterExecute();

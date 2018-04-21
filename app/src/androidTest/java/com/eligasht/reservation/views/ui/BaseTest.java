@@ -1,7 +1,11 @@
 package com.eligasht.reservation.views.ui;
 
+import android.app.Instrumentation;
 import android.support.annotation.IdRes;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.DataInteraction;
+import android.support.test.espresso.Espresso;
+import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
@@ -20,10 +24,14 @@ import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.OkHttp3IdlingResource;
+
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,9 +66,25 @@ import static org.hamcrest.Matchers.is;
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public abstract class BaseTest {
+    private IdlingResource resource;
 
     @Rule
     public ActivityTestRule<SplashActivity> mActivityTestRule = new ActivityTestRule<>(SplashActivity.class);
+
+    public BaseTest() {
+        resource = OkHttp3IdlingResource.create("OkHttp", SingletonContext.getInstance().getOkHttpClient());
+    }
+
+
+    @Before
+    public void register() {
+        Espresso.registerIdlingResources(resource);
+    }
+
+    @After
+    public void unregister() {
+        Espresso.unregisterIdlingResources(resource);
+    }
 
 
     @Test
@@ -168,8 +192,7 @@ public abstract class BaseTest {
         onView(withIndex(withId(view), index)).perform(customScrollTo, click());
     }
 
-    public void doClickItemInRecyclerView(int view,int child,int index)
-    {
+    public void doClickItemInRecyclerView(int view, int child, int index) {
         onView(withId(view)).perform(
                 RecyclerViewActions.actionOnItemAtPosition(index, clickChildViewWithId(child)));
     }
@@ -187,7 +210,6 @@ public abstract class BaseTest {
     public void doClickWithIndex(@IdRes int view, int index) {
         onView(withIndex(withId(view), index)).perform(click());
     }
-
 
 
     public void doClickTab(@IdRes int id, int index) {
@@ -224,30 +246,25 @@ public abstract class BaseTest {
     };
 
 
+    public static ViewAction clickChildViewWithId(final int id) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return null;
+            }
 
-        public static ViewAction clickChildViewWithId(final int id) {
-            return new ViewAction() {
-                @Override
-                public Matcher<View> getConstraints() {
-                    return null;
-                }
+            @Override
+            public String getDescription() {
+                return "Click on a child view with specified id.";
+            }
 
-                @Override
-                public String getDescription() {
-                    return "Click on a child view with specified id.";
-                }
-
-                @Override
-                public void perform(UiController uiController, View view) {
-                    View v = view.findViewById(id);
-                    v.performClick();
-                }
-            };
-        }
-
-
-
-
+            @Override
+            public void perform(UiController uiController, View view) {
+                View v = view.findViewById(id);
+                v.performClick();
+            }
+        };
+    }
 
 
 }
