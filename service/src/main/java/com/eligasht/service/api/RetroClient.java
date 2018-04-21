@@ -39,10 +39,10 @@ import com.eligasht.service.model.hotel.room.request.GetRoomRequest;
 import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
 import com.eligasht.service.model.hotel.transport.request.TransportRequest;
 import com.eligasht.service.model.hotel.transport.response.TransportResponse;
-import com.eligasht.service.model.hotelflight.purchase.request.HotelFlightPurchaseRequest;
 import com.eligasht.service.model.hotelflight.purchase.request.PishFactor.RequestPurchaseService;
-import com.eligasht.service.model.hotelflight.purchase.response.HotelFlightPurchaseResponse;
+import com.eligasht.service.model.hotelflight.purchase.request.PurchaseFlightHotel.RequestPurchaseFlightHotel;
 import com.eligasht.service.model.hotelflight.purchase.response.PishFactor.ResponsePurchaseService;
+import com.eligasht.service.model.hotelflight.purchase.response.PurchaseFlightHotel.ResponsePurchaseFlightHotel;
 import com.eligasht.service.model.hotelflight.search.request.HotelFlightRequest;
 import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
 import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
@@ -92,9 +92,13 @@ public interface RetroClient {
     Observable<Response<TransportResponse>> transportService(
             @Body TransportRequest transportRequest
     );
-    @POST(Const.HotelFlightPurchase)
-    Observable<Response<ResponsePurchaseService>> HotelFlightPurchase(
-            @Body RequestPurchaseService hotelFlightPurchaseRequest
+    @POST(Const.HotelFlightPurchaseServic)
+    Observable<Response<ResponsePurchaseService>> RESPONSE_OBSERVABLE(
+            @Body RequestPurchaseService requestPurchaseService
+    );
+    @POST(Const.PurchaseFlightHotel)
+    Observable<Response<ResponsePurchaseFlightHotel>> HotelFlightPurchaseResponse(
+            @Body RequestPurchaseFlightHotel hotelFlightPurchaseRequest
     );
 
     //*************hotel*************

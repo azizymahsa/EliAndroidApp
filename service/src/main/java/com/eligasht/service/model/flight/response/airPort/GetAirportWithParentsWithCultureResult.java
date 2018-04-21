@@ -32,7 +32,6 @@ public class GetAirportWithParentsWithCultureResult extends BaseModel {
     }
 
 
-
     public Object getResultKey() {
         return resultKey;
     }
