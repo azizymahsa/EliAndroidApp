@@ -9,11 +9,13 @@ import com.eligasht.service.di.module.NetModule;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.helper.Const;
 
+import okhttp3.OkHttpClient;
+
 /**
  * Created by Ahmad.nemati on 3/26/2018.
  */
 
-public class ServiceApplication extends Application {
+public abstract class ServiceApplication extends Application {
     private NetComponent mNetComponent;
 
     @Override
@@ -27,6 +29,8 @@ public class ServiceApplication extends Application {
 
         SingletonService.getInstance().setNetComponent(mNetComponent).inject();
     }
+
+    public abstract void injectEsperssoIdle(OkHttpClient okHttpClient);
 
 
 }

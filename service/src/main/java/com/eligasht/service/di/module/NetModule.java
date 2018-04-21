@@ -1,5 +1,6 @@
 package com.eligasht.service.di.module;
 
+import com.eligasht.service.BuildConfig;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

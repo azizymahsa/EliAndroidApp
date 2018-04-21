@@ -23,6 +23,7 @@ public class LoginAndEditProfile extends BaseTest {
     @Override
     public void runTest() {
         doClick(R.id.btnMenu);
+        sleep(750);
         doClick(R.id.lottieUserMenu);
         doClick(R.id.txt_email);
         doReplaceAndCloseKeyboard(R.id.txt_email, TestConst.Email);

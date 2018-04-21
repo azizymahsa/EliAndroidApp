@@ -2,6 +2,7 @@ package com.eligasht.reservation.api.retro;
 
 
 import com.eligasht.reservation.conf.APIConf;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import java.security.cert.CertificateException;
 import java.util.concurrent.TimeUnit;
@@ -27,11 +28,7 @@ public class ServiceGenerator {
     private static Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(apiBaseUrl)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(new OkHttpClient.Builder()
-                    .readTimeout(60, TimeUnit.SECONDS)
-                    .connectTimeout(60, TimeUnit.SECONDS)
-                    .writeTimeout(60, TimeUnit.SECONDS)
-                    .build());
+            .client(SingletonContext.getInstance().getOkHttpClient());
 
     public static <S> S createService(Class<S> serviceClass) {
         Retrofit retrofit = builder.client(httpClient).build();

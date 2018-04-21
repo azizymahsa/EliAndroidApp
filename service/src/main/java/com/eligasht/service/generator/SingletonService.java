@@ -1,6 +1,8 @@
 package com.eligasht.service.generator;
+
 import android.content.Context;
 
+import com.eligasht.ServiceApplication;
 import com.eligasht.service.di.component.NetComponent;
 import com.eligasht.service.part.AboutService;
 import com.eligasht.service.part.AppService;
@@ -12,6 +14,9 @@ import com.eligasht.service.part.LoginProfile;
 import com.eligasht.service.part.XPackage;
 
 import javax.inject.Inject;
+
+import okhttp3.OkHttpClient;
+
 /**
  * Created by Ahmad.nemati on 3/26/2018.
  */
@@ -19,7 +24,10 @@ public class SingletonService {
     private NetComponent netComponent;
     @Inject
     ServiceGenerator serviceGenerator;
-    private Context context;
+
+    @Inject
+    OkHttpClient okHttpClient;
+    private ServiceApplication serviceApplication;
     private static final SingletonService ourInstance = new SingletonService();
 
     public static SingletonService getInstance() {
@@ -34,17 +42,20 @@ public class SingletonService {
     public void inject() {
         ComponentService componentService = DaggerComponentService.builder().netComponent(netComponent).build();
         componentService.inject(this);
+        serviceApplication.injectEsperssoIdle(okHttpClient);
+
+
     }
 
     private SingletonService() {
     }
 
-    public Context getContext() {
-        return context;
+    public ServiceApplication getContext() {
+        return serviceApplication;
     }
 
-    public void setContext(Context context) {
-        this.context = context;
+    public void setContext(ServiceApplication context) {
+        this.serviceApplication = context;
     }
 
     public Flight getFlight() {

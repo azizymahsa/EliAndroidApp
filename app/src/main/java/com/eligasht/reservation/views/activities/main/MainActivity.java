@@ -67,7 +67,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     private BroadcastReceiver sendStartTimer, sendDetailFinish;
     private boolean doubleBackToExitPressedOnce = false;
     private int TIME_INTERVAL = 2000;
-    boolean isAnimated=true;
+    boolean isAnimated = true;
 
     public static void setUserName(String name) {
         if (txt_name != null) {
@@ -162,8 +162,8 @@ public class MainActivity extends Base implements View.OnClickListener {
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                if (!lottieUserMenu.isAnimating() && isAnimated){
-                    isAnimated=false;
+                if (!lottieUserMenu.isAnimating() && isAnimated) {
+                    isAnimated = false;
                     lottieUserMenu.playAnimation();
 
                 }
@@ -264,7 +264,6 @@ public class MainActivity extends Base implements View.OnClickListener {
                 new Handler().postDelayed(this::closeDrawer, 500);
 
 
-
                 try {
                     if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() == -1) {
                         startActivity(new Intent(this, LogInActivity.class));
@@ -298,7 +297,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
                 break;
             case R.id.rlUser:
-
+                new Handler().postDelayed(this::closeDrawer, 500);
 
                 if (expandableLayout.isExpanded()) {
 
@@ -388,7 +387,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
             }
         } catch (Exception e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
 
     }
@@ -413,7 +412,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -498,7 +497,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 //  expandableLayout.setVisibility(View.VISIBLE);
 
                 Prefs.putString("userId", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() + "");
-             //   Log.e("testtest2222", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() + "");
+                //   Log.e("testtest2222", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() + "");
                 rlHedaer.setClickable(false);
                 rlHedaer.setEnabled(false);
 
@@ -514,7 +513,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 }
                 rlHedaer.setClickable(true);
                 rlHedaer.setEnabled(true);
-            //    Log.e("testtest22", "2222");
+                //    Log.e("testtest22", "2222");
 
             }
         } catch (Exception e) {
@@ -524,7 +523,7 @@ public class MainActivity extends Base implements View.OnClickListener {
             txt_name.setText(getString(R.string.login));
             btnExit.setVisibility(View.GONE);
             Prefs.putString("userId", "1");
-          //  Log.e("testtest22", "3333");
+            //  Log.e("testtest22", "3333");
 
             if (expandableLayout.isExpanded()) {
                 expandableLayout.collapse();

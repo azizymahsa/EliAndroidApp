@@ -18,6 +18,7 @@ public class TermsAndCond extends BaseTest {
     @Override
     public void runTest() {
         doClick(R.id.btnMenu);
+        sleep(750);
         doClick(R.id.btn_condition);
         sleep(3000);
         pressBack(TestConst.Terms_Back);
