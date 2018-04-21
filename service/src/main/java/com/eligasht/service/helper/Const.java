@@ -8,6 +8,8 @@ public class Const {
 
     public final static Boolean MOCK = false;
 
+    public static Boolean TEST=false;
+
     public final static String BASEURL = "http://mobilews.eligasht.com/LightServices/Rest/";
 
     //*************start up*************
