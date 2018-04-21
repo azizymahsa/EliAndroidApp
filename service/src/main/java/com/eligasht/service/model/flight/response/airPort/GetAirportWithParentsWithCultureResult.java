@@ -2,10 +2,12 @@
 package com.eligasht.service.model.flight.response.airPort;
 
 import java.util.List;
+
+import com.eligasht.service.model.BaseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GetAirportWithParentsWithCultureResult {
+public class GetAirportWithParentsWithCultureResult extends BaseModel {
 
     @SerializedName("Comments")
     @Expose

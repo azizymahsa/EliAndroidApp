@@ -1,24 +1,19 @@
 
 package com.eligasht.service.model.flight.response.DomesticFlight;
 
+import com.eligasht.service.model.BaseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class GetIsDomesticResult {
+public class GetIsDomesticResult extends BaseModel {
 
     @SerializedName("Comments")
     @Expose
     private Object comments;
 
-    public List<Error> getErrors() {
-        return errors;
-    }
 
-    public void setErrors(List<Error> errors) {
-        this.errors = errors;
-    }
 
     public Boolean getDomestic() {
         return isDomestic;
@@ -28,9 +23,7 @@ public class GetIsDomesticResult {
         isDomestic = domestic;
     }
 
-    @SerializedName("Errors")
-    @Expose
-    private List<Error> errors = null;
+
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;

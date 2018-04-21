@@ -2,17 +2,17 @@
 package com.eligasht.service.model.hotel.getHotelList.response;
 
 import java.util.List;
+
+import com.eligasht.service.model.BaseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GetHotelListResult {
+public class GetHotelListResult extends BaseModel {
 
     @SerializedName("Comments")
     @Expose
     private Object comments;
-    @SerializedName("Errors")
-    @Expose
-    private Object errors;
+
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
@@ -31,13 +31,6 @@ public class GetHotelListResult {
         this.comments = comments;
     }
 
-    public Object getErrors() {
-        return errors;
-    }
-
-    public void setErrors(Object errors) {
-        this.errors = errors;
-    }
 
     public Object getResultKey() {
         return resultKey;
