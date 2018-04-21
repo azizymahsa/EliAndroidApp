@@ -8,7 +8,7 @@ public class GetHotelReviewResponse {
 
     @SerializedName("GetHotelReviewResult")
     @Expose
-    private GetHotelReviewResult getHotelReviewResult;
+    public GetHotelReviewResult getHotelReviewResult;
 
     public GetHotelReviewResult getGetHotelReviewResult() {
         return getHotelReviewResult;

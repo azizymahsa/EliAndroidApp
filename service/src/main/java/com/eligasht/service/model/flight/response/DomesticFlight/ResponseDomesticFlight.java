@@ -8,7 +8,7 @@ public class ResponseDomesticFlight {
 
     @SerializedName("GetIsDomesticResult")
     @Expose
-    private GetIsDomesticResult getIsDomesticResult;
+    public GetIsDomesticResult getIsDomesticResult;
 
     public GetIsDomesticResult getGetIsDomesticResult() {
         return getIsDomesticResult;

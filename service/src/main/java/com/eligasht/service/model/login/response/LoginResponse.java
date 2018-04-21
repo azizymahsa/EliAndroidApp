@@ -8,7 +8,7 @@ public class LoginResponse {
 
     @SerializedName("LoginResult")
     @Expose
-    private LoginResult loginResult;
+    public LoginResult loginResult;
 
     public LoginResult getLoginResult() {
         return loginResult;

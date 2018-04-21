@@ -8,7 +8,7 @@ public class ResponseGetCountry {
 
     @SerializedName("GetCountryAjaxWithCultureResult")
     @Expose
-    private GetCountryAjaxWithCultureResult getCountryAjaxWithCultureResult;
+    public GetCountryAjaxWithCultureResult getCountryAjaxWithCultureResult;
 
     public GetCountryAjaxWithCultureResult getGetCountryAjaxWithCultureResult() {
         return getCountryAjaxWithCultureResult;

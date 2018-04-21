@@ -8,7 +8,7 @@ public class LoadFlightResponse {
 
     @SerializedName("LoadFlightResult")
     @Expose
-    private LoadFlightResult loadFlightResult;
+    public LoadFlightResult loadFlightResult;
 
     public LoadFlightResult getLoadFlightResult() {
         return loadFlightResult;

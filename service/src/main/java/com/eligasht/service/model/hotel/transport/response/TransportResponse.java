@@ -8,7 +8,7 @@ public class TransportResponse {
 
     @SerializedName("AirportTransportServicePriceResult")
     @Expose
-    private AirportTransportServicePriceResult airportTransportServicePriceResult;
+    public AirportTransportServicePriceResult airportTransportServicePriceResult;
 
     public AirportTransportServicePriceResult getAirportTransportServicePriceResult() {
         return airportTransportServicePriceResult;

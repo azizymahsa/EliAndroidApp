@@ -8,7 +8,7 @@ public class ResponsePurchaseFlight {
 
     @SerializedName("PurchaseServiceResult")
     @Expose
-    private PurchaseServiceResult purchaseServiceResult;
+    public PurchaseServiceResult purchaseServiceResult;
 
     public PurchaseServiceResult getPurchaseServiceResult() {
         return purchaseServiceResult;

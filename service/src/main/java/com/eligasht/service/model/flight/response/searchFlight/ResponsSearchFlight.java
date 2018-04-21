@@ -8,7 +8,7 @@ public class ResponsSearchFlight {
 
     @SerializedName("SearchFlightsResult")
     @Expose
-    private SearchFlightsResult searchFlightsResult;
+    public SearchFlightsResult searchFlightsResult;
 
     public SearchFlightsResult getSearchFlightsResult() {
         return searchFlightsResult;

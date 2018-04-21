@@ -8,7 +8,7 @@ public class ResponsePurchasePackage {
 
     @SerializedName("PurchasePackageResult")
     @Expose
-    private PurchasePackageResult purchasePackageResult;
+    public PurchasePackageResult purchasePackageResult;
 
     public PurchasePackageResult getPurchasePackageResult() {
         return purchasePackageResult;

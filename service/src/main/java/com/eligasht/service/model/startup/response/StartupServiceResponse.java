@@ -8,7 +8,7 @@ public class StartupServiceResponse {
 
     @SerializedName("MobileAppStartupServiceResult")
     @Expose
-    private MobileAppStartupServiceResult mobileAppStartupServiceResult;
+    public MobileAppStartupServiceResult mobileAppStartupServiceResult;
 
     public MobileAppStartupServiceResult getMobileAppStartupServiceResult() {
         return mobileAppStartupServiceResult;

@@ -8,7 +8,7 @@ public class ResponseContactUs {
 
     @SerializedName("GetContactUsWithCutureResult")
     @Expose
-    private GetContactUsWithCutureResult getContactUsWithCutureResult;
+    public GetContactUsWithCutureResult getContactUsWithCutureResult;
 
     public GetContactUsWithCutureResult getGetContactUsWithCutureResult() {
         return getContactUsWithCutureResult;

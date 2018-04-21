@@ -8,7 +8,7 @@ public class ResponseChangeFlight {
 
     @SerializedName("HotelPlusFlightChangeFltResult")
     @Expose
-    private HotelPlusFlightChangeFltResult hotelPlusFlightChangeFltResult;
+    public HotelPlusFlightChangeFltResult hotelPlusFlightChangeFltResult;
 
     public HotelPlusFlightChangeFltResult getHotelPlusFlightChangeFltResult() {
         return hotelPlusFlightChangeFltResult;
