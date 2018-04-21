@@ -23,6 +23,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 
 /**
@@ -44,9 +45,13 @@ public abstract class BasePart {
     }
 
 
-    public <T> void start(Observable<T> observable, OnServiceStatus<T> listener) {
+    public <T> void start(Observable<Response<T>> observable, OnServiceStatus<T> listener) {
+        if (!BuildConfig.DEBUG) {
+            call(observable, listener);
+            return;
+        }
         MockProcessor<T> mockProcessor = new MockProcessor<>(listener, getPart());
-        if (BuildConfig.DEBUG && Const.MOCK && mockProcessor.getRawRes() != null && mockProcessor.loadJSONFromAsset() != null) {
+        if (Const.MOCK && mockProcessor.getRawRes() != null && mockProcessor.loadJSONFromAsset() != null) {
             T model = mockProcessor.getMockModel();
             if (model == null) {
                 call(observable, listener);
@@ -59,20 +64,21 @@ public abstract class BasePart {
     }
 
 
-    private <T> void call(Observable<T> observable, OnServiceStatus<T> listener) {
+    private <T> void call(Observable<Response<T>> observable, OnServiceStatus<T> listener) {
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
-                .subscribe(new Observer<T>() {
+                .subscribe(new Observer<Response<T>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(T value) {
-                        listener.onReady(value);
+                    public void onNext(Response<T> value) {
+                        listener.onReady(value.body());
                     }
+
 
                     @Override
                     public void onError(Throwable e) {

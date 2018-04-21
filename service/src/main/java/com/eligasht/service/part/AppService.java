@@ -23,7 +23,7 @@ public class AppService extends BasePart {
 
     @Mock(jsonName = "mobile_app_startup_service", response = StartupServiceResponse.class)
     public void startUp(OnServiceStatus<StartupServiceResponse> listener, StartupServiceRequest req) {
-        start(getServiceGenerator().createService().startUp(req), listener);
+        start(getServiceGenerator().createService().startUp(req),listener);
     }
 
 }
