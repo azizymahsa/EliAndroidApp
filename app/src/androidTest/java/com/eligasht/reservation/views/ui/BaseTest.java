@@ -25,6 +25,7 @@ import android.widget.ScrollView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.views.OkHttp3IdlingResource;
+import com.eligasht.service.helper.Const;
 
 
 import org.hamcrest.Description;
@@ -78,6 +79,7 @@ public abstract class BaseTest {
 
     @Before
     public void register() {
+        Const.TEST=true;
         Espresso.registerIdlingResources(resource);
     }
 

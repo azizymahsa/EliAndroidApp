@@ -15,6 +15,7 @@ import com.eligasht.service.mock.MockProcessor;
 import com.eligasht.service.model.BaseModel;
 import com.example.type.TypeResolver;
 
+import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -24,6 +25,8 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.RequestBody;
+import okio.Buffer;
 import retrofit2.Response;
 
 
@@ -77,22 +80,7 @@ public abstract class BasePart {
 
                     @Override
                     public void onNext(Response<T> value) {
-                        if (BuildConfig.DEBUG && value.body() != null) {
-                            Field[] fields = value.body().getClass().getFields();
-                            for (Field field : fields) {
-                                try {
-                                    BaseModel baseModel = new BaseModel();
-                                    baseModel = (BaseModel) field.get(value.body());
-                                    Log.e("Bse", baseModel.getErrors().get(0).getDetailedMessage());
-                                } catch (Exception e) {
-
-                                }
-                            }
-
-
-                        }
-
-
+                        initForTest(value);
                         listener.onReady(value.body());
                     }
 
@@ -107,6 +95,43 @@ public abstract class BasePart {
 
                     }
                 });
+    }
+
+    private <T> void initForTest(Response<T> value) {
+        long tx = value.raw().networkResponse().sentRequestAtMillis();
+        long rx = value.raw().networkResponse().receivedResponseAtMillis();
+        Log.e("Time", "response time : " + (rx - tx) + " ms");
+        Log.e("Value", bodyToString(value.raw().request().body()));
+        if (BuildConfig.DEBUG && Const.TEST && value.body() != null) {
+            Field[] fields = value.body().getClass().getFields();
+            for (Field field : fields) {
+                try {
+                    BaseModel baseModel = new BaseModel();
+                    baseModel = (BaseModel) field.get(value.body());
+                    Log.e("Bse", baseModel.getErrors().get(0).getDetailedMessage());
+                } catch (Exception e) {
+
+                }
+            }
+
+
+        }
+
+
+    }
+
+    private String bodyToString(final RequestBody request) {
+        try {
+            final RequestBody copy = request;
+            final Buffer buffer = new Buffer();
+            if (copy != null)
+                copy.writeTo(buffer);
+            else
+                return "";
+            return buffer.readUtf8();
+        } catch (final IOException e) {
+            return "did not work";
+        }
     }
 
 
