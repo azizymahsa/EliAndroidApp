@@ -642,7 +642,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                             off, hotels.getTypeText(), hotels.getFacilities(),
                             xiff, hotels.getAvailability().getRoomLists().get(i).getOfferId(),
                             hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getLocations()));
-                    Log.e("keeey", hotelAvailRes.getHotelAvailResult().getResultUniqID() );
+                   // Log.e("keeey", hotelAvailRes.getHotelAvailResult().getResultUniqID() );
                 }
                 filterHotelStarsModels.add(new FilterStarModel(getString(R.string._1star), false, 1));
                 filterHotelStarsModels.add(new FilterStarModel(getString(R.string._2star), false, 2));
