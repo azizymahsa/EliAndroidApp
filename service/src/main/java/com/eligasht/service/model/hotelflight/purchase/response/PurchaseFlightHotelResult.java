@@ -1,31 +1,30 @@
 
-package com.eligasht.service.model.hotelflight.response;
+package com.eligasht.service.model.hotelflight.purchase.response;
 
-import com.eligasht.service.model.hotel.hotelAvail.response.Error;
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-public class HotelFlightSearchResult {
+public class PurchaseFlightHotelResult {
 
     @SerializedName("Comments")
     @Expose
     private Object comments;
     @SerializedName("Errors")
     @Expose
-    private List<Error> errors;
+    private Object errors;
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
     @SerializedName("Warningss")
     @Expose
     private Object warningss;
-    @SerializedName("HotelSearchResult")
+    @SerializedName("Services")
     @Expose
-    private HotelSearchResult hotelSearchResult;
-    @SerializedName("ResultUniqID")
+    private List<Service> services = null;
+    @SerializedName("TmpReserveResult")
     @Expose
-    private String resultUniqID;
+    private TmpReserveResult tmpReserveResult;
 
     public Object getComments() {
         return comments;
@@ -35,11 +34,11 @@ public class HotelFlightSearchResult {
         this.comments = comments;
     }
 
-    public List<Error> getErrors() {
+    public Object getErrors() {
         return errors;
     }
 
-    public void setErrors(List<Error> errors) {
+    public void setErrors(Object errors) {
         this.errors = errors;
     }
 
@@ -59,20 +58,20 @@ public class HotelFlightSearchResult {
         this.warningss = warningss;
     }
 
-    public HotelSearchResult getHotelSearchResult() {
-        return hotelSearchResult;
+    public List<Service> getServices() {
+        return services;
     }
 
-    public void setHotelSearchResult(HotelSearchResult hotelSearchResult) {
-        this.hotelSearchResult = hotelSearchResult;
+    public void setServices(List<Service> services) {
+        this.services = services;
     }
 
-    public String getResultUniqID() {
-        return resultUniqID;
+    public TmpReserveResult getTmpReserveResult() {
+        return tmpReserveResult;
     }
 
-    public void setResultUniqID(String resultUniqID) {
-        this.resultUniqID = resultUniqID;
+    public void setTmpReserveResult(TmpReserveResult tmpReserveResult) {
+        this.tmpReserveResult = tmpReserveResult;
     }
 
 }

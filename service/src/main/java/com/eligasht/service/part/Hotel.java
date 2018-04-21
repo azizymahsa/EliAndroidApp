@@ -19,8 +19,10 @@ import com.eligasht.service.model.hotel.room.request.GetRoomRequest;
 import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
 import com.eligasht.service.model.hotel.transport.request.TransportRequest;
 import com.eligasht.service.model.hotel.transport.response.TransportResponse;
-import com.eligasht.service.model.hotelflight.request.HotelFlightRequest;
-import com.eligasht.service.model.hotelflight.response.HotelFlightResponse;
+import com.eligasht.service.model.hotelflight.purchase.request.HotelFlightPurchaseRequest;
+import com.eligasht.service.model.hotelflight.purchase.response.HotelFlightPurchaseResponse;
+import com.eligasht.service.model.hotelflight.search.request.HotelFlightRequest;
+import com.eligasht.service.model.hotelflight.search.response.HotelFlightResponse;
 import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
 import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
@@ -45,11 +47,11 @@ public class Hotel extends BasePart {
     public void hotelAvail(OnServiceStatus<HotelAvailRes> listener, HotelAvailReq req) {
         start(getServiceGenerator().createService().hotelAvail(req), listener);
     }
-
+    @Mock(jsonName = "hotel_flight", response = HotelFlightResponse.class)
     public void hotelFlight(OnServiceStatus<HotelFlightResponse> listener, HotelFlightRequest req) {
         start(getServiceGenerator().createService().hotelFlight(req), listener);
     }
-
+    @Mock(jsonName = "load_flight", response = LoadFlightResponse.class)
     public void loadFlight(OnServiceStatus<LoadFlightResponse> listener, LoadFlightRequest req) {
         start(getServiceGenerator().createService().loadFlight(req), listener);
     }
@@ -65,11 +67,11 @@ public class Hotel extends BasePart {
     public void getHotelDetail(OnServiceStatus<HotelDetailResponse> listener, HotelDetailRequest req) {
         start(getServiceGenerator().createService().getHotelDetail(req), listener);
     }
-    @Mock(jsonName = "hold_room", response = HoldRoomRequest.class)
+    @Mock(jsonName = "hold_room", response = HoldRoomResponse.class)
     public void getHoldRoom(OnServiceStatus<HoldRoomResponse> listener, HoldRoomRequest req) {
         start(getServiceGenerator().createService().getHoldRoom(req), listener);
     }
-
+    @Mock(jsonName = "transport", response = TransportResponse.class)
     public void getTransport(OnServiceStatus<TransportResponse> listener, TransportRequest req) {
         start(getServiceGenerator().createService().transportService(req), listener);
     }
@@ -84,5 +86,9 @@ public class Hotel extends BasePart {
     @Mock(jsonName = "get_comment", response = GetHotelReviewResponse.class)
     public void getComment(OnServiceStatus<GetHotelReviewResponse> listener, GetHotelReviewRequest req) {
         start(getServiceGenerator().createService().getHotelReview(req), listener);
+    }
+    @Mock(jsonName = "hf_purchase", response = HotelFlightPurchaseResponse.class)
+    public void getPurchase(OnServiceStatus<HotelFlightPurchaseResponse> listener, HotelFlightPurchaseRequest req) {
+        start(getServiceGenerator().createService().HotelFlightPurchase(req), listener);
     }
 }

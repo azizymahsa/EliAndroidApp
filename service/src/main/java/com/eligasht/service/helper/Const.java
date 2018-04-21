@@ -27,6 +27,7 @@ public class Const {
     public final static String HotelPolicy = "Hotel/HotelService.svc/GetHotelPolicy";
     public final static String HoldSelectedRoom = "Hotel/HotelService.svc/HoldSelectedRoom";
     public final static String AirportTransportServicePrice = "HotelFlight/HotelFlightService.svc/AirportTransportServicePrice";
+    public final static String HotelFlightPurchase = "Common/StaticDataService.svc/PurchaseService";
 
     //*************flight*************
     public final static String AirportAvail = "Common/StaticDataService.svc/GetAirportWithParentsWithCulture";

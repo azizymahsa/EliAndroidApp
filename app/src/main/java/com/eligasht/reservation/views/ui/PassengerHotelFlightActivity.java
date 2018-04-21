@@ -50,6 +50,9 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.hotelflight.purchase.response.HotelFlightPurchaseResponse;
+import com.eligasht.service.model.hotelflight.search.response.HotelFlightResponse;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -113,8 +116,9 @@ import java.util.Map;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
-public class PassengerHotelFlightActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnItemSelectedListener, View.OnFocusChangeListener,com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,
-        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+public class PassengerHotelFlightActivity extends BaseActivity implements Header.onSearchTextChangedListener,
+        OnClickListener, OnItemSelectedListener, View.OnFocusChangeListener,com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,
+        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener,OnServiceStatus<HotelFlightPurchaseResponse> {
 
     public static boolean flag;
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -622,15 +626,41 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         }
          scrolMosafer = findViewById(R.id.scrolMosafer);
         //////////////
-        scrolMosafer.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                Log.e("testy", scrollY+"");
-                Log.e("testx", scrollX+"");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            scrolMosafer.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                    Log.e("testy", scrollY+"");
+                    Log.e("testx", scrollX+"");
 
-            }
-        });
+                }
+            });
+        }
     }//end oncreate
+    
+    
+    
+    
+    public void requestPurchase(){
+        HotelFlightPurchaseResponse purchaseResponse = new HotelFlightPurchaseResponse();
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+
+    @Override
+    public void onReady(HotelFlightPurchaseResponse hotelFlightPurchaseResponse) {
+    }
+
+    @Override
+    public void onError(String message) {
+    }
     //AsyncFetchGetPreFactorDetails
 
 

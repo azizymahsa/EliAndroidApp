@@ -1,10 +1,10 @@
 
-package com.eligasht.service.model.hotelflight.response;
+package com.eligasht.service.model.hotelflight.search.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Facility {
+public class Facility_ {
 
     @SerializedName("Count")
     @Expose

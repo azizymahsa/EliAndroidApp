@@ -1586,7 +1586,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	private void sendRequestPerchase() {
 
-		//this method will be running on UI thread
 		rlLoading.setVisibility(View.VISIBLE);
 		Utility.disableEnableControls(false,rlRoot);
 

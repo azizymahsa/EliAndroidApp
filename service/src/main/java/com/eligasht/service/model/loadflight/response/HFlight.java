@@ -3,7 +3,7 @@ package com.eligasht.service.model.loadflight.response;
 
 import java.util.List;
 
-import com.eligasht.service.model.hotelflight.response.FltList;
+import com.eligasht.service.model.hotelflight.search.response.FltList;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
