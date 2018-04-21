@@ -8,6 +8,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.views.TestConst;
 import com.eligasht.reservation.views.ui.BaseTest;
 import com.eligasht.reservation.views.ui.SplashActivity;
+import com.eligasht.service.generator.SingletonService;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -32,12 +33,14 @@ public class ForgetPassword extends BaseTest {
     public void runTest() {
         doClick(R.id.btnMenu);
         doClick(R.id.lottieUserMenu);
+        if (SingletonService.getInstance().getContext().getResources().getBoolean(R.bool.isTablet))
+            pressBack(1);
         doClick(R.id.layout_reset_password);
         doClick(R.id.edit_email_resetPass);
         doReplace(R.id.edit_email_resetPass, TestConst.Email_Forget);
         doPressImeActionButton(R.id.edit_email_resetPass);
         doClick(R.id.btnResetPassword);
         sleep(2500);
-        pressBack(TestConst.Forgetpassword_Back);
+        doClick(R.id.llHome);
     }
 }

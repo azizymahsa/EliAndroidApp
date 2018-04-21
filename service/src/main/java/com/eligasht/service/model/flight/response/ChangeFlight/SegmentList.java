@@ -1,6 +1,7 @@
 
 package com.eligasht.service.model.flight.response.ChangeFlight;
 
+import com.eligasht.service.model.flight.response.searchFlight.FreeBaggage;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -123,6 +124,25 @@ public class SegmentList {
     @SerializedName("OperatingAirlineNameFa")
     @Expose
     private Object operatingAirlineNameFa;
+    @SerializedName("FreeBaggage")
+    @Expose
+    private FreeBaggage freeBaggage;
+
+    public Boolean getDepartureSegment() {
+        return isDepartureSegment;
+    }
+
+    public void setDepartureSegment(Boolean departureSegment) {
+        isDepartureSegment = departureSegment;
+    }
+
+    public FreeBaggage getFreeBaggage() {
+        return freeBaggage;
+    }
+
+    public void setFreeBaggage(FreeBaggage freeBaggage) {
+        this.freeBaggage = freeBaggage;
+    }
 
     public String getAirlineCode() {
         return airlineCode;

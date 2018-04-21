@@ -4,6 +4,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -46,7 +47,12 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
 
     public PRowXferRowHolder(View itemView) {
         super(itemView);
-
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Click", "Click");
+            }
+        });
         this.intro_view_pager = itemView.findViewById(R.id.intro_view_pager);
         this.rcl_price = itemView.findViewById(R.id.rcl_price);
         this.rcl_hotels = itemView.findViewById(R.id.rcl_hotels);
@@ -63,7 +69,7 @@ public class PRowXferRowHolder extends RecyclerView.ViewHolder {
         this.time_arive_back = itemView.findViewById(R.id.time_arrive_back);
         this.list_pack = itemView.findViewById(R.id.crd_pack);
         this.btnServices = itemView.findViewById(R.id.btnServices);
-    //    this.txt_count = itemView.findViewById(R.id.txt_count);
+        //    this.txt_count = itemView.findViewById(R.id.txt_count);
 
 
         //this.date_depart = itemView.findViewById(R.id.date_go);

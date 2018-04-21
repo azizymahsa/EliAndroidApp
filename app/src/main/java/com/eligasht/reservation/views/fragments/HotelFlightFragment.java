@@ -112,7 +112,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         lbl_city_english = rootView.findViewById(R.id.lbl_city_english);
         txtCity = rootView.findViewById(R.id.txtCity);
         citySearch.setOnClickListener(this);
-        lbl_city_english.setOnClickListener(this);
+        //lbl_city_english.setOnClickListener(this);
         searchHotel = rootView.findViewById(R.id.searchHotel);
         searchHotel.setOnClickListener(this);
         ivImage.setOnClickListener(this);
@@ -210,6 +210,8 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
+        Log.e("idididid", v.getId()+"");
+
         switch (v.getId()) {
 
             case R.id.linearLayout_mabda:

@@ -290,12 +290,14 @@
                                 android:layout_gravity="center"
                                 android:elevation="1dp"
                                 android:paddingBottom="1dp"
+
                                 fancy:fb_defaultColor="@color/TRANSPARENT"
                                 fancy:fb_focusColor="@color/focusColor"
                                 fancy:fb_radius="4dp"
                                 fancy:fb_text=" "
                                 fancy:fb_textColor="#0071bc"
                                 fancy:fb_textSize="@dimen/_14dp_txtSize"
+
 
                                 android:gravity="center|top"/>
                             <LinearLayout

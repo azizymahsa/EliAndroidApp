@@ -37,16 +37,16 @@ public class Const {
     public final static String ChangeFlightAvil = "HotelFlight/HotelFlightService.svc/HotelPlusFlightChangeFlt";
     public final static String PreFactorDetailsAvil = "Common/StaticDataService.svc/GetPreFactorDetails";
     //*************insurnace*************
-    public final static String PurchaseInsuranceAvil="Insurance/InsuranceService.svc/PurchaseInsurance";
-    public final static String PreFactorDetailsInsuranceAvil="Common/StaticDataService.svc/GetPreFactorDetails";
-    public final static String GetCountryInsuranceAvil="Common/StaticDataService.svc/GetCountryAjaxWithCulture";
-    public final static String SearchInsuranceAvil="Insurance/InsuranceService.svc/ShowInsurance";
+    public final static String PurchaseInsuranceAvil = "Insurance/InsuranceService.svc/PurchaseInsurance";
+    public final static String PreFactorDetailsInsuranceAvil = "Common/StaticDataService.svc/GetPreFactorDetails";
+    public final static String GetCountryInsuranceAvil = "Common/StaticDataService.svc/GetCountryAjaxWithCulture";
+    public final static String SearchInsuranceAvil = "Insurance/InsuranceService.svc/ShowInsurance";
     //*************static page*************
-    public final static String AboutAvil="Common/StaticDataService.svc/GetAboutUsWithCulture";
-    public final static String ContactUsAvil="Common/StaticDataService.svc/GetContactUsWithCuture";
+    public final static String AboutAvil = "Common/StaticDataService.svc/GetAboutUsWithCulture";
+    public final static String ContactUsAvil = "Common/StaticDataService.svc/GetContactUsWithCuture";
     //*************pachage*****************
-    public final static String SearchXPackageAvil="Package/PackageService.svc/SearchXPackage";
-    public final static String PurchasePackageAvil="Package/PackageService.svc/PurchasePackage";
-    public final static String GetPreFactorDetailsPackageAvil="Common/StaticDataService.svc/GetPreFactorDetails";
+    public final static String SearchXPackageAvil = "Package/PackageService.svc/SearchXPackage";
+    public final static String PurchasePackageAvil = "Package/PackageService.svc/PurchasePackage";
+    public final static String GetPreFactorDetailsPackageAvil = "Common/StaticDataService.svc/GetPreFactorDetails";
 
 }

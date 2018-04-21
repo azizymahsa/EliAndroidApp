@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,8 +53,8 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     private EditText edt_mobile;
     private EditText edt_address;
     private LinearLayout rlBirthday;
-    public SmoothCheckBox chk_gender_man;
-    public SmoothCheckBox chk_gender_woman;
+    public RadioButton chk_gender_man;
+    public RadioButton chk_gender_woman;
     transient private boolean isChecked;
     private LinearLayout birthday_date;
     private EditText txt_birthday;
@@ -154,10 +157,9 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
             }
         } catch (Exception e) {
         }
-        chk_gender_man.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
+        chk_gender_man.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
-
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     chk_gender_woman.setChecked(false);
                     imageView.setImageDrawable(getResources().getDrawable(R.drawable.man));
@@ -165,10 +167,10 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                 }
             }
         });
-        chk_gender_woman.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {
 
+        chk_gender_woman.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     chk_gender_man.setChecked(false);
                     imageView.setImageDrawable(getResources().getDrawable(R.drawable.woman));
@@ -176,6 +178,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                 }
             }
         });
+
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.action.ScrollToAction;
 import android.support.test.espresso.action.ViewActions;
+import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -146,6 +147,10 @@ public abstract class BaseTest {
         onView(withId(view)).perform(replaceText(text));
     }
 
+    public void doSwipeDown(@IdRes int view) {
+        onView(withId(view)).perform(ViewActions.swipeDown());
+    }
+
 
     public void doReplaceAndCloseKeyboard(@IdRes int view, String text) {
         onView(withId(view)).perform(replaceText(text), closeSoftKeyboard());
@@ -159,6 +164,17 @@ public abstract class BaseTest {
         onView(withId(view)).perform(customScrollTo, click());
     }
 
+    public void doClickWithIndexInScroll(@IdRes int view, int index) {
+        onView(withIndex(withId(view), index)).perform(customScrollTo, click());
+    }
+
+    public void doClickItemInRecyclerView(int view,int child,int index)
+    {
+        onView(withId(view)).perform(
+                RecyclerViewActions.actionOnItemAtPosition(index, clickChildViewWithId(child)));
+    }
+
+
     public void doClickItemInSpinner(int index) {
         onData(anything())
                 .inAdapterView(childAtPosition(
@@ -171,6 +187,8 @@ public abstract class BaseTest {
     public void doClickWithIndex(@IdRes int view, int index) {
         onView(withIndex(withId(view), index)).perform(click());
     }
+
+
 
     public void doClickTab(@IdRes int id, int index) {
         onView(
@@ -204,6 +222,32 @@ public abstract class BaseTest {
             new ScrollToAction().perform(uiController, view);
         }
     };
+
+
+
+        public static ViewAction clickChildViewWithId(final int id) {
+            return new ViewAction() {
+                @Override
+                public Matcher<View> getConstraints() {
+                    return null;
+                }
+
+                @Override
+                public String getDescription() {
+                    return "Click on a child view with specified id.";
+                }
+
+                @Override
+                public void perform(UiController uiController, View view) {
+                    View v = view.findViewById(id);
+                    v.performClick();
+                }
+            };
+        }
+
+
+
+
 
 
 }

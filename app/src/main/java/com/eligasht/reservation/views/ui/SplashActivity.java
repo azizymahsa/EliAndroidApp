@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustEvent;
@@ -92,6 +93,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                 System.exit(0);
             }
         }, 100);
+
     }
 
     @Override
@@ -247,7 +249,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                     Hawk.put("adjust", false);
                 }
                 if (startupServiceResponse.getMobileAppStartupServiceResult().getUserEntranceResponse().getCanEnter()) {
-                    try {
+
                         String app = BuildConfig.VERSION_NAME;
                         String server = startupServiceResponse.getMobileAppStartupServiceResult().getUserEntranceResponse().getMinAppVersion();
                         if (Double.valueOf(app.replace(".", "")) < Double.valueOf(server.replace(".", ""))) {
@@ -272,10 +274,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                             }
                             Prefs.putBoolean("isFirstEntrance", false);
                         }
-                    } catch (Exception e) {
-                        splashDialog.showAlert();
-                        e.printStackTrace();
-                    }
+
                 } else {
                     updateAlert.show();
                     updateAlert.isForce(true);

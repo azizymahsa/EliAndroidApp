@@ -4,11 +4,15 @@ package com.eligasht.reservation.views.ui;
 import com.eligasht.R;
 import com.eligasht.reservation.views.TestConst;
 
+import static android.support.test.espresso.Espresso.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
+import static android.support.test.espresso.Espresso.onView;
 
 
 public class LoginAndEditProfile extends BaseTest {
@@ -50,6 +54,7 @@ public class LoginAndEditProfile extends BaseTest {
         doScrollAndClickInScrollView(R.id.edt_address);
         doReplace(R.id.edt_address, "خیابان ازادی جنب بانک ملت کوچه اول پلاک ۲۰");
         doScrollAndClickInScrollView(R.id.chB_woman);
+        closeSoftKeyboard();
         doClick(R.id.btnSaveInfo);
         sleep(3000);
         pressBack(TestConst.LoginAndProfile_Back);
