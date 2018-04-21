@@ -51,7 +51,7 @@
             android:id="@+id/tvAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
@@ -88,5 +88,6 @@
         fancy:fb_text="@string/IrOK"
         fancy:fb_textColor="#4d4d4d"
         fancy:fb_textSize="@dimen/_14dp_txtSize"
-        android:layout_marginBottom="@dimen/_10dp_margin"/>
+        android:layout_marginBottom="@dimen/_10dp_margin"
+       />
 </LinearLayout>
