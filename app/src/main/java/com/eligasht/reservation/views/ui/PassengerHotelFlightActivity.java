@@ -195,12 +195,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay()
         );
-
-        //datePickerDialog.setMinDate(persianCalendarDatePicker);
-
-
         //______________________________________________________________________
-
 
 //=====================================================================================================
         datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
@@ -235,10 +230,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 String monthMF = dateSplite2[1];
                 String yearMF = dateSplite2[0];
 
-
                 datePickerDialog.initialize(PassengerHotelFlightActivity.this, Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
                 datePickerDialog.show(getSupportFragmentManager(), "DatepickerdialogRaft");
-
 
             }
         });
@@ -264,7 +257,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
         //=====================================================================================================
 
-
 //change button shamsi to milady (date picker)
         datePickerDialog.setOnCalandarChangeListener(new com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
             @Override
@@ -285,8 +277,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 datePickerDialogGregorian1.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
             }
         });
-
-
 
         txtTitleCountM = findViewById(R.id.txtTitleCountM);
         txtTitleCountM.setOnClickListener(PassengerHotelFlightActivity.this);
