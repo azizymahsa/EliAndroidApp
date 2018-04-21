@@ -627,8 +627,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     }//end oncreate
 
 
-
-
     @Override
     public void onReady(ResponsePreFactorDetails responsePreFactorDetails) {
 
@@ -768,7 +766,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     }
 
 
-        private void sendRequestPreFactorDetailsAvil() {
+    private void sendRequestPreFactorDetailsAvil() {
 
         try {
             rlLoading.setVisibility(View.VISIBLE);
@@ -801,7 +799,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
     //get khadamat
     private class AsyncFetch extends AsyncTask<String, String, String> {
-        //  ProgressDialog pdLoading = new ProgressDialog(PassengerHotelFlightActivity.this);
+
         HttpURLConnection conn;
         URL url = null;
         private ListView listAirPort;
@@ -827,13 +825,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             }
             try {
 
-                // Setup HttpURLConnection class to send and receive data from php and mysql
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(READ_TIMEOUT);
                 conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                // conn.setRequestMethod("GET");
                 conn.setRequestMethod("POST");
-                // setDoOutput to true as we recieve data from json file
                 conn.setDoOutput(true);
 
             } catch (IOException e1) {
@@ -914,22 +909,14 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 JSONObject jsonObj = new JSONObject(result);
                 Log.e("jsonObj", jsonObj.toString());
 
-                // JSONObject jsonObj = new JSONObject(retSrc);
 
-                // Getting JSON Array node
                 JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightHotelResult");//Error
-
-				 /* JSONObject GetError = jsonObj.getJSONObject("Error");
-                  Toast.makeText(PassengerHotelFlightActivity.this,  Get, Toast.LENGTH_LONG).show();*/
 
                 JSONArray jArray = GetAirportsResult.getJSONArray("Services");
                 JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
 
                 Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
-                //////////////////////////////
-                //  JSONArray jArray = new JSONArray(result);
 
-                // Extract data from json and store into ArrayList as class objects
                 for (int i = 0; i < jArray.length(); i++) {
                     JSONObject json_data = jArray.getJSONObject(i);
                     JSONObject excursionDta = json_data.getJSONObject("ExcursionDta");
@@ -1243,8 +1230,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             flagMosafer = flagMosafer + "F";
                             errorMessage = errorMessage + "\n" + "* " + getString(R.string.Email_format_is_correct);
                         }
-                        //	if(RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length()>1){
-                        //if( RqPartner_FirstNameFa.trim().length()>3 && RqPartner_FirstNameFa.trim().length()<20 && !(RqPartner_FirstNameFa.matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
+
                         if (RqPartner_FirstNameFa != null) {
                             if (Locale.getDefault().getLanguage().equals("en")) {
                                 if (RqPartner_FirstNameFa.length() > 2 && ((RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")))) {
@@ -1313,8 +1299,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         }
                         //////////////////////////End Validate
                         if (flagMosafer.contains("F")) {
-                            //Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
-                            //Toast.makeText(this,errorMessage,2000).show();
+
                             try {
                                 AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
                                 alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
@@ -1336,8 +1321,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             linear_pish_factor.setVisibility(View.GONE);
                             linear_mosaferan.setVisibility(View.VISIBLE);
                             txtTitle.setText(getString(R.string.Traveler_info));
-                            //((Button)findViewById(R.id.btn_saler)).setBackgroundResource(R.drawable.blue_line_with_arrow_small);
-                            //((Button)findViewById(R.id.btn_saler)).setTextColor(Color.parseColor("#33ccff"));//
+
                             Gensiyat = "";
                             ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
                             ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#000000"));
@@ -1367,7 +1351,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     datePickerDialog.setMinDate(persianCalendarDatePicker1);
                     datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
                     String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
                     int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true) - 2;
@@ -1390,7 +1373,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     datePickerDialog.setMinDate(persianCalendarDatePicker1);
                     datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
-
 
                     String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
@@ -1473,21 +1455,17 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     String errorMessagePartner = "";
                     ///Validate
 
-                    // if(linear_number_passport.getVisibility()==View.VISIBLE){
                     if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
                         ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-                        //((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_number_correctly);
                     }
-                    // }
                     if (Nationality != null && Nationality.length() > 1) {
                         ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-                        //((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_place_of_residence);
                     }
@@ -1503,23 +1481,19 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         ((TextView) findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-                        //((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_date_of_birth);
                     }
-                    ////////////////////////////////////
                     if (txtTitleCountM.getText().toString().contains(getString(R.string.Child))) {
 
                     } else if (txtTitleCountM.getText().toString().contains(getString(R.string.baby))) {
 
                     }
-                    /////////////////////////////////
                     if (RqPassenger_FirstNameEn != null)
                         if (RqPassenger_FirstNameEn.length() > 1 && RqPassenger_FirstNameEn.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) {
                             ((EditText) findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {
-                            //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer = flagMosafer + "F";
                             errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                         }
@@ -1528,7 +1502,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             ((EditText) findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {
-                            //((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer = flagMosafer + "F";
                             errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                         }
@@ -1536,7 +1509,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-                        //((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
+
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_expiration_date);
                     }
@@ -1549,17 +1522,15 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ///endValidate
 
                     if (flagMosafer.contains("F")) {
-                        //Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
                         try {
                             AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
                             AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
                         } catch (Exception e) {
                             e.getMessage();
-                        }//Toast.makeText(this,errorMessagePartner,2000).show();
+                        }
                     } else {
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerHotelFlightActivity.this);
 
-                        //db.dropTable();
                         db.openDB();
 
                         //faghat yek otagh
@@ -1604,18 +1575,15 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                 System.out.println("InsertMosafer:" + (counter - 1) + " " + txtTitleCountM.getText().toString() + " " + RqPassenger_FirstNameEn);
                                 if (countB >= 1) {
                                     System.out.println("countB:" + countB);
-                                    //  txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.adult_));
-                                    //  imgCount.setText(getString(R.string.room)+getCounter(rooms+1));
+
                                     countB--;
                                 } else if (countK >= 1) {
                                     System.out.println("countK:" + countK);
-                                    // txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+" (کودک) ");
-                                    // imgCount.setText(getString(R.string.room)+getCounter(rooms+1));
+
                                     countK--;
                                 } else if (countN >= 1) {
                                     System.out.println("countN:" + countN);
-                                    // txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter-1)+getString(R.string.baby));
-                                    //  imgCount.setText(getString(R.string.room)+getCounter(rooms+1));
+
                                     countN--;
                                 }
                                 if (countB != 0) {
@@ -1796,9 +1764,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
                             linear_mosaferan.clearFocus();
-                        }/*else if(){
-
-                            }*/
+                        }
 
                         //call api saler
                         if (sum == 0 && rooms == 0) {
@@ -1835,9 +1801,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
                 //call api pishFactor
-               // new AsyncFetchPishFactor().execute();
-               sendRequestPurchaseService();
-                //call api GetPreFactorDetails
+                sendRequestPurchaseService();
+
                 break;
 
 
@@ -1938,12 +1903,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         rlLoading.setVisibility(View.VISIBLE);
         Utility.disableEnableControls(false, rlRoot);
 
-       RequestPurchaseService hotelFlightPurchaseRequest = new RequestPurchaseService();
+        RequestPurchaseService hotelFlightPurchaseRequest = new RequestPurchaseService();
         com.eligasht.service.model.hotelflight.purchase.request.PishFactor.Request request = new com.eligasht.service.model.hotelflight.purchase.request.PishFactor.Request();
 
         com.eligasht.service.model.hotelflight.purchase.request.PishFactor.Identity identity = new com.eligasht.service.model.hotelflight.purchase.request.PishFactor.Identity();
-
-
 
 
         try {
@@ -1959,11 +1922,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             request.setInsPlanCode(-1);
 
             identity.setPassword("123qwe!@#QWE");
-            identity.setTermianlId( "Mobile");
+            identity.setTermianlId("Mobile");
             identity.setUserName("EligashtMlb");
             //  identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             request.setIdentity(identity);
-
 
 
         } catch (Exception e) {
@@ -1977,7 +1939,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         SingletonService.getInstance().getHotelService().getPishFactor(new OnServiceStatus<ResponsePurchaseService>() {
             @Override
             public void onReady(ResponsePurchaseService responsePurchaseService) {
-                Log.e( "onReady: ",new Gson().toJson(responsePurchaseService).toString() );
+                Log.e("onReady: ", new Gson().toJson(responsePurchaseService).toString());
                 rlLoading.setVisibility(View.GONE);
                 Utility.disableEnableControls(true, rlRoot);
                 try {
@@ -1997,13 +1959,13 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     }
 
                     if (successResult > 1) {
-                        txt_shomare_factor.setText(GetAirportsResult.getSuccessResult()+"");
-                        tvfactorNumber.setText(GetAirportsResult.getSuccessResult()+"");
+                        txt_shomare_factor.setText(GetAirportsResult.getSuccessResult() + "");
+                        tvfactorNumber.setText(GetAirportsResult.getSuccessResult() + "");
 
-                        textView4.setImageBitmap(getBitmap(GetAirportsResult.getSuccessResult()+"", 128, getResources().getInteger(R.integer._300), getResources().getInteger(R.integer._150)));
+                        textView4.setImageBitmap(getBitmap(GetAirportsResult.getSuccessResult() + "", 128, getResources().getInteger(R.integer._300), getResources().getInteger(R.integer._150)));
 
                     } else {
-                        txt_shomare_factor.setText(getString(R.string.An_error_has_occurred)+"");
+                        txt_shomare_factor.setText(getString(R.string.An_error_has_occurred) + "");
                     }
                     // sfsfs
 
@@ -2033,7 +1995,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             @Override
             public void onError(String message) {
-                Log.e( "onError: ", message);
+                Log.e("onError: ", message);
                 rlLoading.setVisibility(View.GONE);
                 Utility.disableEnableControls(true, rlRoot);
             }
@@ -2115,7 +2077,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             String nationalityCode = data.getStringExtra(NationalitycodeActivity.RESULT_NATIONALITYCODE);
             String nationalityName = data.getStringExtra(NationalitycodeActivity.RESULT_NATIONALITYNAME);
-            //Toast.makeText(PassengerHotelFlightActivity.this, "You selected countrycode: " + countryCode, Toast.LENGTH_LONG).show();
+
             if (countryCode != null)
                 txtmahale_eghamat.setText(countryCode + "");//txtmahale_eghamat.setText(countryCode+" "+countryName);
             if (nationalityCode != null)
@@ -2123,88 +2085,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         }
     }
 
-    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-        public String RengAge;
-
-        public DatePickerFragment() {
-            //this.RengAge=RengAge;
-        }
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            DatePickerDialog dialog = null;
-            if (flag) {//tavalodm
-                Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-
-                if (RengAge.contains(getString(R.string.Child))) {
-                    dialog = new DatePickerDialog(getActivity(), this, year - 12, month, day);
-                } else if (RengAge.contains(getString(R.string.baby))) {
-                    dialog = new DatePickerDialog(getActivity(), this, year - 2, month, day);
-                } else if (RengAge.contains(getString(R.string.adult))) {
-                    dialog = new DatePickerDialog(getActivity(), this, year - 30, month, day);
-                }
-                // dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-///////////////setmin
-                if (RengAge.contains(getString(R.string.Child))) {
-                    System.out.println("koodak");
-                    //c = Calendar.getInstance();
-                    c.add(Calendar.YEAR, -14); // subtract 2 years from now
-                    dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                    c.add(Calendar.YEAR, 10); // add 4 years to min date to have 2 years after now
-                    dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-
-                } else if (RengAge.contains(getString(R.string.baby))) {
-                    System.out.println("Nozad");
-                    //c = Calendar.getInstance();
-                    c.add(Calendar.YEAR, -2); // subtract 2 years from now
-                    dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                    c.add(Calendar.YEAR, 2); // add 4 years to min date to have 2 years after now
-                    dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-                } else {
-                    c.add(Calendar.YEAR, -120);
-                    dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                    c.add(Calendar.YEAR, 108);
-                    dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-                }
-                ///////end setMin
-            } else {//expPasport
-                Calendar c = Calendar.getInstance();
-                int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
-                int day = c.get(Calendar.DAY_OF_MONTH);
-                dialog = new DatePickerDialog(getActivity(), this, year, month + 6, day);//1997/12/23
-
-                c.add(Calendar.MONTH, 6);
-                dialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                c.add(Calendar.YEAR, 6);
-                dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-
-            }
-
-            return dialog;
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            String sMonth = String.valueOf(month + 1);
-            String sDay = String.valueOf(day);
-            if (sMonth.length() == 1)
-                sMonth = "0" + sMonth;
-
-            if (sDay.length() == 1)
-                sDay = "0" + sDay;
-            if (flag) {
-                txttavalodm.setText(year + "/" + sMonth + "/" + sDay);
-            } else {
-
-                txtexp_passport.setText(year + "/" + sMonth + "/" + sDay);
-            }
-
-
-        }
-    }//endDatepicker
 
     @Override
     public void onBackPressed() {
