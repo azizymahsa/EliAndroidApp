@@ -63,9 +63,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         SortDialog.SortHotelDialogListener, OnServiceStatus<HotelFlightResponse> {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
-    LinearLayout llFilter;
-    String flightId, searchIn;
-    String flId, searchKey;
+    private LinearLayout llFilter;
+    private String flightId, searchIn;
+    private String flId, searchKey;
     private com.eligasht.reservation.tools.ListView list;
     private FlightHotelAdapter adapter;
     private ArrayList<SelectFlightHotelModel> selectHotelModelArrayList = new ArrayList<>();
@@ -876,7 +876,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         }, loadFlightRequest);
     }
 
-
     public void onErrors() {
         new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -896,52 +895,32 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         tvAlertDesc.setVisibility(View.GONE);
     }
 
-
-
-
-
-    public void requestCheckFlt(){
+    public void requestCheckFlt() {
         RequestDomesticFlight requestDomesticFlight = new RequestDomesticFlight();
         com.eligasht.service.model.flight.request.DomesticFlight.Request request = new com.eligasht.service.model.flight.request.DomesticFlight.Request();
-
-
-            request.setUserName("EligashtMlb");
-            request.setPassword("123qwe!@#QWE");
-            request.setTermianlId("Mobile");
-            request.setCode(Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));////inja esme forudgah mikhore
-            request.setToCode(Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"));
-
+        request.setUserName("EligashtMlb");
+        request.setPassword("123qwe!@#QWE");
+        request.setTermianlId("Mobile");
+        request.setCode(Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));////inja esme forudgah mikhore
+        request.setToCode(Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"));
         requestDomesticFlight.setRequest(request);
-
-
         SingletonService.getInstance().getFlight().domesticFlightAvail(new OnServiceStatus<ResponseDomesticFlight>() {
             @Override
             public void onReady(ResponseDomesticFlight responseDomesticFlight) {
                 try {
-
-
-                    if (responseDomesticFlight.getGetIsDomesticResult().getErrors()!=null) {
+                    if (responseDomesticFlight.getGetIsDomesticResult().getErrors() != null) {
                         Toast.makeText(SelectHotelFlightActivity.this, responseDomesticFlight.getGetIsDomesticResult().getErrors().get(0).getDetailedMessage(), Toast.LENGTH_SHORT).show();
-
                     } else {
-
-
-
-                            Prefs.putBoolean("IsDemostic", responseDomesticFlight.getGetIsDomesticResult().getIsDomestic());
+                        Prefs.putBoolean("IsDemostic", responseDomesticFlight.getGetIsDomesticResult().getIsDomestic());
                     }
                 } catch (Exception e) {
                 }
-
-
             }
 
             @Override
             public void onError(String message) {
                 Toast.makeText(SelectHotelFlightActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
-
-
             }
         }, requestDomesticFlight);
-
     }
 }
