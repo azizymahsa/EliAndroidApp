@@ -158,7 +158,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             if (item.weight.length() > 0) {
                 weightLinear.setVisibility(View.VISIBLE);
                 txtWeight.setText(item.weight + "");
-                txtPieces.setText(item.Pieces + "×");
+                if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+                    // String text2 = "<font color=#0e874e>" + item.AirlineNameFaR + "" + "</font> ";
+                    txtPieces.setText(item.Pieces + "×");
+                } else {
+                    txtPieces.setText("×"+item.Pieces  );
+
+                }
+
             }
         } catch (Exception e) {
             Log.e("getChildView: ",e.getMessage() );
@@ -187,7 +194,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             txtTotalFareCostR.setVisibility(View.GONE);
         }
         //String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
-        //  txtTotalFareCost.setText(item.TotalFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.TotalFare)) : "IT");//String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
+        //txtTotalFareCost.setText(item.TotalFare > 0 ? String.valueOf(NumberFormat.getInstance().format(item.TotalFare)) : "IT");//String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
 
         lblFlightTimeR.setText(item.FlightTimeR + "");
         lblFlightArrivalTimeR.setText(item.FlightArrivalTimeR + "");
@@ -198,8 +205,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             lblFlightNumberR.setText(test.replace(" ", ""));
             Log.e("Exp:", test.replace(" ", ""));
             if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
-                String text2 = "<font color=#0e874e>" + item.AirlineNameFaR + "" + "</font> ";
-                lblFlightNumberRPersian.setText(" , " + Html.fromHtml(text2));
+               // String text2 = "<font color=#0e874e>" + item.AirlineNameFaR + "" + "</font> ";
+                lblFlightNumberRPersian.setText(" , " + item.AirlineNameFaR);
             } else {
                 lblFlightNumberRPersian.setText(item.AirlineNameFaR + " , ");
             }
@@ -210,8 +217,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             lblFlightNumberR.setText(Html.fromHtml(text));
             Log.e("Exp:", Html.fromHtml(text) + "");
             if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
-                String text2 = "<font color=#0e874e>" + item.AirlineNameFaR + "" + "</font> ";
-                lblFlightNumberRPersian.setText(" , " + Html.fromHtml(text2));
+              //  String text2 = "<font color=#0e874e>" + item.AirlineNameFaR + "" + "</font> ";
+                lblFlightNumberRPersian.setText(" , " + item.AirlineNameFaR);
             } else {
                 lblFlightNumberRPersian.setText(item.AirlineNameFaR + " , ");
             }
@@ -239,7 +246,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             btnSelect.setText(R.string.change_flight);
         }
         btnSelect.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
 
@@ -263,8 +269,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     System.out.println("item.flGUID:" + item.flGUID);
 
                 }
-
-
             }
         });
 

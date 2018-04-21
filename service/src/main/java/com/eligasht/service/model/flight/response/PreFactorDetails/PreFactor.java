@@ -19,9 +19,13 @@ public class PreFactor {
     @SerializedName("PreFactorFlights")
     @Expose
     private List<PreFactorFlight> preFactorFlights = null;
+
+
+
+
     @SerializedName("PreFactorHotels")
     @Expose
-    private List<Object> preFactorHotels = null;
+    private List<PreFactorHotel> preFactorHotels = null;
     @SerializedName("PreFactorServices")
     @Expose
     private List<PreFactorService> preFactorServices = null;
@@ -70,14 +74,13 @@ public class PreFactor {
         this.preFactorFlights = preFactorFlights;
     }
 
-    public List<Object> getPreFactorHotels() {
-        return preFactorHotels;
-    }
 
-    public void setPreFactorHotels(List<Object> preFactorHotels) {
+    public void setPreFactorHotels(List<PreFactorHotel> preFactorHotels) {
         this.preFactorHotels = preFactorHotels;
     }
-
+    public List<PreFactorHotel> getPreFactorHotels() {
+        return preFactorHotels;
+    }
     public List<PreFactorService> getPreFactorServices() {
         return preFactorServices;
     }

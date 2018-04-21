@@ -232,8 +232,6 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                 AlertDialogPassenger.setText(GetError, getString(R.string.massege));
 
             } else {
-
-                //AirportCode //AirportName//CityName ":
                 // responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().
                 for (int i = 0; i < responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().size(); i++) {
                     Country fishData = new Country();
@@ -246,18 +244,16 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                     data.add(fishData);
                 }
 
-
                 String Value_Maghsad_City = "";
                 String Value_Maghsad_Airport = "";
                 String Value_Maghsad_Airport_Code = "";
-                ////
+
                 if (Prefs.getString("Value-Maghsad-City", "") != null) {
                     Value_Maghsad_City = Prefs.getString("Value-Maghsad-City", "");
                     Value_Maghsad_Airport = Prefs.getString("Value-Maghsad-Airport", "");
                     Value_Maghsad_Airport_Code = Prefs.getString("Value-Maghsad-Airport-Code", "");
                 }
 
-                ////
                 listAirPort = findViewById(R.id.listAirPort);
                 mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportMabdaActivity.this);
 
@@ -268,13 +264,9 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
             if (!Utility.isNetworkAvailable(GetAirportMabdaActivity.this)) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
                 AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
-
-
             } else {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
                 AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
-
-
             }
         }
     }

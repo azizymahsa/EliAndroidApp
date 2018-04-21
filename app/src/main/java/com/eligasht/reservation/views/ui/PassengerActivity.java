@@ -58,6 +58,7 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.reservation.lost.hotel.HotelPreFactorAdapter;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
@@ -71,6 +72,7 @@ import com.eligasht.service.model.flight.response.PreFactorDetails.FactorSummary
 import com.eligasht.service.model.flight.response.PreFactorDetails.GetPreFactorDetailsResult;
 import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactor;
 import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorFlight;
+import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorHotel;
 import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorService;
 import com.eligasht.service.model.flight.response.PreFactorDetails.RequestPassenger;
 import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFactorDetails;
@@ -1904,21 +1906,21 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
 					ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
 
-					List<Object> jArray2 = jArray.getPreFactorHotels();//PreFactorHotels();
+					List<PreFactorHotel> jArray2 = jArray.getPreFactorHotels();//PreFactorHotels();
 
 
-			/*for (int i = 0; i < jArray2.size(); i++) {
-				hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).HotelNameE(),
-						Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekin"))
-						, Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekout")),
-						jArray2.getJSONObject(i).getString("AdlCount"),
-						jArray2.getJSONObject(i).getString("ChdCount"),jArray2.getJSONObject(i).getString("RoomTitleFa")));
+			for (int i = 0; i < jArray2.size(); i++) {
+				hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
+						Utility.dateShow(jArray2.get(i).getHotelChekin())
+						, Utility.dateShow(jArray2.get(i).getHotelChekout()),
+						jArray2.get(i).getAdlCount()+"",
+						jArray2.get(i).getChdCount()+"",jArray2.get(i).getRoomTitleFa()));
 
 			}
 			if (!hotelPreFactorModels.isEmpty()) {
 				recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
 				llDetailHotel.setVisibility(View.VISIBLE);
-			}*/
+			}
 
 
 //for passenger======================================================================================
