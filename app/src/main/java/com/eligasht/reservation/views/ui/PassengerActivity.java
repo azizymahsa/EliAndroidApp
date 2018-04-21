@@ -1683,12 +1683,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					try {
 
 						String GetError="";
-						List<com.eligasht.service.model.flight.response.PurchaseFlight.Error> jError=null;
+						List<com.eligasht.service.model.error.Error> jError=null;
 						// Getting JSON Array node
 						com.eligasht.service.model.flight.response.PurchaseFlight.PurchaseFlightResult GetAirportsResult = responsePurchaseFlight.getPurchaseFlightResult();//jsonObj.getJSONObject("PurchaseFlightResult");//Error
 						if(GetAirportsResult.getErrors()!= null){
 							jError = GetAirportsResult.getErrors();
-							com.eligasht.service.model.flight.response.PurchaseFlight.Error jPricedItinerary = jError.get(0);
+							com.eligasht.service.model.error.Error jPricedItinerary = jError.get(0);
 							GetError = jPricedItinerary.getMessage();
 						}
 						if (GetError.length()>1) {
@@ -1810,7 +1810,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			int successResult=GetAirportsResult.getSuccessResult();
 			if(successResult==0){
 				//get Error
-				List<Error> getError = GetAirportsResult.getErrors();
+				List<com.eligasht.service.model.error.Error> getError = GetAirportsResult.getErrors();
 				String message= getError.get(0).getDetailedMessage();
 				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
 				AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
