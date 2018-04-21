@@ -52,6 +52,7 @@ import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.error.Error;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
 import com.eligasht.service.model.flight.request.airPort.Identity;
 import com.eligasht.service.model.flight.request.airPort.Request;
@@ -785,7 +786,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             }
             setAnimation();
-            Log.e("responsePreFactorDetails:", new Gson().toJson(responsePreFactorDetails).toString());
+            Log.e("responsecrDetails:", new Gson().toJson(responsePreFactorDetails).toString());
 
         } catch (Exception e) {
             //Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
@@ -798,7 +799,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
     @Override
     public void onError(String message) {
-        Log.e("responsePreFactorDetails:", message);
+        Log.e("responsectorDetails:", message);
         rlLoading.setVisibility(View.GONE);
         Utility.disableEnableControls(true, rlRoot);
         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);

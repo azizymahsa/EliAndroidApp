@@ -4,7 +4,6 @@ package com.eligasht.service.model.hotelpolicy.response;
 import java.util.List;
 
 import com.eligasht.service.model.BaseModel;
-import com.eligasht.service.model.hotel.hotelAvail.response.Error;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
