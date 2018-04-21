@@ -40,7 +40,9 @@ import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
 import com.eligasht.service.model.hotel.transport.request.TransportRequest;
 import com.eligasht.service.model.hotel.transport.response.TransportResponse;
 import com.eligasht.service.model.hotelflight.purchase.request.HotelFlightPurchaseRequest;
+import com.eligasht.service.model.hotelflight.purchase.request.PishFactor.RequestPurchaseService;
 import com.eligasht.service.model.hotelflight.purchase.response.HotelFlightPurchaseResponse;
+import com.eligasht.service.model.hotelflight.purchase.response.PishFactor.ResponsePurchaseService;
 import com.eligasht.service.model.hotelflight.search.request.HotelFlightRequest;
 import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
 import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
@@ -89,8 +91,8 @@ public interface RetroClient {
             @Body TransportRequest transportRequest
     );
     @POST(Const.HotelFlightPurchase)
-    Observable<HotelFlightPurchaseResponse> HotelFlightPurchase(
-            @Body HotelFlightPurchaseRequest hotelFlightPurchaseRequest
+    Observable<ResponsePurchaseService> HotelFlightPurchase(
+            @Body RequestPurchaseService hotelFlightPurchaseRequest
     );
 
     //*************hotel*************

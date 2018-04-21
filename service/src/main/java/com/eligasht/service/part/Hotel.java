@@ -3,6 +3,7 @@ package com.eligasht.service.part;
 import com.eligasht.service.generator.ServiceGenerator;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.mock.Mock;
+import com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight;
 import com.eligasht.service.model.hotel.addReview.request.AddHotelReviewRequest;
 import com.eligasht.service.model.hotel.addReview.response.AddHotelReviewResponse;
 import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
@@ -20,7 +21,9 @@ import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
 import com.eligasht.service.model.hotel.transport.request.TransportRequest;
 import com.eligasht.service.model.hotel.transport.response.TransportResponse;
 import com.eligasht.service.model.hotelflight.purchase.request.HotelFlightPurchaseRequest;
+import com.eligasht.service.model.hotelflight.purchase.request.PishFactor.RequestPurchaseService;
 import com.eligasht.service.model.hotelflight.purchase.response.HotelFlightPurchaseResponse;
+import com.eligasht.service.model.hotelflight.purchase.response.PishFactor.ResponsePurchaseService;
 import com.eligasht.service.model.hotelflight.search.request.HotelFlightRequest;
 import com.eligasht.service.model.hotelflight.search.response.HotelFlightResponse;
 import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
@@ -87,8 +90,12 @@ public class Hotel extends BasePart {
     public void getComment(OnServiceStatus<GetHotelReviewResponse> listener, GetHotelReviewRequest req) {
         start(getServiceGenerator().createService().getHotelReview(req), listener);
     }
-    @Mock(jsonName = "hf_purchase", response = HotelFlightPurchaseResponse.class)
+ /*   @Mock(jsonName = "hf_purchase", response = HotelFlightPurchaseResponse.class)
     public void getPurchase(OnServiceStatus<HotelFlightPurchaseResponse> listener, HotelFlightPurchaseRequest req) {
+        start(getServiceGenerator().createService().HotelFlightPurchase(req), listener);
+    }*/
+
+    public void getPishFactor(OnServiceStatus<ResponsePurchaseService> listener, RequestPurchaseService req) {
         start(getServiceGenerator().createService().HotelFlightPurchase(req), listener);
     }
 }
