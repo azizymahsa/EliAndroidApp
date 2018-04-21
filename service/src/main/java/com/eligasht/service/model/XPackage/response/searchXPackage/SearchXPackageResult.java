@@ -3,17 +3,17 @@ package com.eligasht.service.model.XPackage.response.searchXPackage;
 
 import java.lang.Error;
 import java.util.List;
+
+import com.eligasht.service.model.BaseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SearchXPackageResult {
+public class SearchXPackageResult extends BaseModel {
 
     @SerializedName("Comments")
     @Expose
     private Object comments;
-    @SerializedName("Errors")
-    @Expose
-    private List<java.lang.Error> errors = null;
+
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
@@ -32,13 +32,7 @@ public class SearchXPackageResult {
         this.comments = comments;
     }
 
-    public List<java.lang.Error> getErrors() {
-        return errors;
-    }
 
-    public void setErrors(List<Error> errors) {
-        this.errors = errors;
-    }
 
     public Object getResultKey() {
         return resultKey;

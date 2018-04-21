@@ -1,17 +1,16 @@
 
 package com.eligasht.service.model.insurance.response.PurchaseInsurance;
 
+import com.eligasht.service.model.BaseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PurchaseInsuranceResult {
+public class PurchaseInsuranceResult extends BaseModel{
 
     @SerializedName("Comments")
     @Expose
     private Object comments;
-    @SerializedName("Errors")
-    @Expose
-    private Object errors;
+
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
@@ -33,13 +32,7 @@ public class PurchaseInsuranceResult {
         this.comments = comments;
     }
 
-    public Object getErrors() {
-        return errors;
-    }
 
-    public void setErrors(Object errors) {
-        this.errors = errors;
-    }
 
     public Object getResultKey() {
         return resultKey;

@@ -2,17 +2,16 @@
 package com.eligasht.service.model.hotelflight.purchase.response;
 
 import java.util.List;
+
+import com.eligasht.service.model.BaseModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PurchaseFlightHotelResult {
+public class PurchaseFlightHotelResult extends BaseModel{
 
     @SerializedName("Comments")
     @Expose
     private Object comments;
-    @SerializedName("Errors")
-    @Expose
-    private Object errors;
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
@@ -32,14 +31,6 @@ public class PurchaseFlightHotelResult {
 
     public void setComments(Object comments) {
         this.comments = comments;
-    }
-
-    public Object getErrors() {
-        return errors;
-    }
-
-    public void setErrors(Object errors) {
-        this.errors = errors;
     }
 
     public Object getResultKey() {

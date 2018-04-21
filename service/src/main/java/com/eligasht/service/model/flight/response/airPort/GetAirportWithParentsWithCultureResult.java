@@ -12,9 +12,7 @@ public class GetAirportWithParentsWithCultureResult extends BaseModel {
     @SerializedName("Comments")
     @Expose
     private Object comments;
-    @SerializedName("Errors")
-    @Expose
-    private List<Error> errors = null;
+
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
@@ -33,13 +31,7 @@ public class GetAirportWithParentsWithCultureResult extends BaseModel {
         this.comments = comments;
     }
 
-    public List<Error> getErrors() {
-        return errors;
-    }
 
-    public void setErrors(List<Error> errors) {
-        this.errors = errors;
-    }
 
     public Object getResultKey() {
         return resultKey;
