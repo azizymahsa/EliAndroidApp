@@ -137,7 +137,7 @@ public class Hotel extends BaseTest {
         }
         doClick(R.id.btn_taeed_khadamat);
         sleep(Const.MOCK ? 0 : 5000);
-        doClick(R.id.llHome);
+        pressBack(4);
 
     }
 }
