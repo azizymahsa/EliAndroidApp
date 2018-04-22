@@ -2,9 +2,6 @@ package com.eligasht.reservation.views.ui;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -33,7 +30,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -52,10 +48,9 @@ import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.error.Error;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
 import com.eligasht.service.model.flight.request.airPort.Identity;
-import com.eligasht.service.model.flight.request.airPort.Request;
-import com.eligasht.service.model.flight.request.airPort.RequestAirports;
 import com.eligasht.service.model.flight.response.PreFactorDetails.FactorSummary;
 import com.eligasht.service.model.flight.response.PreFactorDetails.GetPreFactorDetailsResult;
 import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactor;
@@ -64,12 +59,16 @@ import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorHote
 import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorService;
 import com.eligasht.service.model.flight.response.PreFactorDetails.RequestPassenger;
 import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFactorDetails;
-import com.eligasht.service.model.hotelflight.purchase.request.HotelFlightPurchaseRequest;
 import com.eligasht.service.model.hotelflight.purchase.request.PishFactor.RequestPurchaseService;
-import com.eligasht.service.model.hotelflight.purchase.response.HotelFlightPurchaseResponse;
+import com.eligasht.service.model.hotelflight.purchase.request.PurchaseFlightHotel.PartnerList;
+import com.eligasht.service.model.hotelflight.purchase.request.PurchaseFlightHotel.PassList;
+import com.eligasht.service.model.hotelflight.purchase.request.PurchaseFlightHotel.RequestPurchaseFlightHotel;
 import com.eligasht.service.model.hotelflight.purchase.response.PishFactor.PurchaseServiceResult;
 import com.eligasht.service.model.hotelflight.purchase.response.PishFactor.ResponsePurchaseService;
-import com.eligasht.service.model.hotelflight.search.response.HotelFlightResponse;
+import com.eligasht.service.model.hotelflight.purchase.response.PurchaseFlightHotel.PurchaseFlightHotelResult;
+import com.eligasht.service.model.hotelflight.purchase.response.PurchaseFlightHotel.ResponsePurchaseFlightHotel;
+import com.eligasht.service.model.hotelflight.purchase.response.PurchaseFlightHotel.Service;
+import com.eligasht.service.model.hotelflight.purchase.response.PurchaseFlightHotel.TmpReserveResult;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
@@ -635,10 +634,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         Utility.disableEnableControls(true, rlRoot);
         try {
 
-            GetPreFactorDetailsResult GetAirportsResult = responsePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
+            GetPreFactorDetailsResult purchaseServiceReault = responsePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
 
 
-            PreFactor jArray = GetAirportsResult.getPreFactor();//("PreFactor");//FactorSummary
+            PreFactor jArray = purchaseServiceReault.getPreFactor();//("PreFactor");//FactorSummary
 
 
             //FactorSummary
@@ -797,203 +796,14 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
     }
 
-    //get khadamat
-    private class AsyncFetch extends AsyncTask<String, String, String> {
+    private void sendRequestPurchaseFlightHotel() {
+        rlLoading.setVisibility(View.VISIBLE);
+        Utility.disableEnableControls(false, rlRoot);
 
-        HttpURLConnection conn;
-        URL url = null;
-        private ListView listAirPort;
+        RequestPurchaseFlightHotel hotelFlightPurchaseRequest = new RequestPurchaseFlightHotel();
+        com.eligasht.service.model.hotelflight.purchase.request.PurchaseFlightHotel.Request request = new com.eligasht.service.model.hotelflight.purchase.request.PurchaseFlightHotel.Request();
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            rlLoading.setVisibility(View.VISIBLE);
-            Utility.disableEnableControls(false, rlRoot);
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-
-                url = new URL("http://mobilews.eligasht.com/LightServices/Rest/HotelFlight/HotelFlightService.svc/PurchaseFlightHotel");
-
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return e.toString();
-            }
-            try {
-
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                conn.setRequestMethod("POST");
-                conn.setDoOutput(true);
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-                return e1.toString();
-            }
-
-            try {
-
-                int response_code = conn.getResponseCode();
-
-                String serial = null;
-
-                JSONObject errorObj = new JSONObject();
-
-                try {
-                    errorObj.put("Success", false);
-
-                    Class<?> c = Class.forName("android.os.SystemProperties");
-                    Method get = c.getMethod("get", String.class);
-                    serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-                } catch (Exception ignored) {
-                }
-
-
-                String data = OrderToJsonPurchase();
-                Log.e("passssss", data);
-
-
-                HttpClient client = new DefaultHttpClient();
-
-
-                HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/HotelFlight/HotelFlightService.svc/PurchaseFlightHotel");
-                post.setHeader("Content-Type", "application/json; charset=UTF-8");
-                post.setHeader("Accept", "application/json; charset=UTF-8");
-
-
-                StringEntity se = null;
-                try {
-                    se = new StringEntity(data, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                post.setEntity(se);
-                ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-
-                HashMap<String, String> airport = null;
-                mylist = new ArrayList<HashMap<String, String>>();
-                HttpResponse res = client.execute(post);
-                String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
-
-                return (retSrc);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return e.toString();
-            } finally {
-                conn.disconnect();
-            }
-
-
-        }//end doin background
-
-        @Override
-        protected void onPostExecute(String result) {
-            FlagMosaferan = false;
-            rlLoading.setVisibility(View.GONE);
-            Utility.disableEnableControls(true, rlRoot);
-            data = new ArrayList<PurchaseFlightResult>();
-
-
-            try {
-////////////////////////////
-                JSONObject jsonObj = new JSONObject(result);
-                Log.e("jsonObj", jsonObj.toString());
-
-
-                JSONObject GetAirportsResult = jsonObj.getJSONObject("PurchaseFlightHotelResult");//Error
-
-                JSONArray jArray = GetAirportsResult.getJSONArray("Services");
-                JSONObject jsonResult = GetAirportsResult.getJSONObject("TmpReserveResult");
-
-                Prefs.putString("BookingCode_NumFactor", jsonResult.getString("BookingCode"));
-
-                for (int i = 0; i < jArray.length(); i++) {
-                    JSONObject json_data = jArray.getJSONObject(i);
-                    JSONObject excursionDta = json_data.getJSONObject("ExcursionDta");
-                    PurchaseFlightResult fishData = new PurchaseFlightResult();
-                    fishData.setCityEn(json_data.getString("CityEn"));
-                    fishData.setCityFa(json_data.getString("CityFa"));
-                    fishData.setCurrency_ID(json_data.getString("Currency_ID"));
-
-                    fishData.setHasFlight(json_data.getString("HasFlight"));
-                    fishData.setHasHotel(json_data.getString("HasHotel"));
-                    fishData.setLoadDB(json_data.getString("LoadDB"));
-
-                    fishData.setServiceAdlPrice(json_data.getString("ServiceAdlPrice"));
-                    fishData.setServiceChdPrice(json_data.getString("ServiceChdPrice"));
-                    fishData.setServiceDescEn(json_data.getString("ServiceDescEn"));
-
-                    fishData.setServiceDescFa(json_data.getString("ServiceDescFa"));
-                    fishData.setServiceID(json_data.getString("ServiceID"));
-                    fishData.setServiceImgURL(json_data.getString("ServiceImgURL"));
-
-                    fishData.setServiceInfPrice(json_data.getString("ServiceInfPrice"));
-                    fishData.setServiceNameEn(json_data.getString("ServiceNameEn"));
-                    fishData.setServiceNameFa(json_data.getString("ServiceNameFa"));
-
-
-                    fishData.setServiceTypeEn(json_data.getString("ServiceTypeEn"));
-                    fishData.setServiceTypeFa(json_data.getString("ServiceTypeFa"));
-                    fishData.setServiceTypeID(json_data.getString("ServiceTypeID"));
-
-                    fishData.setServiceTotalPrice(json_data.getLong("ServiceTotalPrice"));
-                    fishData.setSelectID(json_data.getString("SelectID"));
-
-                    fishData.setBookingCode(jsonResult.getString("BookingCode"));
-
-
-                    fishData.setExcursionData(new ExcursionDta(excursionDta.getString("ArrialAirportCode"),
-                            excursionDta.getString("ArrialAirportName"),
-                            excursionDta.getString("ArrivalFltDate")
-                            , excursionDta.getString("ArrivalFltNo"),
-                            excursionDta.getString("ArrivalFltTime"),
-                            excursionDta.getString("CityID"), excursionDta.getString("DepartureFltDate"),
-                            excursionDta.getString("DepartureFltNo"), excursionDta.getString("DepartureFltTime"),
-                            excursionDta.getString("HotelID"), excursionDta.getString("HotelNameEn"), excursionDta.getString("PassengerList")));
-                    data.add(fishData);
-                }
-
-                // Setup and Handover data to recyclerview
-
-                linear_saler.setVisibility(View.GONE);
-                linear_mosaferan.setVisibility(View.GONE);
-                linear_pish_factor.setVisibility(View.GONE);
-                linear_list_khadamat.setVisibility(View.VISIBLE);
-                FlagTab = true;
-
-
-                ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
-                ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
-                txtTitle.setText(getString(R.string.Add_to_cart_services));
-
-                mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this, 0);
-                //mAdapter.setAdapter(mAdapter);
-                mAdapter.setData(data);
-                listKhadamat.setAdapter(mAdapter);
-                setAnimation();
-            } catch (JSONException e) {
-                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
-                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
-            }
-
-        }//end on pos excute
-
-    }//end async
-
-    public String OrderToJsonPurchase() {
-        JSONObject jsone = new JSONObject();
-        JSONObject manJson = new JSONObject();
-
+        com.eligasht.service.model.hotelflight.purchase.request.PurchaseFlightHotel.Identity identity = new com.eligasht.service.model.hotelflight.purchase.request.PurchaseFlightHotel.Identity();
 
         try {
             String GUID = "";
@@ -1004,95 +814,184 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 ResultUniqId = SearchParvazActivity.globalResultUniqID;
             }
 
-            JSONObject json = new JSONObject();
-            JSONObject headerJson = new JSONObject();
-            JSONArray detailJsonArray = new JSONArray();
-            JSONObject detailsJson = new JSONObject();
-            JSONObject detailsPartner = new JSONObject();
-            JSONObject identityJson = new JSONObject();
-
-            headerJson.put("EchoToken", ResultUniqId);
-            headerJson.put("BookingReferenceID", GUID);///ID.toString()
 
             //mosaferan
             PassengerMosaferItems_Table items_Table = new PassengerMosaferItems_Table(PassengerHotelFlightActivity.this);
             CursorManager cursorM = items_Table.getAllMosafer();
             if (cursorM != null) {
+                List<PassList> passLists = new ArrayList<>();
                 for (int i = 0; i < cursorM.getCount(); i++) {
-
+                    PassList passList1 = new PassList();
                     cursorM.moveToPosition(i);
 
-                    detailsJson = new JSONObject();
-                    detailsJson.put("Gender", cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
-                    detailsJson.put("Nationality", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-                    detailsJson.put("Nationality_ID", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
 
-                    detailsJson.put("RqPassenger_Address", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
-                    detailsJson.put("RqPassenger_Birthdate", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
-                    detailsJson.put("RqPassenger_Email", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
+                    passList1.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
+                    passList1.setNationality(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
+                    passList1.setNationalityID(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
 
-                    detailsJson.put("RqPassenger_FirstNameEn", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-                    detailsJson.put("RqPassenger_FirstNameFa", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
-                    detailsJson.put("RqPassenger_LastNameEn", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
+                    passList1.setRqPassengerAddress(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
+                    passList1.setRqPassengerBirthdate(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
+                    passList1.setRqPassengerEmail(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
 
-                    detailsJson.put("RqPassenger_LastNameFa", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
-                    detailsJson.put("RqPassenger_Mobile", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
-                    detailsJson.put("RqPassenger_NationalCode", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
+                    passList1.setRqPassengerFirstNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
+                    passList1.setRqPassengerFirstNameFa(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
+                    passList1.setRqPassengerLastNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
 
-                    detailsJson.put("RqPassenger_PassExpDate", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
-                    detailsJson.put("RqPassenger_PassNo", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
-                    detailsJson.put("RqPassenger_Tel", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
+                    passList1.setRqPassengerLastNameFa(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
+                    passList1.setRqPassengerMobile(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
+                    passList1.setRqPassengerNationalCode(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
 
-                    detailJsonArray.put(detailsJson);
+                    passList1.setRqPassengerPassExpDate(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
+                    passList1.setRqPassengerPassNo(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
+                    passList1.setRqPassengerTel(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
+
+                    passLists.add(i, passList1);
+
                 }
-                headerJson.put("PassList", detailJsonArray);
+                request.setPassList(passLists);
+
             }
 
             ////kharidar
             PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerHotelFlightActivity.this);
             CursorManager cursorManager = partnerInfo_Table.getPartner();
             cursorManager.moveToPosition(0);
-            detailsPartner.put("RqPartner_Address", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
-            detailsPartner.put("RqPartner_Email", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
-            detailsPartner.put("RqPartner_FirstNameFa", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
-            detailsPartner.put("RqPartner_Gender", cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
-            detailsPartner.put("RqPartner_LastNameFa", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
-            detailsPartner.put("RqPartner_Mobile", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
-            detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
-            detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
-            detailsPartner.put("WebUser_ID ", Prefs.getString("userId", "-1"));//Purchase
+            PartnerList partnerList = new PartnerList();
+            partnerList.setRqPartnerAddress(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
+            partnerList.setRqPartnerEmail(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
+            partnerList.setRqPartnerFirstNameFa(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
+            partnerList.setRqPartnerGender(cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
+            partnerList.setRqPartnerLastNameFa(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
+            partnerList.setRqPartnerMobile(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
+            partnerList.setRqPartnerNationalCode(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
+            partnerList.setRqPartnerTel(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
+            partnerList.setWebUserID(Prefs.getString("userId", "-1"));//Purchase
 
-            headerJson.put("PartnerList", detailsPartner);
+            request.setPartnerList(partnerList);
 
-            headerJson.put("Culture", getString(R.string.culture));
-            // headerJson.put("RequestorID ", Prefs.getString("userId","-1"));//Purchase
-            headerJson.put("Type", "HF");
+            request.setCulture(getString(R.string.culture));
+            request.setType("HF");
 
-            headerJson.put("HotelOfferId", getIntent().getExtras().getString("HotelOfferId"));
-            headerJson.put("FlightGuID", getIntent().getExtras().get("FlightGuID"));
-            headerJson.put("FlightOfferId", getIntent().getExtras().get("flightId"));
-/*			headerJson.put("Checkin", getIntent().getExtras().get("Checkin"));
-			headerJson.put("Checkout", getIntent().getExtras().get("Checkin"));*/
-            headerJson.put("Checkin", getIntent().getExtras().getString("CheckIn"));
-            headerJson.put("Checkout", getIntent().getExtras().getString("CheckOut"));
+            request.setHotelOfferId(getIntent().getExtras().getString("HotelOfferId"));
+            request.setFlightGuID(getIntent().getExtras().get("FlightGuID") + "");
+            request.setFlightOfferId(getIntent().getExtras().get("flightId") + "");
 
-
-            identityJson.put("Password", "123qwe!@#QWE");
-            identityJson.put("TermianlId", "Mobile");
-            identityJson.put("UserName", "EligashtMlb");
-
-            headerJson.put("identity", identityJson);
-
-            jsone.put("request", headerJson);
+            request.setCheckin(getIntent().getExtras().getString("CheckIn"));
+            request.setCheckout(getIntent().getExtras().getString("CheckOut"));
 
 
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
+            identity.setPassword("123qwe!@#QWE");
+            identity.setTermianlId("Mobile");
+            identity.setUserName("EligashtMlb");
+
+            request.setIdentity(identity);
+
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return jsone.toString();
+        hotelFlightPurchaseRequest.setRequest(request);
+        Log.e("sendRequestPurchaseFlightHotel: ", new Gson().toJson(hotelFlightPurchaseRequest).toString());
+
+        SingletonService.getInstance().getHotelService().getPurchase(new OnServiceStatus<ResponsePurchaseFlightHotel>() {
+            @Override
+            public void onReady(ResponsePurchaseFlightHotel hotelFlightPurchaseResponse) {
+                FlagMosaferan = false;
+                rlLoading.setVisibility(View.GONE);
+                Utility.disableEnableControls(true, rlRoot);
+                data = new ArrayList<PurchaseFlightResult>();
+
+                try {
+                    // JSONObject jsonObj = new JSONObject(result);
+                    Log.e("ResponsePurchaseFlightHotel:", new Gson().toJson(hotelFlightPurchaseResponse).toString());
+
+
+                    PurchaseFlightHotelResult purchaseServiceReault = hotelFlightPurchaseResponse.getPurchaseFlightHotelResult();//Error
+
+                    List<Service> jArray = purchaseServiceReault.getServices();
+                    TmpReserveResult jsonResult = purchaseServiceReault.getTmpReserveResult();
+
+                    Prefs.putString("BookingCode_NumFactor", jsonResult.getBookingCode()+"");
+
+                    for (int i = 0; i < jArray.size(); i++) {
+                        Service json_data = jArray.get(i);
+                        com.eligasht.service.model.hotelflight.purchase.response.PurchaseFlightHotel.ExcursionDta excursionDta = json_data.getExcursionDta();
+                        PurchaseFlightResult fishData = new PurchaseFlightResult();
+                        fishData.setCityEn(json_data.getCityEn());
+                        fishData.setCityFa(json_data.getCityFa());
+                        fishData.setCurrency_ID(json_data.getCurrencyID()+"");
+
+                        fishData.setHasFlight(json_data.getHasFlight()+"");
+                        fishData.setHasHotel(json_data.getHasHotel()+"");
+                        fishData.setLoadDB(json_data.getLoadDB()+"");
+
+                        fishData.setServiceAdlPrice(json_data.getServiceAdlPrice()+"");
+                        fishData.setServiceChdPrice(json_data.getServiceChdPrice()+"");
+                        fishData.setServiceDescEn(json_data.getServiceDescEn()+"");
+
+                        fishData.setServiceDescFa(json_data.getServiceDescFa()+"");
+                        fishData.setServiceID(json_data.getServiceID()+"");
+                        fishData.setServiceImgURL(json_data.getServiceImgURL()+"");
+
+                        fishData.setServiceInfPrice(json_data.getServiceInfPrice()+"");
+                        fishData.setServiceNameEn(json_data.getServiceNameEn()+"");
+                        fishData.setServiceNameFa(json_data.getServiceNameFa()+"");
+
+                        fishData.setServiceTypeEn(json_data.getServiceTypeEn()+"");
+                        fishData.setServiceTypeFa(json_data.getServiceTypeFa());
+                        fishData.setServiceTypeID(json_data.getServiceTypeID()+"");
+
+                        fishData.setServiceTotalPrice(Long.parseLong(json_data.getServiceTotalPrice()));
+                        fishData.setSelectID(json_data.getSelectID());
+
+                        fishData.setBookingCode(jsonResult.getBookingCode()+"");
+
+                        fishData.setExcursionData(new ExcursionDta(excursionDta.getArrialAirportCode(),
+                                excursionDta.getArrialAirportName(),
+                                excursionDta.getArrivalFltDate()
+                                , excursionDta.getArrivalFltNo(),
+                                excursionDta.getArrivalFltTime(),
+                                excursionDta.getCityID()+"", excursionDta.getDepartureFltDate(),
+                                excursionDta.getDepartureFltNo(), excursionDta.getDepartureFltTime(),
+                                excursionDta.getHotelID()+"", excursionDta.getHotelNameEn(), excursionDta.getPassengerList()));
+                        data.add(fishData);
+                    }
+
+                    // Setup and Handover data to recyclerview
+
+                    linear_saler.setVisibility(View.GONE);
+                    linear_mosaferan.setVisibility(View.GONE);
+                    linear_pish_factor.setVisibility(View.GONE);
+                    linear_list_khadamat.setVisibility(View.VISIBLE);
+                    FlagTab = true;
+
+
+                    ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
+                    ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+                    txtTitle.setText(getString(R.string.Add_to_cart_services));
+
+                    mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this, 0);
+                    //mAdapter.setAdapter(mAdapter);
+                    mAdapter.setData(data);
+                    listKhadamat.setAdapter(mAdapter);
+                    setAnimation();
+                } catch (Exception e) {
+                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
+                    AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
+                }
+
+            }
+
+            @Override
+            public void onError(String message) {
+                rlLoading.setVisibility(View.GONE);
+                Utility.disableEnableControls(true, rlRoot);
+            }
+        }, hotelFlightPurchaseRequest);
     }
+
+
 
 
     @Override
@@ -1770,8 +1669,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         if (sum == 0 && rooms == 0) {
                             System.out.println("APICALL:" + "sum:" + sum);
                             System.out.println("insert:");
-                            new AsyncFetch().execute();
-
+                            //  new AsyncFetch().execute();
+                            sendRequestPurchaseFlightHotel();
 
                         }
 
@@ -1899,6 +1798,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
     }
 
+
     private void sendRequestPurchaseService() {
         rlLoading.setVisibility(View.VISIBLE);
         Utility.disableEnableControls(false, rlRoot);
@@ -1924,15 +1824,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             identity.setPassword("123qwe!@#QWE");
             identity.setTermianlId("Mobile");
             identity.setUserName("EligashtMlb");
-            //  identityJson.put("RequestorID ", Prefs.getString("userId","-1"));
             request.setIdentity(identity);
 
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
 
         hotelFlightPurchaseRequest.setRequest(request);
 
@@ -1944,12 +1841,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 Utility.disableEnableControls(true, rlRoot);
                 try {
 
-                    PurchaseServiceResult GetAirportsResult = responsePurchaseService.getPurchaseServiceResult();
-                    int successResult = GetAirportsResult.getSuccessResult();
+                    PurchaseServiceResult purchaseServiceReault = responsePurchaseService.getPurchaseServiceResult();
+                    int successResult = purchaseServiceReault.getSuccessResult();
                     if (successResult == 0) {
-                        if (GetAirportsResult.getErrors() != null) {
+                        if (purchaseServiceReault.getErrors() != null) {
                             //get Error
-                            List<Error> getError = GetAirportsResult.getErrors();
+                            List<Error> getError = purchaseServiceReault.getErrors();
 
                             String message = getError.get(0).getMessage();
                             AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerHotelFlightActivity.this);
@@ -1959,21 +1856,20 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     }
 
                     if (successResult > 1) {
-                        txt_shomare_factor.setText(GetAirportsResult.getSuccessResult() + "");
-                        tvfactorNumber.setText(GetAirportsResult.getSuccessResult() + "");
+                        txt_shomare_factor.setText(purchaseServiceReault.getSuccessResult() + "");
+                        tvfactorNumber.setText(purchaseServiceReault.getSuccessResult() + "");
 
-                        textView4.setImageBitmap(getBitmap(GetAirportsResult.getSuccessResult() + "", 128, getResources().getInteger(R.integer._300), getResources().getInteger(R.integer._150)));
+                        textView4.setImageBitmap(getBitmap(purchaseServiceReault.getSuccessResult() + "", 128, getResources().getInteger(R.integer._300), getResources().getInteger(R.integer._150)));
 
                     } else {
                         txt_shomare_factor.setText(getString(R.string.An_error_has_occurred) + "");
                     }
-                    // sfsfs
 
                     // Setup and Handover data to recyclerview
                     ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
                     ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
                     txtTitle.setText(getString(R.string.Approval_and_payment_of_pre_invoice));
-                    //myScrollView.setOnTouchListener(null);
+
                     linear_saler.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.GONE);
