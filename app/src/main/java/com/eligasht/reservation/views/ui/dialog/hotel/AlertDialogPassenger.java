@@ -1,5 +1,4 @@
 package com.eligasht.reservation.views.ui.dialog.hotel;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -7,20 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.tools.JustifiedTextView;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import mehdi.sakout.fancybuttons.FancyButton;
-
 /**
  * Created by Reza.nejati on 1/21/2018.
  */
-
 public class AlertDialogPassenger implements View.OnClickListener {
     android.app.AlertDialog dialog;
-    TextView tvAlert,tvTitle;
+    TextView tvAlert, tvTitle;
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
@@ -29,10 +27,10 @@ public class AlertDialogPassenger implements View.OnClickListener {
     AVLoadingIndicatorView avi;
     String text;
     String title;
+    LottieAnimationView animation_view;
     // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
 
-
-    public AlertDialogPassenger(final Context activity) {
+    public AlertDialogPassenger(final Context activity, boolean warning) {
         this.activity = activity;
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
@@ -42,31 +40,33 @@ public class AlertDialogPassenger implements View.OnClickListener {
         avi = dialogView.findViewById(R.id.avi);
         tvAlert = dialogView.findViewById(R.id.tvAlert);
         tvTitle = dialogView.findViewById(R.id.tvTitle);
+        animation_view = dialogView.findViewById(R.id.animation_view);
+        if (warning)
+            animation_view.setAnimation("lottie/warning.json");
+        else
+            animation_view.setAnimation("lottie/paper.json");
 
  /*       Typeface typeface = Typeface.createFromAsset(activity.getAssets(), dialogView.getContext().getResources().getString(R.string.iran_sans_bold_ttf));
         tvAlert.setTextSize(2, 12);
         tvAlert.setLineSpacing(25);
         tvAlert.setTypeFace(typeface);*/
         tvAlert.setTextColor(Color.parseColor("#4d4d4d"));
-
         btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);
         try {
             dialog.show();
-
         } catch (Exception e) {
         }
     }
 
-    public void setText(String text,String title) {
+    public void setText(String text, String title) {
         this.text = text;
         this.title = title;
         tvAlert.setText(text);
         tvTitle.setText(title);
         avi.setVisibility(View.GONE);
-
     }
 
     @Override
@@ -75,7 +75,6 @@ public class AlertDialogPassenger implements View.OnClickListener {
             case R.id.btnOk:
                 dialog.cancel();
                 break;
-
         }
     }
 }

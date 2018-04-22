@@ -228,7 +228,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                 GetError = responsAirports.getGetAirportWithParentsWithCultureResult().getErrors().get(0).getMessage();
             }
             if (GetError.length() > 1) {
-                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
+                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this,true);
                 AlertDialogPassenger.setText(GetError, getString(R.string.massege));
 
             } else {
@@ -262,10 +262,10 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
             }
         } catch (Exception e) {
             if (!Utility.isNetworkAvailable(GetAirportMabdaActivity.this)) {
-                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
+                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this,true);
                 AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
             } else {
-                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
+                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this,true);
                 AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
             }
         }
@@ -276,12 +276,12 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
 
         if (!Utility.isNetworkAvailable(GetAirportMabdaActivity.this)) {
-            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
+            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this,true);
             AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
 
 
         } else {
-            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this);
+            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this,true);
             AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
 
 

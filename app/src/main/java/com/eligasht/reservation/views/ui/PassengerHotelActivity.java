@@ -1688,7 +1688,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             //Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
                             //Toast.makeText(this,errorMessage,2000).show();
                             try {
-                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelActivity.this);
+                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelActivity.this,true);
                                 alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
                             }catch (Exception e){
                                 e.getMessage();
@@ -1936,7 +1936,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     if (flagMosafer.contains("F")) {
                         //Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
                         try {
-                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelActivity.this);
+                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelActivity.this,false);
                             AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
                         }catch (Exception e){
                             e.getMessage();

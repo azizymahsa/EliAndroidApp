@@ -681,7 +681,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         //////////////////////////End Validate
                         if (flagMosafer.contains("F")) {
 
-                            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerPackageActivity.this);
+                            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerPackageActivity.this,false);
                             alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
                         } else {
                             //insert partner
@@ -876,7 +876,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     ///endValidate
                     if (flagMosafer.contains("F")) {
                         try {
-                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerPackageActivity.this);
+                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerPackageActivity.this,false);
                             AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
                         } catch (Exception e) {
                             e.getMessage();
@@ -1513,7 +1513,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         }
 
         requestGePreFactorDetails.setRequest(request);
-        Log.e("OrderToJsonGetPreFactorDetails: ", new Gson().toJson(requestGePreFactorDetails));
+        Log.e("OrderToJsontorDetails: ", new Gson().toJson(requestGePreFactorDetails));
         SingletonService.getInstance().getXPackage().GetPreFactorDetailsAvail(new OnServiceStatus<com.eligasht.service.model.XPackage.response.GetPreFactorDetails.ResponseGePreFactorDetails>() {
             @Override
             public void onReady(com.eligasht.service.model.XPackage.response.GetPreFactorDetails.ResponseGePreFactorDetails responseGePreFactorDetails) {

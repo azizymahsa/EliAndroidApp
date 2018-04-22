@@ -1033,7 +1033,7 @@ private void RequestPurchaseInsurance(){
                         //////////////////////////End Validate
                         if (flagMosafer.contains("F")) {
 
-                            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerInsuranceActivity.this);
+                            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerInsuranceActivity.this,false);
                             alertDialogPassenger.setText("" + "  " + errorMessage,getString(R.string.EditInput));
                         } else {
                             //insert partner
@@ -1250,7 +1250,7 @@ private void RequestPurchaseInsurance(){
 
                     if (flagMosafer.contains("F")) {
 
-                        AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerInsuranceActivity.this);
+                        AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerInsuranceActivity.this,false);
                         AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner,getString(R.string.EditInput));
                     } else {
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);

@@ -1093,7 +1093,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							//Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
 							//Toast.makeText(this,errorMessage,2000).show();
 							try {
-								AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerActivity.this);
+								AlertDialogPassengerFlight alertDialogPassenger = new AlertDialogPassengerFlight(PassengerActivity.this);
 								alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
 							}catch (Exception e){
 							e.getMessage();
@@ -1341,7 +1341,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					if(flagMosafer.contains("F")){
 						//Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
 						try {
-							AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerActivity.this);
+							AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerActivity.this);
 							AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
 						}catch (Exception e){
 							e.getMessage();

@@ -39,7 +39,7 @@
             android:orientation="vertical"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_fileName="lottie/warning.json"
+            app:lottie_fileName="lottie/paper.json"
             android:layout_gravity="center"
 
             android:layout_marginTop="10dp"
