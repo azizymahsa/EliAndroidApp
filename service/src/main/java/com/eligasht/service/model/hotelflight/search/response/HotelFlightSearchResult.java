@@ -2,6 +2,7 @@
 package com.eligasht.service.model.hotelflight.search.response;
 
 import com.eligasht.service.model.BaseModel;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

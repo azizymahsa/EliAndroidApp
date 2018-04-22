@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.hotelflight.purchase.response;
+package com.eligasht.service.model.hotelflight.purchase.response.PurchaseFlightHotel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

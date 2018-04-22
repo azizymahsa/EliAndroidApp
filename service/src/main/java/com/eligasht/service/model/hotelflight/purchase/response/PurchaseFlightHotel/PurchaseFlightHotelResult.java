@@ -1,5 +1,6 @@
 
-package com.eligasht.service.model.hotelflight.purchase.response;
+package com.eligasht.service.model.hotelflight.purchase.response.PurchaseFlightHotel;
+
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class PurchaseFlightHotelResult extends BaseModel{
     @SerializedName("Comments")
     @Expose
     private Object comments;
+
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
@@ -32,6 +34,8 @@ public class PurchaseFlightHotelResult extends BaseModel{
     public void setComments(Object comments) {
         this.comments = comments;
     }
+
+
 
     public Object getResultKey() {
         return resultKey;

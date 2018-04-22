@@ -1,11 +1,11 @@
 
-package com.eligasht.service.model.hotelflight.purchase.request;
+package com.eligasht.service.model.hotelflight.purchase.request.PurchaseFlightHotel;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RequestHFPur {
+public class Request {
 
     @SerializedName("PassList")
     @Expose
