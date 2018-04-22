@@ -8,7 +8,7 @@ public class GetRoomResponse {
 
     @SerializedName("GetRoomsListResult")
     @Expose
-    private GetRoomsListResult getRoomsListResult;
+    public GetRoomsListResult getRoomsListResult;
 
     public GetRoomsListResult getGetRoomsListResult() {
         return getRoomsListResult;

@@ -78,7 +78,6 @@ import com.eligasht.service.model.flight.response.PreFactorDetails.RequestPassen
 import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFactorDetails;
 import com.eligasht.service.model.flight.response.PurchaseFlight.Service;
 import com.eligasht.service.model.flight.response.PurchaseFlight.TmpReserveResult;
-
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.PurchaseServiceResult;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;

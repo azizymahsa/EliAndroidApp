@@ -8,7 +8,7 @@ public class ResponsePreFactorDetails {
 
     @SerializedName("GetPreFactorDetailsResult")
     @Expose
-    private GetPreFactorDetailsResult getPreFactorDetailsResult;
+    public GetPreFactorDetailsResult getPreFactorDetailsResult;
 
     public GetPreFactorDetailsResult getGetPreFactorDetailsResult() {
         return getPreFactorDetailsResult;

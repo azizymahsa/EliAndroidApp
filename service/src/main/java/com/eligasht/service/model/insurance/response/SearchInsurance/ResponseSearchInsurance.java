@@ -8,7 +8,7 @@ public class ResponseSearchInsurance {
 
     @SerializedName("ShowInsuranceResult")
     @Expose
-    private ShowInsuranceResult showInsuranceResult;
+    public ShowInsuranceResult showInsuranceResult;
 
     public ShowInsuranceResult getShowInsuranceResult() {
         return showInsuranceResult;

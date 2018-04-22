@@ -8,7 +8,7 @@ public class ResponsePurchaseInsurance {
 
     @SerializedName("PurchaseInsuranceResult")
     @Expose
-    private PurchaseInsuranceResult purchaseInsuranceResult;
+    public PurchaseInsuranceResult purchaseInsuranceResult;
 
     public PurchaseInsuranceResult getPurchaseInsuranceResult() {
         return purchaseInsuranceResult;

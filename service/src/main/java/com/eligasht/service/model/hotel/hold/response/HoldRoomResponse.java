@@ -8,7 +8,7 @@ public class HoldRoomResponse {
 
     @SerializedName("HoldSelectedRoomResult")
     @Expose
-    private HoldSelectedRoomResult holdSelectedRoomResult;
+    public HoldSelectedRoomResult holdSelectedRoomResult;
 
     public HoldSelectedRoomResult getHoldSelectedRoomResult() {
         return holdSelectedRoomResult;

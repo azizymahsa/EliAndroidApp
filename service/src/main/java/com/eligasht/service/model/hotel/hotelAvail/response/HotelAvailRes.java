@@ -9,7 +9,7 @@ public class HotelAvailRes {
 
     @SerializedName("HotelAvailResult")
     @Expose
-    private HotelAvailResult hotelAvailResult;
+    public HotelAvailResult hotelAvailResult;
 
     public HotelAvailResult getHotelAvailResult() {
         return hotelAvailResult;

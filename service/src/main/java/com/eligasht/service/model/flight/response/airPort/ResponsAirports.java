@@ -8,7 +8,7 @@ public class ResponsAirports {
 
     @SerializedName("GetAirportWithParentsWithCultureResult")
     @Expose
-    private GetAirportWithParentsWithCultureResult getAirportWithParentsWithCultureResult;
+    public GetAirportWithParentsWithCultureResult getAirportWithParentsWithCultureResult;
 
     public GetAirportWithParentsWithCultureResult getGetAirportWithParentsWithCultureResult() {
         return getAirportWithParentsWithCultureResult;

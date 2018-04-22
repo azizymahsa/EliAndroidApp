@@ -78,8 +78,6 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
         call.enqueue(new Callback<WebUserRememberPasswordRes>() {
             @Override
             public void onResponse(Call<WebUserRememberPasswordRes> call, Response<WebUserRememberPasswordRes> response) {
-                Log.e("logintest",response.body().getWebUserRememberPasswordResult().getWarningss().get(0).getShortText() );
-                Log.e("logintest",response.body().getWebUserRememberPasswordResult().getError().get(0).getMessage() );
                 needHideProgressDialog();
               if (response.body().getWebUserRememberPasswordResult().getWebUserLogin().getLoginStatus().toLowerCase().equals("ok")){
 
@@ -94,14 +92,14 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
               }
 
 
-                //do somethings !!
 
             }
 
             @Override
             public void onFailure(Call<WebUserRememberPasswordRes> call, Throwable t) {
                 needHideProgressDialog();
-                Toast.makeText(ResetPasswordActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ResetPasswordActivity.this,
+                        getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
 
             }
         });

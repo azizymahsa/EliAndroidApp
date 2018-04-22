@@ -8,7 +8,7 @@ public class ResponseAbout {
 
     @SerializedName("GetAboutUsWithCultureResult")
     @Expose
-    private GetAboutUsWithCultureResult getAboutUsWithCultureResult;
+    public GetAboutUsWithCultureResult getAboutUsWithCultureResult;
 
     public GetAboutUsWithCultureResult getGetAboutUsWithCultureResult() {
         return getAboutUsWithCultureResult;

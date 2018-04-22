@@ -6,8 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center">
-
-
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
@@ -21,14 +19,7 @@
             android:gravity="center"
             android:layout_centerInParent="true"
             android:textAppearance="@style/IrsansBold"
-
-
-
-
-
         />
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -60,38 +51,28 @@
             android:id="@+id/tvAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="@dimen/_20dp"
-            android:gravity="right"
-            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/_20dp_margin_p"
             android:textAppearance="@style/IrsansBold"
             android:textColor="#2e3192"
             android:textSize="@dimen/_12dp_normal_textSize"
             android:text="ggg"
             android:visibility="visible" />
         <com.wang.avi.AVLoadingIndicatorView
-
             android:id="@+id/avi"
             style="@style/AVLoadingIndicatorView"
             android:layout_width="30dp"
             android:layout_height="30dp"
             app:indicatorColor="@color/toolbar_color"
             app:indicatorName="BallSpinFadeLoaderIndicator"
-
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
             />
-
-
-
     </LinearLayout>
-
-
-
-
-
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/btnOk"
         android:layout_width="@dimen/_90dp"
@@ -107,12 +88,6 @@
         fancy:fb_text="@string/IrOK"
         fancy:fb_textColor="#4d4d4d"
         fancy:fb_textSize="@dimen/_14dp_txtSize"
-        android:layout_marginBottom="@dimen/_10dp_margin"/>
-
-
-
-
-
-
-
+        android:layout_marginBottom="@dimen/_10dp_margin"
+       />
 </LinearLayout>

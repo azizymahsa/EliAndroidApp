@@ -8,7 +8,7 @@ public class ResponseSearchXPackage {
 
     @SerializedName("SearchXPackageResult")
     @Expose
-    private SearchXPackageResult searchXPackageResult;
+    public SearchXPackageResult searchXPackageResult;
 
     public SearchXPackageResult getSearchXPackageResult() {
         return searchXPackageResult;

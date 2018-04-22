@@ -8,7 +8,7 @@ public class HotelFlightResponse {
 
     @SerializedName("HotelFlightSearchResult")
     @Expose
-    private HotelFlightSearchResult hotelFlightSearchResult;
+    public HotelFlightSearchResult hotelFlightSearchResult;
 
     public HotelFlightSearchResult getHotelFlightSearchResult() {
         return hotelFlightSearchResult;
