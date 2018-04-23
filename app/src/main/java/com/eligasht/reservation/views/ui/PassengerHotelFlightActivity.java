@@ -748,7 +748,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
         } catch (Exception e) {
             //Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
-            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
+            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true);
             AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
         }
 
@@ -760,7 +760,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         Log.e("responsectorDetails:", message);
         rlLoading.setVisibility(View.GONE);
         Utility.disableEnableControls(true, rlRoot);
-        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
+        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true);
         AlertDialogPassenger.setText(message, getString(R.string.massege));
     }
 
@@ -892,7 +892,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         }
 
         hotelFlightPurchaseRequest.setRequest(request);
-        Log.e("sendRequestPurchaseFlightHotel: ", new Gson().toJson(hotelFlightPurchaseRequest).toString());
+        Log.e("sendReq ", new Gson().toJson(hotelFlightPurchaseRequest).toString());
 
         SingletonService.getInstance().getHotelService().getPurchase(new OnServiceStatus<ResponsePurchaseFlightHotel>() {
             @Override
@@ -904,7 +904,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                 try {
                     // JSONObject jsonObj = new JSONObject(result);
-                    Log.e("ResponsePurchaseFlightHotel:", new Gson().toJson(hotelFlightPurchaseResponse).toString());
+                    Log.e("Response", new Gson().toJson(hotelFlightPurchaseResponse).toString());
 
 
                     PurchaseFlightHotelResult purchaseServiceReault = hotelFlightPurchaseResponse.getPurchaseFlightHotelResult();//Error
@@ -977,7 +977,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     listKhadamat.setAdapter(mAdapter);
                     setAnimation();
                 } catch (Exception e) {
-                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
+                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true);
                     AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
                 }
 
@@ -1200,7 +1200,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         if (flagMosafer.contains("F")) {
 
                             try {
-                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
+                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true);
                                 alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
                             } catch (Exception e) {
                                 e.getMessage();
@@ -1422,7 +1422,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     if (flagMosafer.contains("F")) {
                         try {
-                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
+                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelFlightActivity.this,false);
                             AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
                         } catch (Exception e) {
                             e.getMessage();
@@ -1881,7 +1881,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 } catch (Exception e) {
                     try {
 
-                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this);
+                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true);
                         AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
                     } catch (Exception ee) {
                         ee.getMessage();

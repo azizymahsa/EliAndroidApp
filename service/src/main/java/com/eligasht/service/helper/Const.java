@@ -6,7 +6,7 @@ package com.eligasht.service.helper;
 
 public class Const {
 
-    public final static Boolean MOCK = false;
+    public final static Boolean MOCK = true;
 
     public static Boolean TEST=false;
 

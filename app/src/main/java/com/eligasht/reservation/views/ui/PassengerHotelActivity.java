@@ -1688,7 +1688,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             //Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
                             //Toast.makeText(this,errorMessage,2000).show();
                             try {
-                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelActivity.this,true);
+                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelActivity.this,false);
                                 alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
                             }catch (Exception e){
                                 e.getMessage();
