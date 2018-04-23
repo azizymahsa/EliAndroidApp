@@ -64,15 +64,12 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_condition);
 
-
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
 
-
         new GetAboutAsync().execute();
-
 
     }
 
@@ -105,7 +102,6 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
         protected void onPreExecute() {
             super.onPreExecute();
 
-            //this method will be running on UI thread
             pdLoading.setMessage("\tLoading...");
             pdLoading.setCancelable(false);
             pdLoading.show();
@@ -115,18 +111,13 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
         @Override
         protected String doInBackground(String... params) {
             try {
-
-                // Enter URL address where your json file resides
-                // Even you can make call to php file which returns json data
                 url = new URL("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetTermsAndConditions");
-
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
                 return e.toString();
             }
             try {
-
                 // Setup HttpURLConnection class to send and receive data from php and mysql
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(READ_TIMEOUT);
@@ -202,15 +193,12 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
                 }
                 System.out.println("culture:" + data);
 
-
                 HttpClient client = new DefaultHttpClient();
-
 
                 HttpPost post = new HttpPost();
                 post = new HttpPost("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetTermsAndConditions");
                 post.setHeader("Content-Type", "application/json; charset=UTF-8");
                 post.setHeader("Accept", "application/json; charset=UTF-8");
-
 
                 StringEntity se = null;
                 try {
@@ -226,9 +214,7 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
                 HttpResponse res = client.execute(post);
                 String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
 
-
                 return (retSrc);
-
 
             } catch (IOException e) {
                 e.printStackTrace();

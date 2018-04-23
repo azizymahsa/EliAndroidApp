@@ -485,7 +485,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     }
                 }
 
-
                 break;
             case R.id.btnMinesB:
                 try {
