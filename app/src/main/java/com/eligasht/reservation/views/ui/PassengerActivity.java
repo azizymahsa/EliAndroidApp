@@ -1920,8 +1920,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
 				llDetailHotel.setVisibility(View.VISIBLE);
 			}
-
-
 //for passenger======================================================================================
 
 					final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
