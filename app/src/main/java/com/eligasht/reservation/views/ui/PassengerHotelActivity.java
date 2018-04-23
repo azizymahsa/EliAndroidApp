@@ -187,20 +187,12 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         PersianCalendar persianCalendar = new PersianCalendar();
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
 //=====================================================================================================
-        //_____________________________________________________________________
         datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
                 this,
                 persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay()
         );
-
-        //datePickerDialog.setMinDate(persianCalendarDatePicker);
-
-
-        //______________________________________________________________________
-
-
 //=====================================================================================================
         datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
         datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
@@ -284,8 +276,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 datePickerDialogGregorian1.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
             }
         });
-
-
 
         txtTitleCountM = findViewById(R.id.txtTitleCountM);
         txtTitleCountM.setOnClickListener(this);

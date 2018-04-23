@@ -157,7 +157,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     public ListView list_airport, listKhadamat;
     ArrayList<HashMap<String, String>> mylist = null;
     public static String searchText = "";
-    //public static long GET_PRICE_KHADAMAT;
+
     public static long GET_PRICE_KHADAMAT;
     ExpandableRelativeLayout expandableLayout;
     String paymentUrl;
@@ -165,7 +165,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     RelativeLayout rlLoading, rlRoot;
 
     GetKhadmatHotelFlightAdapter mAdapter;
-    //ScrollView myScrollView;
+
     private EditText searchtxt;
     public TextView txt_shomare_factor, imgCount;
     public TextView tvPrice;
@@ -176,7 +176,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     public int countB;
     public int countK;
     public int countN;
-    //public int sum=countB+countK+countN;
+
     public JSONArray jsonObj = null;
     public int sum = 0;
     int counter = 2;
@@ -194,7 +194,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
 
-    //ExpandableLayoutListView lvFactor;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -633,23 +632,17 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         rlLoading.setVisibility(View.GONE);
         Utility.disableEnableControls(true, rlRoot);
         try {
-
             GetPreFactorDetailsResult purchaseServiceReault = responsePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
-
 
             PreFactor jArray = purchaseServiceReault.getPreFactor();//("PreFactor");//FactorSummary
 
-
             //FactorSummary
             FactorSummary jFact = jArray.getFactorSummary();
-
 
             int RqBase_ID = jFact.getRqBaseID();
             //////////////////////////////
             long totalprice = jFact.getTotalPrice();
             paymentUrl = jFact.getOnlinePaymentURL();
-
-
             tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " " + getString(R.string.Rial));
 
 //for hotel==========================================================================================
@@ -673,10 +666,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
                 llDetailHotel.setVisibility(View.VISIBLE);
             }
-
-
-//for passenger======================================================================================
-
+            //for passenger======================================================================================
 
             final RecyclerView recyclerViewPassenger = findViewById(R.id.recyclerViewPassenger);
             recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerHotelFlightActivity.this, 1));
@@ -684,7 +674,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
 
             List<RequestPassenger> jArray3 = jArray.getRequestPassenger();
-
 
             for (int i = 0; i < jArray3.size(); i++) {
                 passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.get(i).getGender() + "", jArray3.get(i).getNationality(),
@@ -697,7 +686,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 recyclerViewPassenger.setAdapter(new PassangerPreFactorAdapter(passengerPreFactorModels));
 
             }
-
 
             //for Services=============================================================================
             final RecyclerView recyclerViewService = findViewById(R.id.recyclerViewService);
@@ -752,7 +740,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
         }
 
-
     }
 
     @Override
@@ -763,7 +750,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true);
         AlertDialogPassenger.setText(message, getString(R.string.massege));
     }
-
 
     private void sendRequestPreFactorDetailsAvil() {
 
@@ -795,7 +781,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
 
     }
-
     private void sendRequestPurchaseFlightHotel() {
         rlLoading.setVisibility(View.VISIBLE);
         Utility.disableEnableControls(false, rlRoot);
@@ -814,7 +799,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 ResultUniqId = SearchParvazActivity.globalResultUniqID;
             }
 
-
             //mosaferan
             PassengerMosaferItems_Table items_Table = new PassengerMosaferItems_Table(PassengerHotelFlightActivity.this);
             CursorManager cursorM = items_Table.getAllMosafer();
@@ -823,7 +807,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 for (int i = 0; i < cursorM.getCount(); i++) {
                     PassList passList1 = new PassList();
                     cursorM.moveToPosition(i);
-
 
                     passList1.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
                     passList1.setNationality(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
@@ -879,13 +862,11 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             request.setCheckin(getIntent().getExtras().getString("CheckIn"));
             request.setCheckout(getIntent().getExtras().getString("CheckOut"));
 
-
             identity.setPassword("123qwe!@#QWE");
             identity.setTermianlId("Mobile");
             identity.setUserName("EligashtMlb");
 
             request.setIdentity(identity);
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -912,7 +893,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     List<Service> jArray = purchaseServiceReault.getServices();
                     TmpReserveResult jsonResult = purchaseServiceReault.getTmpReserveResult();
 
-                    Prefs.putString("BookingCode_NumFactor", jsonResult.getBookingCode()+"");
+                    Prefs.putString("BookingCode_NumFactor", jsonResult.getBookingCode() + "");
 
                     for (int i = 0; i < jArray.size(); i++) {
                         Service json_data = jArray.get(i);
@@ -920,41 +901,41 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         PurchaseFlightResult fishData = new PurchaseFlightResult();
                         fishData.setCityEn(json_data.getCityEn());
                         fishData.setCityFa(json_data.getCityFa());
-                        fishData.setCurrency_ID(json_data.getCurrencyID()+"");
+                        fishData.setCurrency_ID(json_data.getCurrencyID() + "");
 
-                        fishData.setHasFlight(json_data.getHasFlight()+"");
-                        fishData.setHasHotel(json_data.getHasHotel()+"");
-                        fishData.setLoadDB(json_data.getLoadDB()+"");
+                        fishData.setHasFlight(json_data.getHasFlight() + "");
+                        fishData.setHasHotel(json_data.getHasHotel() + "");
+                        fishData.setLoadDB(json_data.getLoadDB() + "");
 
-                        fishData.setServiceAdlPrice(json_data.getServiceAdlPrice()+"");
-                        fishData.setServiceChdPrice(json_data.getServiceChdPrice()+"");
-                        fishData.setServiceDescEn(json_data.getServiceDescEn()+"");
+                        fishData.setServiceAdlPrice(json_data.getServiceAdlPrice() + "");
+                        fishData.setServiceChdPrice(json_data.getServiceChdPrice() + "");
+                        fishData.setServiceDescEn(json_data.getServiceDescEn() + "");
 
-                        fishData.setServiceDescFa(json_data.getServiceDescFa()+"");
-                        fishData.setServiceID(json_data.getServiceID()+"");
-                        fishData.setServiceImgURL(json_data.getServiceImgURL()+"");
+                        fishData.setServiceDescFa(json_data.getServiceDescFa() + "");
+                        fishData.setServiceID(json_data.getServiceID() + "");
+                        fishData.setServiceImgURL(json_data.getServiceImgURL() + "");
 
-                        fishData.setServiceInfPrice(json_data.getServiceInfPrice()+"");
-                        fishData.setServiceNameEn(json_data.getServiceNameEn()+"");
-                        fishData.setServiceNameFa(json_data.getServiceNameFa()+"");
+                        fishData.setServiceInfPrice(json_data.getServiceInfPrice() + "");
+                        fishData.setServiceNameEn(json_data.getServiceNameEn() + "");
+                        fishData.setServiceNameFa(json_data.getServiceNameFa() + "");
 
-                        fishData.setServiceTypeEn(json_data.getServiceTypeEn()+"");
+                        fishData.setServiceTypeEn(json_data.getServiceTypeEn() + "");
                         fishData.setServiceTypeFa(json_data.getServiceTypeFa());
-                        fishData.setServiceTypeID(json_data.getServiceTypeID()+"");
+                        fishData.setServiceTypeID(json_data.getServiceTypeID() + "");
 
                         fishData.setServiceTotalPrice(Long.parseLong(json_data.getServiceTotalPrice()));
                         fishData.setSelectID(json_data.getSelectID());
 
-                        fishData.setBookingCode(jsonResult.getBookingCode()+"");
+                        fishData.setBookingCode(jsonResult.getBookingCode() + "");
 
                         fishData.setExcursionData(new ExcursionDta(excursionDta.getArrialAirportCode(),
                                 excursionDta.getArrialAirportName(),
                                 excursionDta.getArrivalFltDate()
                                 , excursionDta.getArrivalFltNo(),
                                 excursionDta.getArrivalFltTime(),
-                                excursionDta.getCityID()+"", excursionDta.getDepartureFltDate(),
+                                excursionDta.getCityID() + "", excursionDta.getDepartureFltDate(),
                                 excursionDta.getDepartureFltNo(), excursionDta.getDepartureFltTime(),
-                                excursionDta.getHotelID()+"", excursionDta.getHotelNameEn(), excursionDta.getPassengerList()));
+                                excursionDta.getHotelID() + "", excursionDta.getHotelNameEn(), excursionDta.getPassengerList()));
                         data.add(fishData);
                     }
 
@@ -965,7 +946,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     linear_pish_factor.setVisibility(View.GONE);
                     linear_list_khadamat.setVisibility(View.VISIBLE);
                     FlagTab = true;
-
 
                     ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
@@ -990,8 +970,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             }
         }, hotelFlightPurchaseRequest);
     }
-
-
 
 
     @Override
@@ -1029,7 +1007,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     linear_list_khadamat.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.VISIBLE);
 
-
                     txtTitle.setText(getString(R.string.passneger_info));
                     ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1060,7 +1037,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_saler.setVisibility(View.VISIBLE);
 
-
                     txtTitle.setText(getString(R.string.Buyer_Specifications));
                     ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1071,7 +1047,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 }
-
 
                 break;
             case R.id.btn_next_partnerInfo:

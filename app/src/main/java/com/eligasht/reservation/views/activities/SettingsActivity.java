@@ -127,8 +127,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             public void run() {
                 Intent mStartActivity = new Intent(SettingsActivity.this, SplashActivity.class);
                 int mPendingIntentId = 123456;
-                PendingIntent mPendingIntent = PendingIntent.getActivity(SettingsActivity.this, mPendingIntentId, mStartActivity,
-                        PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent mPendingIntent = PendingIntent.getActivity(SettingsActivity.this, mPendingIntentId, mStartActivity,PendingIntent.FLAG_CANCEL_CURRENT);
                 AlarmManager mgr = (AlarmManager) SettingsActivity.this.getSystemService(Context.ALARM_SERVICE);
                 mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
                 System.exit(0);

@@ -312,7 +312,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     } else {
                         txtDateOnvan.setText(BargashtF);
                         txtDateOnvanB.setText(RaftF);
-                        // txtDateOnvan.setText(RaftF + "  -  " + BargashtF);
                     }
                 }
                 System.out.println("txtCityBargasht" + maghsadf + "txtCityRaft" + mabdaf);

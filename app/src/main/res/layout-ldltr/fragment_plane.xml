@@ -89,22 +89,23 @@
 
                     <TextView
                         android:id="@+id/tvStart"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="left"
                         android:text="@string/select_origin_city_or_airport"
                         android:textColor="#fff"
                         android:textSize="@dimen/_20dp_normal_textSize"
-
+android:singleLine="true"
                         tools:ignore="SpUsage" />
 
                     <TextView
                         android:id="@+id/lbl_forudgah_mabda"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:ellipsize="end"
                         android:gravity="left"
+                        android:singleLine="true"
                         android:maxLines="1"
                         android:text="  "
                         android:textColor="#fff"
@@ -135,22 +136,24 @@
 
                     <TextView
                         android:id="@+id/tvEnd"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="left"
                         android:text="@string/select_destination_city_or_airport"
                         android:textColor="#fff"
+                        android:singleLine="true"
                         android:textSize="@dimen/_20dp_normal_textSize" />
 
                     <TextView
                         android:id="@+id/lbl_forudgah_maghsad"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:ellipsize="end"
                         android:gravity="left"
                         android:maxLines="1"
                         android:text=" "
+                        android:singleLine="true"
                         android:textColor="#fff"
                         android:textSize="@dimen/_12dp_normal_textSize" />
                 </LinearLayout>
