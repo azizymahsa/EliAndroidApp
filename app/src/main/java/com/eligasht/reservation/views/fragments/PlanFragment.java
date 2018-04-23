@@ -59,15 +59,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     private TickerView txtCountB, txtCountK, txtCountN;
     public TextView tvStart, tvEnd, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne, searchPlan;
     public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
-    private LinearLayout linear_picker_title;
     public int flagOneTwo = 2;
-    private static String picker_be = "2017-12-29";
-    private static String picker_az = "2017-12-25";
     private static String picker_az_format = "29 December 2017";
     private static String picker_be_format = "25 December 2017";
-    public static int picker_az_year;
-    public static int picker_az_month;
-    public static int picker_az_day;
     private View rootView;
     boolean Geo = false;
     RelativeLayout txtOption;
@@ -87,11 +81,8 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog2;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
-    /*com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
-   com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;*/
     CalendarDialog calendarDialog;
     private LottieAnimationView lottieCheckin, lottieCheckout;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -103,14 +94,12 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
         llButton = rootView.findViewById(R.id.llButton);
 
-        // linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
         linear_tarikh_az_picker = rootView.findViewById(R.id.linear_tarikh_az_picker);
         tarikh_az_picker = rootView.findViewById(R.id.tarikh_az_picker);
         tarikh_be_picker = rootView.findViewById(R.id.tarikh_be_picker);
         linearLayout_mabda = rootView.findViewById(R.id.linearLayout_mabda);
         linearLayout_maghsad = rootView.findViewById(R.id.linearLayout_maghsad);
-        /*tarikh_az_picker.setTypeface(face);
-        tarikh_be_picker.setTypeface(face);*/
+
         lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
         lottieCheckout = rootView.findViewById(R.id.lottie_checkout);
         lottieCheckin.setSpeed(2f);
@@ -118,7 +107,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         tarikh_az = rootView.findViewById(R.id.tarikh_az);
         tarikh_be = rootView.findViewById(R.id.tarikh_be);
         ivImage = rootView.findViewById(R.id.ivImage);
-
 
         btnPlusB = rootView.findViewById(R.id.btnPlusB);
         btnMinesB = rootView.findViewById(R.id.btnMinesB);
@@ -131,7 +119,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
         btntwo = rootView.findViewById(R.id.btntwo);
         btnOne = rootView.findViewById(R.id.btnOne);
-
 
         searchPlan = rootView.findViewById(R.id.searchPlan);
         txtBO = rootView.findViewById(R.id.txtBO);
@@ -149,11 +136,8 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         lbl_forudgah_mabda = rootView.findViewById(R.id.lbl_forudgah_mabda);
         lbl_forudgah_maghsad = rootView.findViewById(R.id.lbl_forudgah_maghsad);
 
-
         linear_tarikh_az_picker.setOnClickListener(this);
-        //linear_picker.setOnClickListener(this);
-        // tarikh_az_picker.setOnClickListener(this);
-        // tarikh_be_picker.setOnClickListener(this);
+
         btnPlusB.setOnClickListener(this);
         btnMinesB.setOnClickListener(this);
 
@@ -175,13 +159,10 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 ///Calender nejati\
         //==================================================================================================
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
-        //  Date currentTime = Calendar.getInstance().getTime();
         //=================================================================================================
-        ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
         PersianCalendar persianCalendar = new PersianCalendar();
 
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
-        ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
 
         tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
         picker_az_format = persianCalendarDatePicker.getPersianLongDate();
@@ -191,14 +172,11 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         year_ = persianCalendarDatePicker.getPersianYear();//1396
         day = persianCalendarDatePicker.getPersianDay();//24
 
-
-///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
         datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
         datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
-//RRRRRRRRRRRRRRRRRRRRR
+
         datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
         datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
-        //RRRRRRRRRRRRRRRRRRRRRRRR
 
         datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
                 this,
@@ -209,7 +187,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
         datePickerDialog.setMinDate(persianCalendarDatePicker);
 
-
         datePickerDialog2 = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
                 this,
                 persianCalendarDatePicker.getPersianYear(),
@@ -218,16 +195,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         );
         datePickerDialog2.setMinDate(persianCalendarDatePicker);
 
-
-
-       /* raft = date_server(persianCalendarDatePicker.getPersianYear(),
-                persianCalendarDatePicker.getPersianMonth(),
-                persianCalendarDatePicker.getPersianDay());
-
-        bargasht = date_server(persianCalendarDatePicker.getPersianYear(),
-                persianCalendarDatePicker.getPersianMonth(),
-                persianCalendarDatePicker.getPersianDay());*/
-//RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
         //=====================================================================================================
 
 
@@ -292,7 +259,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     cal.setTime(date);
                     datePickerDialogGregorian2.setMinDate(cal);
 
-
                     tarikh_az_picker.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
 
                     raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
@@ -329,9 +295,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
         });
 
-
-        //RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRrr
-
         //set value bundle
         //get
         if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 1) {
@@ -367,7 +330,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 String monthMF1 = dateSplite3[1];
                 String yearMF1 = dateSplite3[0];
 
-
                 PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
                 persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
                 Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
@@ -376,7 +338,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
             } catch (Exception e) {
             }
-
 
         }
 
@@ -391,7 +352,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 picker_az_format = Prefs.getString("raftfa", "null").replaceAll("/", "-");
                 raft = Prefs.getString("raft", "null").replaceAll("/", "-");
 
-
                 String[] dateSplite2 = raft.split("-");
 
                 String dayMF = dateSplite2[2];
@@ -403,17 +363,13 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 String monthMF1 = dateSplite3[1];
                 String yearMF1 = dateSplite3[0];
 
-
                 PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
                 persianCalendarDatePicker2.set(Integer.valueOf(yearMF1), Integer.valueOf(monthMF1), Integer.valueOf(dayMF1));
                 Log.e("testesttt", persianCalendarDatePicker2.getPersianLongDateAndTime());
                 datePickerDialog.initialize(this, persianCalendarDatePicker2.getPersianYear(), persianCalendarDatePicker2.getPersianMonth(), persianCalendarDatePicker2.getPersianDay());
 
-
             } catch (Exception e) {
             }
-
-
         }
         tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
@@ -443,7 +399,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     public void onDestroy() {
         super.onDestroy();
         Prefs.putBoolean("geo", Geo);
-
     }
 
     @Override
@@ -527,7 +482,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 //                                .playOn(txtCountB);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        //  Toast.makeText(getActivity(), "Some error :(", 2000).show();
                     }
                 }
 
@@ -545,7 +499,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 //                            .playOn(txtCountB);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    //   Toast.makeText(getActivity(), "Some errors :(", 2000).show();
                 }
 
                 break;
@@ -562,7 +515,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
                     } catch (Exception e) {
                         e.printStackTrace();
-                        //  Toast.makeText(getActivity(), "Some errors :(", 2000).show();
                     }
                 }
                 break;
@@ -576,7 +528,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
                 }
                 break;
 
@@ -592,7 +543,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
                     } catch (Exception e) {
                         e.printStackTrace();
-                        // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
                     }
                 }
                 break;
@@ -606,20 +556,18 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
+
                 }
                 break;
             case R.id.linearLayout_maghsad:
 
                 Intent i3 = new Intent(getActivity(), GetAirportMaghsadActivity.class);
-                // Bundle bundle = getActivity().getIntent().getExtras();
                 if (Prefs.getString("Value-Mabda-City", "") != null || Prefs.getString("Value-Mabda-City", "") != "") {
                     i3.putExtra("Value-Mabda-City", Prefs.getString("Value-Mabda-City", ""));
                     i3.putExtra("Value-Mabda-Airport", Prefs.getString("Value-Mabda-Airport", ""));
                     i3.putExtra("Value-Mabda-Airport-Code", Prefs.getString("Value-Mabda-Airport-Code", ""));//*THR
                 }
 
-               // startActivityForResult(i3, 2);
                 SwipeBackActivityHelper.activityBuilder(getActivity())
                         .intent(i3)
                         .needParallax(true)
@@ -630,14 +578,12 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
 
                 Intent intent = new Intent(getActivity(), GetAirportMabdaActivity.class);
-                // Bundle bundle2 = getActivity().getIntent().getExtras();
                 if (Prefs.getString("Value-Maghsad-City", "") != null && Prefs.getString("Value-Maghsad-City", "").length() > 1) {
                     intent.putExtra("Value-Maghsad-City", Prefs.getString("Value-Maghsad-City", ""));
                     intent.putExtra("Value-Maghsad-Airport", Prefs.getString("Value-Maghsad-Airport", ""));
                     intent.putExtra("Value-Maghsad-Airport-Code", Prefs.getString("Value-Maghsad-Airport-Code", ""));//*
                 }
 
-               // startActivityForResult(intent, 2);
                 SwipeBackActivityHelper.activityBuilder(getActivity())
                         .intent(intent)
                         .needParallax(true)
@@ -663,7 +609,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#ffffff"));
                 ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
 
-                //  linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
                 linear_picker = rootView.findViewById(R.id.linear_picker);
                 tarikh_be.setVisibility(View.VISIBLE);
                 linear_picker.setVisibility(View.VISIBLE);
@@ -677,10 +622,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         .duration(200)
                         .playOn(linear_picker);
 
-                //v.setBackgroundResource(R.drawable.btnwhite);
-         /*((Button)rootView.findViewById(R.id.btnAward)).setBackgroundDrawable(R.drawable.background_back);
-         ((Button)rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#E06F3"));
-         ((Button)rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#ffffff"));*/
                 break;
             case R.id.btnOne:
                 SingletonDate.getInstance().checkConflictDate();
@@ -694,11 +635,10 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
                         .playOn(llButton);
-                //((Button) rootView.findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.raft_big);
+
                 ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#ffffff"));
                 ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#d9d9d9"));
 
-                //linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
                 linear_picker = rootView.findViewById(R.id.linear_picker);
 
                 tarikh_be.setVisibility(View.INVISIBLE);
@@ -713,28 +653,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         .duration(200)
                         .playOn(linear_picker);
                 break;
-            // case R.id.tarikh_be_picker:
-            /*case R.id.linear_picker:
-                SingletonDate.getInstance().checkConflictDate();
-                calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                    @Override
-                    public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
-                        if (CustomDate.isOlderThan(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())) {
-                            SingletonDate.getInstance().setEndDate(start);
-                            tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
-                        } else {
-                            Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }, SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
-                tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
-                tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
-                raft = SingletonDate.getInstance().getStartDate().getFullGeo();
-                bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
-
-                break;*/
-            //case R.id.tarikh_az_picker:
             case R.id.linear_tarikh_az_picker:
 
                 SingletonDate.getInstance().checkConflictDate();
@@ -742,7 +661,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), TypeUsageOfCalendar.NationalFlight);
 
                 } else {
-                    //calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.NationalFlight);
                     calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.NationalFlight);
 
                 }
@@ -810,35 +728,16 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
                         intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
                         intent1.putExtra("Geo", Geo);//2017-11-24
-                       /* if(startDate != null && endDate != null)
-                             SingletonDate.getInstance().setReverseDate(startDate, endDate);*/
+
                         SwipeBackActivityHelper.activityBuilder(getActivity())
                                 .intent(intent1)
                                 .needParallax(true)
                                 .needBackgroundShadow(true)
                                 .startActivity();
                     } else {//default
-                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity(),false);
-                        AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin),getString(R.string.massege));
-                       /* System.out.println("default");
-                        intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
-                        intent1.putExtra("Value-Mabda-Airport", lbl_forudgah_mabda.getText().toString());
-                        intent1.putExtra("Value-Mabda-Airport-Code", "THR");/*//*THR
+                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity(), false);
+                        AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin), getString(R.string.massege));
 
-                        intent1.putExtra("Value-Maghsad-City", tvEnd.getText().toString());
-                        intent1.putExtra("Value-Maghsad-Airport", lbl_forudgah_maghsad.getText().toString());
-                        intent1.putExtra("Value-Maghsad-Airport-Code", "IST");/*//*
-
-                        intent1.putExtra("Value-Flag-Two", Integer.toString(flagOneTwo));
-                        intent1.putExtra("Value-AdlCount", txtCountB.getText().toString());
-                        intent1.putExtra("Value-ChdCount", txtCountK.getText().toString());
-                        intent1.putExtra("Value-InfCount", txtCountN.getText().toString());
-
-                        intent1.putExtra("Value-DepartureDate",  raft);//2017-11-24
-                        intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
-
-                        intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
-                        intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29*/
                     }
 
                 } catch (Exception e) {
@@ -892,7 +791,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
             tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
-            //  tvBargasht.setText(persianCalendar.getPersianLongDate());
             raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
@@ -980,8 +878,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     lbl_forudgah_mabda.setText("");
                 }
 
-
-/////////////////////////
                 String airportMaghsad = Prefs.getString("Value-Maghsad-Airport-Code", "");
                 String airPortMabda = Prefs.getString("Value-Mabda-Airport-Code", "");
 
@@ -997,7 +893,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 Prefs.putString("Value-Mabda-Airport", maghsadAirPort);
                 Prefs.putString("Value-Maghsad-City", mabdaCity);
                 Prefs.putString("Value-Maghsad-Airport", mabdaAirPort);
-////////////////////////
+
                 YoYo.with(Techniques.SlideInUp)
                         .duration(500)
                         .playOn(lbl_forudgah_mabda);
@@ -1054,7 +950,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             bargasht = endDate.getFullGeo();
 
             Prefs.putBoolean("GeoFlight", isGeo);
-            //  getIntent().getExtras().getBoolean("Geo")
         }
 
 

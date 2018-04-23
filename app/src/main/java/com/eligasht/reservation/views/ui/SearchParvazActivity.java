@@ -114,7 +114,7 @@ import java.util.regex.Pattern;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 public class SearchParvazActivity extends BaseActivity implements SortFlightDialog.SortFlightDialogListener, FilterFlightDialogNew.FilterFlightDialogListenerArray, Header.onSearchTextChangedListener, OnItemClickListener, OnClickListener, OnItemSelectedListener, OnServiceStatus<ResponsSearchFlight> {
-    //HashMap<String, HashMap<String, ItemExpanding>> listDataChildExpanding;
+
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     public static boolean FlagRemove;
@@ -141,19 +141,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     public TextView txtDateOnvan, txtDateOnvanB, tvLoading, txticon, tvChangeFlight, txticonDate;
     public RelativeLayout linear_expand;
     public SearchParvazPinAdapter searchParvazPinAdapter;
-    public ArrayList<ModelCheckBox> arrayTrue = new ArrayList<>();
-    //onSearchTextChangedListener, OnClickListener, OnItemClickListener,FiltersChangedListener,OnItemSelectedListener
-    //sort
+        //sort
     boolean besetSeler = false;
     boolean bestOff = false;
-    //filter
-    boolean bnoStop = false;
-    boolean boneStop = false;
-    boolean btwoStopMore = false;
-    boolean beconomiF = false;
-    boolean bbusinessF = false;
-    boolean bferstF = false;
-    ChangeFlightApi changeFlightApi;
     boolean remove = false;
     List<Flight> flightsList = new ArrayList<Flight>();
     List<Flight> flightsListFilter = new ArrayList<Flight>();
@@ -164,7 +154,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     List<FlightSegmentFalse> SegmentListFalseAkhari = new ArrayList<FlightSegmentFalse>();
     RelativeLayout rlLoading, rlRoot;
     FancyButton btn_no_Result;
-    // HashMap<String,HashMap<String,HeaderExpandingPlan>> listDataHeaderExpanding;
     List<String> listDataHeaderExpanding;
     HashMap<String, HashMap<String, ItemExpandingPlan>> listDataChildExpanding;
     Window window;
@@ -172,7 +161,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     String searchKey;
     String FlightId;
     LinearLayout llNextLastDays, llDateToolbar, llBottom, llSort;
-    private ArrayList<ParentItemExpandingPlan> selectHotelModelArrayListBestSeler = new ArrayList<>();
     private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
     private ExpandableListAdapter listAdapterExpanding;
 
@@ -259,7 +247,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         txtRuzeGhabl = findViewById(R.id.txtRuzeGhabl);
         txtRuzeGhabl.setOnClickListener(this);
         lblMoratabSazi = findViewById(R.id.lblMoratabSazi);
-        //lblMoratabSazi.setOnClickListener(this);
         txtCityRaft = findViewById(R.id.txtCityRaft);
         llDateToolbar = findViewById(R.id.llDateToolbar);
         txtCityRaft.setOnClickListener(this);
@@ -274,9 +261,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         if (extras != null) {
             String maghsadf = extras.getString("Value-Maghsad-City");
             String mabdaf = extras.getString("Value-Mabda-City");
-            //txtCityRaft.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
             txtCityRaft.setText(mabdaf);//sdfsdf
-            //txtCityBargashtt.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
             txtCityBargashtt.setText(maghsadf);//sdfsdf
             txtCityBargasht.setText(maghsadf + "");
             if (SingletonDate.getInstance().getStartDate() != null) {
@@ -348,12 +333,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v,
                                         int groupPosition, long id) {
-//                Log.d("TAG", "onGroupClick: clicked");
 
-
-                        /* Toast.makeText(getApplicationContext(),
-                         "Group Clicked " + listDataHeader.get(groupPosition),
-	    				 Toast.LENGTH_SHORT).show();*/
                 return false;
             }
         });
@@ -361,7 +341,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         expListViewExpanding.setOnGroupExpandListener(new OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
-                //Toast.makeText(SearchParvazActivity.this,listDataHeaderExpanding.get(groupPosition) + " Expanded",Toast.LENGTH_SHORT).show();
                 Log.d("TAG", "onGroupExpand: ");
             }
         });
@@ -370,7 +349,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             @Override
             public void onGroupCollapse(int groupPosition) {
                 Log.d("TAG", "onGroupCollapse: ");
-                //Toast.makeText(SearchParvazActivity.this,listDataHeaderExpanding.get(groupPosition) + " Collapsed",Toast.LENGTH_SHORT).show();
             }
         });
         // Listview on child click listener
@@ -379,10 +357,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 Log.d("TAG", "onChildClick: ");
-                        /*Toast.makeText(SearchParvazActivity.this,
-                                 listDataHeaderExpanding.get(groupPosition)
-	     								+ " : "
-	     								+ listDataChildExpanding.get(listDataHeaderExpanding.get(groupPosition)).get(childPosition), Toast.LENGTH_SHORT).show();*/
+
                 return false;
             }
         });
@@ -400,19 +375,15 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         }
         ////////EndPin
         if (isChangeFlight) {
-            // new ChangeFlightAsync().execute();
             sendRequestChangeFlight();
             Log.e("ch1", "onCreate: ");
         } else {
-            // new AsyncFetch().execute();
             sendRequest();
             Log.e("ch2", "onCreate: ");
         }
-        // and get whatever type user account id is
     }//end oncreat======================================================================================
 
     private void sendRequest() {
-        ///////////////////////////////////////////////////////////
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.status_loading));
         }
@@ -459,7 +430,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 RequestSearchFlight requestSearchFlight = new RequestSearchFlight();
                 com.eligasht.service.model.flight.request.searchFlight.Request request = new com.eligasht.service.model.flight.request.searchFlight.Request();
                 com.eligasht.service.model.flight.request.searchFlight.Identity identity = new com.eligasht.service.model.flight.request.searchFlight.Identity();
-                //identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","UserName":"EligashtMlb"}
                 request.setIdentity(identity);
                 request.setDepartureAirportcode("IST");
                 request.setArrivalAirportcode("IKA");
@@ -482,7 +452,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        //////////////////////////////////////////////////////////
     }
 
     @Override
@@ -491,7 +460,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             flightsList.clear();
         }
         try {
-            //System.out.println("Response: " + responsSearchFlight.getSearchFlightsResult().getFlights().size());
             new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
@@ -519,7 +487,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         } catch (Exception e) {
             System.out.println("Exception: " + e);
             new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
-            // Log.e("date", result);
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
             }
@@ -535,7 +503,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     public void onError(String message) {
         System.out.println("onError: " + message);
         new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
-        // Log.e("date", result);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
         }
@@ -602,7 +570,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     }
                 }
                 if (filterModel.isEconomiF()) {
-                    //if(dataExpandingListFilter.get(i).getHeader().CabinClassNameFa.contains(getString(R.string.Economi))){
+
                     for (int i = 0; i < dataExpandingList.size(); i++) {
                         if (dataExpandingList.get(i).getHeader().CabinClassNameFa.contains(getString(R.string.Economi))) {
                             ParentItemExpandingPlan parentItem = new ParentItemExpandingPlan("");
@@ -896,9 +864,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         txtNoResult.setText(R.string.NoResult);
         linear_no_result.setVisibility(View.GONE);
         if (dataExpandingListFilter.isEmpty() || !foundFirst || !foundEc || !foundBis) {
-            // foundFirst=false;
-            //Toast.makeText(SearchParvazActivity.this, "هیچ موردی یافت نشد", Toast.LENGTH_LONG).show();
-            ///////////////
+
             iconFilter.setTextColor(Color.RED);
             txtFilter.setTextColor(Color.RED);
             linear_expand = findViewById(R.id.linear_expand);
@@ -916,9 +882,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 txtNoResult.setText(R.string.NoResult);
                 linear_no_result.setVisibility(View.GONE);
             }
-            /////////////////
-            //listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList,searchParvazPinAdapter);
-            //expListViewExpanding.setAdapter(listAdapterExpanding);
+
         } else {
             listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingListFilter, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
             expListViewExpanding.setAdapter(listAdapterExpanding);
@@ -942,13 +906,13 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 Collections.sort(dataExpandingList, new Comparator<ParentItemExpandingPlan>() {
                     @Override
                     public int compare(SearchParvazActivity.ParentItemExpandingPlan o1, SearchParvazActivity.ParentItemExpandingPlan o2) {
-                        //return o1.Header.AirlineNameEa.compareToIgnoreCase(o2.Header.AirlineNameEa);
+
                         return Double.compare(o2.Header.AdlCost, o1.Header.AdlCost);
                     }
                 });
-                //////////////////////////////////////
+
                 listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
-                // setting list adapter
+
                 expListViewExpanding.setAdapter(listAdapterExpanding);
                 listAdapterExpanding.notifyDataSetChanged();
                 break;
@@ -958,13 +922,10 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 Collections.sort(dataExpandingList, new Comparator<ParentItemExpandingPlan>() {
                     @Override
                     public int compare(SearchParvazActivity.ParentItemExpandingPlan o1, SearchParvazActivity.ParentItemExpandingPlan o2) {
-                        //return o1.Header.AirlineNameEa.compareToIgnoreCase(o2.Header.AirlineNameEa);
                         return Double.compare(o1.Header.AdlCost, o2.Header.AdlCost);
                     }
                 });
-                //////////////////////////////////////
                 listAdapterExpanding = new ExpandableListAdapter(SearchParvazActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
-                // setting list adapter
                 expListViewExpanding.setAdapter(listAdapterExpanding);
                 listAdapterExpanding.notifyDataSetChanged();
                 break;
@@ -1045,7 +1006,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                                 SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getArrivalCityNameFa(), SegmentListtrueAkhari.get(SegmentListtrueAkhari.size() - 1).getFlightTime(),
                                 SegmentListFalseAvali.get(0).getDepartureCityNameFa(), SegmentListFalseAvali.get(0).getFlightArrivalTime(),
                                 SegmentListFalseAkhari.get(SegmentListFalseAkhari.size() - 1).getArrivalCityNameFa(), SegmentListFalseAkhari.get(0).getFlightTime(),
-                                //flightsList.get(i).getAdlCost().getAmount(),
                                 flightsList.get(i).getTotalFare().getAmount(),
                                 flightsList.get(i).getFlightGUID()
                                 , SegmentList.get(0).getAirlineNameFa()
@@ -1062,7 +1022,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                                 , SegmentListFalseAvali.size() > 0 ? SegmentListFalseAvali.get(0).getFlightNumber() : "0", false
                                 , SegmentListtrueAkhari
                                 , SegmentListFalseAkhari);//ArrivalCityNameEnR baraye sort bayad en bashe
-                        //parentItem.Header.add(header);
+
                         parentItem.setHeader(header);
                         //fore Detail item
                         for (int j = 0; j < SegmentList.size(); j++) {
@@ -1114,18 +1074,15 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     }//end expanding listdata
 
     private void getAirLine() {
-        //	listDataHeaderExpanding =new HashMap<String, HashMap<String,HeaderExpandingPlan>>();// new ArrayList<String>();
         listDataChildExpanding = new HashMap<String, HashMap<String, ItemExpandingPlan>>();
-        //dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
         ArrayList<SearchParvazModelExp> searchParvazModelExps = new ArrayList<SearchParvazModelExp>();
         ArrayList<SearchParvazModelExp> searchParvazModelExps1 = new ArrayList<>();
         if (flightsList != null) {
             System.out.println("flightsList.size():" + flightsList.size());
-            //dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
+
             for (int i = 0; i < flightsList.size(); i++) {
                 SegmentList = flightsList.get(i).getSegmentList();
-                //FilterAirline filterAirline=new FilterAirline(SegmentList.get(0).getAirlineNameFa());
-                //	filterAirlines.add(SegmentList.get(0).getAirlineNameFa(),false);
+
                 airlineConstraint.add(SegmentList.get(0).getAirlineNameFa());
                 Log.e("rrrrrrrr", SegmentList.get(0).getAirlineNameFa());
             }
@@ -1184,7 +1141,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 break;
             case R.id.btnLastDays:
                 if (SingletonDate.getInstance().getStartDate().addOneDay()) {
-                    //tvDate.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
                     Raft = SingletonDate.getInstance().getStartDate().getFullGeo();
                     Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
                     RaftF = SingletonDate.getInstance().getStartDate().getDescription();
@@ -1356,10 +1312,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         public boolean IsPin;
         public List<FlightSegmentTrue> segmentListtrueAkhari;
         public List<FlightSegmentFalse> segmentListfalseAkhari;
-      /*  public String FltDurationHR;
-        public  String FltDurationMR;
-        public String FltDurationHB;
-        public  String FltDurationMB;*/
 
         public HeaderExpandingPlan(String ArrivalCityNameFaR, String FlightArrivalTimeR,
                                    String DepartureCityNameFaR, String FlightTimeR,
@@ -1398,10 +1350,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             this.IsPin = IsPin;
             this.segmentListtrueAkhari = segmentListtrueAkhari;
             this.segmentListfalseAkhari = segmentListFalseAkhari;
-            /*this.FltDurationHR=FltDurationHR;
-            this.FltDurationMR=FltDurationMR;
-            this.FltDurationHB=FltDurationHB;
-            this.FltDurationMB=FltDurationMB;*/
+
         }
 
         public HeaderExpandingPlan() {
