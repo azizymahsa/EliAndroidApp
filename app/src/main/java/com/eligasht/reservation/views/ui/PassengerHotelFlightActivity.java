@@ -47,10 +47,12 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.BuildConfig;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.helper.Const;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.error.Error;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
@@ -71,6 +73,7 @@ import com.eligasht.service.model.hotelflight.purchase.response.HotelFlightPurch
 import com.eligasht.service.model.hotelflight.purchase.response.PishFactor.PurchaseServiceResult;
 import com.eligasht.service.model.hotelflight.purchase.response.PishFactor.ResponsePurchaseService;
 import com.eligasht.service.model.hotelflight.search.response.HotelFlightResponse;
+import com.eligasht.service.model.test.TransferClickEvenBus;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
@@ -109,6 +112,9 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -126,6 +132,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -202,6 +209,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger);
+        EventBus.getDefault().register(this);
         ScrollView scroll_partner = findViewById(R.id.scroll_partner);
         scroll_partner.fullScroll(ScrollView.FOCUS_UP);
         scroll_partner.scrollTo(0, 0);
@@ -1148,6 +1156,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this, 0);
                 //mAdapter.setAdapter(mAdapter);
                 mAdapter.setData(data);
+                if (BuildConfig.DEBUG && Const.TEST)
+                Collections.reverse(data);
                 listKhadamat.setAdapter(mAdapter);
                 setAnimation();
             } catch (JSONException e) {
@@ -1269,6 +1279,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         super.onDestroy();
         Prefs.getBoolean("IsDemostic", true);
         Prefs.putString("Flag_First_Computing", "F");
+        EventBus.getDefault().unregister(this);
+
 
     }
 
@@ -3173,5 +3185,13 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         YoYo.with(Techniques.BounceInRight)
                 .duration(600)
                 .playOn(txtPishfactor);
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(TransferClickEvenBus event)
+    {
+
+
+
+
     }
 }
