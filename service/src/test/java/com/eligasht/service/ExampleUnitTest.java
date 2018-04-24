@@ -1,5 +1,4 @@
 package com.eligasht.service;
-
 import com.eligasht.service.model.test.HeaderTestService;
 import com.eligasht.service.model.test.MarkDownGenerator;
 import com.eligasht.service.model.test.ServiceTestModel;
@@ -9,7 +8,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -42,18 +40,14 @@ public class ExampleUnitTest {
 //        MarkDownGenerator markDownGenerator = new MarkDownGenerator(532, headerTestService, headerTestService2, headerTestService3, headerTestService4, headerTestService5);
 //
 //        System.out.println(markDownGenerator.generate());
-
         // System.out.println(new Gson().toJson(markDownGenerator));
         generateData();
-
-
     }
 
     private void generateData() {
         ///////////////////start up
-
         HeaderTestService headerTestServiceStartUp = new HeaderTestService("Startup", getStartup());
-        HeaderTestService headerTestServicePublic = new HeaderTestService("Public", getLogin());
+        HeaderTestService headerTestServicePublic = new HeaderTestService("Public", getPublic());
         HeaderTestService headerTestServiceFlight = new HeaderTestService("Flight", getFlightList());
         HeaderTestService headerTestServiceHotel = new HeaderTestService("Hotel", getHotelList());
         HeaderTestService headerTestServiceHotelf = new HeaderTestService("HotelFlight", getHotelFList());
@@ -61,8 +55,7 @@ public class ExampleUnitTest {
         HeaderTestService headerTestServiceInsurance = new HeaderTestService("Insurance", getInsurance());
         HeaderTestService headerTestServiceStaticPage = new HeaderTestService("StaticPage", getStaticPage());
         HeaderTestService headerTestServiceLogin = new HeaderTestService("Login", getLogin());
-
-        List<HeaderTestService> headerTestServiceArrayList=new ArrayList<>();
+        List<HeaderTestService> headerTestServiceArrayList = new ArrayList<>();
         headerTestServiceArrayList.add(headerTestServiceStartUp);
         headerTestServiceArrayList.add(headerTestServicePublic);
         headerTestServiceArrayList.add(headerTestServiceFlight);
@@ -72,14 +65,9 @@ public class ExampleUnitTest {
         headerTestServiceArrayList.add(headerTestServiceInsurance);
         headerTestServiceArrayList.add(headerTestServiceStaticPage);
         headerTestServiceArrayList.add(headerTestServiceLogin);
-
-        MarkDownGenerator markDownGenerator=new MarkDownGenerator(0,headerTestServiceArrayList);
-
+        MarkDownGenerator markDownGenerator = new MarkDownGenerator(0, headerTestServiceArrayList);
         //System.out.println(new Gson().toJson(markDownGenerator));
         System.out.println(markDownGenerator.generate());
-
-
-
     }
 
     private List<ServiceTestModel> getStartup() {
@@ -92,43 +80,13 @@ public class ExampleUnitTest {
         MobileAppStartupService.setTotalCall(0);
         MobileAppStartupService.setClose(true);
         MobileAppStartupService.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-        List<ServiceTestModel> list=new ArrayList<>();
+        List<ServiceTestModel> list = new ArrayList<>();
         list.add(MobileAppStartupService);
         return list;
     }
 
     private List<ServiceTestModel> getFlightList() {
         //flight
-        ServiceTestModel f1 = new ServiceTestModel();
-        f1.setId(1);
-        f1.setName("Common/StaticDataService.svc/MobileAppStartupService");
-        f1.setMessage("ok");
-        f1.setTryTime("900 ms");
-        f1.setStatusCode(200);
-        f1.setTotalCall(0);
-        f1.setClose(true);
-        f1.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-        ServiceTestModel f2 = new ServiceTestModel();
-        f2.setId(1);
-        f2.setName("Common/StaticDataService.svc/GetHotelList");
-        f2.setMessage("ok");
-        f2.setTryTime("900 ms");
-        f2.setStatusCode(200);
-        f2.setTotalCall(0);
-        f2.setClose(true);
-        f2.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-        ServiceTestModel f3 = new ServiceTestModel();
-        f3.setId(1);
-        f3.setName("Common/StaticDataService.svc/PurchaseService");
-        f3.setMessage("ok");
-        f3.setTryTime("900 ms");
-        f3.setStatusCode(200);
-        f3.setTotalCall(0);
-        f3.setClose(true);
-        f3.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f4 = new ServiceTestModel();
         f4.setId(1);
         f4.setName("Common/StaticDataService.svc/GetAirportWithParentsWithCulture");
@@ -138,45 +96,54 @@ public class ExampleUnitTest {
         f4.setTotalCall(0);
         f4.setClose(true);
         f4.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f5 = new ServiceTestModel();
         f5.setId(1);
-        f5.setName("Common/StaticDataService.svc/GetPreFactorDetails");
+        f5.setName("Flight/FlightService.svc/SearchFlights");
         f5.setMessage("ok");
         f5.setTryTime("900 ms");
         f5.setStatusCode(200);
         f5.setTotalCall(0);
         f5.setClose(true);
         f5.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f6 = new ServiceTestModel();
         f6.setId(1);
-        f6.setName("Common/StaticDataService.svc/GetCountryAjaxWithCulture");
+        f6.setName("Common/StaticDataService.svc/GetIsDomestic");
         f6.setMessage("ok");
         f6.setTryTime("900 ms");
         f6.setStatusCode(200);
         f6.setTotalCall(0);
         f6.setClose(true);
         f6.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-
         ServiceTestModel f7 = new ServiceTestModel();
         f7.setId(1);
-        f7.setName("Common/StaticDataService.svc/GetPreFactorDetails");
+        f7.setName("Flight/FlightService.svc/PurchaseFlight");
         f7.setMessage("ok");
         f7.setTryTime("900 ms");
         f7.setStatusCode(200);
         f7.setTotalCall(0);
         f7.setClose(true);
         f7.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
+
+
+        ServiceTestModel f8 = new ServiceTestModel();
+        f8.setId(1);
+        f8.setName("HotelFlight/HotelFlightService.svc/HotelPlusFlightChangeFlt");
+        f8.setMessage("ok");
+        f8.setTryTime("900 ms");
+        f8.setStatusCode(200);
+        f8.setTotalCall(0);
+        f8.setClose(true);
+        f8.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
+
+
+
+
         List<ServiceTestModel> list = new ArrayList<>();
-        list.add(f1);
-        list.add(f2);
-        list.add(f3);
         list.add(f4);
         list.add(f5);
         list.add(f6);
         list.add(f7);
+        list.add(f8);
         return list;
     }
 
@@ -191,7 +158,6 @@ public class ExampleUnitTest {
         f1.setTotalCall(0);
         f1.setClose(true);
         f1.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f2 = new ServiceTestModel();
         f2.setId(1);
         f2.setName("Hotel/HotelService.svc/GetRoomsList");
@@ -201,7 +167,6 @@ public class ExampleUnitTest {
         f2.setTotalCall(0);
         f2.setClose(true);
         f2.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f3 = new ServiceTestModel();
         f3.setId(1);
         f3.setName("Hotel/HotelService.svc/GetHotelDetail");
@@ -211,7 +176,6 @@ public class ExampleUnitTest {
         f3.setTotalCall(0);
         f3.setClose(true);
         f3.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f4 = new ServiceTestModel();
         f4.setId(1);
         f4.setName("Hotel/HotelService.svc/AddHotelReview");
@@ -221,7 +185,6 @@ public class ExampleUnitTest {
         f4.setTotalCall(0);
         f4.setClose(true);
         f4.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f5 = new ServiceTestModel();
         f5.setId(1);
         f5.setName("Common/StaticDataService.svc/GetHotelList");
@@ -231,7 +194,6 @@ public class ExampleUnitTest {
         f5.setTotalCall(0);
         f5.setClose(true);
         f5.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f6 = new ServiceTestModel();
         f6.setId(1);
         f6.setName("Hotel/HotelService.svc/GetHotelReview");
@@ -241,8 +203,6 @@ public class ExampleUnitTest {
         f6.setTotalCall(0);
         f6.setClose(true);
         f6.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-
         List<ServiceTestModel> list = new ArrayList<>();
         list.add(f1);
         list.add(f2);
@@ -264,7 +224,6 @@ public class ExampleUnitTest {
         f1.setTotalCall(0);
         f1.setClose(true);
         f1.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f2 = new ServiceTestModel();
         f2.setId(1);
         f2.setName("HotelFlight/HotelFlightService.svc/LoadFlight");
@@ -274,7 +233,6 @@ public class ExampleUnitTest {
         f2.setTotalCall(0);
         f2.setClose(true);
         f2.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f3 = new ServiceTestModel();
         f3.setId(1);
         f3.setName("Hotel/HotelService.svc/GetHotelPolicy");
@@ -284,7 +242,6 @@ public class ExampleUnitTest {
         f3.setTotalCall(0);
         f3.setClose(true);
         f3.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f4 = new ServiceTestModel();
         f4.setId(1);
         f4.setName("Hotel/HotelService.svc/HoldSelectedRoom");
@@ -294,7 +251,6 @@ public class ExampleUnitTest {
         f4.setTotalCall(0);
         f4.setClose(true);
         f4.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f5 = new ServiceTestModel();
         f5.setId(1);
         f5.setName("HotelFlight/HotelFlightService.svc/AirportTransportServicePrice");
@@ -304,25 +260,12 @@ public class ExampleUnitTest {
         f5.setTotalCall(0);
         f5.setClose(true);
         f5.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-        ServiceTestModel f6 = new ServiceTestModel();
-        f6.setId(1);
-        f6.setName("Common/StaticDataService.svc/PurchaseService");
-        f6.setMessage("ok");
-        f6.setTryTime("900 ms");
-        f6.setStatusCode(200);
-        f6.setTotalCall(0);
-        f6.setClose(true);
-        f6.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-
         List<ServiceTestModel> list = new ArrayList<>();
         list.add(f1);
         list.add(f2);
         list.add(f3);
         list.add(f4);
         list.add(f5);
-        list.add(f6);
         return list;
     }
 
@@ -337,7 +280,6 @@ public class ExampleUnitTest {
         f1.setTotalCall(0);
         f1.setClose(true);
         f1.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f2 = new ServiceTestModel();
         f2.setId(1);
         f2.setName("Package/PackageService.svc/PurchasePackage");
@@ -347,24 +289,12 @@ public class ExampleUnitTest {
         f2.setTotalCall(0);
         f2.setClose(true);
         f2.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-        ServiceTestModel f3 = new ServiceTestModel();
-        f3.setId(1);
-        f3.setName("Common/StaticDataService.svc/GetPreFactorDetails");
-        f3.setMessage("ok");
-        f3.setTryTime("900 ms");
-        f3.setStatusCode(200);
-        f3.setTotalCall(0);
-        f3.setClose(true);
-        f3.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-
         List<ServiceTestModel> list = new ArrayList<>();
         list.add(f1);
         list.add(f2);
-        list.add(f3);
         return list;
     }
+
     private List<ServiceTestModel> getInsurance() {
         //flight
         ServiceTestModel f1 = new ServiceTestModel();
@@ -376,26 +306,6 @@ public class ExampleUnitTest {
         f1.setTotalCall(0);
         f1.setClose(true);
         f1.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-        ServiceTestModel f2 = new ServiceTestModel();
-        f2.setId(1);
-        f2.setName("Common/StaticDataService.svc/GetPreFactorDetails");
-        f2.setMessage("ok");
-        f2.setTryTime("900 ms");
-        f2.setStatusCode(200);
-        f2.setTotalCall(0);
-        f2.setClose(true);
-        f2.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-        ServiceTestModel f3 = new ServiceTestModel();
-        f3.setId(1);
-        f3.setName("Common/StaticDataService.svc/GetCountryAjaxWithCulture");
-        f3.setMessage("ok");
-        f3.setTryTime("900 ms");
-        f3.setStatusCode(200);
-        f3.setTotalCall(0);
-        f3.setClose(true);
-        f3.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
         ServiceTestModel f4 = new ServiceTestModel();
         f4.setId(1);
         f4.setName("   Insurance/InsuranceService.svc/ShowInsurance");
@@ -405,16 +315,12 @@ public class ExampleUnitTest {
         f4.setTotalCall(0);
         f4.setClose(true);
         f4.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-
-
         List<ServiceTestModel> list = new ArrayList<>();
         list.add(f1);
-        list.add(f2);
-        list.add(f3);
         list.add(f4);
         return list;
     }
+
     private List<ServiceTestModel> getStaticPage() {
         //flight
         ServiceTestModel f1 = new ServiceTestModel();
@@ -426,7 +332,6 @@ public class ExampleUnitTest {
         f1.setTotalCall(0);
         f1.setClose(true);
         f1.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
         ServiceTestModel f2 = new ServiceTestModel();
         f2.setId(1);
         f2.setName("Common/StaticDataService.svc/GetContactUsWithCuture");
@@ -436,16 +341,12 @@ public class ExampleUnitTest {
         f2.setTotalCall(0);
         f2.setClose(true);
         f2.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-
-
-
-
         List<ServiceTestModel> list = new ArrayList<>();
         list.add(f1);
         list.add(f2);
         return list;
     }
+
     private List<ServiceTestModel> getLogin() {
         //flight
         ServiceTestModel f1 = new ServiceTestModel();
@@ -457,16 +358,43 @@ public class ExampleUnitTest {
         f1.setTotalCall(0);
         f1.setClose(true);
         f1.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-
-
-
-
-
-
         List<ServiceTestModel> list = new ArrayList<>();
         list.add(f1);
         return list;
     }
 
+    private List<ServiceTestModel> getPublic() {
+        ServiceTestModel f1 = new ServiceTestModel();
+        f1.setId(1);
+        f1.setName("Common/StaticDataService.svc/PurchaseService");
+        f1.setMessage("ok");
+        f1.setTryTime("900 ms");
+        f1.setStatusCode(200);
+        f1.setTotalCall(0);
+        f1.setClose(true);
+        f1.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
+        ServiceTestModel f2 = new ServiceTestModel();
+        f2.setId(1);
+        f2.setName("Common/StaticDataService.svc/GetCountryAjaxWithCulture");
+        f2.setMessage("ok");
+        f2.setTryTime("900 ms");
+        f2.setStatusCode(200);
+        f2.setTotalCall(0);
+        f2.setClose(true);
+        f2.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
+        ServiceTestModel f3 = new ServiceTestModel();
+        f3.setId(1);
+        f3.setName("Common/StaticDataService.svc/GetPreFactorDetails");
+        f3.setMessage("ok");
+        f3.setTryTime("900 ms");
+        f3.setStatusCode(200);
+        f3.setTotalCall(0);
+        f3.setClose(true);
+        f3.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
+        List<ServiceTestModel> list = new ArrayList<>();
+        list.add(f1);
+        list.add(f2);
+        list.add(f3);
+        return list;
+    }
 }

@@ -43,10 +43,12 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.BuildConfig;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.helper.Const;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.error.Error;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
@@ -124,6 +126,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -953,6 +956,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this, 0);
                     //mAdapter.setAdapter(mAdapter);
+                    if (BuildConfig.DEBUG && Const.TEST)
+                        Collections.reverse(data);
                     mAdapter.setData(data);
                     listKhadamat.setAdapter(mAdapter);
                     setAnimation();
