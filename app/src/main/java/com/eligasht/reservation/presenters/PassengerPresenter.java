@@ -1,6 +1,4 @@
 package com.eligasht.reservation.presenters;
-
-
 import android.content.Context;
 import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
@@ -20,44 +18,38 @@ import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.viewholders.PassengerRowHolder;
 
 import java.util.ArrayList;
-
 /**
  * Created by elham.bonyani on 1/4/2018.
  */
-
 public class PassengerPresenter implements PassengerContract.Presenter {
-
     private final PassengerContract.View mView;
     private ArrayList<BirthDateList> passengers;
-    boolean geo;
-    Context context;
-    PassengerRowHolder holder;
-
+    public boolean geo;
+    public Context context;
+    public PassengerRowHolder holder;
 
     public PassengerPresenter(PassengerContract.View mView) {
         this.mView = mView;
     }
 
-    public void setPassengers(ArrayList<BirthDateList> passengerArrayList){
-        if (passengerArrayList == null){
+    public void setPassengers(ArrayList<BirthDateList> passengerArrayList) {
+        if (passengerArrayList == null) {
             passengers = new ArrayList<>();
             BirthDateList birthDateList = new BirthDateList();
             birthDateList.setPassNo(1);
             passengers.add(birthDateList);
-        }else {
+        } else {
             passengers = passengerArrayList;
         }
         mView.setPassengersCount(getPassengersCount());
-
     }
-
 
     @Override
     public void addPassengers() {
         if (ValidationTools.isEmptyOrNull(getPassengers())) {
             return;
         }
-        if(getPassengersCount() >= 9){
+        if (getPassengersCount() >= 9) {
             return;
         }
         BirthDateList birthDateList = new BirthDateList();
@@ -72,51 +64,33 @@ public class PassengerPresenter implements PassengerContract.Presenter {
         if (ValidationTools.isEmptyOrNull(getPassengers())) {
             return;
         }
-
-        if(getPassengersCount() == 1){
+        if (getPassengersCount() == 1) {
             return;
         }
-
-
-
-
-
-
-
-
-        if (getPassengersCount()!=1){
+        if (getPassengersCount() != 1) {
             Animation animations = AnimationUtils.loadAnimation(context, android.R.anim.slide_out_right);
             holder.card_passenger.startAnimation(animations);
             Handler handle = new Handler();
             handle.postDelayed(new Runnable() {
-
                 @Override
                 public void run() {
                     // TODO Auto-generated method stub
-
-                    if (getPassengersCount()!=1) {
-
+                    if (getPassengersCount() != 1) {
                         passengers.remove(getPassengersCount() - 1);
                         mView.notifyDataSetChange();
                         mView.setPassengersCount(getPassengersCount());
                     }
                 }
             }, 400);
-
         }
-
-
-
-
     }
 
     @Override
-    public void setBirthday(BirthDateList passenger, String date,boolean geo) {
+    public void setBirthday(BirthDateList passenger, String date, boolean geo) {
         Log.e("date", date);
         passengers.get(passengers.indexOf(passenger)).setBirthDate(date);
         mView.notifyDataSetChange();
-        this.geo=geo;
-
+        this.geo = geo;
     }
 
     @Override
@@ -135,69 +109,50 @@ public class PassengerPresenter implements PassengerContract.Presenter {
         PassengerRowHolder mh = new PassengerRowHolder(view);
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(lp);
-        this.context=parent.getContext();
+        this.context = parent.getContext();
         return mh;
     }
 
     @Override
     public void bindViewHolder(PassengerRowHolder holder, int position) {
-        this.holder=holder;
+        this.holder = holder;
         if (ValidationTools.isEmptyOrNull(getPassengers())) {
             return;
         }
         final BirthDateList passenger = getPassengers().get(position);
-
-
-        if (Prefs.getString("lang","fa").equals("fa")){
-            holder.txt_passenger_title.setText(context.getString(R.string.Passanger)+ " " + getStringPosition(position));
-
+        if (Prefs.getString("lang", "fa").equals("fa")) {
+            holder.txt_passenger_title.setText(context.getString(R.string.Passanger) + " " + getStringPosition(position));
+        } else if (Prefs.getString("lang", "fa").equals("en")) {
+            holder.txt_passenger_title.setText(getStringPosition(position) + " " + context.getString(R.string.Passanger));
+        } else {
+            holder.txt_passenger_title.setText(getStringPosition(position) + " " + context.getString(R.string.Passanger));
         }
-
-        else if (Prefs.getString("lang","fa").equals("en")){
-            holder.txt_passenger_title.setText(getStringPosition(position)+ " " + context.getString(R.string.Passanger));
-
-        }else{
-            holder.txt_passenger_title.setText(getStringPosition(position)+ " " + context.getString(R.string.Passanger));
-
-
-        }
-
-        if(!ValidationTools.isEmptyOrNull(passenger.getBirthDate())){
-            if (geo){
-                String birthDay = DateUtil.getLongStringDateInsurance(passenger.getBirthDate(),"yyyy-MM-dd",false);
+        if (!ValidationTools.isEmptyOrNull(passenger.getBirthDate())) {
+            if (geo) {
+                String birthDay = DateUtil.getLongStringDateInsurance(passenger.getBirthDate(), "yyyy-MM-dd", false);
                 holder.txt_birthday.setText(birthDay);
-
-            }else{
-                String birthDay = DateUtil.getLongStringDateInsurance(passenger.getBirthDate(),"yyyy-MM-dd",true);
+            } else {
+                String birthDay = DateUtil.getLongStringDateInsurance(passenger.getBirthDate(), "yyyy-MM-dd", true);
                 holder.txt_birthday.setText(birthDay);
-
             }
-        }else {
+        } else {
             holder.txt_birthday.setText(context.getString(R.string.Brithday));
         }
         holder.layout_birthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mView!=null){
+                if (mView != null) {
                     mView.onSetBirthDayPassenger(passenger);
                     return;
                 }
             }
         });
-
-        if (passenger.isAnim()){
-
+        if (passenger.isAnim()) {
             Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
             holder.card_passenger.startAnimation(animation);
-
-            BirthDateList passenger2= getPassengers().get(position);
+            BirthDateList passenger2 = getPassengers().get(position);
             passenger2.setAnim(false);
-
-
-
         }
-
-
     }
 
     private String getStringPosition(int position) {
@@ -205,6 +160,7 @@ public class PassengerPresenter implements PassengerContract.Presenter {
             case 0:
                 return context.getString(R.string.First);
             case 1:
+
                 return context.getString(R.string.Second);
             case 2:
                 return context.getString(R.string.Third);

@@ -1341,7 +1341,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					if(flagMosafer.contains("F")){
 						//Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
 						try {
-							AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerActivity.this);
+							AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerActivity.this,false);
 							AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
 						}catch (Exception e){
 							e.getMessage();
