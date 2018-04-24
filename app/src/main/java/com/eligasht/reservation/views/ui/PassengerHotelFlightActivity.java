@@ -1175,7 +1175,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         if (flagMosafer.contains("F")) {
 
                             try {
-                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true);
+                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,false);
                                 alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
                             } catch (Exception e) {
                                 e.getMessage();
