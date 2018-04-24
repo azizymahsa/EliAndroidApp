@@ -36,11 +36,16 @@ import com.eligasht.service.model.hotel.transport.request.Param;
 import com.eligasht.service.model.hotel.transport.request.TransportReq;
 import com.eligasht.service.model.hotel.transport.request.TransportRequest;
 import com.eligasht.service.model.hotel.transport.response.TransportResponse;
+import com.eligasht.service.model.test.TransferClickEvenBus;
 import com.google.gson.Gson;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.eligasht.reservation.tools.Prefs;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -314,6 +319,9 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
+
+
+
     public void initValues() {
         DepurtureAirport = getIntent().getExtras().getString("ArrialAirportName");
         ReturnFlt = getIntent().getExtras().getString("ArrivalFltNo");
@@ -437,6 +445,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
         Prefs.putString("HotelName", getString(R.string.please_select_one));
         Prefs.putString("Value-Mabda-Airport-Code2", "");
         Prefs.putString("Value-Mabda-City2", getString(R.string.please_select_one));
+
     }
 
     @Override
@@ -716,4 +725,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
 
     }
+
+
+
 }

@@ -13,6 +13,7 @@ import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.mock.Mock;
 import com.eligasht.service.mock.MockProcessor;
 import com.eligasht.service.model.BaseModel;
+import com.eligasht.service.model.test.SingletonResponse;
 import com.example.type.TypeResolver;
 
 import java.io.IOException;
@@ -80,13 +81,15 @@ public abstract class BasePart {
 
                     @Override
                     public void onNext(Response<T> value) {
-                        initForTest(value);
+                        if (BuildConfig.DEBUG && Const.TEST)
+                            initForTest(value);
                         listener.onReady(value.body());
                     }
 
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.e("Error", e.getMessage());
                         listener.onError(e.getMessage());
                     }
 
@@ -98,10 +101,13 @@ public abstract class BasePart {
     }
 
     private <T> void initForTest(Response<T> value) {
+        SingletonResponse.getInstance().addResponse(value);
+        Log.e("Valeus", value.toString());
         long tx = value.raw().networkResponse().sentRequestAtMillis();
         long rx = value.raw().networkResponse().receivedResponseAtMillis();
         Log.e("Time", "response time : " + (rx - tx) + " ms");
         Log.e("Value", bodyToString(value.raw().request().body()));
+
         if (BuildConfig.DEBUG && Const.TEST && value.body() != null) {
             Field[] fields = value.body().getClass().getFields();
             for (Field field : fields) {
