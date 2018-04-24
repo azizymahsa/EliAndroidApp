@@ -31,6 +31,10 @@ public class ServiceTestModel {
     @Expose
     private String issueLink;
 
+    @SerializedName("size")
+    @Expose
+    private String size ="";
+
     public Integer getId() {
         return id;
     }
@@ -95,4 +99,11 @@ public class ServiceTestModel {
         this.issueLink = issueLink;
     }
 
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
 }

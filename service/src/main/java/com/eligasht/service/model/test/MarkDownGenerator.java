@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import retrofit2.Response;
+
 /**
  * Created by Ahmad.nemati on 4/23/2018.
  */
@@ -15,6 +17,7 @@ public class MarkDownGenerator {
     @SerializedName("headerTestServices")
     @Expose
     private List<HeaderTestService> headerTestServices = null;
+    int dur;
 
 
     public MarkDownGenerator(int totalRun, List<HeaderTestService> headerTestServices) {
@@ -40,9 +43,9 @@ public class MarkDownGenerator {
 
     public String generate() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(generateTotalRuns())
+        stringBuilder.append(generateIntroHeader())
                 .append("\n")
-                .append(generateIntroHeader())
+                .append(generateInfo())
                 .append("\n")
                 .append(generateService());
         return stringBuilder.toString();
@@ -50,16 +53,19 @@ public class MarkDownGenerator {
 
     }
 
-    private String generateTotalRuns() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("# Total Runs ====>")
-                .append(totalRun);
-        return stringBuilder.toString();
+    public void setDur(int dur) {
+        this.dur = dur;
     }
 
     private String generateIntroHeader() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("## Services").append("\n");
+        stringBuilder.append(" - [")
+                .append("Info")
+                .append("](#")
+                .append("Info")
+                .append(")")
+                .append("\n");
         for (int i = 0; i < headerTestServices.size(); i++) {
             stringBuilder.append(" - [")
                     .append(headerTestServices.get(i).getHeaderName())
@@ -99,9 +105,52 @@ public class MarkDownGenerator {
                 .append(headerTestService.getHeaderName())
                 .append("</h3>").append("").append("\n")
                 .append("\n")
-                .append(" Name | Message | Try Time  |  Status Code  | Total Calls | Status | Issues")
+                .append(" Name | Message | Wait Time(Sec)  |  Size(KB)  |  Status Code  | Total Calls | Status | Issues")
                 .append("\n")
-                .append("--- | --- | --- | --- | --- | --- | ---");
+                .append("--- | --- | --- | --- | --- | --- | --- | ---");
+        return stringBuilder.toString();
+
+    }
+
+    private String generateInfo() {
+        List<Response<?>> list = SingletonResponse.getInstance().getResponseList();
+        if (list == null)
+            return "";
+        long waitTime = 0;
+        long size = 0;
+        for (Response<?> response : list) {
+            long tx = response.raw().networkResponse().sentRequestAtMillis();
+            long rx = response.raw().networkResponse().receivedResponseAtMillis();
+            waitTime = waitTime + (rx - tx);
+            size = size + response.raw().body().contentLength();
+        }
+        waitTime = waitTime / 60000;
+        size = size / 1000;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder
+                .append("<h3><a name=\"")
+                .append("Info")
+                .append("\"></a>")
+                .append("Info")
+                .append("</h3>").append("").append("\n")
+                .append("\n")
+                .append(" Total Runs | Total Api Calls(Last Test) | Total Size(Last Test in KB) | Total Wait Time(Last Test in Min)")
+                .append("\n")
+                .append("--- | --- | --- | ---")
+                .append("\n")
+                .append(totalRun)
+                .append(" ")
+                .append("|")
+                .append(" ")
+                .append(list.size())
+                .append(" ")
+                .append("|")
+                .append(" ")
+                .append(size)
+                .append(" ")
+                .append("|")
+                .append(" ")
+                .append(dur);
         return stringBuilder.toString();
 
     }
@@ -117,6 +166,10 @@ public class MarkDownGenerator {
                 .append("|")
                 .append(" ")
                 .append(serviceTestModel.getTryTime())
+                .append(" ")
+                .append("|")
+                .append(" ")
+                .append(serviceTestModel.getSize())
                 .append(" ")
                 .append("|")
                 .append(" ")

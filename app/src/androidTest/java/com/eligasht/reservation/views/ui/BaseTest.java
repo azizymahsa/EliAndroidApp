@@ -69,6 +69,10 @@ import static org.hamcrest.Matchers.is;
 @RunWith(AndroidJUnit4.class)
 public abstract class BaseTest {
     private IdlingResource resource;
+    long startTime ;
+    long endTime = System.nanoTime();
+
+    long duration = (endTime - startTime);
 
     @Rule
     public ActivityTestRule<SplashActivity> mActivityTestRule = new ActivityTestRule<>(SplashActivity.class);
@@ -80,6 +84,7 @@ public abstract class BaseTest {
 
     @Before
     public void register() {
+        startTime = System.currentTimeMillis();
         Const.TEST = true;
         Espresso.registerIdlingResources(resource);
     }
@@ -87,7 +92,9 @@ public abstract class BaseTest {
     @After
     public void unregister() {
         TestResultsProcessor testResultsProcessor = new TestResultsProcessor();
-        testResultsProcessor.checkResults();
+        endTime=System.currentTimeMillis();
+        int end= (int) ((endTime - startTime)/60000);
+        testResultsProcessor.checkResults(end);
         Espresso.unregisterIdlingResources(resource);
         Const.TEST = false;
     }

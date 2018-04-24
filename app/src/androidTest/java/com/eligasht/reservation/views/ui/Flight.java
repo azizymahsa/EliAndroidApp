@@ -27,6 +27,7 @@ public class Flight extends BaseTest {
         doClick(R.id.linearLayout_mabda);
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Origin);
         doClickWithIndex(R.id.text1, 0);
+        sleep(200);
         doClick(R.id.linearLayout_maghsad);
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Dest);
         doClickWithIndex(R.id.text1, 1);

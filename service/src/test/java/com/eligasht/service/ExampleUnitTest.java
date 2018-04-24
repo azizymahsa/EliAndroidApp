@@ -66,8 +66,8 @@ public class ExampleUnitTest {
         headerTestServiceArrayList.add(headerTestServiceStaticPage);
         headerTestServiceArrayList.add(headerTestServiceLogin);
         MarkDownGenerator markDownGenerator = new MarkDownGenerator(0, headerTestServiceArrayList);
-        System.out.println(new Gson().toJson(markDownGenerator));
-       // System.out.println(markDownGenerator.generate());
+       // System.out.println(new Gson().toJson(markDownGenerator));
+       System.out.println(markDownGenerator.generate());
     }
 
     private List<ServiceTestModel> getStartup() {
@@ -308,7 +308,7 @@ public class ExampleUnitTest {
         f1.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
         ServiceTestModel f4 = new ServiceTestModel();
         f4.setId(1);
-        f4.setName("   Insurance/InsuranceService.svc/ShowInsurance");
+        f4.setName("Insurance/InsuranceService.svc/ShowInsurance");
         f4.setMessage("ok");
         f4.setTryTime("900 ms");
         f4.setStatusCode(200);

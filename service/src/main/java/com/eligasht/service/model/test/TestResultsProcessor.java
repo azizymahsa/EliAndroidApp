@@ -47,6 +47,8 @@ public class TestResultsProcessor {
 
     }
 
+
+
     private void saveFile(String data, File file) {
         if (file.exists())
             file.delete();
@@ -79,8 +81,9 @@ public class TestResultsProcessor {
     }
 
 
-    public void checkResults() {
+    public void checkResults(int durationTime) {
         MarkDownGenerator markDownGenerator = readJson();
+        markDownGenerator.setDur(durationTime);
         List<Response<?>> responseList = SingletonResponse.getInstance().getResponseList();
         markDownGenerator.setTotalRun(markDownGenerator.getTotalRun() + 1);
 
@@ -89,10 +92,8 @@ public class TestResultsProcessor {
             String url = response.raw().request().url().toString().replace("http://mobilews.eligasht.com/LightServices/Rest/", "");
             Log.e("Url", url + "\n");
             for (int i = 0; i < markDownGenerator.getHeaderTestServices().size(); i++) {
-                Log.e("Header Name", markDownGenerator.getHeaderTestServices().get(i).getHeaderName());
                 for (int j = 0; j < markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().size(); j++) {
                     if (markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j).getName().equals(url)) {
-                        Log.e("Find", "Find");
                         markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j)
                                 .setTotalCall(markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j).getTotalCall() + 1);
 
@@ -105,9 +106,13 @@ public class TestResultsProcessor {
 
                         long tx = response.raw().networkResponse().sentRequestAtMillis();
                         long rx = response.raw().networkResponse().receivedResponseAtMillis();
-
+                        int sec = (int) ((rx - tx) / 1000);
                         markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j)
-                                .setTryTime((rx - tx) + " ms");
+                                .setTryTime(String.valueOf(sec == 0 ? "1" : sec));
+
+                        int size = (int) (response.raw().body().contentLength() / 1000);
+                        markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j)
+                                .setSize(size == 0 ? "1" : String.valueOf(size));
 
                         if (response.isSuccessful()) {
                             markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j).setClose(true);

@@ -103,6 +103,7 @@ public abstract class BasePart {
     private <T> void initForTest(Response<T> value) {
         SingletonResponse.getInstance().addResponse(value);
         Log.e("Valeus", value.toString());
+        Log.e("Res size",value.raw().body().contentLength()/1000+" kb");
         long tx = value.raw().networkResponse().sentRequestAtMillis();
         long rx = value.raw().networkResponse().receivedResponseAtMillis();
         Log.e("Time", "response time : " + (rx - tx) + " ms");
