@@ -66,8 +66,8 @@ public class ExampleUnitTest {
         headerTestServiceArrayList.add(headerTestServiceStaticPage);
         headerTestServiceArrayList.add(headerTestServiceLogin);
         MarkDownGenerator markDownGenerator = new MarkDownGenerator(0, headerTestServiceArrayList);
-        //System.out.println(new Gson().toJson(markDownGenerator));
-        System.out.println(markDownGenerator.generate());
+        System.out.println(new Gson().toJson(markDownGenerator));
+       // System.out.println(markDownGenerator.generate());
     }
 
     private List<ServiceTestModel> getStartup() {

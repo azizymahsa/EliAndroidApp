@@ -89,6 +89,7 @@ public abstract class BaseTest {
         TestResultsProcessor testResultsProcessor = new TestResultsProcessor();
         testResultsProcessor.checkResults();
         Espresso.unregisterIdlingResources(resource);
+        Const.TEST = false;
     }
 
 

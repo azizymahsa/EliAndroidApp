@@ -86,7 +86,7 @@ public class TestResultsProcessor {
 
 
         for (Response<?> response : responseList) {
-            String url = response.raw().request().url().toString().replace("http://mobilews.eligasht.com/LightServices/Rest/","");
+            String url = response.raw().request().url().toString().replace("http://mobilews.eligasht.com/LightServices/Rest/", "");
             Log.e("Url", url + "\n");
             for (int i = 0; i < markDownGenerator.getHeaderTestServices().size(); i++) {
                 Log.e("Header Name", markDownGenerator.getHeaderTestServices().get(i).getHeaderName());
@@ -99,8 +99,6 @@ public class TestResultsProcessor {
                         markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j)
                                 .setStatusCode(response.code());
 
-                        markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j)
-                                .setStatusCode(response.code());
 
                         markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j)
                                 .setMessage(response.message());
@@ -111,12 +109,9 @@ public class TestResultsProcessor {
                         markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j)
                                 .setTryTime((rx - tx) + " ms");
 
-                        if (response.isSuccessful())
-                        {
+                        if (response.isSuccessful()) {
                             markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j).setClose(true);
-                        }
-                        else
-                        {
+                        } else {
                             markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j).setClose(false);
                         }
                     }
