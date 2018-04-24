@@ -723,7 +723,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         }
                         //////////////////////end recent date
 
-
                         intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
                         intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
                         intent1.putExtra("Geo", Geo);//2017-11-24
