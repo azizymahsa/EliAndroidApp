@@ -26,6 +26,7 @@ import android.widget.ScrollView;
 import com.eligasht.R;
 import com.eligasht.reservation.views.OkHttp3IdlingResource;
 import com.eligasht.service.helper.Const;
+import com.eligasht.service.model.test.TestResultsProcessor;
 
 
 import org.hamcrest.Description;
@@ -79,12 +80,14 @@ public abstract class BaseTest {
 
     @Before
     public void register() {
-        Const.TEST=true;
+        Const.TEST = true;
         Espresso.registerIdlingResources(resource);
     }
 
     @After
     public void unregister() {
+        TestResultsProcessor testResultsProcessor = new TestResultsProcessor();
+        testResultsProcessor.checkResults();
         Espresso.unregisterIdlingResources(resource);
     }
 
