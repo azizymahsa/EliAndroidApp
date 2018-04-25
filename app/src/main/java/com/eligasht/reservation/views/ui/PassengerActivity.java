@@ -925,31 +925,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					imgCount.setText(counter+"");
 					///////////////////
 				}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
-					////////////////agar counter hanuzsefr nashode etelaate mosaferesho neshin bede
-				/*	if(counter>1) {
-						PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerActivity.this);
-						CursorManager cursorM=items_Table.getMosaferById(counter-1);
-						if(cursorM != null){
-							for (int i = 0; i < cursorM.getCount(); i++) {
 
-								txtnamem.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-								txtfamilym.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
-								txtnumber_passport.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
 
-								txttavalodm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
-								txtexp_passport.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
-
-								txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-								txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
-								txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
-							}
-
-						}
-						counter--;
-						//txtTitleCountM.setText(getString(R.string.info_passenger) + counter);
-						imgCount.setText(counter+"");
-					}else{*/
-					//////////////////////
 					linear_mosaferan.setVisibility(View.GONE);
 					linear_saler.setVisibility(View.VISIBLE);
 
@@ -961,10 +938,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}else if(linear_saler.getVisibility() == View.VISIBLE) {
 
 					Prefs.putBoolean("BACK_HOME", true);
-					//	myScrollView.setOnTouchListener(null);
-					/*Intent intent = new Intent("sendFinish");
-
-					LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);*/
+				
 					finish();
 
 				}
@@ -1451,6 +1425,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					linear_mosaferan.setVisibility(View.GONE);
 					linear_list_khadamat.setVisibility(View.VISIBLE);
 					linear_pish_factor.setVisibility(View.GONE);
+
+
 
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
