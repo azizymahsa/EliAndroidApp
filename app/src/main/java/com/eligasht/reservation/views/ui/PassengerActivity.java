@@ -938,7 +938,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}else if(linear_saler.getVisibility() == View.VISIBLE) {
 
 					Prefs.putBoolean("BACK_HOME", true);
-				
+
 					finish();
 
 				}
