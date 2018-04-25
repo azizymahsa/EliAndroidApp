@@ -1452,8 +1452,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					linear_list_khadamat.setVisibility(View.VISIBLE);
 					linear_pish_factor.setVisibility(View.GONE);
 
-
-
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
