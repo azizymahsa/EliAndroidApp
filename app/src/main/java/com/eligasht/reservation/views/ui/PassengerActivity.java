@@ -366,8 +366,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
 		///////end setMin
 
-///////////////////////////////
-
 		/////////////////////
 		data=new ArrayList<PurchaseFlightResult>();
 		btnBack = (FancyButton) findViewById(R.id.btnBack);
@@ -427,7 +425,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		rlLoading = findViewById(R.id.rlLoading);
 		rlRoot = findViewById(R.id.rlRoot);
-
 
 		txt_hom = (ImageView) findViewById(R.id.txt_hom);
 		txt_hom.setOnClickListener(this);
