@@ -979,7 +979,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						String RqPartner_NationalCode= txtkodemeliP.getText().toString();
 						String RqPartner_Tel= "21587632";
 
-
 						String errorMessage="";
 						String flagMosafer="T";
 						///Validate
