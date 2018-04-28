@@ -1,13 +1,11 @@
-package com.eligasht.service.model.test;
+package com.eligasht.service.model.test.markdown;
 
 import android.util.Log;
 
-import com.eligasht.service.generator.SingletonService;
-import com.eligasht.service.helper.Const;
+import com.eligasht.builder.TestServiceGenerator;
+import com.eligasht.service.model.test.SingletonResponse;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-
-import junit.framework.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -48,7 +46,6 @@ public class TestResultsProcessor {
     }
 
 
-
     private void saveFile(String data, File file) {
         if (file.exists())
             file.delete();
@@ -83,6 +80,8 @@ public class TestResultsProcessor {
 
     public void checkResults(int durationTime) {
         MarkDownGenerator markDownGenerator = readJson();
+        if (markDownGenerator == null)
+            return;
         markDownGenerator.setDur(durationTime);
         List<Response<?>> responseList = SingletonResponse.getInstance().getResponseList();
         markDownGenerator.setTotalRun(markDownGenerator.getTotalRun() + 1);
@@ -94,31 +93,10 @@ public class TestResultsProcessor {
             for (int i = 0; i < markDownGenerator.getHeaderTestServices().size(); i++) {
                 for (int j = 0; j < markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().size(); j++) {
                     if (markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j).getName().equals(url)) {
-                        markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j)
-                                .setTotalCall(markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j).getTotalCall() + 1);
-
-                        markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j)
-                                .setStatusCode(response.code());
-
-
-                        markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j)
-                                .setMessage(response.message());
-
-                        long tx = response.raw().networkResponse().sentRequestAtMillis();
-                        long rx = response.raw().networkResponse().receivedResponseAtMillis();
-                        int sec = (int) ((rx - tx) / 1000);
-                        markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j)
-                                .setTryTime(String.valueOf(sec == 0 ? "1" : sec));
-
-                        int size = (int) (response.raw().body().contentLength() / 1000);
-                        markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j)
-                                .setSize(size == 0 ? "1" : String.valueOf(size));
-
-                        if (response.isSuccessful()) {
-                            markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j).setClose(true);
-                        } else {
-                            markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j).setClose(false);
-                        }
+                        ServiceTestModel serviceTestModel = TestServiceGenerator.newInstance(response
+                                , markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j))
+                                .build();
+                        markDownGenerator.getHeaderTestServices().get(i).getServiceTestModel().get(j).update(serviceTestModel);
                     }
 
 
@@ -131,10 +109,7 @@ public class TestResultsProcessor {
         saveFile(markDownGenerator.generate(), markDown);
     }
 
-    public void analyse(Response<?> response, ServiceTestModel serviceTestModel) {
 
-
-    }
 
 
 }

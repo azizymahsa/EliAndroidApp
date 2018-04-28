@@ -21,8 +21,8 @@ public class FullTest extends BaseTest {
     @Override
     public void runTest() {
         AppStartup.newInstance().runTest();
-        ForgetPassword.newInstance().runTest();
-        LoginAndEditProfile.newInstance().runTest();
+        //ForgetPassword.newInstance().runTest();
+        // LoginAndEditProfile.newInstance().runTest();
         Flight.newInstance().runTest();
         Hotel.newInstance().runTest();
         HotelF.newInstance().runTest();
@@ -32,5 +32,6 @@ public class FullTest extends BaseTest {
         Setting.newInstance().runTest();
         Contactus2.newInstance().runTest();
         Aboutus.newInstance().runTest();
+
     }
 }

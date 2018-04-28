@@ -47,6 +47,10 @@ public class SingletonService {
 
     }
 
+    public OkHttpClient getOkHttpClient() {
+        return okHttpClient;
+    }
+
     private SingletonService() {
     }
 

@@ -1,8 +1,7 @@
 package com.eligasht.service;
-import com.eligasht.service.model.test.HeaderTestService;
-import com.eligasht.service.model.test.MarkDownGenerator;
-import com.eligasht.service.model.test.ServiceTestModel;
-import com.google.gson.Gson;
+import com.eligasht.service.model.test.markdown.HeaderTestService;
+import com.eligasht.service.model.test.markdown.MarkDownGenerator;
+import com.eligasht.service.model.test.markdown.ServiceTestModel;
 
 import org.junit.Test;
 

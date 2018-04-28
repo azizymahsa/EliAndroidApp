@@ -1,5 +1,6 @@
-package com.eligasht.service.model.test;
+package com.eligasht.service.model.test.markdown;
 
+import com.eligasht.service.model.test.SingletonResponse;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

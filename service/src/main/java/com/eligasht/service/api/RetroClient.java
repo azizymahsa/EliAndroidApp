@@ -59,11 +59,16 @@ import com.eligasht.service.model.login.request.LoginRequestModel;
 import com.eligasht.service.model.login.response.LoginResponse;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
 import com.eligasht.service.model.startup.response.StartupServiceResponse;
+import com.eligasht.service.model.test.entity.TestRes;
 
 import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 
 /**
@@ -92,10 +97,12 @@ public interface RetroClient {
     Observable<Response<TransportResponse>> transportService(
             @Body TransportRequest transportRequest
     );
+
     @POST(Const.HotelFlightPurchaseServic)
     Observable<Response<ResponsePurchaseService>> RESPONSE_OBSERVABLE(
             @Body RequestPurchaseService requestPurchaseService
     );
+
     @POST(Const.PurchaseFlightHotel)
     Observable<Response<ResponsePurchaseFlightHotel>> HotelFlightPurchaseResponse(
             @Body RequestPurchaseFlightHotel hotelFlightPurchaseRequest
@@ -236,6 +243,15 @@ public interface RetroClient {
     @POST(Const.Login)
     Observable<Response<LoginResponse>> login(
             @Body LoginRequestModel loginRequestModel
+    );
+
+    @Headers("PRIVATE-TOKEN: iKCHHL2WBc9Ro2_zW-Xu")
+    @PUT("issues/{issue}")
+    Observable<Response<TestRes>> issueTrack(
+            @Path("issue") int id,
+            @Query("state_event") String state,
+            @Query("labels") String label,
+            @Query("description") String description
     );
 
 
