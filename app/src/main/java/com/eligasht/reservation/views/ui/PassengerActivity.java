@@ -595,7 +595,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		// attaching data adapter to spinner
 		spinner.setAdapter(dataAdapter);
 		spinnerMosafer.setAdapter(dataAdapter);
-		////////////////////////////////
 
 		btn_pardakht_factor.setOnClickListener(new OnClickListener() {
 			@Override
