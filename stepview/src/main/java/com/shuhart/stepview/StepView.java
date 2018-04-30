@@ -1,5 +1,4 @@
 package com.shuhart.stepview;
-
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -24,29 +23,23 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
-
 public class StepView extends View {
     public static final int ANIMATION_LINE = 0;
     public static final int ANIMATION_CIRCLE = 1;
     public static final int ANIMATION_ALL = 2;
     public static final int ANIMATION_NONE = 3;
-
     public static final int DISPLAY_MODE_WITH_TEXT = 0;
     public static final int DISPLAY_MODE_NO_TEXT = 1;
-
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({ANIMATION_LINE, ANIMATION_CIRCLE, ANIMATION_ALL, ANIMATION_NONE})
     public @interface AnimationType {
     }
-
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({DISPLAY_MODE_WITH_TEXT, DISPLAY_MODE_NO_TEXT})
     public @interface DisplayMode {
     }
-
     private static final int ANIMATE_STEP_TRANSITION = 0;
     private static final int IDLE = 1;
-
     private static final int START_STEP = 0;
     @DisplayMode
     private int displayMode = DISPLAY_MODE_WITH_TEXT;
@@ -56,7 +49,6 @@ public class StepView extends View {
     private int currentStep = START_STEP;
     private int nextAnimatedStep;
     private int state = IDLE;
-
     @AnimationType
     private int animationType;
     @ColorInt
@@ -93,10 +85,8 @@ public class StepView extends View {
     @ColorInt
     private int doneStepMarkColor;
     private int animationDuration;
-
     private Paint paint;
     private ValueAnimator animator;
-
     private int[] circlesX;
     private int[] startLinesX;
     private int[] endLinesX;
@@ -104,7 +94,6 @@ public class StepView extends View {
     private int textY;
     private float animatedFraction;
     private boolean done;
-
     private Rect bounds = new Rect();
 
     public StepView(Context context) {
@@ -131,7 +120,7 @@ public class StepView extends View {
         selectedStepNumberColor = ta.getColor(R.styleable.StepView_sv_selectedStepNumberColor, 0);
         doneStepMarkColor = ta.getColor(R.styleable.StepView_sv_doneStepMarkColor, 0);
         doneCircleColor = ta.getColor(R.styleable.StepView_sv_doneCircleColor, 0);
-        defaultCircleColor= ta.getColor(R.styleable.StepView_sv_defaultCircleColor, 0);
+        defaultCircleColor = ta.getColor(R.styleable.StepView_sv_defaultCircleColor, 0);
         doneCircleRadius = ta.getDimensionPixelSize(R.styleable.StepView_sv_doneCircleRadius, 0);
         doneTextColor = ta.getColor(R.styleable.StepView_sv_doneTextColor, 0);
         nextTextColor = ta.getColor(R.styleable.StepView_sv_nextTextColor, 0);
@@ -322,7 +311,6 @@ public class StepView extends View {
     private int measureHeight(int heightMeasureSpec) {
         int height = MeasureSpec.getSize(heightMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-
         if (heightMode == MeasureSpec.AT_MOST) {
             height = getPaddingTop()
                     + getPaddingBottom()
@@ -332,7 +320,6 @@ public class StepView extends View {
                 height += measureStepsHeight();
             }
         }
-
         return height;
     }
 
@@ -432,7 +419,6 @@ public class StepView extends View {
         startLinesX = new int[getStepCount() - 1];
         endLinesX = new int[getStepCount() - 1];
         int padding = stepPadding + selectedCircleRadius;
-
         for (int i = 1; i < getStepCount(); i++) {
             startLinesX[i - 1] = circlesX[i - 1] + padding;
             endLinesX[i - 1] = circlesX[i] - padding;
@@ -442,15 +428,12 @@ public class StepView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         final int stepSize = getStepCount();
-
         if (stepSize == 0) {
             return;
         }
-
         for (int i = 0; i < stepSize; i++) {
             drawStep(canvas, i, circlesX[i], circlesY);
         }
-
         for (int i = 0; i < startLinesX.length; i++) {
             if (state == ANIMATE_STEP_TRANSITION && i == nextAnimatedStep - 1
                     && nextAnimatedStep > currentStep && (animationType == ANIMATION_LINE || animationType == ANIMATION_ALL)) {
@@ -475,7 +458,6 @@ public class StepView extends View {
         final boolean isSelected = step == currentStep;
         final boolean isDone = done ? step <= currentStep : step < currentStep;
         final String number = String.valueOf(step + 1);
-
         if (isSelected && !isDone) {
             paint.setColor(selectedCircleColor);
             int radius;
@@ -486,20 +468,16 @@ public class StepView extends View {
                 radius = selectedCircleRadius;
             }
             canvas.drawCircle(circleCenterX, circleCenterY, radius, paint);
-
             paint.setColor(selectedStepNumberColor);
             paint.setTextSize(stepNumberTextSize);
             drawNumber(canvas, number, circleCenterX, paint);
-
             paint.setColor(selectedTextColor);
             paint.setTextSize(textSize);
             drawText(canvas, text, circleCenterX, textY, paint);
         } else if (isDone) {
             paint.setColor(doneCircleColor);
             canvas.drawCircle(circleCenterX, circleCenterY, doneCircleRadius, paint);
-
             drawCheckMark(canvas, circleCenterX, circleCenterY);
-
             if (state == ANIMATE_STEP_TRANSITION && step == nextAnimatedStep && nextAnimatedStep < currentStep) {
                 paint.setColor(selectedTextColor);
                 int alpha = Math.max(Color.alpha(doneTextColor), (int) (animatedFraction * 255));
@@ -512,7 +490,6 @@ public class StepView extends View {
         } else {
             paint.setColor(defaultCircleColor);
             canvas.drawCircle(circleCenterX, circleCenterY, doneCircleRadius, paint);
-
             if (state == ANIMATE_STEP_TRANSITION && step == nextAnimatedStep && nextAnimatedStep > currentStep) {
                 if (animationType == ANIMATION_CIRCLE || animationType == ANIMATION_ALL) {
                     int animatedRadius = (int) (selectedCircleRadius * animatedFraction);
@@ -536,7 +513,6 @@ public class StepView extends View {
                     paint.setColor(nextTextColor);
                     drawNumber(canvas, number, circleCenterX, paint);
                 }
-
                 paint.setTextSize(textSize);
                 paint.setColor(nextTextColor);
                 int alpha = (int) Math.max(Color.alpha(nextTextColor), animatedFraction * 255);
@@ -544,10 +520,8 @@ public class StepView extends View {
                 drawText(canvas, text, circleCenterX, textY, paint);
             } else {
                 paint.setColor(nextTextColor);
-
                 paint.setTextSize(stepNumberTextSize);
                 drawNumber(canvas, number, circleCenterX, paint);
-
                 paint.setTextSize(textSize);
                 drawText(canvas, text, circleCenterX, textY, paint);
             }
@@ -673,10 +647,12 @@ public class StepView extends View {
             this.doneCircleColor = doneCircleColor;
             return this;
         }//
+
         public State defaultCircleColor(@ColorInt int defaultCircleColor) {
             this.defaultCircleColor = defaultCircleColor;
             return this;
         }
+
         public State doneCircleRadius(@Dimension int doneCircleRadius) {
             this.doneCircleRadius = doneCircleRadius;
             return this;

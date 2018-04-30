@@ -144,6 +144,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         view_pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                switch (position) {
+                    case 1:
+                        hotelDetailViewPager.getMapHotelFragment().setMarker(location, commentModelBus);
+                        break;
+                }
             }
 
             @Override

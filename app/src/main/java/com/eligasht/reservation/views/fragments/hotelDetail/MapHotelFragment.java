@@ -102,7 +102,7 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
     public void setMarker(LatLng location, CommentModelBus name) {
 
         try {
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
             googleMap.addMarker(new MarkerOptions().position(location).title(name.getHotelName()));
         }catch (Exception e){
 
