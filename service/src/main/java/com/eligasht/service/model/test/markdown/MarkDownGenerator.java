@@ -135,9 +135,9 @@ public class MarkDownGenerator {
                 .append("Info")
                 .append("</h3>").append("").append("\n")
                 .append("\n")
-                .append(" Total Runs | Total Api Calls(Last Test) | Total Size(Last Test in KB) | Total Wait Time(Last Test in Min)")
+                .append(" Total Runs | Total Api Calls(Last Test) | Total Size(Last Test in KB) | Total Wait Time(Last Test in Min) | Status")
                 .append("\n")
-                .append("--- | --- | --- | ---")
+                .append("--- | --- | --- | --- | ---")
                 .append("\n")
                 .append(totalRun)
                 .append(" ")
@@ -151,7 +151,11 @@ public class MarkDownGenerator {
                 .append(" ")
                 .append("|")
                 .append(" ")
-                .append(dur);
+                .append(dur)
+                .append(" ")
+                .append("|")
+                .append(" ")
+                .append(SingletonResponse.getInstance().getResponseList().size() == 0 ? ":x:" : ":white_check_mark:");
         return stringBuilder.toString();
 
     }
@@ -188,7 +192,8 @@ public class MarkDownGenerator {
                 .append(" ")
                 .append("[:arrow_upper_right:]")
                 .append("(")
-                .append(serviceTestModel.getIssueLink())
+                .append("http://192.168.115.93/root/eli/issues/")
+                .append(serviceTestModel.getId())
                 .append(")");
         return stringBuilder.toString();
 

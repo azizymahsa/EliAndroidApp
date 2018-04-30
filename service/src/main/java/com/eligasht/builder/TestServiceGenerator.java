@@ -13,6 +13,8 @@ import com.eligasht.service.model.test.entity.TestRes;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -90,20 +92,18 @@ public class TestServiceGenerator {
             return;
         }
 
-        serviceTestModel.setMessage(error.getDetailedMessage());
+        serviceTestModel.setMessage(error.getDetailedMessage() + "(" + error.getMessage() + ")");
         serviceTestModel.setStatusCode(error.getCode());
         serviceTestModel.setClose(false);
 
     }
 
     private void issuePerform() {
-        if (serviceTestModel.getClose() == primaryTestModel.getClose())
-            return;
-        try {
-            sendIssue();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+//        if (serviceTestModel.getClose() == primaryTestModel.getClose())
+//            return;
+
+        sendIssue();
 
 
     }
@@ -115,49 +115,54 @@ public class TestServiceGenerator {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("https://gitlab.com/api/v4/projects/6147852/")
+                .baseUrl("http://192.168.115.93/api/v4/projects/4/")
                 .client(SingletonService.getInstance().getOkHttpClient())
                 .build();
         return retrofit;
     }
 
+    public static String toPrettyFormat(String jsonString) {
+        JsonParser parser = new JsonParser();
+        JsonObject json = parser.parse(jsonString).getAsJsonObject();
 
-    private void sendIssue() throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String prettyJson = gson.toJson(json);
+
+        return prettyJson;
+    }
+
+
+    private void sendIssue() {
         Retrofit retrofit = getRetrofit();
         RetroClient retroClient = retrofit.create(RetroClient.class);
-//        StringBuilder des = new StringBuilder();
-//        des.
-//                append("```")
-//                .append("\n")
-//                .append(response.toString())
-//                .append("\n")
-//                .append("```")
-//                .append("\n")
-//                .append("Request Body")
-//                .append("\n")
-//                .append("```")
-//                .append("\n")
-//                .append(bodyToString(response.raw().request().body()))
-//                .append("\n")
-//                .append("```")
-//                .append("\n")
-//                .append("Response Body")
-//                .append("\n")
-//                .append("```")
-//                .append("\n")
-//                .append(new Gson().toJson(response.body()))
-//                .append("\n")
-//                .append("```");
-
         StringBuilder des = new StringBuilder();
-        des.append(serviceTestModel.getClose() ? "Every Thing is Ok!" : "Problem Use this Api");
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+
+        des
+
+                .append("Request Body")
+                .append("\n")
+                .append("```")
+                .append("\n")
+                .append(toPrettyFormat(bodyToString(response.raw().request().body())))
+                .append("\n")
+                .append("```")
+                .append("\n")
+                .append("Response Body")
+                .append("\n")
+                .append("```")
+                .append("\n")
+                .append(toPrettyFormat(gson.toJson(response.body())))
+                .append("\n")
+                .append("```");
 
 
         StringBuilder label = new StringBuilder();
         label.append(serviceTestModel.getStatusCode());
 
-
-        retroClient.issueTrack(serviceTestModel.getId(), serviceTestModel.getClose() ? "close" : "reopen", label.toString(), serviceTestModel.getMessage())
+        Log.e("Tag", "sendIssue: " + "iss");
+        retroClient.issueTrack(serviceTestModel.getId(), serviceTestModel.getClose() ? "close" : "reopen", label.toString(), des.toString())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Response<TestRes>>() {
                     @Override
@@ -172,7 +177,7 @@ public class TestServiceGenerator {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        e.printStackTrace();
                     }
 
                     @Override
@@ -183,43 +188,6 @@ public class TestServiceGenerator {
 
     }
 
-    public static OkHttpClient createClient(Context context) {
-
-        OkHttpClient client = null;
-
-        CertificateFactory cf = null;
-        InputStream cert = null;
-        Certificate ca = null;
-        SSLContext sslContext = null;
-        try {
-            cf = CertificateFactory.getInstance("X.509");
-            cert = context.getResources().openRawResource(R.raw.fid); // Place your 'my_cert.crt' file in `res/raw`
-
-            ca = cf.generateCertificate(cert);
-            cert.close();
-
-            String keyStoreType = KeyStore.getDefaultType();
-            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-            keyStore.load(null, null);
-            keyStore.setCertificateEntry("ca", ca);
-
-            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-            tmf.init(keyStore);
-
-            sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, tmf.getTrustManagers(), null);
-
-            client = new OkHttpClient.Builder()
-                    .sslSocketFactory(sslContext.getSocketFactory())
-                    .build();
-
-        } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException | KeyManagementException e) {
-            e.printStackTrace();
-        }
-
-        return client;
-    }
 
     private String bodyToString(final RequestBody request) {
         try {

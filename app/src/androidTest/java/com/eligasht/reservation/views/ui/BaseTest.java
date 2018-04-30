@@ -75,8 +75,8 @@ public abstract class BaseTest {
 
     @Before
     public void register() {
-        startTime = System.currentTimeMillis();
         Const.TEST = true;
+        startTime = System.currentTimeMillis();
         Espresso.registerIdlingResources(resource);
     }
 
@@ -86,6 +86,7 @@ public abstract class BaseTest {
         endTime = System.currentTimeMillis();
         int end = (int) ((endTime - startTime) / 60000);
         testResultsProcessor.checkResults(end);
+        sleep(1000);
         Espresso.unregisterIdlingResources(resource);
         Const.TEST = false;
     }
