@@ -92,7 +92,7 @@ public class TestServiceGenerator {
             return;
         }
 
-        serviceTestModel.setMessage(error.getDetailedMessage() + "(" + error.getMessage() + ")");
+        serviceTestModel.setMessage(error.getMessage());
         serviceTestModel.setStatusCode(error.getCode());
         serviceTestModel.setClose(false);
 
@@ -160,8 +160,6 @@ public class TestServiceGenerator {
 
         StringBuilder label = new StringBuilder();
         label.append(serviceTestModel.getStatusCode());
-
-        Log.e("Tag", "sendIssue: " + "iss");
         retroClient.issueTrack(serviceTestModel.getId(), serviceTestModel.getClose() ? "close" : "reopen", label.toString(), des.toString())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Response<TestRes>>() {
