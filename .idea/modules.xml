@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CircleProgressView/CircleProgressView.iml" filepath="$PROJECT_DIR$/CircleProgressView/CircleProgressView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/EligashtAndroidApp.iml" filepath="$PROJECT_DIR$/.idea/EligashtAndroidApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/EligashtAndroidApp.iml" filepath="$PROJECT_DIR$/EligashtAndroidApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/connectionbuddy/connectionbuddy.iml" filepath="$PROJECT_DIR$/connectionbuddy/connectionbuddy.iml" />
