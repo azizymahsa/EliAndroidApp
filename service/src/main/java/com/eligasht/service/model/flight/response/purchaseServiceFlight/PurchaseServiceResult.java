@@ -34,8 +34,6 @@ public class PurchaseServiceResult extends BaseModel {
         this.comments = comments;
     }
 
-
-
     public Object getResultKey() {
         return resultKey;
     }
