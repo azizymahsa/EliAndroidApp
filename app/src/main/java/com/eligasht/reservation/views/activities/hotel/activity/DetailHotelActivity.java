@@ -204,6 +204,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         GetRoomReq getRoomReq = new GetRoomReq();
         getRoomReq.setCulture(getString(R.string.culture));
         getRoomReq.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
+
         getRoomReq.setFltGUID("");
         getRoomReq.setFltId("");
         Identity identity = new Identity();
