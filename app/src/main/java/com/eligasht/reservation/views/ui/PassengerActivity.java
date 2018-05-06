@@ -1314,7 +1314,7 @@ https://github.com/multidots/android-fingerprint-authentication.git
 					if(flagMosafer.contains("F")){
 						//Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
 						try {
-							AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerActivity.this,false);
+							AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerActivity.this,false,false);
 							AlertDialogPassenger.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
 						}catch (Exception e){
 							e.getMessage();
@@ -1664,7 +1664,7 @@ https://github.com/multidots/android-fingerprint-authentication.git
 							GetError = jPricedItinerary.getMessage();
 						}
 						if (GetError.length()>1) {
-							AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,false);
+							AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,false,true);
 							AlertDialogPassenger.setText(""+"  "+GetError,getString(R.string.massege));
 
 						}else{
@@ -1820,7 +1820,7 @@ https://github.com/multidots/android-fingerprint-authentication.git
 			RequestPreFactorDetails();
 
 		} catch (Exception e) {
-			AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true);
+			AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
 			AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
 
 		}

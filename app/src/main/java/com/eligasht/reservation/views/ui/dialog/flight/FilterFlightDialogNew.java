@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.ui.dialog.flight;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
-    Context activity;
+    Activity activity;
     FancyButton btnOk, btnCancel, btnDeletFilter;
     SmoothCheckBox noStop, oneStop, twoStopMore, economiF, businessF, ferstF;
     TextView txtTavaghof;
@@ -58,7 +59,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
     private ArrayList<ModelCheckBox> modelCheckBoxes = new ArrayList<>();
 
 
-    public FilterFlightDialogNew(final Context activity, ArrayList<FilterModelّFlight> filter, FilterFlightDialogListenerArray filterFlightDialogListenerArray, ArrayList<ModelCheckBox> filterAirlines) {
+    public FilterFlightDialogNew(final Activity activity, ArrayList<FilterModelّFlight> filter, FilterFlightDialogListenerArray filterFlightDialogListenerArray, ArrayList<ModelCheckBox> filterAirlines) {
         this.activity = activity;
         this.filter = filter;
         this.modelCheckBoxes = filterAirlines;
