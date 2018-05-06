@@ -1965,7 +1965,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 					setAnimation();
 				} catch (Exception e) {
-					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true);
+					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
 					AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege)+"fff");
 
 				}
