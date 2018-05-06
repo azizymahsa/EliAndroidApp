@@ -53,8 +53,6 @@ public class HotelNameApi extends BaseAPI {
             Log.e("errorrrrrr",e.getMessage() );
 
         }
-
-
     }
 
     @Override
