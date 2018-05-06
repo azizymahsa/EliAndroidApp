@@ -42,9 +42,6 @@ public class SingletonService {
     public void inject() {
         ComponentService componentService = DaggerComponentService.builder().netComponent(netComponent).build();
         componentService.inject(this);
-        serviceApplication.injectEsperssoIdle(okHttpClient);
-
-
     }
 
     public OkHttpClient getOkHttpClient() {
