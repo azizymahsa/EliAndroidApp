@@ -23,7 +23,7 @@ public class FullTest extends BaseTest {
         AppStartup.newInstance().runTest();
         //ForgetPassword.newInstance().runTest();
         // LoginAndEditProfile.newInstance().runTest();
-        Flight.newInstance().runTest();
+      //  Flight.newInstance().runTest();
         Hotel.newInstance().runTest();
         HotelF.newInstance().runTest();
         Package.newInstance().runTest();

@@ -39,10 +39,15 @@ public interface InfoRoomsContract {
 
     interface Presenter {
         void addRooms();
+
         void removeRooms();
+
         ArrayList<ModelRowCountRoom> getRooms();
+
         int getRoomsCount();
+
         RoomRowHolder createViewHolder(ViewGroup parent, int viewType);
+
         void bindViewHolder(RoomRowHolder holder, int position);
     }
 }

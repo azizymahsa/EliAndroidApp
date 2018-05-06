@@ -20,6 +20,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 
 import com.eligasht.reservation.views.OkHttp3IdlingResource;
+import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.helper.Const;
 import com.eligasht.service.model.test.markdown.TestResultsProcessor;
 
@@ -68,13 +69,11 @@ public abstract class BaseTest {
     @Rule
     public ActivityTestRule<SplashActivity> mActivityTestRule = new ActivityTestRule<>(SplashActivity.class);
 
-    public BaseTest() {
-        resource = OkHttp3IdlingResource.create("OkHttp", SingletonContext.getInstance().getOkHttpClient());
-    }
 
 
     @Before
     public void register() {
+        resource = OkHttp3IdlingResource.create("OkHttp", SingletonService.getInstance().getOkHttpClient());
         Const.TEST = true;
         startTime = System.currentTimeMillis();
         Espresso.registerIdlingResources(resource);
