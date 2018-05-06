@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.ModelCheckBox;
@@ -292,9 +293,10 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
              //   Log.e("GGG", flagSelect);
                 if(!flagSelect.contains("T")){
                     try {
-                        AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(activity,false,false);
+                      /*  AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(activity,false,false);
                         AlertDialogPassengerFlight.setText(activity.getString(R.string.FilterError), activity.getString(R.string.massege));
-                        Log.e("GGGGGGGRaftELSE", flagSelect);
+                        Log.e("GGGGGGGRaftELSE", flagSelect);*/
+                        Toast.makeText(activity,activity.getString(R.string.FilterError), Toast.LENGTH_LONG).show();
                     }catch (Exception e){
                         e.getMessage();
                     }

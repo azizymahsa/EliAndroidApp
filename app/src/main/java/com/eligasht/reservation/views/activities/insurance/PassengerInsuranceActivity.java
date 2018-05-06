@@ -1033,7 +1033,7 @@ private void RequestPurchaseInsurance(){
                         //////////////////////////End Validate
                         if (flagMosafer.contains("F")) {
 
-                            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerInsuranceActivity.this,false);
+                            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerInsuranceActivity.this,false,false);
                             alertDialogPassenger.setText("" + "  " + errorMessage,getString(R.string.EditInput));
                         } else {
                             //insert partner

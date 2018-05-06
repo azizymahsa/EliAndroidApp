@@ -235,7 +235,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                     reviews.add(review);
                     request();
                 } else {
-                    AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(CommentActivity.this,false);
+                    AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(CommentActivity.this,false,false);
                     alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.massege));
                 }
                 break;

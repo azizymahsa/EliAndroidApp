@@ -739,7 +739,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
         } catch (Exception e) {
             //Toast.makeText(PassengerHotelFlightActivity.this, e.toString(), Toast.LENGTH_LONG).show();
-            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true);
+            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true,true);
             AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
         }
 
@@ -750,7 +750,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         Log.e("responsectorDetails:", message);
         rlLoading.setVisibility(View.GONE);
         Utility.disableEnableControls(true, rlRoot);
-        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true);
+        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true,true);
         AlertDialogPassenger.setText(message, getString(R.string.massege));
     }
 
@@ -962,7 +962,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     listKhadamat.setAdapter(mAdapter);
                     setAnimation();
                 } catch (Exception e) {
-                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true);
+                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true,true);
                     AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
                 }
 
@@ -1178,7 +1178,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         if (flagMosafer.contains("F")) {
 
                             try {
-                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,false);
+                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,false,false);
                                 alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
                             } catch (Exception e) {
                                 e.getMessage();
@@ -1400,7 +1400,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     if (flagMosafer.contains("F")) {
                         try {
-                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelFlightActivity.this,false);
+                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelFlightActivity.this,false,false);
                             AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
                         } catch (Exception e) {
                             e.getMessage();
@@ -1859,7 +1859,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 } catch (Exception e) {
                     try {
 
-                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true);
+                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true,true);
                         AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
                     } catch (Exception ee) {
                         ee.getMessage();
