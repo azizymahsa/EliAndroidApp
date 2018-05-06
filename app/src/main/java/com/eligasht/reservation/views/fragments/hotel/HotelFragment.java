@@ -222,7 +222,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
             case R.id.searchHotel:
                 try {
                     if (txtCity.getText().toString().contains(getString(R.string.please_select_destination_city))) {
-                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity(),false);
+                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity(),false,false);
                         AlertDialogPassenger.setText(getString(R.string.please_select_destination_city),getString(R.string.massege));
                     } else {
                         sendStartTimer();
