@@ -873,8 +873,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	@Override
 	public void onClick(View v) {
-		Fragment fragment2;
-
+https://github.com/multidots/android-fingerprint-authentication.git
 		switch (v.getId()) {
 
 
