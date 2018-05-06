@@ -54,6 +54,7 @@
             android:layout_marginTop="@dimen/_20dp"
             android:gravity="left"
             android:padding="5dp"
+            android:lineSpacingExtra="10dp"
             android:textAppearance="@style/IrsansBold"
             android:textColor="#2e3192"
             android:textSize="@dimen/_12dp_normal_textSize"
