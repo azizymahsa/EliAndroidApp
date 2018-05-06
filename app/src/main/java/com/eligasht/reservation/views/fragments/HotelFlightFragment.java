@@ -224,7 +224,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             case R.id.searchHotel:
                 try {
                     if (tvMabda.getText().toString().contains(getString(R.string.select_origin_city_or_airport)) || txtCity.getText().toString().contains(getString(R.string.select_destination_city_or_airport))) {
-                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity(),false);
+                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity(),false,false);
                         AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin),getString(R.string.massege));
                     } else {
                         sendStartTimer();

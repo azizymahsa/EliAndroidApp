@@ -78,7 +78,7 @@ import com.eligasht.reservation.views.activities.transfer.ExcursionDta;
 import com.eligasht.reservation.views.adapters.GetHotelKhadmatAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
-import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
+import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -187,12 +187,20 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         PersianCalendar persianCalendar = new PersianCalendar();
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
 //=====================================================================================================
+        //_____________________________________________________________________
         datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
                 this,
                 persianCalendarDatePicker.getPersianYear(),
                 persianCalendarDatePicker.getPersianMonth(),
                 persianCalendarDatePicker.getPersianDay()
         );
+
+        //datePickerDialog.setMinDate(persianCalendarDatePicker);
+
+
+        //______________________________________________________________________
+
+
 //=====================================================================================================
         datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
         datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
@@ -276,6 +284,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 datePickerDialogGregorian1.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
             }
         });
+
+
 
         txtTitleCountM = findViewById(R.id.txtTitleCountM);
         txtTitleCountM.setOnClickListener(this);
@@ -868,8 +878,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 setAnimation();
 
             } catch (JSONException e) {
-                AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this);
-                AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
+                AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerHotelActivity.this,true,true);
+                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
 
 
             }
@@ -1006,8 +1016,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     JSONObject getError = jsonObj.getJSONObject("Errors");
                     String message = getError.getString("Message");
                     // Toast.makeText(PassengerHotelActivity.this, message, Toast.LENGTH_LONG).show();
-                    AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this);
-                    AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
+                    AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerHotelActivity.this,false,false);
+                    AlertDialogPassenger.setText(message,getString(R.string.massege));
                 }
 
                 if (successResult > 1) {
@@ -1034,8 +1044,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 FlagTab=true;
                 new AsyncFetchGetPreFactorDetails().execute();
             } catch (JSONException e) {
-                AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this);
-                AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
+                AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerHotelActivity.this,true,true);
+                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
             }
 
 
@@ -1171,8 +1181,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     JSONObject json_data = getError.getJSONObject(0);
                     //   JSONObject message = json_data.getJSONObject("Message");
                     String message= json_data.getString("Message");
-                    AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this,PassengerHotelActivity.this);
-                    AlertDialogPassengerFlight.setText(message+"");
+                    AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerHotelActivity.this,PassengerHotelActivity.this);
+                    AlertDialogPassenger.setText(message+"");
                 }else{*/
 
                 JSONArray jArray = GetAirportsResult.getJSONArray("Services");
@@ -1254,8 +1264,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 setAnimation();//}
             } catch (JSONException e) {
                //  Toast.makeText(SingletonContext.getInstance().getContext(),getString(R.string.Error_getting_information_from_eli), Toast.LENGTH_LONG).show();
-                AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerHotelActivity.this);
-                AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
+                AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerHotelActivity.this,true,true);
+                AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
             }
 
         }//end on pos excute
@@ -1678,7 +1688,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             //Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
                             //Toast.makeText(this,errorMessage,2000).show();
                             try {
-                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelActivity.this,false);
+                                AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerHotelActivity.this,false,false);
                                 alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
                             }catch (Exception e){
                                 e.getMessage();
@@ -1926,8 +1936,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     if (flagMosafer.contains("F")) {
                         //Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
                         try {
-                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerHotelActivity.this,false);
-                            AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
+                            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelActivity.this,false,false);
+                            AlertDialogPassenger.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
                         }catch (Exception e){
                             e.getMessage();
                         }//Toast.makeText(this,errorMessagePartner,2000).show();

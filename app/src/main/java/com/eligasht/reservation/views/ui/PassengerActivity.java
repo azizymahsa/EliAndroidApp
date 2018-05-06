@@ -109,7 +109,7 @@ import com.eligasht.reservation.views.adapters.GetKhadmatAdapter;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
-import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
+import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -873,8 +873,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	@Override
 	public void onClick(View v) {
-		Fragment fragment2;
-
+https://github.com/multidots/android-fingerprint-authentication.git
 		switch (v.getId()) {
 
 
@@ -925,31 +924,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					imgCount.setText(counter+"");
 					///////////////////
 				}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
-					////////////////agar counter hanuzsefr nashode etelaate mosaferesho neshin bede
-				/*	if(counter>1) {
-						PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerActivity.this);
-						CursorManager cursorM=items_Table.getMosaferById(counter-1);
-						if(cursorM != null){
-							for (int i = 0; i < cursorM.getCount(); i++) {
 
-								txtnamem.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-								txtfamilym.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
-								txtnumber_passport.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
 
-								txttavalodm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
-								txtexp_passport.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
-
-								txtmahale_eghamat.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-								txtmeliyatm.setText( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
-								txtTitleCountM.setText(cursorM.getString(PassengerMosaferItems_Table.Columns.Onvan.value()));
-							}
-
-						}
-						counter--;
-						//txtTitleCountM.setText(getString(R.string.info_passenger) + counter);
-						imgCount.setText(counter+"");
-					}else{*/
-					//////////////////////
 					linear_mosaferan.setVisibility(View.GONE);
 					linear_saler.setVisibility(View.VISIBLE);
 
@@ -961,10 +937,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}else if(linear_saler.getVisibility() == View.VISIBLE) {
 
 					Prefs.putBoolean("BACK_HOME", true);
-					//	myScrollView.setOnTouchListener(null);
-					/*Intent intent = new Intent("sendFinish");
 
-					LocalBroadcastManager.getInstance(PassengerActivity.this).sendBroadcast(intent);*/
 					finish();
 
 				}
@@ -1093,7 +1066,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							//Toast.makeText(this,"اطلاعات ورودی نامعتبر است",2000).show();
 							//Toast.makeText(this,errorMessage,2000).show();
 							try {
-								AlertDialogPassengerFlight alertDialogPassenger = new AlertDialogPassengerFlight(PassengerActivity.this);
+								AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerActivity.this,false,false);
 								alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
 							}catch (Exception e){
 							e.getMessage();
@@ -1341,8 +1314,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					if(flagMosafer.contains("F")){
 						//Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
 						try {
-							AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerActivity.this,false);
-							AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
+							AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerActivity.this,false,false);
+							AlertDialogPassenger.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
 						}catch (Exception e){
 							e.getMessage();
 						}//Toast.makeText(this,errorMessagePartner,2000).show();
@@ -1691,8 +1664,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							GetError = jPricedItinerary.getMessage();
 						}
 						if (GetError.length()>1) {
-							AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
-							AlertDialogPassengerFlight.setText(""+"  "+GetError,getString(R.string.massege));
+							AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,false,true);
+							AlertDialogPassenger.setText(""+"  "+GetError,getString(R.string.massege));
 
 						}else{
 
@@ -1772,8 +1745,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							setAnimation();
 						}
 					} catch (Exception e) {
-						AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
-						AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"",getString(R.string.massege));
+						AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
+						AlertDialogPassenger.setText(R.string.Error_getting_information_from_eli+"",getString(R.string.massege));
 
 					}
 				}
@@ -1783,8 +1756,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("PurchesFlightError: "+message);
 					rlLoading.setVisibility(View.GONE);
 					Utility.disableEnableControls(true,rlRoot);
-					AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
-					AlertDialogPassengerFlight.setText(R.string.Error_getting_information_from_eli+"",getString(R.string.massege));
+					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
+					AlertDialogPassenger.setText(R.string.Error_getting_information_from_eli+"",getString(R.string.massege));
 				}
 			}, requestPurchaseFlightt);
 
@@ -1811,8 +1784,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				//get Error
 				List<com.eligasht.service.model.error.Error> getError = GetAirportsResult.getErrors();
 				String message= getError.get(0).getDetailedMessage();
-				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
-				AlertDialogPassengerFlight.setText(message,getString(R.string.massege));
+				AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,false,true);
+				AlertDialogPassenger.setText(message,getString(R.string.massege));
 			}
 
 			if(successResult >1) {
@@ -1823,8 +1796,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				textView4.setImageBitmap(getBitmap(GetAirportsResult.getSuccessResult()+"", 128, 300, 150));
 			}else{
 
-				AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
-				AlertDialogPassengerFlight.setText(getString(R.string.An_error_has_occurred),getString(R.string.massege));
+				AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
+				AlertDialogPassenger.setText(getString(R.string.An_error_has_occurred),getString(R.string.massege));
 
 				Prefs.putBoolean("BACK_HOME", true);
 
@@ -1847,8 +1820,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			RequestPreFactorDetails();
 
 		} catch (Exception e) {
-			AlertDialogPassengerFlight AlertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
-			AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
+			AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
+			AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
 
 		}
 	}
@@ -1991,8 +1964,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 					setAnimation();
 				} catch (Exception e) {
-					AlertDialogPassengerFlight alertDialogPassengerFlight =  new AlertDialogPassengerFlight(PassengerActivity.this);
-					alertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege)+"fff");
+					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
+					AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege)+"fff");
 
 				}
 			}

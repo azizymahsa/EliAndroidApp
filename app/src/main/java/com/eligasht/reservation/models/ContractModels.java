@@ -102,7 +102,7 @@ public class ContractModels {
         return follower;
     }
 
-    public void setFollower(String follower) {
+    public void setFollower (String follower) {
         this.follower = follower;
     }
 

@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.ui.dialog.flight;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.ModelCheckBox;
@@ -34,7 +36,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
-    Context activity;
+    Activity activity;
     FancyButton btnOk, btnCancel, btnDeletFilter;
     SmoothCheckBox noStop, oneStop, twoStopMore, economiF, businessF, ferstF;
     TextView txtTavaghof;
@@ -57,7 +59,7 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
     private ArrayList<ModelCheckBox> modelCheckBoxes = new ArrayList<>();
 
 
-    public FilterFlightDialogNew(final Context activity, ArrayList<FilterModelّFlight> filter, FilterFlightDialogListenerArray filterFlightDialogListenerArray, ArrayList<ModelCheckBox> filterAirlines) {
+    public FilterFlightDialogNew(final Activity activity, ArrayList<FilterModelّFlight> filter, FilterFlightDialogListenerArray filterFlightDialogListenerArray, ArrayList<ModelCheckBox> filterAirlines) {
         this.activity = activity;
         this.filter = filter;
         this.modelCheckBoxes = filterAirlines;
@@ -291,9 +293,10 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
              //   Log.e("GGG", flagSelect);
                 if(!flagSelect.contains("T")){
                     try {
-                        AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(activity,false);
+                      /*  AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(activity,false,false);
                         AlertDialogPassengerFlight.setText(activity.getString(R.string.FilterError), activity.getString(R.string.massege));
-                        Log.e("GGGGGGGRaftELSE", flagSelect);
+                        Log.e("GGGGGGGRaftELSE", flagSelect);*/
+                        Toast.makeText(activity,activity.getString(R.string.FilterError), Toast.LENGTH_LONG).show();
                     }catch (Exception e){
                         e.getMessage();
                     }
