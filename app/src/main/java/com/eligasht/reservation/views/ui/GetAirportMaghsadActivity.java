@@ -233,7 +233,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 GetError = responsAirports.getGetAirportWithParentsWithCultureResult().getErrors().get(0).getMessage();
             }
             if (GetError.length() > 1) {
-                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,false);
+                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,false,false);
                 AlertDialogPassenger.setText(GetError, getString(R.string.massege));
 
             } else {
@@ -273,12 +273,12 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
             }
         } catch (Exception e) {
             if (!Utility.isNetworkAvailable(GetAirportMaghsadActivity.this)) {
-                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true);
+                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
                 AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
 
 
             } else {
-                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true);
+                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
                 AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
 
 
@@ -290,12 +290,12 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
     public void onError(String message) {
 
         if (!Utility.isNetworkAvailable(GetAirportMaghsadActivity.this)) {
-            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true);
+            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
             AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
 
 
         } else {
-            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true);
+            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
             AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
 
 

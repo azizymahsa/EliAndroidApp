@@ -2244,7 +2244,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     GetError = GetAirportsResult.getErrors().get(0).getMessage();//.getString("Message");
                 }
                 if (GetError.length() > 1) {
-                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this,false);
+                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchParvazActivity.this,false,false);
                     AlertDialogPassenger.setText(GetError, getString(R.string.massege));
                 } else {
                     boolean IsDemostic = GetAirportsResult.getIsDomestic();//false khareji true dakheli

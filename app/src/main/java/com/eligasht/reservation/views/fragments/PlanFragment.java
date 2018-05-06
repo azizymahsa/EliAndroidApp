@@ -671,7 +671,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                                 .needBackgroundShadow(true)
                                 .startActivity();
                     } else {//default
-                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity(), false);
+                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity(), false,false);
                         AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin), getString(R.string.massege));
                        /* System.out.println("default");
                         intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
