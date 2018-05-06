@@ -14,8 +14,6 @@ public class PackageListReq {
 
 
 
-
-
     public String getRoomList() {
         return RoomList;
     }

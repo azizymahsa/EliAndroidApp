@@ -46,17 +46,11 @@ public class SortDialogPackage implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.tvMax:
                 sortHotelDialogListener.onReturnValue(1);
-
                 dialog.cancel();
-
-
                 break;
                 case R.id.tvMin:
                     sortHotelDialogListener.onReturnValue(2);
-
                 dialog.cancel();
-
-
                 break;
 
         }
