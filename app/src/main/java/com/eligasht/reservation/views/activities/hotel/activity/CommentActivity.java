@@ -114,7 +114,6 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         if (extras != null) {
             tvTitle.setText(getString(R.string.CommentFor) + " " + extras.getString("HotelName"));
             hotelId = extras.getString("HotelId");
-            Log.e("UserID", Prefs.getString("uesrId", "-1"));
         }
         if (!Prefs.getString("userId", "-1").equals("-1")) {
             etMail.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());

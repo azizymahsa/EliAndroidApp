@@ -1,5 +1,4 @@
 package com.eligasht.reservation.views.activities.insurance;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -37,18 +36,15 @@ import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 /**
  * Created by elham.bonyani on 1/14/2018.
  * use mvp model for add passenger->go to passenger presenter
  */
-
 public class AddPassengerActivity extends BaseActivity implements
         View.OnClickListener,
         PassengerContract.View,
         TimePickerDialog.OnTimeSetListener,
         com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
-
     public SimpleRecycleView rcl_add_passenger;
     public ImageView btn_add;
     public ImageView btn_remove;
@@ -73,8 +69,6 @@ public class AddPassengerActivity extends BaseActivity implements
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.toolbar_color));
         }
-
-
         initViews();
         passengerPresenter = new PassengerPresenter(this);
         ArrayList<BirthDateList> passengerArrayList = null;
@@ -87,7 +81,6 @@ public class AddPassengerActivity extends BaseActivity implements
         }
         passengerPresenter.setPassengers(passengerArrayList);
         showPassengers();
-
     }
 
     @Override
@@ -97,7 +90,6 @@ public class AddPassengerActivity extends BaseActivity implements
 
     @Override
     public void initViews() {
-
         count_passenger = findViewById(R.id.count_passenger);
         btn_confirm = findViewById(R.id.btn_confirm);
         btn_add = findViewById(R.id.btn_add);
@@ -105,20 +97,13 @@ public class AddPassengerActivity extends BaseActivity implements
         rcl_add_passenger = findViewById(R.id.rcl_add_passenger);
         try {
             rcl_add_passenger.setLayoutManager(new LinearLayoutManager(this));
+        } catch (Exception e) {
         }
-        catch (Exception e)
-        {
-
-        }
-
         hideLoading();
-
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
-
         int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
         int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true);
         int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
-
         //shamsi
         datePickerDialogBirthDay = DatePickerDialog.newInstance(
                 this,
@@ -135,15 +120,12 @@ public class AddPassengerActivity extends BaseActivity implements
         int day = c.get(Calendar.DAY_OF_MONTH);
         datePickerDialogDepartgGregorian.initialize(this, year - 50, 0, 1);
         datePickerDialogDepartgGregorian.setYearRange(1940, year);
-
-
         datePickerDialogBirthDay.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
             @Override
             public void onCalendarChanged(boolean isGregorian) {
                 datePickerDialogDepartgGregorian.show(getFragmentManager(), "DepartureFromGregorian");
             }
         });
-
         datePickerDialogDepartgGregorian.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
             @Override
             public void onCalendarChanged(boolean isGregorian) {
@@ -151,8 +133,6 @@ public class AddPassengerActivity extends BaseActivity implements
             }
         });
         datePickerDialogDepartgGregorian.setOnDateSetListener(this);
-
-
         btn_add.setOnClickListener(this);
         btn_remove.setOnClickListener(this);
         btn_confirm.setOnClickListener(this);
@@ -220,18 +200,13 @@ public class AddPassengerActivity extends BaseActivity implements
                 datePickerDialogDepartgGregorian.show(getFragmentManager(), "DepartureFromGregorian");
                 currentPassenger = passenger;
             }
-
-
         } else {
             if (!datePickerDialogBirthDay.isAdded()) {
                 datePickerDialogBirthDay.show(getSupportFragmentManager(), "BirthDay");
             }
-
             currentPassenger = passenger;
         }
-
     }
-
 
     @Override
     public void onClick(View view) {
@@ -268,7 +243,6 @@ public class AddPassengerActivity extends BaseActivity implements
                 return false;
             }
         }
-
         return true;
     }
 
@@ -277,30 +251,22 @@ public class AddPassengerActivity extends BaseActivity implements
         super.onBackPressed();
     }
 
-
     @Override
     public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute) {
-
     }
-
 
     //shamsi
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
         Prefs.putBoolean("pasGe", false);
-
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
-
         long milis = DateUtil.getMiliSecondPersianDateTime(year, monthOfYear, dayOfMonth);
         String currentDateTime = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
-
-
         if (view.getTag().equals("BirthDay")) {
             passengerPresenter.setBirthday(currentPassenger, Utility.convertNumbersToEnglish(currentDateTime), false);
             datePickerDialogBirthDay.initialize(this, year_, month, day);
-
         }
     }
 
@@ -310,18 +276,11 @@ public class AddPassengerActivity extends BaseActivity implements
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
-
-
         year_ = year;
         month = monthOfYear;
         day = dayOfMonth;
         long milis = DateUtil.getMiliSecondGregorianDateTime(year + "-" + (monthOfYear) + "-" + dayOfMonth, "yyyy-MM-dd");
-
         String currentDateTime = DateUtil.getDateTime(String.valueOf(milis), "yyyy-MM-dd");
-
-
         passengerPresenter.setBirthday(currentPassenger, Utility.convertNumbersToEnglish(currentDateTime), true);
-
-
     }
 }

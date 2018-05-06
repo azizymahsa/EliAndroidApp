@@ -250,6 +250,8 @@ public class ExampleUnitTest {
         f4.setTotalCall(0);
         f4.setClose(true);
         f4.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
+
+
         ServiceTestModel f5 = new ServiceTestModel();
         f5.setId(1);
         f5.setName("HotelFlight/HotelFlightService.svc/AirportTransportServicePrice");
@@ -259,12 +261,27 @@ public class ExampleUnitTest {
         f5.setTotalCall(0);
         f5.setClose(true);
         f5.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
+
+        ServiceTestModel f6 = new ServiceTestModel();
+        f6.setId(1);
+        f6.setName("HotelFlight/HotelFlightService.svc/PurchaseFlightHotel");
+        f6.setMessage("ok");
+        f6.setTryTime("900 ms");
+        f6.setStatusCode(200);
+        f6.setTotalCall(0);
+        f6.setClose(true);
+        f6.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
+
+
+
+
         List<ServiceTestModel> list = new ArrayList<>();
         list.add(f1);
         list.add(f2);
         list.add(f3);
         list.add(f4);
         list.add(f5);
+        list.add(f6);
         return list;
     }
 
