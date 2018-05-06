@@ -1,4 +1,6 @@
 package com.eligasht.reservation.views.ui.dialog.hotel;
+
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -13,6 +15,7 @@ import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import mehdi.sakout.fancybuttons.FancyButton;
+
 /**
  * Created by Reza.nejati on 1/21/2018.
  */
@@ -22,16 +25,18 @@ public class AlertDialogPassenger implements View.OnClickListener {
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
-    Context activity;
+    Activity activity;
     FancyButton btnOk, btnCancel;
     AVLoadingIndicatorView avi;
     String text;
     String title;
     LottieAnimationView animation_view;
+    boolean isFinish;
     // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
 
-    public AlertDialogPassenger(final Context activity, boolean warning) {
+    public AlertDialogPassenger(final Activity activity, boolean warning, boolean isFinish) {
         this.activity = activity;
+        this.isFinish = isFinish;
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.alert_dialog_passenger, null);
@@ -73,6 +78,9 @@ public class AlertDialogPassenger implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnOk:
+                if (isFinish)
+                    activity.finish();
+                else
                 dialog.cancel();
                 break;
         }

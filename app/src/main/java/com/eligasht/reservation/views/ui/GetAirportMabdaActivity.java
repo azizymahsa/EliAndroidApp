@@ -228,7 +228,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                 GetError = responsAirports.getGetAirportWithParentsWithCultureResult().getErrors().get(0).getMessage();
             }
             if (GetError.length() > 1) {
-                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this,true);
+                AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this,true,false);
                 AlertDialogPassenger.setText(GetError, getString(R.string.massege));
 
             } else {

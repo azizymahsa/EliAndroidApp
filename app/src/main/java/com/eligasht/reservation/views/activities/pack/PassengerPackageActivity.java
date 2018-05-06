@@ -876,7 +876,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     ///endValidate
                     if (flagMosafer.contains("F")) {
                         try {
-                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerPackageActivity.this,false);
+                            AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerPackageActivity.this,false,false);
                             AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
                         } catch (Exception e) {
                             e.getMessage();
