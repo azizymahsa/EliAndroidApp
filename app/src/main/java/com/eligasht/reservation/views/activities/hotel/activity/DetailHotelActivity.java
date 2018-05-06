@@ -144,6 +144,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         view_pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                switch (position) {
+                    case 1:
+                        hotelDetailViewPager.getMapHotelFragment().setMarker(location, commentModelBus);
+                        break;
+                }
             }
 
             @Override
@@ -199,6 +204,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         GetRoomReq getRoomReq = new GetRoomReq();
         getRoomReq.setCulture(getString(R.string.culture));
         getRoomReq.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
+
         getRoomReq.setFltGUID("");
         getRoomReq.setFltId("");
         Identity identity = new Identity();

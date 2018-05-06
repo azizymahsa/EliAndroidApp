@@ -1,5 +1,4 @@
 package com.eligasht.reservation.views.adapters;
-
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -14,8 +13,6 @@ import com.eligasht.reservation.tools.Utility;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
-
 public class AwardsSelectedsAdapter extends BaseAdapter {
     private int proPayment;
     private LayoutInflater myInflater;
@@ -56,23 +53,17 @@ public class AwardsSelectedsAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
         proPayment = items.get(position).amount;
         String proPayments = "_ " + proPayment + mContext.getString(R.string.day_);
-
         String goodNameValue = items.get(position).goodName;
-
         if (goodNameValue == null || goodNameValue.isEmpty()) {
-
             String ProAmount = Integer.toString(items.get(position).ProAmount);
             double amount = Double.parseDouble(ProAmount);
             DecimalFormat formatter = new DecimalFormat("#,###");
-
             if (amount > 0) {
                 //holder.text.setText(String.format("%s (%s) _ %s",
                 //	items.get(position).ProPayment, formatter.format(amount), items.get(position).PrizeDetailID));
                 if (proPayment > 0) {
-
                     holder.text.setText(Html.fromHtml(
                             proPayment + "( " + formatter.format(amount) + mContext.getString(R.string.rial_) + "<font color='#d0d8f6'>" + "_" + items.get(position).PrizeDetailID + "</font>" + items.get(position).ProPayment + mContext.getString(R.string.day)));
                 } else {
@@ -85,13 +76,10 @@ public class AwardsSelectedsAdapter extends BaseAdapter {
                     holder.text.setText(Html.fromHtml("<font color='#d0d8f6'>" + "_" + items.get(position).PrizeDetailID + "</font>" + "(" + items.get(position).ProPayment + ")"));
                 }
             }
-
         } else {
-
             String ProAmount = Integer.toString(items.get(position).ProAmount);
             double amount = Double.parseDouble(ProAmount);
             DecimalFormat formatter = new DecimalFormat("#,###");
-
             if (amount > 0) {
                 holder.text.setText(Html.fromHtml(items.get(position).goodName + "( " + items.get(position).ProQty + mContext.getString(R.string.amount_) + "_ " + formatter.format(amount) + mContext.getString(R.string.space_rial_space) + "<font color='#d0d8f6'>" + "_" + items.get(position).PrizeDetailID + "</font>"));
             } else {

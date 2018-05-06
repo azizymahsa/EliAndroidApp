@@ -61,7 +61,7 @@ public class Hotel extends BaseTest {
         doClickTab(R.id.tab_layout, 0);
         try {
             doScrollAndClickInScrollView(R.id.btnSortComment);
-            doClickWithIndex(R.id.expand_text_view, 0);
+         //   doClickWithIndex(R.id.expand_text_view, 0);
             doScrollAndClickInScrollView(R.id.btnComment);
             sleep(1000);
             doClick(R.id.btnOk);

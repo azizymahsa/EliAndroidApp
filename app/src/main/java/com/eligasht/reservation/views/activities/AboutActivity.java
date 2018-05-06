@@ -107,7 +107,6 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
             e.printStackTrace();
         }
 
-        RequestAbout requestAbout = new RequestAbout();
         com.eligasht.service.model.about.request.RequestAbout request = new com.eligasht.service.model.about.request.RequestAbout();
 
         request.setCulture(getString(R.string.culture));

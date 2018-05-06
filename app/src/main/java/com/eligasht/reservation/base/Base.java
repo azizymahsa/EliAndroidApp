@@ -38,7 +38,6 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
                 config.setLocale(locale);
             }else{
                 config.locale = locale;
-
             }
             getBaseContext().getResources().updateConfiguration(config,
                     getBaseContext().getResources().getDisplayMetrics());
