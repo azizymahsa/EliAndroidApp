@@ -25,20 +25,15 @@ public class Hotel extends BaseTest {
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Dest);
        // sleep(Const.MOCK ? 0 : 5000);
         doClickWithIndex(R.id.llLayout, 0);
-        doClick(R.id.cvRoom);
-        doClickWithIndex(R.id.btnPlusAdt, 0);
-        doClickWithIndex(R.id.btnPlusAdt, 0);
-        doClick(R.id.btn_add);
-        doClickWithIndex(R.id.btnPlusCh, 1);
-        doClickWithIndex(R.id.spn_range, 0);
-        doClickItemInSpinner(1);
-        doClick(R.id.btn_confirm);
+
         doClick(R.id.searchHotel);
        // sleep(Const.MOCK ? 0 : 30000);
+        sleep(1000);
         try {
             doClickWithIndex(R.id.rlListItem, 0);
         } catch (Exception e) {
           //  sleep(20000);
+            sleep(1000);
             doClickWithIndex(R.id.rlListItem, 0);
         }
 
@@ -61,7 +56,6 @@ public class Hotel extends BaseTest {
         doClickTab(R.id.tab_layout, 0);
         try {
             doScrollAndClickInScrollView(R.id.btnSortComment);
-         //   doClickWithIndex(R.id.expand_text_view, 0);
             doScrollAndClickInScrollView(R.id.btnComment);
             sleep(1000);
             doClick(R.id.btnOk);
@@ -98,42 +92,14 @@ public class Hotel extends BaseTest {
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnamem, "ahmad");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "nemati");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
+
+
         doClickAndScroll(R.id.txttavalodm);
         doClick(R.id.ok);
         doClickAndScroll(R.id.txtexp_passport);
         doClick(R.id.ok);
         doClickAndScroll(R.id.btn_nextm);
-        doCloseSoftKeyborad(R.id.txtnumber_passport);
-        doClickAndScroll(R.id.mard);
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtnamem, "ali");
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "nasiri");
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
-        doClickAndScroll(R.id.txttavalodm);
-        doClick(R.id.ok);
-        doClickAndScroll(R.id.txtexp_passport);
-        doClick(R.id.ok);
-        doClickAndScroll(R.id.btn_nextm);
-        doCloseSoftKeyborad(R.id.txtnumber_passport);
-        doClickAndScroll(R.id.zan);
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtnamem, "reza");
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "nejati");
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
-        doClickAndScroll(R.id.txttavalodm);
-        doClick(R.id.ok);
-        doClickAndScroll(R.id.txtexp_passport);
-        doClick(R.id.ok);
-        doClickAndScroll(R.id.btn_nextm);
-        doCloseSoftKeyborad(R.id.txtnumber_passport);
-        doClickAndScroll(R.id.mard);
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtnamem, "mahsa");
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "azizi");
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
-        doClickAndScroll(R.id.txttavalodm);
-        doClick(R.id.ok);
-        doClickAndScroll(R.id.txtexp_passport);
-        doClick(R.id.ok);
-        doClickAndScroll(R.id.btn_nextm);
-        doCloseSoftKeyborad(R.id.txtnumber_passport);
+
        // sleep(Const.MOCK ? 0 : 10000);
         try {
             doClickWithIndex(R.id.btnAddsabad, 0);

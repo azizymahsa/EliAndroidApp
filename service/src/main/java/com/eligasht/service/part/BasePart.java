@@ -82,14 +82,13 @@ public abstract class BasePart {
                     @Override
                     public void onNext(Response<T> value) {
                         if (BuildConfig.DEBUG && Const.TEST)
-                            initForTest(value);
+                            SingletonResponse.getInstance().addResponse(value);
                         listener.onReady(value.body());
                     }
 
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e("Error", e.getMessage());
                         listener.onError(e.getMessage());
                     }
 
@@ -98,46 +97,6 @@ public abstract class BasePart {
 
                     }
                 });
-    }
-
-    private <T> void initForTest(Response<T> value) {
-        SingletonResponse.getInstance().addResponse(value);
-        Log.e("Valeus", value.toString());
-        long tx = value.raw().networkResponse().sentRequestAtMillis();
-        long rx = value.raw().networkResponse().receivedResponseAtMillis();
-        Log.e("Time", "response time : " + (rx - tx) + " ms");
-        Log.e("Value", bodyToString(value.raw().request().body()));
-
-        if (BuildConfig.DEBUG && Const.TEST && value.body() != null) {
-            Field[] fields = value.body().getClass().getFields();
-            for (Field field : fields) {
-                try {
-                    BaseModel baseModel = new BaseModel();
-                    baseModel = (BaseModel) field.get(value.body());
-                    Log.e("Bse", baseModel.getErrors().get(0).getDetailedMessage());
-                } catch (Exception e) {
-
-                }
-            }
-
-
-        }
-
-
-    }
-
-    private String bodyToString(final RequestBody request) {
-        try {
-            final RequestBody copy = request;
-            final Buffer buffer = new Buffer();
-            if (copy != null)
-                copy.writeTo(buffer);
-            else
-                return "";
-            return buffer.readUtf8();
-        } catch (final IOException e) {
-            return "did not work";
-        }
     }
 
 

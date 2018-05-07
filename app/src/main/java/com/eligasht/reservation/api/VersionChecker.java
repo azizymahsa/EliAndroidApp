@@ -1,8 +1,5 @@
 package com.eligasht.reservation.api;
 
-import android.media.AudioFormat;
-import android.media.AudioRecord;
-import android.media.MediaRecorder;
 import android.os.AsyncTask;
 
 import org.jsoup.Jsoup;
@@ -20,7 +17,6 @@ public class VersionChecker extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String... params) {
-
 
         try {
             newVersion = Jsoup.connect("https://play.google.com/store/apps/details?id=" + "com.eligasht.reservation" + "&hl=en")

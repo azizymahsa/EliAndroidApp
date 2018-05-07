@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.test;
+package com.eligasht.service.model.test.markdown;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -26,10 +26,14 @@ public class ServiceTestModel {
     private Integer totalCall;
     @SerializedName("close")
     @Expose
-    private Boolean close;
+    private boolean close;
     @SerializedName("issueLink")
     @Expose
     private String issueLink;
+
+    @SerializedName("size")
+    @Expose
+    private String size = "";
 
     public Integer getId() {
         return id;
@@ -79,11 +83,11 @@ public class ServiceTestModel {
         this.totalCall = totalCall;
     }
 
-    public Boolean getClose() {
+    public boolean getClose() {
         return close;
     }
 
-    public void setClose(Boolean close) {
+    public void setClose(boolean close) {
         this.close = close;
     }
 
@@ -95,4 +99,36 @@ public class ServiceTestModel {
         this.issueLink = issueLink;
     }
 
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public void update(ServiceTestModel serviceTestModel) {
+        this.message = serviceTestModel.message;
+        this.tryTime = serviceTestModel.tryTime;
+        this.statusCode = serviceTestModel.statusCode;
+        this.totalCall = serviceTestModel.totalCall;
+        this.close = serviceTestModel.close;
+        this.issueLink = serviceTestModel.issueLink;
+        this.size = serviceTestModel.size;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceTestModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", message='" + message + '\'' +
+                ", tryTime='" + tryTime + '\'' +
+                ", statusCode=" + statusCode +
+                ", totalCall=" + totalCall +
+                ", close=" + close +
+                ", issueLink='" + issueLink + '\'' +
+                ", size='" + size + '\'' +
+                '}';
+    }
 }
