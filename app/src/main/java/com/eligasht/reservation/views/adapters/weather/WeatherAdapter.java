@@ -1,3 +1,4 @@
+/*
 package com.eligasht.reservation.views.adapters.weather;
 
 
@@ -13,23 +14,26 @@ import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.models.HotelPreFactorModel;
+import com.eligasht.service.model.weather.response.Forecast;
 import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.Utils;
 
 import java.util.List;
+*/
 /**
  * Created by Reza.nejati on 1/22/2018.
- */
+ *//*
+
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder> {
 
-    private final List<HotelPreFactorModel> data;
+    private final List<Forecast> data;
     private Context context;
     private SparseBooleanArray expandState = new SparseBooleanArray();
 
-    public WeatherAdapter(final List<HotelPreFactorModel> data) {
+    public WeatherAdapter(final List<Forecast> data) {
         this.data = data;
         for (int i = 0; i < data.size(); i++) {
             expandState.append(i, false);
@@ -40,13 +44,13 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
     public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         this.context = parent.getContext();
         return new ViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.recycler_view_list_row, parent, false));
+                .inflate(R.layout.recycler_view_weather_row, parent, false));
     }
 
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        final HotelPreFactorModel item = data.get(position);
+        final Forecast item = data.get(position);
 
         String sum = "";
         sum = item.getAdult() +context.getString(R.string.adault);
@@ -123,4 +127,4 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
             buttonLayout = v.findViewById(R.id.buttonLayout);
         }
     }
-}
+}*/
