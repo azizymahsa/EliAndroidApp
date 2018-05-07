@@ -87,7 +87,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         Prefs.putString("Flag_First_Computing", "F");
         manager = getSupportFragmentManager();
         sendDetailFinish();
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
 
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.flight_status));

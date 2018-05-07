@@ -80,7 +80,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_hotel);
         SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
-        helper.setEdgeMode(false)
+        helper.setEdgeMode(true)
                 .setParallaxMode(true)
                 .setParallaxRatio(3)
                 .setNeedBackgroundShadow(true)
