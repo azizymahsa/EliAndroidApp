@@ -67,6 +67,7 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
         holder.expandableLayout.setInRecyclerView(true);
         // holder.expandableLayout.setBackgroundColor(ContextCompat.getColor(context, item.colorId2));
         // holder.expandableLayout.setInterpolator(item.interpolator);
+
         holder.expandableLayout.setExpanded(expandState.get(position));
         holder.expandableLayout.setListener(new ExpandableLayoutListenerAdapter() {
             @Override
