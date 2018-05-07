@@ -60,10 +60,12 @@ import com.eligasht.service.model.login.response.LoginResponse;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
 import com.eligasht.service.model.startup.response.StartupServiceResponse;
 import com.eligasht.service.model.test.entity.TestRes;
+import com.eligasht.service.model.weather.response.WeatherApi;
 
 import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -253,6 +255,14 @@ public interface RetroClient {
             @Query("labels") String label,
             @Query("description") String description
     );
+
+
+
+    @GET("v1/public/yql")
+    Observable<Response<WeatherApi>> yahooWeather(
+            @Query("q") String query
+    );
+
 
 
 
