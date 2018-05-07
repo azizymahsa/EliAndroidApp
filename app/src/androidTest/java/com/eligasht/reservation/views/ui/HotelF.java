@@ -60,7 +60,7 @@ public class HotelF extends BaseTest {
         sleep(1000);
         //   doClick(R.id.btn_confirm);
         doClick(R.id.searchHotel);
-        sleep(500);
+        sleep(1500);
         doClickWithIndex(R.id.btnChange, 0);
         sleep(1000);
         try {
@@ -93,12 +93,15 @@ public class HotelF extends BaseTest {
             doClickWithIndex(R.id.btnPolicy, 0);
 
 
+
         }catch (Exception e){
             pressBack(2);
             return;
 
 
         }
+
+
         doClick(R.id.btnOk);
         doClickWithIndex(R.id.llSelectHotel, 0);
         sleep(2000);
@@ -120,37 +123,7 @@ public class HotelF extends BaseTest {
         doClick(R.id.ok);
         doClickAndScroll(R.id.btn_nextm);
         doCloseSoftKeyborad(R.id.txtnumber_passport);
-        sleep(2000);
-        doClickAndScroll(R.id.mard);
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtnamem, "ali");
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "nasiri");
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
-        doClickAndScroll(R.id.txttavalodm);
-        doClick(R.id.ok);
-        doClickAndScroll(R.id.txtexp_passport);
-        doClick(R.id.ok);
-        doClickAndScroll(R.id.btn_nextm);
-        doCloseSoftKeyborad(R.id.txtnumber_passport);
-        doClickAndScroll(R.id.zan);
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtnamem, "reza");
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "nejati");
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
-        doClickAndScroll(R.id.txttavalodm);
-        doClick(R.id.ok);
-        doClickAndScroll(R.id.txtexp_passport);
-        doClick(R.id.ok);
-        doClickAndScroll(R.id.btn_nextm);
-        doCloseSoftKeyborad(R.id.txtnumber_passport);
-        doClickAndScroll(R.id.mard);
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtnamem, "mahsa");
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilym, "azizi");
-        doScrollAndREplaceAndCloseKeyboard(R.id.txtnumber_passport, "d123456");
-        doClickAndScroll(R.id.txttavalodm);
-        doClick(R.id.ok);
-        doClickAndScroll(R.id.txtexp_passport);
-        doClick(R.id.ok);
-        doClickAndScroll(R.id.btn_nextm);
-        doCloseSoftKeyborad(R.id.txtnumber_passport);
+
         try {
 
             doClickWithIndex(R.id.btnAddsabad, 0);

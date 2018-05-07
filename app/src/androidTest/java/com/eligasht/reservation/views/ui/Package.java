@@ -49,7 +49,8 @@ public class Package extends BaseTest {
         doClick(R.id.btnPackage);
         sleep(1000);
         doClick(R.id.txtCity);
-        doClickWithIndex(R.id.text1, 1);
+        sleep(1500);
+        doClickWithIndex(R.id.text1, 0);
         doClick(R.id.layout_room);
         pressBack(1);
         doClick(R.id.btnSearchPackage);
