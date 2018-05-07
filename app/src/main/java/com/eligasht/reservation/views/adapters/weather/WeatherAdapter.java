@@ -1,4 +1,4 @@
-package com.eligasht.reservation.lost.hotel;
+package com.eligasht.reservation.views.adapters.weather;
 
 
 import android.animation.ObjectAnimator;
@@ -19,18 +19,17 @@ import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.Utils;
 
 import java.util.List;
-
 /**
  * Created by Reza.nejati on 1/22/2018.
  */
 
-public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAdapter.ViewHolder> {
+public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder> {
 
     private final List<HotelPreFactorModel> data;
     private Context context;
     private SparseBooleanArray expandState = new SparseBooleanArray();
 
-    public HotelPreFactorAdapter(final List<HotelPreFactorModel> data) {
+    public WeatherAdapter(final List<HotelPreFactorModel> data) {
         this.data = data;
         for (int i = 0; i < data.size(); i++) {
             expandState.append(i, false);

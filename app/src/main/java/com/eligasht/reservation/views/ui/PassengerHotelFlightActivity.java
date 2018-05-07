@@ -980,7 +980,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Prefs.getBoolean("IsDemostic", true);
+        Prefs.putBoolean("IsDemostic", true);
+        Prefs.putLong("Tprice",0);
         Prefs.putString("Flag_First_Computing", "F");
 
     }

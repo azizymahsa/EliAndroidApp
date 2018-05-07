@@ -691,6 +691,8 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
     }
 
     public void getPriceTransport() {
+        rlLoading2.setVisibility(View.VISIBLE);
+
         TransportRequest transportRequest = new TransportRequest();
         TransportReq transportReq = new TransportReq();
         Param transportParam = new Param();

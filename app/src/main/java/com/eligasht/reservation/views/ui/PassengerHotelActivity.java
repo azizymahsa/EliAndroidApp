@@ -1455,7 +1455,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Prefs.getBoolean("IsDemostic",true);
+        Prefs.putBoolean("IsDemostic",true);
+        Prefs.putLong("Tprice",0);
+
 
     }
 
