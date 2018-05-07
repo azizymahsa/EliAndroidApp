@@ -499,12 +499,16 @@
             android:ems="10"
             android:text="Show"
             android:textColor="#ffffff">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/weather"
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:layout_width="35dp"
+                android:layout_height="40dp"
+                android:orientation="vertical"
+                fancy:lottie_autoPlay="true"
+                fancy:lottie_loop="true"
+                fancy:lottie_fileName="lottie/cloud.json"
                 android:layout_centerInParent="true"
-                android:tint="@android:color/white"/>
+                />
         </RelativeLayout>
 
         <!-- Content Layout -->

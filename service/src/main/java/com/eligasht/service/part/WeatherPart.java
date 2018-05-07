@@ -1,5 +1,7 @@
 package com.eligasht.service.part;
 
+import android.util.Log;
+
 import com.eligasht.service.api.RetroClient;
 import com.eligasht.service.generator.ServiceGenerator;
 import com.eligasht.service.generator.SingletonService;
@@ -13,7 +15,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -33,12 +37,17 @@ public class WeatherPart extends BasePart {
     }
 
     public void getWeatherByCity(OnServiceStatus<WeatherApi> listener, String cityName) {
-        String q = "https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text%3D%22ist%22) and u=%27%22 + Currency + %22%27&format=json";
+        String q = "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=\"ist\") and u='\"   Currency   \"'";
         q = q.replace("ist", cityName);
+        Log.e("qqqqq", q);
 
         Retrofit retrofit = getRetrofit();
         RetroClient retroClient = retrofit.create(RetroClient.class);
-        retroClient.yahooWeather(q).subscribe(new Observer<Response<WeatherApi>>() {
+        retroClient.yahooWeather(q,"json")
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .subscribe(new Observer<Response<WeatherApi>>() {
             @Override
             public void onSubscribe(Disposable d) {
 
@@ -46,12 +55,15 @@ public class WeatherPart extends BasePart {
 
             @Override
             public void onNext(Response<WeatherApi> testResResponse) {
+                Log.e("Stat",testResResponse.toString());
+                Log.e("Code", String.valueOf(testResResponse.code()));
                 listener.onReady(testResResponse.body());
             }
 
             @Override
             public void onError(Throwable e) {
                 listener.onError(e.getMessage());
+                e.printStackTrace();
             }
 
             @Override

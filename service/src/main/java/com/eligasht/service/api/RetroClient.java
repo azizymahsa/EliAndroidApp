@@ -258,9 +258,10 @@ public interface RetroClient {
 
 
 
-    @GET("v1/public/yql")
+    @GET("yql")
     Observable<Response<WeatherApi>> yahooWeather(
-            @Query("q") String query
+            @Query("q") String query,
+            @Query("format") String format
     );
 
 
