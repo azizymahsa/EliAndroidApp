@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,6 +85,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private List<Room> rooms = new ArrayList<>();
     private FancyButton btnFilter, btnSort;
     private  RecyclerView recyclerViewHotel;
+    SlidingDrawer slidingDrawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,6 +122,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
         recyclerViewHotel = findViewById(R.id.rvWeather);
+        slidingDrawer = findViewById(R.id.slidingDrawer);
 
         btnBack.setText(getString(R.string.search_back_right));
 
@@ -614,6 +617,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 rlList.setVisibility(View.GONE);
                 llFilter.setVisibility(View.GONE);
             } else {
+                slidingDrawer.setVisibility(View.VISIBLE);
                 maxPrice = hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getMaxPrice();
                 minPrice = hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getMinPrice();
                 int dif = maxPrice - minPrice;
