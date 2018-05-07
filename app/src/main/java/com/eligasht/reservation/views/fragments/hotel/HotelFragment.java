@@ -237,11 +237,12 @@ public class HotelFragment extends Fragment implements OnClickListener,
                         Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
                         Log.e("test", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()) + 1 + "");
                         intent.putExtra("Geo", geo);
-                        SwipeBackActivityHelper.activityBuilder(getActivity())
+                        startActivity(intent);
+                      /*  SwipeBackActivityHelper.activityBuilder(getActivity())
                                 .intent(intent)
                                 .needParallax(true)
                                 .needBackgroundShadow(true)
-                                .startActivity();
+                                .startActivity();*/
                     }
 
                 } catch (Exception e) {
