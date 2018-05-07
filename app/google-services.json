@@ -1,17 +1,78 @@
 {
   "project_info": {
     "project_number": "1071351772592",
-    "project_id": "eligasht-191404"
+    "firebase_url": "https://eligasht-191404.firebaseio.com",
+    "project_id": "eligasht-191404",
+    "storage_bucket": "eligasht-191404.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1071351772592:android:57f1161c95e2ac64",
+        "mobilesdk_app_id": "1:1071351772592:android:571344e91c9ccdb9",
         "android_client_info": {
           "package_name": "com.eligasht"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1071351772592-t11semsbvuqavm1nml14drs8t25rfl1i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eligasht",
+            "certificate_hash": "4c04f240d01890a2d75db2d6d15a36012a07e0ed"
+          }
+        },
+        {
+          "client_id": "1071351772592-58hjb9bdivb1ohosvtv2dc4sjmg5mm0k.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1071351772592-sk6v1md5v5rc5e6s2d3d44jjsoq8opej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCzLClp1-Wulmj8L2sUa6dVc-mar3pKEo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071351772592-58hjb9bdivb1ohosvtv2dc4sjmg5mm0k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1071351772592-r61bcpogk5dl3edctd5khj2vcstgi5qa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com-EligashtCo"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071351772592:android:57f1161c95e2ac64",
+        "android_client_info": {
+          "package_name": "com.reserv.myapplicationeli"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071351772592-58hjb9bdivb1ohosvtv2dc4sjmg5mm0k.apps.googleusercontent.com",
+          "client_type": 3
+        },
         {
           "client_id": "1071351772592-sk6v1md5v5rc5e6s2d3d44jjsoq8opej.apps.googleusercontent.com",
           "client_type": 3

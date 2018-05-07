@@ -12,6 +12,8 @@ public class Const {
 
     public final static String BASEURL = "http://mobilews.eligasht.com/LightServices/Rest/";
 
+    public final static String BaseGitLab="https://gitlab.com/api/v4/projects/6147852/";
+
     //*************start up*************
     public final static String StartUp = "Common/StaticDataService.svc/MobileAppStartupService";
     //*************profile & login*************

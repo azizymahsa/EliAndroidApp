@@ -19,7 +19,7 @@ public class SingletonContext {
     private static final SingletonContext ourInstance = new SingletonContext();
     private Context context;
     private Typeface typeface;
-    private OkHttpClient okHttpClient;
+
 
     private SingletonContext() {
 
@@ -46,11 +46,7 @@ public class SingletonContext {
         return typeface;
     }
 
-    public OkHttpClient getOkHttpClient() {
-        return okHttpClient;
-    }
 
-    public void setOkHttpClient(OkHttpClient okHttpClient) {
-        this.okHttpClient = okHttpClient;
-    }
+
+
 }

@@ -1,4 +1,5 @@
 package com.eligasht.reservation.views.ui;
+
 import android.Manifest;
 import android.animation.Animator;
 import android.app.AlarmManager;
@@ -57,6 +58,7 @@ import java.util.Locale;
 import java.util.UUID;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class SplashActivity extends ConnectionBuddyActivity implements
         SplashDialog.TryDialogListener, OnServiceStatus<StartupServiceResponse>, PermissionListener, Animator.AnimatorListener, DialogInterface.OnCancelListener {
     private AVLoadingIndicatorView avi;
@@ -242,30 +244,30 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                 }
                 if (startupServiceResponse.getMobileAppStartupServiceResult().getUserEntranceResponse().getCanEnter()) {
 
-                        String app = BuildConfig.VERSION_NAME;
-                        String server = startupServiceResponse.getMobileAppStartupServiceResult().getUserEntranceResponse().getMinAppVersion();
-                        if (Double.valueOf(app.replace(".", "")) < Double.valueOf(server.replace(".", ""))) {
-                            updateAlert.show();
-                            updateAlert.isForce(false);
-                        } else {
-                            if (Prefs.getBoolean("isFirstEntrance", true)) {
-                                if (startupServiceResponse.getMobileAppStartupServiceResult().getCultureDefault()
-                                        .split("-")[0].equals(Prefs.getString("lang", "fa"))) {
-                                    Prefs.putBoolean("isFirstEntrance", false);
-                                    Prefs.putString("lang", "fa");
-                                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                                    finish();
-                                } else {
-                                    Prefs.putBoolean("isFirstEntrance", false);
-                                    Prefs.putString("lang", startupServiceResponse.getMobileAppStartupServiceResult().getCultureDefault().split("-")[0]);
-                                    showRestartDialog();
-                                }
-                            } else {
+                    String app = BuildConfig.VERSION_NAME;
+                    String server = startupServiceResponse.getMobileAppStartupServiceResult().getUserEntranceResponse().getMinAppVersion();
+                    if (Double.valueOf(app.replace(".", "")) < Double.valueOf(server.replace(".", ""))) {
+                        updateAlert.show();
+                        updateAlert.isForce(false);
+                    } else {
+                        if (Prefs.getBoolean("isFirstEntrance", true)) {
+                            if (startupServiceResponse.getMobileAppStartupServiceResult().getCultureDefault()
+                                    .split("-")[0].equals(Prefs.getString("lang", "fa"))) {
+                                Prefs.putBoolean("isFirstEntrance", false);
+                                Prefs.putString("lang", "fa");
                                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                 finish();
+                            } else {
+                                Prefs.putBoolean("isFirstEntrance", false);
+                                Prefs.putString("lang", startupServiceResponse.getMobileAppStartupServiceResult().getCultureDefault().split("-")[0]);
+                                showRestartDialog();
                             }
-                            Prefs.putBoolean("isFirstEntrance", false);
+                        } else {
+                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                            finish();
                         }
+                        Prefs.putBoolean("isFirstEntrance", false);
+                    }
 
                 } else {
                     updateAlert.show();

@@ -200,10 +200,7 @@ public class GlobalApplication extends ServiceApplication {
         FirebaseCrash.setCrashCollectionEnabled(!BuildConfig.DEBUG);
     }
 
-    @Override
-    public void injectEsperssoIdle(OkHttpClient okHttpClient) {
-        SingletonContext.getInstance().setOkHttpClient(okHttpClient);
-    }
+
 
     public String getMyOperator(Context aContext) {
         TelephonyManager mTelephonyMgr;

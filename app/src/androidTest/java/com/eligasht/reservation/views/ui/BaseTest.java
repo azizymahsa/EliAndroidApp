@@ -1,14 +1,10 @@
 package com.eligasht.reservation.views.ui;
 
-import android.app.Instrumentation;
 import android.support.annotation.IdRes;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.DataInteraction;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.UiController;
 import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.action.ScrollToAction;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.contrib.RecyclerViewActions;
@@ -23,10 +19,10 @@ import android.view.ViewParent;
 import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 
-import com.eligasht.R;
 import com.eligasht.reservation.views.OkHttp3IdlingResource;
+import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.helper.Const;
-import com.eligasht.service.model.test.TestResultsProcessor;
+import com.eligasht.service.model.test.markdown.TestResultsProcessor;
 
 
 import org.hamcrest.Description;
@@ -39,17 +35,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isRoot;
 import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 import static android.support.test.espresso.Espresso.onData;
-import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
@@ -69,26 +62,32 @@ import static org.hamcrest.Matchers.is;
 @RunWith(AndroidJUnit4.class)
 public abstract class BaseTest {
     private IdlingResource resource;
+    long startTime;
+    long endTime = System.nanoTime();
+
 
     @Rule
     public ActivityTestRule<SplashActivity> mActivityTestRule = new ActivityTestRule<>(SplashActivity.class);
 
-    public BaseTest() {
-        resource = OkHttp3IdlingResource.create("OkHttp", SingletonContext.getInstance().getOkHttpClient());
-    }
 
 
     @Before
     public void register() {
+        resource = OkHttp3IdlingResource.create("OkHttp", SingletonService.getInstance().getOkHttpClient());
         Const.TEST = true;
+        startTime = System.currentTimeMillis();
         Espresso.registerIdlingResources(resource);
     }
 
     @After
     public void unregister() {
         TestResultsProcessor testResultsProcessor = new TestResultsProcessor();
-        testResultsProcessor.checkResults();
+        endTime = System.currentTimeMillis();
+        int end = (int) ((endTime - startTime) / 60000);
+        testResultsProcessor.checkResults(end);
+        sleep(1000);
         Espresso.unregisterIdlingResources(resource);
+        Const.TEST = false;
     }
 
 

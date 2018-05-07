@@ -7,6 +7,7 @@ package com.eligasht.reservation.views;
 import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 import android.support.test.espresso.IdlingResource;
+import android.util.Log;
 
 import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;

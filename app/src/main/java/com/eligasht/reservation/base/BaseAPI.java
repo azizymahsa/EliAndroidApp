@@ -2,6 +2,7 @@ package com.eligasht.reservation.base;
 
 import com.eligasht.reservation.conf.APIConf;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.eligasht.service.generator.SingletonService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -41,7 +42,7 @@ public abstract class BaseAPI {
         retrofit = new Retrofit.Builder()
                 .baseUrl(APIConf.CORE_REST_API_URI)
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(SingletonContext.getInstance().getOkHttpClient())
+                .client(SingletonService.getInstance().getOkHttpClient())
                 .build();
 
 

@@ -30,7 +30,7 @@ public abstract class ServiceApplication extends Application {
         SingletonService.getInstance().setNetComponent(mNetComponent).inject();
     }
 
-    public abstract void injectEsperssoIdle(OkHttpClient okHttpClient);
+
 
 
 }
