@@ -4,6 +4,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -15,14 +18,18 @@ import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
+import com.eligasht.reservation.lost.hotel.HotelPreFactorAdapter;
+import com.eligasht.reservation.models.HotelPreFactorModel;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
 import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.adapters.hotel.LazyResoultHotelAdapter;
+import com.eligasht.reservation.views.adapters.weather.WeatherAdapter;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelTypeModel;
 import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
@@ -40,6 +47,7 @@ import com.eligasht.service.model.hotel.hotelAvail.response.Location;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.eligasht.reservation.tools.Prefs;
+import com.squareup.haha.perflib.Main;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -75,16 +83,17 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
     private List<Room> rooms = new ArrayList<>();
     private FancyButton btnFilter, btnSort;
+    private  RecyclerView recyclerViewHotel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_hotel);
-        SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
+ /*       SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
         helper.setEdgeMode(true)
                 .setParallaxMode(true)
                 .setParallaxRatio(3)
                 .setNeedBackgroundShadow(true)
-                .init(this);
+                .init(this);*/
         window = getWindow();
         list = findViewById(R.id.lvHoteResult);
         rlList = findViewById(R.id.rlList);
@@ -110,6 +119,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         tvAlertDesc = findViewById(R.id.tvAlertDesc);
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
+        recyclerViewHotel = findViewById(R.id.rvWeather);
 
         btnBack.setText(getString(R.string.search_back_right));
 
@@ -143,6 +153,26 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
         adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this, tvDate);
         list.setAdapter(adapter);
+
+
+
+        recyclerViewHotel.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("1");
+        strings.add("2");
+        strings.add("3");
+        strings.add("4");
+        strings.add("5");
+        strings.add("6");
+        strings.add("7");
+        strings.add("8");
+        strings.add("9");
+        strings.add("10");
+        recyclerViewHotel.setAdapter(new WeatherAdapter(strings));
+
+
+
+
     }
     @Override
     public void onClick(View v) {

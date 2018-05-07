@@ -69,6 +69,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     private int TIME_INTERVAL = 2000;
     boolean isAnimated = true;
 
+
     public static void setUserName(String name) {
         if (txt_name != null) {
             txt_name.setText(name);
