@@ -2384,6 +2384,7 @@
     <string name="_InfantP">Infant</string>
 
     <string name="_childP">child</string>
+    <string name="weather">Weather forecast</string>
 
 
 </resources>

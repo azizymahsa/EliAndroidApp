@@ -134,7 +134,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     public List<ParentItemExpandingPlan> dataExpandingListFilter = new ArrayList<>();
     public List<ParentItemExpandingPlan> dataExpandingListFilter2 = new ArrayList<>();
     public com.eligasht.reservation.tools.ExpandableListViewE expListViewExpanding;
-    public TextView lblMoratabSazi;
+    public TextView lblMoratabSazi,txtWeatherCity;
     public TextView txtRuzeBad, txtRuzeGhabl, iconFilter, txtFilter, txtNoResult;
     public FancyButton btnLastDays, btnNextDays;
     public String RaftF;
@@ -145,7 +145,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     public RelativeLayout linear_expand;
     public SearchParvazPinAdapter searchParvazPinAdapter;
     SlidingDrawer slidingDrawer;
-        //sort
+    //sort
     boolean besetSeler = false;
     boolean bestOff = false;
     boolean remove = false;
@@ -203,15 +203,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_parvaz);
         Utility.setAnimLoading(this);
-      /* SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
-        helper.setEdgeMode(false)
-                .setParallaxMode(true)
-                .setParallaxRatio(3)
-                .setNeedBackgroundShadow(true)
-                .init(this);*/
+
         slidingDrawer = findViewById(R.id.slidingDrawer);
         slidingDrawer.setVisibility(View.VISIBLE);
         recyclerViewHotel = findViewById(R.id.rvWeather);
+        txtWeatherCity=findViewById(R.id.weatherCity);
         window = getWindow();
         linear_expand = findViewById(R.id.linear_expand);
         Bundle bundle = this.getIntent().getExtras();
@@ -271,6 +267,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             txtCityRaft.setText(mabdaf);//sdfsdf
             txtCityBargashtt.setText(maghsadf);//sdfsdf
             txtCityBargasht.setText(maghsadf + "");
+
             if (SingletonDate.getInstance().getStartDate() != null) {
                 RaftF = SingletonDate.getInstance().getStartDate().getDescription();
                 Raft = SingletonDate.getInstance().getStartDate().getFullGeo();
@@ -301,9 +298,12 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                     if (getIntent().getExtras().getBoolean("Geo")) {
                         txtDateOnvan.setText(BargashtF);
                         txtDateOnvanB.setText(RaftF);
+                        txtWeatherCity.setText(maghsadf+" "+getString(R.string.weather));
+
                     } else {
                         txtDateOnvan.setText(BargashtF);
                         txtDateOnvanB.setText(RaftF);
+                        txtWeatherCity.setText(getString(R.string.weather)+" "+maghsadf);
                     }
                 }
                 System.out.println("txtCityBargasht" + maghsadf + "txtCityRaft" + mabdaf);
