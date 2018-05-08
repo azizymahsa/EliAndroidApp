@@ -395,7 +395,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             @Override
             public void onReady(WeatherApi weatherApi) {
                 recyclerViewHotel.setAdapter(new WeatherAdapter(weatherApi.getQuery().getResults().getChannel().getItem().getForecast()));
-
             }
 
             @Override

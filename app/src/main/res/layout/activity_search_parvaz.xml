@@ -295,7 +295,6 @@
                     android:cacheColorHint="#00000000"
                     android:divider="#ffffff"
                     android:groupIndicator="@null"
-
                     />
 
                 <com.scalified.fab.ActionButton
@@ -344,7 +343,6 @@
 
                         <TextView
                             android:id="@+id/tvAlertDesc"
-
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/txtNoResult"
@@ -415,7 +413,6 @@
 
             <LinearLayout
                 android:id="@+id/llNextLastDays"
-
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="170"
@@ -520,7 +517,6 @@
 
             <LinearLayout
                 android:id="@+id/llBottom"
-
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="100"
@@ -553,7 +549,6 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent" />
-
 
             <LinearLayout
                 android:id="@+id/llSort"
