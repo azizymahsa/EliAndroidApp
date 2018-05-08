@@ -65,7 +65,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
     private Window window;
     private RelativeLayout elNotFound, rlEr;
-    private TextView tvLoading, tvAlertDesc;
+    private TextView tvLoading, tvAlertDesc,weatherCity;
     private int maxPrice, minPrice;
     private LinearLayout llFilter;
     private FancyButton btnOk, btnBack, btnHome;
@@ -85,7 +85,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
     private List<Room> rooms = new ArrayList<>();
     private FancyButton btnFilter, btnSort;
-    private  RecyclerView recyclerViewHotel;
+    private  RecyclerView rvWeather;
     SlidingDrawer slidingDrawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,8 +122,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         tvAlertDesc = findViewById(R.id.tvAlertDesc);
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
-        recyclerViewHotel = findViewById(R.id.rvWeather);
+        rvWeather = findViewById(R.id.rvWeather);
         slidingDrawer = findViewById(R.id.slidingDrawer);
+        weatherCity = findViewById(R.id.weatherCity);
 
         btnBack.setText(getString(R.string.search_back_right));
 
@@ -153,7 +154,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
         adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this, tvDate);
         list.setAdapter(adapter);
-        recyclerViewHotel.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
     }
     @Override
     public void onClick(View v) {
@@ -574,14 +575,14 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         SingletonService.getInstance().getWeatherPart().getWeatherByCity(new OnServiceStatus<WeatherApi>() {
             @Override
             public void onReady(WeatherApi weatherApi) {
-                recyclerViewHotel.setAdapter(new WeatherAdapter(weatherApi.getQuery().getResults().getChannel().getItem().getForecast()));
+                rvWeather.setAdapter(new WeatherAdapter(weatherApi.getQuery().getResults().getChannel().getItem().getForecast()));
 
             }
 
             @Override
             public void onError(String message) {
             }
-        }, "IST");
+        }, Prefs.getString("Value-Hotel-City-En", "IST"));
     }
 
     @Override
@@ -687,6 +688,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     filterHotelLocationModels.add(new FilterHotelTypeModel(locations.getTitle(), false));
                 }
                 tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa", "استانبول"));
+                weatherCity.setText("پیش بینی وضعیت آب و هوای "+Prefs.getString("Value-Hotel-City-Fa", "استانبول"));
                 tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
                 Collections.sort(selectHotelModelArrayList, new Comparator<SelectHotelModel>() {
                     @Override

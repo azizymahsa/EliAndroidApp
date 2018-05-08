@@ -207,6 +207,16 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
                 holder.tvW.setText(context.getResources().getString(R.string.sun));
 
                 break;
+            case 33:
+                //fair (night)
+                holder.tvW.setText(context.getResources().getString(R.string.sun));
+
+                break;
+            case 34:
+                //fair (day)
+                holder.tvW.setText(context.getResources().getString(R.string.sun));
+
+                break;
             case 35:
                 //fair (night)
                 holder.tvW.setText(context.getResources().getString(R.string.sun));

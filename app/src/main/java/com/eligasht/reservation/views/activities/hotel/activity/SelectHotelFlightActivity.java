@@ -5,12 +5,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +23,7 @@ import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
 import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
+import com.eligasht.reservation.views.adapters.weather.WeatherAdapter;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.model.flight.request.DomesticFlight.RequestDomesticFlight;
 import com.eligasht.service.model.flight.response.DomesticFlight.ResponseDomesticFlight;
@@ -42,6 +46,7 @@ import com.eligasht.service.model.hotelflight.search.response.Location;
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.request.LoadFlightSubRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
+import com.eligasht.service.model.weather.response.WeatherApi;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.eligasht.reservation.tools.Prefs;
@@ -79,7 +84,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private ArrayList<FilterModel> filterModels = new ArrayList<>();
     private List<Room> rooms = new ArrayList<>();
     private RelativeLayout rlLoading, rlRoot;
-    private TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort, tvLoading, tvAlertDesc;
+    private TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort, tvLoading, tvAlertDesc,weatherCity;
     private Window window;
     private RelativeLayout elNotFound, rlEr, rlList;
     private FancyButton btnNextDays, btnLastDays;
@@ -89,6 +94,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private String raft, bargasht;
     private String raftFa, bargashtFa;
     private HotelFlightResponse hotelFlightResponse;
+    SlidingDrawer slidingDrawer;
+    private RecyclerView rvWeather;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +118,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         tvAlert = findViewById(R.id.tvAlert);
         tvLoading = findViewById(R.id.tvLoading);
         tvTitle = findViewById(R.id.tvTitle);
+        weatherCity = findViewById(R.id.weatherCity);
         tvCount = findViewById(R.id.tvCount);
         btnBack = findViewById(R.id.btnBack);
         btnHome = findViewById(R.id.btnHome);
@@ -127,6 +136,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         btnLastDays = findViewById(R.id.btnLastDays);
         rlEr = findViewById(R.id.rlEr);
         tvAlertDesc = findViewById(R.id.tvAlertDesc);
+        slidingDrawer = findViewById(R.id.slidingDrawer);
+        rvWeather = findViewById(R.id.rvWeather);
+
         btnNextDays.setOnClickListener(this);
         btnLastDays.setOnClickListener(this);
         btnFilter.setOnClickListener(this);
@@ -153,9 +165,24 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
             }
         });
         hotelFlightRequest();
+        weather_request();
         Utility.init_floating(list, this);
-    }
+        rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
 
+    }
+    public void weather_request(){
+        SingletonService.getInstance().getWeatherPart().getWeatherByCity(new OnServiceStatus<WeatherApi>() {
+            @Override
+            public void onReady(WeatherApi weatherApi) {
+                rvWeather.setAdapter(new WeatherAdapter(weatherApi.getQuery().getResults().getChannel().getItem().getForecast()));
+
+            }
+
+            @Override
+            public void onError(String message) {
+            }
+        }, Prefs.getString("Value-Hotel-City-En-HF-Source", "IST"));
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -597,6 +624,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 rlList.setVisibility(View.GONE);
                 llFilter.setVisibility(View.GONE);
             } else {
+                slidingDrawer.setVisibility(View.VISIBLE);
+
                 maxPrice = hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getMaxPrice();
                 minPrice = hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getMinPrice();
                 int dif = maxPrice - minPrice;
@@ -678,6 +707,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     filterHotelLocationModels.add(new FilterHotelTypeModel(locations.getTitle(), false));
                 }
                 tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"));
+                weatherCity.setText("پیش بینی وضعیت آب و هوای "+Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"));
+
                 tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
                 Collections.sort(selectHotelModelArrayList, new Comparator<SelectFlightHotelModel>() {
                     @Override

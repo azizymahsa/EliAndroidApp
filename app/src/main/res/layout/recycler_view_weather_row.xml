@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:layout_marginRight="10dp"
-    android:layout_marginLeft="10dp">
+    android:layout_marginLeft="10dp"
+    android:orientation="vertical">
     <TextView
-        android:layout_width="70dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/weather"
         android:id="@+id/tvW"
         android:textColor="@color/white"
         android:textAppearance="@style/IconFonts"
+        android:textSize="28dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+
+
        />
     <TextView
         android:id="@+id/tvDate"
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvW"
-        android:text="۱۷ اردیبهشت"
         android:textSize="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
         android:textColor="@color/white"
         android:gravity="center"
+        android:layout_gravity="center"
+
         />
 
-</RelativeLayout>
+</LinearLayout>
