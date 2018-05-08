@@ -205,7 +205,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         Utility.setAnimLoading(this);
 
         slidingDrawer = findViewById(R.id.slidingDrawer);
-        slidingDrawer.setVisibility(View.VISIBLE);
+
         recyclerViewHotel = findViewById(R.id.rvWeather);
         txtWeatherCity=findViewById(R.id.weatherCity);
         window = getWindow();
@@ -388,9 +388,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             Log.e("ch2", "onCreate: ");
         }
         weather_request();
-        recyclerViewHotel.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
     }//end oncreat======================================================================================
     public void weather_request(){
+        Bundle extras = getIntent().getExtras();
+        if (extras != null)
         SingletonService.getInstance().getWeatherPart().getWeatherByCity(new OnServiceStatus<WeatherApi>() {
             @Override
             public void onReady(WeatherApi weatherApi) {
@@ -399,8 +401,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             @Override
             public void onError(String message) {
+
             }
-        }, "IST");
+        },  extras.getString("Value-Maghsad-Airport-Code"));
     }
 
     private void sendRequest() {
@@ -476,6 +479,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
     @Override
     public void onReady(ResponsSearchFlight responsSearchFlight) {
+        recyclerViewHotel.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        slidingDrawer.setVisibility(View.VISIBLE);
         if (flightsList != null) {
             flightsList.clear();
         }
@@ -1439,6 +1444,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         SingletonService.getInstance().getFlight().ChangeFlightAvail(new OnServiceStatus<ResponseChangeFlight>() {
             @Override
             public void onReady(ResponseChangeFlight responsSearchFlight) {
+                recyclerViewHotel.setLayoutManager(new LinearLayoutManager(SearchParvazActivity.this,LinearLayoutManager.HORIZONTAL,false));
+                slidingDrawer.setVisibility(View.VISIBLE);
                 new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
                     window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
