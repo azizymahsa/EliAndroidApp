@@ -665,11 +665,12 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         intent1.putExtra("Geo", Geo);//2017-11-24
                        /* if(startDate != null && endDate != null)
                              SingletonDate.getInstance().setReverseDate(startDate, endDate);*/
-                        SwipeBackActivityHelper.activityBuilder(getActivity())
+                       /* SwipeBackActivityHelper.activityBuilder(getActivity())
                                 .intent(intent1)
                                 .needParallax(true)
                                 .needBackgroundShadow(true)
-                                .startActivity();
+                                .startActivity();*/
+                       startActivity(intent1);
                     } else {//default
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity(), false,false);
                         AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin), getString(R.string.massege));

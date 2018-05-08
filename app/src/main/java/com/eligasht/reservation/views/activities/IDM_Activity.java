@@ -30,8 +30,6 @@ public class IDM_Activity extends FragmentActivity {
 		GlobalApplication.activityStack.add(this);
 		GlobalApplication.setActivity(this);
 		if (!isDBInitiated) {
-
-
 			isDBInitiated = true;
 		}
 		Config_Table config = new Config_Table();
@@ -52,8 +50,6 @@ public class IDM_Activity extends FragmentActivity {
 	}
 
 	public void dropAllTables() {
-
-
 		new Config_Table().updateData(Config_Table.LAST_UPDATE, "");
 	}
 
@@ -73,15 +69,11 @@ public class IDM_Activity extends FragmentActivity {
 			final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 			if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
-//			} else {
-//				buildAlertMessageNoGps();
-//			}
 			}
 		}
 	}
 }
-	
-	
+
 //	protected void buildAlertMessageNoGps() {
 //		IDM_Dialog dialog = new IDM_Dialog(this);
 //		dialog.setMessage(getString(R.string.your_gps_is_off));

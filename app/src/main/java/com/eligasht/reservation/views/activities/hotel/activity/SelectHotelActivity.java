@@ -135,10 +135,6 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
-
-
-
-
         btnOk.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
         Utility.init_floating(list, this);
         btnFilter.setOnClickListener(this);
@@ -153,20 +149,11 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         notiRecive();
         hotel_request();
         weather_request();
-
         tvDate.setText(raftFa + " - " + bargashtFa);
 
         adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this, tvDate);
         list.setAdapter(adapter);
-
-
-
         recyclerViewHotel.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-
-
-
-
-
     }
     @Override
     public void onClick(View v) {

@@ -114,7 +114,6 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
             Value_Mabda_Airport_Code = Prefs.getString("Value-Mabda-Airport-Code", "");
         }
 
-
         listAirPort = findViewById(R.id.listAirPort);
         mAdapter = new GetAirPortMaghsadAdapter(GetAirportMaghsadActivity.this, data, Value_Mabda_City, Value_Mabda_Airport, Value_Mabda_Airport_Code, GetAirportMaghsadActivity.this);
 
@@ -133,7 +132,6 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 RecentCity_Table db = new RecentCity_Table(this);
                 db.dropTable();
                 db.openDB();
-
 
                 if (cursorType1 != null)
                     for (int e = cursorType1.getCount() - 1; e >= 0; e--) {

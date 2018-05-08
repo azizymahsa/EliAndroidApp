@@ -51,10 +51,6 @@ public class AlertDialogPassenger implements View.OnClickListener {
         else
             animation_view.setAnimation("lottie/paper.json");
 
- /*       Typeface typeface = Typeface.createFromAsset(activity.getAssets(), dialogView.getContext().getResources().getString(R.string.iran_sans_bold_ttf));
-        tvAlert.setTextSize(2, 12);
-        tvAlert.setLineSpacing(25);
-        tvAlert.setTypeFace(typeface);*/
         tvAlert.setTextColor(Color.parseColor("#4d4d4d"));
         btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);

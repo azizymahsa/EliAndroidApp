@@ -33,7 +33,6 @@ public class InitUi {
         FancyButton btnHome=activity.findViewById(R.id.btnHome);
         RelativeLayout llHome=activity.findViewById(R.id.llHome);
 
-
         toolbar.setBackgroundColor(ContextCompat.getColor(activity,color));
         tvTitle.setText(title);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
@@ -41,19 +40,14 @@ public class InitUi {
         btnMenu.setText(activity.getString(R.string.icon_menu));
         btnBack.setText(activity.getString(R.string.search_back_right));
 
-
-
         if(isMainActivity){
             btnMenu.setVisibility(View.VISIBLE);
             btnBack.setVisibility(View.GONE);
             llHome.setVisibility(View.GONE);
         }else{
-
             btnMenu.setVisibility(View.GONE);
             llHome.setVisibility(View.VISIBLE);
-
         }
-
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,14 +70,8 @@ public class InitUi {
             }
         });
 
-
-
     }
     public  void Loading(Activity activity, final RelativeLayout rlLoading, final ViewGroup root, boolean start, int image ) {
-      //  ImageView ivImage=activity.findViewById(R.id.ivImage);
-      //  ivImage.setImageDrawable(ContextCompat.getDrawable(activity,image));
-
-
 
         if (start) {
             if (rlLoading.getVisibility() != View.VISIBLE) {
@@ -120,17 +108,12 @@ public class InitUi {
                 })
                         .playOn(rlLoading);
 
-
-                //    rlLoading.setVisibility(View.GONE);
             }
 
         }
 
 
     }
-
-
-
 
 
 }
