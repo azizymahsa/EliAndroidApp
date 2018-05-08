@@ -149,14 +149,11 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         notiRecive();
         hotel_request();
         weather_request();
-
         tvDate.setText(raftFa + " - " + bargashtFa);
 
         adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this, tvDate);
         list.setAdapter(adapter);
-
         recyclerViewHotel.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-
     }
     @Override
     public void onClick(View v) {
