@@ -27,6 +27,7 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ import com.eligasht.reservation.models.model.SearchParvazModelExp;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.adapters.ExpandableListAdapter;
 import com.eligasht.reservation.views.adapters.SearchParvazPinAdapter;
+import com.eligasht.reservation.views.adapters.weather.WeatherAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.OBGFlight.Flight;
@@ -80,6 +82,7 @@ import com.eligasht.service.model.flight.response.searchFlight.SegmentList;
 import com.eligasht.service.model.flight.response.searchFlight.Taxes;
 import com.eligasht.service.model.flight.response.searchFlight.TotalFare;
 import com.eligasht.service.model.flight.response.searchFlight.TotalFareCost;
+import com.eligasht.service.model.weather.response.WeatherApi;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.eligasht.reservation.tools.Prefs;
@@ -141,6 +144,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     public TextView txtDateOnvan, txtDateOnvanB, tvLoading, txticon, tvChangeFlight, txticonDate;
     public RelativeLayout linear_expand;
     public SearchParvazPinAdapter searchParvazPinAdapter;
+    SlidingDrawer slidingDrawer;
         //sort
     boolean besetSeler = false;
     boolean bestOff = false;
@@ -163,7 +167,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
     LinearLayout llNextLastDays, llDateToolbar, llBottom, llSort;
     private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
     private ExpandableListAdapter listAdapterExpanding;
-
+    private  RecyclerView recyclerViewHotel;
     public static void updateAdapterPin(List<PinModelDetail> pinModelDetails, List<PinModelHeader> pinModelHeaders, Context activity) {
         // TODO Auto-generated method stub
         // recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
@@ -199,12 +203,15 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_parvaz);
         Utility.setAnimLoading(this);
-        SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
+      /* SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
         helper.setEdgeMode(false)
                 .setParallaxMode(true)
                 .setParallaxRatio(3)
                 .setNeedBackgroundShadow(true)
-                .init(this);
+                .init(this);*/
+        slidingDrawer = findViewById(R.id.slidingDrawer);
+        slidingDrawer.setVisibility(View.VISIBLE);
+        recyclerViewHotel = findViewById(R.id.rvWeather);
         window = getWindow();
         linear_expand = findViewById(R.id.linear_expand);
         Bundle bundle = this.getIntent().getExtras();
@@ -241,7 +248,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         btnNextDays.setOnClickListener(this);
         btn_no_Result = findViewById(R.id.btn_no_Result);
         btn_no_Result.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
-        ;
+
         llNextLastDays = findViewById(R.id.llNextLastDays);
         btn_no_Result.setOnClickListener(this);
         txtRuzeGhabl = findViewById(R.id.txtRuzeGhabl);
@@ -331,8 +338,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         // Listview Group click listener
         expListViewExpanding.setOnGroupClickListener(new OnGroupClickListener() {
             @Override
-            public boolean onGroupClick(ExpandableListView parent, View v,
-                                        int groupPosition, long id) {
+            public boolean onGroupClick(ExpandableListView parent, View v,int groupPosition, long id) {
 
                 return false;
             }
@@ -381,7 +387,22 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             sendRequest();
             Log.e("ch2", "onCreate: ");
         }
+        weather_request();
+        recyclerViewHotel.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
     }//end oncreat======================================================================================
+    public void weather_request(){
+        SingletonService.getInstance().getWeatherPart().getWeatherByCity(new OnServiceStatus<WeatherApi>() {
+            @Override
+            public void onReady(WeatherApi weatherApi) {
+                recyclerViewHotel.setAdapter(new WeatherAdapter(weatherApi.getQuery().getResults().getChannel().getItem().getForecast()));
+
+            }
+
+            @Override
+            public void onError(String message) {
+            }
+        }, "IST");
+    }
 
     private void sendRequest() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -476,6 +497,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 txtNoResult.setText(responsSearchFlight.getSearchFlightsResult().getErrors().get(0).getDetailedMessage());
                 linear_no_result.setVisibility(View.VISIBLE);
             } else {
+                slidingDrawer.setVisibility(View.VISIBLE);
                 if (responsSearchFlight.getSearchFlightsResult().getFlights().size() > 0)
                     responsSearchFlight.getSearchFlightsResult().getFlights().get(0).getBaseFare();
                 if (Locale.getDefault().getLanguage().equals("fa")) {
