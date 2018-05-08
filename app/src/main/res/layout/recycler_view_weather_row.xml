@@ -5,17 +5,19 @@
     android:gravity="center"
     android:layout_marginRight="10dp"
     android:layout_marginLeft="10dp">
-    <ImageView
+    <TextView
         android:layout_width="70dp"
         android:layout_height="30dp"
         android:src="@drawable/weather"
-        android:id="@+id/img"
-        android:tint="@color/white"/>
+        android:id="@+id/tvW"
+        android:textColor="@color/white"
+        android:textAppearance="@style/IconFonts"
+       />
     <TextView
         android:id="@+id/tvDate"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/img"
+        android:layout_below="@+id/tvW"
         android:text="۱۷ اردیبهشت"
         android:textSize="10dp"
         android:layout_marginTop="5dp"

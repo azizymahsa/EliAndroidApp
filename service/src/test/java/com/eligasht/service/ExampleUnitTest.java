@@ -48,7 +48,6 @@ public class ExampleUnitTest {
        // generateData();
         System.out.println(simpleFormatDate("08 May 2018"));
     }
-
     public static String simpleFormatDate(String date) {
         SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
 
@@ -72,6 +71,7 @@ public class ExampleUnitTest {
         return stringBuilder.toString();
 
     }
+
 
 
     private void generateData() {

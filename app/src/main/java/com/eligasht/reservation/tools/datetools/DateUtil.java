@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.TimeZone;
 /**
  * Created by hossein-ra on 1/10/2017.
@@ -21,7 +22,7 @@ public class DateUtil {
         }
          try {
              Date date = null;
-             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format,Locale.US);
              simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
              try {
                  date = simpleDateFormat.parse(dateTime);
@@ -52,7 +53,7 @@ public class DateUtil {
         }
         try {
             Date date = null;
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format,Locale.US);
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             try {
                 date = simpleDateFormat.parse(dateTime);
@@ -76,7 +77,7 @@ public class DateUtil {
         }
         try {
             Date date = null;
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format,Locale.US);
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             try {
                 date = simpleDateFormat.parse(dateTime);
@@ -107,7 +108,7 @@ public class DateUtil {
         }
         try {
             Date date = null;
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format,Locale.US);
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             try {
                 date = simpleDateFormat.parse(dateTime);
@@ -339,7 +340,7 @@ public class DateUtil {
         }
         try {
             Date date = new Date(getMiliSecondFromJSONDate(milisecond));
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format,Locale.US);
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             return simpleDateFormat.format(date);
         }
@@ -354,7 +355,7 @@ public class DateUtil {
             return 0;
         }
         try {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             Date date = simpleDateFormat.parse(dateTime);
             return date.getTime();

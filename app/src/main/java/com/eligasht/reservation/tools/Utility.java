@@ -1125,8 +1125,31 @@ public class Utility {
 
         return answer;
     }
+    public static String simpleFormatDate(String date) {
+        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy",Locale.US);
 
-   
+        Date newDate = null;
+        try {
+            newDate = format.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        PersianCalendar persianCalendar = new PersianCalendar();
+        persianCalendar.setTime(newDate);
+        StringBuilder stringBuilder = new StringBuilder();
+        String slash = "/";
+        stringBuilder.
+                append(persianCalendar.getPersianYear()).
+                append(slash).
+                append(persianCalendar.getPersianMonth()).
+                append(slash).
+                append(persianCalendar.getPersianDay());
+
+        return stringBuilder.toString();
+
+    }
+
+
 
 }
 

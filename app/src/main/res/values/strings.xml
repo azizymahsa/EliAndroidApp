@@ -2386,5 +2386,19 @@
     <string name="_childP">child</string>
 
 
+
+
+    <string name="sun">&#xe91d;</string>
+    <string name="windy">&#xe920;</string>
+    <string name="cloud">&#xe927;</string>
+    <string name="lightning">&#xe928;</string>
+    <string name="rainy">&#xe92a;</string>
+    <string name="rainy2">&#xe92b;</string>
+    <string name="snow">&#xe92e;</string>
+    <string name="snow3">&#xe930;</string>
+    <string name="wind">&#xe921;</string>
+
+
+
 </resources>
 
