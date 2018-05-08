@@ -12,6 +12,7 @@ public class Country {
     private String AirportCode;
     private String AirportID;
     private String ParentId;
+    private String CityNameEn;
 
     public String getAirportName() {
         return AirportName;
@@ -59,5 +60,13 @@ public class Country {
 
     public void setParentId(String parentId) {
         ParentId = parentId;
+    }
+
+    public String getCityNameEn() {
+        return CityNameEn;
+    }
+
+    public void setCityNameEn(String cityNameEn) {
+        CityNameEn = cityNameEn;
     }
 }

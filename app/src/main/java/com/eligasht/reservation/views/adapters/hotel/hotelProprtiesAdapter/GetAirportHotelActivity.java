@@ -337,6 +337,7 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
                         fishData.setAirportCode(json_data.getString("AirportCode"));
                         fishData.setAirportID(json_data.getString("AirportID"));
                         fishData.setParentId(json_data.getString("ParentId"));
+                   //     fishData.setCityNameEn(json_data.getString("CityNameEn"));
 
                         data.add(fishData);
                     }

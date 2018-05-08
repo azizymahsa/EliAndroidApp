@@ -238,11 +238,12 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                         intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
                         intent.putExtra("Geo", geo);
                         Prefs.putInt("SumPass", Integer.valueOf(tvAdult.getText().toString()) + Integer.valueOf(tvChild.getText().toString()));
-                        SwipeBackActivityHelper.activityBuilder(getActivity())
+            /*            SwipeBackActivityHelper.activityBuilder(getActivity())
                                 .intent(intent)
                                 .needParallax(true)
                                 .needBackgroundShadow(true)
-                                .startActivity();
+                                .startActivity();*/
+                        startActivity(intent);
                     }
 
 
