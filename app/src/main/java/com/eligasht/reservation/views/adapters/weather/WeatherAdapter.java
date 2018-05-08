@@ -26,10 +26,10 @@ import java.util.List;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder> {
 
-    private final List<String> data;
+    private final List<Forecast> data;
     private Context context;
 
-    public WeatherAdapter(final List<String> data) {
+    public WeatherAdapter(final List<Forecast> data) {
         this.data = data;
 
     }
@@ -44,12 +44,12 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        final String item = data.get(position);
+        final Forecast item = data.get(position);
 
 
 
         holder.setIsRecyclable(false);
-      //  holder.tvDate.setText(item);
+        holder.tvDate.setText(item.getDate());
 
     }
 

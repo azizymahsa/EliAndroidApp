@@ -1,5 +1,4 @@
 package com.eligasht.service.generator;
-
 import android.content.Context;
 
 import com.eligasht.ServiceApplication;
@@ -11,12 +10,12 @@ import com.eligasht.service.part.Flight;
 import com.eligasht.service.part.Hotel;
 import com.eligasht.service.part.Insurance;
 import com.eligasht.service.part.LoginProfile;
+import com.eligasht.service.part.WeatherPart;
 import com.eligasht.service.part.XPackage;
 
 import javax.inject.Inject;
 
 import okhttp3.OkHttpClient;
-
 /**
  * Created by Ahmad.nemati on 3/26/2018.
  */
@@ -24,7 +23,6 @@ public class SingletonService {
     private NetComponent netComponent;
     @Inject
     ServiceGenerator serviceGenerator;
-
     @Inject
     OkHttpClient okHttpClient;
     private ServiceApplication serviceApplication;
@@ -89,5 +87,9 @@ public class SingletonService {
 
     public LoginProfile getLoginProfile() {
         return new LoginProfile(serviceGenerator);
+    }
+
+    public WeatherPart getWeatherPart() {
+        return new WeatherPart(serviceGenerator);
     }
 }

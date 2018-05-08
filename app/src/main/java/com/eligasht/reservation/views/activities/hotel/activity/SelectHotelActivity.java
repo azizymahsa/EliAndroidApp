@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ import com.eligasht.service.model.hotel.hotelAvail.response.Hotel;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelType;
 import com.eligasht.service.model.hotel.hotelAvail.response.Location;
+import com.eligasht.service.model.weather.response.WeatherApi;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.eligasht.reservation.tools.Prefs;
@@ -84,6 +86,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private List<Room> rooms = new ArrayList<>();
     private FancyButton btnFilter, btnSort;
     private  RecyclerView recyclerViewHotel;
+    SlidingDrawer slidingDrawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,6 +123,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
         recyclerViewHotel = findViewById(R.id.rvWeather);
+        slidingDrawer = findViewById(R.id.slidingDrawer);
 
         btnBack.setText(getString(R.string.search_back_right));
 
@@ -148,6 +152,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         Utility.loadingText(tvLoading, Prefs.getString("H", ""));
         notiRecive();
         hotel_request();
+        weather_request();
 
         tvDate.setText(raftFa + " - " + bargashtFa);
 
@@ -157,18 +162,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
 
         recyclerViewHotel.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        ArrayList<String> strings = new ArrayList<>();
-        strings.add("1");
-        strings.add("2");
-        strings.add("3");
-        strings.add("4");
-        strings.add("5");
-        strings.add("6");
-        strings.add("7");
-        strings.add("8");
-        strings.add("9");
-        strings.add("10");
-        recyclerViewHotel.setAdapter(new WeatherAdapter(strings));
+
 
 
 
@@ -589,6 +583,19 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         Log.e("testt", gson.toJson(request));
         SingletonService.getInstance().getHotelService().hotelAvail(this, hotelAvailReq);
     }
+    public void weather_request(){
+        SingletonService.getInstance().getWeatherPart().getWeatherByCity(new OnServiceStatus<WeatherApi>() {
+            @Override
+            public void onReady(WeatherApi weatherApi) {
+                recyclerViewHotel.setAdapter(new WeatherAdapter(weatherApi.getQuery().getResults().getChannel().getItem().getForecast()));
+
+            }
+
+            @Override
+            public void onError(String message) {
+            }
+        }, "IST");
+    }
 
     @Override
     public void onReady(HotelAvailRes hotelAvailRes) {
@@ -614,6 +621,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 rlList.setVisibility(View.GONE);
                 llFilter.setVisibility(View.GONE);
             } else {
+                slidingDrawer.setVisibility(View.VISIBLE);
                 maxPrice = hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getMaxPrice();
                 minPrice = hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getMinPrice();
                 int dif = maxPrice - minPrice;
