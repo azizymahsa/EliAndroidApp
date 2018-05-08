@@ -48,6 +48,7 @@ dependencies {
     implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.9.0'
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation project(':type')
+    implementation 'com.mohamadamin:persianmaterialdatetimepicker:1.2.1'
 
 
 
