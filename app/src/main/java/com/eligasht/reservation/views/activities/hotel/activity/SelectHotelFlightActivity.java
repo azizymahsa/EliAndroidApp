@@ -102,15 +102,16 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_hotel_flight);
-        SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
+       /* SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
         helper.setEdgeMode(false)
                 .setParallaxMode(true)
                 .setParallaxRatio(3)
                 .setNeedBackgroundShadow(true)
-                .init(this);
+                .init(this);*/
         Utility.setAnimLoading(this);
         window = getWindow();
         notiRecive();
+
         list = findViewById(R.id.lvHoteResult);
         rlList = findViewById(R.id.rlList);
         btnFilter = findViewById(R.id.btnFilter);
@@ -181,7 +182,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
             @Override
             public void onError(String message) {
             }
-        }, Prefs.getString("Value-Hotel-City-En-HF-Source", "IST"));
+        }, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));
     }
     @Override
     protected void onDestroy() {

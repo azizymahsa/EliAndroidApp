@@ -158,6 +158,8 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 					Prefs.putString("Value-Hotel-City-Fa-HF-Raft",current.getCityName());
 					Prefs.putString("Value-Hotel-City-En-HF-Raft",current.getAirportName());
 					Prefs.putString("Value-Hotel-City-Code-HF-Raft",current.getAirportCode());
+				//	Prefs.putString("Value-Hotel-en",current.getCityNameEn());
+
 
 							/*Prefs.putString("Value-Hotel-City-Fa-HF-Raft",value_Maghsad_City);
 							Prefs.putString("Value-Hotel-City-En-HF-Raft",value_Maghsad_Airport);
@@ -171,6 +173,7 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 					Prefs.putString("Value-Hotel-City-Fa-HF-Source",current.getCityName());
 					Prefs.putString("Value-Hotel-City-En-HF-Source",current.getAirportName());
 					Prefs.putString("Value-Hotel-City-Code-HF-Source",current.getAirportCode());
+				//	Prefs.putString("Value-Hotel-en",current.getCityNameEn());
 /*
 							Prefs.putString("Value-Hotel-City-Fa-HF-Source",value_Maghsad_City);
 							Prefs.putString("Value-Hotel-City-En-HF-Source",value_Maghsad_Airport);
