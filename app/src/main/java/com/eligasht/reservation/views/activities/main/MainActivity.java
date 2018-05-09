@@ -33,6 +33,7 @@ import com.eligasht.reservation.views.activities.AboutActivity;
 import com.eligasht.reservation.views.activities.ConditionActivity;
 import com.eligasht.reservation.views.activities.ContactUsActivity;
 import com.eligasht.reservation.views.activities.SettingsActivity;
+import com.eligasht.reservation.views.activities.ShakeActivity;
 import com.eligasht.reservation.views.activities.login.LogInActivity;
 import com.eligasht.reservation.views.activities.login.ProfileActivity;
 import com.eligasht.reservation.views.dialogs.LogOutAlert;
@@ -61,7 +62,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
     private TextView tvTitle, tvArrow;
-    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting;
+    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting,gift;
     private FragmentManager manager;
     private BroadcastReceiver sendFinish;
     private BroadcastReceiver sendStartTimer, sendDetailFinish;
@@ -108,6 +109,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         tvTitle = findViewById(R.id.tvTitle);
 
         btnFlight = findViewById(R.id.btnFlight);
+        gift = findViewById(R.id.gift);
         btnHotel = findViewById(R.id.btnHotel);
         btnPackage = findViewById(R.id.btnPackage);
         btnInsurance = findViewById(R.id.btnInsurance);
@@ -131,6 +133,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
         //onClick===================================================================================
         btnMenu.setOnClickListener(this);
+        gift.setOnClickListener(this);
         btnSetting.setOnClickListener(this);
         btnHotel.setOnClickListener(this);
         btnPackage.setOnClickListener(this);
@@ -335,6 +338,9 @@ public class MainActivity extends Base implements View.OnClickListener {
                 Intent intent4 = new Intent(this, SettingsActivity.class);
                 intent4.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent4);
+                break;
+            case R.id.gift:
+                startActivity(new Intent(this, ShakeActivity.class));
                 break;
 
         }

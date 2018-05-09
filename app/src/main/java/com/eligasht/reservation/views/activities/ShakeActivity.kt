@@ -31,7 +31,7 @@ import com.squareup.seismic.ShakeDetector.SENSITIVITY_HARD
 import com.squareup.seismic.ShakeDetector.SENSITIVITY_LIGHT
 
 @SuppressLint("MissingSuperCall")
-class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
+class ShakeActivity : AppCompatActivity(), ShakeDetector.Listener {
 
     private var parallaxLayout: ParallaxLayerLayout? = null
     private var translationUpdater: SensorTranslationUpdater? = null

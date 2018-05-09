@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.eftimoff.androipathview.PathView;
 import com.eligasht.R;
 import com.eligasht.reservation.models.HotelPreFactorModel;
 import com.eligasht.reservation.tools.Utility;
