@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primary"
+    android:orientation="vertical"
+    >
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary" />
+
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/konfettiView"
+        android:background="#00000000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarLayout"/>
+    <com.schibsted.spain.parallaxlayerlayout.ParallaxLayerLayout
+        android:id="@+id/parallax"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:parallaxOffsetIncrement="50dp"
+        app:parallaxScaleVertical="1"
+        android:layout_below="@+id/toolbarLayout">
+
+        <ImageView
+            android:id="@+id/layer_nubes"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/layer_viento"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+
+            android:visibility="gone" />
+
+
+        <ImageView
+            android:id="@+id/layer_estrellas_x"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/layer_estrellas_o"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+
+            android:visibility="gone" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/gif"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:lottie_fileName="lottie/gift-box.json"
+
+
+            />
+
+        <ImageView
+            android:id="@+id/layer_icon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+
+            android:visibility="gone" />
+
+    </com.schibsted.spain.parallaxlayerlayout.ParallaxLayerLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/toolbarLayout"
+        android:background="@drawable/shadow" />
+    <RadioGroup
+        android:id="@+id/updater_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <RadioButton
+            android:id="@+id/updater_sensor_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:text="Sensor"
+            tools:checked="true" />
+
+        <RadioButton
+            android:id="@+id/updater_auto_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Auto" />
+    </RadioGroup>
+</RelativeLayout>
+

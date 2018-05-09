@@ -106,7 +106,6 @@
 
             />
 
-
     </RelativeLayout>
     <TextView
         android:id="@+id/tvTitleDate"
