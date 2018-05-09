@@ -33,6 +33,7 @@ import com.eligasht.reservation.views.activities.AboutActivity;
 import com.eligasht.reservation.views.activities.ConditionActivity;
 import com.eligasht.reservation.views.activities.ContactUsActivity;
 import com.eligasht.reservation.views.activities.SettingsActivity;
+
 import com.eligasht.reservation.views.activities.ShakeActivity;
 import com.eligasht.reservation.views.activities.login.LogInActivity;
 import com.eligasht.reservation.views.activities.login.ProfileActivity;

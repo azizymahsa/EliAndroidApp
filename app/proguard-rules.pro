@@ -215,3 +215,9 @@
 -keep public class com.eligasht.reservation.views.adapters.hotel.rooms{ *; }
 -keep public class com.eligasht.reservation.views.adapters.hotel.rooms.** { *; }
 -keep class com.eligasht.reservation.models.** { *; }
+
+# Kotlin
+-dontwarn kotlin.**
+-keepclassmembers class **$WhenMappings {
+    <fields>;
+}
