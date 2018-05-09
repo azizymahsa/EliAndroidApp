@@ -112,9 +112,11 @@ class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
         mp!!.setOnCompletionListener { mp ->
             if (!sucPlayer!!.isPlaying)
                 sucPlayer!!.start()
+
+            showKnofetti()
         }
 
-        sucPlayer!!.setOnCompletionListener { mp -> showKnofetti() }
+
         parallaxLayout!!.setOnClickListener { v -> translationUpdater!!.reset() }
     }
 
