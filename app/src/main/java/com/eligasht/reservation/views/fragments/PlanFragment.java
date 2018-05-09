@@ -165,11 +165,11 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         year_ = persianCalendarDatePicker.getPersianYear();//1396
         day = persianCalendarDatePicker.getPersianDay();//24
 ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
-        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
+   /*     datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
         datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
 //RRRRRRRRRRRRRRRRRRRRR
         datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
-        datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
+        datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());*/
         //RRRRRRRRRRRRRRRRRRRRRRRR
         datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
                 this,
@@ -197,7 +197,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 persianCalendarDatePicker.getPersianDay());*/
 //RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
         //=====================================================================================================
-        datePickerDialog.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
+      /*  datePickerDialog.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
             @Override
             public void onCalendarChanged(boolean isGregorian) {
                 datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
@@ -260,7 +260,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 Prefs.putString("bargasht", bargasht);
                 Prefs.putString("bargashtfa", DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
             }
-        });
+        });*/
         //RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRrr
         //set value bundle
         //get

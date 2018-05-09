@@ -176,7 +176,6 @@ public class SelectHotelModel {
     }
 
 
-
     public int getDiff() {
         return diff;
     }

@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.RadioGroup
 import android.widget.Toast
 
@@ -30,6 +31,7 @@ import nl.dionsegijn.konfetti.models.Size
 
 import com.squareup.seismic.ShakeDetector.SENSITIVITY_HARD
 import com.squareup.seismic.ShakeDetector.SENSITIVITY_LIGHT
+import mehdi.sakout.fancybuttons.FancyButton
 
 @SuppressLint("MissingSuperCall")
 class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
@@ -41,13 +43,24 @@ class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
     private var sucPlayer: MediaPlayer? = null
     private var konfettiView: KonfettiView? = null
     private var hs: ShakeDetector? = null
-
+    private var btnBack: FancyButton? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_ovni)
         konfettiView = findViewById(R.id.konfettiView)
         parallaxLayout = findViewById(R.id.parallax)
         lottieAnimationView = findViewById(R.id.gif)
+
+        btnBack = findViewById(R.id.btnBack) as FancyButton
+        //btnBack = findViewById(R.id.btnBack)
+
+         btnBack!!.setCustomTextFont("fonts/icomoon.ttf")
+         btnBack!!.setText(this.getString(R.string.search_back_right))
+
+        btnBack!!.setOnClickListener {
+          //  Toast.makeText(this@MainActivity, "You clicked me.", Toast.LENGTH_SHORT).show()
+            this.finish()
+        }
         initShakeDetect()
         initSound()
 

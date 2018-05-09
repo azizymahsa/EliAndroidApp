@@ -205,7 +205,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         Utility.setAnimLoading(this);
 
         slidingDrawer = findViewById(R.id.slidingDrawer);
-        slidingDrawer.setVisibility(View.VISIBLE);
+
         recyclerViewHotel = findViewById(R.id.rvWeather);
         txtWeatherCity=findViewById(R.id.weatherCity);
         window = getWindow();
@@ -388,9 +388,11 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             Log.e("ch2", "onCreate: ");
         }
         weather_request();
-        recyclerViewHotel.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
     }//end oncreat======================================================================================
     public void weather_request(){
+        Bundle extras = getIntent().getExtras();
+        if (extras != null)
         SingletonService.getInstance().getWeatherPart().getWeatherByCity(new OnServiceStatus<WeatherApi>() {
             @Override
             public void onReady(WeatherApi weatherApi) {
@@ -399,8 +401,9 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             @Override
             public void onError(String message) {
+
             }
-        }, "IST");
+        },  extras.getString("Value-Maghsad-Airport-Code"));
     }
 
     private void sendRequest() {
@@ -476,6 +479,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
     @Override
     public void onReady(ResponsSearchFlight responsSearchFlight) {
+        recyclerViewHotel.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        slidingDrawer.setVisibility(View.VISIBLE);
         if (flightsList != null) {
             flightsList.clear();
         }
@@ -967,7 +972,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 System.out.println("flightsList.size():" + flightsList.size());
                 dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
                 for (int i = 0; i < flightsList.size(); i++) {
-                    System.out.println("HEADER I=" + i);
+                   // System.out.println("HEADER I=" + i);
                     SegmentList = flightsList.get(i).getSegmentList();
                     SegmentListtrueAvali = flightsList.get(i).getSegmentListTrue();
                     SegmentListtrueAkhari = flightsList.get(i).getSegmentListTrue();
@@ -998,7 +1003,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                                 , SegmentListFalseAkhari);//ArrivalCityNameEnR baraye sort bayad en bashe
                         parentItem.setHeader(header);
                         for (int j = 0; j < SegmentList.size(); j++) {
-                            System.out.println("Detail j=" + j);
+                           // System.out.println("Detail j=" + j);
                             ItemExpandingPlan item = new ItemExpandingPlan();
                             //Item
                             item.DepartureAirportNameFaR = SegmentList.get(j).getDepartureAirportNameFa();
@@ -1110,7 +1115,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 SegmentList = flightsList.get(i).getSegmentList();
 
                 airlineConstraint.add(SegmentList.get(0).getAirlineNameFa());
-                Log.e("rrrrrrrr", SegmentList.get(0).getAirlineNameFa());
+                //Log.e("rrrrrrrr", SegmentList.get(0).getAirlineNameFa());
             }
             List<String> al = new ArrayList<>();
             Set<String> hs = new HashSet<>();
@@ -1439,6 +1444,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         SingletonService.getInstance().getFlight().ChangeFlightAvail(new OnServiceStatus<ResponseChangeFlight>() {
             @Override
             public void onReady(ResponseChangeFlight responsSearchFlight) {
+                recyclerViewHotel.setLayoutManager(new LinearLayoutManager(SearchParvazActivity.this,LinearLayoutManager.HORIZONTAL,false));
+                slidingDrawer.setVisibility(View.VISIBLE);
                 new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
                     window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));

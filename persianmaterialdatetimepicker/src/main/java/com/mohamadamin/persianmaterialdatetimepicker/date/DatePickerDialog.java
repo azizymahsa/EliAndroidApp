@@ -128,9 +128,6 @@ public class DatePickerDialog extends DialogFragment implements
     private OnCalendarChangedListener mOnCalendarChangeListener;
      String title;
 
-    /**
-     * The callback used to indicate the user is done filling in the date.
-     */
     public interface OnDateSetListener {
 
         /**
@@ -143,9 +140,6 @@ public class DatePickerDialog extends DialogFragment implements
         void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay);
     }
 
-    /**
-     * The callback used to notify other date picker components of a change in selected date.
-     */
     public interface OnDateChangedListener {
 
         void onDateChanged();
