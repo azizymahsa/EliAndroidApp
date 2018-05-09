@@ -3162,7 +3162,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     @Override
     public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 
-
         String str_date = year + "/" + (monthOfYear + 1) + "/" + (dayOfMonth - 1);//2018-01-16
         DateFormat formatter;
         Date date;

@@ -144,19 +144,14 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 }
                 break;
             case R.id.txtAparat:
-
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.aparat.com/eligasht")));
                 break;
             case R.id.txtTweeter:
-
                 Intent intent = null;
-
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/eligasht"));
-
                 this.startActivity(intent);
                 break;
             case R.id.txtPintrest:
-
                 try {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.pinterest.com/eligasht/")));
                 } catch (Exception e) {
@@ -164,12 +159,10 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 }
                 break;
             case R.id.txtLinkdin:
-
                 startActivity( new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/company/eligasht")));
                 break;
             case R.id.txtGoogleP:
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.google.com/+Eligasht")));
-
                 break;
             case R.id.txtFacebook:
 

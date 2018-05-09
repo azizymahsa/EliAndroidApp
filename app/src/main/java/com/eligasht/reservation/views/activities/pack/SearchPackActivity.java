@@ -325,8 +325,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                             Toast.LENGTH_SHORT).show();
 
                 }
-
-
                 break;
             case R.id.btnLastDays:
                 if (SingletonDate.getInstance().getStartDate().minusOneDay()) {
@@ -336,12 +334,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.DatePickerError2,
                             Toast.LENGTH_SHORT).show();
-
                 }
-
-
                 break;
-
             case R.id.btnFilter:
                 if (ValidationTools.isEmptyOrNull(pRowXfers)) {
                     return;
@@ -382,28 +376,22 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 });
                 filterPackageDialog.show();
                 break;
-
         }
     }
 
-
     public void showLoading() {
         Window window = getWindow();
-
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
             window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this, R.color.hf));
         }
-
         new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
         rcl_package.showLoading();
     }
 
-
     public void hideLoading() {
         Window window = getWindow();
-
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
