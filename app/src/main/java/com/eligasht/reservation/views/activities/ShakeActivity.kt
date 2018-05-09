@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity(), ShakeDetector.Listener {
 
         hs!!.setSensitivity(SENSITIVITY_HARD)
         hs!!.start(hardSensor)
-        parallaxLayout!!.setTranslationUpdater(AnimatedTranslationUpdater(1f))
+        parallaxLayout!!.setTranslationUpdater(translationUpdater)
     }
 
     private fun initSound() {
