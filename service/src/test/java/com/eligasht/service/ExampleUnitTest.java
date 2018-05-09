@@ -1,4 +1,5 @@
 package com.eligasht.service;
+
 import com.eligasht.service.model.test.markdown.HeaderTestService;
 import com.eligasht.service.model.test.markdown.MarkDownGenerator;
 import com.eligasht.service.model.test.markdown.ServiceTestModel;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -45,7 +47,7 @@ public class ExampleUnitTest {
 //
 //        System.out.println(markDownGenerator.generate());
         // System.out.println(new Gson().toJson(markDownGenerator));
-       // generateData();
+        // generateData();
         System.out.println(simpleFormatDate("08 May 2018"));
     }
 
@@ -96,8 +98,8 @@ public class ExampleUnitTest {
         headerTestServiceArrayList.add(headerTestServiceStaticPage);
         headerTestServiceArrayList.add(headerTestServiceLogin);
         MarkDownGenerator markDownGenerator = new MarkDownGenerator(0, headerTestServiceArrayList);
-       // System.out.println(new Gson().toJson(markDownGenerator));
-       System.out.println(markDownGenerator.generate());
+        // System.out.println(new Gson().toJson(markDownGenerator));
+        System.out.println(markDownGenerator.generate());
     }
 
     private List<ServiceTestModel> getStartup() {
@@ -164,8 +166,6 @@ public class ExampleUnitTest {
         f8.setTotalCall(0);
         f8.setClose(true);
         f8.setIssueLink("https://gitlab.com/nemati/eli/issues/1");
-
-
 
 
         List<ServiceTestModel> list = new ArrayList<>();
