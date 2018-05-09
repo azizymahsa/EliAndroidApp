@@ -972,7 +972,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 System.out.println("flightsList.size():" + flightsList.size());
                 dataExpandingList = new ArrayList<ParentItemExpandingPlan>();
                 for (int i = 0; i < flightsList.size(); i++) {
-                    System.out.println("HEADER I=" + i);
+                   // System.out.println("HEADER I=" + i);
                     SegmentList = flightsList.get(i).getSegmentList();
                     SegmentListtrueAvali = flightsList.get(i).getSegmentListTrue();
                     SegmentListtrueAkhari = flightsList.get(i).getSegmentListTrue();
@@ -1003,7 +1003,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                                 , SegmentListFalseAkhari);//ArrivalCityNameEnR baraye sort bayad en bashe
                         parentItem.setHeader(header);
                         for (int j = 0; j < SegmentList.size(); j++) {
-                            System.out.println("Detail j=" + j);
+                           // System.out.println("Detail j=" + j);
                             ItemExpandingPlan item = new ItemExpandingPlan();
                             //Item
                             item.DepartureAirportNameFaR = SegmentList.get(j).getDepartureAirportNameFa();
@@ -1115,7 +1115,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 SegmentList = flightsList.get(i).getSegmentList();
 
                 airlineConstraint.add(SegmentList.get(0).getAirlineNameFa());
-                Log.e("rrrrrrrr", SegmentList.get(0).getAirlineNameFa());
+                //Log.e("rrrrrrrr", SegmentList.get(0).getAirlineNameFa());
             }
             List<String> al = new ArrayList<>();
             Set<String> hs = new HashSet<>();

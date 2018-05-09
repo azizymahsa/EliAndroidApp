@@ -100,9 +100,6 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         imageView = getActivity().findViewById(R.id.ivImage);
         rlBirthday.setOnClickListener(this);
 
-
-
-
         //set information of user
         birthdayDate = WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserBirthDayMiladi();
         edt_name_fa.setText(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF());
