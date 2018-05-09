@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:id="@+id/rlHedaer"
             android:layout_width="match_parent"
@@ -18,15 +19,14 @@
             android:layout_weight="23"
             android:background="@drawable/background_menu"
             android:gravity="center"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottieUserMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_weight="100"
                 android:layout_marginTop="5dp"
+                android:layout_weight="100"
                 android:orientation="vertical"
                 app:lottie_autoPlay="false"
                 app:lottie_loop="false"
@@ -49,8 +49,7 @@
                     android:text="@string/login"
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="#ffffff"
-                    android:textSize="@dimen/_12dp_normal_textSize"
-                    />
+                    android:textSize="@dimen/_12dp_normal_textSize" />
 
                 <TextView
                     android:id="@+id/tvArrow"
@@ -68,7 +67,6 @@
             </RelativeLayout>
 
 
-
         </LinearLayout>
 
         <LinearLayout
@@ -76,6 +74,7 @@
             android:layout_height="0dp"
             android:layout_weight="100"
             android:orientation="vertical">
+
             <com.github.aakira.expandablelayout.ExpandableWeightLayout
                 android:id="@+id/expandableLayout"
                 android:layout_width="match_parent"
@@ -87,8 +86,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
 
                     <RelativeLayout
@@ -107,8 +105,7 @@
 
                             fancy:fb_text=" "
                             fancy:fb_textColor="#FFFFFF"
-                            fancy:fb_textSize="25dp"
-                            />
+                            fancy:fb_textSize="25dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -145,6 +142,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="70"
                         android:visibility="gone">
+
                         <mehdi.sakout.fancybuttons.FancyButton
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -155,8 +153,8 @@
 
                             fancy:fb_text=" "
                             fancy:fb_textColor="#FFFFFF"
-                            fancy:fb_textSize="25dp"
-                            />
+                            fancy:fb_textSize="25dp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -178,7 +176,7 @@
                             android:text="@string/userlogin"
                             android:textAppearance="@style/IconMenu"
                             android:textColor="@color/text_color_2e"
-                            android:textSize="@dimen/_30dp_normal_iconSize"/>
+                            android:textSize="@dimen/_30dp_normal_iconSize" />
 
                     </RelativeLayout>
 
@@ -186,18 +184,12 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/text_color_2e"
-                        />
+                        android:background="@color/text_color_2e" />
 
                 </LinearLayout>
 
 
-
-
-
             </com.github.aakira.expandablelayout.ExpandableWeightLayout>
-
-
 
 
             <RelativeLayout
@@ -217,8 +209,7 @@
 
                     fancy:fb_text=" "
                     fancy:fb_textColor="#FFFFFF"
-                    fancy:fb_textSize="25dp"
-                    />
+                    fancy:fb_textSize="25dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -254,6 +245,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
+
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnHotel"
                     android:layout_width="match_parent"
@@ -265,8 +257,8 @@
 
                     fancy:fb_text=" "
                     fancy:fb_textColor="#FFFFFF"
-                    fancy:fb_textSize="25dp"
-                    />
+                    fancy:fb_textSize="25dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -288,7 +280,7 @@
                     android:text="@string/hotel"
                     android:textAppearance="@style/IconMenu"
                     android:textColor="@color/text_color_2e"
-                    android:textSize="@dimen/_30dp_normal_iconSize"/>
+                    android:textSize="@dimen/_30dp_normal_iconSize" />
 
             </RelativeLayout>
 
@@ -296,6 +288,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
+
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnHotelFlight"
                     android:layout_width="match_parent"
@@ -307,8 +300,8 @@
 
                     fancy:fb_text=" "
                     fancy:fb_textColor="#FFFFFF"
-                    fancy:fb_textSize="25dp"
-                    />
+                    fancy:fb_textSize="25dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -330,17 +323,16 @@
                     android:text="@string/tour"
                     android:textAppearance="@style/IconMenu"
                     android:textColor="@color/text_color_2e"
-                    android:textSize="@dimen/_30dp_normal_iconSize"/>
+                    android:textSize="@dimen/_30dp_normal_iconSize" />
 
             </RelativeLayout>
-
-
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
+
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnPackage"
                     android:layout_width="match_parent"
@@ -352,8 +344,8 @@
 
                     fancy:fb_text=" "
                     fancy:fb_textColor="#FFFFFF"
-                    fancy:fb_textSize="25dp"
-                    />
+                    fancy:fb_textSize="25dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -375,7 +367,7 @@
                     android:text="@string/packages"
                     android:textAppearance="@style/IconMenu"
                     android:textColor="@color/text_color_2e"
-                    android:textSize="@dimen/_30dp_normal_iconSize"/>
+                    android:textSize="@dimen/_30dp_normal_iconSize" />
 
             </RelativeLayout>
 
@@ -384,6 +376,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
+
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnInsurance"
                     android:layout_width="match_parent"
@@ -395,8 +388,8 @@
 
                     fancy:fb_text=" "
                     fancy:fb_textColor="#FFFFFF"
-                    fancy:fb_textSize="25dp"
-                    />
+                    fancy:fb_textSize="25dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -418,7 +411,7 @@
                     android:text="@string/insurance"
                     android:textAppearance="@style/IconMenu"
                     android:textColor="@color/text_color_2e"
-                    android:textSize="@dimen/_30dp_normal_iconSize"/>
+                    android:textSize="@dimen/_30dp_normal_iconSize" />
 
             </RelativeLayout>
 
@@ -426,6 +419,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
+
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnGhatar"
                     android:layout_width="match_parent"
@@ -437,8 +431,8 @@
 
                     fancy:fb_text=" "
                     fancy:fb_textColor="#FFFFFF"
-                    fancy:fb_textSize="25dp"
-                    />
+                    fancy:fb_textSize="25dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -449,6 +443,7 @@
                     android:textAppearance="@style/IrsansBold"
                     android:textColor="@color/red"
                     android:textSize="@dimen/_12dp_normal_textSize" />
+
                 <TextView
                     android:id="@+id/tvTrain"
                     android:layout_width="wrap_content"
@@ -471,13 +466,15 @@
                     android:text="@string/train"
                     android:textAppearance="@style/IconMenu"
                     android:textColor="@color/text_color_2e"
-                    android:textSize="@dimen/_30dp_normal_iconSize"/>
+                    android:textSize="@dimen/_30dp_normal_iconSize" />
 
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
+
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btn_condition"
                     android:layout_width="match_parent"
@@ -489,8 +486,8 @@
 
                     fancy:fb_text=" "
                     fancy:fb_textColor="#FFFFFF"
-                    fancy:fb_textSize="25dp"
-                    />
+                    fancy:fb_textSize="25dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -512,7 +509,7 @@
                     android:text="@string/terms"
                     android:textAppearance="@style/IconMenu"
                     android:textColor="@color/text_color_2e"
-                    android:textSize="@dimen/_30dp_normal_iconSize"/>
+                    android:textSize="@dimen/_30dp_normal_iconSize" />
 
             </RelativeLayout>
 
@@ -523,6 +520,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
+
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btn_setting"
                     android:layout_width="match_parent"
@@ -600,7 +598,7 @@
                     android:text="@string/contactus"
                     android:textAppearance="@style/IconMenu"
                     android:textColor="@color/text_color_2e"
-                    android:textSize="@dimen/_30dp_normal_iconSize"/>
+                    android:textSize="@dimen/_30dp_normal_iconSize" />
 
             </RelativeLayout>
 
@@ -609,6 +607,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
+
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnAbout"
                     android:layout_width="match_parent"
@@ -620,8 +619,8 @@
 
                     fancy:fb_text=" "
                     fancy:fb_textColor="#FFFFFF"
-                    fancy:fb_textSize="25dp"
-                    />
+                    fancy:fb_textSize="25dp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -643,10 +642,9 @@
                     android:text="@string/aboutus"
                     android:textAppearance="@style/IconMenu"
                     android:textColor="@color/text_color_2e"
-                    android:textSize="@dimen/_30dp_normal_iconSize"/>
+                    android:textSize="@dimen/_30dp_normal_iconSize" />
 
             </RelativeLayout>
-
 
 
             <LinearLayout
@@ -667,8 +665,7 @@
                     android:text="@string/exit"
                     android:textColor="#FFFFFF"
                     android:textSize="@dimen/_12dp_normal_textSize"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -677,28 +674,28 @@
     </LinearLayout>
 
     <FrameLayout
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-      >
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animation_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_fileName="lottie/restless_gift_ii.json"
-            android:layout_margin="5dp"
-            android:layout_gravity="center"
+        android:layout_width="@dimen/_100dp"
+        android:layout_height="@dimen/_100dp"
 
 
-            />
+        >
+
+
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="lottie/restless_gift_ii.json"
+                app:lottie_loop="true"
+
+                />
 
     </FrameLayout>
-
-
-
-
-
 
 
 </RelativeLayout>
