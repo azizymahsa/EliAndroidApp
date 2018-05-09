@@ -3,7 +3,7 @@ package com.eligasht.service;
 import com.eligasht.service.model.test.markdown.HeaderTestService;
 import com.eligasht.service.model.test.markdown.MarkDownGenerator;
 import com.eligasht.service.model.test.markdown.ServiceTestModel;
-import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
+
 
 import org.junit.Test;
 
@@ -48,32 +48,10 @@ public class ExampleUnitTest {
 //        System.out.println(markDownGenerator.generate());
         // System.out.println(new Gson().toJson(markDownGenerator));
         // generateData();
-        System.out.println(simpleFormatDate("08 May 2018"));
+       // System.out.println(simpleFormatDate("08 May 2018"));
     }
 
-    public static String simpleFormatDate(String date) {
-        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
 
-        Date newDate = null;
-        try {
-            newDate = format.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        PersianCalendar persianCalendar = new PersianCalendar();
-        persianCalendar.setTime(newDate);
-        StringBuilder stringBuilder = new StringBuilder();
-        String slash = "/";
-        stringBuilder.
-                append(persianCalendar.getPersianYear()).
-                append(slash).
-                append(persianCalendar.getPersianMonth()).
-                append(slash).
-                append(persianCalendar.getPersianDay());
-
-        return stringBuilder.toString();
-
-    }
 
 
     private void generateData() {
