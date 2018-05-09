@@ -302,7 +302,6 @@ public class MainActivity extends Base implements View.OnClickListener {
 
                 break;
             case R.id.rlUser:
-                new Handler().postDelayed(this::closeDrawer, 200);
 
                 if (expandableLayout.isExpanded()) {
 
