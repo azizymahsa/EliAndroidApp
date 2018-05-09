@@ -117,7 +117,7 @@ class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
         }
 
 
-        parallaxLayout!!.setOnClickListener { v -> translationUpdater!!.reset() }
+        parallaxLayout!!.setOnClickListener { translationUpdater!!.reset() }
     }
 
     override fun onDestroy() {
