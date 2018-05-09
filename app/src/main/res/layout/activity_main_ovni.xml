@@ -87,8 +87,8 @@
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/gif"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
                     app:lottie_fileName="lottie/gift-box.json"
 
 
