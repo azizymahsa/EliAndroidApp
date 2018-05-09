@@ -18,6 +18,7 @@ import android.widget.Toast
 
 import com.airbnb.lottie.LottieAnimationView
 import com.eligasht.R
+import com.eligasht.reservation.base.BaseActivity
 import com.schibsted.spain.parallaxlayerlayout.AnimatedTranslationUpdater
 import com.schibsted.spain.parallaxlayerlayout.ParallaxLayerLayout
 import com.schibsted.spain.parallaxlayerlayout.SensorTranslationUpdater
@@ -31,7 +32,7 @@ import com.squareup.seismic.ShakeDetector.SENSITIVITY_HARD
 import com.squareup.seismic.ShakeDetector.SENSITIVITY_LIGHT
 
 @SuppressLint("MissingSuperCall")
-class ShakeActivity : AppCompatActivity(), ShakeDetector.Listener {
+class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
 
     private var parallaxLayout: ParallaxLayerLayout? = null
     private var translationUpdater: SensorTranslationUpdater? = null
