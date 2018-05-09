@@ -81,9 +81,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:parallaxOffsetIncrement="50dp"
+                app:parallaxOffsetIncrement="20dp"
                 app:parallaxScaleVertical="1"
                 >
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/gif"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:lottie_fileName="lottie/gift-box.json"
+
+
+
+                    />
 
                 <ImageView
                     android:id="@+id/layer_nubes"
@@ -114,15 +124,7 @@
 
                     android:visibility="gone" />
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/gif"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    app:lottie_fileName="lottie/gift-box.json"
 
-
-
-                    />
 
                 <ImageView
                     android:id="@+id/layer_icon"
