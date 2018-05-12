@@ -58,16 +58,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textAppearance="@style/IrsansBold"
                 android:text="با تکان دادن گوشی جایزه بگیرید"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15dp_normal_textSize" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="(شما هروز می توانید یکبار شانس خود را امتحان کنید)"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12dp_txtSize" />
 
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:tint="@color/white"
-                android:src="@drawable/shake_icon" />
+                android:src="@drawable/shake" />
         </LinearLayout>
 
         <LinearLayout
