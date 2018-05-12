@@ -247,7 +247,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         tvLoading = findViewById(R.id.tvLoading);
         Utility.loadingText(tvLoading, Prefs.getString("P", ""));
 
-
         layout_availabel_date = findViewById(R.id.layout_availabel_date);
         error_layout = findViewById(R.id.elNotFound);
         txt_error = findViewById(R.id.tvAlert);
@@ -285,17 +284,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnHome:
-     /*           Intent intent = new Intent(this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                startActivity(intent);
-                finish();*/
-
                 Intent intent = new Intent("sendFinish");
-
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-
-
                 break;
             case R.id.btnOk:
                 onBackPressed();
