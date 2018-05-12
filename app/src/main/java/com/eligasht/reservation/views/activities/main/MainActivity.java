@@ -44,6 +44,7 @@ import com.eligasht.reservation.views.fragments.hotel.HotelFragment;
 import com.eligasht.reservation.views.fragments.insurance.InsuranceFragment;
 import com.eligasht.reservation.views.fragments.pack.PackageFragment;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.dialog.GiftDialog;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
 import com.eligasht.reservation.tools.Prefs;
 
@@ -341,7 +342,8 @@ public class MainActivity extends Base implements View.OnClickListener {
                 startActivity(intent4);
                 break;
             case R.id.gift:
-                startActivity(new Intent(this, ShakeActivity.class));
+            //    startActivity(new Intent(this, ShakeActivity.class));
+                new GiftDialog(this);
                 break;
 
         }
