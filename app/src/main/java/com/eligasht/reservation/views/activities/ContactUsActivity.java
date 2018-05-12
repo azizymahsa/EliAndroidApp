@@ -122,11 +122,9 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         SingletonService.getInstance().getContactUs().contactUsAvail(this,request);
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
     }
 
     @Override
@@ -169,20 +167,13 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 startActivity( new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/eligashtco")));
                 break;
             case R.id.txtTelegram:
-
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/eligashtco")));
                 break;
             case R.id.btnBack:
-
                 finish();
                 break;
             case R.id.txtSocialFollow:
-                // expandableLayout.setDuration(1000);
-                // expandableLayout.setInterpolator(new AnticipateInterpolator());
-
-                //new AlertDialog(this, "شبکه های اجتماعی ما");
                 if (expandableLayout.isExpanded()) {
-
                     expandableLayout.collapse();
                     //  tvArrow.setText(getString(R.string.icon_arrow_up));
                   /*  YoYo.with(Techniques.SlideOutUp)
@@ -192,16 +183,8 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                     ScrollView layout_scroll=(ScrollView)findViewById(R.id.layout_scroll);
                     layout_scroll.fullScroll(ScrollView.FOCUS_DOWN);*/
                 } else {
-
                     expandableLayout.expand();
-                    //  tvArrow.setText(getString(R.string.icon_arrow_down));
-                  /*  YoYo.with(Techniques.SlideInDown)
-                            .duration(600)
-                            .playOn(expandableLayout);
-                    textView15.setScroller(new Scroller(this));
-                    ScrollView layout_scroll=(ScrollView)findViewById(R.id.layout_scroll);
-                    layout_scroll.fullScroll(ScrollView.FOCUS_DOWN);*/
-                }
+                     }
 
                 break;
             case R.id.txtPhone:
@@ -209,12 +192,8 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                     Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "۰۲۱-۸۵۴۰", null));
                     startActivity(intent2);
                 }else {
-
                     String[] phone = responseContactUs.getGetContactUsWithCutureResult().getPhoneNumber().split("\r\n");
-
                     String phoneCall = phone[0];
-
-
                     Log.e("phone", phoneCall+"" );
                     Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel",phoneCall, null));
                     startActivity(intent2);
@@ -225,7 +204,6 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
     public void initMap() {
 
-
         if (serviceOK()) {
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
@@ -233,7 +211,6 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         } else {
             // TODO: 9/18/2016
         }
-
 
     }
 
@@ -259,9 +236,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-
         map = googleMap;
-        // map.getUiSettings().setScrollGesturesEnabled(false);
         googleMap.getUiSettings().setTiltGesturesEnabled(false);
         googleMap.getUiSettings().setScrollGesturesEnabled(false);
         googleMap.getUiSettings().setZoomGesturesEnabled(false);
@@ -273,10 +248,8 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
              location=new LatLng(35.737595,51.413388);
         }
 
-
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
         map.addMarker(new MarkerOptions().position(location).title(getString(R.string.eligasht)));
-
 
     }
 
@@ -295,7 +268,6 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 String jsonAddress = GetAirportsResult.getAddress();
 
                 List<com.eligasht.service.model.flight.response.contactUs.ContactInfo> jArray = GetAirportsResult.getContactInfos();
-
 
                 // Extract data from json and store into ArrayList as class objects
                 for(int i=0;i<jArray.size();i++){
@@ -327,7 +299,6 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
             } catch (Exception e) {
                 Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
             }
-
 
     }
 

@@ -398,7 +398,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this, R.color.colorPrimaryDark));
         }
 
-
         new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
         rcl_package.hideLoading();
     }
@@ -480,7 +479,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             rcl_package.showList(pRowXferAdapter);
         }
     }
-
     //get list of ever passenger with id and room's number
     private ArrayList<PackageRoomNoToRequest> getPackageRoomNoToRequest(ArrayList<LstProwPrice> lstProwPriceArrayList) {
         ArrayList<PackageRoomNoToRequest> packageRoomNoToRequests = new ArrayList<>();
