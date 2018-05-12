@@ -3,6 +3,7 @@ package com.eligasht.reservation.views.adapters.pack;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,6 +99,7 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
         Glide.with(context)
                 .load("http://www.eligasht.com/Content/AirLine/" + item.getAirlineCode() + ".png")
                 .into(holder.img_airLine);
+        Log.e("pic", "http://www.eligasht.com/Content/AirLine/" + item.getAirlineCode() + ".png");
 
 
         holder.root.setOnClickListener(new View.OnClickListener() {

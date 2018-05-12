@@ -49,6 +49,7 @@ import com.github.aakira.expandablelayout.ExpandableWeightLayout;
 import com.eligasht.reservation.tools.Prefs;
 
 import mehdi.sakout.fancybuttons.FancyButton;
+import nl.dionsegijn.konfetti.KonfettiView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends Base implements View.OnClickListener {
@@ -71,6 +72,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     private boolean doubleBackToExitPressedOnce = false;
     private int TIME_INTERVAL = 2000;
     boolean isAnimated = true;
+    GiftDialog giftDialog;
 
 
     public static void setUserName(String name) {
@@ -343,7 +345,11 @@ public class MainActivity extends Base implements View.OnClickListener {
                 break;
             case R.id.gift:
             //    startActivity(new Intent(this, ShakeActivity.class));
-                new GiftDialog(this);
+                if (Prefs.getString("userId","-1").equals("-1"))
+                    giftDialog= new GiftDialog(this);
+                else
+                    startActivity(new Intent(this, ShakeActivity.class));
+
                 break;
 
         }
@@ -507,6 +513,9 @@ public class MainActivity extends Base implements View.OnClickListener {
                 btnExit.setVisibility(View.VISIBLE);
                 tvArrow.setVisibility(View.VISIBLE);
                 rlUser.setClickable(true);
+                if (giftDialog!=null&&giftDialog.alertDialog().isShowing()){
+                    giftDialog.alertDialog().dismiss();
+                }
                 //  expandableLayout.setVisibility(View.VISIBLE);
 
                 Prefs.putString("userId", WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() + "");

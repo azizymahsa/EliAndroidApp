@@ -6,11 +6,8 @@ import android.graphics.Color
 import android.hardware.SensorEvent
 import android.hardware.SensorManager
 import android.media.MediaPlayer
-import android.os.Build
-import android.os.VibrationEffect
-import android.os.Vibrator
+import android.os.*
 import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -20,6 +17,8 @@ import android.widget.Toast
 import com.airbnb.lottie.LottieAnimationView
 import com.eligasht.R
 import com.eligasht.reservation.base.BaseActivity
+import com.eligasht.reservation.views.ui.dialog.ResultGiftDialog
+import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelDialog
 import com.schibsted.spain.parallaxlayerlayout.AnimatedTranslationUpdater
 import com.schibsted.spain.parallaxlayerlayout.ParallaxLayerLayout
 import com.schibsted.spain.parallaxlayerlayout.SensorTranslationUpdater
@@ -42,6 +41,7 @@ class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
     private var mp: MediaPlayer? = null
     private var sucPlayer: MediaPlayer? = null
     private var konfettiView: KonfettiView? = null
+    private var resultGiftDialog: ResultGiftDialog? = null
     private var hs: ShakeDetector? = null
     private var btnBack: FancyButton? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,6 +107,16 @@ class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
                 .addSizes(Size(12, 5f))
                 .setPosition(-50f, konfettiView!!.width + 50f, -50f, -50f)
                 .streamFor(300, 5000L)
+
+
+        Handler().postDelayed({
+            val fm = supportFragmentManager
+
+            resultGiftDialog = ResultGiftDialog.newInstance(this,lottieAnimationView)
+            resultGiftDialog!!.show(fm,"dialog")
+
+
+        }, 2500)
     }
 
     private fun initShakeDetect() {

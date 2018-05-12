@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.views.activities.ShakeActivity;
+import com.eligasht.reservation.views.activities.login.LogInActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -51,14 +52,17 @@ public class GiftDialog implements View.OnClickListener{
         btnCancel.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);
-        dialog.show();
+    //    dialog.show();
+    }
+    public android.app.AlertDialog alertDialog(){
+        return dialog;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnOk:
-                activity.startActivity(new Intent(activity, ShakeActivity.class));
+                activity.startActivity(new Intent(activity, LogInActivity.class));
 
 
 

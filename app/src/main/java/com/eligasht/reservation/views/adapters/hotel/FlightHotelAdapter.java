@@ -160,6 +160,7 @@ public class FlightHotelAdapter extends BaseAdapter {
 
         String imageUri = "https://cdn.elicdn.com" + selectHotelModelArrayList.get(position).getImageUrl();
 
+
         GlideApp
                 .with(activity)
                 .load(imageUri)
