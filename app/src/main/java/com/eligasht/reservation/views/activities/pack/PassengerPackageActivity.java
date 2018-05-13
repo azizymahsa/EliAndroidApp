@@ -330,7 +330,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         persianCalendar2.set(persianCalendarDatePicker.getPersianYear() + 6, persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
         datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
         ///////end setMin
-
         alRoom = new ArrayList<>();
         if (!ValidationTools.isEmptyOrNull(packageRoomNoToRequestList)) {
             for (PackageRoomNoToRequest packageRoomNoToRequest : packageRoomNoToRequestList) {
@@ -462,7 +461,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         txtnumber_passport.setOnClickListener(this);
         txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
         txtfamilym.setOnClickListener(this);
-        // imgCount.setOnClickListener(this);
         txtnamem.setOnClickListener(this);
         txttavalodm.setOnClickListener(this);
         txtSumKhadamat.setOnClickListener(this);
@@ -566,11 +564,10 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     txtTitle.setText(getString(R.string.Buyer_Specifications));
                     ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
-                    //   }
+
                 } else if (linear_saler.getVisibility() == View.VISIBLE) {
 
                     Prefs.putBoolean("BACK_HOME", true);
-
                     finish();
                 }
                 break;

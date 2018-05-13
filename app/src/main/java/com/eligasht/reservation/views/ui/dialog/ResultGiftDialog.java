@@ -157,8 +157,6 @@ public class ResultGiftDialog extends DialogFragment implements View.OnClickList
                 int finalRadius = Math.max(bounds.width(), bounds.height());
                 Animator anim  = ViewAnimationUtils.createCircularReveal(view, centerX, centerY, 0f, finalRadius);
 
-
-
                 view.setVisibility(View.VISIBLE);
                 anim.setDuration(500);
                 anim.start();
@@ -167,9 +165,6 @@ public class ResultGiftDialog extends DialogFragment implements View.OnClickList
             }
 
         }, 200);
-
-
-
 
 
     }

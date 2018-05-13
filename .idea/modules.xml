@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/service/service.iml" filepath="$PROJECT_DIR$/service/service.iml" />
       <module fileurl="file://$PROJECT_DIR$/stepview/stepview.iml" filepath="$PROJECT_DIR$/stepview/stepview.iml" />
       <module fileurl="file://$PROJECT_DIR$/trail/trail.iml" filepath="$PROJECT_DIR$/trail/trail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/trail/trail.iml" filepath="$PROJECT_DIR$/trail/trail.iml" />
       <module fileurl="file://$PROJECT_DIR$/type/type.iml" filepath="$PROJECT_DIR$/type/type.iml" />
     </modules>
   </component>
