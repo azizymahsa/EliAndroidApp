@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.base.Base;
+import com.eligasht.reservation.map.OverlayRouteActivity;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.AboutActivity;
 import com.eligasht.reservation.views.activities.ConditionActivity;
@@ -65,7 +66,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
     private TextView tvTitle, tvArrow;
-    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting,gift;
+    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting,gift,map;
     private FragmentManager manager;
     private BroadcastReceiver sendFinish;
     private BroadcastReceiver sendStartTimer, sendDetailFinish;
@@ -127,6 +128,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         rlHedaer = findViewById(R.id.rlHedaer);
         btnExit = findViewById(R.id.btnExit);
         btnSetting = findViewById(R.id.btn_setting);
+        map = findViewById(R.id.map);
         btnLastBuy = findViewById(R.id.btnLastBuy);
         lottieUserMenu = findViewById(R.id.lottieUserMenu);
         lottieUserMenu.setAnimation("lottie/user.json");
@@ -141,6 +143,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         btnSetting.setOnClickListener(this);
         btnHotel.setOnClickListener(this);
         btnPackage.setOnClickListener(this);
+        map.setOnClickListener(this);
 //        btnTour.setOnClickListener(this);
         btnInsurance.setOnClickListener(this);
         btnHotelFlight.setOnClickListener(this);
@@ -345,10 +348,17 @@ public class MainActivity extends Base implements View.OnClickListener {
                 break;
             case R.id.gift:
             //    startActivity(new Intent(this, ShakeActivity.class));
-                if (Prefs.getString("userId","-1").equals("-1"))
+                if (Prefs.getString("userId","-1").equals("-1")){
                     giftDialog= new GiftDialog(this);
+                    giftDialog.alertDialog().show();
+                }
+
                 else
                     startActivity(new Intent(this, ShakeActivity.class));
+
+                break;
+            case R.id.map:
+                startActivity(new Intent(this, OverlayRouteActivity.class));
 
                 break;
 

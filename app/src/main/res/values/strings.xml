@@ -2399,7 +2399,11 @@
     <string name="snow3">&#xe930;</string>
     <string name="wind">&#xe921;</string>
     <string name="gift">Prize !</string>
-
+    <string-array name="array_place">
+        <item>Bangalore</item>
+        <item>Tokyo</item>
+        <item>New York</item>
+    </string-array>
 
 </resources>
 

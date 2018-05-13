@@ -106,13 +106,13 @@ class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
                 .addShapes(Shape.RECT, Shape.CIRCLE)
                 .addSizes(Size(12, 5f))
                 .setPosition(-50f, konfettiView!!.width + 50f, -50f, -50f)
-                .streamFor(300, 5000L)
+                .streamFor(200, 5000L)
 
 
         Handler().postDelayed({
             val fm = supportFragmentManager
 
-            resultGiftDialog = ResultGiftDialog.newInstance(this,lottieAnimationView)
+            resultGiftDialog = ResultGiftDialog.newInstance(this)
             resultGiftDialog!!.show(fm,"dialog")
 
 
