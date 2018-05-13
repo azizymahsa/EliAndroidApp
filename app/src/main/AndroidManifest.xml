@@ -112,6 +112,9 @@
             android:name=".reservation.views.activities.pack.SearchPackActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".reservation.map.OverlayRouteActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".reservation.views.activities.hotel.activity.ImageViewActivity"
             android:screenOrientation="portrait" />
         <activity

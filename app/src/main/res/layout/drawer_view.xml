@@ -257,6 +257,69 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="2dp"
+                android:layout_weight="70"
+                >
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/map"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    fancy:fb_defaultColor="@android:color/transparent"
+                    fancy:fb_focusColor="#d7d7d7"
+                    fancy:fb_radius="6dp"
+
+                    fancy:fb_text=" "
+                    fancy:fb_textColor="#FFFFFF"
+                    fancy:fb_textSize="25dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_toLeftOf="@+id/animation_view2"
+                    android:layout_toStartOf="@+id/animation_view2"
+                    android:gravity="center"
+                    android:text="کجا میری؟"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textColor="#ca0538"
+                    android:textSize="@dimen/_12dp_normal_textSize" />
+
+                <FrameLayout
+                    android:id="@+id/animation_view2"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="27dp"
+                    android:layout_height="match_parent"
+
+
+                    >
+
+
+
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:lottie_autoPlay="true"
+                        app:lottie_fileName="lottie/pin_location.json"
+                        app:lottie_loop="true"
+
+                        />
+
+                </FrameLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="70">
 
                 <mehdi.sakout.fancybuttons.FancyButton
