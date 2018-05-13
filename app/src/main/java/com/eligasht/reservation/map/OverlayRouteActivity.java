@@ -45,7 +45,6 @@ public class OverlayRouteActivity extends AppCompatActivity implements OnMapRead
     private List<LatLng> route;
 
     private TrailSupportMapFragment mapFragment;
-    FancyButton btnBack;
 
 
     @Override
@@ -60,16 +59,8 @@ public class OverlayRouteActivity extends AppCompatActivity implements OnMapRead
             Window w = getWindow();
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
-        btnBack = (FancyButton) findViewById(R.id.btnBack);
-        btnBack.setCustomTextFont("fonts/icomoon.ttf");
-        btnBack.setText(getString(R.string.search_back_right));
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        mapFragment = (TrailSupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+
+     mapFragment = (TrailSupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         route = new ArrayList<>();
         GoogleDirection.withServerKey("AIzaSyDHApRn9JkcdkHYOegd9Rt_MJBl4jofTQI")
@@ -101,7 +92,7 @@ public class OverlayRouteActivity extends AppCompatActivity implements OnMapRead
                 });
 
 
-        mapStyle = MapStyleOptions.loadRawResourceStyle(getApplicationContext(), R.raw.mapstyle);
+     //   mapStyle = MapStyleOptions.loadRawResourceStyle(getApplicationContext(), R.raw.mapstyle);
     }
 
 
@@ -112,13 +103,6 @@ public class OverlayRouteActivity extends AppCompatActivity implements OnMapRead
         mMap.getUiSettings().setRotateGesturesEnabled(true);
         mMap.getUiSettings().setTiltGesturesEnabled(false);
         mMap.setMaxZoomPreference(25);
-/*        CameraUpdate center =
-                CameraUpdateFactory.newLatLng(new LatLng(35.715298,
-                        51.404343));
-        CameraUpdate zoom = CameraUpdateFactory.zoomTo(12);
-        map.moveCamera(center);
-        map.animateCamera(zoom);*/
-
 
         mMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
             @Override
@@ -129,7 +113,7 @@ public class OverlayRouteActivity extends AppCompatActivity implements OnMapRead
                     @Override
                     public void onCameraMove() {
 
-                      mapFragment.onCameraMove(mMap);
+                        mapFragment.onCameraMove(mMap);
                     }
                 });
 
@@ -165,7 +149,8 @@ public class OverlayRouteActivity extends AppCompatActivity implements OnMapRead
 
     public void zoomRoute(List<LatLng> lstLatLngRoute) {
 
-        if (mMap == null || lstLatLngRoute == null || lstLatLngRoute.isEmpty()) return;
+        if (mMap == null || lstLatLngRoute == null || lstLatLngRoute.isEmpty())
+            return;
 
         LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
         for (LatLng latLngPoint : lstLatLngRoute)
