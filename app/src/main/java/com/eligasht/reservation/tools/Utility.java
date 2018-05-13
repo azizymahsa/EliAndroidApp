@@ -294,22 +294,11 @@ public class Utility {
         return String.format(Locale.US, "%02d:%02d:%02d", hour, minute, second);
     }
 
-//	public static String getSimSerialNumber(Context mContext) {
-//		TelephonyManager mTelephonyMgr;
-//		mTelephonyMgr = (TelephonyManager) mContext
-//				.getSystemService(Context.TELEPHONY_SERVICE);
-//		return mTelephonyMgr.getSimSerialNumber();
-//	}
 
     public static boolean isConnectionReachable(Context context) {
         InetAddress in;
         in = null;
-		/*try {
-			in = InetAddress.getByName(context.getString(R.string.HOST_TO_PING));
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-			return false;
-		}*/
+
         try {
             return in.isReachable(5000);
         } catch (Exception e) {

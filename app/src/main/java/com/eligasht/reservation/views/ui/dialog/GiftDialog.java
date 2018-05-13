@@ -64,8 +64,6 @@ public class GiftDialog implements View.OnClickListener{
             case R.id.btnOk:
                 activity.startActivity(new Intent(activity, LogInActivity.class));
 
-
-
                 break;
             case R.id.btnCancel:
                 dialog.cancel();

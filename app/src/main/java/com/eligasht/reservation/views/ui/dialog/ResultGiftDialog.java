@@ -70,11 +70,6 @@ public class ResultGiftDialog extends DialogFragment implements View.OnClickList
 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-
-
-
-
-
         btnOk = (FancyButton) dialog.findViewById(R.id.btnOk);
         btnCancel = (FancyButton) dialog.findViewById(R.id.btnCancel);
         avi = (AVLoadingIndicatorView) dialog.findViewById(R.id.avi);
@@ -156,23 +151,18 @@ public class ResultGiftDialog extends DialogFragment implements View.OnClickList
                 int centerY = bounds.centerY();
                 int finalRadius = Math.max(bounds.width(), bounds.height());
                 Animator anim  = ViewAnimationUtils.createCircularReveal(view, centerX, centerY, 0f, finalRadius);
-
                 view.setVisibility(View.VISIBLE);
                 anim.setDuration(500);
                 anim.start();
-
-
             }
 
         }, 200);
-
 
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 }
 
