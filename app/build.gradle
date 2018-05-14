@@ -139,6 +139,8 @@ dependencies {
     implementation 'com.schibsted.spain:parallax-layer-layout:1.1.1'
     implementation 'com.squareup:seismic:1.0.2'
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.30"
+    implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
+
 
 
 

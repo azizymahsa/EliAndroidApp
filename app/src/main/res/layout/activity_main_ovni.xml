@@ -13,17 +13,17 @@
         android:id="@+id/btnBack"
         android:layout_width="@dimen/toolbar_bottom_width_50dp"
         android:layout_height="@dimen/toolbar_bottom_width_50dp"
-        android:layout_alignParentRight="true"
         android:layout_gravity="left|center"
-        android:layout_margin="@dimen/_10dp"
         android:gravity="right"
-
         app:fb_defaultColor="@android:color/transparent"
         app:fb_focusColor="@color/focusColor"
+
         app:fb_radius="200dp"
         app:fb_text=" "
         app:fb_textColor="#FFFFFF"
-        app:fb_textSize="@dimen/_25dp_normal_iconSize" />
+        app:fb_textSize="@dimen/_25dp_normal_iconSize"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/_10dp"/>
 
     <nl.dionsegijn.konfetti.KonfettiView
         android:id="@+id/konfettiView"
@@ -44,7 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tvTitle"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,39 +58,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textAppearance="@style/IrsansBold"
                 android:text="با تکان دادن گوشی جایزه بگیرید"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15dp_normal_textSize" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="(شما هروز می توانید یکبار شانس خود را امتحان کنید)"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12dp_txtSize" />
 
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:src="@drawable/shake_icon"
-                android:tint="@color/white" />
+                android:tint="@color/white"
+                android:src="@drawable/shake" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+         >
 
             <com.schibsted.spain.parallaxlayerlayout.ParallaxLayerLayout
                 android:id="@+id/parallax"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:parallaxOffsetIncrement="20dp"
-                app:parallaxScaleVertical="1">
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/gif"
-                    android:layout_width="300dp"
-                    android:layout_height="300dp"
-                    app:lottie_fileName="lottie/gift-box.json"
-
-
-                    />
+                app:parallaxOffsetIncrement="50dp"
+                app:parallaxScaleVertical="1"
+                >
 
                 <ImageView
                     android:id="@+id/layer_nubes"
@@ -120,6 +122,15 @@
 
                     android:visibility="gone" />
 
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/gif"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:lottie_fileName="lottie/gift-box.json"
+
+
+
+                    />
 
                 <ImageView
                     android:id="@+id/layer_icon"

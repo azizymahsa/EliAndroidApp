@@ -37,6 +37,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
         this.context = parent.getContext();
         return new ViewHolder(LayoutInflater.from(context)
                 .inflate(R.layout.recycler_view_weather_row, parent, false));
+
     }
 
     @Override
@@ -44,7 +45,13 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
         final Forecast item = data.get(position);
         holder.setIsRecyclable(false);
      //   holder.tvDate.setText(Utility.simpleFormatDate(item.getDate());
-        holder.tvDate.setText(DateUtil.getLongStringDate(item.getDate(), "dd MMMM yyyy", true));
+        if (position==0){
+            holder.tvDate.setText("امروز");
+
+        }else{
+            holder.tvDate.setText(DateUtil.getLongStringDateWeather(item.getDate(), "dd MMMM yyyy", true));
+
+        }
         switch (Integer.valueOf(data.get(position).getCode())) {
             case 0:
                 //tornado
