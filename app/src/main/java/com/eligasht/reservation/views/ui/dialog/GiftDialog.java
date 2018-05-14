@@ -28,8 +28,6 @@ public class GiftDialog implements View.OnClickListener{
     FancyButton btnOk, btnCancel;
     AVLoadingIndicatorView avi;
     String text;
-    // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
-
 
     public GiftDialog(final Context activity) {
         this.activity = activity;

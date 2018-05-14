@@ -51,9 +51,7 @@ public class OverlayRouteActivity extends AppCompatActivity implements OnMapRead
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_projection_route);
-
         View view = new FrameLayout(this);
-
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow();
@@ -90,8 +88,6 @@ public class OverlayRouteActivity extends AppCompatActivity implements OnMapRead
                         t.printStackTrace();
                     }
                 });
-
-
      //   mapStyle = MapStyleOptions.loadRawResourceStyle(getApplicationContext(), R.raw.mapstyle);
     }
 
@@ -123,7 +119,6 @@ public class OverlayRouteActivity extends AppCompatActivity implements OnMapRead
                     public void run() {
                         if (route.size() > 0)
                             mapFragment.setUpPath(route, mMap, getCurrentAnimType());
-
 
                     }
                 }, 1000);

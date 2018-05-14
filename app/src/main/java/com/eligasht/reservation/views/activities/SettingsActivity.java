@@ -120,7 +120,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             return;
         Prefs.putString("lang", lang);
 
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -149,22 +148,18 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 switch (position) {
                     case 0:
                         lang = "fa";
-
                         curencyNames = new String[]{"IRR(iran)"};
                         curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
 
                         break;
                     case 1:
                         lang = "en";
-
                         curencyNames = new String[]{"GB"};
                         curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
-
 
                         break;
                     case 2:
                         lang = "tr";
-
                         curencyNames = new String[]{"TRY", "EUR"};
                         curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
 

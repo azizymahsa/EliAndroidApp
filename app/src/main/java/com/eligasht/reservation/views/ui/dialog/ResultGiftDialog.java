@@ -47,7 +47,6 @@ public class ResultGiftDialog extends DialogFragment implements View.OnClickList
     AVLoadingIndicatorView avi;
     Dialog dialog;
 
-
     public static ResultGiftDialog newInstance(final Activity activity) {
         ResultGiftDialog resultGiftDialog = new ResultGiftDialog();
         resultGiftDialog.initialize(activity);
@@ -88,8 +87,6 @@ public class ResultGiftDialog extends DialogFragment implements View.OnClickList
                 .duration(700)
                 .playOn(dialog.getCustomView());
 */
-
-
 
         dialog = new Dialog(activity, R.style.MyAlertDialogStyle);
         dialog.setContentView(R.layout.alert_dialog_gift_result);
