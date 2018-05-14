@@ -111,9 +111,12 @@ class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
 
         Handler().postDelayed({
             val fm = supportFragmentManager
+            try {
+                resultGiftDialog = ResultGiftDialog.newInstance(this)
+                resultGiftDialog!!.show(fm,"dialog")            }
+            catch (e: Exception) {
+            }
 
-            resultGiftDialog = ResultGiftDialog.newInstance(this)
-            resultGiftDialog!!.show(fm,"dialog")
 
 
         }, 2500)

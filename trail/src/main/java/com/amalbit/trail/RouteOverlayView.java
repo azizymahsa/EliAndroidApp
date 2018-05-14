@@ -127,7 +127,8 @@ public class RouteOverlayView extends View {
   }
 
   public void zoom(float zoom){
-    if(!isPathSetup) return;
+    if(!isPathSetup)
+      return;
     if(zoom <= ZOOM_MIN_TO_STOP_ANIM) {
       stopAnimating();
       setVisibility(GONE);

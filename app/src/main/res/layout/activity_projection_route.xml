@@ -10,21 +10,18 @@
 
 
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
   <fragment
       android:id="@+id/map"
-      android:name="com.amalbit.trail.TrailSupportMapFragment"
+      android:name="com.google.android.gms.maps.SupportMapFragment"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       />
-</FrameLayout>
 
-
-  <include layout="@layout/layout_bottom_sheet"
-      android:visibility="gone"/>
-
+  <nl.dionsegijn.konfetti.KonfettiView
+      android:id="@+id/konfettiView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="#00000000" />
   <mehdi.sakout.fancybuttons.FancyButton
       android:id="@+id/btnBack"
       android:layout_width="@dimen/toolbar_bottom_width_50dp"
@@ -42,5 +39,42 @@
       android:layout_margin="@dimen/_10dp"/>
 
 
+  <com.airbnb.lottie.LottieAnimationView
+      android:id="@+id/animation_view"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
+      android:orientation="vertical"
+      app:lottie_autoPlay="true"
+      app:lottie_loop="false"
+      app:lottie_fileName="lottie/green_check.json"
+      android:layout_centerInParent="true"
+      android:visibility="gone"
+      />
+  <LinearLayout
+
+      android:layout_width="300dp"
+      android:layout_height="@dimen/_40dp"
+      android:layout_gravity="center"
+      android:layout_alignParentBottom="true"
+      android:layout_marginBottom="10dp"
+      android:layout_marginLeft="@dimen/_10dp_margin"
+      android:layout_marginRight="@dimen/_10dp_margin"
+      android:layout_marginTop="10dp"
+      android:background="@drawable/button_map"
+      android:gravity="center"
+      android:layout_centerHorizontal="true">
+
+    <TextView
+        android:id="@+id/tvStart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:text="شروع سفر"
+        android:textColor="@color/white"
+
+        android:textSize="@dimen/_16dp_normal_textSize" />
+  </LinearLayout>
 </RelativeLayout>
 
