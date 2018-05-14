@@ -108,7 +108,6 @@ public class OverlayRouteActivity extends AppCompatActivity implements OnMapRead
                 mMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
                     @Override
                     public void onCameraMove() {
-
                         mapFragment.onCameraMove(mMap);
                     }
                 });
@@ -119,12 +118,10 @@ public class OverlayRouteActivity extends AppCompatActivity implements OnMapRead
                     public void run() {
                         if (route.size() > 0)
                             mapFragment.setUpPath(route, mMap, getCurrentAnimType());
-
                     }
                 }, 1000);
             }
         });
-
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 

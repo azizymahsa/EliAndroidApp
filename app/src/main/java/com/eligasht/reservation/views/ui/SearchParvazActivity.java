@@ -985,7 +985,6 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                                 " ", " ",
                                 " ", " ",
                                 flightsList.get(i).getTotalFare().getAmount(),
-                                //flightsList.get(i).getAdlCost().getAmount(),
                                 flightsList.get(i).getFlightGUID()
                                 , SegmentList.get(0).getAirlineNameFa()
                                 , SegmentList.get(0).getAirlineCode()
@@ -1084,23 +1083,23 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         }
         RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
         if(!flag){
-        if (flightsList.size() == 0 || flightsList == null) {
-            new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
-            }
-            linear_expand.setVisibility(View.GONE);
+            if (flightsList.size() == 0 || flightsList == null) {
+                new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
+                }
+                linear_expand.setVisibility(View.GONE);
 
-            txtNoResult.setText(R.string.NoResult);
-            if (flag && flightsList == null)
-                linear_no_result.setVisibility(View.VISIBLE);
-            else if (flag && flightsList.size() > 0)
+                txtNoResult.setText(R.string.NoResult);
+                if (flag && flightsList == null)
+                    linear_no_result.setVisibility(View.VISIBLE);
+                else if (flag && flightsList.size() > 0)
+                    linear_no_result.setVisibility(View.GONE);
+                else
+                    linear_no_result.setVisibility(View.VISIBLE);
+            }else{
                 linear_no_result.setVisibility(View.GONE);
-            else
-                linear_no_result.setVisibility(View.VISIBLE);
-        }else{
-            linear_no_result.setVisibility(View.GONE);
-        }
+            }
         }
     }//end expanding listdata
 
