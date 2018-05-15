@@ -230,7 +230,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         }
 
         for(LstProwPrice lstProwPrice : lstProwPrices){
-            if(lstProwPrice.equals("true")){
+            if(lstProwPrice.isChecked()){
                 return false;
             }
         }

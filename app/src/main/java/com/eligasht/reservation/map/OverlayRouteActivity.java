@@ -40,6 +40,7 @@ import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActiv
 import com.eligasht.reservation.views.ui.dialog.LocationAlertDialog;
 import com.eligasht.reservation.views.ui.dialog.ResultGiftDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelDialog;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -51,11 +52,16 @@ import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PatternItem;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.RoundCap;
 import com.google.maps.android.SphericalUtil;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import nl.dionsegijn.konfetti.KonfettiView;
@@ -137,7 +143,8 @@ public class OverlayRouteActivity extends BaseActivity implements OnMapReadyCall
                             mMap.addMarker(new MarkerOptions().position(POINT_B)
                                     .draggable(false).visible(true).title("Marker 2"));
                             tvStart.setText("جایز تو بگیر!");
-                            drawElementsOnMap(POINT_A, POINT_B);
+                           // drawElementsOnMap(POINT_A, POINT_B);
+                            draw(POINT_A, POINT_B);
                         }
                     }
 
@@ -174,7 +181,6 @@ public class OverlayRouteActivity extends BaseActivity implements OnMapReadyCall
 
 
 
-
         // Add a marker in Sydney and move the camera
       /*  mMap.addMarker(new MarkerOptions().position(POINT_A)
                 .draggable(false).visible(true).title("Marker 1"));
@@ -198,7 +204,43 @@ public class OverlayRouteActivity extends BaseActivity implements OnMapReadyCall
         LatLngBounds bounds = new LatLngBounds(POINT_A, POINT_B);
         //  Log.e("center1", bounds.getCenter()+"");
         Log.e("center", midPoint(POINT_A.latitude, POINT_A.longitude, POINT_B.latitude, POINT_B.longitude) + "");
+
+
+
+
+
     }
+
+
+
+
+
+    public void draw(LatLng latLng1 ,LatLng latLng2 ){
+
+
+        Marker marker1 = mMap.addMarker(new MarkerOptions().position(latLng1).title("Start"));
+        Marker marker2 = mMap.addMarker(new MarkerOptions().position(latLng2).title("End"));
+
+     //   List<PatternItem> pattern = Arrays.<PatternItem>asList(new Dash(300), new Gap(20));
+        PolylineOptions popt = new PolylineOptions().add(latLng1).add(latLng2)
+                .width(5).color(ContextCompat.getColor(this, R.color.app_base_color))
+                .geodesic(true);
+        mMap.addPolyline(popt);
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+        builder.include(marker1.getPosition());
+        builder.include(marker2.getPosition());
+
+        LatLngBounds bounds = builder.build();
+        int padding = 150; // offset from edges of the map in pixels
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        mMap.moveCamera(cu);
+        mMap.animateCamera(cu);
+
+
+    }
+
 
     public static LatLng midPoint(double lat1, double lon1, double lat2, double lon2) {
         double dLon = Math.toRadians(lon2 - lon1);

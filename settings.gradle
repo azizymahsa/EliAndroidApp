@@ -6,5 +6,6 @@ include ':CircleProgressView'
 include ':connectionbuddy'
 include ':stepview'
 include ':trail'
+include ':pinentryedittext'
 //include ':library2'
 
