@@ -28,4 +28,8 @@ public interface LoginView {
     void setPasswordError();
 
     void navigateToHome();
+    void OnShowLOgin();
+    void  OnShowSignIn();
+    void OnBackLOgin();
+    void  OnBackSignIn();
 }

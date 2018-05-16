@@ -2370,4 +2370,10 @@
     <string name="_childP">کودک</string>
     <string name="weather">پیش بینی وضعیت آب و هوای</string>
     <string name="gift">جایزه !</string>
+    <string name="let_s_go">الی گشت</string>
+    <string name="amazing_user_login_screen_for_your_android_device">ورود به صفحه کاربری شگفت انگیز الی گشت</string>
+    <string name="log_in">ورود</string>
+    <string name="sign_up"> ثبت نام</string>
+    <string name="join_user">عضویت</string>
+    <string name="create_account">ایجاد حساب کاربری</string>
 </resources>

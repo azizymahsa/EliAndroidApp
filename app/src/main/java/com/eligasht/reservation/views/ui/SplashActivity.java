@@ -30,6 +30,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.BuildConfig;
 import com.eligasht.R;
 import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
+import com.eligasht.reservation.views.activities.loginMVP.view.LoginActivity;
 import com.eligasht.service.model.startup.response.SearchNote;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
@@ -255,7 +256,8 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                                     .split("-")[0].equals(Prefs.getString("lang", "fa"))) {
                                 Prefs.putBoolean("isFirstEntrance", false);
                                 Prefs.putString("lang", "fa");
-                                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                               // startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                                 finish();
                             } else {
                                 Prefs.putBoolean("isFirstEntrance", false);
@@ -263,7 +265,8 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                                 showRestartDialog();
                             }
                         } else {
-                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                            //startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                             finish();
                         }
                         Prefs.putBoolean("isFirstEntrance", false);

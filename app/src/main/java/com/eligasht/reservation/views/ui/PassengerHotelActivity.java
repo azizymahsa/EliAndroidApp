@@ -228,10 +228,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 String monthMF = dateSplite2[1];
                 String yearMF = dateSplite2[0];
 
-
                 datePickerDialog.initialize(PassengerHotelActivity.this, Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
                 datePickerDialog.show(getSupportFragmentManager(), "DatepickerdialogRaft");
-
 
             }
         });
@@ -257,7 +255,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
         //=====================================================================================================
 
-//change button shamsi to milady (date picker)
+        //change button shamsi to milady (date picker)
         datePickerDialog.setOnCalandarChangeListener(new com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
             @Override
             public void onCalendarChanged(boolean isGregorian) {
@@ -266,7 +264,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 int daySh = datePickerDialog.getSelectedDay().getDay();//29
                 //convert to miladi
                 String[] dateSplite3 = date_server(yearSh, monthSh - 1, daySh - 1).split("-");
-
 
                 String dayMF1 = dateSplite3[2];
                 String monthMF1 = dateSplite3[1];
@@ -296,7 +293,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
             datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
             int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true) - 2;
@@ -316,7 +312,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
             datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
             int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true);
@@ -335,7 +330,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
             datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
             int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true) - 12;
@@ -344,7 +338,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
 
             datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
-
         }
 //min max passport solar
         PersianCalendar persianCalendar2 = new PersianCalendar();

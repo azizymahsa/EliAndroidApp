@@ -72,16 +72,14 @@ public class JustifiedTextView extends View {
 			textColor=mXmlParser.getColorValue();
 			textSize=mXmlParser.getTextSize();
 			textSizeUnit=mXmlParser.gettextSizeUnit();
-			
-			
+
 			setText(text);
 			setTextColor(textColor);
 			if (textSizeUnit==-1)
 				setTextSize(textSize);
 			else
 				setTextSize(textSizeUnit, textSize);
-			
-//			setText(XmlToClassAttribHandler.GetAttributeStringValue(mContext, attrs, namespace, key, ""));
+			//			setText(XmlToClassAttribHandler.GetAttributeStringValue(mContext, attrs, namespace, key, ""));
 			
 		}
 
@@ -98,9 +96,7 @@ public class JustifiedTextView extends View {
 				hasTextBeenDrown=true;
 				setTextAreaWidth(getWidth()-(getPaddingLeft()+getPaddingRight()));	
 				calculate();
-
 			}
-
 
 		});
 
@@ -149,9 +145,7 @@ public class JustifiedTextView extends View {
 		}		
 		
 	}
-	
-
-	/***
+		/***
 	 * this method get the string and divide it to a list of StringLines according to textAreaWidth
 	 * @param originalText
 	 * @return
