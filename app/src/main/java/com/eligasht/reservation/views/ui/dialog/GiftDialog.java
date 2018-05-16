@@ -61,7 +61,7 @@ public class GiftDialog implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnOk:
-                activity.startActivity(new Intent(activity, Nlogin.class));
+
 
 
 

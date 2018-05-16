@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.ui.dialog;
 import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
+import com.eligasht.reservation.map.OverlayRouteActivity;
 import com.eligasht.reservation.views.activities.login.LogInActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -27,19 +29,37 @@ import mehdi.sakout.fancybuttons.FancyButton;
 /**
  * Created by Reza Nejati on 14,May,2018
  */
-public class LocationAlertDialog extends DialogFragment implements View.OnClickListener {
-    TextView tvAlert, tvTitle, tvRoomName;
+@SuppressLint("ValidFragment")
+public  class LocationAlertDialog extends DialogFragment implements View.OnClickListener {
+    TextView tvDesc, tvTitle;
     Activity activity;
     FancyButton btnOk, btnCancel;
     AVLoadingIndicatorView avi;
     Dialog dialog;
+    String lottie;
+    String title,desc,btnOKtxt,btnCanceltxt;
+    OnDialogClick onDialogClick;
+    boolean hasCancelBtn;
 
-
-    public static LocationAlertDialog newInstance(final Activity activity) {
-        LocationAlertDialog locationAlertDialog = new LocationAlertDialog();
-        locationAlertDialog.initialize(activity);
-        return locationAlertDialog;
+    public LocationAlertDialog(Activity activity, String lottie, String title, String desc,String btnOKtxt,String btnCanceltxt,boolean hasCancelBtn, OnDialogClick onDialogClick) {
+        this.activity = activity;
+        this.lottie=lottie;
+        this.title=title;
+        this.desc=desc;
+        this.onDialogClick=onDialogClick;
+        this.btnOKtxt=btnOKtxt;
+        this.btnCanceltxt=btnCanceltxt;
+        this.hasCancelBtn=hasCancelBtn;
     }
+
+
+
+
+  /*  public static LocationAlertDialog newInstance(final Activity activity,String lottie,String title,String desc) {
+        LocationAlertDialog locationAlertDialog = new LocationAlertDialog();
+        locationAlertDialog.initialize(activity,lottie,title,desc);
+        return locationAlertDialog;
+    }*/
 
     @NonNull
     @Override
@@ -55,19 +75,24 @@ public class LocationAlertDialog extends DialogFragment implements View.OnClickL
         btnOk = (FancyButton) dialog.findViewById(R.id.btnOk);
         btnCancel = (FancyButton) dialog.findViewById(R.id.btnCancel);
         avi = (AVLoadingIndicatorView) dialog.findViewById(R.id.avi);
-        tvAlert = (TextView) dialog.findViewById(R.id.tvAlert);
+        tvDesc = (TextView) dialog.findViewById(R.id.tvDesc);
         tvTitle = (TextView) dialog.findViewById(R.id.tvTitle);
-        tvRoomName = (TextView) dialog.findViewById(R.id.tvRoomName);
+
+        tvTitle.setText(title);
+        tvDesc.setText(desc);
         LottieAnimationView lottieAnimationView = (LottieAnimationView) dialog.findViewById(R.id.animation_view);
-        lottieAnimationView.setAnimation("lottie/verify_phone.json");
+        lottieAnimationView.setImageAssetsFolder("lottie/images/");
+        lottieAnimationView.setAnimation(lottie);
         lottieAnimationView.playAnimation();
         btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnCancel.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
-   /*     YoYo.with(Techniques.FadeIn)
-                .duration(500)
-                .playOn(dialog());*/
+        btnOk.setText(btnOKtxt);
+        btnCancel.setText(btnCanceltxt);
+        if (!hasCancelBtn)
+            btnCancel.setVisibility(View.GONE);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             revealShow();
         }else {
@@ -78,21 +103,17 @@ public class LocationAlertDialog extends DialogFragment implements View.OnClickL
         return dialog;
     }
 
-    private void initialize(Activity activity) {
-        this.activity = activity;
 
-    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnOk:
-                Intent gpsOptionsIntent = new Intent(
-                        android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(gpsOptionsIntent);
+                onDialogClick.btnOk(getTag());
+
                 break;
             case R.id.btnCancel:
-                activity.finish();
+                onDialogClick.btnCancel(getTag());
                 break;
         }
     }
@@ -132,6 +153,15 @@ public class LocationAlertDialog extends DialogFragment implements View.OnClickL
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+    }
+
+
+
+
+    public interface  OnDialogClick
+    {
+        void btnOk(String tag);
+        void btnCancel(String tag);
     }
 }
 

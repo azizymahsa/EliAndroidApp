@@ -2,6 +2,7 @@ package com.eligasht.reservation.map;
 import android.animation.Animator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -58,6 +59,7 @@ import com.google.android.gms.maps.model.PatternItem;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.RoundCap;
 import com.google.maps.android.SphericalUtil;
+import com.jaeger.library.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,7 +70,7 @@ import nl.dionsegijn.konfetti.KonfettiView;
 import nl.dionsegijn.konfetti.models.Shape;
 
 import static com.eligasht.reservation.base.GlobalApplication.getActivity;
-public class OverlayRouteActivity extends BaseActivity implements OnMapReadyCallback {
+public class OverlayRouteActivity extends BaseActivity implements OnMapReadyCallback,LocationAlertDialog.OnDialogClick,GoogleMap.OnCameraIdleListener {
     private static final LatLng POINT_A = new LatLng(35.737670, 51.412907);
     private static final LatLng POINT_B = new LatLng(41.015137, 28.97953);
     private static final LatLng POINT_C = new LatLng(41.716667, 44.7833);
@@ -76,22 +78,27 @@ public class OverlayRouteActivity extends BaseActivity implements OnMapReadyCall
     private GoogleMap mMap;
     private MapStyleOptions mapStyle;
     FancyButton btnBack;
-    LocationAlertDialog locationAlertDialog;
+    LocationAlertDialog locationAlertDialog,arrivalDialog;
     LottieAnimationView animation_view;
     TextView tvStart;
     int test = 0;
     android.support.v4.app.FragmentManager fm;
     View markerView;
+    boolean isShowAlert=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_projection_route);
+        fm = getSupportFragmentManager();
+        locationAlertDialog = new LocationAlertDialog(this,"lottie/verify_phone.json","پیغام",getString(R.string.locationAlert),"مکان یاب","بازگشت" ,true,this);
+        arrivalDialog = new LocationAlertDialog(this,"lottie/location.json","پیغام","مبدا شما مشخص شد!لطفا هنگامی که به مقصد خود رسیدید دکمه رسیدم را فشار دهید.","متوجه شدم!","مکان یاب",false,this);
+
         new Handler().postDelayed(() -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                fm = getSupportFragmentManager();
-                locationAlertDialog = LocationAlertDialog.newInstance(this);
-                locationAlertDialog.show(fm, "test");
+
+             locationAlertDialog.show(fm, "location");
+
             }
         }, 800);
         btnBack = findViewById(R.id.btnBack);
@@ -119,6 +126,15 @@ public class OverlayRouteActivity extends BaseActivity implements OnMapReadyCall
                     ResultGiftDialog resultGiftDialog = ResultGiftDialog.newInstance(OverlayRouteActivity.this);
                     resultGiftDialog.show(fm, "dialog");
                 }else if(test == 0){
+                    isShowAlert=true;
+
+
+
+
+
+
+
+
                     test++;
                     mMap.addMarker(new MarkerOptions().position(POINT_A)
                             .draggable(false).visible(true).title("Marker 1") );
@@ -127,7 +143,7 @@ public class OverlayRouteActivity extends BaseActivity implements OnMapReadyCall
                                     OverlayRouteActivity.this,
                                     markerView)))*/
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(POINT_A, 4));
-                    tvStart.setText("پایان سفر");
+                    tvStart.setText("رسیدم!");
                 }
 
                 animation_view.addAnimatorListener(new Animator.AnimatorListener() {
@@ -163,7 +179,7 @@ public class OverlayRouteActivity extends BaseActivity implements OnMapReadyCall
     @Override
     protected void onResume() {
         super.onResume();
-        if (locationAlertDialog != null) {
+        if (locationAlertDialog != null&&locationAlertDialog.isAdded()) {
             locationAlertDialog.dismiss();
         }
     }
@@ -174,6 +190,7 @@ public class OverlayRouteActivity extends BaseActivity implements OnMapReadyCall
         mMap.getUiSettings().setZoomControlsEnabled(false);
         mapStyle = MapStyleOptions.loadRawResourceStyle(getApplicationContext(), R.raw.mapstyle);
         mMap.setMapStyle(mapStyle);
+        mMap.setOnCameraIdleListener(this);
     //     markerView = LayoutInflater.from(this).inflate(R.layout.map_marker, null);
 
 
@@ -332,5 +349,36 @@ public class OverlayRouteActivity extends BaseActivity implements OnMapReadyCall
         view.draw(canvas);
 
         return bitmap;
+    }
+
+
+
+    @Override
+    public void btnOk(String tag) {
+        if (tag.equals("location")){
+            Intent gpsOptionsIntent = new Intent(
+                    android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(gpsOptionsIntent);
+        }
+        if (tag.equals("arrival")){
+            arrivalDialog.dismiss();
+        }
+
+    }
+
+    @Override
+    public void btnCancel(String tag) {
+        if (tag.equals("location")){
+           finish();
+        }
+    }
+
+    @Override
+    public void onCameraIdle() {
+        if(isShowAlert&&arrivalDialog!=null&&!arrivalDialog.isAdded()){
+            isShowAlert = false;
+            arrivalDialog.show(fm, "arrival");
+        }
+
     }
 }

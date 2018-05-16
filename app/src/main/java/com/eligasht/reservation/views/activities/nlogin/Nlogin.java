@@ -33,42 +33,37 @@ import mehdi.sakout.fancybuttons.FancyButton;
 /**
  * Created by Reza Nejati on 15,May,2018
  */
-public class Nlogin extends BaseActivity implements View.OnClickListener ,TextView.OnEditorActionListener{
+public class Nlogin extends BaseActivity implements View.OnClickListener, TextView.OnEditorActionListener {
     RelativeLayout llHome;
     EditText etMobileNumber;
     LinearLayout llLayout;
     TextView tvLogin, tvRegister;
-    String mobileNumber,code,token;
-    RelativeLayout  rlCode;
+    String mobileNumber, code, token;
+    RelativeLayout rlCode;
     LinearLayout rlMobile;
     CardView cvLogin, cvRegister;
     RelativeLayout rlLoading;
-    boolean isCode=false;
-    LinearLayout llMobileNumber,llCode,llRegister;
+    boolean isCode = false;
+    LinearLayout llMobileNumber, llCode, llRegister;
     PinEntryEditText codeView;
     ImageView ivImage;
     Button btnLogIn;
-    int type=0;
+    int type = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nlogin);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            //getWindow().setStatusBarColor(Color.parseColor("#FFD99CC5"));
-        }
-      InitUi.Toolbar(this, false, R.color.TRANSPARENT, " ");
 
-      StatusBarUtil.setTranslucent(this,2);
+        InitUi.Toolbar(this, false, R.color.TRANSPARENT, " ");
+        StatusBarUtil.setTranslucent(this, 2);
         initView();
     }
-    public void initView(){
 
-
+    public void initView() {
         llHome = findViewById(R.id.llHome);
         llRegister = findViewById(R.id.llRegister);
         llHome.setVisibility(View.GONE);
-
         llLayout = (LinearLayout) findViewById(R.id.llLayout);
         btnLogIn = findViewById(R.id.btnLogIn);
         codeView = (PinEntryEditText) findViewById(R.id.codeView);
@@ -78,35 +73,28 @@ public class Nlogin extends BaseActivity implements View.OnClickListener ,TextVi
         etMobileNumber = (EditText) findViewById(R.id.input_mobile);
         cvLogin = (CardView) findViewById(R.id.cvLogin);
         ivImage = (ImageView) findViewById(R.id.ivImage);
-
         rlLoading = (RelativeLayout) findViewById(R.id.rlLoading);
-      //  btnLogIn.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnLogIn.setOnClickListener(this);
         etMobileNumber.clearFocus();
         etMobileNumber.setOnEditorActionListener(this);
         codeView.setOnEditorActionListener(this);
-
         llLayout.requestFocus();
-
-
-
     }
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         return super.dispatchKeyEvent(event);
-
     }
 
     @Override
     public void onClick(View v) {
         code = codeView.getText().toString();
-        if (type==2){
+        if (type == 2) {
             startActivity(new Intent(Nlogin.this, ShakeActivity.class));
             finish();
         }
-    if (type==1) {
-            type=2;
+        if (type == 1) {
+            type = 2;
             code = codeView.getText().toString();
             if (code == null || code.length() != 6) {
                 Toast.makeText(this, "لطفا کد را وارد نمایید", Toast.LENGTH_SHORT).show();
@@ -114,15 +102,10 @@ public class Nlogin extends BaseActivity implements View.OnClickListener ,TextVi
                 llMobileNumber.setVisibility(View.GONE);
                 llCode.setVisibility(View.VISIBLE);
                 btnLogIn.setText("ورود");
-
-
-
-
                 YoYo.with(Techniques.SlideOutLeft)
                         .duration(300).withListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationStart(Animator animation) {
-
                     }
 
                     @Override
@@ -132,34 +115,27 @@ public class Nlogin extends BaseActivity implements View.OnClickListener ,TextVi
                         YoYo.with(Techniques.SlideInRight)
                                 .duration(300)
                                 .playOn(llRegister);
-
                     }
 
                     @Override
                     public void onAnimationCancel(Animator animation) {
-
                     }
 
                     @Override
                     public void onAnimationRepeat(Animator animation) {
-
                     }
                 })
-
                         .playOn(llCode);
-
-
             }
-        } if (type==0){
-            type=1;
+        }
+        if (type == 0) {
+            type = 1;
             btnLogIn.setText("ارسال کد");
             mobileNumber = "09" + etMobileNumber.getText().toString();
-
             YoYo.with(Techniques.SlideOutLeft)
                     .duration(300).withListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {
-
                 }
 
                 @Override
@@ -169,29 +145,19 @@ public class Nlogin extends BaseActivity implements View.OnClickListener ,TextVi
                     YoYo.with(Techniques.SlideInRight)
                             .duration(300)
                             .playOn(llCode);
-
                 }
 
                 @Override
                 public void onAnimationCancel(Animator animation) {
-
                 }
 
                 @Override
                 public void onAnimationRepeat(Animator animation) {
-
                 }
             })
-
                     .playOn(llMobileNumber);
-
-
-
-
-
         }
     }
-
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

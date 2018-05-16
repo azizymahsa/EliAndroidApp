@@ -2373,6 +2373,7 @@
     <string name="_childP">کودک</string>
     <string name="weather">پیش بینی وضعیت آب و هوای</string>
     <string name="gift">جایزه !</string>
+    <string name="locationAlert">مکان یاب شما خاموش می باشد، لطفا برای استفاده از این قسمت مکان یاب خود را روشن نمایید.</string>
 
 
 </resources>
