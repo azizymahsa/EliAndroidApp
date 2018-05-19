@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    android:background="@drawable/alert_header_background"
+
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+>
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+             >
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animation_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_fileName="lottie/sms_passcode.json"
+
+
+                    />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.42"
+                android:orientation="vertical"
+                android:focusableInTouchMode="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center|top"
+                    android:id="@+id/llLayout"
+                    android:focusableInTouchMode="true"
+                    >
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cvLogin"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        card_view:cardBackgroundColor="#ffffff"
+                        card_view:cardCornerRadius="8dp"
+                        card_view:cardElevation="8dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="10dp"
+
+
+                        >
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+
+                                >
+
+                                <LinearLayout
+                                    android:id="@+id/llMobileNumber"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+
+                                    >
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+
+                                        android:gravity="center"
+                                        android:padding="10dp"
+                                        android:text="شماره موبایل خود را وارد نمایید"
+                                        android:textColor="@color/text_color_4d"
+                                        android:textSize="14dp"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="20dp"
+                                        android:textAppearance="@style/IrsansBold"
+
+                                        />
+
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="35dp"
+                                        android:id="@+id/rlMobile"
+                                        android:background="@drawable/textview6"
+                                        android:orientation="horizontal"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="20dp">
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="match_parent"
+                                            android:text="09"
+                                            android:layout_marginLeft="5dp"
+                                            android:gravity="center"
+                                            android:textSize="14dp"
+                                            android:textColor="@color/text_color_4d"/>
+
+
+
+
+                                        <EditText
+
+                                            android:id="@+id/input_mobile"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+
+                                            android:textSize="14dp"
+                                            android:gravity="center|left"
+                                            android:inputType="number"
+                                            android:imeOptions="actionDone"
+                                            android:background="@null"
+                                            android:textColor="@color/text_color_4d"
+                                            android:layout_marginLeft="5dp"/>
+
+
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:id="@+id/llCode"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="95dp"
+                                    android:orientation="vertical"
+                                    android:visibility="gone"
+                                    >
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+
+                                        android:gravity="center"
+                                        android:padding="10dp"
+                                        android:text="کد ارسالی را وارد نمایید"
+                                        android:textColor="@color/text_color_4d"
+                                        android:textSize="14dp"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="20dp"
+                                        android:textAppearance="@style/IrsansBold"
+
+
+                                        />
+
+
+
+                                    <com.alimuzaffar.lib.pin.PinEntryEditText
+
+                                        android:id="@+id/codeView"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:cursorVisible="false"
+                                        android:inputType="number"
+                                        android:maxLength="6"
+                                        android:layout_marginLeft="5dp"
+                                        android:layout_marginRight="5dp"
+                                        android:gravity="left"
+                                        android:textSize="18dp"
+                                        app:pinLineColors="@color/text_color_4d"
+                                        android:imeOptions="actionDone"
+
+
+                                        />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/llRegister"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    android:visibility="gone"
+
+                                    >
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_marginRight="20dp">
+
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:layout_marginTop="@dimen/_20dp">
+
+                                            <android.support.design.widget.TextInputLayout
+                                                android:id="@+id/passwordWrapper"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_gravity="center"
+                                                android:layout_weight=".2">
+
+
+                                                <EditText
+                                                    android:id="@+id/edt_name_fa"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:gravity="right|center_vertical"
+                                                    android:hint="@string/please_enter_your_name"
+                                                    android:imeOptions="actionNext"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
+                                                    android:textColor="@color/text_color_4d"
+                                                    android:textSize="@dimen/_12dp_txtSize" />
+
+
+                                            </android.support.design.widget.TextInputLayout>
+
+
+
+                                        </LinearLayout>
+
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="@dimen/_20dp"
+                                            android:orientation="horizontal">
+
+                                            <android.support.design.widget.TextInputLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_gravity="center"
+                                                android:layout_weight=".2">
+
+
+                                                <EditText
+                                                    android:id="@+id/edt_last_name_fa"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:gravity="right|center_vertical"
+                                                    android:hint="@string/please_enter_your_family_name"
+                                                    android:imeOptions="actionDone"
+                                                    android:maxLines="1"
+                                                    android:singleLine="true"
+                                                    android:textColor="@color/text_color_4d"
+                                                    android:textSize="@dimen/_12dp_txtSize" />
+
+
+                                            </android.support.design.widget.TextInputLayout>
+
+
+
+
+                                        </LinearLayout>
+
+
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </RelativeLayout>
+
+
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <Button
+                        android:id="@+id/btnLogIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:background="@drawable/textview9"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/white"
+                        android:text="ارسال شماره همراه"
+                        android:textSize="@dimen/_14dp_txtSize"
+                        android:textAppearance="@style/IrsansBold"
+
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+        <include
+            android:id="@+id/toolbarLayout"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
