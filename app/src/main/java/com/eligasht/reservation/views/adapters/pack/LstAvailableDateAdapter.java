@@ -3,7 +3,6 @@ package com.eligasht.reservation.views.adapters.pack;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.model.pack.LstAvailableDate;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
-import com.eligasht.reservation.views.activities.pack.SearchPackActivity;
 import com.eligasht.reservation.views.viewholders.LstAvailableDateRowHolder;
 
 import java.util.ArrayList;
@@ -30,7 +28,7 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
     private ListenerLstAvailableDateAdapter listener;
 
 
-    public LstAvailableDateAdapter(SearchPackActivity context, ArrayList<LstAvailableDate> NameItem) {
+    public LstAvailableDateAdapter(Context context, ArrayList<LstAvailableDate> NameItem) {
 
         this.context = context;
         this.feedItemList = NameItem;
@@ -44,9 +42,6 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
         }
 
     }
-
-
-
 
     public interface ListenerLstAvailableDateAdapter {
         void onClickLstAvailableDateItem(LstAvailableDate lstAvailableDate);
@@ -99,7 +94,6 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
         Glide.with(context)
                 .load("http://www.eligasht.com/Content/AirLine/" + item.getAirlineCode() + ".png")
                 .into(holder.img_airLine);
-        Log.e("pic", "http://www.eligasht.com/Content/AirLine/" + item.getAirlineCode() + ".png");
 
 
         holder.root.setOnClickListener(new View.OnClickListener() {

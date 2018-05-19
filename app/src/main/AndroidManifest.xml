@@ -5,11 +5,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
-
 
     <application
         android:name=".reservation.base.GlobalApplication"
@@ -21,7 +19,6 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl,icon, label,android:allowBackup">
-
         <receiver
             android:name="com.adjust.sdk.AdjustReferrerReceiver"
             android:exported="true"
@@ -33,17 +30,15 @@
 
         <activity
             android:name=".reservation.views.ui.SplashActivity"
+            android:configChanges="orientation|screenSize|locale"
             android:exported="true"
             android:launchMode="singleInstance"
-            android:configChanges="orientation|screenSize|locale"
-
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".reservation.views.activities.hotel.activity.SelectHotelActivity"
@@ -70,12 +65,10 @@
             android:name=".reservation.views.activities.hotel.activity.DetailHotelActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-
         <activity
             android:name=".reservation.views.activities.ShakeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-
         <activity
             android:name=".reservation.views.activities.SettingsActivity"
             android:screenOrientation="portrait"
@@ -110,6 +103,13 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".reservation.views.activities.pack.SearchPackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reservation.views.activities.nlogin.Nlogin"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".reservation.map.OverlayRouteActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".reservation.views.activities.hotel.activity.ImageViewActivity"
@@ -152,7 +152,6 @@
         <activity
             android:name=".reservation.views.activities.login.ResetPasswordActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".reservation.views.activities.insurance.PassengerInsuranceActivity"
             android:screenOrientation="portrait"
@@ -163,8 +162,8 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".reservation.views.activities.login.ProfileActivity"
-            android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity android:name=".reservation.lost.FinalResult">
             <intent-filter>
@@ -177,7 +176,6 @@
                 <data
                     android:host="invoice"
                     android:scheme="eligasht" />
-
             </intent-filter>
         </activity>
         <activity
@@ -210,6 +208,7 @@
         <activity
             android:name=".reservation.views.ui.GetCitiesForPackActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".reservation.views.activities.nlogin.NLoginActivity"></activity>
     </application>
 
 </manifest>

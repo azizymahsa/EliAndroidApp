@@ -1,162 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="20dp"
+android:visibility="invisible"
+    app:cardBackgroundColor="#ffffff"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="3dp">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-    android:id="@+id/dialog"
-    android:visibility="invisible"
-        app:cardBackgroundColor="#ffffff"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="3dp"
-        xmlns:fancy="http://schemas.android.com/apk/res-auto"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/TRANSPARENT">
+        android:background="@color/TRANSPARENT"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@drawable/alert_header_background"
-            >
+            android:background="@drawable/alert_header_background">
+
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animation_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:orientation="vertical"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
-                android:layout_gravity="center"
 
                 />
         </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:text="تبریک!!"
+            android:textAppearance="@style/IrsansBold"
+            android:textColor="@color/text_color_4d"
+            android:textSize="@dimen/_20dp_normal_textSize"
+
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="vertical">
 
 
             <TextView
-                android:id="@+id/tvTitle"
+                android:id="@+id/tvAlert"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_50dp"
-                android:padding="10dp"
-                android:orientation="horizontal"
-                android:text="تبریک!!"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="شما برنده کد تخفیف 10 درصدی: 123456 شده اید !"
                 android:textColor="@color/text_color_4d"
-                android:textSize="@dimen/_20dp_normal_textSize"
-                android:gravity="center"
-                android:textAppearance="@style/IrsansBold"
 
+                android:textSize="@dimen/_14dp_txtSize" />
 
-
-                />
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="right">
+                android:layout_gravity="center"
 
-
-                <TextView
-                    android:id="@+id/tvAlert"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/_14dp_txtSize"
-
-                    android:padding="5dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="center"
-                    android:textColor="@color/text_color_4d"
-                    android:gravity="center"
-
-                    android:text="شما برنده کد تخفیف 10 درصدی: 123456 شده اید !"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/_10dp_textSize"
-
-                    android:padding="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="center"
-                    android:textColor="@color/text_color_4d"
-                    android:gravity="center"
-
-
-                    android:text="(مهلت استفاده تا پایان خرداد)"
-                    />
-
-
-
-
-            </LinearLayout>
-
-
-
-
-
-
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="@dimen/_10dp_margin"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
-                >
-                <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/btnOk"
+                android:padding="5dp"
+                android:text="(مهلت استفاده تا پایان خرداد)"
+                android:textColor="@color/text_color_4d"
 
-                    android:layout_width="120dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:elevation="1dp"
-                    android:paddingBottom="1dp"
-                    fancy:fb_defaultColor="#1234"
-                    fancy:fb_focusColor="@color/focusColor"
-                    fancy:fb_radius="100dp"
-                    fancy:fb_text="انصراف"
-                    fancy:fb_textColor="#4d4d4d"
-                    fancy:fb_textSize="@dimen/_14dp_txtSize"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:visibility="gone"/>
-                <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/btnCancel"
 
-                    android:layout_width="120dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:elevation="1dp"
-                    android:paddingBottom="1dp"
-                    fancy:fb_defaultColor="#1234"
-                    fancy:fb_focusColor="@color/focusColor"
-                    fancy:fb_radius="100dp"
-                    fancy:fb_text="بازگشت"
-                    fancy:fb_textColor="#4d4d4d"
-                    fancy:fb_textSize="@dimen/_14dp_txtSize"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"/>
+                android:textSize="@dimen/_10dp_textSize" />
 
-            </LinearLayout>
 
         </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10dp_margin"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnOk"
+
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:elevation="1dp"
+                android:paddingBottom="1dp"
+                android:visibility="gone"
+                fancy:fb_defaultColor="#1234"
+                fancy:fb_focusColor="@color/focusColor"
+                fancy:fb_radius="100dp"
+                fancy:fb_text="انصراف"
+                fancy:fb_textColor="#4d4d4d"
+                fancy:fb_textSize="@dimen/_14dp_txtSize" />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btnCancel"
+
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:elevation="1dp"
+                android:paddingBottom="1dp"
+                fancy:fb_defaultColor="#1234"
+                fancy:fb_focusColor="@color/focusColor"
+                fancy:fb_radius="100dp"
+                fancy:fb_text="بازگشت"
+                fancy:fb_textColor="#4d4d4d"
+                fancy:fb_textSize="@dimen/_14dp_txtSize" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
-
-
-    </android.support.v7.widget.CardView>
+</android.support.v7.widget.CardView>
 
 
 
