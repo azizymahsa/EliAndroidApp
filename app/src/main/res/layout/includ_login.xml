@@ -13,7 +13,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-
         android:visibility="visible">
 
 
@@ -54,7 +53,6 @@
             android:hint="@string/name"
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
-
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="#c9c9ce"
@@ -65,7 +63,6 @@
             android:layout_height="match_parent"
             android:layout_weight="0.2"
             android:gravity="center|left|center_horizontal"
-
             android:paddingLeft="8dp"
             android:text="@string/icon_user_login"
             android:textAppearance="@style/User_pass_login"
@@ -159,9 +156,6 @@
             android:background="@null"
             android:textSize="@dimen/_14dp_txtSize" />
 
-
-
-
     </LinearLayout>
     <LinearLayout
         android:id="@+id/layout_reset_password"
@@ -201,7 +195,6 @@
         android:layout_height="80dp"
         android:layout_marginTop="@dimen/_60dp_hight"
         android:orientation="horizontal"
-
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:gravity="center">
@@ -241,15 +234,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@drawable/btngravity_big"
         android:gravity="right"
         android:visibility="gone">
 
-
-
         <mehdi.sakout.fancybuttons.FancyButton
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="3dp"
@@ -265,8 +254,6 @@
 
         </mehdi.sakout.fancybuttons.FancyButton>
 
-
     </RelativeLayout>
-
 
 </LinearLayout>

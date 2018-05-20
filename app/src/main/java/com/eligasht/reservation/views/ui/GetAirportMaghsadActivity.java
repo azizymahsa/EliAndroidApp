@@ -290,16 +290,11 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         if (!Utility.isNetworkAvailable(GetAirportMaghsadActivity.this)) {
             AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
             AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
-
-
         } else {
             AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
             AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
-
-
         }
     }
-
 
     @Override
     public void onClick(View v) {

@@ -69,11 +69,9 @@ public class FlightPreFactorModel {
     public void setFltCheckinTime(String fltCheckinTime) {
         FltCheckinTime = fltCheckinTime;
     }
-
     public String getFltTime() {
         return FltTime;
     }
-
     public void setFltTime(String fltTime) {
         FltTime = fltTime;
     }

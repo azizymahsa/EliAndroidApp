@@ -66,7 +66,6 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     private LinearLayout llBackSI;
     private LinearLayout log_in_app;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,8 +74,6 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         resource.add(R.drawable.screen_hotel);
         resource.add(R.drawable.screen_menu);
         resource.add(R.drawable.screen_search_hotel);
-
-
 
         new ViewPagerLogin(LoginActivity.this, resource, R.id.intro_view_pager);
         progressBar = (LottieAnimationView) findViewById(R.id.progress);
@@ -113,7 +110,6 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
 
     @Override
     public void showProgress() {
-        //progressBar.addAnimatorListener(this);
         progressBar.setVisibility(View.VISIBLE);
     }
 
@@ -124,7 +120,6 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
 
     @Override
     public void setUsernameError() {
-
         username.setError(getString(R.string.please_enter_your_name));
     }
 
@@ -141,20 +136,16 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
 
     @Override
     public void OnShowLOgin() {
-
         leftAnim(llBasic,lllogon);
     }
 
     @Override
     public void OnShowSignIn() {
-
         rightAnim(llsignIn,llBasic);
-
     }
 
     @Override
     public void OnBackLOgin() {
-
        rightAnim(llBasic,lllogon);
     }
 
@@ -166,11 +157,7 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     @Override
     public void onClick(View v) {
 
-
         switch (v.getId()){
-
-           //
-
             case R.id.llBackLI:
                 OnBackLOgin();
                 break;

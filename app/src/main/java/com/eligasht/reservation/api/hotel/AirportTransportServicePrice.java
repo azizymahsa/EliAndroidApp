@@ -49,10 +49,8 @@ public class AirportTransportServicePrice extends BaseAPI {
         Call<AirportTransportServiceResponse> call = getHotel.get_hotel(hotelAvailRequestModel);
         try {
             airportTransportRespone = call.execute().body();
-
         } catch (Exception e) {
             Log.e("errorrrrrr", e.getMessage());
-
         }
 
 

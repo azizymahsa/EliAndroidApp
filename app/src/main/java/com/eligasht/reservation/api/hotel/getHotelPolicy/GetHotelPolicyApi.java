@@ -42,18 +42,13 @@ public class GetHotelPolicyApi extends BaseAPI {
 
     @Override
     protected void execute() {
-
         GetPolicy getPolicy = retrofit.create(GetPolicy.class);
         Call<MyPojo> call = getPolicy.get_policy(policyRequest);
         try {
             getHotelPolicyResponse = call.execute().body();
-
         } catch (Exception e) {
             Log.e("errorrrrrr",e.getMessage() );
-
         }
-
-
     }
 
     @Override

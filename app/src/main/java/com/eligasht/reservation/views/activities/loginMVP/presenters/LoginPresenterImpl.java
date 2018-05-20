@@ -18,11 +18,6 @@
 
 package com.eligasht.reservation.views.activities.loginMVP.presenters;
 
-
-import android.view.View;
-import android.widget.LinearLayout;
-
-import com.eligasht.reservation.contracts.InfoRoomsContract;
 import com.eligasht.reservation.views.activities.loginMVP.interactor.LoginInteractor;
 import com.eligasht.reservation.views.activities.loginMVP.view.LoginView;
 
@@ -30,7 +25,6 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
 
     private LoginView loginView;
     private LoginInteractor loginInteractor;
-
 
     public LoginPresenterImpl(LoginView loginView, LoginInteractor loginInteractor) {
         this.loginView = loginView;
@@ -42,11 +36,8 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.OnLog
         if (loginView != null) {
             loginView.showProgress();
         }
-
         loginInteractor.login(username, password, this);
     }
-
-
 
     @Override
     public void onDestroy() {
