@@ -50,8 +50,6 @@ public class NonScrollGridView extends GridView {
             int offset = 1;
             canvas.drawLine(left + offset, bottom, right - offset, bottom, paint);
         }
-
-
         super.dispatchDraw(canvas);
     }
 }

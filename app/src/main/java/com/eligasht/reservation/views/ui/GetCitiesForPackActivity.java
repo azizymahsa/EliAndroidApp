@@ -12,23 +12,18 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.base.BaseActivity;
-import com.eligasht.reservation.models.model.pack.GetPackageRoutesResult;
 import com.eligasht.reservation.views.adapters.GeCitiesForPackAdapter;
 import com.eligasht.reservation.views.adapters.GetAirPortMabdaAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.orhanobut.hawk.Hawk;
 import com.wang.avi.AVLoadingIndicatorView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import mehdi.sakout.fancybuttons.FancyButton;
-
 
 public class GetCitiesForPackActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener {
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -64,7 +59,6 @@ public class GetCitiesForPackActivity extends BaseActivity implements Header.onS
         onPostExecute(new GeCitiesForPackAdapter(this, Hawk.get("PackCityData"),this));
     }
 
-
     public void needShowAlertDialog(String message, boolean canelable) {
         if (mAlertDialog != null && mAlertDialog.isShowing()) {
             return;
@@ -94,9 +88,6 @@ public class GetCitiesForPackActivity extends BaseActivity implements Header.onS
 
         listAirPort.setAdapter(result);
     }
-
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -105,9 +96,7 @@ public class GetCitiesForPackActivity extends BaseActivity implements Header.onS
                 break;
         }
         // TODO Auto-generated method stub
-
     }
-
     @Override
     public void searchTextChanged(String searchText) {
             /*this.searchText = searchText;

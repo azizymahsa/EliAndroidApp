@@ -236,7 +236,6 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 
             } else {
 
-                //AirportCode //AirportName//CityName ":
                 // responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().
                 for (int i = 0; i < responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().size(); i++) {
                     Country fishData = new Country();
@@ -249,7 +248,6 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                     data.add(fishData);
                 }
 
-
                 String Value_Mabda_City = "";
                 String Value_Mabda_Airport = "";
                 String Value_Mabda_Airport_Code = "";
@@ -261,8 +259,6 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                     Value_Mabda_Airport = Prefs.getString("Value-Mabda-Airport", "");
                     Value_Mabda_Airport_Code = Prefs.getString("Value-Mabda-Airport-Code", "");
                 }
-
-
                 listAirPort = findViewById(R.id.listAirPort);
                 mAdapter = new GetAirPortMaghsadAdapter(GetAirportMaghsadActivity.this, data, Value_Mabda_City, Value_Mabda_Airport, Value_Mabda_Airport_Code, GetAirportMaghsadActivity.this);
                 //mAdapter.setAdapter(mAdapter);
@@ -273,13 +269,9 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
             if (!Utility.isNetworkAvailable(GetAirportMaghsadActivity.this)) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
                 AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
-
-
             } else {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
                 AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));
-
-
             }
         }
     }

@@ -335,9 +335,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
             PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
             persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
-
             datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
-
 
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
@@ -356,15 +354,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
 
             datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
-
-
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
             int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true) - 12;
             int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true) - 1;
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
-
             datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
 
         }
@@ -376,11 +371,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         persianCalendar2.set(persianCalendarDatePicker.getPersianYear() + 6, persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
         datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
         ///////end setMin
-
         try {
             jsonObj = new JSONArray(Prefs.getString("Rooms", "dd"));
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -449,7 +441,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             }
         });
 
-
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
 
@@ -461,14 +452,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             imgCount.setText(getCounter(room) + " " + getString(R.string.room));
         } else {
             imgCount.setText(getString(R.string.room) + " " + getCounter(room));
-
         }
         expandableLayout = findViewById(R.id.expandableLayout);
         txt_hom.setOnClickListener(PassengerHotelFlightActivity.this);
 
         txtMore = findViewById(R.id.txtMore);
         txtMore.setOnClickListener(PassengerHotelFlightActivity.this);
-
 
         txtSumKhadamat = findViewById(R.id.txtSumKhadamat);
         tvPrice = findViewById(R.id.tvPrice);
@@ -510,7 +499,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
         btn_pardakht_factor = findViewById(R.id.btn_pardakht_factor);
         btn_pardakht_factor.setOnClickListener(PassengerHotelFlightActivity.this);
-
 
         btn_saler = findViewById(R.id.btn_saler);
         btn_mosaferan = findViewById(R.id.btn_mosaferan);
@@ -581,7 +569,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         categories.add(getString(R.string.Please_choose_a_gender));
         categories.add(getString(R.string.man));
         categories.add(getString(R.string.Female));
-
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(PassengerHotelFlightActivity.this, android.R.layout.simple_spinner_item, categories);
@@ -655,7 +642,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
 
             List<PreFactorHotel> jArray2 = jArray.getPreFactorHotels();
-
 
             for (int i = 0; i < jArray2.size(); i++) {
                 hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
