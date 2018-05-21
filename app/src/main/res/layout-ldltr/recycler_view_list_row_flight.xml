@@ -27,18 +27,19 @@
             <RelativeLayout
                 android:id="@+id/buttonLayout"
                 android:layout_width="match_parent"
-                android:layout_below="@+id/rlTitleHotel"
 
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/_35dp"
+                android:background="#fff4ee">
 
-                android:layout_height="@dimen/_35dp"
-                android:background="#fff4ee"
-                >
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="horizontal"
-                    android:gravity="center">
-                    <TextView
+                    android:layout_centerVertical="true">
+
+                <TextView
                         android:id="@+id/tvFlightDetail3"
 
                         android:layout_width="wrap_content"
@@ -114,22 +115,21 @@
                 >
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_255dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="65"
-
-                        android:orientation="vertical">
-
-
-
+                        android:gravity="center"
+                        android:orientation="horizontal">
                         <TextView
 
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
                             android:gravity="center|left"
                             android:padding="5dp"
                             android:text="@string/return_airport"
@@ -137,168 +137,201 @@
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
                             android:textSize="@dimen/_12dp_normal_textSize" />
-
                         <TextView
+                            android:id="@+id/tvArrAirport"
 
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:gravity="center|left"
+                            android:minHeight="@dimen/_35dp"
+                            android:padding="5dp"
+                            android:text="@string/people_number"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="#4d4d4d"
+
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tvServiceCityUi"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
                             android:gravity="center|left"
                             android:padding="5dp"
                             android:text="@string/destination_airport"
+
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+                        <TextView
+                            android:id="@+id/tvDepAir"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:gravity="center|left"
+                            android:minHeight="@dimen/_35dp"
+                            android:padding="5dp"
+                            android:text="@string/people_number"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="#4d4d4d"
 
                             android:textSize="@dimen/_12dp_normal_textSize" />
 
+
+
+                    </LinearLayout>
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
                             android:gravity="center|left"
                             android:padding="5dp"
                             android:text="@string/date"
+
+
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
-
                             android:textSize="@dimen/_12dp_normal_textSize" />
                         <TextView
+                            android:id="@+id/tvDate"
 
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:gravity="center|left"
+                            android:minHeight="@dimen/_35dp"
+                            android:padding="5dp"
+                            android:text="@string/people_number"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="#4d4d4d"
+
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
                             android:gravity="center|left"
                             android:padding="5dp"
                             android:text="@string/exit_time"
+
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
-
-                            android:textSize="@dimen/_12dp_normal_textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
-                            android:gravity="center|left"
-                            android:padding="5dp"
-                            android:text="@string/enter_time"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
-
                             android:textSize="@dimen/_12dp_normal_textSize" />
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
-                            android:gravity="center|left"
-                            android:padding="5dp"
-                            android:text="@string/number"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
+                            android:id="@+id/tvOutTime"
 
-                            android:textSize="@dimen/_12dp_normal_textSize" />
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
                             android:gravity="center|left"
+                            android:minHeight="@dimen/_35dp"
                             android:padding="5dp"
-                            android:text="@string/airline"
+                            android:text="@string/people_number"
                             android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
+                            android:textColor="#4d4d4d"
 
                             android:textSize="@dimen/_12dp_normal_textSize" />
 
 
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="100"
-                        android:gravity="right"
-                        android:orientation="vertical">
-
-
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/tvArrAirport"
 
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
                             android:gravity="center|left"
                             android:padding="5dp"
-                            android:text="تعداد نفرات"
+                            android:text="@string/enter_time"
+
                             android:textAppearance="@style/IrsansBold"
-                            android:textColor="#4d4d4d"
-
+                            android:textColor="@color/text_color_2e"
                             android:textSize="@dimen/_12dp_normal_textSize" />
-
-                        <TextView
-                            android:id="@+id/tvDepAir"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
-                            android:gravity="center|left"
-                            android:padding="5dp"
-                            android:text="@string/checkout_date"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="#4d4d4d"
-
-                            android:textSize="@dimen/_12dp_normal_textSize" />
-
-                        <TextView
-                            android:id="@+id/tvDate"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
-                            android:gravity="center|left"
-                            android:padding="5dp"
-                            android:text="@string/checkin_date"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="#4d4d4d"
-
-                            android:textSize="@dimen/_12dp_normal_textSize" />
-
-                        <TextView
-                            android:id="@+id/tvOutTime"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
-                            android:gravity="center|left"
-                            android:padding="5dp"
-                            android:text="@string/number_human"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="#4d4d4d"
-
-                            android:textSize="@dimen/_12dp_normal_textSize" />
-
                         <TextView
                             android:id="@+id/tvInTime"
 
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
                             android:gravity="center|left"
+                            android:minHeight="@dimen/_35dp"
                             android:padding="5dp"
-                            android:text="@string/checkout_date"
+                            android:text="@string/people_number"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
                             android:textSize="@dimen/_12dp_normal_textSize" />
 
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:gravity="center|left"
+                            android:padding="5dp"
+                            android:text="@string/number"
+
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_2e"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
                         <TextView
                             android:id="@+id/tvNumber"
 
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
                             android:gravity="center|left"
+                            android:minHeight="@dimen/_35dp"
                             android:padding="5dp"
-                            android:text="@string/checkin_date"
-                            android:textAppearance="@style/IconFonts3"
-                            android:textColor="#4d4d4d"
-                            android:textStyle="bold"
-
-                            android:textSize="@dimen/_12dp_normal_textSize" />
-                        <TextView
-                            android:id="@+id/tvAirLineName"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
-                            android:gravity="center|left"
-                            android:padding="5dp"
+                            android:text="@string/people_number"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
@@ -307,11 +340,41 @@
 
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:gravity="center|left"
+                            android:padding="5dp"
+                            android:text="@string/airline"
+
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_2e"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+                        <TextView
+                            android:id="@+id/tvAirLineName"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:gravity="center|left"
+                            android:minHeight="@dimen/_35dp"
+                            android:padding="5dp"
+                            android:text="@string/people_number"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="#4d4d4d"
+
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
 
 
-
-
+                    </LinearLayout>
                 </LinearLayout>
             </com.github.aakira.expandablelayout.ExpandableLinearLayout>
         </RelativeLayout>
