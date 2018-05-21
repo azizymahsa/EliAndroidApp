@@ -2392,5 +2392,7 @@
     <string name="_childP">کودک</string>
     <string name="weather">Hava tahmini</string>
     <string name="gift">جایزه !</string>
+    <string name="calculated">Calculated</string>
+    <string name="service_name">نام سرویس</string>
 </resources>
 

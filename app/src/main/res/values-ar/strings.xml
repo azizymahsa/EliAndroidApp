@@ -2374,6 +2374,8 @@
     <string name="weather">پیش بینی وضعیت آب و هوای</string>
     <string name="gift">جایزه !</string>
     <string name="locationAlert">مکان یاب شما خاموش می باشد، لطفا برای استفاده از این قسمت مکان یاب خود را روشن نمایید.</string>
+    <string name="calculated">محاسبه شده</string>
+    <string name="service_name">نام سرویس</string>
 
 
 </resources>
