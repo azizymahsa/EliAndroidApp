@@ -88,9 +88,7 @@ public class GetHotelCityAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int position) {
-
 		long s =position+1;
-		//return data.getLong(Customers_Table.Columns.CUSTOMER_ID.value());
 		return s;
 	}
 
@@ -134,13 +132,7 @@ public class GetHotelCityAdapter extends BaseAdapter {
 					Prefs.putString("Value-Hotel-City-Code",current.getCityCode());
 				}
 
-
-
-
-
 				activity.finish();
-
-
 
 			}
 		});
@@ -151,7 +143,6 @@ public class GetHotelCityAdapter extends BaseAdapter {
 		TextView AirportName;
 		TextView CityName;
 		LinearLayout llLayout;
-
 
 	}
 

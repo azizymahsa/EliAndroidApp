@@ -1032,13 +1032,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
                 } else if (linear_saler.getVisibility() == View.VISIBLE) {
-
                     Prefs.putBoolean("BACK_HOME", true);
                     Intent intent = new Intent("sendFinish");
-
                     LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 }
-
                 break;
             case R.id.btn_next_partnerInfo:
                 if (FlagTab) {
