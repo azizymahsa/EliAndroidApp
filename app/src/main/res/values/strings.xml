@@ -83,6 +83,7 @@
     <string name="dot">&#xf052;</string>
     <string name="empty_circle">&#xe627;</string>
     <string name="setting">&#xe637;</string>
+    <string name="icon_mail">&#xe900;</string>
 
     <string name="no_results_found">No Results Found</string>
     <string name="back_exit">Please press the Back button once to exit</string>

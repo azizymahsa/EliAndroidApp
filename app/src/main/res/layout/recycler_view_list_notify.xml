@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_5dp_margin"
+        android:layout_marginRight="@dimen/_10dp"
+        android:layout_marginLeft="@dimen/_10dp"
+        android:layout_marginBottom="@dimen/_5dp_margin"
+        android:background="@color/hotel_detail_background"
+        card_view:cardBackgroundColor="#ffffff"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardElevation="0.5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textSize="@dimen/_16dp_txtSize"
+                    android:textColor="@color/red"
+                    android:text="sdfsdf"
+                    android:gravity="center|right"
+                    android:layout_alignParentRight="true"/>
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textSize="@dimen/_10dp"
+                    android:textColor="@color/text_color_4d"
+                    android:text="sdfsdf"
+                    android:gravity="center|right"
+                    android:layout_alignParentLeft="true"/>
+            </RelativeLayout>
+
+
+
+            <TextView
+                android:id="@+id/tvBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12dp_txtSize"
+                android:textColor="@color/text_color_4d"
+                android:layout_marginTop="@dimen/_10dp"
+                android:text="sdfsdf"
+                android:gravity="center|right"
+                android:layout_marginRight="@dimen/_10dp"/>
+        </LinearLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>
+

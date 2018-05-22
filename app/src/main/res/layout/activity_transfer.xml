@@ -13,11 +13,6 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/toolbarLayout"
-        android:background="@drawable/shadow" />
 
 
     <LinearLayout
@@ -331,4 +326,10 @@
 
 
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/toolbarLayout"
+        android:background="@drawable/shadow" />
+
 </RelativeLayout>

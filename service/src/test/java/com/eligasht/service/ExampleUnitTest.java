@@ -4,7 +4,6 @@ import com.eligasht.service.model.test.markdown.HeaderTestService;
 import com.eligasht.service.model.test.markdown.MarkDownGenerator;
 import com.eligasht.service.model.test.markdown.ServiceTestModel;
 
-
 import org.junit.Test;
 
 import java.text.ParseException;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
+import java.util.TimeZone;
 /**
  * Example local unit test, which will execute on the development machine (host).
  *

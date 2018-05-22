@@ -65,8 +65,6 @@ public class RoomHotelFragment extends Fragment {
             lvRooms.setAdapter(roomsAdapter);
         }
 
-
-
     }
 
 

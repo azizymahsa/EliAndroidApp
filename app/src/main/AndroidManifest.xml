@@ -218,7 +218,30 @@
         <activity
             android:name=".reservation.views.ui.GetCitiesForPackActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".reservation.views.activities.nlogin.NLoginActivity"></activity>
+        <activity
+            android:name=".reservation.views.activities.NotificationActivity"
+            android:screenOrientation="portrait" />
+
+
+
+
+
+
+
+        <meta-data
+            android:name="DATABASE"
+            android:value="eligasht.db" />
+        <meta-data
+            android:name="VERSION"
+            android:value="3" />
+        <meta-data
+            android:name="QUERY_LOG"
+            android:value="true" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.eligasht" />
+
+
     </application>
 
 </manifest>
