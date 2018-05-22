@@ -330,7 +330,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         persianCalendar2.set(persianCalendarDatePicker.getPersianYear() + 6, persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
         datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
         ///////end setMin
-
         alRoom = new ArrayList<>();
         if (!ValidationTools.isEmptyOrNull(packageRoomNoToRequestList)) {
             for (PackageRoomNoToRequest packageRoomNoToRequest : packageRoomNoToRequestList) {
@@ -462,7 +461,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         txtnumber_passport.setOnClickListener(this);
         txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
         txtfamilym.setOnClickListener(this);
-        // imgCount.setOnClickListener(this);
         txtnamem.setOnClickListener(this);
         txttavalodm.setOnClickListener(this);
         txtSumKhadamat.setOnClickListener(this);
@@ -566,11 +564,10 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     txtTitle.setText(getString(R.string.Buyer_Specifications));
                     ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
-                    //   }
+
                 } else if (linear_saler.getVisibility() == View.VISIBLE) {
 
                     Prefs.putBoolean("BACK_HOME", true);
-
                     finish();
                 }
                 break;
@@ -914,18 +911,16 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                             if (sum > 0) {
                                 System.out.println("gender:" + Gender);
                                 if (counter - 1 == 1) {
-                                    db.insertData(counter - 1, getString(R.string.First_passenger_information), getString(R.string.room) + " " + getCounter(room), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                    db.insertData(counter - 1, getString(R.string.First_passenger_information), getString(R.string.room) + " " + getCounter(room), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
                                 } else {
-                                    db.insertData(counter - 1, txtTitleCountM.getText().toString(), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                    db.insertData(counter - 1, txtTitleCountM.getText().toString(), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
                                 }
                                 System.out.println("InsertMosafer:" + (counter - 1) + " " + txtTitleCountM.getText().toString() + " " + RqPassenger_FirstNameEn);
                                 if (countB >= 1) {
                                     System.out.println("countB:" + countB);
-
                                     countB--;
                                 } else if (countK >= 1) {
                                     System.out.println("countK:" + countK);
-
                                     countK--;
                                 } else if (countN >= 1) {
                                     System.out.println("countN:" + countN);

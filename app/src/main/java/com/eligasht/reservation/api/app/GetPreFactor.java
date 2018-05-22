@@ -19,7 +19,6 @@ public class GetPreFactor extends BaseAPI {
     public final static String ACTION_NAME = "Common/StaticDataService.svc/GetPreFactorDetails";
     public GetPrefactorResponse getPrefactorResponse;
     RequestPrefactor requestPre;
-
     public interface GetPre {
         @RawRes
         @POST(GetPreFactor.ACTION_NAME)
@@ -45,10 +44,8 @@ public class GetPreFactor extends BaseAPI {
         Call<GetPrefactorResponse> call = getPre.get_pre(requestPre);
         try {
             getPrefactorResponse = call.execute().body();
-
         } catch (Exception e) {
             Log.e("errorrrrrr",e.getMessage() );
-
         }
 
     }

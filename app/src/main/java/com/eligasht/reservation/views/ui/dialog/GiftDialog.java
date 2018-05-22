@@ -27,8 +27,6 @@ public class GiftDialog implements View.OnClickListener{
     FancyButton btnOk, btnCancel;
     AVLoadingIndicatorView avi;
     String text;
-    // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
-
 
     public GiftDialog(final Context activity) {
         this.activity = activity;
@@ -62,8 +60,6 @@ public class GiftDialog implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.btnOk:
                 activity.startActivity(new Intent(activity, Nlogin.class));
-
-
 
 
                 break;

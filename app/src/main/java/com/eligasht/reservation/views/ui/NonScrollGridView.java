@@ -44,18 +44,12 @@ public class NonScrollGridView extends GridView {
             int bottom = child.getBottom();
             int left = child.getLeft();
             int right = child.getRight();
-
             Paint paint = new Paint();
             paint.setColor(0xffececec);
-
             paint.setStrokeWidth(Math.round(4));
-
             int offset = 1;
-
             canvas.drawLine(left + offset, bottom, right - offset, bottom, paint);
         }
-
-
         super.dispatchDraw(canvas);
     }
 }

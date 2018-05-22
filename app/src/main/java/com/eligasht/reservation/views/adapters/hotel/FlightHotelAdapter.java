@@ -252,7 +252,6 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.linear_1.setVisibility(View.VISIBLE);
                 holder.tvANRaft1_1.setText(strings[0]);
                 holder.tvANRaft1_2.setText(strings[1]);
-
                 anim(holder.lineOnstep, holder.tvPlane, position);
 
                 break;
@@ -271,7 +270,6 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.tvANRaft3_2.setText(strings[1]);
                 holder.tvANRaft3_3.setText(strings[2]);
                 holder.tvANRaft3_4.setText(strings[3]);
-
 
                 break;
             case 5:
@@ -304,15 +302,10 @@ public class FlightHotelAdapter extends BaseAdapter {
                     holder.tvANRaft1_2_bargasht.setText(strings2[1]);
                     holder.tvANRaft1_1_bargasht.setText(strings2[0]);
                     holder.linear_1_bargasht.setVisibility(View.VISIBLE);
-
-
                 } catch (Exception e) {
                     holder.nonStop.setText(strings2[0]);
                     holder.nonStop.setVisibility(View.VISIBLE);
-
                 }
-
-
                 break;
             case 2:
                 waitBargasht = "بدون توقف";
@@ -320,8 +313,6 @@ public class FlightHotelAdapter extends BaseAdapter {
                 holder.tvANRaft1_1_bargasht.setText(strings2[0]);
                 holder.tvANRaft1_2_bargasht.setText(strings2[1]);
                 anim(holder.lineOnstep_barhasht, holder.tvPlane_bargasht, position);
-
-
                 break;
             case 3:
                 waitBargasht = "یک توقف";

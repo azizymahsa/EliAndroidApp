@@ -31,9 +31,6 @@ public class ViewPagerLogin { private Activity activity;
     int like;
     int currentPage = 0;
 
-
-
-
     public ViewPagerLogin(final Activity activity, final ArrayList<Integer> imageModels, int layout ) {
         this.activity = activity;
         this.layout = layout;
@@ -46,13 +43,9 @@ public class ViewPagerLogin { private Activity activity;
         viewPager.setInterval(3000);
         viewPager.startAutoScroll();
 
-
-
-
     }
     private class IntroAdapter extends PagerAdapter {
         public IntroAdapter() {
-
 
         }
 
@@ -70,20 +63,7 @@ public class ViewPagerLogin { private Activity activity;
             ImageView image = view.findViewById(R.id.ivImage);
 
             container.addView(view, 0);
-//            image.setImageResource(images[position]);
-
             image.setImageResource(imageModels.get(position));
-
-
-
-
-
-
-
-
-
-
-
 
             return view;
         }

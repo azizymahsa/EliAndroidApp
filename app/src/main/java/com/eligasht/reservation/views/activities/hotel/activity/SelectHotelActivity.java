@@ -185,8 +185,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
                     hotel_request();
                 } else {
-                    Toast.makeText(getApplicationContext(), R.string.datePickerError,
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.datePickerError,Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btnLastDays:
@@ -196,8 +195,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
                     hotel_request();
                 } else {
-                    Toast.makeText(getApplicationContext(), R.string.DatePickerError2,
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.DatePickerError2,Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

@@ -2392,6 +2392,12 @@
     <string name="_childP">کودک</string>
     <string name="weather">Hava tahmini</string>
     <string name="gift">جایزه !</string>
+    <string name="let_s_go">LET\'S GO</string>
+    <string name="amazing_user_login_screen_for_your_android_device">Amazing user login screen for your android device</string>
+    <string name="log_in">LOG IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="join_user">JOIN USER</string>
+    <string name="create_account">CREATE ACCOUNT</string>
     <string name="calculated">Calculated</string>
     <string name="service_name">نام سرویس</string>
 </resources>

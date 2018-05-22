@@ -247,7 +247,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         tvLoading = findViewById(R.id.tvLoading);
         Utility.loadingText(tvLoading, Prefs.getString("P", ""));
 
-
         layout_availabel_date = findViewById(R.id.layout_availabel_date);
         error_layout = findViewById(R.id.elNotFound);
         txt_error = findViewById(R.id.tvAlert);
@@ -285,17 +284,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnHome:
-     /*           Intent intent = new Intent(this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                startActivity(intent);
-                finish();*/
-
                 Intent intent = new Intent("sendFinish");
-
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-
-
                 break;
             case R.id.btnOk:
                 onBackPressed();
@@ -325,8 +315,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                             Toast.LENGTH_SHORT).show();
 
                 }
-
-
                 break;
             case R.id.btnLastDays:
                 if (SingletonDate.getInstance().getStartDate().minusOneDay()) {
@@ -336,12 +324,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.DatePickerError2,
                             Toast.LENGTH_SHORT).show();
-
                 }
-
-
                 break;
-
             case R.id.btnFilter:
                 if (ValidationTools.isEmptyOrNull(pRowXfers)) {
                     return;
@@ -382,34 +366,27 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 });
                 filterPackageDialog.show();
                 break;
-
         }
     }
 
-
     public void showLoading() {
         Window window = getWindow();
-
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
             window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this, R.color.hf));
         }
-
         new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
         rcl_package.showLoading();
     }
 
-
     public void hideLoading() {
         Window window = getWindow();
-
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
             window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this, R.color.colorPrimaryDark));
         }
-
 
         new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
         rcl_package.hideLoading();
@@ -492,7 +469,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             rcl_package.showList(pRowXferAdapter);
         }
     }
-
     //get list of ever passenger with id and room's number
     private ArrayList<PackageRoomNoToRequest> getPackageRoomNoToRequest(ArrayList<LstProwPrice> lstProwPriceArrayList) {
         ArrayList<PackageRoomNoToRequest> packageRoomNoToRequests = new ArrayList<>();

@@ -212,14 +212,9 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
                 room.setCountK(room.getCountK() - 1);
                 holder.txt_child.setText(String.valueOf(room.getCountK()));
                 if (!ValidationTools.isEmptyOrNull(room.getChildModels())) {
-
-
-
                     room.getChildModels().remove(room.getChildModels().size() - 1);
                     ChildAdapter childAdapter = new ChildAdapter(mView.getAppContext(), room.getChildModels());
                     holder.rcl_child.showList(childAdapter);
-
-
                 }
 
             }

@@ -56,7 +56,6 @@ public class HotelAvailApi extends BaseAPI {
 
         }
 
-
     }
 
     @Override

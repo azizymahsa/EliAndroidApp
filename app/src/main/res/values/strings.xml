@@ -31,6 +31,9 @@
     <string name="icon_check">&#xe5ca;</string>
     <string name="icon_pen">&#xe91a;</string>
     <string name="icon_mic">&#xe91b;</string>
+    <string name="icon_arro_right">&#xea42;</string>
+    <string name="icon_arro_left">&#xea44;</string>
+
 
     <string name="searchFlight">Flight</string>
     <string name="search_package">Holiday Package</string>
@@ -50,7 +53,7 @@
     <string name="icon_like">&#xe914;</string>
     <string name="icon_dislike">&#xe915;</string>
     <string name="icon_message">&#xe049;</string>
-
+    <string name="icon_email">&#xe912;</string>
     <string name="mines">&#xe892;</string>
     <string name="plus">&#xe891;</string>
 
@@ -2397,6 +2400,12 @@
     <string name="snow3">&#xe930;</string>
     <string name="wind">&#xe921;</string>
     <string name="gift">Prize !</string>
+    <string name="let_s_go">LET\'S GO</string>
+    <string name="amazing_user_login_screen_for_your_android_device">Amazing user login screen for your android device</string>
+    <string name="log_in">LOG IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="join_user">JOIN USER</string>
+    <string name="create_account">CREATE ACCOUNT</string>
     <string name="locationAlert">مکان یاب شما خاموش می باشد، لطفا برای استفاده از این قسمت مکان یاب خود را روشن نمایید.</string>
     <string name="calculated">Calculated</string>
     <string name="service_name">Hizmet adı</string>

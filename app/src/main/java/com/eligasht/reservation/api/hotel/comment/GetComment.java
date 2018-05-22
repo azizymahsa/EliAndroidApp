@@ -48,10 +48,7 @@ public class GetComment extends BaseAPI { private final String TAG = "__" + this
 
         } catch (Exception e) {
             Log.e("errorrrrrr",e.getMessage() );
-
         }
-
-
     }
 
     @Override

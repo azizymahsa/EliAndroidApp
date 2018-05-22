@@ -39,8 +39,7 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         this.context = parent.getContext();
-        return new ViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.recycler_view_list_row_flight, parent, false));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_view_list_row_flight, parent, false));
     }
 
 
@@ -53,7 +52,6 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
         holder.tvFlightDetail2.setText(item.getFltTime() + " ");
         holder.tvFlightDetail3.setText(item.getFltDate());
 
-
         holder.tvArrAirport.setText(item.getArrAirPortFa());
         holder.tvDepAir.setText(item.getDepAirPortFa());
         holder.tvDate.setText(item.getFltDate());
@@ -61,10 +59,9 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
         holder.tvInTime.setText(item.getFltCheckinTime());
         holder.tvNumber.setText(item.getAirlineCode() + " " + item.getFltNumber());
         holder.tvAirLineName.setText(item.getAirlineNameEn());
-        // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
+
         holder.expandableLayout.setInRecyclerView(true);
-        // holder.expandableLayout.setBackgroundColor(ContextCompat.getColor(context, item.colorId2));
-        // holder.expandableLayout.setInterpolator(item.interpolator);
+
         holder.expandableLayout.setExpanded(expandState.get(position));
         holder.expandableLayout.setListener(new ExpandableLayoutListenerAdapter() {
             @Override
@@ -112,7 +109,6 @@ public class FlightPreFactorAdapter extends RecyclerView.Adapter<FlightPreFactor
          * The ExpandableRelativeLayout doesn't work.
          */
         public ExpandableLinearLayout expandableLayout;
-        //  public RelativeLayout tvArrow;
         RelativeLayout buttonLayout;
 
         public ViewHolder(View v) {

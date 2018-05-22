@@ -31,7 +31,6 @@ public class AirportTransportServicePrice extends BaseAPI {
         );
     }
 
-
     public AirportTransportServicePrice(AirportTransportServicePriceRequest hotelAvailRequestModel) {
         this.hotelAvailRequestModel = hotelAvailRequestModel;
         send();
@@ -39,7 +38,6 @@ public class AirportTransportServicePrice extends BaseAPI {
 
     @Override
     protected void onBuildUri() {
-
     }
 
     @Override
@@ -49,13 +47,9 @@ public class AirportTransportServicePrice extends BaseAPI {
         Call<AirportTransportServiceResponse> call = getHotel.get_hotel(hotelAvailRequestModel);
         try {
             airportTransportRespone = call.execute().body();
-
         } catch (Exception e) {
             Log.e("errorrrrrr", e.getMessage());
-
         }
-
-
     }
 
     @Override

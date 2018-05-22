@@ -37,8 +37,6 @@ public class ViewPagerAttention {
     Gson gson;
     String list,name;
 
-
-
     public ViewPagerAttention(final Activity activity, final ArrayList<ImageModel> imageModels, int layout,String name ) {
         this.activity = activity;
         this.layout = layout;
@@ -56,16 +54,9 @@ public class ViewPagerAttention {
         viewPager.startAutoScroll();
         list=  gson.toJson(imageModels);
 
-        // indicator.setViewPager(viewPager);
-
-
-
        /* indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-
-
 
             }
             @Override
@@ -76,18 +67,13 @@ public class ViewPagerAttention {
             @Override
             public void onPageScrollStateChanged(int state) {
 
-
-
             }
         });
 
 */
-
-
     }
     private class IntroAdapter extends PagerAdapter {
         public IntroAdapter() {
-
 
         }
 
@@ -105,19 +91,12 @@ public class ViewPagerAttention {
             ImageView image = view.findViewById(R.id.ivImage);
 
             container.addView(view, 0);
-//            image.setImageResource(images[position]);
-
-
 
             GlideApp.with(activity)
                     .load(imageModels.get(position).getImage())
                     .centerCrop()
                     .error(R.drawable.not_found)
                     .into(image);
-
-
-
-
 
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -133,11 +112,6 @@ public class ViewPagerAttention {
                             .startActivity();
                 }
             });
-
-
-
-
-
 
             return view;
         }

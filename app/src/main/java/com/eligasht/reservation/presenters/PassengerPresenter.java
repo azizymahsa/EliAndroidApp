@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import com.eligasht.R;
 import com.eligasht.reservation.contracts.PassengerContract;
 import com.eligasht.reservation.models.model.insurance.BirthDateList;
+import com.eligasht.reservation.tools.AwardSelectedItem;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
@@ -41,6 +42,7 @@ public class PassengerPresenter implements PassengerContract.Presenter {
         } else {
             passengers = passengerArrayList;
         }
+
         mView.setPassengersCount(getPassengersCount());
     }
 

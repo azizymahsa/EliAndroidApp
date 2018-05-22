@@ -335,9 +335,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true) - 1;
             PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
             persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
-
             datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
-
 
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
@@ -356,15 +354,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
 
             datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
-
-
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
             int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true) - 12;
             int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true) - 1;
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
-
             datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
 
         }
@@ -376,11 +371,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         persianCalendar2.set(persianCalendarDatePicker.getPersianYear() + 6, persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
         datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
         ///////end setMin
-
         try {
             jsonObj = new JSONArray(Prefs.getString("Rooms", "dd"));
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -449,7 +441,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             }
         });
 
-
         rlLoading = findViewById(R.id.rlLoading);
         rlRoot = findViewById(R.id.rlRoot);
 
@@ -461,14 +452,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             imgCount.setText(getCounter(room) + " " + getString(R.string.room));
         } else {
             imgCount.setText(getString(R.string.room) + " " + getCounter(room));
-
         }
         expandableLayout = findViewById(R.id.expandableLayout);
         txt_hom.setOnClickListener(PassengerHotelFlightActivity.this);
 
         txtMore = findViewById(R.id.txtMore);
         txtMore.setOnClickListener(PassengerHotelFlightActivity.this);
-
 
         txtSumKhadamat = findViewById(R.id.txtSumKhadamat);
         tvPrice = findViewById(R.id.tvPrice);
@@ -510,7 +499,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
         btn_pardakht_factor = findViewById(R.id.btn_pardakht_factor);
         btn_pardakht_factor.setOnClickListener(PassengerHotelFlightActivity.this);
-
 
         btn_saler = findViewById(R.id.btn_saler);
         btn_mosaferan = findViewById(R.id.btn_mosaferan);
@@ -581,7 +569,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         categories.add(getString(R.string.Please_choose_a_gender));
         categories.add(getString(R.string.man));
         categories.add(getString(R.string.Female));
-
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(PassengerHotelFlightActivity.this, android.R.layout.simple_spinner_item, categories);
@@ -655,7 +642,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
 
             List<PreFactorHotel> jArray2 = jArray.getPreFactorHotels();
-
 
             for (int i = 0; i < jArray2.size(); i++) {
                 hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
@@ -1046,13 +1032,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((ImageView) findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
                 } else if (linear_saler.getVisibility() == View.VISIBLE) {
-
                     Prefs.putBoolean("BACK_HOME", true);
                     Intent intent = new Intent("sendFinish");
-
                     LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 }
-
                 break;
             case R.id.btn_next_partnerInfo:
                 if (FlagTab) {
@@ -1104,7 +1087,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {
-                            //((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer = flagMosafer + "F";
                             errorMessage = errorMessage + "\n" + "* " + getString(R.string.Email_format_is_correct);
                         }
@@ -1115,7 +1097,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                     ((EditText) findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
                                 } else {
-                                    //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
                                     flagMosafer = flagMosafer + "F";
                                     errorMessage = errorMessage + "\n" + "* " + getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                                 }
@@ -1130,14 +1111,12 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                 }
                             }
                         }
-                        //if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
                         if (RqPartner_LastNameFa != null) {
                             if (Locale.getDefault().getLanguage().equals("en")) {
                                 if (RqPartner_LastNameFa.length() > 2 && ((RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")))) {
                                     ((EditText) findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
                                 } else {
-                                    //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
                                     flagMosafer = flagMosafer + "F";
                                     errorMessage = errorMessage + "\n" + "* " + getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                                 }
@@ -1146,7 +1125,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                     ((EditText) findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
                                 } else {
-                                    //((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
                                     flagMosafer = flagMosafer + "F";
                                     errorMessage = errorMessage + "\n" + "* " + getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                                 }
@@ -1156,7 +1134,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             ((EditText) findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {
-                            //((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
                             flagMosafer = flagMosafer + "F";
                             errorMessage = errorMessage + "\n" + "* " + getString(R.string.Enter_the_correct_mobile_format);
                         }
@@ -1438,58 +1415,47 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                                 System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
 
-
                             }
 
                             if (sum > 0) {
                                 System.out.println("gender:" + Gender);
                                 //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                                 if (counter - 1 == 1) {
-                                    db.insertData(counter - 1, getString(R.string.First_passenger_information), getString(R.string.room) + getCounter(room), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-
+                                    db.insertData(counter - 1, getString(R.string.First_passenger_information), getString(R.string.room) + getCounter(room), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
                                 } else {
-                                    db.insertData(counter - 1, txtTitleCountM.getText().toString(), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                                    db.insertData(counter - 1, txtTitleCountM.getText().toString(), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
                                 }
                                 System.out.println("InsertMosafer:" + (counter - 1) + " " + txtTitleCountM.getText().toString() + " " + RqPassenger_FirstNameEn);
                                 if (countB >= 1) {
                                     System.out.println("countB:" + countB);
-
                                     countB--;
                                 } else if (countK >= 1) {
                                     System.out.println("countK:" + countK);
-
                                     countK--;
                                 } else if (countN >= 1) {
                                     System.out.println("countN:" + countN);
-
                                     countN--;
                                 }
                                 if (countB != 0) {
-
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.adult_));
                                     if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
-
                                     }
                                 } else if (countK != 0) {
-
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.child_));
                                     if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
-
                                     }
                                 } else if (countN != 0) {
-
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.baby));
                                     if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
-
                                     }
                                 }
 
@@ -1500,7 +1466,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                 sum--;
                                 ///pak kardan data haye mosafere ghabli:
                                 if (sum > 0) {
-                                    //counter--;
 
                                     txttavalodm.setText("");
                                     txtnamem.setText("");
@@ -1523,7 +1488,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                     room = room + 1;
 
                                     System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
-
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();

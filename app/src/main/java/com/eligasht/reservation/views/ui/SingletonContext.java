@@ -46,7 +46,4 @@ public class SingletonContext {
         return typeface;
     }
 
-
-
-
 }
