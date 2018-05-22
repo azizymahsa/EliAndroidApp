@@ -11,14 +11,16 @@ public class HotelPreFactorModel {
     String Adult;
     String Child;
     String Room;
+    String CityName;
 
-    public HotelPreFactorModel(String hotelName, String checkIn, String checkOut, String adult, String child, String room) {
+    public HotelPreFactorModel(String hotelName, String checkIn, String checkOut, String adult, String child, String room, String cityName) {
         HotelName = hotelName;
         CheckIn = checkIn;
         CheckOut = checkOut;
         Adult = adult;
         Child = child;
         Room = room;
+        CityName = cityName;
     }
 
     public String getHotelName() {
@@ -67,5 +69,13 @@ public class HotelPreFactorModel {
 
     public void setRoom(String room) {
         Room = room;
+    }
+
+    public String getCityName() {
+        return CityName;
+    }
+
+    public void setCityName(String cityName) {
+        CityName = cityName;
     }
 }

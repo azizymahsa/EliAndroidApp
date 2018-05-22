@@ -86,7 +86,8 @@
                             android:gravity="center"
                             android:text="@string/terms_and_conditions"
                             android:textColor="#2e3192"
-                            android:textSize="@dimen/_12dp_normal_textSize" />
+                            android:textSize="@dimen/_14dp_txtSize"
+                            />
 
                         <View
                             android:layout_width="@dimen/_50dp_normal"

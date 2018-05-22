@@ -74,6 +74,11 @@
             android:name=".reservation.views.activities.ShakeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".reservation.views.activities.FlightSeatActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".reservation.views.activities.SettingsActivity"
             android:screenOrientation="portrait"

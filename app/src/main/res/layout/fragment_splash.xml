@@ -4,7 +4,7 @@
     android:id="@+id/page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="#3d3f4e">
     <ImageView
         android:id="@+id/ivSplash"
         android:layout_width="250dp"
@@ -27,12 +27,12 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
-        android:layout_width="@dimen/_200dp"
-        android:layout_height="@dimen/_200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:lottie_autoPlay="true"
         app:lottie_loop="false"
-        app:lottie_fileName="lottie/e-splash.json"
+        app:lottie_fileName="lottie/logo_2.json"
         android:layout_centerInParent="true"
        />
     <com.wang.avi.AVLoadingIndicatorView
@@ -42,7 +42,7 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:visibility="invisible"
-        app:indicatorColor="@color/list_selection"
+        app:indicatorColor="@color/white"
         app:indicatorName="BallSpinFadeLoaderIndicator"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/ivSplash"
@@ -56,6 +56,7 @@
         android:layout_alignParentBottom="true"
         android:textSize="10dp"
         android:gravity="center"
+        android:textColor="@color/white"
         />
 
 </RelativeLayout>

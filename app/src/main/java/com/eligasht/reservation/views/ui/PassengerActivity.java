@@ -1863,14 +1863,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					List<PreFactorHotel> jArray2 = jArray.getPreFactorHotels();//PreFactorHotels();
 
 
-					for (int i = 0; i < jArray2.size(); i++) {
-						hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
-								Utility.dateShow(jArray2.get(i).getHotelChekin())
-								, Utility.dateShow(jArray2.get(i).getHotelChekout()),
-								jArray2.get(i).getAdlCount()+"",
-								jArray2.get(i).getChdCount()+"",jArray2.get(i).getRoomTitleFa()));
+			for (int i = 0; i < jArray2.size(); i++) {
+				hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
+						Utility.dateShow(jArray2.get(i).getHotelChekin())
+						, Utility.dateShow(jArray2.get(i).getHotelChekout()),
+						jArray2.get(i).getAdlCount()+"",
+						jArray2.get(i).getChdCount()+"",jArray2.get(i).getRoomTitleFa(),jArray2.get(i).getCityEn()));
 
-					}
 					if (!hotelPreFactorModels.isEmpty()) {
 						recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
 						llDetailHotel.setVisibility(View.VISIBLE);
@@ -1935,7 +1934,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 								jArray5.get(i).getFltNumber()+"",
 								jArray5.get(i).getAirlineNameFa()+"",
-								jArray5.get(i).getDepartureCityFa()+"",jArray5.get(i).getAirlineCode()+""));
+								jArray5.get(i).getDepartureCityFa()+"",jArray5.get(i).getAirlineCode()+"",jArray5.get(i).getArrivalCityFa()));
 
 					}
 					if (!flightPreFactorModels.isEmpty()) {

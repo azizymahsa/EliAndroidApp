@@ -46,6 +46,7 @@ import com.eligasht.service.model.startup.response.StartupServiceResponse;
 import com.google.gson.Gson;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
+import com.jaeger.library.StatusBarUtil;
 import com.orhanobut.hawk.Hawk;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.zplesac.connectionbuddy.activities.ConnectionBuddyActivity;
@@ -118,10 +119,11 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         } catch (Exception e) {
         }
         setContentView(R.layout.fragment_splash);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        StatusBarUtil.setTranslucent(this, 2);
+  /*      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.list_selection));
-        }
+        }*/
         splashDialog = new SplashDialog(SplashActivity.this, this);
         final PackageInfo pInfo;
         try {
