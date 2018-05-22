@@ -1310,21 +1310,18 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 					///endValidate
 
-
 					if(flagMosafer.contains("F")){
-						//Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
+
 						try {
 							AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerActivity.this,false,false);
 							AlertDialogPassenger.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
 						}catch (Exception e){
 							e.getMessage();
-						}//Toast.makeText(this,errorMessagePartner,2000).show();
+						}
 					}else{
 						PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerActivity.this);
 
-						//db.dropTable();
 						db.openDB();
-
 
 						if(sum>0){
 							System.out.println("gender:"+Gender);
@@ -1338,18 +1335,15 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
 							if(countB>=1) {
 								System.out.println("countB:"+countB);
-								//txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
-								//imgCount.setText(counter+"");
+
 								countB--;
 							}else if(countK>=1) {
 								System.out.println("countK:"+countK);
-								//txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
-								//imgCount.setText(counter+"");
+
 								countK--;
 							}else if(countN>=1) {
 								System.out.println("countN:"+countN);
-								//txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
-								//imgCount.setText(counter+"");
+
 								countN--;
 							}
 							if(countB!=0){

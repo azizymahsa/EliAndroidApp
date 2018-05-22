@@ -1438,31 +1438,25 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                     countN--;
                                 }
                                 if (countB != 0) {
-
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.adult_));
                                     if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
-
                                     }
                                 } else if (countK != 0) {
-
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.child_));
                                     if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
-
                                     }
                                 } else if (countN != 0) {
-
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.baby));
                                     if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
-
                                     }
                                 }
 
