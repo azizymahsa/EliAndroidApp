@@ -1415,7 +1415,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                                 System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
 
-
                             }
 
                             if (sum > 0) {
@@ -1467,7 +1466,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                 sum--;
                                 ///pak kardan data haye mosafere ghabli:
                                 if (sum > 0) {
-                                    //counter--;
 
                                     txttavalodm.setText("");
                                     txtnamem.setText("");
@@ -1490,7 +1488,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                     room = room + 1;
 
                                     System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
-
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();

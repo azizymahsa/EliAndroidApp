@@ -918,11 +918,9 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 System.out.println("InsertMosafer:" + (counter - 1) + " " + txtTitleCountM.getText().toString() + " " + RqPassenger_FirstNameEn);
                                 if (countB >= 1) {
                                     System.out.println("countB:" + countB);
-
                                     countB--;
                                 } else if (countK >= 1) {
                                     System.out.println("countK:" + countK);
-
                                     countK--;
                                 } else if (countN >= 1) {
                                     System.out.println("countN:" + countN);

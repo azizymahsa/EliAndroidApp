@@ -1279,7 +1279,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
 							flagMosafer=flagMosafer+"T";
 						}else{
-							//((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
 							errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
 						}
@@ -1288,7 +1287,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
 							flagMosafer=flagMosafer+"T";
 						}else{
-							//((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
 							errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
 						}
@@ -1297,7 +1295,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
 							flagMosafer=flagMosafer+"T";
 						}else{
-							//((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
 							errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_passport_expiration_date);
 						}
@@ -1328,7 +1325,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							//	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 							if(counter-1 ==1){
 								db.insertData(counter-1,getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
-
 							}else{
 								db.insertData(counter-1,txtTitleCountM.getText().toString(),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
 							}
@@ -1349,7 +1345,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							if(countB!=0){
 								if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
 									txtTitleCountM.setText( getCounter(counter)+" " +getString(R.string.Passenger_information)+" " + getString(R.string.adult_));
-
 								}else {
 									txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.adult_));
 								}
@@ -1358,7 +1353,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							else if(countK!=0){
 								if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
 									txtTitleCountM.setText( getCounter(counter) +" " +getString(R.string.Passenger_information) +" " + getString(R.string.child_));
-
 								}else {
 									txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.child_));
 								}
@@ -1367,13 +1361,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							else if(countN!=0){
 								if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
 									txtTitleCountM.setText( getCounter(counter) +" " +getString(R.string.Passenger_information) +" " + getString(R.string.baby_));
-
 								}else {
 									txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.baby_));
 								}
 								imgCount.setText(counter+"");
 							}
-
 
 							System.out.println("counterMosafer:"+getCounter(counter)+counter);
 
@@ -1399,11 +1391,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						//	txtnamem.setFocusable(true);
 						//insert mosafer
 
-
 						linear_mosaferan.clearFocus();
-
 					}
-
 
 					//call api saler
 					if(sum==0){
@@ -1419,8 +1408,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					linear_list_khadamat.setVisibility(View.VISIBLE);
 					linear_pish_factor.setVisibility(View.GONE);
 
-
-
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
@@ -1430,12 +1417,10 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
 					txtTitle.setText(getString(R.string.Add_to_cart_services));
 					setAnimation();
-
 				}
 				break;
 
 			case R.id.btn_taeed_khadamat:
-
 				//call api pishFactor
 				RequestPurchase();
 				break;

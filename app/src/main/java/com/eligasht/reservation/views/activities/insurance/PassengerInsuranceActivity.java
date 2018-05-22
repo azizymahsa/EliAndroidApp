@@ -1262,42 +1262,32 @@ private void RequestPurchaseInsurance(){
 
                             if (counter - 1 == 1) {
                                 db.insertData(counter - 1, getString(R.string.First_passenger_information), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
-
                             } else {
-
                                 db.insertData(counter - 1, txtTitleCountM.getText().toString(), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
                             }
                             System.out.println("InsertMosafer:" + (counter - 1) + " " + txtTitleCountM.getText().toString() + " " + RqPassenger_FirstNameEn);
                             if (countB >= 1) {
                                 System.out.println("countB:" + countB);
-
                                 countB--;
                             } else if (countK >= 1) {
                                 System.out.println("countK:" + countK);
-
                                 countK--;
                             } else if (countN >= 1) {
                                 System.out.println("countN:" + countN);
-
                                 countN--;
                             }
                             if (countB != 0) {
-
                                 txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + " (بزرگسال) ");
                                 imgCount.setText(counter + "");
-
                             } else if (countK != 0) {
-
                                 txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.child_));
                                 imgCount.setText(counter + "");
                             } else if (countN != 0) {
-
                                 txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.baby_));
                                 imgCount.setText(counter + "");
                             }
 
                             System.out.println("counterMosafer:" + getCounter(counter) + counter);
-
 
                             sum--;
                             ///pak kardan data haye mosafere ghabli:
@@ -1325,11 +1315,9 @@ private void RequestPurchaseInsurance(){
                         }
                         db.closeDB();
 
-
                         linear_mosaferan.clearFocus();
 
                     }
-
 
                     //call api saler
                     if (sum == 0) {
@@ -1337,7 +1325,6 @@ private void RequestPurchaseInsurance(){
                         System.out.println("insert:");
                         //new AsyncFetch().execute();
                         RequestPurchaseInsurance();
-
                     }
                 }
                 if (FlagTab) {
@@ -1511,7 +1498,7 @@ private void RequestPurchaseInsurance(){
             counter--;
 
             imgCount.setText(counter + "");
-            ///////////////////
+
         } else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
 
             linear_mosaferan.setVisibility(View.GONE);

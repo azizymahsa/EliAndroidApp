@@ -1916,9 +1916,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     }
                     ///endValidate
 
-
                     if (flagMosafer.contains("F")) {
-                        //Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
                         try {
                             AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelActivity.this, false, false);
                             AlertDialogPassenger.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
@@ -1928,7 +1926,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     } else {
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerHotelActivity.this);
 
-                        //db.dropTable();
                         db.openDB();
 
                         //faghat yek otagh
@@ -1949,7 +1946,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                         }
                                     } catch (JSONException e) {
                                         e.printStackTrace();
-
                                     }
                                     sum = countB + countK + countN;
                                     rooms = rooms - 1;
@@ -1957,7 +1953,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                 }
 
                                 System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
-
 
                             }
 
@@ -1994,10 +1989,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.adult_));
                                     } else {
-
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                         txtTitleCountM.setText(getCounter(counter) + getString(R.string.Passenger_information) + getString(R.string.adult_));
-
                                     }
                                 } else if (countK != 0) {
 
@@ -2006,25 +1999,20 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.child_));
                                     } else {
-
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                         txtTitleCountM.setText(getCounter(counter) + getString(R.string.Passenger_information) + getString(R.string.child_));
-
                                     }
                                 } else if (countN != 0) {
 
                                     if (Prefs.getString("lang", "fa").equals("fa")) {
                                         System.out.println("farsi:");
-
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.baby_));
-
                                     } else {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                         txtTitleCountM.setText(getCounter(counter) + getString(R.string.Passenger_information) + getString(R.string.baby_));
                                     }
                                 }
-
 
                                 System.out.println("counterMosafer:" + getCounter(counter) + counter);
 
@@ -2046,7 +2034,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                             if (sum == 0) {
                                 try {
-                                    //if(rooms==1){
 
                                     countK = jsonObj.getJSONObject(room).getInt("CountK");
                                     countB = jsonObj.getJSONObject(room).getInt("CountB");
@@ -2109,10 +2096,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter - 1) + getString(R.string.baby_));
                                     } else {
-
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                         txtTitleCountM.setText(getCounter(counter - 1) + getString(R.string.info_passenger) + getString(R.string.baby_));
-
                                     }
                                     countN--;
                                 }
@@ -2120,13 +2105,11 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                                     if (Prefs.getString("lang", "fa").equals("fa")) {
                                         System.out.println("farsi:");
-
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter) + getString(R.string.adult_));
                                     } else {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                         txtTitleCountM.setText(getCounter(counter) + getString(R.string.info_passenger) + getString(R.string.adult_));
-
                                     }
                                 } else if (countK != 0) {
 
@@ -2136,7 +2119,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter) + getString(R.string.child_));
                                     } else {
-
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                         txtTitleCountM.setText(getCounter(counter) + getString(R.string.info_passenger) + getString(R.string.child_));
                                     }
@@ -2144,7 +2126,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                                     if (Prefs.getString("lang", "fa").equals("fa")) {
                                         System.out.println("farsi:");
-
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter) + getString(R.string.baby_));
                                     } else {
@@ -2175,7 +2156,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                 sum--;
                                 ///pak kardan data haye mosafere ghabli:
                                 if (sum > 0) {
-                                    //counter--;
 
                                     txttavalodm.setText("");
                                     txtnamem.setText("");
@@ -2190,25 +2170,15 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                 System.out.println("insert:" + "sum:" + sum);
                             }
                             db.closeDB();
-
-
                             linear_mosaferan.clearFocus();
-                        }/*else if(){
-
-                            }*/
-
+                        }
                         //call api saler
                         if (sum == 0 && rooms == 0) {
                             System.out.println("APICALL:" + "sum:" + sum);
                             System.out.println("insert:");
                             new AsyncFetch().execute();
-
-
                         }
-
                     }
-
-
                 }
                 if (FlagTab) {
                     linear_saler.setVisibility(View.GONE);
@@ -2229,25 +2199,19 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 break;
 
             case R.id.btn_taeed_khadamat:
-
-
                 //call api pishFactor
                 new AsyncFetchPishFactor().execute();
-
                 //call api GetPreFactorDetails
                 break;
-
 
             case R.id.txtmeliyatm:
                 final Intent intent4 = new Intent(this, NationalitycodeActivity.class);
                 startActivityForResult(intent4, 1);
-
                 break;
             case R.id.txtmahale_eghamat:
                 final Intent intent3 = new Intent(this, CountrycodeActivity.class);
                 startActivityForResult(intent3, 1);
                 break;
-
             case R.id.btn_saler:
                 if (FlagTab) {
                     linear_saler.setVisibility(View.VISIBLE);
@@ -2302,7 +2266,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     txtTitle.setText(getString(R.string.Traveler_info));
                     setAnimation();
                 }
-                //.setOnTouchListener(null);
+                
                 break;
             case R.id.btn_khadamat:
                 if (FlagTab) {
