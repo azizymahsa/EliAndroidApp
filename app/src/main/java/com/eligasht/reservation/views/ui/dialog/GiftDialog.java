@@ -7,8 +7,7 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
-import com.eligasht.reservation.views.activities.ShakeActivity;
-import com.eligasht.reservation.views.activities.login.LogInActivity;
+import com.eligasht.reservation.views.activities.nlogin.Nlogin;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -60,7 +59,8 @@ public class GiftDialog implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnOk:
-                activity.startActivity(new Intent(activity, LogInActivity.class));
+                activity.startActivity(new Intent(activity, Nlogin.class));
+
 
                 break;
             case R.id.btnCancel:

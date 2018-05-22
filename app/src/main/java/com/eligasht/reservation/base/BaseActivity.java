@@ -70,5 +70,6 @@ public class BaseActivity extends Base {
   protected void onResume() {
     super.onResume();
 
+
   }
 }

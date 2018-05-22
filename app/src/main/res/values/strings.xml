@@ -2390,8 +2390,6 @@
     <string name="weather">Weather forecast</string>
 
 
-
-
     <string name="sun">&#xe91d;</string>
     <string name="windy">&#xe920;</string>
     <string name="cloud">&#xe927;</string>
@@ -2408,6 +2406,9 @@
     <string name="sign_up">SIGN UP</string>
     <string name="join_user">JOIN USER</string>
     <string name="create_account">CREATE ACCOUNT</string>
+    <string name="locationAlert">مکان یاب شما خاموش می باشد، لطفا برای استفاده از این قسمت مکان یاب خود را روشن نمایید.</string>
+    <string name="calculated">Calculated</string>
+    <string name="service_name">Hizmet adı</string>
     <string-array name="array_place">
         <item>Bangalore</item>
         <item>Tokyo</item>

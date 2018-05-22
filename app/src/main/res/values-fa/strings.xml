@@ -2376,4 +2376,7 @@
     <string name="sign_up"> ثبت نام</string>
     <string name="join_user">عضویت</string>
     <string name="create_account">ایجاد حساب کاربری</string>
+    <string name="locationAlert">مکان یاب شما خاموش می باشد، لطفا برای استفاده از این قسمت مکان یاب خود را روشن نمایید.</string>
+    <string name="calculated">محاسبه شده</string>
+    <string name="service_name">نام سرویس</string>
 </resources>

@@ -29,18 +29,17 @@
             <RelativeLayout
                 android:id="@+id/buttonLayout"
                 android:layout_width="match_parent"
-                android:layout_below="@+id/rlTitleHotel"
-
-
-                android:layout_height="@dimen/_35dp"
-                android:background="#fff4ee">
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/_35dp"
+                android:background="#fff4ee"
+                >
 
 
                 <TextView
                     android:id="@+id/tvHotelDetail"
-                    android:layout_width="@dimen/_250dp_normal"
+                    android:layout_width="@dimen/_300dp"
                     android:layout_centerInParent="true"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
                     android:text="جزئیات هتل"
@@ -78,21 +77,21 @@
                 >
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_150dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical">
+
+
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="65"
-
-                        android:orientation="vertical">
-
-
-
+                        android:gravity="center"
+                        android:orientation="horizontal">
                         <TextView
 
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
                             android:gravity="center|left"
                             android:padding="5dp"
                             android:text="@string/number_human"
@@ -100,37 +99,56 @@
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
                             android:textSize="@dimen/_12dp_normal_textSize" />
-
                         <TextView
+                            android:id="@+id/tvSum"
 
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:gravity="center|left"
+                            android:minHeight="@dimen/_35dp"
+                            android:padding="5dp"
+                            android:text="@string/people_number"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="#4d4d4d"
+
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tvServiceCityUi"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
                             android:gravity="center|left"
                             android:padding="5dp"
                             android:text="@string/checkout_date"
+
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="@color/text_color_2e"
-
-                            android:textSize="@dimen/_12dp_normal_textSize" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
-                            android:gravity="center|left"
-                            android:padding="5dp"
-                            android:text="@string/checkin_date"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
-
                             android:textSize="@dimen/_12dp_normal_textSize" />
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+                            android:id="@+id/tvCheckOut"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
                             android:gravity="center|left"
+                            android:minHeight="@dimen/_35dp"
                             android:padding="5dp"
-                            android:text="@string/room"
+                            android:text="@string/people_number"
                             android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_2e"
+                            android:textColor="#4d4d4d"
 
                             android:textSize="@dimen/_12dp_normal_textSize" />
 
@@ -139,74 +157,80 @@
                     </LinearLayout>
 
 
+
+
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="100"
-                        android:gravity="right"
-                        android:orientation="vertical">
-
-
-
+                        android:gravity="center"
+                        android:orientation="horizontal">
                         <TextView
-                            android:id="@+id/tvSum"
 
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
                             android:gravity="center|left"
                             android:padding="5dp"
-                            android:text="@string/number_human"
+                            android:text="@string/checkin_date"
+
+
                             android:textAppearance="@style/IrsansBold"
-                            android:textColor="#4d4d4d"
-
-                            android:textSize="@dimen/_12dp_normal_textSize" />
-
-                        <TextView
-                            android:id="@+id/tvCheckOut"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
-                            android:gravity="center|left"
-                            android:padding="5dp"
-                            android:text="تاریخ خروج از هتل"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="#4d4d4d"
-
+                            android:textColor="@color/text_color_2e"
                             android:textSize="@dimen/_12dp_normal_textSize" />
 
                         <TextView
                             android:id="@+id/tvCheckIn"
 
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
                             android:gravity="center|left"
+                            android:minHeight="@dimen/_35dp"
                             android:padding="5dp"
-                            android:text="تاریخ ورود به هتل	"
+                            android:text="@string/people_number"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#4d4d4d"
 
                             android:textSize="@dimen/_12dp_normal_textSize" />
-                        <TextView
-                            android:id="@+id/tvRoom"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_35dp"
-                            android:gravity="center|left"
-                            android:padding="5dp"
-                            android:text="تاریخ ورود به هتل	"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="#4d4d4d"
-
-                            android:textSize="@dimen/_12dp_normal_textSize"
-                            android:maxLines="1"
-                            android:ellipsize="end"/>
 
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:gravity="center|left"
+                            android:padding="5dp"
+                            android:text="@string/room"
+
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_2e"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+                        <TextView
+                            android:id="@+id/tvRoom"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="100"
+                            android:gravity="center|left"
+                            android:minHeight="@dimen/_35dp"
+                            android:padding="5dp"
+                            android:text="@string/people_number"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="#4d4d4d"
+
+                            android:textSize="@dimen/_12dp_normal_textSize" />
 
 
-
+                    </LinearLayout>
                 </LinearLayout>
 
             </com.github.aakira.expandablelayout.ExpandableLinearLayout>

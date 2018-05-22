@@ -1,46 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:map="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
-
-
-
-<FrameLayout
-    android:layout_width="match_parent"
     android:layout_height="match_parent">
-  <fragment
-      android:id="@+id/map"
-      android:name="com.amalbit.trail.TrailSupportMapFragment"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      />
-</FrameLayout>
 
 
-  <include layout="@layout/layout_bottom_sheet"
-      android:visibility="gone"/>
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-  <mehdi.sakout.fancybuttons.FancyButton
-      android:id="@+id/btnBack"
-      android:layout_width="@dimen/toolbar_bottom_width_50dp"
-      android:layout_height="@dimen/toolbar_bottom_width_50dp"
-      android:layout_gravity="left|center"
-      android:gravity="right"
-      app:fb_defaultColor="@android:color/transparent"
-      app:fb_focusColor="@color/focusColor"
+    <nl.dionsegijn.konfetti.KonfettiView
+        android:id="@+id/konfettiView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000" />
 
-      app:fb_radius="200dp"
-      app:fb_text=" "
-      app:fb_textColor="#FFFFFF"
-      app:fb_textSize="@dimen/_25dp_normal_iconSize"
-      android:layout_alignParentRight="true"
-      android:layout_margin="@dimen/_10dp"/>
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/btnBack"
+        android:layout_width="@dimen/toolbar_bottom_width_50dp"
+        android:layout_height="@dimen/toolbar_bottom_width_50dp"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="left|center"
+        android:layout_margin="@dimen/_10dp"
+        android:gravity="right"
+
+        app:fb_defaultColor="@android:color/transparent"
+        app:fb_focusColor="@color/focusColor"
+        app:fb_radius="200dp"
+        app:fb_text=" "
+        app:fb_textColor="#FFFFFF"
+        app:fb_textSize="@dimen/_25dp_normal_iconSize" />
 
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="lottie/pw.json"
+        app:lottie_loop="false" />
+
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/tvStart"
+        android:layout_width="300dp"
+        android:layout_height="@dimen/_40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="@dimen/_10dp_margin"
+        android:layout_marginRight="@dimen/_10dp_margin"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:paddingBottom="1dp"
+        android:textColor="@color/white"
+        app:fb_borderColor="@color/white"
+        app:fb_borderWidth="1dp"
+        app:fb_defaultColor="#98000000"
+        app:fb_focusColor="#c5d6d6d6"
+        app:fb_radius="100dp"
+        app:fb_text="شروع سفر"
+        app:fb_textColor="#ffff"
+        app:fb_textSize="@dimen/_16dp_normal_textSize" />
 </RelativeLayout>
 

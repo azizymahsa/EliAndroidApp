@@ -2398,5 +2398,7 @@
     <string name="sign_up">SIGN UP</string>
     <string name="join_user">JOIN USER</string>
     <string name="create_account">CREATE ACCOUNT</string>
+    <string name="calculated">Calculated</string>
+    <string name="service_name">نام سرویس</string>
 </resources>
 
