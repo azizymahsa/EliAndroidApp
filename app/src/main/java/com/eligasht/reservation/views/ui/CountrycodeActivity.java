@@ -2,7 +2,6 @@ package com.eligasht.reservation.views.ui;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -12,10 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-
 import com.eligasht.R;
 import com.eligasht.reservation.views.adapters.CountryListArrayAdapter;
-
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CountrycodeActivity extends ListActivity {

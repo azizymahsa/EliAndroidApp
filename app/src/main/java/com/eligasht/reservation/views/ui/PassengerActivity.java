@@ -864,6 +864,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	protected void onDestroy() {
 		super.onDestroy();
 		Prefs.getBoolean("IsDemostic",true);
+		Prefs.getLong("TPrice",0);
 
 		Prefs.putString("Flag_First_Computing","F");
 	}
@@ -872,7 +873,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	@Override
 	public void onClick(View v) {
-https://github.com/multidots/android-fingerprint-authentication.git
+		https://github.com/multidots/android-fingerprint-authentication.git
 		switch (v.getId()) {
 
 
@@ -1068,7 +1069,7 @@ https://github.com/multidots/android-fingerprint-authentication.git
 								AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(PassengerActivity.this,false,false);
 								alertDialogPassenger.setText("" + "  " + errorMessage, getString(R.string.EditInput));
 							}catch (Exception e){
-							e.getMessage();
+								e.getMessage();
 							}
 						}else{
 							//insert partner
@@ -1329,10 +1330,10 @@ https://github.com/multidots/android-fingerprint-authentication.git
 							System.out.println("gender:"+Gender);
 							//	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 							if(counter-1 ==1){
-								db.insertData(counter-1,getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+								db.insertData(counter-1,getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
 
 							}else{
-								db.insertData(counter-1,txtTitleCountM.getText().toString(),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+								db.insertData(counter-1,txtTitleCountM.getText().toString(),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
 							}
 							System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
 							if(countB>=1) {
@@ -1857,6 +1858,9 @@ https://github.com/multidots/android-fingerprint-authentication.git
 					GetPreFactorDetailsResult GetAirportsResult = responsePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
 
 					PreFactor jArray = GetAirportsResult.getPreFactor();//("PreFactor");//FactorSummary
+				Gson gson=	new Gson();
+				gson.toJson(jArray);
+					Log.e("jsonpre",gson+"" );
 
 					//FactorSummary
 					FactorSummary jFact = jArray.getFactorSummary();
@@ -1880,18 +1884,18 @@ https://github.com/multidots/android-fingerprint-authentication.git
 					List<PreFactorHotel> jArray2 = jArray.getPreFactorHotels();//PreFactorHotels();
 
 
-			for (int i = 0; i < jArray2.size(); i++) {
-				hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
-						Utility.dateShow(jArray2.get(i).getHotelChekin())
-						, Utility.dateShow(jArray2.get(i).getHotelChekout()),
-						jArray2.get(i).getAdlCount()+"",
-						jArray2.get(i).getChdCount()+"",jArray2.get(i).getRoomTitleFa()));
+					for (int i = 0; i < jArray2.size(); i++) {
+						hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
+								Utility.dateShow(jArray2.get(i).getHotelChekin())
+								, Utility.dateShow(jArray2.get(i).getHotelChekout()),
+								jArray2.get(i).getAdlCount()+"",
+								jArray2.get(i).getChdCount()+"",jArray2.get(i).getRoomTitleFa()));
 
-			}
-			if (!hotelPreFactorModels.isEmpty()) {
-				recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
-				llDetailHotel.setVisibility(View.VISIBLE);
-			}
+					}
+					if (!hotelPreFactorModels.isEmpty()) {
+						recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
+						llDetailHotel.setVisibility(View.VISIBLE);
+					}
 //for passenger======================================================================================
 
 					final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
@@ -1922,17 +1926,17 @@ https://github.com/multidots/android-fingerprint-authentication.git
 					ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
 					List<PreFactorService> jArray4 = jArray.getPreFactorServices();
 
-			for (int i = 0; i < jArray4.size(); i++) {
-				servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
-						jArray4.get(i).getServicePrice()+"",jArray4.get(i).getServiceType(),
-						jArray4.get(i).getCityFa(),jArray4.get(i).getServiceNameFa(),jArray4.get(i).getCountryFa()));
+					for (int i = 0; i < jArray4.size(); i++) {
+						servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
+								jArray4.get(i).getServicePrice()+"",jArray4.get(i).getServiceType(),
+								jArray4.get(i).getCityFa(),jArray4.get(i).getServiceNameFa(),jArray4.get(i).getCountryFa()));
 
-			}
-			if (!servicePreFactorModels.isEmpty()) {
-				llDetailService.setVisibility(View.VISIBLE);
-				recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
+					}
+					if (!servicePreFactorModels.isEmpty()) {
+						llDetailService.setVisibility(View.VISIBLE);
+						recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
 
-			}
+					}
 					//for flight==================================================================================
 					final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
 					recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
@@ -2139,7 +2143,6 @@ https://github.com/multidots/android-fingerprint-authentication.git
 		}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
 			linear_list_khadamat.setVisibility(View.GONE);
 			linear_mosaferan.setVisibility(View.VISIBLE);
-
 
 			txtTitle.setText(getString(R.string.passneger_info));
 			((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);

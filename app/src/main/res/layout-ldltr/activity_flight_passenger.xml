@@ -198,7 +198,7 @@
             android:layout_height="match_parent"
 
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <ScrollView
                 android:id="@+id/scroll_partner"
@@ -635,7 +635,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <!-- ///////////////////////// -->
             <ScrollView
@@ -967,7 +967,6 @@
                                 android:layout_width="15dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="right"
-
                                 android:gravity="right"
                                 android:text="*"
                                 android:textColor="#ff0000" />
