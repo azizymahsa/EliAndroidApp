@@ -2266,7 +2266,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     txtTitle.setText(getString(R.string.Traveler_info));
                     setAnimation();
                 }
-                
+
                 break;
             case R.id.btn_khadamat:
                 if (FlagTab) {

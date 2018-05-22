@@ -1403,7 +1403,6 @@ private void RequestPurchaseInsurance(){
                 }
                 break;
         }
-
     }
 
     public String getCounter(int i) {
@@ -1441,10 +1440,8 @@ private void RequestPurchaseInsurance(){
                 System.out.println("Unknown result");
 
                 break;
-
         }
         return s;
-
     }
 
     @Override
@@ -1530,7 +1527,6 @@ private void RequestPurchaseInsurance(){
     @Override
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
-
     }
 
     public static void updateTotalInfos(long serviceTotalPrice) {

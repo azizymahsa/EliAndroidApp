@@ -1105,7 +1105,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                     ((EditText) findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
                                 } else {
-                                    //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
                                     flagMosafer = flagMosafer + "F";
                                     errorMessage = errorMessage + "\n" + "* " + getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                                 }
@@ -1251,7 +1250,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     datePickerDialog.setMinDate(persianCalendarDatePicker1);
                     datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
                     String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
                     int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true) - 12;
@@ -1303,10 +1301,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     String RqPassenger_PassExpDate = txtexp_passport.getText().toString();
                     String RqPassenger_PassNo = txtnumber_passport.getText().toString();
                     String RqPassenger_Tel = "25548632";
-
-
                     String flagMosafer = "T";
-
                     String errorMessagePartner = "";
                     ///Validate
 
