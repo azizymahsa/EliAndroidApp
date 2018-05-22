@@ -864,7 +864,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	protected void onDestroy() {
 		super.onDestroy();
 		Prefs.getBoolean("IsDemostic",true);
-		Prefs.getLong("TPrice",0);
 
 		Prefs.putString("Flag_First_Computing","F");
 	}
@@ -1279,6 +1278,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
 							flagMosafer=flagMosafer+"T";
 						}else{
+							//((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
 							errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
 						}
@@ -1287,6 +1287,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
 							flagMosafer=flagMosafer+"T";
 						}else{
+							//((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
 							errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
 						}
@@ -1295,6 +1296,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
 							flagMosafer=flagMosafer+"T";
 						}else{
+							//((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
 							errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_passport_expiration_date);
 						}
@@ -1307,18 +1309,21 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 					///endValidate
 
-					if(flagMosafer.contains("F")){
 
+					if(flagMosafer.contains("F")){
+						//Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
 						try {
 							AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerActivity.this,false,false);
 							AlertDialogPassenger.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
 						}catch (Exception e){
 							e.getMessage();
-						}
+						}//Toast.makeText(this,errorMessagePartner,2000).show();
 					}else{
 						PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerActivity.this);
 
+						//db.dropTable();
 						db.openDB();
+
 
 						if(sum>0){
 							System.out.println("gender:"+Gender);
@@ -1331,20 +1336,24 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
 							if(countB>=1) {
 								System.out.println("countB:"+countB);
-
+								//txtTitleCountM.setText(" اطلاعات مسافربزرگسال " + counter);
+								//imgCount.setText(counter+"");
 								countB--;
 							}else if(countK>=1) {
 								System.out.println("countK:"+countK);
-
+								//txtTitleCountM.setText(" اطلاعات مسافرکودک " + counter);
+								//imgCount.setText(counter+"");
 								countK--;
 							}else if(countN>=1) {
 								System.out.println("countN:"+countN);
-
+								//txtTitleCountM.setText(" اطلاعات مسافرنوزاد " + counter);
+								//imgCount.setText(counter+"");
 								countN--;
 							}
 							if(countB!=0){
 								if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
 									txtTitleCountM.setText( getCounter(counter)+" " +getString(R.string.Passenger_information)+" " + getString(R.string.adult_));
+
 								}else {
 									txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.adult_));
 								}
@@ -1353,6 +1362,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							else if(countK!=0){
 								if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
 									txtTitleCountM.setText( getCounter(counter) +" " +getString(R.string.Passenger_information) +" " + getString(R.string.child_));
+
 								}else {
 									txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.child_));
 								}
@@ -1361,11 +1371,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							else if(countN!=0){
 								if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
 									txtTitleCountM.setText( getCounter(counter) +" " +getString(R.string.Passenger_information) +" " + getString(R.string.baby_));
+
 								}else {
 									txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter)+getString(R.string.baby_));
 								}
 								imgCount.setText(counter+"");
 							}
+
 
 							System.out.println("counterMosafer:"+getCounter(counter)+counter);
 
@@ -1391,8 +1403,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						//	txtnamem.setFocusable(true);
 						//insert mosafer
 
+
 						linear_mosaferan.clearFocus();
+
 					}
+
 
 					//call api saler
 					if(sum==0){
@@ -1408,6 +1423,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					linear_list_khadamat.setVisibility(View.VISIBLE);
 					linear_pish_factor.setVisibility(View.GONE);
 
+
+
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_on);
@@ -1417,10 +1434,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					((Button)findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#4d4d4d"));
 					txtTitle.setText(getString(R.string.Add_to_cart_services));
 					setAnimation();
+
 				}
 				break;
 
 			case R.id.btn_taeed_khadamat:
+
 				//call api pishFactor
 				RequestPurchase();
 				break;
@@ -1837,9 +1856,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					GetPreFactorDetailsResult GetAirportsResult = responsePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
 
 					PreFactor jArray = GetAirportsResult.getPreFactor();//("PreFactor");//FactorSummary
-				Gson gson=	new Gson();
-				gson.toJson(jArray);
-					Log.e("jsonpre",gson+"" );
 
 					//FactorSummary
 					FactorSummary jFact = jArray.getFactorSummary();
@@ -1863,13 +1879,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					List<PreFactorHotel> jArray2 = jArray.getPreFactorHotels();//PreFactorHotels();
 
 
-			for (int i = 0; i < jArray2.size(); i++) {
-				hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
-						Utility.dateShow(jArray2.get(i).getHotelChekin())
-						, Utility.dateShow(jArray2.get(i).getHotelChekout()),
-						jArray2.get(i).getAdlCount()+"",
-						jArray2.get(i).getChdCount()+"",jArray2.get(i).getRoomTitleFa(),jArray2.get(i).getCityEn()));
+					for (int i = 0; i < jArray2.size(); i++) {
+						hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
+								Utility.dateShow(jArray2.get(i).getHotelChekin())
+								, Utility.dateShow(jArray2.get(i).getHotelChekout()),
+								jArray2.get(i).getAdlCount()+"",
+								jArray2.get(i).getChdCount()+"",jArray2.get(i).getRoomTitleFa(),jArray2.get(i).getCityEn()));
 
+					}
 					if (!hotelPreFactorModels.isEmpty()) {
 						recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
 						llDetailHotel.setVisibility(View.VISIBLE);
@@ -2121,6 +2138,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
 			linear_list_khadamat.setVisibility(View.GONE);
 			linear_mosaferan.setVisibility(View.VISIBLE);
+
 
 			txtTitle.setText(getString(R.string.passneger_info));
 			((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
