@@ -784,7 +784,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekin"))
                             , Utility.dateShow(jArray2.getJSONObject(i).getString("HotelChekout")),
                             jArray2.getJSONObject(i).getString("AdlCount"),
-                            jArray2.getJSONObject(i).getString("ChdCount"), jArray2.getJSONObject(i).getString("RoomTitleFa")));
+                            jArray2.getJSONObject(i).getString("ChdCount"), jArray2.getJSONObject(i).getString("RoomTitleFa"), jArray2.getJSONObject(i).getString("CityEn")));
 
                 }
                 if (!hotelPreFactorModels.isEmpty()) {
@@ -858,7 +858,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                             jArray5.getJSONObject(i).getString("FltNumber"),
                             jArray5.getJSONObject(i).getString("AirlineNameFa"),
-                            jArray5.getJSONObject(i).getString("DepartureCityFa"), jArray5.getJSONObject(i).getString("AirlineCode")));
+                            jArray5.getJSONObject(i).getString("DepartureCityFa"),
+                            jArray5.getJSONObject(i).getString("AirlineCode"),
+                            jArray5.getJSONObject(i).getString("ArrivalCityFa")));
                 }
                 if (!flightPreFactorModels.isEmpty()) {
                     llDetailFlight.setVisibility(View.VISIBLE);

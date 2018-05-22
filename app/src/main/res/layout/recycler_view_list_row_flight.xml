@@ -103,7 +103,7 @@
             <com.github.aakira.expandablelayout.ExpandableLinearLayout
                 android:id="@+id/expandableLayout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_120dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/buttonLayout"
                 android:orientation="vertical"
                 app:ael_duration="400"

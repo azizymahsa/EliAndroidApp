@@ -55,7 +55,7 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
         holder.tvGender.setText(item.getGender().contains("false") ? context.getString(R.string.female) : context.getString(R.string.male));//item.getGender());
         holder.tvPassangerName.setText(item.getRqPassenger_name());
 
-        if (Prefs.getBoolean("IsDemostic", true)) {
+        if (Prefs.getBoolean("IsDemostic", false)) {
             holder.tvPass.setText(context.getString(R.string.national_code));
             holder.tvPassNo.setText(item.getRqPassenger_PassNo());
 

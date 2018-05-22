@@ -662,7 +662,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         Utility.dateShow(jArray2.get(i).getHotelChekin())
                         , Utility.dateShow(jArray2.get(i).getHotelChekout()),
                         jArray2.get(i).getAdlCount() + "",
-                        jArray2.get(i).getChdCount() + "", jArray2.get(i).getRoomTitleFa()));
+                        jArray2.get(i).getChdCount() + "", jArray2.get(i).getRoomTitleFa(),jArray2.get(i).getCityEn()));
 
             }
             if (!hotelPreFactorModels.isEmpty()) {
@@ -726,7 +726,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                         jArray5.get(i).getFltNumber(),
                         jArray5.get(i).getAirlineNameFa(),
-                        jArray5.get(i).getDepartureCityFa(), jArray5.get(i).getAirlineCode()));
+                        jArray5.get(i).getDepartureCityFa(), jArray5.get(i).getAirlineCode(),jArray5.get(i).getArrivalCityFa()));
 
             }
             if (!flightPreFactorModels.isEmpty()) {

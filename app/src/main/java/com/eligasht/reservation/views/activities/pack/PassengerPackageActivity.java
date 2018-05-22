@@ -1550,7 +1550,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                     Utility.dateShow(jArray2.get(i).getHotelChekin()),
                                     Utility.dateShow(jArray2.get(i).getHotelChekout()),
                                     jArray2.get(i).getAdlCount() + "",
-                                    jArray2.get(i).getChdCount() + "", jArray2.get(i).getRoomTitleFa()));
+                                    jArray2.get(i).getChdCount() + "", jArray2.get(i).getRoomTitleFa(),jArray2.get(i).getCityEn()));
                         }
                         if (!hotelPreFactorModels.isEmpty()) {
                             recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
@@ -1602,7 +1602,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                     jArray5.get(i).getFltCheckinTime(),
                                     jArray5.get(i).getFltNumber(),
                                     jArray5.get(i).getAirlineNameFa(),
-                                    jArray5.get(i).getDepartureCityFa(), jArray5.get(i).getAirlineCode()));
+                                    jArray5.get(i).getDepartureCityFa(), jArray5.get(i).getAirlineCode(),jArray5.get(i).getArrivalCityFa()));
                         }
                         if (!flightPreFactorModels.isEmpty()) {
                             llDetailFlight.setVisibility(View.VISIBLE);

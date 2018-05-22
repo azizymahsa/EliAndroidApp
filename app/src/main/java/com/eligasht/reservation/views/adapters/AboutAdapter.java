@@ -102,12 +102,13 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
                         + item.getDescription()
                         + "</body>]]>"));
        holder.txtDescriptionEn.loadData(youtContentStr, "text/html", "utf-8");
-        if(item.getImageAddress()!=null || !TextUtils.isEmpty(item.getImageAddress())){
-            holder.iv_imageAddress.setVisibility(View.VISIBLE);
-            Glide.with(context).load(item.getImageAddress()).into(holder.iv_imageAddress);
-        }else{
+        if(item.getImageAddress()==null || TextUtils.isEmpty(item.getImageAddress())||item.getImageAddress().equals("null")){
 
             holder.iv_imageAddress.setVisibility(View.GONE);
+
+        }else{
+            holder.iv_imageAddress.setVisibility(View.VISIBLE);
+            Glide.with(context).load(item.getImageAddress()).into(holder.iv_imageAddress);
         }
 
     }

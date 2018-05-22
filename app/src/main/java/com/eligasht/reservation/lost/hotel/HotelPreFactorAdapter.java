@@ -58,7 +58,16 @@ public class HotelPreFactorAdapter extends RecyclerView.Adapter<HotelPreFactorAd
 
 
         holder.setIsRecyclable(false);
-        holder.tvHotelName.setText(item.getHotelName());
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(item.getCityName());
+        stringBuilder.append(" - ");
+        stringBuilder.append(" "+item.getHotelName()+"\n");
+        stringBuilder.append(item.getCheckIn());
+        stringBuilder.append(" - ");
+        stringBuilder.append(item.getCheckOut());
+
+
+        holder.tvHotelName.setText(stringBuilder);
         holder.tvSum.setText(sum);
         holder.tvCheckOut.setText(item.getCheckIn());
         holder.tvCheckIn.setText(item.getCheckOut());
