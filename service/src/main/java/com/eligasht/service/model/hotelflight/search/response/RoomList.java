@@ -69,7 +69,7 @@ public class RoomList {
     private Integer source;
     @SerializedName("SourcePrice")
     @Expose
-    private Integer sourcePrice;
+    private Double sourcePrice;
     @SerializedName("Status")
     @Expose
     private String status;
@@ -240,11 +240,11 @@ public class RoomList {
         this.source = source;
     }
 
-    public Integer getSourcePrice() {
+    public Double getSourcePrice() {
         return sourcePrice;
     }
 
-    public void setSourcePrice(Integer sourcePrice) {
+    public void setSourcePrice(Double sourcePrice) {
         this.sourcePrice = sourcePrice;
     }
 

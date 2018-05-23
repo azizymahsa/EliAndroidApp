@@ -29,6 +29,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.base.Base;
 import com.eligasht.reservation.map.OverlayRouteActivity;
+import com.eligasht.reservation.models.db.NotificationModel;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.AboutActivity;
 import com.eligasht.reservation.views.activities.ConditionActivity;
@@ -50,6 +51,10 @@ import com.eligasht.reservation.views.ui.dialog.GiftDialog;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
 import com.eligasht.reservation.tools.Prefs;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import mehdi.sakout.fancybuttons.FancyButton;
 import nl.dionsegijn.konfetti.KonfettiView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -66,7 +71,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     LinearLayout rlHedaer;
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
-    private TextView tvTitle, tvArrow;
+    private TextView tvTitle, tvArrow,tvBadge;
     private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting,gift,map,btn_message;
     private FragmentManager manager;
     private BroadcastReceiver sendFinish;
@@ -87,6 +92,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
+        EventBus.getDefault().register(this);
 
         Prefs.putString("raft", "null");
         Prefs.putString("raftfa", "null");
@@ -113,6 +119,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         btnMenu = findViewById(R.id.btnMenu);
         drawerLayout = findViewById(R.id.drawerLayout);
         tvTitle = findViewById(R.id.tvTitle);
+        tvBadge = findViewById(R.id.tvBadge);
 
         btnFlight = findViewById(R.id.btnFlight);
         gift = findViewById(R.id.gift);
@@ -379,6 +386,9 @@ public class MainActivity extends Base implements View.OnClickListener {
         super.onResume();
 
         initUser();
+        onUpdateBadge();
+
+
     }
 
     public void onDestroy() {
@@ -389,6 +399,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         Prefs.putString("bargasht", "null");
         Prefs.putString("bargashtfa", "null");
         // Prefs.putInt("type",0);
+        EventBus.getDefault().unregister(this);
     }
 
     public void addFragment(String title, Fragment fragment) {
@@ -573,5 +584,18 @@ public class MainActivity extends Base implements View.OnClickListener {
 
 
     }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void setData(NotificationModel notificationModel) {
+        onUpdateBadge();
+
+
+    }
+    public void onUpdateBadge(){
+        if(Prefs.getInt("notifiCounter",0)>0)
+            tvBadge.setText(Prefs.getInt("notifiCounter",0)+"");
+        else
+            tvBadge.setVisibility(View.GONE);
+    }
+
 
 }

@@ -89,6 +89,7 @@ public abstract class BasePart {
 
                     @Override
                     public void onError(Throwable e) {
+                  e.printStackTrace();
                         listener.onError(e.getMessage());
                     }
 

@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
 
 
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,51 +19,65 @@
         card_view:cardBackgroundColor="#ffffff"
         card_view:cardCornerRadius="1dp"
         card_view:cardElevation="0.5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/_10dp">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="100"
                 android:orientation="vertical"
-                >
+
+                android:gravity="right">
+
                 <TextView
                     android:id="@+id/tvTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="@style/IrsansBold"
                     android:textSize="@dimen/_16dp_txtSize"
-                    android:textColor="@color/red"
+                    android:textColor="@color/text_color_4d"
                     android:text="sdfsdf"
                     android:gravity="center|right"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_10dp"/>
                 <TextView
                     android:id="@+id/tvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@style/IrsansBold"
                     android:textSize="@dimen/_10dp"
-                    android:textColor="@color/text_color_4d"
+                    android:textColor="@color/text_color_2e"
                     android:text="sdfsdf"
                     android:gravity="center|right"
-                    android:layout_alignParentLeft="true"/>
-            </RelativeLayout>
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="10dp"
+                    />
 
 
-
-            <TextView
-                android:id="@+id/tvBody"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/_12dp_txtSize"
-                android:textColor="@color/text_color_4d"
-                android:layout_marginTop="@dimen/_10dp"
-                android:text="sdfsdf"
-                android:gravity="center|right"
-                android:layout_marginRight="@dimen/_10dp"/>
+                <TextView
+                    android:id="@+id/tvBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12dp_txtSize"
+                    android:textColor="@color/text_color_4d"
+                    android:layout_marginRight="@dimen/_10dp"
+                    android:layout_marginTop="@dimen/_10dp"
+                    android:layout_marginBottom="@dimen/_10dp"
+                    android:text="sdfsdf"
+                    android:gravity="center|right"
+                   />
+            </LinearLayout>
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="@color/toolbar_color"/>
         </LinearLayout>
+
 
 
 

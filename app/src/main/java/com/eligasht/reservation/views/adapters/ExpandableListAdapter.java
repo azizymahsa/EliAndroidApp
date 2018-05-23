@@ -39,6 +39,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.model.PinModelDetail;
 import com.eligasht.reservation.models.model.PinModelHeader;
 import com.eligasht.reservation.tools.GlideApp;
+import com.eligasht.reservation.views.activities.FlightSeatActivity;
 import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.SearchParvazActivity;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
@@ -138,7 +139,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView lblFlightNumberRPersian = convertView.findViewById(R.id.lblFlightNumberPersian);
 
         LinearLayout linearTableNerkh = convertView.findViewById(R.id.linearTableNerkh);//
-        LinearLayout linearButton = convertView.findViewById(R.id.linearButton);
+        RelativeLayout linearButton = convertView.findViewById(R.id.linearButton);
         //nerkh
         TextView txtAdlCostP = convertView.findViewById(R.id.txtAdlCostP);
         TextView txtTaxes = convertView.findViewById(R.id.txtTaxes);
@@ -149,6 +150,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView txtTotalFareCostR = convertView.findViewById(R.id.txtTotalFareCostR);
 
         Button btnSelect = convertView.findViewById(R.id.btnSelect);
+        Button btnFlight = convertView.findViewById(R.id.btnFlight);
+        btnFlight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                _context.startActivity(new Intent(_context, FlightSeatActivity.class));
+            }
+        });
 
         LinearLayout weightLinear = convertView.findViewById(R.id.weightLinear);
         TextView txtPieces = convertView.findViewById(R.id.txtPieces);

@@ -1,9 +1,9 @@
 package com.eligasht.reservation.notification;
-
 import android.util.Log;
 
 import com.eligasht.reservation.models.db.NotificationModel;
 import com.eligasht.reservation.models.eventbus.RoomsModelBus;
+import com.eligasht.reservation.tools.Prefs;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -22,48 +22,16 @@ public class NotificationReceivedHandler implements OneSignal.NotificationReceiv
     public void notificationReceived(OSNotification notification) {
         Gson gson = new Gson();
         NotificationEntity notificationEntity = null;
-        String json =  notification.payload.rawPayload.replaceAll("/","");
+        String json = notification.payload.rawPayload.replaceAll("/", "");
+        try {
+            notificationEntity = gson.fromJson(json, NotificationEntity.class);
+            NotificationModel notificationModel = new NotificationModel(notification.payload.title, notification.payload.body, notificationEntity.getGoogleSentTime());
+            notificationModel.save();
+            Prefs.putInt("notifiCounter",Prefs.getInt("notifiCounter",0)+1);
+            EventBus.getDefault().post(new NotificationModel(notification.payload.title, notification.payload.body, notificationEntity.getGoogleSentTime()));
 
-
-        try{
-             notificationEntity =gson.fromJson(json, NotificationEntity.class);
-
-
-        }catch (Exception e){
+        } catch (Exception e) {
         }
-
-
-
-
-        NotificationModel notificationModel = new NotificationModel( notification.payload.title ,  notification.payload.body , notificationEntity.getGoogleSentTime());
-        notificationModel.save();
-        EventBus.getDefault().post( new NotificationModel( notification.payload.title ,  notification.payload.body , notificationEntity.getGoogleSentTime()));
-
-    /*    if (data != null) {
-            try {
-               // Log.e("tesi2", "notificationReceived: ", );
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
-
-
-        }
-
-    public static String toPrettyFormat(String jsonString) {
-        JsonParser parser = new JsonParser();
-        JsonObject json = parser.parse(jsonString).getAsJsonObject();
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String prettyJson = gson.toJson(json);
-
-        return prettyJson;
     }
-
-
-
-
-
-
-
 
 }

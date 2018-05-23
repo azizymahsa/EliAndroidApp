@@ -61,7 +61,8 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private HotelDetailViewPager hotelDetailViewPager;
     protected ViewPager view_pager;
     protected Toolbar toolbar;
-    private LatLng location;
+    public static LatLng location;
+    public static String hName;
     private TextView tvHotelName, tvCityName, tvAdress, tvAlertError;
     private ImageView ivImage;
     protected TextView tvDateDetail;
@@ -78,9 +79,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 case 0:
                     hotelDetailViewPager.getCommentHotelFragment().setDataComment(commentModelBus);
                     break;
-                case 1:
-                    hotelDetailViewPager.getMapHotelFragment().setMarker(location, commentModelBus);
-                    break;
+
             }
         }
 
@@ -152,9 +151,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     case 0:
                         hotelDetailViewPager.getCommentHotelFragment().setDataComment(commentModelBus);
                         break;
-                    case 1:
-                        hotelDetailViewPager.getMapHotelFragment().setMarker(location, commentModelBus);
-                        break;
+
                 }
             }
 
@@ -271,6 +268,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         imageModels.add(new ImageModel(imageHotel.getHotelImagesURL()));
                     }
                     EventBus.getDefault().post(new HotelProprtiesBus(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelProprties()));
+                    hName=hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName();
                     commentModelBus = new CommentModelBus(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName(), String.valueOf(getIntent().getExtras().getInt("HotelId")));
                     EventBus.getDefault().post(new CommentModelBus(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName(), String.valueOf(getIntent().getExtras().getInt("HotelId"))));
                     YoYo.with(Techniques.FadeIn)

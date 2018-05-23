@@ -9,6 +9,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.db.NotificationModel;
 import com.eligasht.reservation.models.eventbus.RoomsModelBus;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsAdapter;
 import com.eligasht.reservation.views.adapters.notification.NotificationAdapter;
 import com.eligasht.reservation.views.ui.InitUi;
@@ -28,6 +29,7 @@ public class NotificationActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_activity);
+        Prefs.putInt("notifiCounter",0);
         EventBus.getDefault().register(this);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "پیام ها");
         recyclerView =findViewById(R.id.recyclerView);

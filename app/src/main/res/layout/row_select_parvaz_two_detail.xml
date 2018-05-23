@@ -442,7 +442,7 @@
                 android:background="#e6e6e6" />
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/linearButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -463,13 +463,27 @@
                 android:textColor="#fff"
                 android:textSize="@dimen/_12dp_normal_textSize"
                 android:visibility="visible" />
+            <Button
+                android:id="@+id/btnFlight"
+                android:layout_width="@dimen/_123dp"
+                android:layout_height="@dimen/_28dp_f"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="@dimen/_10dpTabletSize"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_plan_select"
+                android:text="انتخاب صندلی"
+                android:textColor="#fff"
+                android:textSize="@dimen/_12dp_normal_textSize"
+                android:visibility="visible"
+                android:layout_alignParentRight="true"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray" />
-        </LinearLayout>
 
+        </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
     </LinearLayout>
 </FrameLayout>
