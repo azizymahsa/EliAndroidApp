@@ -867,9 +867,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		Prefs.putString("Flag_First_Computing","F");
 	}
-
-
-
 	@Override
 	public void onClick(View v) {
 		https://github.com/multidots/android-fingerprint-authentication.git
@@ -924,21 +921,16 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					///////////////////
 				}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
 
-
 					linear_mosaferan.setVisibility(View.GONE);
 					linear_saler.setVisibility(View.VISIBLE);
-
 
 					txtTitle.setText(R.string.Buyer_Specifications);
 					((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
 					((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
 					//}
 				}else if(linear_saler.getVisibility() == View.VISIBLE) {
-
 					Prefs.putBoolean("BACK_HOME", true);
-
 					finish();
-
 				}
 
 
@@ -1287,7 +1279,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
 							flagMosafer=flagMosafer+"T";
 						}else{
-							//((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
 							errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
 						}
@@ -1296,7 +1287,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
 							flagMosafer=flagMosafer+"T";
 						}else{
-							//((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
 							flagMosafer=flagMosafer+"F";
 							errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_passport_expiration_date);
 						}
@@ -1308,7 +1298,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Please_choose_a_gender);
 					}
 					///endValidate
-
 
 					if(flagMosafer.contains("F")){
 						//Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
@@ -1323,7 +1312,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 						//db.dropTable();
 						db.openDB();
-
 
 						if(sum>0){
 							System.out.println("gender:"+Gender);
@@ -1400,12 +1388,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							System.out.println("insert:"+"sum:"+sum);
 						}
 						db.closeDB();
-						//	txtnamem.setFocusable(true);
-						//insert mosafer
-
 
 						linear_mosaferan.clearFocus();
-
 					}
 
 

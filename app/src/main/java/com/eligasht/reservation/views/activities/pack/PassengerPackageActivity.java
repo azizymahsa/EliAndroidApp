@@ -824,7 +824,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         ((TextView) findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_your_nationality);
                     }
@@ -832,7 +831,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         ((TextView) findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_date_of_birth);
                     }
@@ -881,14 +879,12 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                     } else {
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerPackageActivity.this);
-                        //db.dropTable();
                         db.openDB();
                         //faghat yek otagh
                         if (alRoom.size() == 1) {
                             if (sum == 0) {
                                 if (rooms == 1) {
                                     if (!ValidationTools.isEmptyOrNull(packageRoomNoToRequestList)) {
-                                        // for(int i=0 ; i < alRoom.size(); i++){
                                         for (PackageRoomNoToRequest packageRoomNoToRequest : packageRoomNoToRequestList) {
                                             if (packageRoomNoToRequest.getPassengerType().equals("adl") && packageRoomNoToRequest.getRoom_No() == Integer.parseInt(alRoom.get(room))) {
                                                 countB += 1;
@@ -900,7 +896,6 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                                 countN += 1;
                                             }
                                         }
-                                        //}
                                     }
                                     sum = countB + countK + countN;
                                     rooms = rooms - 1;
@@ -976,12 +971,11 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                             countN += 1;
                                         }
                                     }
-
                                 }
                                 sum = countB + countK + countN;
                                 rooms = rooms - 1;
                                 room = room + 1;
-                                //}
+
                                 System.out.println("@ucountK:" + countK + "countB:" + countB + "countN:" + countN);
                             }
                             if (sum > 0) {

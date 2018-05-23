@@ -673,9 +673,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             if (!passengerPreFactorModels.isEmpty()) {
                 llDetailPassanger.setVisibility(View.VISIBLE);
                 recyclerViewPassenger.setAdapter(new PassangerPreFactorAdapter(passengerPreFactorModels));
-
             }
-
             //for Services=============================================================================
             final RecyclerView recyclerViewService = findViewById(R.id.recyclerViewService);
             recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerHotelFlightActivity.this, 1));
@@ -707,7 +705,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         jArray5.get(i).getArrAirPortFa(),
                         Utility.dateShow(jArray5.get(i).getFltDate()),
                         jArray5.get(i).getFltTime(),
-                        //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
                         jArray5.get(i).getFltCheckinTime(),
 
                         jArray5.get(i).getFltNumber(),
@@ -718,7 +715,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             if (!flightPreFactorModels.isEmpty()) {
                 llDetailFlight.setVisibility(View.VISIBLE);
                 recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
-
             }
             setAnimation();
             Log.e("responsecrDetails:", new Gson().toJson(responsePreFactorDetails).toString());
@@ -728,7 +724,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true,true);
             AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
         }
-
     }
 
     @Override
@@ -873,15 +868,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 data = new ArrayList<PurchaseFlightResult>();
 
                 try {
-                    // JSONObject jsonObj = new JSONObject(result);
                     Log.e("Response", new Gson().toJson(hotelFlightPurchaseResponse).toString());
-
-
                     PurchaseFlightHotelResult purchaseServiceReault = hotelFlightPurchaseResponse.getPurchaseFlightHotelResult();//Error
-
                     List<Service> jArray = purchaseServiceReault.getServices();
                     TmpReserveResult jsonResult = purchaseServiceReault.getTmpReserveResult();
-
                     Prefs.putString("BookingCode_NumFactor", jsonResult.getBookingCode() + "");
 
                     for (int i = 0; i < jArray.size(); i++) {
@@ -928,8 +918,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         data.add(fishData);
                     }
 
-                    // Setup and Handover data to recyclerview
-
                     linear_saler.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_pish_factor.setVisibility(View.GONE);
@@ -941,7 +929,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     txtTitle.setText(getString(R.string.Add_to_cart_services));
 
                     mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this, 0);
-                    //mAdapter.setAdapter(mAdapter);
+
                     if (BuildConfig.DEBUG && Const.TEST)
                         Collections.reverse(data);
                     mAdapter.setData(data);
@@ -979,14 +967,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         Fragment fragment2;
 
         switch (v.getId()) {
-
-
             case R.id.txtMore:
-
                 linearMahaleeghamat.setVisibility(View.VISIBLE);
                 linearMeliyat.setVisibility(View.VISIBLE);
                 break;
-
             case R.id.btnBack:
                 if (linear_pish_factor.getVisibility() == View.VISIBLE) {
                     linear_pish_factor.setVisibility(View.GONE);
@@ -1059,7 +1043,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         //jadvale mosafer khali beshe
 
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerHotelFlightActivity.this);
-                        //   db.openDB();
+
                         db.dropTable();
                         ////////////////////////Validate
                         String RqPartner_Address = "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
@@ -1359,7 +1343,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_expiration_date);
                     }
@@ -1414,7 +1397,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                             if (sum > 0) {
                                 System.out.println("gender:" + Gender);
-                                //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                                 if (counter - 1 == 1) {
                                     db.insertData(counter - 1, getString(R.string.First_passenger_information), getString(R.string.room) + getCounter(room), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
                                 } else {
@@ -1453,7 +1435,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                     }
                                 }
-
 
                                 System.out.println("counterMosafer:" + getCounter(counter) + counter);
 

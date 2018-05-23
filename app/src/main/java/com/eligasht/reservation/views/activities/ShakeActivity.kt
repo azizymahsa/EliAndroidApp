@@ -63,28 +63,23 @@ class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
         }
         initShakeDetect()
         initSound()
-
     }
-
 
     override fun onResume() {
         super.onResume()
         translationUpdater!!.registerSensorManager()
     }
 
-
     override fun onPause() {
         super.onPause()
         translationUpdater!!.unregisterSensorManager()
     }
-
     override fun hearShake() {
         if (!mp!!.isPlaying)
             mp!!.start()
         if (!lottieAnimationView!!.isAnimating)
             lottieAnimationView!!.playAnimation()
         createVibrate()
-
     }
 
     private fun createVibrate() {
@@ -108,7 +103,6 @@ class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
                 .setPosition(-50f, konfettiView!!.width + 50f, -50f, -50f)
                 .streamFor(200, 5000L)
 
-
         Handler().postDelayed({
             val fm = supportFragmentManager
             try {
@@ -116,8 +110,6 @@ class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
                 resultGiftDialog!!.show(fm,"dialog")            }
             catch (e: Exception) {
             }
-
-
 
         }, 2500)
     }
