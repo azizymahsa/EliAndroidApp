@@ -373,6 +373,8 @@ public class MainActivity extends Base implements View.OnClickListener {
 
                 break;
             case R.id.btn_message:
+                new Handler().postDelayed(this::closeDrawer, 200);
+
                 startActivity(new Intent(this, NotificationActivity.class));
 
                 break;

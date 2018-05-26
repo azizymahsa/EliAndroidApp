@@ -24,7 +24,7 @@ android {
 
     defaultConfig {
         applicationId "com.eligasht"
-        manifestPlaceholders = [onesignal_app_id               : "637ad27e-b997-4f54-bc4b-e0622debeb96",
+        manifestPlaceholders = [onesignal_app_id               : "e9eccbf1-b5b1-4be7-a500-29350ca37531",
                                 onesignal_google_project_number: "REMOTE"]
         minSdkVersion 17
         targetSdkVersion 26
