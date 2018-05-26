@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.models.eventbus.CommentModelBus;
+import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
 import com.eligasht.reservation.views.fragments.profile.EditProfileFragment;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -79,6 +80,10 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
         googleMap.getUiSettings().setScrollGesturesEnabled(false);
         googleMap.getUiSettings().setZoomGesturesEnabled(false);
         googleMap.getUiSettings().setZoomControlsEnabled(true);
+        if (DetailHotelActivity.location!=null){
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DetailHotelActivity.location, 13));
+            googleMap.addMarker(new MarkerOptions().position(DetailHotelActivity.location).title(DetailHotelActivity.hName));
+        }
 
     }
 
@@ -99,14 +104,6 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
         return false;
     }
 
-    public void setMarker(LatLng location, CommentModelBus name) {
 
-        try {
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 13));
-            googleMap.addMarker(new MarkerOptions().position(location).title(name.getHotelName()));
-        }catch (Exception e){
 
-        }
-
-    }
 }

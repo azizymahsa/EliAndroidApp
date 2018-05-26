@@ -29,10 +29,12 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.base.Base;
 import com.eligasht.reservation.map.OverlayRouteActivity;
+import com.eligasht.reservation.models.db.NotificationModel;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.AboutActivity;
 import com.eligasht.reservation.views.activities.ConditionActivity;
 import com.eligasht.reservation.views.activities.ContactUsActivity;
+import com.eligasht.reservation.views.activities.NotificationActivity;
 import com.eligasht.reservation.views.activities.SettingsActivity;
 
 import com.eligasht.reservation.views.activities.ShakeActivity;
@@ -48,6 +50,10 @@ import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.dialog.GiftDialog;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
 import com.eligasht.reservation.tools.Prefs;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import nl.dionsegijn.konfetti.KonfettiView;
@@ -65,8 +71,8 @@ public class MainActivity extends Base implements View.OnClickListener {
     LinearLayout rlHedaer;
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
-    private TextView tvTitle, tvArrow;
-    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting,gift,map;
+    private TextView tvTitle, tvArrow,tvBadge;
+    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting,gift,map,btn_message;
     private FragmentManager manager;
     private BroadcastReceiver sendFinish;
     private BroadcastReceiver sendStartTimer, sendDetailFinish;
@@ -86,6 +92,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
+        EventBus.getDefault().register(this);
 
         Prefs.putString("raft", "null");
         Prefs.putString("raftfa", "null");
@@ -112,6 +119,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         btnMenu = findViewById(R.id.btnMenu);
         drawerLayout = findViewById(R.id.drawerLayout);
         tvTitle = findViewById(R.id.tvTitle);
+        tvBadge = findViewById(R.id.tvBadge);
 
         btnFlight = findViewById(R.id.btnFlight);
         gift = findViewById(R.id.gift);
@@ -121,12 +129,14 @@ public class MainActivity extends Base implements View.OnClickListener {
         btnHotelFlight = findViewById(R.id.btnHotelFlight);
         btnAbout = findViewById(R.id.btnAbout);
         btnContactUs = findViewById(R.id.btnContactUs);
+        btn_message = findViewById(R.id.btn_message);
         btn_condition = findViewById(R.id.btn_condition);
         rlUser = findViewById(R.id.rlUser);
         txt_name = findViewById(R.id.txt_name);
         tvArrow = findViewById(R.id.tvArrow);
         rlHedaer = findViewById(R.id.rlHedaer);
         btnExit = findViewById(R.id.btnExit);
+        btn_message = findViewById(R.id.btn_message);
         btnSetting = findViewById(R.id.btn_setting);
         map = findViewById(R.id.map);
         btnLastBuy = findViewById(R.id.btnLastBuy);
@@ -156,6 +166,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         btnFlight.setOnClickListener(this);
         btnExit.setOnClickListener(this);
         btnLastBuy.setOnClickListener(this);
+        btn_message.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
 
         addFragment(getString(R.string.searchFlight), new PlanFragment());
@@ -361,6 +372,10 @@ public class MainActivity extends Base implements View.OnClickListener {
                 startActivity(new Intent(this, OverlayRouteActivity.class));
 
                 break;
+            case R.id.btn_message:
+                startActivity(new Intent(this, NotificationActivity.class));
+
+                break;
 
         }
 
@@ -371,6 +386,9 @@ public class MainActivity extends Base implements View.OnClickListener {
         super.onResume();
 
         initUser();
+        onUpdateBadge();
+
+
     }
 
     public void onDestroy() {
@@ -381,6 +399,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         Prefs.putString("bargasht", "null");
         Prefs.putString("bargashtfa", "null");
         // Prefs.putInt("type",0);
+        EventBus.getDefault().unregister(this);
     }
 
     public void addFragment(String title, Fragment fragment) {
@@ -565,5 +584,18 @@ public class MainActivity extends Base implements View.OnClickListener {
 
 
     }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void setData(NotificationModel notificationModel) {
+        onUpdateBadge();
+
+
+    }
+    public void onUpdateBadge(){
+        if(Prefs.getInt("notifiCounter",0)>0)
+            tvBadge.setText(Prefs.getInt("notifiCounter",0)+"");
+        else
+            tvBadge.setVisibility(View.GONE);
+    }
+
 
 }

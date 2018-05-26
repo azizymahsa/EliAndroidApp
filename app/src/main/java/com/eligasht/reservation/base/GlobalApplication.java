@@ -20,7 +20,7 @@ import com.adjust.sdk.LogLevel;
 import com.eligasht.BuildConfig;
 import com.eligasht.R;
 import com.eligasht.ServiceApplication;
-import com.eligasht.reservation.notification.GetNotification;
+import com.eligasht.reservation.notification.NotificationReceivedHandler;
 import com.eligasht.reservation.views.activities.IDM_Activity;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.SingletonContext;
@@ -32,6 +32,7 @@ import com.google.firebase.crash.FirebaseCrash;
 import com.onesignal.OneSignal;
 import com.orhanobut.hawk.Hawk;
 import com.eligasht.reservation.tools.Prefs;
+import com.orm.SugarContext;
 import com.squareup.leakcanary.LeakCanary;
 import com.zplesac.connectionbuddy.ConnectionBuddy;
 import com.zplesac.connectionbuddy.ConnectionBuddyConfiguration;
@@ -134,6 +135,7 @@ public class GlobalApplication extends ServiceApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        SugarContext.init(this);
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
 //            // This process is dedicated to LeakCanary for heap analysis.
 //            // You should not init your app in this process.
@@ -153,7 +155,7 @@ public class GlobalApplication extends ServiceApplication {
         OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(true)
-                .setNotificationReceivedHandler(new GetNotification())
+                .setNotificationReceivedHandler(new NotificationReceivedHandler())
                 .init();
         OneSignal.setLogLevel(OneSignal.LOG_LEVEL.NONE, OneSignal.LOG_LEVEL.NONE);
         Hawk.init(this).build();
@@ -201,6 +203,10 @@ public class GlobalApplication extends ServiceApplication {
     }
 
 
+    public void onTerminate() {
+        super.onTerminate();
+        SugarContext.terminate();
+    }
 
     public String getMyOperator(Context aContext) {
         TelephonyManager mTelephonyMgr;

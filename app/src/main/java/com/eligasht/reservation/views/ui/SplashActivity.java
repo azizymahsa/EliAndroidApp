@@ -259,7 +259,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                                 Prefs.putBoolean("isFirstEntrance", false);
                                 Prefs.putString("lang", "fa");
                                // startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                                startActivity(new Intent(SplashActivity.this, MainActivity.class));
                                 finish();
                             } else {
                                 Prefs.putBoolean("isFirstEntrance", false);
@@ -268,7 +268,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                             }
                         } else {
                             //startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
                             finish();
                         }
                         Prefs.putBoolean("isFirstEntrance", false);
