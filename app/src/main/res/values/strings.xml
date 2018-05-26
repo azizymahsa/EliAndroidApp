@@ -2410,6 +2410,9 @@
     <string name="locationAlert">مکان یاب شما خاموش می باشد، لطفا برای استفاده از این قسمت مکان یاب خود را روشن نمایید.</string>
     <string name="calculated">Calculated</string>
     <string name="service_name">Hizmet adı</string>
+    <string name="message">Messages</string>
+    <string name="today">today</string>
+    <string name="nomessage">You do not have a message at the moment</string>
     <string-array name="array_place">
         <item>Bangalore</item>
         <item>Tokyo</item>

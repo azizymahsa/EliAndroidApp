@@ -190,7 +190,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="2dp"
-            android:layout_weight="70">
+            android:layout_weight="70"
+            android:visibility="gone">
 
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/gift"
@@ -204,7 +205,8 @@
 
                 fancy:fb_text=" "
                 fancy:fb_textColor="#FFFFFF"
-                fancy:fb_textSize="25dp" />
+                fancy:fb_textSize="25dp"
+            />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -252,6 +254,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="2dp"
             android:layout_weight="70"
+            android:visibility="gone"
             >
 
             <mehdi.sakout.fancybuttons.FancyButton
@@ -629,7 +632,65 @@
         </RelativeLayout>
 
 
-        //change lang
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/btn_message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+
+
+            <TextView
+                android:id="@+id/tvBadge"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/circle_textview"
+
+
+                android:gravity="center"
+                android:text="1"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12dp_normal_textSize"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/tv14"
+                android:gravity="center"
+                android:text="@string/message"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tv14"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="@string/icon_mail"
+                android:textAppearance="@style/IconFonts2"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_25dp_normal_iconSize" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"

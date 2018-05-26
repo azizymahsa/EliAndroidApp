@@ -44,8 +44,8 @@
         android:visibility="invisible"
         app:indicatorColor="@color/white"
         app:indicatorName="BallSpinFadeLoaderIndicator"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/ivSplash"
+        android:layout_marginBottom="@dimen/_10dp"
+        android:layout_above="@+id/tvVer"
         android:layout_centerHorizontal="true"
         />
     <TextView

@@ -1,25 +1,14 @@
 package com.eligasht.reservation.views.adapters.notification;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eligasht.R;
-import com.eligasht.reservation.lost.flight.FlightPreFactorAdapter;
-import com.eligasht.reservation.models.FlightPreFactorModel;
 import com.eligasht.reservation.models.db.NotificationModel;
-import com.eligasht.reservation.notification.NotificationEntity;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
-import com.eligasht.reservation.views.picker.global.model.SingletonDate;
-import com.github.aakira.expandablelayout.ExpandableLayout;
-import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
-import com.github.aakira.expandablelayout.ExpandableLinearLayout;
-import com.github.aakira.expandablelayout.Utils;
 
 import java.util.List;
 /**

@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
@@ -21,11 +22,15 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Collections;
 import java.util.List;
+
+import mehdi.sakout.fancybuttons.FancyButton;
 /**
  * Created by Reza Nejati on 22,May,2018
  */
 public class NotificationActivity extends BaseActivity {
     RecyclerView recyclerView;
+    RelativeLayout elNotFound;
+    FancyButton btnOk;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_activity);
@@ -33,6 +38,14 @@ public class NotificationActivity extends BaseActivity {
         EventBus.getDefault().register(this);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "پیام ها");
         recyclerView =findViewById(R.id.recyclerView);
+        elNotFound =findViewById(R.id.elNotFound);
+        btnOk =findViewById(R.id.btnOk);
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         onData();
 
 
@@ -49,6 +62,8 @@ public class NotificationActivity extends BaseActivity {
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        NotificationModel.deleteAll(NotificationModel.class);
+       // Collections.reverse(notificationModelList);
 
     }
     public void onData(){
@@ -57,6 +72,14 @@ public class NotificationActivity extends BaseActivity {
         List<NotificationModel> notificationModelList=NotificationModel.listAll(NotificationModel.class);
         Collections.reverse(notificationModelList);
         recyclerView.setAdapter(new NotificationAdapter(notificationModelList));
+        if (notificationModelList.isEmpty()){
+            elNotFound.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+
+        }else{
+            elNotFound.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
 
     }
 }
