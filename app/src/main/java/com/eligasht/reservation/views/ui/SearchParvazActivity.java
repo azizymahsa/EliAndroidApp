@@ -389,10 +389,14 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         }
         weather_request();
 
+
+
+
     }//end oncreat======================================================================================
     public void weather_request(){
         Bundle extras = getIntent().getExtras();
-        if (extras != null)
+        if (extras.getString("Value-Maghsad-Airport-Code")==null)
+            return;
         SingletonService.getInstance().getWeatherPart().getWeatherByCity(new OnServiceStatus<WeatherApi>() {
             @Override
             public void onReady(WeatherApi weatherApi) {
@@ -401,6 +405,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
             @Override
             public void onError(String message) {
+                slidingDrawer.setVisibility(View.GONE);
+
 
             }
         },  extras.getString("Value-Maghsad-Airport-Code"));
@@ -1444,7 +1450,7 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
             @Override
             public void onReady(ResponseChangeFlight responsSearchFlight) {
                 recyclerViewHotel.setLayoutManager(new LinearLayoutManager(SearchParvazActivity.this,LinearLayoutManager.HORIZONTAL,false));
-                slidingDrawer.setVisibility(View.VISIBLE);
+            //    slidingDrawer.setVisibility(View.VISIBLE);
                 new InitUi().Loading(SearchParvazActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
                     window.setStatusBarColor(ContextCompat.getColor(SearchParvazActivity.this, R.color.colorPrimaryDark));
