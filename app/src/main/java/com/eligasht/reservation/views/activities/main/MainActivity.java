@@ -373,6 +373,8 @@ public class MainActivity extends Base implements View.OnClickListener {
 
                 break;
             case R.id.btn_message:
+                new Handler().postDelayed(this::closeDrawer, 200);
+
                 startActivity(new Intent(this, NotificationActivity.class));
 
                 break;
@@ -591,10 +593,12 @@ public class MainActivity extends Base implements View.OnClickListener {
 
     }
     public void onUpdateBadge(){
-        if(Prefs.getInt("notifiCounter",0)>0)
-            tvBadge.setText(Prefs.getInt("notifiCounter",0)+"");
-        else
-            tvBadge.setVisibility(View.GONE);
+        if(Prefs.getInt("notifiCounter",0)!=0) {
+            tvBadge.setText(Prefs.getInt("notifiCounter", 0) + "");
+            tvBadge.setVisibility(View.VISIBLE);
+        }
+        else{
+            tvBadge.setVisibility(View.GONE);}
     }
 
 

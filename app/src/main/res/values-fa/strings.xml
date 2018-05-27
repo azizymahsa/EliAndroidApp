@@ -2379,4 +2379,7 @@
     <string name="locationAlert">مکان یاب شما خاموش می باشد، لطفا برای استفاده از این قسمت مکان یاب خود را روشن نمایید.</string>
     <string name="calculated">محاسبه شده</string>
     <string name="service_name">نام سرویس</string>
+    <string name="message">پیام ها</string>
+    <string name="today">امروز</string>
+    <string name="nomessage">شما در حال حاضر هیچ پیامی ندارید</string>
 </resources>

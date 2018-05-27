@@ -139,5 +139,6 @@
     <dimen name="_12dp_p">120dp</dimen>
     <dimen name="_5dp_no_tablet">5dp</dimen>
     <dimen name="_5dp_flight_weight">1dp</dimen>
+    <dimen name="_90dp_weather">100dp</dimen>
 
 </resources>

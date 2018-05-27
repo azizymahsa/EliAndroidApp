@@ -2400,5 +2400,8 @@
     <string name="create_account">CREATE ACCOUNT</string>
     <string name="calculated">Calculated</string>
     <string name="service_name">نام سرویس</string>
+    <string name="message">mesajları</string>
+    <string name="today">bugün</string>
+    <string name="nomessage">Şu anda bir mesajınız yok</string>
 </resources>
 

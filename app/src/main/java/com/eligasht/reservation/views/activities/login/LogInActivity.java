@@ -28,6 +28,7 @@ import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.jaeger.library.StatusBarUtil;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
@@ -57,13 +58,14 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_login);
         InitUi.Toolbar(this, false, R.color.TRANSPARENT, " ");
         Window window = getWindow();
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+     /*   if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
             window.setStatusBarColor(ContextCompat.getColor(LogInActivity.this
                     , R.color.colorPrimaryDark));
-        }
+        }*/
         initViews();
         service = ServiceGenerator.createService(ClientService.class);
+        StatusBarUtil.setTranslucent(this, 2);
 
 
     }
