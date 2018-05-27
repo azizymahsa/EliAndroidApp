@@ -13,7 +13,7 @@
         android:id="@+id/tvW"
         android:textColor="@color/white"
         android:textAppearance="@style/IconFonts"
-        android:textSize="28dp"
+        android:textSize="@dimen/_25dp_normal_iconSize"
         android:gravity="center"
         android:layout_gravity="center"
        />
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvW"
-        android:textSize="10dp"
+        android:textSize="@dimen/_10dp_textSize"
         android:layout_marginTop="3dp"
         android:textColor="@color/white"
         android:gravity="center"

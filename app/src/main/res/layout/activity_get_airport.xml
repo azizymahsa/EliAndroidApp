@@ -38,7 +38,7 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="@dimen/_30dp_search"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="100"
             android:background="@drawable/edittext"
@@ -49,19 +49,20 @@
             <EditText
                 android:id="@+id/searchtxt"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@null"
                 android:gravity="center"
                 android:hint="@string/SearchCity"
                 android:textColor="#000000"
                 android:textSize="@dimen/_14dp_txtSize"
+                android:layout_centerVertical="true"
 
                 />
 
             <mehdi.sakout.fancybuttons.FancyButton
                 android:id="@+id/btnMic"
-                android:layout_width="@dimen/_35dp"
-                android:layout_height="@dimen/_35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="right|center"
                 android:layout_marginBottom="1dp"
                 android:gravity="right"

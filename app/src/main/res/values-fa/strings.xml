@@ -2381,5 +2381,5 @@
     <string name="service_name">نام سرویس</string>
     <string name="message">پیام ها</string>
     <string name="today">امروز</string>
-    <string name="nomessage">شما در حال حاضر هیج پیامی ندارید</string>
+    <string name="nomessage">شما در حال حاضر هیچ پیامی ندارید</string>
 </resources>
