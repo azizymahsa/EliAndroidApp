@@ -33,5 +33,6 @@ public class FullTest extends BaseTest {
         Contactus2.newInstance().runTest();
         Aboutus.newInstance().runTest();
 
+
     }
 }

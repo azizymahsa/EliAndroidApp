@@ -47,7 +47,7 @@ public class Package extends BaseTest {
         doClick(R.id.btnMenu);
         sleep(750);
         doClick(R.id.btnPackage);
-        sleep(1000);
+        sleep(2000);
         doClick(R.id.txtCity);
         sleep(1500);
         doClickWithIndex(R.id.text1, 0);
