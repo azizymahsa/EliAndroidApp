@@ -62,8 +62,7 @@ import static org.hamcrest.Matchers.is;
 @RunWith(AndroidJUnit4.class)
 public abstract class BaseTest {
     private IdlingResource resource;
-    long startTime;
-    long endTime = System.nanoTime();
+    private long startTime;
 
 
     @Rule
@@ -82,7 +81,7 @@ public abstract class BaseTest {
     @After
     public void unregister() {
         TestResultsProcessor testResultsProcessor = new TestResultsProcessor();
-        endTime = System.currentTimeMillis();
+        long endTime = System.currentTimeMillis();
         int end = (int) ((endTime - startTime) / 60000);
         testResultsProcessor.checkResults(end);
         sleep(1000);
