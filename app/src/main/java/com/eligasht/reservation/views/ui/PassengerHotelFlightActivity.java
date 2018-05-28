@@ -634,6 +634,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             long totalprice = jFact.getTotalPrice();
             paymentUrl = jFact.getOnlinePaymentURL();
             tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " " + getString(R.string.Rial));
+            if (paymentUrl==null)
+                btn_pardakht_factor.setVisibility(View.INVISIBLE);
 
 //for hotel==========================================================================================
             final RecyclerView recyclerViewHotel = findViewById(R.id.recyclerView);

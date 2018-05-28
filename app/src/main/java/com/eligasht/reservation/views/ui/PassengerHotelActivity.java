@@ -2978,12 +2978,12 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                     } else {
                         //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-                        txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
+                     //   txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
                     }
                     if (txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length() > 4) {
                     } else {
                         //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-                        txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
+                      //  txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
                     }
                 }
                 break;
