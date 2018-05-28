@@ -56,10 +56,11 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
         holder.tvPassangerName.setText(item.getRqPassenger_name());
 
         holder.tvPassNo.setText(item.getRqPassenger_PassNo());
-        if (item.getNational_Code()!=null)
-        holder.tvNatinalCode.setText(item.getNational_Code());
-        else
+        if (item.getNational_Code()!=null||item.getNational_Code().equals("null"))
             holder.tvNatinalCode.setText("---");
+
+        else
+            holder.tvNatinalCode.setText(item.getNational_Code());
 
 
 

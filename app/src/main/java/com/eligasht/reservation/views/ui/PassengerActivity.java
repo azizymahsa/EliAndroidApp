@@ -724,12 +724,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					} else {
 						//((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-						txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
+					//	txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
 					}
 					if (txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length() > 4) {
 					} else {
 						//((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-						txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
+					//	txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
 					}
 				}
 				break;
@@ -743,12 +743,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					} else {
 						//((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-						txtnumber_passport.setError(getString(R.string.Please_enter_the_correct_code));
+					//	txtnumber_passport.setError(getString(R.string.Please_enter_the_correct_code));
 					}
 					if (txtnumber_passport.getText().toString() != null && txtnumber_passport.getText().toString().length() == 10) {
 					} else {
 						//((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-						txtnumber_passport.setError(getString(R.string.Please_enter_the_correct_code));
+					//	txtnumber_passport.setError(getString(R.string.Please_enter_the_correct_code));
 					}
 				}
 				break;

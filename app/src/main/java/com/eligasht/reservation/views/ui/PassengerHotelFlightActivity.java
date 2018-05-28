@@ -641,7 +641,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             long totalprice = jFact.getTotalPrice();
             paymentUrl = jFact.getOnlinePaymentURL();
             tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " " + getString(R.string.Rial));
-            if (paymentUrl==null)
+            if (paymentUrl==null||paymentUrl.equals(""))
                 btn_pardakht_factor.setVisibility(View.INVISIBLE);
 
 //for hotel==========================================================================================
@@ -2218,11 +2218,11 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
 
                     } else {
-                        txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
+                      //  txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
                     }
                     if (txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length() > 4) {
                     } else {
-                        txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
+                       // txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
                     }
                 }
                 break;

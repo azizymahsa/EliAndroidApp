@@ -1725,12 +1725,12 @@ private void RequestPurchaseInsurance(){
 
                     } else {
 
-                        txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
+                       // txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
                     }
                     if (txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length() > 4) {
                     } else {
 
-                        txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
+                       // txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
                     }
                 }
                 break;

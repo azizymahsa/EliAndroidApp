@@ -1852,12 +1852,12 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     if (txtnumber_passport.getText().toString().trim().length() > 6 && txtnumber_passport.getText().toString().trim().length() < 10 && (txtnumber_passport.getText().toString().trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && txtnumber_passport.getText().toString().trim().substring(1, txtnumber_passport.getText().toString().length() - 1).matches("[0-9]+")) {
                         ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                     } else {
-                        txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
+                       // txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
                     }
                     if (txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length() > 4) {
                     } else {
 
-                        txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
+                      //  txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
                     }
                 }
                 break;
