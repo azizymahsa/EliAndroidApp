@@ -400,7 +400,14 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
         SingletonService.getInstance().getWeatherPart().getWeatherByCity(new OnServiceStatus<WeatherApi>() {
             @Override
             public void onReady(WeatherApi weatherApi) {
-                recyclerViewHotel.setAdapter(new WeatherAdapter(weatherApi.getQuery().getResults().getChannel().getItem().getForecast()));
+                Log.e("jddoon", new Gson().toJson(weatherApi) );
+                try{
+                    recyclerViewHotel.setAdapter(new WeatherAdapter(weatherApi.getQuery().getResults().getChannel().getItem().getForecast()));
+
+                }catch (Exception e){
+                    slidingDrawer.setVisibility(View.GONE);
+
+                }
             }
 
             @Override
@@ -485,8 +492,8 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
 
     @Override
     public void onReady(ResponsSearchFlight responsSearchFlight) {
-        recyclerViewHotel.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        slidingDrawer.setVisibility(View.VISIBLE);
+
+
         if (flightsList != null) {
             flightsList.clear();
         }
@@ -507,7 +514,12 @@ public class SearchParvazActivity extends BaseActivity implements SortFlightDial
                 txtNoResult.setText(responsSearchFlight.getSearchFlightsResult().getErrors().get(0).getDetailedMessage());
                 linear_no_result.setVisibility(View.VISIBLE);
             } else {
-                slidingDrawer.setVisibility(View.VISIBLE);
+                if (recyclerViewHotel.getAdapter()!=null){
+                    recyclerViewHotel.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+                    slidingDrawer.setVisibility(View.VISIBLE);
+
+                }
+
                 if (responsSearchFlight.getSearchFlightsResult().getFlights().size() > 0)
                     responsSearchFlight.getSearchFlightsResult().getFlights().get(0).getBaseFare();
                 if (Locale.getDefault().getLanguage().equals("fa")) {
