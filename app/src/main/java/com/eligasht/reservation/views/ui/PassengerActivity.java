@@ -469,12 +469,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
 		txtnumber_passport.setOnFocusChangeListener(this);
 
-
-
-
 		txtTitle= (TextView) findViewById(R.id.tvTitle);
 		txtTitle.setOnClickListener(this);
-
 
 		btn_next_partnerInfo=(LinearLayout) findViewById(R.id.btn_next_partnerInfo);
 		btn_next_partnerInfo.setOnClickListener(this);

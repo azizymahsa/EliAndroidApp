@@ -551,7 +551,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         llDetailService = findViewById(R.id.llDetailService);
         llDetailFlight = findViewById(R.id.llDetailFlight);
 
-        //////////////////////////
         // Spinner element
         Spinner spinner = findViewById(R.id.spinner1);
         Spinner spinnerMosafer = findViewById(R.id.spinnerMosafer);
@@ -660,18 +659,14 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 } catch (Exception ignored) {
                 }
 
-
                 String data = OrderToJsonGetPreFactorDetails();
 
-
                 HttpClient client = new DefaultHttpClient();
-
 
                 HttpPost post = new HttpPost();
                 post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetPreFactorDetails");
                 post.setHeader("Content-Type", "application/json; charset=UTF-8");
                 post.setHeader("Accept", "application/json; charset=UTF-8");
-
 
                 StringEntity se = null;
                 try {
@@ -682,12 +677,10 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 post.setEntity(se);
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-
                 HashMap<String, String> airport = null;
                 mylist = new ArrayList<HashMap<String, String>>();
                 HttpResponse res = client.execute(post);
                 String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
 
                 return (retSrc);
 
@@ -697,7 +690,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             } finally {
                 conn.disconnect();
             }
-
 
         }//end doin background
 

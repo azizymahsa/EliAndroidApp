@@ -236,7 +236,6 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 
             } else {
 
-                // responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().
                 for (int i = 0; i < responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().size(); i++) {
                     Country fishData = new Country();
                     fishData.setCityName(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getCityName());
@@ -251,7 +250,6 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 String Value_Mabda_City = "";
                 String Value_Mabda_Airport = "";
                 String Value_Mabda_Airport_Code = "";
-                ////
 
                 if (Prefs.getString("Value-Mabda-City", "") != null) {
 
@@ -278,7 +276,6 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 
     @Override
     public void onError(String message) {
-
         if (!Utility.isNetworkAvailable(GetAirportMaghsadActivity.this)) {
             AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
             AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
