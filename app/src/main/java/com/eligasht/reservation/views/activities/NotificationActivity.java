@@ -15,6 +15,7 @@ import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsAdapter;
 import com.eligasht.reservation.views.adapters.notification.NotificationAdapter;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.PassengerActivity;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -42,6 +43,7 @@ public class NotificationActivity extends BaseActivity {
         btnOk =findViewById(R.id.btnOk);
         llHome =findViewById(R.id.llHome);
         llHome.setVisibility(View.INVISIBLE);
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

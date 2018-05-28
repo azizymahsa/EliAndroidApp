@@ -5,8 +5,8 @@ package com.eligasht.reservation.views;
  */
 public class TestConst {
     public static final String Email_Forget = "farhadi@eligasht.com";
-    public static final String Email = "nematiprog@gmail.com";
-    public static final String Pass = "ahmad";
+    public static final String Email = "azizymahsa@gmail.com";
+    public static final String Pass = "123456";
     public static final String Origin = "تهران";
     public static final String Dest = "استانبول";
     public static final int Flight_Back = 5;
