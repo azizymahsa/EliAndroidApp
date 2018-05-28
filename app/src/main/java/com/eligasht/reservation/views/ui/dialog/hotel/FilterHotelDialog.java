@@ -170,14 +170,10 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         lvPrice.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 if (filterHotelPriceModel.get(position).isCheck()) {
                     filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(), filterHotelPriceModel.get(position).getX(), false));
-
                 } else {
                     filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(), filterHotelPriceModel.get(position).getX(), true));
-
-
                 }
                 priceFilterAdapter.notifyDataSetChanged();
             }
@@ -198,38 +194,24 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         switch (v.getId()) {
             case R.id.btnOk:
                 // activity.startActivity(new Intent(activity, ProfileActivity.class));
-
-
                 filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,
                         filterHotelPriceModel, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels, false);
-
-
                 dismiss();
-
-
                 break;
             case R.id.btnDeletFilter:
                 remove = true;
                 search = "";
                 for (int i = 0; i < filterHotelTypeModels.size(); i++) {
                     filterHotelTypeModels.set(i, new FilterHotelTypeModel(filterHotelTypeModels.get(i).getTitle(), false));
-
-
                 }
                 for (int i = 0; i < filterHotelBestOffModels.size(); i++) {
                     filterHotelBestOffModels.set(i, new FilterHotelTypeModel(filterHotelBestOffModels.get(i).getTitle(), false));
-
-
                 }
                 for (int i = 0; i < filterHotelStarsModels.size(); i++) {
                     filterHotelStarsModels.set(i, new FilterStarModel(filterHotelStarsModels.get(i).getTitle(), false, filterHotelStarsModels.get(i).getStar()));
-
-
                 }
                 for (int i = 0; i < filterHotelFacilitiesModels.size(); i++) {
                     filterHotelFacilitiesModels.set(i, new FilterHotelTypeModel(filterHotelFacilitiesModels.get(i).getTitle(), false));
-
-
                 }
 
                 for (int i = 0; i < filterHotelPriceModel.size(); i++) {
@@ -239,7 +221,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
                 }
                 for (int i = 0; i < filterHotelLocationModels.size(); i++) {
                     filterHotelLocationModels.set(i, new FilterHotelTypeModel(filterHotelLocationModels.get(i).getTitle(), false));
-
 
                 }
                 filterHotelTypeAdapter.notifyDataSetChanged();

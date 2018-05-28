@@ -140,7 +140,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public NonScrollListView listKhadamat;
 	ArrayList<HashMap<String,String>> mylist=null;
 	public static String searchText = "";
-
+    public boolean checkDomestic=false;
 	public static long GET_PRICE_KHADAMAT;
 
 	GetKhadmatAdapter mAdapter;
@@ -448,25 +448,25 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		txtnamem = (EditText) findViewById(R.id.txtnamem);
 		txtnamem.setOnClickListener(this);
-		txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
+	//	txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
 		txtnamem.setOnFocusChangeListener(this);
 
 		txtfamilym = (EditText) findViewById(R.id.txtfamilym);
 		txtfamilym.setOnClickListener(this);
-		txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
+		//txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
 		txtfamilym.setOnFocusChangeListener(this);
 
 		txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
 		txtnumber_passport= (EditText) findViewById(R.id.txtnumber_passport);
 		txt_NationalCode_m.setOnClickListener(this);
 		txt_NationalCode_m.setImeOptions(EditorInfo.IME_ACTION_DONE);
-		txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
+		//txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
 		txt_NationalCode_m.setOnFocusChangeListener(this);
 
 		txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
 		txtnumber_passport.setOnClickListener(this);
-		txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
-		txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
+		txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+		//txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
 		txtnumber_passport.setOnFocusChangeListener(this);
 
 		txtTitle= (TextView) findViewById(R.id.tvTitle);
@@ -522,20 +522,20 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		txtnameP= (EditText)findViewById(R.id.txtnameP);
 		//	txtnameP.setHint("لطفا نام را فارسی وارد کنید");
-		txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
+		//txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
 		txtnameP.setOnFocusChangeListener(this);
 		txtfamilyP= (EditText)findViewById(R.id.txtfamilyP);
 		//	txtfamilyP.setHint("لطفا نام خانوادگی را فارسی وارد کنید");
-		txtfamilyP.addTextChangedListener(new GenericTextWatcher(txtfamilyP));
+		//txtfamilyP.addTextChangedListener(new GenericTextWatcher(txtfamilyP));
 		txtfamilyP.setOnFocusChangeListener(this);
 		txtmobileP= (EditText)findViewById(R.id.txtmobileP);
-		txtmobileP.addTextChangedListener(new GenericTextWatcher(txtmobileP));
+		//txtmobileP.addTextChangedListener(new GenericTextWatcher(txtmobileP));
 		txtmobileP.setOnFocusChangeListener(this);
 		txtkodemeliP= (EditText)findViewById(R.id.txtkodemeliP);
-		txtkodemeliP.addTextChangedListener(new GenericTextWatcher(txtkodemeliP));
+		//txtkodemeliP.addTextChangedListener(new GenericTextWatcher(txtkodemeliP));
 		txtkodemeliP.setOnFocusChangeListener(this);
 		txtemeliP= (EditText)findViewById(R.id.txtemeliP);
-		txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
+	//	txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
 		//txtemeliP.setOnFocusChangeListener(this);
 		//txtemeliP.clearFocus();
 
@@ -557,13 +557,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
 		Utility.setAnimLoading(this);
 
-		boolean checkDomestic=Prefs.getBoolean("IsDemostic",false);
+		 checkDomestic=Prefs.getBoolean("IsDemostic",false);
 		if(checkDomestic){
-			linear_code_meli.setVisibility(View.VISIBLE);
+			//linear_code_meli.setVisibility(View.VISIBLE);
 			linear_number_passport.setVisibility(View.GONE);
 			linear_expdate.setVisibility(View.GONE);
 		}else{
-			linear_code_meli.setVisibility(View.GONE);
+			//linear_code_meli.setVisibility(View.GONE);
 			linear_number_passport.setVisibility(View.VISIBLE);
 			linear_expdate.setVisibility(View.VISIBLE);
 		}
@@ -956,14 +956,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						//   db.openDB();
 						db.dropTable();
 						////////////////////////Validate
-						String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
+						String RqPartner_Address= null;
 						String RqPartner_Email= txtemeliP.getText().toString();
 						String RqPartner_FirstNameFa= txtnameP.getText().toString();
 						String RqPartner_Gender= Gensiyat;
 						String RqPartner_LastNameFa= txtfamilyP.getText().toString();
 						String RqPartner_Mobile= txtmobileP.getText().toString();
 						String RqPartner_NationalCode= txtkodemeliP.getText().toString();
-						String RqPartner_Tel= "21587632";
+						String RqPartner_Tel= null;
 
 
 						String errorMessage="";
@@ -1193,24 +1193,24 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					String Gender= Gensiyat;
 					String Nationality=txtmahale_eghamat.getText().toString();// "ir";
 					String Nationality_ID= txtmeliyatm.getText().toString().toLowerCase();
-					String RqPassenger_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
+					String RqPassenger_Address= null;
 					String RqPassenger_Birthdate= txttavalodm.getText().toString();
-					String RqPassenger_Email= "mahsa.azizi@eligasht.com";
+					String RqPassenger_Email= null;
 					String RqPassenger_FirstNameEn= txtnamem.getText().toString();
-					String RqPassenger_FirstNameFa= "مهسا";
+					String RqPassenger_FirstNameFa=null;
 					String RqPassenger_LastNameEn=txtfamilym.getText().toString();
-					String RqPassenger_LastNameFa= "عزیزی";
-					String RqPassenger_Mobile= "0235588456";
+					String RqPassenger_LastNameFa= null;
+					String RqPassenger_Mobile= null;
 					String RqPassenger_NationalCode= txt_NationalCode_m.getText().toString();//codemeli
 					String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
 					String RqPassenger_PassNo=txtnumber_passport.getText().toString();
-					String RqPassenger_Tel= "25548632";
+					String RqPassenger_Tel= null;
 
 					String flagMosafer="T";
 
 					String errorMessagePartner="";
 					///Validate
-					if(linear_code_meli.getVisibility()==View.VISIBLE){
+
 						if(txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length()==10){
 							((EditText)findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
 							flagMosafer=flagMosafer+"T";
@@ -1219,8 +1219,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							flagMosafer=flagMosafer+"F";
 							errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.The_national_code_is_not_correct);
 						}
-					}
-					if(linear_number_passport.getVisibility()==View.VISIBLE){
+
+
 						if( RqPassenger_PassNo.trim().length()>6 && RqPassenger_PassNo.trim().length()<10 && (RqPassenger_PassNo.trim().substring(0,1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length()-1).matches("[0-9]+")){
 							((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
 							flagMosafer=flagMosafer+"T";
@@ -1229,7 +1229,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							flagMosafer=flagMosafer+"F";
 							errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_passport_number_correctly);
 						}
-					}
+
 					if(Nationality != null && Nationality.length()>1){
 						((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
 						flagMosafer=flagMosafer+"T";
@@ -1313,9 +1313,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							System.out.println("gender:"+Gender);
 							//	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 							if(counter-1 ==1){
-								db.insertData(counter-1,getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
+								db.insertData(counter-1,getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 							}else{
-								db.insertData(counter-1,txtTitleCountM.getText().toString(),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
+								db.insertData(counter-1,txtTitleCountM.getText().toString(),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 							}
 							System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
 							if(countB>=1) {
@@ -1376,6 +1376,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 								txtfamilym.setText("");
 								txtexp_passport.setText("");
 								txtnumber_passport.getText().clear();
+								txt_NationalCode_m.getText().clear();
 								btnzan.setChecked(false);
 								btnmard.setChecked(false);
 								txtnamem.setFocusable(true);
@@ -1575,21 +1576,21 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					passList.setNationality( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
 					passList.setNationalityID(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
 
-					passList.setRqPassengerAddress( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
+				//	passList.setRqPassengerAddress( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
 					passList.setRqPassengerBirthdate( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
-					passList.setRqPassengerEmail(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
+					//passList.setRqPassengerEmail(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
 
 					passList.setRqPassengerFirstNameEn( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-					passList.setRqPassengerFirstNameFa( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
+					//passList.setRqPassengerFirstNameFa( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
 					passList.setRqPassengerLastNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
 
-					passList.setRqPassengerLastNameFa( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
-					passList.setRqPassengerMobile( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
+				//	passList.setRqPassengerLastNameFa( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
+				//	passList.setRqPassengerMobile( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
 					passList.setRqPassengerNationalCode(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
 
 					passList.setRqPassengerPassExpDate( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
 					passList.setRqPassengerPassNo( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
-					passList.setRqPassengerTel(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
+				//	passList.setRqPassengerTel(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
 					passLists.add(i,passList);
 
 				}
@@ -1717,7 +1718,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 							mAdapter.setData(data);
 							listKhadamat.setAdapter(mAdapter);
-							if(linear_code_meli.getVisibility()==View.VISIBLE){
+                            if(checkDomestic){
 								listKhadamat.setVisibility(View.GONE);
 							}
 							setAnimation();
@@ -2197,6 +2198,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	}
 
+/*
 	private class GenericTextWatcher implements TextWatcher{
 
 		private View view;
@@ -2211,7 +2213,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			String text = editable.toString();
 
 			switch(view.getId()){
-				/*//مسافر
+				*/
+/*//*
+/مسافر
 				case R.id.txtmahale_eghamat:
 					if(text != null && text.length()>1){
 						((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -2341,11 +2345,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
 							txtkodemeliP.setError("لطفا کد ملی را وارد کنید ");
 						}
-					break;*/
+					break;*//*
+
 
 			}
 		}
 	}
+*/
 
 
 	public static Bitmap getBitmap(String barcode, int barcodeType, int width, int height)
