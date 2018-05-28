@@ -1210,26 +1210,25 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					String errorMessagePartner="";
 					///Validate
-
-						if(txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length()==10){
-							((EditText)findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
-							flagMosafer=flagMosafer+"T";
-						} else{
-
-							flagMosafer=flagMosafer+"F";
-							errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.The_national_code_is_not_correct);
+					//if(checkDomestic){
+						if (txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length() == 10) {
+							((EditText) findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
+							flagMosafer = flagMosafer + "T";
+						} else {
+							flagMosafer = flagMosafer + "F";
+							errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.The_national_code_is_not_correct);
 						}
-
-
-						if( RqPassenger_PassNo.trim().length()>6 && RqPassenger_PassNo.trim().length()<10 && (RqPassenger_PassNo.trim().substring(0,1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length()-1).matches("[0-9]+")){
-							((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
-							flagMosafer=flagMosafer+"T";
-						}else{
+					//}
+					if(linear_number_passport.getVisibility()==View.VISIBLE) {
+						if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
+							((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+							flagMosafer = flagMosafer + "T";
+						} else {
 							//((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-							flagMosafer=flagMosafer+"F";
-							errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_passport_number_correctly);
+							flagMosafer = flagMosafer + "F";
+							errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_number_correctly);
 						}
-
+					}
 					if(Nationality != null && Nationality.length()>1){
 						((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
 						flagMosafer=flagMosafer+"T";
