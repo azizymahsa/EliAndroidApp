@@ -151,7 +151,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     public Button btnAddsabad, btn_pardakht_factor, txtSaler, txtMasaferan, txtKhadamat, txtPishfactor;
     public EditText txtnamem, txtfamilym;
     public static TextView txttavalodm;
-    public EditText txtnumber_passport, txtnameP;
+    public EditText txtnumber_passport, txtnameP,txt_NationalCode_m;
     public static TextView txtexp_passport;
     public TextView txtTitle, txtmeliyatm, txtmahale_eghamat, txtTitleCountM;
     public static TextView txtSumKhadamat;
@@ -479,11 +479,18 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
         txtnumber_passport = findViewById(R.id.txtnumber_passport);
         txtnumber_passport.setOnClickListener(PassengerHotelFlightActivity.this);
-        txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         txtnumber_passport.setOnFocusChangeListener(this);
         txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
         txtexp_passport = findViewById(R.id.txtexp_passport);
         txtexp_passport.setOnClickListener(PassengerHotelFlightActivity.this);
+
+        txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
+
+        txt_NationalCode_m.setOnClickListener(this);
+        txt_NationalCode_m.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
+        txt_NationalCode_m.setOnFocusChangeListener(this);
 
         txtTitle = findViewById(R.id.tvTitle);
         txtTitle.setOnClickListener(PassengerHotelFlightActivity.this);
@@ -1281,7 +1288,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     String RqPassenger_LastNameEn = txtfamilym.getText().toString();
                     String RqPassenger_LastNameFa = "عزیزی";
                     String RqPassenger_Mobile = "0235588456";
-                    String RqPassenger_NationalCode = "";//codemeli
+                    String RqPassenger_NationalCode = txt_NationalCode_m.getText().toString();//codemeli
                     String RqPassenger_PassExpDate = txtexp_passport.getText().toString();
                     String RqPassenger_PassNo = txtnumber_passport.getText().toString();
                     String RqPassenger_Tel = "25548632";
@@ -1398,9 +1405,9 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             if (sum > 0) {
                                 System.out.println("gender:" + Gender);
                                 if (counter - 1 == 1) {
-                                    db.insertData(counter - 1, getString(R.string.First_passenger_information), getString(R.string.room) + getCounter(room), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
+                                    db.insertData(counter - 1, getString(R.string.First_passenger_information), getString(R.string.room) + getCounter(room), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                                 } else {
-                                    db.insertData(counter - 1, txtTitleCountM.getText().toString(), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
+                                    db.insertData(counter - 1, txtTitleCountM.getText().toString(), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                                 }
                                 System.out.println("InsertMosafer:" + (counter - 1) + " " + txtTitleCountM.getText().toString() + " " + RqPassenger_FirstNameEn);
                                 if (countB >= 1) {
@@ -1448,6 +1455,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                     txtfamilym.setText("");
                                     txtexp_passport.setText("");
                                     txtnumber_passport.setText("");
+                                    txt_NationalCode_m .setText("");
                                 }
                                 System.out.println("insert:" + "sum:" + sum);
                             }

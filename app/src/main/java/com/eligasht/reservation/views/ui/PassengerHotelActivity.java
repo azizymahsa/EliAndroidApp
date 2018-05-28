@@ -478,7 +478,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         txtnumber_passport = findViewById(R.id.txtnumber_passport);
         txtnumber_passport.setOnClickListener(this);
         txtnumber_passport.setOnFocusChangeListener(this);
-        txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
         txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
 
@@ -2138,7 +2138,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                     txtfamilym.setText("");
                                     txtexp_passport.setText("");
                                     txtnumber_passport.setText("");
-
+                                    txt_NationalCode_m.setText("");
                                     Gensiyat = "";
                                     btnzan.setChecked(false);
                                     btnmard.setChecked(false);
