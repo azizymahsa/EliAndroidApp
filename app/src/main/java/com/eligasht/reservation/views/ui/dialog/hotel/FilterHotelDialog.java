@@ -122,11 +122,8 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (filterHotelBestOffModels.get(position).isCheck()) {
                     filterHotelBestOffModels.set(position, new FilterHotelTypeModel(filterHotelBestOffModels.get(position).getTitle(), false));
-
                 } else {
                     filterHotelBestOffModels.set(position, new FilterHotelTypeModel(filterHotelBestOffModels.get(position).getTitle(), true));
-
-
                 }
                 lvBestOffAdapter.notifyDataSetChanged();
 
@@ -142,11 +139,8 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
 
                 } else {
                     filterHotelTypeModels.set(position, new FilterHotelTypeModel(filterHotelTypeModels.get(position).getTitle(), true));
-
-
                 }
                 filterHotelTypeAdapter.notifyDataSetChanged();
-
             }
         });
 
@@ -155,14 +149,10 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (filterHotelLocationModels.get(position).isCheck()) {
                     filterHotelLocationModels.set(position, new FilterHotelTypeModel(filterHotelLocationModels.get(position).getTitle(), false));
-
                 } else {
                     filterHotelLocationModels.set(position, new FilterHotelTypeModel(filterHotelLocationModels.get(position).getTitle(), true));
-
-
                 }
                 filterHotelLocationAdapter.notifyDataSetChanged();
-
             }
         });
 
@@ -171,11 +161,8 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (filterHotelFacilitiesModels.get(position).isCheck()) {
                     filterHotelFacilitiesModels.set(position, new FilterHotelTypeModel(filterHotelFacilitiesModels.get(position).getTitle(), false));
-
                 } else {
                     filterHotelFacilitiesModels.set(position, new FilterHotelTypeModel(filterHotelFacilitiesModels.get(position).getTitle(), true));
-
-
                 }
                 filterHotelFacilitiesAdapter.notifyDataSetChanged();
             }

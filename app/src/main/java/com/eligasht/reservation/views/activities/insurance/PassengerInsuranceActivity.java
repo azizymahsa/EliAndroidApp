@@ -939,7 +939,6 @@ private void RequestPurchaseInsurance(){
                 } else {
                     try {
                         //jadvale mosafer khali beshe
-
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);
                         db.dropTable();
                         ////////////////////////Validate
@@ -952,7 +951,6 @@ private void RequestPurchaseInsurance(){
                         String RqPartner_NationalCode = txtkodemeliP.getText().toString();
                         String RqPartner_Tel = "21587632";
 
-
                         String errorMessage = "";
                         String flagMosafer = "T";
                         ///Validate
@@ -961,11 +959,9 @@ private void RequestPurchaseInsurance(){
                             ((EditText) findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {
-
                             flagMosafer = flagMosafer + "F";
                             errorMessage = errorMessage + "\n" + "* " + getString(R.string.Email_format_is_correct);
                         }
-
 
                         if (RqPartner_FirstNameFa != null) {
                             if (Locale.getDefault().getLanguage().equals("en")) {
@@ -992,7 +988,6 @@ private void RequestPurchaseInsurance(){
                                     ((EditText) findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
                                 } else {
-
                                     flagMosafer = flagMosafer + "F";
                                     errorMessage = errorMessage + "\n" + "* " + getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                                 }
@@ -1001,7 +996,6 @@ private void RequestPurchaseInsurance(){
                                     ((EditText) findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
                                 } else {
-
                                     flagMosafer = flagMosafer + "F";
                                     errorMessage = errorMessage + "\n" + "* " + getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                                 }
@@ -1011,7 +1005,6 @@ private void RequestPurchaseInsurance(){
                             ((EditText) findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {
-
                             flagMosafer = flagMosafer + "F";
                             errorMessage = errorMessage + "\n" + "* " + getString(R.string.Enter_the_correct_mobile_format);
                         }
@@ -1080,7 +1073,6 @@ private void RequestPurchaseInsurance(){
                     datePickerDialog.setMinDate(persianCalendarDatePicker1);
                     datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
                     String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
                     int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true) - 2;
@@ -1104,7 +1096,6 @@ private void RequestPurchaseInsurance(){
                     datePickerDialog.setMinDate(persianCalendarDatePicker1);
                     datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
                     String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
                     int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true);
@@ -1126,7 +1117,6 @@ private void RequestPurchaseInsurance(){
 
                     datePickerDialog.setMinDate(persianCalendarDatePicker1);
                     datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
-
 
                     String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
@@ -1192,7 +1182,6 @@ private void RequestPurchaseInsurance(){
                         ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_place_of_residence);
                     }
@@ -1207,7 +1196,6 @@ private void RequestPurchaseInsurance(){
                         ((TextView) findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_date_of_birth);
                     }
@@ -1236,7 +1224,6 @@ private void RequestPurchaseInsurance(){
                         ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_expiration_date);
                     }
@@ -1249,7 +1236,6 @@ private void RequestPurchaseInsurance(){
                     ///endValidate
 
                     if (flagMosafer.contains("F")) {
-
                         AlertDialogPassenger AlertDialogPassengerFlight = new AlertDialogPassenger(PassengerInsuranceActivity.this,false,false);
                         AlertDialogPassengerFlight.setText("" + "  " + errorMessagePartner,getString(R.string.EditInput));
                     } else {
@@ -1314,9 +1300,7 @@ private void RequestPurchaseInsurance(){
                             System.out.println("insert:" + "sum:" + sum);
                         }
                         db.closeDB();
-
                         linear_mosaferan.clearFocus();
-
                     }
 
                     //call api saler
@@ -1346,7 +1330,6 @@ private void RequestPurchaseInsurance(){
             case R.id.txtmeliyatm:
                 final Intent intent4 = new Intent(this, NationalitycodeActivity.class);
                 startActivityForResult(intent4, 1);
-
                 break;
             case R.id.txtmahale_eghamat:
                 final Intent intent3 = new Intent(this, CountrycodeActivity.class);
@@ -1403,7 +1386,6 @@ private void RequestPurchaseInsurance(){
                 }
                 break;
         }
-
     }
 
     public String getCounter(int i) {
@@ -1441,10 +1423,8 @@ private void RequestPurchaseInsurance(){
                 System.out.println("Unknown result");
 
                 break;
-
         }
         return s;
-
     }
 
     @Override
@@ -1530,7 +1510,6 @@ private void RequestPurchaseInsurance(){
     @Override
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
-
     }
 
     public static void updateTotalInfos(long serviceTotalPrice) {

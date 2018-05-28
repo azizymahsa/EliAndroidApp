@@ -61,12 +61,7 @@ public class PassengerPartnerInfo_Table extends MainLocalDB {
 			String RqPartner_Gender, String RqPartner_LastNameFa, String RqPartner_Mobile,
 			String RqPartner_NationalCode, String RqPartner_Tel) {
 		ContentValues cv = new ContentValues();
-		
-		/*RqPartner_Address(text), RqPartner_Email(text), RqPartner_FirstNameFa(text)
-		,RqPartner_Gender(text), RqPartner_LastNameFa(text), RqPartner_Mobile(text)
-		,RqPartner_NationalCode(text), RqPartner_Tel(text);*/
-		
-		
+
 		cv.put(Columns.RqPartner_Address.value(), RqPartner_Address);
 		cv.put(Columns.RqPartner_Email.value(), RqPartner_Email);
 		
@@ -77,8 +72,7 @@ public class PassengerPartnerInfo_Table extends MainLocalDB {
 		cv.put(Columns.RqPartner_Mobile.value(), RqPartner_Mobile);
 		cv.put(Columns.RqPartner_NationalCode.value(), RqPartner_NationalCode);
 		cv.put(Columns.RqPartner_Tel.value(), RqPartner_Tel);
-		
-		
+
 		openDB();
 		return (int) db.insert(TABLE_NAME, null, cv);
 	}
