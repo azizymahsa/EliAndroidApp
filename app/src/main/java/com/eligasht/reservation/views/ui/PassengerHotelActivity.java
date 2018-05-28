@@ -1830,6 +1830,14 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_number_correctly);
                     }
+                    if (RqPassenger_NationalCode.trim().length() == 10 ) {
+                        ((EditText) findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
+                        flagMosafer = flagMosafer + "T";
+                    } else {
+                        //((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
+                        flagMosafer = flagMosafer + "F";
+                        errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.The_national_code_is_not_correct);
+                    }
                     // }
                     if (Nationality != null && Nationality.length() > 1) {
                         ((TextView) findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -2007,6 +2015,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                     txtfamilym.setText("");
                                     txtexp_passport.setText("");
                                     txtnumber_passport.setText("");
+                                    txt_NationalCode_m.setText("");
                                 }
                                 System.out.println("insert:" + "sum:" + sum);
                             }
@@ -2124,6 +2133,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                         txtfamilym.setText("");
                                         txtexp_passport.setText("");
                                         txtnumber_passport.setText("");
+                                        txt_NationalCode_m.setText("");
+
                                     }
                                 }
                                 System.out.println("counterMosafer:" + getCounter(counter) + counter);

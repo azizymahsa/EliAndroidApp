@@ -3,6 +3,7 @@ package com.eligasht.reservation.lost.passenger;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +57,7 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
         holder.tvPassangerName.setText(item.getRqPassenger_name());
 
         holder.tvPassNo.setText(item.getRqPassenger_PassNo());
-        if (item.getNational_Code()!=null||item.getNational_Code().equals("null"))
+        if (item.getNational_Code()==null||item.getNational_Code().equals("null")|| TextUtils.isEmpty(item.getNational_Code()))
             holder.tvNatinalCode.setText("---");
 
         else

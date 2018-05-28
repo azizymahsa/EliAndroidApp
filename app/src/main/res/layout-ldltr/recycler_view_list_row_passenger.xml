@@ -216,7 +216,7 @@
                             android:textColor="@color/text_color_2e"
                             android:textSize="@dimen/_12dp_normal_textSize" />
                         <TextView
-                            android:id="@+id/national_code"
+                            android:id="@+id/tvNatinalCode"
 
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
