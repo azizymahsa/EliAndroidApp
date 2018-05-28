@@ -122,7 +122,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     public Button btnAddsabad, btn_pardakht_factor, txtSaler, txtMasaferan, txtKhadamat, txtPishfactor;
     public EditText txtnamem, txtfamilym;
     public static TextView txttavalodm;
-    public EditText txtnumber_passport, txtnameP;
+    public EditText txtnumber_passport, txtnameP,txt_NationalCode_m;
     public static TextView txtexp_passport;
     public TextView txtTitle, txtmeliyatm, txtmahale_eghamat, txtTitleCountM;
     public static TextView txtSumKhadamat;
@@ -447,8 +447,18 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         txtnamem = findViewById(R.id.txtnamem);
         imgCount = findViewById(R.id.imgCount);
         txtfamilym = findViewById(R.id.txtfamilym);
-        txtnumber_passport = findViewById(R.id.txtnumber_passport);
-        txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
+        txtnumber_passport= (EditText) findViewById(R.id.txtnumber_passport);
+        txt_NationalCode_m.setOnClickListener(this);
+        txt_NationalCode_m.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        //txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
+        txt_NationalCode_m.setOnFocusChangeListener(this);
+
+        txtnumber_passport = (EditText) findViewById(R.id.txtnumber_passport);
+        txtnumber_passport.setOnClickListener(this);
+        txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+        //txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
+        txtnumber_passport.setOnFocusChangeListener(this);
 
         txtexp_passport = findViewById(R.id.txtexp_passport);
         txtTitle = findViewById(R.id.tvTitle);
@@ -496,7 +506,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         txtkodemeliP.setOnFocusChangeListener(this);
         txtemeliP.setOnFocusChangeListener(this);
         txtfamilym.setOnFocusChangeListener(this);
-        txtnumber_passport.setOnFocusChangeListener(this);
+
         txtnamem.setOnFocusChangeListener(this);
         txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
         txtkodemeliP.addTextChangedListener(new GenericTextWatcher(txtkodemeliP));
@@ -505,7 +515,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
         txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
         txtfamilym.addTextChangedListener(new GenericTextWatcher(txtfamilym));
-        txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
+
 
         txt_shomare_factor.setOnClickListener(this);
         txtmahale_eghamat.setOnClickListener(this);
@@ -520,7 +530,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
         txtTitle.setOnClickListener(this);
         txtexp_passport.setOnClickListener(this);
-        txtnumber_passport.setOnClickListener(this);
+
         txtfamilym.setOnClickListener(this);
         imgCount.setOnClickListener(this);
         btnBack.setOnClickListener(this);
@@ -1152,21 +1162,21 @@ private void RequestPurchaseInsurance(){
                 ScrollView scrolMosafer = findViewById(R.id.scrolMosafer);
                 scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
                 if (FlagMosaferan) {
-                    String Gender = Gensiyat;
-                    String Nationality = txtmahale_eghamat.getText().toString();// "ir";
-                    String Nationality_ID = txtmeliyatm.getText().toString().toLowerCase();
-                    String RqPassenger_Address = "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
-                    String RqPassenger_Birthdate = txttavalodm.getText().toString();
-                    String RqPassenger_Email = "mahsa.azizi@eligasht.com";
-                    String RqPassenger_FirstNameEn = txtnamem.getText().toString();
-                    String RqPassenger_FirstNameFa = "مهسا";
-                    String RqPassenger_LastNameEn = txtfamilym.getText().toString();
-                    String RqPassenger_LastNameFa = "عزیزی";
-                    String RqPassenger_Mobile = "0235588456";
-                    String RqPassenger_NationalCode = "";//codemeli
-                    String RqPassenger_PassExpDate = txtexp_passport.getText().toString();
-                    String RqPassenger_PassNo = txtnumber_passport.getText().toString();
-                    String RqPassenger_Tel = "25548632";
+                    String Gender= Gensiyat;
+                    String Nationality=txtmahale_eghamat.getText().toString();// "ir";
+                    String Nationality_ID= txtmeliyatm.getText().toString().toLowerCase();
+                    String RqPassenger_Address= null;
+                    String RqPassenger_Birthdate= txttavalodm.getText().toString();
+                    String RqPassenger_Email= null;
+                    String RqPassenger_FirstNameEn= txtnamem.getText().toString();
+                    String RqPassenger_FirstNameFa=null;
+                    String RqPassenger_LastNameEn=txtfamilym.getText().toString();
+                    String RqPassenger_LastNameFa= null;
+                    String RqPassenger_Mobile= null;
+                    String RqPassenger_NationalCode= txt_NationalCode_m.getText().toString();//codemeli
+                    String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
+                    String RqPassenger_PassNo=txtnumber_passport.getText().toString();
+                    String RqPassenger_Tel= null;
 
                     String flagMosafer = "T";
                     String errorMessagePartner = "";
@@ -1247,9 +1257,9 @@ private void RequestPurchaseInsurance(){
                             System.out.println("gender:" + Gender);
 
                             if (counter - 1 == 1) {
-                                db.insertData(counter - 1, getString(R.string.First_passenger_information), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
+                                db.insertData(counter - 1, getString(R.string.First_passenger_information), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                             } else {
-                                db.insertData(counter - 1, txtTitleCountM.getText().toString(), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
+                                db.insertData(counter - 1, txtTitleCountM.getText().toString(), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                             }
                             System.out.println("InsertMosafer:" + (counter - 1) + " " + txtTitleCountM.getText().toString() + " " + RqPassenger_FirstNameEn);
                             if (countB >= 1) {
@@ -1290,6 +1300,7 @@ private void RequestPurchaseInsurance(){
                                 txtfamilym.setText("");
                                 txtexp_passport.setText("");
                                 txtnumber_passport.setText("");
+                                txt_NationalCode_m .setText("");
                                 btnzan.setChecked(false);
                                 btnmard.setChecked(false);
                                 Gensiyat = "";
