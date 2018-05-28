@@ -1277,21 +1277,22 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                 scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
                 if (FlagMosaferan) {
-                    String Gender = Gensiyat;
-                    String Nationality = txtmahale_eghamat.getText().toString();// "ir";
-                    String Nationality_ID = txtmeliyatm.getText().toString().toLowerCase();
-                    String RqPassenger_Address = "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
-                    String RqPassenger_Birthdate = txttavalodm.getText().toString();
-                    String RqPassenger_Email = "mahsa.azizi@eligasht.com";
-                    String RqPassenger_FirstNameEn = txtnamem.getText().toString();
-                    String RqPassenger_FirstNameFa = "مهسا";
-                    String RqPassenger_LastNameEn = txtfamilym.getText().toString();
-                    String RqPassenger_LastNameFa = "عزیزی";
-                    String RqPassenger_Mobile = "0235588456";
-                    String RqPassenger_NationalCode = txt_NationalCode_m.getText().toString();//codemeli
-                    String RqPassenger_PassExpDate = txtexp_passport.getText().toString();
-                    String RqPassenger_PassNo = txtnumber_passport.getText().toString();
-                    String RqPassenger_Tel = "25548632";
+                    String Gender= Gensiyat;
+                    String Nationality=txtmahale_eghamat.getText().toString();// "ir";
+                    String Nationality_ID= txtmeliyatm.getText().toString().toLowerCase();
+                    String RqPassenger_Address= null;
+                    String RqPassenger_Birthdate= txttavalodm.getText().toString();
+                    String RqPassenger_Email= null;
+                    String RqPassenger_FirstNameEn= txtnamem.getText().toString();
+                    String RqPassenger_FirstNameFa=null;
+                    String RqPassenger_LastNameEn=txtfamilym.getText().toString();
+                    String RqPassenger_LastNameFa= null;
+                    String RqPassenger_Mobile= null;
+                    String RqPassenger_NationalCode= txt_NationalCode_m.getText().toString();//codemeli
+                    String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
+                    String RqPassenger_PassNo=txtnumber_passport.getText().toString();
+                    String RqPassenger_Tel= null;
+
                     String flagMosafer = "T";
                     String errorMessagePartner = "";
                     ///Validate
