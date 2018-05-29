@@ -15,6 +15,7 @@ import com.eligasht.reservation.views.adapters.hotel.rooms.RoomsAdapter;
 import com.eligasht.reservation.views.adapters.notification.NotificationAdapter;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.PassengerActivity;
+import com.eligasht.reservation.views.ui.SingletonContext;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -29,7 +30,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
  */
 public class NotificationActivity extends BaseActivity {
     RecyclerView recyclerView;
-    RelativeLayout elNotFound;
+    RelativeLayout elNotFound,llHome;
     FancyButton btnOk;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,9 @@ public class NotificationActivity extends BaseActivity {
         recyclerView =findViewById(R.id.recyclerView);
         elNotFound =findViewById(R.id.elNotFound);
         btnOk =findViewById(R.id.btnOk);
+        llHome =findViewById(R.id.llHome);
+        llHome.setVisibility(View.INVISIBLE);
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -58,10 +58,10 @@ public class RoomList {
     private String offerId;
     @SerializedName("OldPrice")
     @Expose
-    private int oldPrice;
+    private double oldPrice;
     @SerializedName("Price")
     @Expose
-    private int price;
+    private double price;
     @SerializedName("Rooms")
     @Expose
     private List<Object> rooms = null;
@@ -210,18 +210,20 @@ public class RoomList {
     }
 
     public int getOldPrice() {
-        return oldPrice;
+
+
+        return (int) oldPrice;
     }
 
-    public void setOldPrice(int oldPrice) {
+    public void setOldPrice(Double oldPrice) {
         this.oldPrice = oldPrice;
     }
 
     public int getPrice() {
-        return price;
+        return (int) price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

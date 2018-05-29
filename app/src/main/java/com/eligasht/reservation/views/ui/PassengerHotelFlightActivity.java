@@ -151,7 +151,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     public Button btnAddsabad, btn_pardakht_factor, txtSaler, txtMasaferan, txtKhadamat, txtPishfactor;
     public EditText txtnamem, txtfamilym;
     public static TextView txttavalodm;
-    public EditText txtnumber_passport, txtnameP;
+    public EditText txtnumber_passport, txtnameP,txt_NationalCode_m;
     public static TextView txtexp_passport;
     public TextView txtTitle, txtmeliyatm, txtmahale_eghamat, txtTitleCountM;
     public static TextView txtSumKhadamat;
@@ -479,11 +479,18 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
         txtnumber_passport = findViewById(R.id.txtnumber_passport);
         txtnumber_passport.setOnClickListener(PassengerHotelFlightActivity.this);
-        txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         txtnumber_passport.setOnFocusChangeListener(this);
         txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
         txtexp_passport = findViewById(R.id.txtexp_passport);
         txtexp_passport.setOnClickListener(PassengerHotelFlightActivity.this);
+
+        txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
+
+        txt_NationalCode_m.setOnClickListener(this);
+        txt_NationalCode_m.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
+        txt_NationalCode_m.setOnFocusChangeListener(this);
 
         txtTitle = findViewById(R.id.tvTitle);
         txtTitle.setOnClickListener(PassengerHotelFlightActivity.this);
@@ -634,6 +641,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             long totalprice = jFact.getTotalPrice();
             paymentUrl = jFact.getOnlinePaymentURL();
             tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " " + getString(R.string.Rial));
+            if (paymentUrl==null||paymentUrl.equals(""))
+                btn_pardakht_factor.setVisibility(View.INVISIBLE);
 
 //for hotel==========================================================================================
             final RecyclerView recyclerViewHotel = findViewById(R.id.recyclerView);
@@ -673,9 +682,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             if (!passengerPreFactorModels.isEmpty()) {
                 llDetailPassanger.setVisibility(View.VISIBLE);
                 recyclerViewPassenger.setAdapter(new PassangerPreFactorAdapter(passengerPreFactorModels));
-
             }
-
             //for Services=============================================================================
             final RecyclerView recyclerViewService = findViewById(R.id.recyclerViewService);
             recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerHotelFlightActivity.this, 1));
@@ -707,7 +714,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         jArray5.get(i).getArrAirPortFa(),
                         Utility.dateShow(jArray5.get(i).getFltDate()),
                         jArray5.get(i).getFltTime(),
-                        //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
                         jArray5.get(i).getFltCheckinTime(),
 
                         jArray5.get(i).getFltNumber(),
@@ -718,7 +724,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             if (!flightPreFactorModels.isEmpty()) {
                 llDetailFlight.setVisibility(View.VISIBLE);
                 recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
-
             }
             setAnimation();
             Log.e("responsecrDetails:", new Gson().toJson(responsePreFactorDetails).toString());
@@ -728,7 +733,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(PassengerHotelFlightActivity.this,true,true);
             AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
         }
-
     }
 
     @Override
@@ -873,15 +877,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 data = new ArrayList<PurchaseFlightResult>();
 
                 try {
-                    // JSONObject jsonObj = new JSONObject(result);
                     Log.e("Response", new Gson().toJson(hotelFlightPurchaseResponse).toString());
-
-
                     PurchaseFlightHotelResult purchaseServiceReault = hotelFlightPurchaseResponse.getPurchaseFlightHotelResult();//Error
-
                     List<Service> jArray = purchaseServiceReault.getServices();
                     TmpReserveResult jsonResult = purchaseServiceReault.getTmpReserveResult();
-
                     Prefs.putString("BookingCode_NumFactor", jsonResult.getBookingCode() + "");
 
                     for (int i = 0; i < jArray.size(); i++) {
@@ -928,8 +927,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         data.add(fishData);
                     }
 
-                    // Setup and Handover data to recyclerview
-
                     linear_saler.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.GONE);
                     linear_pish_factor.setVisibility(View.GONE);
@@ -941,7 +938,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     txtTitle.setText(getString(R.string.Add_to_cart_services));
 
                     mAdapter = new GetKhadmatHotelFlightAdapter(PassengerHotelFlightActivity.this, data, PassengerHotelFlightActivity.this, 0);
-                    //mAdapter.setAdapter(mAdapter);
+
                     if (BuildConfig.DEBUG && Const.TEST)
                         Collections.reverse(data);
                     mAdapter.setData(data);
@@ -979,14 +976,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         Fragment fragment2;
 
         switch (v.getId()) {
-
-
             case R.id.txtMore:
-
                 linearMahaleeghamat.setVisibility(View.VISIBLE);
                 linearMeliyat.setVisibility(View.VISIBLE);
                 break;
-
             case R.id.btnBack:
                 if (linear_pish_factor.getVisibility() == View.VISIBLE) {
                     linear_pish_factor.setVisibility(View.GONE);
@@ -1059,7 +1052,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         //jadvale mosafer khali beshe
 
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerHotelFlightActivity.this);
-                        //   db.openDB();
+
                         db.dropTable();
                         ////////////////////////Validate
                         String RqPartner_Address = "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
@@ -1105,7 +1098,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                     ((EditText) findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
                                 } else {
-                                    //((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
                                     flagMosafer = flagMosafer + "F";
                                     errorMessage = errorMessage + "\n" + "* " + getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                                 }
@@ -1251,7 +1243,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     datePickerDialog.setMinDate(persianCalendarDatePicker1);
                     datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
                     String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                     int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
                     int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true) - 12;
@@ -1288,28 +1279,33 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                 scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
                 if (FlagMosaferan) {
-                    String Gender = Gensiyat;
-                    String Nationality = txtmahale_eghamat.getText().toString();// "ir";
-                    String Nationality_ID = txtmeliyatm.getText().toString().toLowerCase();
-                    String RqPassenger_Address = "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
-                    String RqPassenger_Birthdate = txttavalodm.getText().toString();
-                    String RqPassenger_Email = "mahsa.azizi@eligasht.com";
-                    String RqPassenger_FirstNameEn = txtnamem.getText().toString();
-                    String RqPassenger_FirstNameFa = "مهسا";
-                    String RqPassenger_LastNameEn = txtfamilym.getText().toString();
-                    String RqPassenger_LastNameFa = "عزیزی";
-                    String RqPassenger_Mobile = "0235588456";
-                    String RqPassenger_NationalCode = "";//codemeli
-                    String RqPassenger_PassExpDate = txtexp_passport.getText().toString();
-                    String RqPassenger_PassNo = txtnumber_passport.getText().toString();
-                    String RqPassenger_Tel = "25548632";
-
+                    String Gender= Gensiyat;
+                    String Nationality=txtmahale_eghamat.getText().toString();// "ir";
+                    String Nationality_ID= txtmeliyatm.getText().toString().toLowerCase();
+                    String RqPassenger_Address= null;
+                    String RqPassenger_Birthdate= txttavalodm.getText().toString();
+                    String RqPassenger_Email= null;
+                    String RqPassenger_FirstNameEn= txtnamem.getText().toString();
+                    String RqPassenger_FirstNameFa=null;
+                    String RqPassenger_LastNameEn=txtfamilym.getText().toString();
+                    String RqPassenger_LastNameFa= null;
+                    String RqPassenger_Mobile= null;
+                    String RqPassenger_NationalCode= txt_NationalCode_m.getText().toString();//codemeli
+                    String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
+                    String RqPassenger_PassNo=txtnumber_passport.getText().toString();
+                    String RqPassenger_Tel= null;
 
                     String flagMosafer = "T";
-
                     String errorMessagePartner = "";
                     ///Validate
 
+                    if (txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length() == 10) {
+                        ((EditText) findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
+                        flagMosafer = flagMosafer + "T";
+                    } else {
+                        flagMosafer = flagMosafer + "F";
+                        errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.The_national_code_is_not_correct);
+                    }
                     if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
                         ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
@@ -1364,7 +1360,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
-
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_expiration_date);
                     }
@@ -1419,11 +1414,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                             if (sum > 0) {
                                 System.out.println("gender:" + Gender);
-                                //	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                                 if (counter - 1 == 1) {
-                                    db.insertData(counter - 1, getString(R.string.First_passenger_information), getString(R.string.room) + getCounter(room), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
+                                    db.insertData(counter - 1, getString(R.string.First_passenger_information), getString(R.string.room) + getCounter(room), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                                 } else {
-                                    db.insertData(counter - 1, txtTitleCountM.getText().toString(), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+RqPassenger_NationalCode, RqPassenger_Tel);
+                                    db.insertData(counter - 1, txtTitleCountM.getText().toString(), imgCount.getText().toString(), Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                                 }
                                 System.out.println("InsertMosafer:" + (counter - 1) + " " + txtTitleCountM.getText().toString() + " " + RqPassenger_FirstNameEn);
                                 if (countB >= 1) {
@@ -1459,7 +1453,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                     }
                                 }
 
-
                                 System.out.println("counterMosafer:" + getCounter(counter) + counter);
 
                                 counter++;
@@ -1472,6 +1465,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                     txtfamilym.setText("");
                                     txtexp_passport.setText("");
                                     txtnumber_passport.setText("");
+                                    txt_NationalCode_m .setText("");
                                 }
                                 System.out.println("insert:" + "sum:" + sum);
                             }
@@ -2232,11 +2226,11 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
 
                     } else {
-                        txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
+                      //  txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
                     }
                     if (txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length() > 4) {
                     } else {
-                        txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
+                       // txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
                     }
                 }
                 break;

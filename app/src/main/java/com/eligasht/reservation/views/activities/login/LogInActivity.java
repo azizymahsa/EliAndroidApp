@@ -28,6 +28,7 @@ import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.jaeger.library.StatusBarUtil;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
@@ -64,6 +65,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
         }
         initViews();
         service = ServiceGenerator.createService(ClientService.class);
+      //  StatusBarUtil.setTranslucent(this, 2);
 
 
     }

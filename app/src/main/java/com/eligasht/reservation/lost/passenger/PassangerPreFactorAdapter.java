@@ -3,6 +3,7 @@ package com.eligasht.reservation.lost.passenger;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,17 +56,14 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
         holder.tvGender.setText(item.getGender().contains("false") ? context.getString(R.string.female) : context.getString(R.string.male));//item.getGender());
         holder.tvPassangerName.setText(item.getRqPassenger_name());
 
-        if (Prefs.getBoolean("IsDemostic", false)) {
-            holder.tvPass.setText(context.getString(R.string.national_code));
-            holder.tvPassNo.setText(item.getRqPassenger_PassNo());
+        holder.tvPassNo.setText(item.getRqPassenger_PassNo());
+        if (item.getNational_Code()==null||item.getNational_Code().equals("null")|| TextUtils.isEmpty(item.getNational_Code()))
+            holder.tvNatinalCode.setText("---");
 
-        } else {
-
-            holder.tvPass.setText(context.getString(R.string.number_pass));
-            holder.tvPassNo.setText(item.getRqPassenger_PassNo());
+        else
+            holder.tvNatinalCode.setText(item.getNational_Code());
 
 
-        }
 
 
         // holder.itemView.setBackgroundColor(ContextCompat.getColor(context, item.colorId1));
@@ -113,7 +111,7 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvBrithDay, tvPassNo, tvNationality, tvGender, tvArrow, tvPassangerName, tvPass;
+        public TextView tvBrithDay, tvPassNo, tvNationality, tvGender, tvArrow, tvPassangerName, tvPass,tvNatinalCode;
         /**
          * You must use the ExpandableLinearLayout in the recycler view.
          * The ExpandableRelativeLayout doesn't work.
@@ -133,6 +131,7 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
             expandableLayout = v.findViewById(R.id.expandableLayout);
             tvArrow = v.findViewById(R.id.tvArrow);
             buttonLayout = v.findViewById(R.id.buttonLayout);
+            tvNatinalCode = v.findViewById(R.id.tvNatinalCode);
         }
     }
 }

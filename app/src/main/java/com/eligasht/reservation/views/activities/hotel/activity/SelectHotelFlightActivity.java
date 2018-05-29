@@ -175,12 +175,22 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         SingletonService.getInstance().getWeatherPart().getWeatherByCity(new OnServiceStatus<WeatherApi>() {
             @Override
             public void onReady(WeatherApi weatherApi) {
-                rvWeather.setAdapter(new WeatherAdapter(weatherApi.getQuery().getResults().getChannel().getItem().getForecast()));
+
+
+                try{
+                    rvWeather.setAdapter(new WeatherAdapter(weatherApi.getQuery().getResults().getChannel().getItem().getForecast()));
+
+                }catch (Exception e){
+                    slidingDrawer.setVisibility(View.GONE);
+
+                }
 
             }
 
             @Override
             public void onError(String message) {
+                slidingDrawer.setVisibility(View.GONE);
+
             }
         }, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));
     }
@@ -625,7 +635,12 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 rlList.setVisibility(View.GONE);
                 llFilter.setVisibility(View.GONE);
             } else {
-                slidingDrawer.setVisibility(View.VISIBLE);
+                if (rvWeather.getAdapter()!=null){
+                    rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+                    slidingDrawer.setVisibility(View.VISIBLE);
+
+                }
+
 
                 maxPrice = hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getMaxPrice();
                 minPrice = hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getMinPrice();
