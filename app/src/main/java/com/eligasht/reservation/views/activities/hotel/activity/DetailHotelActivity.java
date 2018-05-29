@@ -130,13 +130,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         hotelDetailViewPager = new HotelDetailViewPager(this, getSupportFragmentManager(), false);
         view_pager.setAdapter(hotelDetailViewPager);
         tab_layout.setupWithViewPager(view_pager);
-        view_pager.setCurrentItem(3);
+        view_pager.setCurrentItem(4);
         try {
             if (getIntent().getExtras().getString("Type").equals("Pakage")) {
                 hotelDetailViewPager = new HotelDetailViewPager(this, getSupportFragmentManager(), true);
                 view_pager.setAdapter(hotelDetailViewPager);
                 tab_layout.setupWithViewPager(view_pager);
-                view_pager.setCurrentItem(2);
+                view_pager.setCurrentItem(3);
             }
         } catch (Exception e) {
         }

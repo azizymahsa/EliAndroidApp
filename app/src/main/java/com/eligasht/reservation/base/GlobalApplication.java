@@ -144,6 +144,9 @@ public class GlobalApplication extends ServiceApplication {
 //        LeakCanary.install(this);
         // Normal app init code...
 
+
+
+
         sAnalytics = GoogleAnalytics.getInstance(this);
 
 
