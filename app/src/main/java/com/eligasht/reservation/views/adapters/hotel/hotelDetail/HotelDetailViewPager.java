@@ -74,7 +74,7 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
         switch (position) {
             case 0:
 
-                return "چشم انداز";
+                return "نما";
             case 1:
                 return context.getString(R.string.Comments);
 
