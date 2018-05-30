@@ -318,7 +318,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
             datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
             String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
             int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
             int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true) - 2;

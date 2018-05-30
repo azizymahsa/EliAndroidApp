@@ -177,7 +177,6 @@ public class GlobalApplication extends ServiceApplication {
                 .setUseDefaultSharedPreference(true)
                 .build();
 
-
         setLocale();
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
@@ -187,7 +186,6 @@ public class GlobalApplication extends ServiceApplication {
                 .addCustomStyle(TextField.class, R.attr.textFieldStyle)
                 .build()
         );
-
 
         if (Hawk.get("adjust", true)) {
             String realToken = "niedy5vr1xc0";
@@ -201,7 +199,6 @@ public class GlobalApplication extends ServiceApplication {
 
         FirebaseCrash.setCrashCollectionEnabled(!BuildConfig.DEBUG);
     }
-
 
     public void onTerminate() {
         super.onTerminate();
@@ -227,7 +224,6 @@ public class GlobalApplication extends ServiceApplication {
         }
         return Operator;
     }
-
 
     @Override
     protected void attachBaseContext(Context base) {
