@@ -42,6 +42,11 @@ public class SuccessResetPassActivity extends BaseActivity implements View.OnCli
 
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     private void initViews() {
         btnBackHomeLog = findViewById(R.id.btnBackHomePage);
         tvInfo = findViewById(R.id.tvInfo);

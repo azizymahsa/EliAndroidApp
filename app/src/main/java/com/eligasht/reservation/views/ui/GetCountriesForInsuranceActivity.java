@@ -118,6 +118,11 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
     }
 
     @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
+    @Override
     public void onReady(ResponseGetCountry responseGetCountry) {
         hideLoading();
         if (responseGetCountry == null) {

@@ -46,4 +46,9 @@ public class PackageServicesActivity extends BaseActivity {
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(context));
     }
+
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
 }

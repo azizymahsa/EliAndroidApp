@@ -61,6 +61,11 @@ public class RegisterLoginActivity extends BaseActivity implements View.OnClickL
 
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     //request for register and get result
     private void Register() {
 

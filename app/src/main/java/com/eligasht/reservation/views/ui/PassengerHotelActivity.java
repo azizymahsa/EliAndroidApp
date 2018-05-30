@@ -1424,6 +1424,11 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     }
 
     @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
+    @Override
     public void onClick(View v) {
         Fragment fragment2;
 

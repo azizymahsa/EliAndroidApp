@@ -197,6 +197,11 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
         );
     }//end oncreate
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     private void sendRequest(String searchText) {
         avi.setVisibility(View.VISIBLE);
 

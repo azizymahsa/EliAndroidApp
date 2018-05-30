@@ -161,6 +161,11 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     private void initParam() {
         try {
 

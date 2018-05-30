@@ -119,6 +119,11 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         super.onDestroy();
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     public void initView() {
         flViewPager = findViewById(R.id.flViewPager);
         cvHotel = findViewById(R.id.cvHotel);

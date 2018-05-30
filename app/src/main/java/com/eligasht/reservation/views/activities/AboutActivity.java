@@ -122,6 +122,11 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
     }
 
     @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnBack:

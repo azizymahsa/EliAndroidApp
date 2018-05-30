@@ -110,6 +110,11 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     }
 
     @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
+    @Override
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
     }

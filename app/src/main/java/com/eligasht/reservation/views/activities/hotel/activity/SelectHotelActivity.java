@@ -156,6 +156,12 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         list.setAdapter(adapter);
         rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
     }
+
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

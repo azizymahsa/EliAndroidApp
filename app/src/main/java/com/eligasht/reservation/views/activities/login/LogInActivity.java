@@ -70,6 +70,11 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     //request for login
     private void Login() {
 

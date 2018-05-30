@@ -1507,6 +1507,11 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         Prefs.getBoolean("IsDemostic", true);
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     private void sendRequestGetPreFactorDetails() {
         rlLoading.setVisibility(View.VISIBLE);
         Utility.disableEnableControls(false, rlRoot);

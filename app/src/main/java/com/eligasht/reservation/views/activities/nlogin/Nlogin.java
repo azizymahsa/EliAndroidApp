@@ -60,6 +60,11 @@ public class Nlogin extends BaseActivity implements View.OnClickListener, TextVi
         initView();
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     public void initView() {
         llHome = findViewById(R.id.llHome);
         llRegister = findViewById(R.id.llRegister);
