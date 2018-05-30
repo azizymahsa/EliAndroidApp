@@ -9,6 +9,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.views.fragments.hotelDetail.CommentHotelFragment;
 import com.eligasht.reservation.views.fragments.hotelDetail.HotelFacilityFragment;
 import com.eligasht.reservation.views.fragments.hotelDetail.MapHotelFragment;
+import com.eligasht.reservation.views.fragments.hotelDetail.PanoramaFragment;
 import com.eligasht.reservation.views.fragments.hotelDetail.RoomHotelFragment;
 
 /**
@@ -28,9 +29,9 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
         commentHotelFragment=CommentHotelFragment.instance();
         mapHotelFragment=MapHotelFragment.instance();
         if (isPckage){
-            count=3;
-        }else{
             count=4;
+        }else{
+            count=5;
         }
 
 
@@ -49,14 +50,17 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
+                return PanoramaFragment.instance();
+            case 1:
                 return commentHotelFragment;
 
-            case 1:
-                return mapHotelFragment;
             case 2:
-                return HotelFacilityFragment.instance();
+                return mapHotelFragment;
             case 3:
+                return HotelFacilityFragment.instance();
+            case 4:
                 return RoomHotelFragment.instance();
+
             default:
                 return RoomHotelFragment.instance();
         }
@@ -69,16 +73,19 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
+
+                return "چشم انداز";
+            case 1:
                 return context.getString(R.string.Comments);
 
-            case 1:
-                return context.getString(R.string.Map);
             case 2:
-
-                return context.getString(R.string.Possibilities);
+                return context.getString(R.string.Map);
             case 3:
 
+                return context.getString(R.string.Possibilities);
+            case 4:
                 return context.getString(R.string.ReservRoom);
+
             default:
                 return context.getString(R.string.edit_profile);
         }
