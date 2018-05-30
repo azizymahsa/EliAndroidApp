@@ -30,6 +30,7 @@ public class Flight extends BaseTest {
         sleep(200);
         doClick(R.id.linearLayout_maghsad);
         doReplaceAndCloseKeyboard(R.id.searchtxt, TestConst.Dest);
+        sleep(1000);
         doClickWithIndex(R.id.text1, 1);
         sleep(500);
         doClick(R.id.btnOne);

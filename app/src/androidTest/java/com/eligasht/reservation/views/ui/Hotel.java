@@ -17,6 +17,7 @@ public class Hotel extends BaseTest {
 
     @Override
     public void runTest() {
+        sleep(500);
         doClick(R.id.btnMenu);
         sleep(750);
         doClick(R.id.btnHotel);

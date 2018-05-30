@@ -62,7 +62,16 @@ public class Insurance extends BaseTest {
         doClickWithIndex(R.id.btn_details, 0);
         pressBack(1);
         doClickWithIndex(R.id.btn_buy, 0);
-        doClickAndScroll(R.id.mardS);
+        sleep(1000);
+        ViewInteraction appCompatRadioButton = onView(
+                allOf(withId(R.id.mardS), withText("مرد"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withClassName(is("android.widget.LinearLayout")),
+                                        1),
+                                1)));
+        appCompatRadioButton.perform(scrollTo(), click());
+
         doScrollAndREplaceAndCloseKeyboard(R.id.txtnameP, "احمد");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtfamilyP, "نعمتی");
         doScrollAndREplaceAndCloseKeyboard(R.id.txtmobileP, "09375272862");

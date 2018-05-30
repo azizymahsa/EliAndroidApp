@@ -738,7 +738,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
     @Override
     public void onError(String message) {
-        Log.e("OnError", message);
+
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
