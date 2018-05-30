@@ -138,6 +138,11 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         }
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     //send request for get package
     private void getPackages(String country, String departureFrom, String departureTo, String roomList, String culture, String PreferedAir) {
 

@@ -200,6 +200,11 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
         );
     }//end oncreate
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     private class AsyncFetch extends AsyncTask<String, String, String> {
         HttpURLConnection conn;
         URL url = null;

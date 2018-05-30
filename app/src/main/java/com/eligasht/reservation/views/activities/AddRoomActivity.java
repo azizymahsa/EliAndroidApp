@@ -88,6 +88,11 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
     }
 
     @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
+    @Override
     public Context getAppContext() {
         return this;
     }

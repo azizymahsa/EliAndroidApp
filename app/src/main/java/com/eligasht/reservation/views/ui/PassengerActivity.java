@@ -857,6 +857,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		Prefs.putString("Flag_First_Computing","F");
 	}
+
+	@Override
+	public boolean needTerminate() {
+		return false;
+	}
+
 	@Override
 	public void onClick(View v) {
 		https://github.com/multidots/android-fingerprint-authentication.git

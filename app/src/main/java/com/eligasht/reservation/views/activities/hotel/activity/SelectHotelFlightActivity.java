@@ -200,6 +200,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     }
 
     @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnFilter:

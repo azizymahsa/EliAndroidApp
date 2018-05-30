@@ -34,6 +34,10 @@ public class FlightSeatActivity  extends BaseActivity implements FlightSeatView.
         btn_zoom.setVisibility(View.GONE);
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
 
     public void zoom(View v) {
         if (isFinish)

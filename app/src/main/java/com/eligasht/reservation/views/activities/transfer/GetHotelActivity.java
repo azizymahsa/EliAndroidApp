@@ -44,6 +44,11 @@ public class GetHotelActivity extends BaseActivity {
 
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     public void initViews() {
         btnBack = findViewById(R.id.btnBack);
         listAirPort = findViewById(R.id.listAirPort);

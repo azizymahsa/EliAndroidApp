@@ -203,6 +203,11 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         );
     }//end oncreate
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     private void sendRequest(String searchText) {
         avi.setVisibility(View.VISIBLE);
 

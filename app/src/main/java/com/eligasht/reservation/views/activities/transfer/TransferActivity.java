@@ -449,6 +449,11 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
     }
 
     @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tvDepurtureAirport:

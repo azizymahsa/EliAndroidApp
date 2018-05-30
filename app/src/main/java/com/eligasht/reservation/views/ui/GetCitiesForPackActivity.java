@@ -59,6 +59,11 @@ public class GetCitiesForPackActivity extends BaseActivity implements Header.onS
         onPostExecute(new GeCitiesForPackAdapter(this, Hawk.get("PackCityData"),this));
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     public void needShowAlertDialog(String message, boolean canelable) {
         if (mAlertDialog != null && mAlertDialog.isShowing()) {
             return;

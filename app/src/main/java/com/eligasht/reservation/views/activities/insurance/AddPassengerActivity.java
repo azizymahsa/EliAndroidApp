@@ -214,6 +214,11 @@ public class AddPassengerActivity extends BaseActivity implements
     }
 
     @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
+    @Override
     public void onSetBirthDayPassenger(BirthDateList passenger) {
         if (Prefs.getBoolean("pasGe", false)) {
             if (!datePickerDialogDepartgGregorian.isAdded()) {

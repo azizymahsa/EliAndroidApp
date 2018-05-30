@@ -91,7 +91,6 @@ public class MainActivity extends Base implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
         EventBus.getDefault().register(this);
-        SingletonTimer.getInstance().start();
         Prefs.putString("raft", "null");
         Prefs.putString("raftfa", "null");
         Prefs.putString("bargasht", "null");

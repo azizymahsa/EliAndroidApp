@@ -76,6 +76,10 @@ import com.eligasht.reservation.base.GlobalApplication.getActivity
 import nl.dionsegijn.konfetti.models.Size
 
 class OverlayRouteActivity : BaseActivity(), OnMapReadyCallback, LocationAlertDialog.OnDialogClick, GoogleMap.OnCameraIdleListener {
+    override fun needTerminate(): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     private var mMap: GoogleMap? = null
     private var mapStyle: MapStyleOptions? = null
     private lateinit var btnBack: FancyButton
