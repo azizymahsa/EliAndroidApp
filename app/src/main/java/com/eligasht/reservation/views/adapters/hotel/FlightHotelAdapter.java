@@ -3,7 +3,6 @@ package com.eligasht.reservation.views.adapters.hotel;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -13,15 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.OvershootInterpolator;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.airbnb.lottie.LottieAnimationView;
-import com.bumptech.glide.Glide;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
@@ -29,11 +25,9 @@ import com.eligasht.reservation.models.hotel.adapter.SelectFlightHotelModel;
 import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
-import com.eligasht.reservation.views.ticker.TickerView;
-import com.eligasht.reservation.views.ui.SearchParvazActivity;
+import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
-import com.google.gson.Gson;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
@@ -170,7 +164,7 @@ public class FlightHotelAdapter extends BaseAdapter {
         holder.btnChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity, SearchParvazActivity.class);
+                Intent intent = new Intent(activity, SearchFlightActivity.class);
                 intent.putExtra("isChangeFlight", true);
                 intent.putExtra("FlightId", selectHotelModelArrayList.get(position).getFlightId());
                 intent.putExtra("SearchKey", selectHotelModelArrayList.get(position).getResultUniqID());

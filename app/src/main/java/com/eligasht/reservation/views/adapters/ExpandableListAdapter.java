@@ -1,10 +1,8 @@
 package com.eligasht.reservation.views.adapters;
 
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.text.Html;
@@ -12,20 +10,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
@@ -41,16 +33,12 @@ import com.eligasht.reservation.models.model.PinModelHeader;
 import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.views.activities.FlightSeatActivity;
 import com.eligasht.reservation.views.ui.PassengerActivity;
-import com.eligasht.reservation.views.ui.SearchParvazActivity;
+import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import java.text.DateFormat;
 import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -60,7 +48,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private Activity _context;
     Activity activity;
     SearchParvazPinAdapter searchParvazPinAdapter;
-    List<SearchParvazActivity.ParentItemExpandingPlan> dataExpandingList;
+    List<SearchFlightActivity.ParentItemExpandingPlan> dataExpandingList;
     List<PinModelDetail> pinModelDetails;
     List<PinModelHeader> pinModelHeaders;
     public static Boolean shouldShowAnimation = false;
@@ -72,7 +60,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     ExpandableListViewE expListViewExpanding;
     int childPosition;
 
-    public ExpandableListAdapter(Activity context, List<SearchParvazActivity.ParentItemExpandingPlan> dataList,
+    public ExpandableListAdapter(Activity context, List<SearchFlightActivity.ParentItemExpandingPlan> dataList,
                                  SearchParvazPinAdapter searchParvazPinAdapter,
                                  boolean isChangeFlight, String searchKey, String FlightId, ExpandableListViewE expListViewExpanding) {
         this._context = context;
@@ -102,7 +90,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         System.out.println("groupPosition:" + groupPosition + "childPosition:" + childPosition);
-        final SearchParvazActivity.ItemExpandingPlan item = this.dataExpandingList.get(groupPosition).Items.get(childPosition);
+        final SearchFlightActivity.ItemExpandingPlan item = this.dataExpandingList.get(groupPosition).Items.get(childPosition);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -316,8 +304,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
-        //ArrayList<SearchParvazActivity.HeaderExpandingPlan> item2 = this.dataExpandingList.get(groupPosition).Header;
-        final SearchParvazActivity.HeaderExpandingPlan item2 = this.dataExpandingList.get(groupPosition).Header;
+        //ArrayList<SearchFlightActivity.HeaderExpandingPlan> item2 = this.dataExpandingList.get(groupPosition).Header;
+        final SearchFlightActivity.HeaderExpandingPlan item2 = this.dataExpandingList.get(groupPosition).Header;
 
 
         if (convertView == null) {
@@ -449,13 +437,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             pinModelDetails = new ArrayList<>();
             int count = item2.SegmentFalseCount + item2.SegmentTrueCount;//count segment
             for (int i = 0; i < count; i++) {
-                SearchParvazActivity.ItemExpandingPlan item = this.dataExpandingList.get(groupPosition).Items.get(i);
+                SearchFlightActivity.ItemExpandingPlan item = this.dataExpandingList.get(groupPosition).Items.get(i);
 
                 PinModelDetail pinModelDetail = new PinModelDetail(item.AdlBaseFare, item.Taxes, item.TotalFare, item.FlightTimeR, item.FlightArrivalTimeR, item.DepartureCityNameFa, item.DepartureAirportNameFaR, item.ArrivalCityNameFa, item.ArrivalAirportNameFaR, item.AirlineCode, item.FlightNumberR, item.AirlineNameFaR, this.dataExpandingList.get(groupPosition).Items.size());
                 pinModelDetails.add(pinModelDetail);
             }
 
-            //SearchParvazActivity.updateAdapterPin(pinModelDetails,pinModelHeaders,_context);
+            //SearchFlightActivity.updateAdapterPin(pinModelDetails,pinModelHeaders,_context);
 
         }
 

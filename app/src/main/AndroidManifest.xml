@@ -94,7 +94,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".reservation.views.ui.SearchParvazActivity"
+            android:name=".reservation.views.ui.SearchFlightActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".reservation.views.ui.GetAirportMabdaActivity"

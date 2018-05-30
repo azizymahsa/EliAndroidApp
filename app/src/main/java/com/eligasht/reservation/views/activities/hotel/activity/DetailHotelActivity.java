@@ -80,7 +80,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         public void onTabSelected(TabLayout.Tab tab) {
             switch (tab.getPosition()) {
                 case 0:
-                    app_bar.setExpanded(true,true);
+                    app_bar.setExpanded(false,true);
 
                     break;
                 case 1:
@@ -158,7 +158,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        app_bar.setExpanded(true,true);
+                        app_bar.setExpanded(false ,true);
 
                         break;
                     case 1:

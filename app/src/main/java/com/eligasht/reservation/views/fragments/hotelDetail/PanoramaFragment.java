@@ -37,6 +37,7 @@ public class PanoramaFragment extends Fragment {
         StreetViewPanoramaOptions options = new StreetViewPanoramaOptions();
         if (savedInstanceState == null) {
             options.position(DetailHotelActivity.location);
+            
         }
 
         mStreetViewPanoramaView = new StreetViewPanoramaView(getContext(), options);

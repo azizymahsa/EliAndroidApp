@@ -78,7 +78,6 @@ import com.eligasht.reservation.views.activities.transfer.ExcursionDta;
 import com.eligasht.reservation.views.adapters.GetHotelKhadmatAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
-import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -1246,7 +1245,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 GUID = extras.getString("Flight_GUID");
-                ResultUniqId = SearchParvazActivity.globalResultUniqID;
+                ResultUniqId = SearchFlightActivity.globalResultUniqID;
             }
 
             JSONObject json = new JSONObject();
