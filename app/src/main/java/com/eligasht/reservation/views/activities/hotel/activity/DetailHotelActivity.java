@@ -5,6 +5,7 @@ package com.eligasht.reservation.views.activities.hotel.activity;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
@@ -71,13 +72,20 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private FrameLayout flViewPager;
     protected TabLayout tab_layout;
     private CommentModelBus commentModelBus;
+    AppBarLayout app_bar;
+
     private SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
             switch (tab.getPosition()) {
                 case 0:
+                    app_bar.setExpanded(true,true);
+
+                    break;
+                case 1:
                     hotelDetailViewPager.getCommentHotelFragment().setDataComment(commentModelBus);
+
                     break;
 
             }
@@ -126,6 +134,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         view_pager = findViewById(R.id.view_pager);
         toolbar = findViewById(R.id.toolbar);
         tvTitle = findViewById(R.id.tvTitle);
+        app_bar = findViewById(R.id.app_bar);
         tvDateDetail.setText(getIntent().getExtras().getString("DateTime"));
         hotelDetailViewPager = new HotelDetailViewPager(this, getSupportFragmentManager(), false);
         view_pager.setAdapter(hotelDetailViewPager);
@@ -149,7 +158,12 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
+                        app_bar.setExpanded(true,true);
+
+                        break;
+                    case 1:
                         hotelDetailViewPager.getCommentHotelFragment().setDataComment(commentModelBus);
+
                         break;
 
                 }
