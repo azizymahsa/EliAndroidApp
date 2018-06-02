@@ -58,6 +58,11 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
 
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     //request for remember password
     private void RememberPass() {
         ResetPassRequestModel resetPassRequestModel = new ResetPassRequestModel();

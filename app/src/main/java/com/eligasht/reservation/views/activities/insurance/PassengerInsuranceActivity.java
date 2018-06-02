@@ -61,7 +61,7 @@ import com.eligasht.reservation.views.adapters.GetHotelKhadmatAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.CountrycodeActivity;
 import com.eligasht.reservation.views.ui.NationalitycodeActivity;
-import com.eligasht.reservation.views.ui.SearchParvazActivity;
+import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 import com.eligasht.service.generator.SingletonService;
@@ -779,7 +779,7 @@ private void RequestPurchaseInsurance(){
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             GUID = extras.getString("Flight_GUID");
-            ResultUniqId = SearchParvazActivity.globalResultUniqID;
+            ResultUniqId = SearchFlightActivity.globalResultUniqID;
         }
 
         List<com.eligasht.service.model.insurance.request.PurchaseInsurance.PassList> passLists = new ArrayList<>();
@@ -865,6 +865,11 @@ private void RequestPurchaseInsurance(){
     protected void onDestroy() {
         super.onDestroy();
         Prefs.getBoolean("IsDemostic", true);
+    }
+
+    @Override
+    public boolean needTerminate() {
+        return false;
     }
 
     @Override

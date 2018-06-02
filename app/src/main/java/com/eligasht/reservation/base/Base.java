@@ -84,6 +84,11 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         try {

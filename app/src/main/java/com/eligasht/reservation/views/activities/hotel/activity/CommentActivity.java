@@ -79,6 +79,11 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
         new AlertRating(this, this, star);
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     public void init_view() {
         Utility.setAnimLoading(this);
         tvTitle = findViewById(R.id.tvTitle);

@@ -2,7 +2,6 @@ package com.eligasht.reservation.views.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.models.Country;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.db.local.RecentCity_Table;
 
 import java.util.List;
@@ -131,8 +130,7 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
                 Prefs.putString("Value-Maghsad-Airport", value_Maghsad_Airport);
                 Prefs.putString("Value-Maghsad-Airport-Code", value_Maghsad_Airport_Code);
                 Prefs.putString("Value-Maghsad-Airport-Code2", value_Maghsad_Airport_Code);
-                Log.e("okokok3", value_Maghsad_Airport_Code);
-                Log.e("okokok4", current.getAirportCode());
+
                 //get
                 //Prefs.getString("Value-Mabda-Airport","");
 
@@ -160,8 +158,7 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
                 Prefs.putString("Value-Maghsad-Airport", value_Maghsad_Airport);
                 Prefs.putString("Value-Maghsad-Airport-Code", value_Maghsad_Airport_Code);
                 Prefs.putString("Value-Maghsad-Airport-Code2", value_Maghsad_Airport_Code);
-                Log.e("okokok1", value_Maghsad_Airport_Code);
-                Log.e("okokok2", current.getAirportCode());
+
                 Prefs.putString("Value-Maghsad-Airport-Code2", value_Maghsad_Airport_Code);
                 Prefs.putString("Value-Maghsad-Airport-Code2", current.getAirportCode());
                 View view = activity.getCurrentFocus();

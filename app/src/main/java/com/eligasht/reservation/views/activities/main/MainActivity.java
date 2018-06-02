@@ -19,7 +19,6 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,15 +27,16 @@ import android.widget.Toast;
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.base.Base;
+import com.eligasht.reservation.base.SingletonTimer;
 import com.eligasht.reservation.map.OverlayRouteActivity;
 import com.eligasht.reservation.models.db.NotificationModel;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.AboutActivity;
 import com.eligasht.reservation.views.activities.ConditionActivity;
 import com.eligasht.reservation.views.activities.ContactUsActivity;
 import com.eligasht.reservation.views.activities.NotificationActivity;
 import com.eligasht.reservation.views.activities.SettingsActivity;
-
 import com.eligasht.reservation.views.activities.ShakeActivity;
 import com.eligasht.reservation.views.activities.login.LogInActivity;
 import com.eligasht.reservation.views.activities.login.ProfileActivity;
@@ -49,14 +49,12 @@ import com.eligasht.reservation.views.fragments.pack.PackageFragment;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.dialog.GiftDialog;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
-import com.eligasht.reservation.tools.Prefs;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import mehdi.sakout.fancybuttons.FancyButton;
-import nl.dionsegijn.konfetti.KonfettiView;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends Base implements View.OnClickListener {
@@ -71,8 +69,8 @@ public class MainActivity extends Base implements View.OnClickListener {
     LinearLayout rlHedaer;
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
-    private TextView tvTitle, tvArrow,tvBadge;
-    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting,gift,map,btn_message;
+    private TextView tvTitle, tvArrow, tvBadge;
+    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting, gift, map, btn_message;
     private FragmentManager manager;
     private BroadcastReceiver sendFinish;
     private BroadcastReceiver sendStartTimer, sendDetailFinish;
@@ -93,7 +91,6 @@ public class MainActivity extends Base implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
         EventBus.getDefault().register(this);
-
         Prefs.putString("raft", "null");
         Prefs.putString("raftfa", "null");
         Prefs.putString("bargasht", "null");
@@ -113,6 +110,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         // timerRecive();
         initViews();
     }
+
 
     public void initViews() {
         //findView==================================================================================
@@ -358,13 +356,11 @@ public class MainActivity extends Base implements View.OnClickListener {
                 startActivity(intent4);
                 break;
             case R.id.gift:
-            //    startActivity(new Intent(this, ShakeActivity.class));
-                if (Prefs.getString("userId","-1").equals("-1")){
-                    giftDialog= new GiftDialog(this);
+                //    startActivity(new Intent(this, ShakeActivity.class));
+                if (Prefs.getString("userId", "-1").equals("-1")) {
+                    giftDialog = new GiftDialog(this);
                     giftDialog.alertDialog().show();
-                }
-
-                else
+                } else
                     startActivity(new Intent(this, ShakeActivity.class));
 
                 break;
@@ -389,6 +385,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
         initUser();
         onUpdateBadge();
+        SingletonTimer.getInstance().stop();
 
 
     }
@@ -544,7 +541,7 @@ public class MainActivity extends Base implements View.OnClickListener {
                 btnExit.setVisibility(View.VISIBLE);
                 tvArrow.setVisibility(View.VISIBLE);
                 rlUser.setClickable(true);
-                if (giftDialog!=null&&giftDialog.alertDialog().isShowing()){
+                if (giftDialog != null && giftDialog.alertDialog().isShowing()) {
                     giftDialog.alertDialog().dismiss();
                 }
                 //  expandableLayout.setVisibility(View.VISIBLE);
@@ -586,19 +583,21 @@ public class MainActivity extends Base implements View.OnClickListener {
 
 
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void setData(NotificationModel notificationModel) {
         onUpdateBadge();
 
 
     }
-    public void onUpdateBadge(){
-        if(Prefs.getInt("notifiCounter",0)!=0) {
+
+    public void onUpdateBadge() {
+        if (Prefs.getInt("notifiCounter", 0) != 0) {
             tvBadge.setText(Prefs.getInt("notifiCounter", 0) + "");
             tvBadge.setVisibility(View.VISIBLE);
+        } else {
+            tvBadge.setVisibility(View.GONE);
         }
-        else{
-            tvBadge.setVisibility(View.GONE);}
     }
 
 

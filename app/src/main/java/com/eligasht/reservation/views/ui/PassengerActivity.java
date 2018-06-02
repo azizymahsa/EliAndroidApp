@@ -17,8 +17,6 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -30,9 +28,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -109,8 +105,6 @@ import com.eligasht.reservation.views.adapters.GetKhadmatAdapter;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
-import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
-
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
@@ -152,9 +146,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	LinearLayout llDetailHotel,llDetailPassanger,llDetailService,llDetailFlight;
 	private String Gensiyat="";
 
-	public int countB=SearchParvazActivity.COUNT_B;
-	public int countK=SearchParvazActivity.COUNT_K;
-	public int countN=SearchParvazActivity.COUNT_N;
+	public int countB= SearchFlightActivity.COUNT_B;
+	public int countK= SearchFlightActivity.COUNT_K;
+	public int countN= SearchFlightActivity.COUNT_N;
 	public int sum=countB+countK+countN;
 
 	public List<PurchaseFlightResult> data;
@@ -863,6 +857,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		Prefs.putString("Flag_First_Computing","F");
 	}
+
+	@Override
+	public boolean needTerminate() {
+		return false;
+	}
+
 	@Override
 	public void onClick(View v) {
 		https://github.com/multidots/android-fingerprint-authentication.git
@@ -1552,7 +1552,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			Bundle extras = getIntent().getExtras();
 			if(extras != null){
 				GUID = extras.getString("Flight_GUID");
-				ResultUniqId = SearchParvazActivity.globalResultUniqID;
+				ResultUniqId = SearchFlightActivity.globalResultUniqID;
 			}
 
 

@@ -174,6 +174,11 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
     }
 
     @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
+    @Override
     public void onReady(GetHotelListResponse getHotelListResponse) {
         avLoadingIndicatorView.setVisibility(View.INVISIBLE);
         List<HotelCity> data = new ArrayList<HotelCity>();

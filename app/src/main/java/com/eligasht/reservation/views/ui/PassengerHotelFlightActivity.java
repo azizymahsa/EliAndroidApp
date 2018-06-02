@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -52,7 +51,6 @@ import com.eligasht.service.helper.Const;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.error.Error;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
-import com.eligasht.service.model.flight.request.airPort.Identity;
 import com.eligasht.service.model.flight.response.PreFactorDetails.FactorSummary;
 import com.eligasht.service.model.flight.response.PreFactorDetails.GetPreFactorDetailsResult;
 import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactor;
@@ -102,24 +100,9 @@ import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -788,7 +771,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
                 GUID = extras.getString("Flight_GUID");
-                ResultUniqId = SearchParvazActivity.globalResultUniqID;
+                ResultUniqId = SearchFlightActivity.globalResultUniqID;
             }
 
             //mosaferan
@@ -968,6 +951,10 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override

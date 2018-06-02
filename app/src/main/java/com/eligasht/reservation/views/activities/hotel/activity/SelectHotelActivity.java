@@ -156,6 +156,12 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         list.setAdapter(adapter);
         rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
     }
+
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -738,7 +744,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
     @Override
     public void onError(String message) {
-        Log.e("OnError", message);
+
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

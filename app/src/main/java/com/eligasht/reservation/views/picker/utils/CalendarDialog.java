@@ -425,103 +425,88 @@ public class CalendarDialog implements OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.accept:
-                if (!((!this.isReverseTravel || this.fullStartDate == null || this.fullEndDate == null) && (this.isReverseTravel || this.fullStartDate == null))) {
-                    this.callbackCalendarDialog.onDateSelected(getDateByString(this.fullStartDate), getDateByString(this.fullEndDate), this.sharedPrefrences.getBoolean("isGregorian", false));
-                }
-                alertDialog.dismiss();
-                return;
-            case R.id.cancel:
-                if (this.fullDate != null) {
-                    if (this.sharedPrefrences.getBoolean("isGregorian", false) && (this.fullDate.startsWith("۱") || this.fullDate.startsWith("1"))) {
-                        this.sharedPrefrences.edit().putBoolean("isGregorian", false).apply();
-                        if (!((!this.isReverseTravel || this.fullStartDate == null || this.fullEndDate == null) && (this.isReverseTravel || this.fullStartDate == null))) {
-                            // this.callbackCalendarDialog.onDateSelected(this.currentshortDate, this.fullStartDate, this.fullEndDate, this.sharedPrefrences.getBoolean("isGregorian", false));
-                        }
-                    } else if (!this.sharedPrefrences.getBoolean("isGregorian", false) && (this.fullDate.startsWith("۲") || this.fullDate.startsWith("2"))) {
-                        this.sharedPrefrences.edit().putBoolean("isGregorian", true).apply();
-                        if (!((!this.isReverseTravel || this.fullStartDate == null || this.fullEndDate == null) && (this.isReverseTravel || this.fullStartDate == null))) {
-                            // this.callbackCalendarDialog.onDateSelected(this.currentshortDate, this.fullStartDate, this.fullEndDate, this.sharedPrefrences.getBoolean("isGregorian", false));
-                        }
-                    }
-                }
-                alertDialog.dismiss();
-                return;
-            case R.id.change_date_kind:
-                changeType();
-                this.f13894H = 0;
-                if (this.sharedPrefrences.getBoolean("isGregorian", false)) {
-                    this.sharedPrefrences.edit().putBoolean("isGregorian", false).apply();
-                    initFullDate(this.fullDate);
-                    initTextViews();
-                    if (this.fullDate != null && this.fullDate.contains("-")) {
-                        this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("-")[0].split("/")[2]).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.numberUtil.toFarsiString(this.fullDate.split("-")[1].split("/")[2]).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
-                    } else if (this.fullDate != null) {
-                        this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("/")[2]).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
-                    }
-                } else {
-                    this.sharedPrefrences.edit().putBoolean("isGregorian", true).apply();
-                    initFullDate(this.fullDate);
-                    initTextViews();
-                    if (this.fullDate != null && this.fullDate.contains("-")) {
-                        this.dateDescription.setText(this.fullDate.split("-")[0].split("/")[2].replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.fullDate.split("-")[1].split("/")[2].replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
-                    } else if (this.fullDate != null) {
-                        this.dateDescription.setText(this.fullDate.split("/")[2].replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
-                    }
-                }
-                if (this.fullDate == null || !this.fullDate.contains("-")) {
-                    this.fullStartDate = this.fullDate;
-                } else {
-                    this.fullStartDate = this.fullDate.split("-")[0];
-                    this.fullEndDate = this.fullDate.split("-")[1];
-                }
-                this.currentshortDate = this.dateDescription.getText().toString();
-                return;
-            case R.id.next_persian:
-                if (this.sharedPrefrences.getBoolean("isGregorian", false)) {
-                    Log.e("f13894H", String.valueOf(f13894H));
-                    if (f13894H + 1 == 10)
-                        return;
-                    this.f13894H++;
-                    if ((this.f13894H * 31) + 35 < 366) {
 
-                        this.calendarRv.smoothScrollToPosition((this.f13894H * 31) + 35);
-                    } else {
-                        this.f13894H--;
-                    }
-                    if (this.f13894H + this.f13932u != 13) {
-                        return;
-                    }
-                    if (this.isGregorian) {
-                        this.f13934w++;
-                        return;
-                    } else {
-                        this.f13933v++;
-                        return;
-                    }
-                }
 
-                if (f13894H - 1 == -1)
+        try {
+            switch (view.getId()) {
+                case R.id.accept:
+                    if (!((!this.isReverseTravel || this.fullStartDate == null || this.fullEndDate == null) && (this.isReverseTravel || this.fullStartDate == null))) {
+                        this.callbackCalendarDialog.onDateSelected(getDateByString(this.fullStartDate), getDateByString(this.fullEndDate), this.sharedPrefrences.getBoolean("isGregorian", false));
+                    }
+                    alertDialog.dismiss();
                     return;
-                this.f13894H--;
-                if (this.f13894H > -1) {
-                    this.calendarRv.smoothScrollToPosition(((this.f13894H - 1) * 31) + 31);
-                } else {
+                case R.id.cancel:
+                    if (this.fullDate != null) {
+                        if (this.sharedPrefrences.getBoolean("isGregorian", false) && (this.fullDate.startsWith("۱") || this.fullDate.startsWith("1"))) {
+                            this.sharedPrefrences.edit().putBoolean("isGregorian", false).apply();
+                            if (!((!this.isReverseTravel || this.fullStartDate == null || this.fullEndDate == null) && (this.isReverseTravel || this.fullStartDate == null))) {
+                                // this.callbackCalendarDialog.onDateSelected(this.currentshortDate, this.fullStartDate, this.fullEndDate, this.sharedPrefrences.getBoolean("isGregorian", false));
+                            }
+                        } else if (!this.sharedPrefrences.getBoolean("isGregorian", false) && (this.fullDate.startsWith("۲") || this.fullDate.startsWith("2"))) {
+                            this.sharedPrefrences.edit().putBoolean("isGregorian", true).apply();
+                            if (!((!this.isReverseTravel || this.fullStartDate == null || this.fullEndDate == null) && (this.isReverseTravel || this.fullStartDate == null))) {
+                                // this.callbackCalendarDialog.onDateSelected(this.currentshortDate, this.fullStartDate, this.fullEndDate, this.sharedPrefrences.getBoolean("isGregorian", false));
+                            }
+                        }
+                    }
+                    alertDialog.dismiss();
+                    return;
+                case R.id.change_date_kind:
+                    changeType();
                     this.f13894H = 0;
-                }
-                if (this.f13894H + this.f13932u != 12) {
+                    if (this.sharedPrefrences.getBoolean("isGregorian", false)) {
+                        this.sharedPrefrences.edit().putBoolean("isGregorian", false).apply();
+                        initFullDate(this.fullDate);
+                        initTextViews();
+                        if (this.fullDate != null && this.fullDate.contains("-")) {
+                            this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("-")[0].split("/")[2]).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.numberUtil.toFarsiString(this.fullDate.split("-")[1].split("/")[2]).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
+                        } else if (this.fullDate != null) {
+                            this.dateDescription.setText(this.numberUtil.toFarsiString(this.fullDate.split("/")[2]).replaceFirst("^0+(?!$)", "") + " " + UiUtils.getSolarMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
+                        }
+                    } else {
+                        this.sharedPrefrences.edit().putBoolean("isGregorian", true).apply();
+                        initFullDate(this.fullDate);
+                        initTextViews();
+                        if (this.fullDate != null && this.fullDate.contains("-")) {
+                            this.dateDescription.setText(this.fullDate.split("-")[0].split("/")[2].replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[0].split("/")[1])) + " - " + this.fullDate.split("-")[1].split("/")[2].replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("-")[1].split("/")[1])));
+                        } else if (this.fullDate != null) {
+                            this.dateDescription.setText(this.fullDate.split("/")[2].replaceFirst("^0+(?!$)", "") + " " + UiUtils.getGregorianMonthName(Integer.parseInt(this.fullDate.split("/")[1])));
+                        }
+                    }
+                    if (this.fullDate == null || !this.fullDate.contains("-")) {
+                        this.fullStartDate = this.fullDate;
+                    } else {
+                        this.fullStartDate = this.fullDate.split("-")[0];
+                        this.fullEndDate = this.fullDate.split("-")[1];
+                    }
+                    this.currentshortDate = this.dateDescription.getText().toString();
                     return;
-                }
-                if (this.isGregorian) {
-                    this.f13934w--;
-                    return;
-                } else {
-                    this.f13933v--;
-                    return;
-                }
-            case R.id.pre_persian:
-                if (this.sharedPrefrences.getBoolean("isGregorian", false)) {
+                case R.id.next_persian:
+                    if (this.sharedPrefrences.getBoolean("isGregorian", false)) {
+                        Log.e("f13894H", String.valueOf(f13894H));
+                        if (f13894H + 1 == 10)
+                            return;
+                        this.f13894H++;
+                        if ((this.f13894H * 31) + 35 < 366) {
+
+                            this.calendarRv.smoothScrollToPosition((this.f13894H * 31) + 35);
+                        } else {
+                            this.f13894H--;
+                        }
+                        if (this.f13894H + this.f13932u != 13) {
+                            return;
+                        }
+                        if (this.isGregorian) {
+                            this.f13934w++;
+                            return;
+                        } else {
+                            this.f13933v++;
+                            return;
+                        }
+                    }
+
+                    if (f13894H - 1 == -1)
+                        return;
                     this.f13894H--;
                     if (this.f13894H > -1) {
                         this.calendarRv.smoothScrollToPosition(((this.f13894H - 1) * 31) + 31);
@@ -538,28 +523,53 @@ public class CalendarDialog implements OnClickListener {
                         this.f13933v--;
                         return;
                     }
-                }
+                case R.id.pre_persian:
+                    if (this.sharedPrefrences.getBoolean("isGregorian", false)) {
+                        this.f13894H--;
+                        if (this.f13894H > -1) {
+                            this.calendarRv.smoothScrollToPosition(((this.f13894H - 1) * 31) + 31);
+                        } else {
+                            this.f13894H = 0;
+                        }
+                        if (this.f13894H + this.f13932u != 12) {
+                            return;
+                        }
+                        if (this.isGregorian) {
+                            this.f13934w--;
+                            return;
+                        } else {
+                            this.f13933v--;
+                            return;
+                        }
+                    }
 
 
-                this.f13894H++;
-                if ((this.f13894H * 31) + 35 < 366) {
-                    this.calendarRv.smoothScrollToPosition((this.f13894H * 31) + 35);
-                } else {
-                    this.f13894H--;
-                }
-                if (this.f13894H + this.f13932u != 13) {
-                    return;
-                }
-                if (this.isGregorian) {
-                    this.f13934w++;
-                    return;
-                } else {
-                    this.f13933v++;
-                    return;
-                }
-            default:
-                return;
+                    this.f13894H++;
+                    if ((this.f13894H * 31) + 35 < 366) {
+                        this.calendarRv.smoothScrollToPosition((this.f13894H * 31) + 35);
+                    } else {
+                        this.f13894H--;
+                    }
+                    if (this.f13894H + this.f13932u != 13) {
+                        return;
+                    }
+                    if (this.isGregorian) {
+                        this.f13934w++;
+                        return;
+                    } else {
+                        this.f13933v++;
+                        return;
+                    }
+                default:
+
+            }
         }
+
+        catch (Exception e)
+        {
+
+        }
+
     }
 
 

@@ -83,12 +83,19 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
     }
 
     public void setDataComment(CommentModelBus hotel) {
-        this.hotelName = hotel.getHotelName();
-        this.hotelId = hotel.getHotelId();
-        if ((hotelName != null || hotelId != null) && isFirst && view != null) {
-            isFirst = false;
-            request();
+        try {
+            this.hotelName = hotel.getHotelName();
+            this.hotelId = hotel.getHotelId();
+            if ((hotelName != null || hotelId != null) && isFirst && view != null) {
+                isFirst = false;
+                request();
+            }
         }
+        catch (Exception e)
+        {
+
+        }
+
     }
 
     @Override

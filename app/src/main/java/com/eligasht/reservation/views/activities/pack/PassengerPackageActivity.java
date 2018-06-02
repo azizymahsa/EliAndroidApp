@@ -62,7 +62,6 @@ import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.PreFacto
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.PreFactorHotel;
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.PreFactorService;
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.RequestPassenger;
-import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.ResponseGePreFactorDetails;
 import com.eligasht.service.model.XPackage.response.PurchasePackage.PurchasePackageResult;
 import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
 import com.eligasht.service.model.XPackage.response.PurchasePackage.TmpReserveResult;
@@ -100,7 +99,7 @@ import com.eligasht.reservation.views.adapters.GetHotelKhadmatAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.CountrycodeActivity;
 import com.eligasht.reservation.views.ui.NationalitycodeActivity;
-import com.eligasht.reservation.views.ui.SearchParvazActivity;
+import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 
@@ -1508,6 +1507,11 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         Prefs.getBoolean("IsDemostic", true);
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     private void sendRequestGetPreFactorDetails() {
         rlLoading.setVisibility(View.VISIBLE);
         Utility.disableEnableControls(false, rlRoot);
@@ -1662,7 +1666,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 Bundle extras = getIntent().getExtras();
                 if (extras != null) {
                     GUID = extras.getString("Flight_GUID");
-                    ResultUniqId = SearchParvazActivity.globalResultUniqID;
+                    ResultUniqId = SearchFlightActivity.globalResultUniqID;
                 }
 
                 PartnerList detailsPartner = new PartnerList();

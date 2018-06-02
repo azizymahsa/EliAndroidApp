@@ -137,6 +137,10 @@ public class ImageViewActivity extends BaseActivity {
 
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
 
     private class IntroAdapter extends PagerAdapter {
         public IntroAdapter() {

@@ -128,6 +128,11 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     }
 
     @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
 

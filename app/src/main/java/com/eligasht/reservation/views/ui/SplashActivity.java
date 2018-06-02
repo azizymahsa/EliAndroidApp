@@ -29,6 +29,7 @@ import com.adjust.sdk.AdjustEvent;
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.BuildConfig;
 import com.eligasht.R;
+import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
 import com.eligasht.reservation.views.activities.loginMVP.view.LoginActivity;
 import com.eligasht.service.model.startup.response.SearchNote;
@@ -43,6 +44,7 @@ import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.startup.request.Request;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
 import com.eligasht.service.model.startup.response.StartupServiceResponse;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
@@ -187,6 +189,19 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         startupServiceRequest.setRequest(request);
         avi.setVisibility(View.VISIBLE);
         SingletonService.getInstance().getAppService().startUp(this, startupServiceRequest);
+
+
+
+
+
+
+
+
+        Bundle bundle = new Bundle();
+        bundle.putString("TestParam", "123");
+        FirebaseAnalytics firebaseAnalytics=FirebaseAnalytics.getInstance(this);
+        firebaseAnalytics.logEvent("Test", bundle);
+
     }
 
     @Override

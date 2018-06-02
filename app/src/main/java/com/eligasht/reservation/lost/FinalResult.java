@@ -84,6 +84,10 @@ public class FinalResult extends BaseActivity {
         new GetRoomsAsync().execute();
     }
 
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
 
     public void init_view() {
 

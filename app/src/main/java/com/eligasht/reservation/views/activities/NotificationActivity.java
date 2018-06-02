@@ -70,6 +70,12 @@ public class NotificationActivity extends BaseActivity {
        // Collections.reverse(notificationModelList);
 
     }
+
+    @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
     public void onData(){
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

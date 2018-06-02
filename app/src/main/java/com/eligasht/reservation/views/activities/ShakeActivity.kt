@@ -34,6 +34,9 @@ import mehdi.sakout.fancybuttons.FancyButton
 
 @SuppressLint("MissingSuperCall")
 class ShakeActivity : BaseActivity(), ShakeDetector.Listener {
+    override fun needTerminate(): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private var parallaxLayout: ParallaxLayerLayout? = null
     private var translationUpdater: SensorTranslationUpdater? = null

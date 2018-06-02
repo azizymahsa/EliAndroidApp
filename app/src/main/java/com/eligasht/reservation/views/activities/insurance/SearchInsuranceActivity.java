@@ -117,6 +117,11 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     }
 
     @Override
+    public boolean needTerminate() {
+        return false;
+    }
+
+    @Override
     public void onReady(ResponseSearchInsurance responseSearchInsurance) {
         {
             hideLoading();
