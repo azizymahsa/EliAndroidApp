@@ -21,6 +21,8 @@ import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.base.BaseActivity;
+import com.eligasht.reservation.base.ServiceType;
+import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.models.model.pack.LstAvailableDate;
 import com.eligasht.reservation.models.model.pack.LstProwPrice;
@@ -179,6 +181,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 SearchXPackageResult searchXPackageResult = response.body().getSearchXPackageResult();
 
                 if (searchXPackageResult == null) {
+
                     rcl_package.showText();
                     if (!Utility.isNetworkAvailable(SearchPackActivity.this)) {
 
@@ -209,6 +212,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                     error_layout.setVisibility(View.VISIBLE);
                     return;
                 }
+                SingletonAnalysis.getInstance().logTransfer(ServiceType.PACKAGE,departureFrom,departureTo);
 
                 pRowXfers = searchXPackageResult.getPRowXfers();
                 priceFilters = FilterPackTools.getPriceFilters(pRowXfers);
@@ -377,7 +381,8 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     public void showLoading() {
         Window window = getWindow();
 
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
 
             window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this, R.color.hf));
         }
@@ -388,10 +393,10 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     public void hideLoading() {
         Window window = getWindow();
 
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this, R.color.colorPrimaryDark));
+            }
 
-            window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this, R.color.colorPrimaryDark));
-        }
 
         new InitUi().Loading(SearchPackActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
         rcl_package.hideLoading();

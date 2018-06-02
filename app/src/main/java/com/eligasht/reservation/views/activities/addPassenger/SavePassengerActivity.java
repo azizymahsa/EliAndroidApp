@@ -17,13 +17,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.views.ui.InitUi;
 public class SavePassengerActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener,View.OnFocusChangeListener {
-import com.eligasht.reservation.tools.db.local.PassengerMosaferItems_Table;
-import com.eligasht.reservation.views.ui.PassengerActivity;
-import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 
-import java.util.Locale;
-
-public class AddPassenger  extends BaseActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener,View.OnFocusChangeListener {
 
     private RadioButton btnzan,btnmard;
     private String Gensiyat="";

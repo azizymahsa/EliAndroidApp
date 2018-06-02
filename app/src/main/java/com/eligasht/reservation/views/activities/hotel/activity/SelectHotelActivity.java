@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
+import com.eligasht.reservation.base.ServiceType;
+import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.lost.hotel.HotelPreFactorAdapter;
 import com.eligasht.reservation.models.HotelPreFactorModel;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
@@ -709,6 +711,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     filterHotelLocationModels.add(new FilterHotelTypeModel(locations.getTitle(), false));
                 }
                 tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa", "استانبول"));
+                SingletonAnalysis.getInstance().logTransfer(ServiceType.HOTEL,Prefs.getString("Value-Hotel-City-Fa", "استانبول"),"");
+
+
                 weatherCity.setText("پیش بینی وضعیت آب و هوای "+Prefs.getString("Value-Hotel-City-Fa", "استانبول"));
                 tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
                 Collections.sort(selectHotelModelArrayList, new Comparator<SelectHotelModel>() {

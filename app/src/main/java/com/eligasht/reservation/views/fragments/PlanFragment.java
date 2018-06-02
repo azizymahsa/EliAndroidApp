@@ -321,7 +321,6 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
         tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
-        SingletonAnalysis.getInstance().LogSeen(ServiceType.FLIGHT);
 
 
         return rootView;
