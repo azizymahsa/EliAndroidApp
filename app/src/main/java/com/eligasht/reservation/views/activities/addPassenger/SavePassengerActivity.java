@@ -15,15 +15,24 @@ import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
+import com.eligasht.reservation.tools.datetools.DateUtil;
+import com.eligasht.reservation.tools.datetools.SolarCalendar;
+import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.InitUi;
-public class SavePassengerActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener,View.OnFocusChangeListener {
-import com.eligasht.reservation.tools.db.local.PassengerMosaferItems_Table;
 import com.eligasht.reservation.views.ui.PassengerActivity;
-import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight;
+import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
-import java.util.Locale;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class AddPassenger  extends BaseActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener,View.OnFocusChangeListener {
+public class SavePassengerActivity extends BaseActivity implements Header.onSearchTextChangedListener,View.OnClickListener,AdapterView.OnItemSelectedListener,View.OnFocusChangeListener,
+        com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, OnServiceStatus<ResponsePurchaseFlight>,
+        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
+
 
     private RadioButton btnzan,btnmard;
     private String Gensiyat="";
@@ -31,6 +40,9 @@ public class AddPassenger  extends BaseActivity implements View.OnClickListener,
     private LinearLayout linearMahaleeghamat,linearMeliyat,btn_nextm,linear_number_passport,linear_expdate;
     ScrollView myScrollView;
     private TextView txttavalodm,txtexp_passport,txtMore,txtmahale_eghamat,txtmeliyatm;
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
+    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
+    com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +121,114 @@ public class AddPassenger  extends BaseActivity implements View.OnClickListener,
                 }
             }
         });
+/////////////////////////////////Date Piker/////////////////////////////////////////////////
+        PersianCalendar persianCalendarDatePicker = new PersianCalendar();
+        PersianCalendar persianCalendar = new PersianCalendar();
+        persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
+//=====================================================================================================
 
+        datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
+                this,
+                persianCalendarDatePicker.getPersianYear(),
+                persianCalendarDatePicker.getPersianMonth(),
+                persianCalendarDatePicker.getPersianDay()
+        );
+
+//=====================================================================================================
+        datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
+        datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+                String monthl=""+(monthOfYear+1);
+                String dayl=""+dayOfMonth;
+                if(Integer.toString(monthOfYear+1).length()==1){
+                    monthl="0"+(monthOfYear+1);
+                }
+                if(Integer.toString(dayOfMonth).length()==1){
+                    dayl="0"+dayOfMonth;
+                }
+                txttavalodm.setText(""+year+"/"+monthl+"/"+dayl);
+            }
+        });
+
+        datePickerDialogGregorian1.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+
+                int yearM = datePickerDialogGregorian1.getSelectedDay().getYear();//2018
+                int monthM = datePickerDialogGregorian1.getSelectedDay().getMonth();//2
+                int dayM = datePickerDialogGregorian1.getSelectedDay().getDay();//18
+                //convert to shamsi
+                String dateShamsi = SolarCalendar.calSolarCalendar(yearM, monthM, dayM + 1);
+
+                String[] dateSplite2 = dateShamsi.split("/");//shamsi
+
+                String dayMF = dateSplite2[2];
+                String monthMF = dateSplite2[1];
+                String yearMF = dateSplite2[0];
+
+                datePickerDialog.initialize(SavePassengerActivity.this, Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));
+                datePickerDialog.show(getSupportFragmentManager(), "DatepickerdialogRaft");
+
+            }
+        });
+////////////
+        datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
+        //	datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
+        datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
+                String month=""+(monthOfYear+1);
+                String day=""+dayOfMonth;
+                if(Integer.toString(monthOfYear+1).length()==1){
+                    month="0"+(monthOfYear+1);
+                }
+                if(Integer.toString(dayOfMonth).length()==1){
+                    day="0"+dayOfMonth;
+                }
+                txtexp_passport.setText(""+year+"/"+month+"/"+day);
+
+            }
+        });
+
+        //=====================================================================================================
+
+//change button shamsi to milady (date picker)
+        datePickerDialog.setOnCalandarChangeListener(new com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
+            @Override
+            public void onCalendarChanged(boolean isGregorian) {
+                int yearSh = datePickerDialog.getSelectedDay().getYear();//1396
+                int monthSh = datePickerDialog.getSelectedDay().getMonth();//10
+                int daySh = datePickerDialog.getSelectedDay().getDay();//29
+                //convert to miladi
+                String[] dateSplite3 = date_server(yearSh, monthSh - 1, daySh - 1).split("-");
+
+
+                String dayMF1 = dateSplite3[2];
+                String monthMF1 = dateSplite3[1];
+                String yearMF1 = dateSplite3[0];
+
+                datePickerDialogGregorian1.initialize(SavePassengerActivity.this, Integer.parseInt(yearMF1), Integer.parseInt(monthMF1), Integer.parseInt(dayMF1));
+
+                datePickerDialogGregorian1.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
+            }
+        });
+
+/////////////////////////////////End date piker//////////////////////////////////////////////
+    }
+    public String date_server(int y, int m, int d) {//1396  9 25
+        Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);//Mon Jan 15 12:38:00 GMT+03:30 2018
+
+        SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");//01/15/2018
+        String formatted = format1.format(date.getTime());
+        String[] dateGrg = formatted.split("/");
+        int monthS = Integer.valueOf(dateGrg[0]);//1
+        long dayS = Long.valueOf(dateGrg[1]);//15
+        int yearS = Integer.valueOf(dateGrg[2]);//2018
+
+
+        return yearS + "-" + "0" + monthS + "-" + dayS;
     }
         @Override
     public boolean needTerminate() {
@@ -122,7 +241,34 @@ public class AddPassenger  extends BaseActivity implements View.OnClickListener,
 
         switch (v.getId()) {
 
+            case R.id.txttavalodm:
+                String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+                int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
+                int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-140;
+                int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
+                PersianCalendar persianCalendarDatePicker1 = new PersianCalendar();
+                persianCalendarDatePicker1.set(currentYear, currentMonth, currentDay);
 
+                datePickerDialog.setMinDate(persianCalendarDatePicker1);
+                datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
+
+
+                String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+                int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
+                int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
+                int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
+                PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
+                persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
+
+                datePickerDialog.setYearRange(currentYear,currentYear2);
+                datePickerDialog.setMaxDate(persianCalendarDatePicker2);
+                datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
+
+                if (!datePickerDialogGregorian1.isAdded())
+                    datePickerDialogGregorian1.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
+
+              //  flag = true;
+                break;
             case R.id.txtMore:
 
                 linearMahaleeghamat.setVisibility(View.VISIBLE);
@@ -258,6 +404,31 @@ public class AddPassenger  extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
+
+    }
+
+    @Override
+    public void searchTextChanged(String searchText) {
+
+    }
+
+    @Override
+    public void onReady(ResponsePurchaseFlight responsePurchaseFlight) {
+
+    }
+
+    @Override
+    public void onError(String message) {
+
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
+    }
+
+    @Override
+    public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 
     }
 }
