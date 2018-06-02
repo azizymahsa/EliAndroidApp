@@ -52,7 +52,6 @@ public class SortDialogPackage implements View.OnClickListener {
                     sortHotelDialogListener.onReturnValue(2);
                 dialog.cancel();
                 break;
-
         }
     }
     public interface SortHotelDialogListener{

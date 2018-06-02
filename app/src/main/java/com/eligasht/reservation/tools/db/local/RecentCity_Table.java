@@ -37,11 +37,7 @@ public class RecentCity_Table extends MainLocalDB {
     public RecentCity_Table(Activity activity) {
 		super(activity);
 	}
-/*
-	public CursorManager getDatas() {
-		return SELECT_FROM_DB("*", TABLE_NAME, "*", Columns.RequestId.value()
-				+ "," + Columns.GoodCode.value(), 0, 0);
-	}*/
+
 	/*****************************************************************************************/
 	public CursorManager getRecentAll() {
 		return SELECT_FROM_DB("*", TABLE_NAME, "*", "", 0, 0);
