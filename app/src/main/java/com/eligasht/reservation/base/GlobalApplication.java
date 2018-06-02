@@ -136,19 +136,11 @@ public class GlobalApplication extends ServiceApplication {
     public void onCreate() {
         super.onCreate();
         SugarContext.init(this);
-//        if (LeakCanary.isInAnalyzerProcess(this)) {
-//            // This process is dedicated to LeakCanary for heap analysis.
-//            // You should not init your app in this process.
-//            return;
-//        }
-//        LeakCanary.install(this);
-        // Normal app init code...
 
 
 
 
         sAnalytics = GoogleAnalytics.getInstance(this);
-
 
         SingletonContext.getInstance().setContext(this);
         SingletonDate.getInstance().initDate();
@@ -180,7 +172,6 @@ public class GlobalApplication extends ServiceApplication {
                 .setUseDefaultSharedPreference(true)
                 .build();
 
-
         setLocale();
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
@@ -190,7 +181,6 @@ public class GlobalApplication extends ServiceApplication {
                 .addCustomStyle(TextField.class, R.attr.textFieldStyle)
                 .build()
         );
-
 
         if (Hawk.get("adjust", true)) {
             String realToken = "niedy5vr1xc0";
@@ -204,7 +194,6 @@ public class GlobalApplication extends ServiceApplication {
 
         FirebaseCrash.setCrashCollectionEnabled(!BuildConfig.DEBUG);
     }
-
 
     public void onTerminate() {
         super.onTerminate();
@@ -230,7 +219,6 @@ public class GlobalApplication extends ServiceApplication {
         }
         return Operator;
     }
-
 
     @Override
     protected void attachBaseContext(Context base) {

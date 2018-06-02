@@ -66,9 +66,6 @@ public class SimpleRecycleDialog implements View.OnClickListener{
         rclDialog.setLayoutManager(layoutManager);
     }
 
-
-
-
     @Override
     public void onClick(View view) {
 

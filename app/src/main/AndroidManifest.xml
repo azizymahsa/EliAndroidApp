@@ -138,6 +138,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
+            android:name=".reservation.views.activities.addPassenger.SavePassengerActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
             android:name=".reservation.views.activities.insurance.SearchInsuranceActivity"
             android:screenOrientation="portrait" />
         <activity
