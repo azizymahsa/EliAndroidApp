@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.eligasht.R;
-import com.eligasht.reservation.views.activities.login.AddPassengerFragmnet;
+import com.eligasht.reservation.views.activities.login.AddPassengerFragment;
 /**
  * Created by elham.bonyani on 1/25/2018.
  */
@@ -14,7 +14,7 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
     private EditProfileFragment editProfileFragment;
     private MyContractsFragment myContractsFragment;
     private ChangePasswordFragment changePasswordFragment;
-    private AddPassengerFragmnet addPassengerFragmnet;
+    private AddPassengerFragment addPassengerFragment;
 
     public ProfilePagerAdapter(Context context, FragmentManager fm) {
         super(fm);
@@ -22,7 +22,7 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
         editProfileFragment = EditProfileFragment.instance();
         myContractsFragment = MyContractsFragment.instance();
         changePasswordFragment = ChangePasswordFragment.instance();
-        addPassengerFragmnet = AddPassengerFragmnet.instance();
+        addPassengerFragment = AddPassengerFragment.instance();
     }
 
     public EditProfileFragment getEditProfileFragment() {
@@ -47,7 +47,7 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
             case 2:
                 return editProfileFragment;
             case 3:
-                return addPassengerFragmnet;
+                return addPassengerFragment;
             default:
                 return editProfileFragment;
         }

@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
-
-public class AddPassenger  extends BaseActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener,View.OnFocusChangeListener {
+import com.eligasht.reservation.views.ui.InitUi;
+public class SavePassengerActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemSelectedListener,View.OnFocusChangeListener {
 
     private RadioButton btnzan,btnmard;
     private String Gensiyat="";
@@ -28,6 +28,8 @@ public class AddPassenger  extends BaseActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_add_passenger);
+        InitUi.Toolbar(this, false, R.color.toolbar_color, "اضافه کردن مسافر");
+
 
         myScrollView = (ScrollView) findViewById(R.id.scrolMosafer);
         linearMeliyat= (LinearLayout) findViewById(R.id.linearMeliyat);
@@ -103,8 +105,7 @@ public class AddPassenger  extends BaseActivity implements View.OnClickListener,
 
             case R.id.txtMore:
 
-                linearMahaleeghamat.setVisibility(View.VISIBLE);
-                linearMeliyat.setVisibility(View.VISIBLE);
+             
                 break;
         }
     }

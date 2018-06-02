@@ -9,47 +9,13 @@
     android:background="#ffffff">
 
 
-
-    <FrameLayout
-        xmlns:fancy="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/toolbar_container"
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:background="@color/colorPrimary" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_60dp_hight"
-            android:background="#9d80ff"/>
-
-
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/Buyer_Specifications"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/toolbar_title_16dp" />
-
-        <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/btnBack"
-            style="@style/fancy_toolbar"
-            android:layout_gravity="right"
-            android:visibility="visible"
-            fancy:fb_textSize="@dimen/_25dp_normal_iconSize"/>
-        <ImageView
-            android:id="@+id/txt_hom"
-            android:layout_width="@dimen/_30dp"
-            android:layout_height="@dimen/_30dp"
-            android:layout_gravity="center|left"
-            android:layout_marginLeft="@dimen/_10dp_margin"
-            android:background="@drawable/e_logo"
-            />
-
-    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,7 +23,7 @@
         android:background="#ffffff"
         android:orientation="vertical"
         android:layout_marginTop="@dimen/_20dp_normal_textSize"
-        android:layout_below="@+id/toolbar_container"
+        android:layout_below="@+id/toolbarLayout"
        >
 
 
@@ -663,7 +629,8 @@
                             android:text="@string/arrow_left"
                             android:textAppearance="@style/IconFonts"
                             android:textColor="#ffffff"
-                            android:textSize="26dp" />
+                            android:textSize="26dp"
+                            android:visibility="gone"/>
 
                         <TextView
 
@@ -671,7 +638,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
                             android:gravity="center"
-                            android:text="@string/Verification_and_next_step"
+                            android:text="ذخیره"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#FFFFFF"
                             android:textSize="@dimen/_15dp_normal_textSize" />
