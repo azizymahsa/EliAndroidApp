@@ -2385,6 +2385,7 @@
     <string name="message">پیام ها</string>
     <string name="today">امروز</string>
     <string name="nomessage">شما در حال حاضر هیج پیامی ندارید</string>
+    <string name="select_passenger">انتخاب مسافر</string>
 
 
 </resources>
