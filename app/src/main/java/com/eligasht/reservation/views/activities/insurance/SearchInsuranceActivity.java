@@ -13,6 +13,8 @@ import android.view.Window;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.eligasht.reservation.base.ServiceType;
+import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.flight.request.airPort.Request;
@@ -111,6 +113,8 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
             long _milis = DateUtil.getMiliSecondGregorianDateTime(departureDate, "yyyy-MM-dd") + (accomodationDays * 86400000L);
             returnDate = DateUtil.getDateTime(String.valueOf(_milis), "yyyy-MM-dd");
             returnDate = Utility.convertNumbersToEnglish(returnDate);
+            SingletonAnalysis.getInstance().logTransfer(ServiceType.PACKAGE,countryName,"");
+
         }
 
         showInsurance();
