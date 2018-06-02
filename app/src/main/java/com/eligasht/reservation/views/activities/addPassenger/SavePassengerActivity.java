@@ -237,7 +237,6 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
     @Override
     public void onClick(View v) {
 
-
         switch (v.getId()) {
 
             case R.id.txttavalodm:
@@ -272,7 +271,6 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
                 linearMeliyat.setVisibility(View.VISIBLE);
                 break;
                 case R.id.btn_nextm:
-
 
                     String Gender= Gensiyat;
                     String Nationality=txtmahale_eghamat.getText().toString();// "ir";
@@ -314,7 +312,6 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
                         ((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer=flagMosafer+"T";
                     }else{
-
                         flagMosafer=flagMosafer+"F";
                         errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_place_of_residence);
                     }

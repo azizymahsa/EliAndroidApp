@@ -529,9 +529,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		//txtkodemeliP.addTextChangedListener(new GenericTextWatcher(txtkodemeliP));
 		txtkodemeliP.setOnFocusChangeListener(this);
 		txtemeliP= (EditText)findViewById(R.id.txtemeliP);
-	//	txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
-		//txtemeliP.setOnFocusChangeListener(this);
-		//txtemeliP.clearFocus();
 
 		txtmeliyatm= (TextView)findViewById(R.id.txtmeliyatm);
 		txtmeliyatm.setOnClickListener(this);
@@ -605,9 +602,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				txtkodemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserNationalCode());
 				txtemeliP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserMail());
 				txtnameP.setText( WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF());
-				//txtemeliP.clearFocus();
 
-				//txtemeliP.setCursorVisible(false);
 			}
 		}catch (Exception e) {
 			System.out.println("Error " + e.getMessage());
@@ -629,9 +624,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("f");
 					if(txtmahale_eghamat.getText().toString() != null && txtmahale_eghamat.getText().toString().length()>1){
 						((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
-						//flagMosafer=flagMosafer+"T";
+
 					}else{
-						//((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
+
 						txtmahale_eghamat.setError(getString(R.string.Please_enter_your_residence));
 					}
 				}
@@ -643,9 +638,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("f");
 					if(txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length()>1){
 						((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
-						//flagMosafer=flagMosafer+"T";
+
 					}else{
-						//((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
+						
 						txtmeliyatm.setError(getString(R.string.Please_enter_your_nationality));
 					}}
 				break;
@@ -2438,8 +2433,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			}
 		}
 
-		Bitmap bitmap = Bitmap.createBitmap(width, height,
-				Bitmap.Config.ARGB_8888);
+		Bitmap bitmap = Bitmap.createBitmap(width, height,Bitmap.Config.ARGB_8888);
 		bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
 		return bitmap;
 	}
