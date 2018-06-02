@@ -592,7 +592,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			}
 		});
-
 		//////////////login user
 		try{
 			if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() != -1) {
@@ -607,7 +606,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}catch (Exception e) {
 			System.out.println("Error " + e.getMessage());
 		}
-		//////////////
 
 	}//end oncreate
 
@@ -624,9 +622,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("f");
 					if(txtmahale_eghamat.getText().toString() != null && txtmahale_eghamat.getText().toString().length()>1){
 						((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
-
 					}else{
-
 						txtmahale_eghamat.setError(getString(R.string.Please_enter_your_residence));
 					}
 				}
@@ -638,9 +634,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("f");
 					if(txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length()>1){
 						((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
-
 					}else{
-						
 						txtmeliyatm.setError(getString(R.string.Please_enter_your_nationality));
 					}}
 				break;
@@ -651,9 +645,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("f");
 					if(txttavalodm.getText().toString() != null && txttavalodm.getText().toString().length()>4){
 						((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
-						//flagMosafer=flagMosafer+"T";
-					}else{
-						//((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
+						}else{
 						txttavalodm.setError(getString(R.string.Please_enter_the_date_of_birth));
 					}
 				}
@@ -712,13 +704,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
 
 					} else {
-						//((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-					//	txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
+
 					}
 					if (txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length() > 4) {
 					} else {
-						//((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-					//	txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
+
 					}
 				}
 				break;
@@ -731,13 +721,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						((EditText) findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
 
 					} else {
-						//((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-					//	txtnumber_passport.setError(getString(R.string.Please_enter_the_correct_code));
+
 					}
 					if (txtnumber_passport.getText().toString() != null && txtnumber_passport.getText().toString().length() == 10) {
 					} else {
-						//((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-					//	txtnumber_passport.setError(getString(R.string.Please_enter_the_correct_code));
+
 					}
 				}
 				break;
