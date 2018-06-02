@@ -725,7 +725,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 					if (txtnumber_passport.getText().toString() != null && txtnumber_passport.getText().toString().length() == 10) {
 					} else {
-
 					}
 				}
 				break;
