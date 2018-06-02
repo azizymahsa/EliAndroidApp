@@ -83,6 +83,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     btnSaveInfo.setText(R.string.text51);
                     btnSaveInfo.setVisibility(View.VISIBLE);
                     break;
+                case 3:
+                    btnSaveInfo.setVisibility(View.GONE);
+
+                    break;
             }
         }
 
