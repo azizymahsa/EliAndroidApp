@@ -30,7 +30,6 @@ public class PurchaseFlightResult {
 	private String ServiceTypeImgURL;
 	private ExcursionDta excursionData;
 
-
 	private String BookingCode;
 
 
