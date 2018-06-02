@@ -227,7 +227,6 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
         long dayS = Long.valueOf(dateGrg[1]);//15
         int yearS = Integer.valueOf(dateGrg[2]);//2018
 
-
         return yearS + "-" + "0" + monthS + "-" + dayS;
     }
         @Override
@@ -252,7 +251,6 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
                 datePickerDialog.setMinDate(persianCalendarDatePicker1);
                 datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
                 String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                 int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
                 int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
@@ -267,7 +265,6 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
                 if (!datePickerDialogGregorian1.isAdded())
                     datePickerDialogGregorian1.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
 
-              //  flag = true;
                 break;
             case R.id.txtMore:
 
@@ -385,8 +382,6 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
                     btnmard.setChecked(false);
                     txtnamem.setFocusable(true);
                     Gensiyat="";
-
-
 
                 break;
         }

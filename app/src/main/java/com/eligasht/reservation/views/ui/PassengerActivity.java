@@ -2463,7 +2463,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		long dayS = Long.valueOf(dateGrg[1]);//15
 		int yearS = Integer.valueOf(dateGrg[2]);//2018
 
-
 		return yearS + "-" + "0" + monthS + "-" + dayS;
 	}
 	/*String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
