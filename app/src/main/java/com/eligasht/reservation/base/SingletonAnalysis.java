@@ -33,6 +33,19 @@ public class SingletonAnalysis {
         sendLog(serviceType, bundle);
     }
 
+    public void logPreBooking(ServiceType serviceType) {
+        Bundle bundle = new Bundle();
+        bundle.putString("Pre_Booking", "Done");
+        sendLog(serviceType, bundle);
+    }
+
+    public void logBookingCompleted(ServiceType serviceType) {
+        Bundle bundle = new Bundle();
+        bundle.putString("Booking_Completed", "Done");
+        sendLog(serviceType, bundle);
+    }
+
+
 
     private void sendLog(ServiceType serviceType, Bundle bundle) {
         String eventName = null;
