@@ -47,6 +47,8 @@ public class SingletonAnalysis {
 
 
 
+
+
     private void sendLog(ServiceType serviceType, Bundle bundle) {
         String eventName = null;
         switch (serviceType) {
