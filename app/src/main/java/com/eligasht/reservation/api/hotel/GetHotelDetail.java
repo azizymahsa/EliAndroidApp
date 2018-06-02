@@ -25,8 +25,7 @@ public class GetHotelDetail extends BaseAPI {
     public interface Get_D {
         @RawRes
         @POST(GetHotelDetail.ACTION_NAME)
-        Call<GetHotelDetailResponse> get_detail(
-                @Body GetHotelDetailRequest holdSelectRoomResponse
+        Call<GetHotelDetailResponse> get_detail(@Body GetHotelDetailRequest holdSelectRoomResponse
         );
     }
 
@@ -50,7 +49,6 @@ public class GetHotelDetail extends BaseAPI {
         } catch (Exception e) {
             Log.e("errorrrrrr",e.getMessage() );
         }
-
     }
 
     @Override

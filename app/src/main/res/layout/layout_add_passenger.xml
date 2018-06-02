@@ -284,7 +284,6 @@
                             android:id="@+id/txtnumber_passport"
                             android:layout_width="match_parent"
                             android:layout_height="32dp"
-
                             android:layout_marginRight="5dp"
                             android:layout_weight="0.62"
                             android:background="@drawable/background_strock_white"
@@ -306,7 +305,6 @@
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-
                         android:layout_marginTop="10dp"
                         android:orientation="vertical">
 
@@ -346,7 +344,6 @@
                             android:background="@drawable/background_strock_white"
                             android:gravity="center|center_vertical"
                             android:inputType="number"
-
                             android:paddingRight="10dp"
                             android:paddingTop="0dp"
                             android:singleLine="true"
@@ -361,7 +358,6 @@
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-
                         android:layout_marginTop="10dp"
                         android:orientation="vertical">
 
@@ -396,7 +392,6 @@
                             android:id="@+id/txttavalodm"
                             android:layout_width="match_parent"
                             android:layout_height="32dp"
-
                             android:layout_marginRight="5dp"
                             android:layout_weight="0.62"
                             android:background="@drawable/background_strock_white"
