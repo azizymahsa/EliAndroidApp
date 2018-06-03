@@ -238,9 +238,15 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
     public void onClick(View v) {
 
         switch (v.getId()) {
+            case  R.id.txtexp_passport:
+                if (!datePickerDialogGregorian2.isAdded())
+                    datePickerDialogGregorian2.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
 
+                break;
             case R.id.txttavalodm:
-                String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
+
+                //min and max limit
+              /*  String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
                 int currentDay = DateUtil.getDayOfMonth(currentDateTime, "yyyy-MM-dd", true);
                 int currentYear = DateUtil.getYear(currentDateTime, "yyyy-MM-dd", true)-140;
                 int currentMonth = DateUtil.getMonth(currentDateTime, "yyyy-MM-dd", true)-1 ;
@@ -259,7 +265,7 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
 
                 datePickerDialog.setYearRange(currentYear,currentYear2);
                 datePickerDialog.setMaxDate(persianCalendarDatePicker2);
-                datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());
+                datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());*/
 
                 if (!datePickerDialogGregorian1.isAdded())
                     datePickerDialogGregorian1.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
