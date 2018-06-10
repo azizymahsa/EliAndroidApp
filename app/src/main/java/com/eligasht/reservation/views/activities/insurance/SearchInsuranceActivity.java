@@ -113,7 +113,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
             long _milis = DateUtil.getMiliSecondGregorianDateTime(departureDate, "yyyy-MM-dd") + (accomodationDays * 86400000L);
             returnDate = DateUtil.getDateTime(String.valueOf(_milis), "yyyy-MM-dd");
             returnDate = Utility.convertNumbersToEnglish(returnDate);
-            SingletonAnalysis.getInstance().logTransfer(ServiceType.PACKAGE,countryName,"");
+            SingletonAnalysis.getInstance().logTransfer(ServiceType.INSURANCE,countryName,"");
 
         }
 
