@@ -72,7 +72,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
                 false);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
-
         btnOk = rootView.findViewById(R.id.btnOk);
         scrollViewObject = rootView.findViewById(R.id.scrollViewObject);
         btnDeletFilter = rootView.findViewById(R.id.btnDeletFilter);
@@ -105,14 +104,10 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (filterHotelStarsModels.get(position).isCheck()) {
                     filterHotelStarsModels.set(position, new FilterStarModel(filterHotelStarsModels.get(position).getTitle(), false, filterHotelStarsModels.get(position).getStar()));
-
                 } else {
                     filterHotelStarsModels.set(position, new FilterStarModel(filterHotelStarsModels.get(position).getTitle(), true, filterHotelStarsModels.get(position).getStar()));
-
-
                 }
                 starFilterAdapter.notifyDataSetChanged();
-
             }
         });
 
@@ -128,7 +123,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
 
             }
         });
-
 
         lvHotelTypes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

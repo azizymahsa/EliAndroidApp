@@ -70,13 +70,7 @@ public class CustomDate {
         PersianCalendar calendar = new PersianCalendar();
         calendar.setTimeInMillis(time);
         calendar.setTimeZone(TimeZone.getDefault());
-//        String monthName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
-//        int month = calendar.get(Calendar.DAY_OF_MONTH);
-//        String hour = String.valueOf(calendar.get(Calendar.HOUR_OF_DAY));
-//        String min = String.valueOf(calendar.get(Calendar.MINUTE));
-//        StringBuilder builder = new StringBuilder();
-//        builder.append(month).append(" ").append(monthName).append(" ").append(SingletonContext.getInstance().getContext().getString(R.string.hour)).append(" ").append(hour).append(":").append(min);
-//        return builder.toString();
+
         return calendar.getPersianLongDateAndTime();
     }
 
@@ -96,22 +90,19 @@ public class CustomDate {
         long start = startDate.getTimeInMillis();
         long end = endDate.getTimeInMillis();
         return TimeUnit.MILLISECONDS.toDays((end - start)) >= 0;
-        // return TimeUnit.MILLISECONDS.toDays((end - start));
-    }
 
+    }
 
     public static long compareTwoDays(Calendar startDate, Calendar endDate) {
         long start = startDate.getTimeInMillis();
         long end = endDate.getTimeInMillis();
         return TimeUnit.MILLISECONDS.toDays((end - start));
-        // return TimeUnit.MILLISECONDS.toDays((end - start));
     }
 
     public static CustomDate today() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getDefault());
         return new CustomDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
-
     }
 
     public int getPersianYear() {
@@ -179,7 +170,6 @@ public class CustomDate {
 
         return false;
     }
-
 
     private void addDay(int day) {
         Calendar calendar = Calendar.getInstance();
