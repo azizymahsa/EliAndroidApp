@@ -22,7 +22,6 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
     private MapHotelFragment mapHotelFragment;
     int count;
 
-
     public HotelDetailViewPager(Context context, FragmentManager fm,boolean isPckage) {
         super(fm);
         this.context = context;
@@ -33,9 +32,6 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
         }else{
             count=5;
         }
-
-
-
     }
 
     public MapHotelFragment getMapHotelFragment() {

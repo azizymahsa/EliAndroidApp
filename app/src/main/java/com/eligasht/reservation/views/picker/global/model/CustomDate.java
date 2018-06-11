@@ -25,11 +25,9 @@ import calendar.PersianDate;
 
 public class CustomDate {
 
-
     private PersianDate persianDate;
     private CivilDate civilDate;
     private CustomDate anotherCustomDate = null;
-
 
     public CustomDate(String year, String month, String day) {
         if (year.startsWith("1")) {
@@ -47,7 +45,6 @@ public class CustomDate {
                 .replace("Date", "")
                 .replace("(", "")
                 .replace(")", "");
-
 
         te = te.split("\\+")[0];
         System.out.println(te);
@@ -74,7 +71,6 @@ public class CustomDate {
         return calendar.getPersianLongDateAndTime();
     }
 
-
     public CustomDate(int year, int month, int day) {
         String y = String.valueOf(year);
         if (y.startsWith("1")) {
@@ -90,7 +86,6 @@ public class CustomDate {
         long start = startDate.getTimeInMillis();
         long end = endDate.getTimeInMillis();
         return TimeUnit.MILLISECONDS.toDays((end - start)) >= 0;
-
     }
 
     public static long compareTwoDays(Calendar startDate, Calendar endDate) {
@@ -167,7 +162,6 @@ public class CustomDate {
             addDay(1);
             return true;
         }
-
         return false;
     }
 

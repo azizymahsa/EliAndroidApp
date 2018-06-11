@@ -170,9 +170,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         hotelDetailViewPager.getCommentHotelFragment().setDataComment(commentModelBus);
 
                         break;
-
-                }
-            }
+                }            }
 
             @Override
             public void onPageScrollStateChanged(int state) {

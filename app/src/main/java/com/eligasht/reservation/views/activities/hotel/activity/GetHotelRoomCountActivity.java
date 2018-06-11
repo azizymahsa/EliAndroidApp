@@ -26,7 +26,7 @@ public class GetHotelRoomCountActivity extends Activity implements Header.onSear
 		ProgressDialog progressBar;
 		private Handler progressBarHandler = new Handler();
 		public ListView listCityHotel;
-	
+
 		HotelCountRoomAdapter mAdapter;
 		public List<ModelRowCountRoom> data;
 		private EditText searchtxt;
@@ -49,7 +49,7 @@ public class GetHotelRoomCountActivity extends Activity implements Header.onSear
 			    model.setCountK(0);
 			    model.setCountN(0);
 			   
-		         data.add(model);
+		        data.add(model);
 
 		        mAdapter = new HotelCountRoomAdapter(GetHotelRoomCountActivity.this, data);
 
@@ -71,6 +71,5 @@ public class GetHotelRoomCountActivity extends Activity implements Header.onSear
 		@Override
 		public void searchTextChanged(String searchText) {
 
-			
 		}
 	}

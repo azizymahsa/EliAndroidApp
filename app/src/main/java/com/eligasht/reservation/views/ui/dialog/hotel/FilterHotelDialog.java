@@ -180,8 +180,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         return rootView;
     }
 
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -210,11 +208,9 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
                 for (int i = 0; i < filterHotelPriceModel.size(); i++) {
                     filterHotelPriceModel.set(i, new FilterPriceModel(filterHotelPriceModel.get(i).getDiff(), filterHotelPriceModel.get(i).getX(), false));
 
-
                 }
                 for (int i = 0; i < filterHotelLocationModels.size(); i++) {
                     filterHotelLocationModels.set(i, new FilterHotelTypeModel(filterHotelLocationModels.get(i).getTitle(), false));
-
                 }
                 filterHotelTypeAdapter.notifyDataSetChanged();
                 filterHotelFacilitiesAdapter.notifyDataSetChanged();
