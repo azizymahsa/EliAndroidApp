@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
+import com.eligasht.reservation.base.ServiceType;
+import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
@@ -169,6 +171,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         weather_request();
         Utility.init_floating(list, this);
         rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
 
     }
     public void weather_request(){
@@ -728,6 +731,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     filterHotelLocationModels.add(new FilterHotelTypeModel(locations.getTitle(), false));
                 }
                 tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"));
+                SingletonAnalysis.getInstance().logTransfer(ServiceType.HOTELFLIGHT,Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"),"");
+
                 weatherCity.setText("پیش بینی وضعیت آب و هوای "+Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"));
 
                 tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");

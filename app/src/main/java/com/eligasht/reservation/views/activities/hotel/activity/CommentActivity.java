@@ -256,9 +256,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
                         public void onAnimationEnd(android.animation.Animator animation) {
                             svRating.setVisibility(View.VISIBLE);
                             llComment.setVisibility(View.GONE);
-                            YoYo.with(Techniques.FadeIn)
-                                    .duration(200)
-                                    .playOn(svRating);
+                            YoYo.with(Techniques.FadeIn).duration(200).playOn(svRating);
                         }
 
                         @Override
