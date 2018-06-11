@@ -93,7 +93,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         lvBestOffAdapter = new FilterHotelTypeAdapter(filterHotelBestOffModels, activity);
         starFilterAdapter = new StarFilterAdapter(filterHotelStarsModels, activity);
 
-
         lvPrice.setAdapter(priceFilterAdapter);
         lvHotelTypes.setAdapter(filterHotelTypeAdapter);
         lvLocationTypes.setAdapter(filterHotelLocationAdapter);

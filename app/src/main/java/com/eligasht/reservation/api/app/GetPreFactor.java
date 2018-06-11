@@ -2,11 +2,9 @@ package com.eligasht.reservation.api.app;
 
 import android.support.annotation.RawRes;
 import android.util.Log;
-
 import com.eligasht.reservation.base.BaseAPI;
 import com.eligasht.reservation.models.hotel.getprefactor.call.RequestPrefactor;
 import com.eligasht.reservation.models.hotel.getprefactor.response.GetPrefactorResponse;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;

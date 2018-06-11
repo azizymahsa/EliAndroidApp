@@ -50,7 +50,6 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
         setContentView(R.layout.layout_add_passenger);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "اضافه کردن مسافر");
 
-
         myScrollView = (ScrollView) findViewById(R.id.scrolMosafer);
         linearMeliyat= (LinearLayout) findViewById(R.id.linearMeliyat);
 

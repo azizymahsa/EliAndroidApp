@@ -128,8 +128,6 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         });
 
 
-
-
         if (selectHotelModelArrayList.get(position).isOff()) {
             holder.tvOff.setVisibility(View.VISIBLE);
             holder.tvOff.setText(selectHotelModelArrayList.get(position).getOff());
