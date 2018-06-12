@@ -52,13 +52,11 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
     public ListView list_airport;
     ArrayList<HashMap<String, String>> mylist = null;
     public static String searchText = "";
-
     GetAirPortMabdaAdapter mAdapter;
     private EditText searchtxt;
     AVLoadingIndicatorView avi;
     FancyButton btnBack, btnMic;
     private final int REQ_CODE_SPEECH_INPUT = 100;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
