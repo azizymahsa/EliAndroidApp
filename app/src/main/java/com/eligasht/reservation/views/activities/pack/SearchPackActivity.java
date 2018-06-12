@@ -141,7 +141,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     //send request for get package

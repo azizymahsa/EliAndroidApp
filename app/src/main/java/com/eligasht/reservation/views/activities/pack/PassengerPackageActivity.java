@@ -1511,7 +1511,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     private void sendRequestGetPreFactorDetails() {

@@ -846,7 +846,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	@Override
 	public boolean needTerminate() {
-		return false;
+		return true;
 	}
 
 	@Override

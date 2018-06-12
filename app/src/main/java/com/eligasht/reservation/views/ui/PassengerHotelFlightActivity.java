@@ -957,7 +957,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

@@ -872,7 +872,7 @@ private void RequestPurchaseInsurance(){
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     @Override

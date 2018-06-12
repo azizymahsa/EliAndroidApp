@@ -49,6 +49,6 @@ public class PackageServicesActivity extends BaseActivity {
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 }
