@@ -220,11 +220,8 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
                 starFilterAdapter.notifyDataSetChanged();
                 if (filter.isEmpty()) {
                     filter.add(new FilterModel(false, false, false, false, false, false, false, true));
-
-
                 } else {
                     filter.set(0, new FilterModel(false, false, false, false, false, false, false, true));
-
                 }
                 filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,
                         filterHotelPriceModel, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels, remove);
@@ -236,11 +233,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         }
     }
 
-/*public void show(){
-      *//*  if (!dialog.isShowing()){
-            dialog.show();
-        }*//*
-}*/
 
     private void initialize(final Context activity, ArrayList<FilterModel> filter,
                             FilterHotelDialogListenerArray filterHotelDialogListenerArray, final ArrayList<FilterHotelTypeModel> filterHotelTypeModels,

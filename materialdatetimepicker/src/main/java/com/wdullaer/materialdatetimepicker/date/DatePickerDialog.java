@@ -966,8 +966,7 @@ public class DatePickerDialog extends DialogFragment implements
         return isOutOfRange(
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-        );
+                calendar.get(Calendar.DAY_OF_MONTH));
     }
 
     private boolean isDisabled(int year, int month, int day) {

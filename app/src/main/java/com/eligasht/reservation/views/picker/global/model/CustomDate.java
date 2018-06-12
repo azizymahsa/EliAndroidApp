@@ -67,7 +67,6 @@ public class CustomDate {
         PersianCalendar calendar = new PersianCalendar();
         calendar.setTimeInMillis(time);
         calendar.setTimeZone(TimeZone.getDefault());
-
         return calendar.getPersianLongDateAndTime();
     }
 
