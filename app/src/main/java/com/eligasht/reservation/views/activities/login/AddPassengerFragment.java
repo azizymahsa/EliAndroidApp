@@ -67,7 +67,7 @@ public class AddPassengerFragment extends Fragment implements View.OnClickListen
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         List<PassengerDBModel> passengerDBModels=PassengerDBModel.listAll(PassengerDBModel.class);
         Collections.reverse(passengerDBModels);
-        recyclerView.setAdapter(new AddPassengerAdapter(passengerDBModels));
+        recyclerView.setAdapter(new AddPassengerAdapter(passengerDBModels,false,getActivity()));
 
 
     }

@@ -57,9 +57,13 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.lost.hotel.HotelPreFactorAdapter;
+import com.eligasht.reservation.models.PassengerDBModel;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.eligasht.reservation.views.activities.GetPassengerActivity;
+import com.eligasht.reservation.views.activities.insurance.AddPassengerActivity;
+import com.eligasht.reservation.views.activities.login.ProfileActivity;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
@@ -852,6 +856,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			case R.id.llAddPassenger:
 
+				Intent intent = new Intent(this, GetPassengerActivity.class);
+				startActivityForResult(intent, 555);
+
 
 				break;
 				case R.id.txtMore:
@@ -1510,8 +1517,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				break;
 			case R.id.txt_hom:
 				Prefs.putBoolean("BACK_HOME",true);
-				Intent intent = new Intent("sendFinish");
-				LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+				Intent intent2 = new Intent("sendFinish");
+				LocalBroadcastManager.getInstance(this).sendBroadcast(intent2);
 				break;
 		}
 
@@ -2080,6 +2087,32 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				txtmahale_eghamat.setText(countryCode+"");//txtmahale_eghamat.setText(countryCode+" "+countryName);
 			if(nationalityCode != null)
 				txtmeliyatm.setText(nationalityCode+"");//txtmeliyatm.setText(nationalityCode+" "+nationalityName);
+		}
+		if(requestCode == 555 && resultCode == Activity.RESULT_OK){
+
+			List<PassengerDBModel> passengerDBModels=PassengerDBModel.listAll(PassengerDBModel.class);
+			for (PassengerDBModel model:passengerDBModels) {
+				if (model.getId()==data.getLongExtra("Id",0)){
+					txtnamem.setText(model.getRqPassenger_FirstNameEn());
+					txtfamilym.setText(model.getRqPassenger_LastNameEn());
+					txtnumber_passport.setText(model.getRqPassenger_PassNo());
+					txt_NationalCode_m.setText(model.getRqPassenger_NationalCode());
+					txttavalodm.setText(model.getRqPassenger_Birthdate());
+					txtexp_passport.setText(model.getRqPassenger_PassExpDate());
+					Log.e("gender", model.getGender());
+					if(Boolean.valueOf(model.getGender())){
+						btnzan.setChecked(true);
+					}else{
+						btnmard.setChecked(true);
+
+					}
+
+
+
+				}
+
+			}
+
 		}
 	}
 

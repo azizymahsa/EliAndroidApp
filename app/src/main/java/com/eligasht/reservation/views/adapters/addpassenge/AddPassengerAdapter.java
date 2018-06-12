@@ -1,4 +1,5 @@
 package com.eligasht.reservation.views.adapters.addpassenge;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
@@ -23,9 +24,13 @@ public class AddPassengerAdapter extends RecyclerView.Adapter<AddPassengerAdapte
 
     private final List<PassengerDBModel> data;
     private Context context;
+    boolean isPassReq;
+    Activity activity;
 
-    public AddPassengerAdapter(final List<PassengerDBModel> data) {
+    public AddPassengerAdapter(final List<PassengerDBModel> data,boolean isPassReq,Activity activity) {
         this.data = data;
+        this.isPassReq = isPassReq;
+        this.activity = activity;
 
     }
 
@@ -47,9 +52,18 @@ public class AddPassengerAdapter extends RecyclerView.Adapter<AddPassengerAdapte
         holder.cvContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, SavePassengerActivity.class);
-                intent.putExtra("Id",data.get(position).getId());
-                context.startActivity(intent);
+                if (isPassReq){
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("Id",data.get(position).getId());
+                    activity.setResult(Activity.RESULT_OK,returnIntent);
+                    activity.finish();
+
+                }else{
+                    Intent intent = new Intent(context, SavePassengerActivity.class);
+                    intent.putExtra("Id",data.get(position).getId());
+                    context.startActivity(intent);
+                }
+
             }
         });
         holder.tvTrash.setOnClickListener(new View.OnClickListener() {
