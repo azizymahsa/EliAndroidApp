@@ -20,6 +20,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
 import com.eligasht.reservation.api.app.GetPreFactor;
 import com.eligasht.reservation.base.BaseActivity;
+import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.models.hotel.getprefactor.call.RequestPre;
 import com.eligasht.reservation.models.hotel.getprefactor.call.RequestPrefactor;
@@ -36,6 +37,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Single;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class FinalResult extends BaseActivity {
@@ -64,6 +66,7 @@ public class FinalResult extends BaseActivity {
 
         init_view();
         Utility.setAnimLoading(this);
+     //   SingletonAnalysis.getInstance().logBookingCompleted();
 
         try {
             InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.approve_factor));

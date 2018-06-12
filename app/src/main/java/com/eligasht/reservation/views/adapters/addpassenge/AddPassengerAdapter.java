@@ -1,6 +1,9 @@
 package com.eligasht.reservation.views.adapters.addpassenge;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.eligasht.R;
+import com.eligasht.reservation.models.PassengerDBModel;
 import com.eligasht.reservation.models.PassengerPreFactorModel;
+import com.eligasht.reservation.views.activities.addPassenger.SavePassengerActivity;
 
 import java.util.List;
 /**
@@ -16,15 +21,12 @@ import java.util.List;
  */
 public class AddPassengerAdapter extends RecyclerView.Adapter<AddPassengerAdapter.ViewHolder> {
 
-    private final List<PassengerPreFactorModel> data;
+    private final List<PassengerDBModel> data;
     private Context context;
-    private SparseBooleanArray expandState = new SparseBooleanArray();
 
-    public AddPassengerAdapter(final List<PassengerPreFactorModel> data) {
+    public AddPassengerAdapter(final List<PassengerDBModel> data) {
         this.data = data;
-        for (int i = 0; i < data.size(); i++) {
-            expandState.append(i, false);
-        }
+
     }
 
     @Override
@@ -37,10 +39,38 @@ public class AddPassengerAdapter extends RecyclerView.Adapter<AddPassengerAdapte
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        final PassengerPreFactorModel item = data.get(position);
+        final PassengerDBModel item = data.get(position);
 
         holder.setIsRecyclable(false);
-        holder.tvBrithDay.setText(item.getRqPassenger_Birthdate());
+        holder.tvTitle.setText(item.getRqPassenger_FirstNameEn()+" "+item.getRqPassenger_LastNameEn());
+        holder.tvDate.setText(item.getRqPassenger_Birthdate());
+        holder.cvContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SavePassengerActivity.class);
+                intent.putExtra("Id",data.get(position).getId());
+                context.startActivity(intent);
+            }
+        });
+        holder.tvTrash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    PassengerDBModel passengerDBModel = PassengerDBModel.findById(PassengerDBModel.class,data.get(position).getId());
+                    passengerDBModel.delete();
+                    for (int i = 0; i < data.size(); i++) {
+                        if (data.get(i).getId().equals(data.get(position).getId())){
+                            data.remove(i);
+                            notifyDataSetChanged();
+                        }
+
+                    }
+
+                }catch (Exception e){}
+
+
+            }
+        });
 
 
 
@@ -57,13 +87,16 @@ public class AddPassengerAdapter extends RecyclerView.Adapter<AddPassengerAdapte
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvBrithDay, tvPassNo;
+        public TextView tvTitle, tvDate,tvTrash;
+        CardView cvContent;
 
 
         public ViewHolder(View v) {
             super(v);
-            tvBrithDay = v.findViewById(R.id.tvBrithDay);
-            tvPassNo = v.findViewById(R.id.tvPassNo);
+            tvTitle = v.findViewById(R.id.tvTitle);
+            tvDate = v.findViewById(R.id.tvDate);
+            cvContent = v.findViewById(R.id.cvContent);
+            tvTrash = v.findViewById(R.id.tvTrash);
         }
     }
 }

@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-</selector>
+
+
+    <solid android:color="@color/text_color_4d" />
+
+    <gradient android:startColor="@color/text_color_4d"
+        android:angle="270"/>
+
+
+
+</shape>

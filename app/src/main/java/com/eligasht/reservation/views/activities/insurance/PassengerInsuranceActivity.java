@@ -44,6 +44,8 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
+import com.eligasht.reservation.base.ServiceType;
+import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.lost.passenger.PassangerPreFactorAdapter;
 import com.eligasht.reservation.models.PassengerPreFactorModel;
 import com.eligasht.reservation.lost.service.ServicePreFactorAdapter;
@@ -139,7 +141,6 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     private String paymentUrl;
     public List<PurchaseFlightResult> data;
     private GetHotelKhadmatAdapter mAdapter;
-    private EditText searchtxt;
     public TextView txt_shomare_factor;
     public TextView tvPrice;
     public ImageView textView4;
@@ -633,6 +634,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                 FlagMosaferan = false;
                 rlLoading.setVisibility(View.GONE);
                 try {
+                    SingletonAnalysis.getInstance().logPreBooking(ServiceType.INSURANCE);
+
 
 
 

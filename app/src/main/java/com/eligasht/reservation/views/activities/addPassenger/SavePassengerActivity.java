@@ -3,6 +3,7 @@ package com.eligasht.reservation.views.activities.addPassenger;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
+import com.eligasht.reservation.models.PassengerDBModel;
+import com.eligasht.reservation.models.db.NotificationModel;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
@@ -28,18 +31,21 @@ import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.List;
 public class SavePassengerActivity extends BaseActivity implements Header.onSearchTextChangedListener,View.OnClickListener,AdapterView.OnItemSelectedListener,View.OnFocusChangeListener,
         com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, OnServiceStatus<ResponsePurchaseFlight>,
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener {
 
 
-    private RadioButton btnzan,btnmard;
+
     private String Gensiyat="";
+    private RadioButton btnzan,btnmard;
     private EditText txtnamem,txtfamilym,txtnumber_passport,txt_NationalCode_m;
     private LinearLayout linearMahaleeghamat,linearMeliyat,btn_nextm,linear_number_passport,linear_expdate;
-    ScrollView myScrollView;
     private TextView txttavalodm,txtexp_passport,txtMore,txtmahale_eghamat,txtmeliyatm;
+
+    ScrollView myScrollView;
+    boolean isUpdate=false;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
@@ -49,8 +55,13 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_add_passenger);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "اضافه کردن مسافر");
+        initView();
+        onReciveData();
 
 
+    }
+
+    public void initView(){
         myScrollView = (ScrollView) findViewById(R.id.scrolMosafer);
         linearMeliyat= (LinearLayout) findViewById(R.id.linearMeliyat);
 
@@ -215,7 +226,7 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
             }
         });
 
-/////////////////////////////////End date piker//////////////////////////////////////////////
+/////
     }
     public String date_server(int y, int m, int d) {//1396  9 25
         Date date = PersianCalendarUtils.ShamsiToMilady(y, m + 1, d);//Mon Jan 15 12:38:00 GMT+03:30 2018
@@ -368,23 +379,16 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
                     errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Please_choose_a_gender);
                 }
                 ///endValidate
+                if (isUpdate){
+                    PassengerDBModel passengerDBModel = PassengerDBModel.findById(PassengerDBModel.class,getIntent().getExtras().getLong("Id"));
+                    passengerDBModel.update(getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                    passengerDBModel.save();
+                }else{
+                    PassengerDBModel passengerDBModel = new PassengerDBModel(getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+                    passengerDBModel.save();
+                }
 
-
-                // db.insertData(counter-1,getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
-
-                ///pak kardan data haye mosafere ghabli:
-
-                txtnamem.setFocusable(true);
-                txttavalodm.setText("");
-                txtnamem.setText("");
-                txtfamilym.setText("");
-                txtexp_passport.setText("");
-                txtnumber_passport.getText().clear();
-                txt_NationalCode_m.getText().clear();
-                btnzan.setChecked(false);
-                btnmard.setChecked(false);
-                txtnamem.setFocusable(true);
-                Gensiyat="";
+                finish();
 
                 break;
         }
@@ -427,6 +431,41 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
 
     @Override
     public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
+
+    }
+
+
+    public void onReciveData(){
+     //   private RadioButton btnzan,btnmard;
+        Bundle extras = getIntent().getExtras();
+
+        if (extras != null){
+            isUpdate=true;
+            List<PassengerDBModel> passengerDBModels=PassengerDBModel.listAll(PassengerDBModel.class);
+            for (PassengerDBModel model:passengerDBModels) {
+                if (model.getId()==extras.getLong("Id")){
+                    txtnamem.setText(model.getRqPassenger_FirstNameEn());
+                    txtfamilym.setText(model.getRqPassenger_LastNameEn());
+                    txtnumber_passport.setText(model.getRqPassenger_PassNo());
+                    txt_NationalCode_m.setText(model.getRqPassenger_NationalCode());
+                    txttavalodm.setText(model.getRqPassenger_Birthdate());
+                    txtexp_passport.setText(model.getRqPassenger_PassExpDate());
+                    Log.e("gender", model.getGender());
+                    if(Boolean.valueOf(model.getGender())){
+                        btnzan.setChecked(true);
+                    }else{
+                        btnmard.setChecked(true);
+
+                    }
+
+
+
+                }
+
+            }
+
+
+        }
 
     }
 }

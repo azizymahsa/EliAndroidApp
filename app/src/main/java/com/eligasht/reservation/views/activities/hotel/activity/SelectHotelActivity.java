@@ -711,7 +711,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     filterHotelLocationModels.add(new FilterHotelTypeModel(locations.getTitle(), false));
                 }
                 tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa", "استانبول"));
-                SingletonAnalysis.getInstance().logTransfer(ServiceType.HOTEL,Prefs.getString("Value-Hotel-City-Fa", "استانبول"),"");
+                SingletonAnalysis.getInstance().logTransfer(ServiceType.HOTEL,"",Prefs.getString("Value-Hotel-City-Fa", "استانبول"));
 
 
                 weatherCity.setText("پیش بینی وضعیت آب و هوای "+Prefs.getString("Value-Hotel-City-Fa", "استانبول"));

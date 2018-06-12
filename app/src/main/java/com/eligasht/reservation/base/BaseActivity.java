@@ -31,7 +31,7 @@ public abstract class BaseActivity extends Base {
         super.onCreate(savedInstanceState);
         notiRecive();
         try {
-            EventBus.getDefault().register(this);
+        //    EventBus.getDefault().register(this);
         } catch (Exception e) {
 
         }

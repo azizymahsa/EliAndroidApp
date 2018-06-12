@@ -54,6 +54,8 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.reservation.base.ServiceType;
+import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.lost.hotel.HotelPreFactorAdapter;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
@@ -1787,7 +1789,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	}
 
 	private void RequestPreFactorDetails() {
-		ProgressDialog pdLoading = new ProgressDialog(PassengerActivity.this);
 
 		//this method will be running on UI thread
 		rlLoading.setVisibility(View.VISIBLE);
@@ -1814,6 +1815,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				rlLoading.setVisibility(View.GONE);
 				Utility.disableEnableControls(true,rlRoot);
 				try {
+					SingletonAnalysis.getInstance().logPreBooking(ServiceType.FLIGHT);
+
 					// Getting JSON Array node
 					GetPreFactorDetailsResult GetAirportsResult = responsePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
 

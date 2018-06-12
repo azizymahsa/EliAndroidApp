@@ -47,6 +47,8 @@ import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.reservation.base.ServiceType;
+import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
@@ -710,6 +712,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             rlLoading.setVisibility(View.GONE);
             Utility.disableEnableControls(true, rlRoot);
             try {
+                SingletonAnalysis.getInstance().logPreBooking(ServiceType.HOTEL);
+
 ////////////////////////////
                 JSONObject jsonObj = new JSONObject(resultPishfactor);
 
