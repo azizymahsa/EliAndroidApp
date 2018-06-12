@@ -122,7 +122,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     @Override

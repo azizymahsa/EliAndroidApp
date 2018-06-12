@@ -202,7 +202,7 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     private class AsyncFetch extends AsyncTask<String, String, String> {

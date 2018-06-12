@@ -1429,7 +1429,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     @Override

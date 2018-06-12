@@ -204,7 +204,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     @Override

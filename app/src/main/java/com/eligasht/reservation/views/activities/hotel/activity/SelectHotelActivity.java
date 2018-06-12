@@ -161,7 +161,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     @Override

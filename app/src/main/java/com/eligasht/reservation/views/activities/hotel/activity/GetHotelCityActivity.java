@@ -175,7 +175,7 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     @Override

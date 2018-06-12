@@ -81,7 +81,7 @@ public class CommentActivity extends BaseActivity implements AlertRating.RatingH
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     public void init_view() {
