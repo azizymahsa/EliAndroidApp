@@ -89,7 +89,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        System.out.println("groupPosition:" + groupPosition + "childPosition:" + childPosition);
+      //  System.out.println("groupPosition:" + groupPosition + "childPosition:" + childPosition);
         final SearchFlightActivity.ItemExpandingPlan item = this.dataExpandingList.get(groupPosition).Items.get(childPosition);
 
         if (convertView == null) {
@@ -115,7 +115,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                         .needParallax(true)
                         .needBackgroundShadow(true)
                         .startActivity();
-                System.out.println("item.flGUID:" + item.flGUID);
+               // System.out.println("item.flGUID:" + item.flGUID);
 
             }
         });
@@ -164,7 +164,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
             }
         } catch (Exception e) {
-            Log.e("getChildView: ",e.getMessage() );
+           // Log.e("getChildView: ",e.getMessage() );
         }
         //nerkh
         if (item.AdlBaseFare > 0) {

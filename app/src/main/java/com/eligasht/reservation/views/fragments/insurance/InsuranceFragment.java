@@ -76,10 +76,17 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onResume() {
-        super.onResume();
-        country = Hawk.get("Value-Insurance-Country", null);
-        if (country != null && txtCity != null)
-            txtCity.setText(country.getCountryName());
+        try {
+            super.onResume();
+            country = Hawk.get("Value-Insurance-Country", null);
+            if (country != null && txtCity != null)
+                txtCity.setText(country.getCountryName());
+        }
+        catch (Exception e)
+        {
+
+        }
+
     }
 
     @Override

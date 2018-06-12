@@ -227,6 +227,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 
     @Override
     public void onReady(ResponsAirports responsAirports) {
+
         avi.setVisibility(View.GONE);
         String GetError = "";
         List<Country> data = new ArrayList<Country>();
@@ -277,7 +278,14 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
 
 
             } else {
-                Toast.makeText(activity, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
+                try {
+                    Toast.makeText(GetAirportMaghsadActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
+                }
+                catch (Exception e2)
+                {
+
+                }
+
               /*  AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
                 AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));*/
             }
@@ -290,7 +298,14 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
             AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
             AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
         } else {
-            Toast.makeText(activity, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
+            try {
+                Toast.makeText(GetAirportMaghsadActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
+            }
+            catch (Exception e)
+            {
+
+            }
+
 
         }
     }
