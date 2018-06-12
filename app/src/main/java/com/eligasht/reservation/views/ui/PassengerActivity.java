@@ -136,7 +136,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public static String searchText = "";
     public boolean checkDomestic=false;
 	public static long GET_PRICE_KHADAMAT;
-
+	public LinearLayout llAddPassenger;
 	GetKhadmatAdapter mAdapter;
 	ScrollView myScrollView;
 	private EditText searchtxt;
@@ -188,6 +188,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		txttavalodm.setOnClickListener(this);
 		txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
 		txtexp_passport.setOnClickListener(this);
+
+		llAddPassenger = (LinearLayout) findViewById(R.id.llAddPassenger);
+		llAddPassenger.setOnClickListener(this);
 
 		Prefs.putString("IST","F");
 
@@ -845,7 +848,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		https://github.com/multidots/android-fingerprint-authentication.git
 		switch (v.getId()) {
 
-			case R.id.txtMore:
+			case R.id.llAddPassenger:
+
+
+				break;
+				case R.id.txtMore:
 
 				linearMahaleeghamat.setVisibility(View.VISIBLE);
 				linearMeliyat.setVisibility(View.VISIBLE);

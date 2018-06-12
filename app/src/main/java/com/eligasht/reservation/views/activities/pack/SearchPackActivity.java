@@ -115,8 +115,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         Window window = getWindow();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-            window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this
-                    , R.color.colorPrimaryDark));
+            window.setStatusBarColor(ContextCompat.getColor(SearchPackActivity.this , R.color.colorPrimaryDark));
         }
         initViews();
         service = ServiceGenerator.createService(ClientService.class);

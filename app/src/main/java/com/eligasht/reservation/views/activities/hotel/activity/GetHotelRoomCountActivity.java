@@ -9,12 +9,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.ModelRowCountRoom;
 import com.eligasht.reservation.views.adapters.HotelCountRoomAdapter;
 import com.eligasht.reservation.views.components.Header;
-
 import java.util.ArrayList;
 import java.util.List;
 
