@@ -2415,6 +2415,7 @@
     <string name="today">today</string>
     <string name="nomessage">You do not have a message at the moment</string>
     <string name="select_passenger">Select passenger</string>
+    <string name="_add_passenger">Add Passenger new</string>
     <string-array name="array_place">
         <item>Bangalore</item>
         <item>Tokyo</item>
