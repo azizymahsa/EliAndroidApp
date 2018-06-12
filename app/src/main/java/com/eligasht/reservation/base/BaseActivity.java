@@ -12,6 +12,8 @@ import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
 import com.eligasht.reservation.models.eventbus.TerminateBus;
+import com.eligasht.reservation.views.ui.SingletonContext;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -31,7 +33,7 @@ public abstract class BaseActivity extends Base {
         super.onCreate(savedInstanceState);
         notiRecive();
         try {
-        //    EventBus.getDefault().register(this);
+          EventBus.getDefault().register(this);
         } catch (Exception e) {
 
         }
@@ -90,8 +92,9 @@ public abstract class BaseActivity extends Base {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void terminate(TerminateBus terminateBus) {
         try {
-            if (needTerminate()) {
-                Toast.makeText(this, "زمان نشست پایان یافته است", Toast.LENGTH_SHORT).show();
+            if (needTerminate() && SingletonTimer.NEED_SHOW_TOAST) {
+                SingletonTimer.NEED_SHOW_TOAST=false;
+                TastyToast.makeText(SingletonContext.getInstance().getContext(), "زمان نشست پایان یافته است", TastyToast.LENGTH_LONG, TastyToast.ERROR);
                 finish();
             }
 
