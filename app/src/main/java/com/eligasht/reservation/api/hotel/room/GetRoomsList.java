@@ -51,7 +51,6 @@ public class GetRoomsList extends BaseAPI {
 
         } catch (Exception e) {
             Log.e("errorrrrrr",e.getMessage() );
-
         }
 
 

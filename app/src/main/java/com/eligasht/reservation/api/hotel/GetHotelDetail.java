@@ -47,7 +47,7 @@ public class GetHotelDetail extends BaseAPI {
         try {
             getHotelDetailResult = call.execute().body();
         } catch (Exception e) {
-            Log.e("errorrrrrr",e.getMessage() );
+            Log.e("errorrrrrr",e.getMessage());
         }
     }
 
