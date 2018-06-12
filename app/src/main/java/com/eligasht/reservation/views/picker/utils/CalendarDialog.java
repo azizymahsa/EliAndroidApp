@@ -828,51 +828,53 @@ public class CalendarDialog implements OnClickListener {
     }
 
     private void initClickOnCalendar(final boolean isGeorgian) {
-        this.monthAdapter.setOnDateSelect(new MonthAdapter.DateSelected() {
+        this.monthAdapter.setOnDateSelect((view, dateSelectedIndex) -> {
+         try {
+             if (isReverseTravel) {
+                 if (!(ab == -1 || indexDaySelected == -1)) {
+                     ab = -1;
+                     indexDaySelected = -1;
+                     accept.setEnabled(false);
+                     accept.setTextColor(context.getResources().getColor(R.color.gray_dark));
+                     accept.setBackgroundResource(R.drawable.radious_gray_btn_hotel);
+                 }
+                 if (ab == -1) {
+                     ab = dateSelectedIndex;
+                     accept.setEnabled(false);
+                     accept.setTextColor(context.getResources().getColor(R.color.gray_dark));
+                     accept.setBackgroundResource(R.drawable.radious_gray_btn_hotel);
+                 } else if (ab > dateSelectedIndex) {
+                     ab = dateSelectedIndex;
+                     f13913a = false;
+                 } else if (ab == dateSelectedIndex && (typeUsageOfCalendar.equals("Hotel") || typeUsageOfCalendar.equals("AutoAlert"))) {
+                     f13913a = false;
+                 } else {
+                     indexDaySelected = dateSelectedIndex;
+                     accept.setEnabled(true);
+                     accept.setTextColor(context.getResources().getColor(R.color.btn));
+                     accept.setBackgroundResource(R.drawable.radious_accent_btn_calendar);
+                 }
+             } else {
+                 accept.setEnabled(true);
+                 accept.setTextColor(context.getResources().getColor(R.color.btn));
+                 accept.setBackgroundResource(R.drawable.radious_accent_btn_calendar);
+             }
+             if (isGeorgian) {
+                 if ((dateSelectedIndex - f13935x) + UiUtils.m18456b(1, calendarTool.m18354e(), calendarTool.m18353d()) > UiUtils.m18437a(true, calendarTool.m18353d())) {
+                     m18313a(UiUtils.m18434a((dateSelectedIndex - f13935x) + UiUtils.m18456b(1, calendarTool.m18354e(), calendarTool.m18353d() + 1), calendarTool.m18353d() + 1, isGeorgian), calendarTool.m18353d() + 1, (dateSelectedIndex - f13935x) + UiUtils.m18456b(1, calendarTool.m18354e(), calendarTool.m18353d() + 1));
+                 } else {
+                     m18313a(UiUtils.m18434a((dateSelectedIndex - f13935x) + UiUtils.m18456b(1, calendarTool.m18354e(), calendarTool.m18353d()), calendarTool.m18353d(), isGeorgian), calendarTool.m18353d(), (dateSelectedIndex - f13935x) + UiUtils.m18456b(1, calendarTool.m18354e(), calendarTool.m18353d()));
+                 }
+             } else if ((dateSelectedIndex - f13935x) + UiUtils.m18433a(1, calendarTool.m18350b(), calendarTool.m18348a()) > UiUtils.m18437a(false, calendarTool.m18348a())) {
+                 m18313a(UiUtils.m18434a((dateSelectedIndex - f13935x) + UiUtils.m18433a(1, calendarTool.m18350b(), calendarTool.m18348a() + 1), calendarTool.m18348a() + 1, isGeorgian), calendarTool.m18348a() + 1, (dateSelectedIndex - f13935x) + UiUtils.m18433a(1, calendarTool.m18350b(), calendarTool.m18348a() + 1));
+             } else {
+                 m18313a(UiUtils.m18434a((dateSelectedIndex - f13935x) + UiUtils.m18433a(1, calendarTool.m18350b(), calendarTool.m18348a()), calendarTool.m18348a(), isGeorgian), calendarTool.m18348a(), (dateSelectedIndex - f13935x) + UiUtils.m18433a(1, calendarTool.m18350b(), calendarTool.m18348a()));
+             }
+         }
+         catch (Exception e)
+         {
 
-
-            public void onDateSelected(View view, int dateSelectedIndex) {
-                if (isReverseTravel) {
-                    if (!(ab == -1 || indexDaySelected == -1)) {
-                        ab = -1;
-                        indexDaySelected = -1;
-                        accept.setEnabled(false);
-                        accept.setTextColor(context.getResources().getColor(R.color.gray_dark));
-                        accept.setBackgroundResource(R.drawable.radious_gray_btn_hotel);
-                    }
-                    if (ab == -1) {
-                        ab = dateSelectedIndex;
-                        accept.setEnabled(false);
-                        accept.setTextColor(context.getResources().getColor(R.color.gray_dark));
-                        accept.setBackgroundResource(R.drawable.radious_gray_btn_hotel);
-                    } else if (ab > dateSelectedIndex) {
-                        ab = dateSelectedIndex;
-                        f13913a = false;
-                    } else if (ab == dateSelectedIndex && (typeUsageOfCalendar.equals("Hotel") || typeUsageOfCalendar.equals("AutoAlert"))) {
-                        f13913a = false;
-                    } else {
-                        indexDaySelected = dateSelectedIndex;
-                        accept.setEnabled(true);
-                        accept.setTextColor(context.getResources().getColor(R.color.btn));
-                        accept.setBackgroundResource(R.drawable.radious_accent_btn_calendar);
-                    }
-                } else {
-                    accept.setEnabled(true);
-                    accept.setTextColor(context.getResources().getColor(R.color.btn));
-                    accept.setBackgroundResource(R.drawable.radious_accent_btn_calendar);
-                }
-                if (isGeorgian) {
-                    if ((dateSelectedIndex - f13935x) + UiUtils.m18456b(1, calendarTool.m18354e(), calendarTool.m18353d()) > UiUtils.m18437a(true, calendarTool.m18353d())) {
-                        m18313a(UiUtils.m18434a((dateSelectedIndex - f13935x) + UiUtils.m18456b(1, calendarTool.m18354e(), calendarTool.m18353d() + 1), calendarTool.m18353d() + 1, isGeorgian), calendarTool.m18353d() + 1, (dateSelectedIndex - f13935x) + UiUtils.m18456b(1, calendarTool.m18354e(), calendarTool.m18353d() + 1));
-                    } else {
-                        m18313a(UiUtils.m18434a((dateSelectedIndex - f13935x) + UiUtils.m18456b(1, calendarTool.m18354e(), calendarTool.m18353d()), calendarTool.m18353d(), isGeorgian), calendarTool.m18353d(), (dateSelectedIndex - f13935x) + UiUtils.m18456b(1, calendarTool.m18354e(), calendarTool.m18353d()));
-                    }
-                } else if ((dateSelectedIndex - f13935x) + UiUtils.m18433a(1, calendarTool.m18350b(), calendarTool.m18348a()) > UiUtils.m18437a(false, calendarTool.m18348a())) {
-                    m18313a(UiUtils.m18434a((dateSelectedIndex - f13935x) + UiUtils.m18433a(1, calendarTool.m18350b(), calendarTool.m18348a() + 1), calendarTool.m18348a() + 1, isGeorgian), calendarTool.m18348a() + 1, (dateSelectedIndex - f13935x) + UiUtils.m18433a(1, calendarTool.m18350b(), calendarTool.m18348a() + 1));
-                } else {
-                    m18313a(UiUtils.m18434a((dateSelectedIndex - f13935x) + UiUtils.m18433a(1, calendarTool.m18350b(), calendarTool.m18348a()), calendarTool.m18348a(), isGeorgian), calendarTool.m18348a(), (dateSelectedIndex - f13935x) + UiUtils.m18433a(1, calendarTool.m18350b(), calendarTool.m18348a()));
-                }
-            }
+         }
         });
     }
 

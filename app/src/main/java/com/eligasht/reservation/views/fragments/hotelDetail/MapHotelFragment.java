@@ -51,18 +51,34 @@ public class MapHotelFragment extends Fragment implements OnMapReadyCallback {
         if (view != null)
             return view;
         view = inflater.inflate(R.layout.fragment_map_hotel, container, false);
-        if (serviceOK()) {
-            mMapView = (MapView) view.findViewById(R.id.mapView);
-            mMapView.onCreate(savedInstanceState);
+
+        try {
+            if (serviceOK()) {
+                mMapView = (MapView) view.findViewById(R.id.mapView);
+                mMapView.onCreate(savedInstanceState);
+            }
+            mMapView.onResume(); //
         }
-        mMapView.onResume(); //
+        catch (Exception e)
+        {
+
+        }
+
 
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mMapView.getMapAsync(this);
+
+        try {
+            mMapView.getMapAsync(this);
+        }
+        catch (Exception e)
+        {
+
+        }
+
 
         return view;
     }

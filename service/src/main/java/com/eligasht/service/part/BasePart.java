@@ -1,33 +1,19 @@
 package com.eligasht.service.part;
 
 import android.os.Handler;
-import android.support.annotation.IdRes;
-import android.support.annotation.RawRes;
-import android.util.Log;
 
 import com.eligasht.service.BuildConfig;
 import com.eligasht.service.generator.ServiceGenerator;
-import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.helper.Const;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.mock.Mock;
 import com.eligasht.service.mock.MockProcessor;
-import com.eligasht.service.model.BaseModel;
 import com.eligasht.service.model.test.SingletonResponse;
-import com.example.type.TypeResolver;
-
-import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.RequestBody;
-import okio.Buffer;
 import retrofit2.Response;
 
 
@@ -89,7 +75,7 @@ public abstract class BasePart {
 
                     @Override
                     public void onError(Throwable e) {
-                  e.printStackTrace();
+                        e.printStackTrace();
                         listener.onError(e.getMessage());
                     }
 
