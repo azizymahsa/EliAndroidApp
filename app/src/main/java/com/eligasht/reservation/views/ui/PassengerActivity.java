@@ -138,7 +138,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public static String searchText = "";
     public boolean checkDomestic=false;
 	public static long GET_PRICE_KHADAMAT;
-
+	public LinearLayout llAddPassenger;
 	GetKhadmatAdapter mAdapter;
 	ScrollView myScrollView;
 	private EditText searchtxt;
@@ -190,6 +190,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		txttavalodm.setOnClickListener(this);
 		txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
 		txtexp_passport.setOnClickListener(this);
+
+		llAddPassenger = (LinearLayout) findViewById(R.id.llAddPassenger);
+		llAddPassenger.setOnClickListener(this);
 
 		Prefs.putString("IST","F");
 
@@ -275,7 +278,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				//convert to miladi
 				String[] dateSplite3 = date_server(yearSh, monthSh - 1, daySh - 1).split("-");
 
-
 				String dayMF1 = dateSplite3[2];
 				String monthMF1 = dateSplite3[1];
 				String yearMF1 = dateSplite3[0];
@@ -285,7 +287,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				datePickerDialogGregorian1.show(getFragmentManager(), "DatePickerDialogGregorianRaft");
 			}
 		});
-
 
 		String RengAge=txtTitleCountM.getText().toString();
 		Log.e("RengAge:", RengAge);
@@ -361,8 +362,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		persianCalendar2.set(persianCalendarDatePicker.getPersianYear()+6, persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay() );
 		datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
 		///////end setMin
-
-///////////////////////////////
 
 		/////////////////////
 		data=new ArrayList<PurchaseFlightResult>();
@@ -517,7 +516,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		linearMeliyat= (LinearLayout) findViewById(R.id.linearMeliyat);
 
 		txtnameP= (EditText)findViewById(R.id.txtnameP);
-		//	txtnameP.setHint("لطفا نام را فارسی وارد کنید");
+		//txtnameP.setHint("لطفا نام را فارسی وارد کنید");
 		//txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
 		txtnameP.setOnFocusChangeListener(this);
 		txtfamilyP= (EditText)findViewById(R.id.txtfamilyP);
@@ -614,7 +613,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	@Override
 	public void onFocusChange(View v, boolean hasFocus) {
 		switch (v.getId()){
-
 
 //مسافر
 			case R.id.txtmahale_eghamat:
@@ -810,7 +808,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
 
 					}else{
-						//((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
+
 						txtmobileP.setError(getString(R.string.Please_enter_the_mobile_number));
 					}}
 				break;
@@ -852,8 +850,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		https://github.com/multidots/android-fingerprint-authentication.git
 		switch (v.getId()) {
 
+			case R.id.llAddPassenger:
 
-			case R.id.txtMore:
+
+				break;
+				case R.id.txtMore:
 
 				linearMahaleeghamat.setVisibility(View.VISIBLE);
 				linearMeliyat.setVisibility(View.VISIBLE);
@@ -871,7 +872,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}else if (linear_list_khadamat.getVisibility() == View.VISIBLE) {
 					linear_list_khadamat.setVisibility(View.GONE);
 					linear_mosaferan.setVisibility(View.VISIBLE);
-
 
 					txtTitle.setText(R.string.passneger_info);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
@@ -896,7 +896,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						}
 					}
 					counter--;
-					//xtTitleCountM.setText(getString(R.string.info_passenger) + counter);
+
 					imgCount.setText(counter+"");
 					///////////////////
 				}else if (linear_mosaferan.getVisibility() == View.VISIBLE) {
@@ -912,7 +912,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					Prefs.putBoolean("BACK_HOME", true);
 					finish();
 				}
-
 
 				break;
 			case R.id.btn_next_partnerInfo:
@@ -948,7 +947,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						String RqPartner_Mobile= txtmobileP.getText().toString();
 						String RqPartner_NationalCode= txtkodemeliP.getText().toString();
 						String RqPartner_Tel= null;
-
 
 						String errorMessage="";
 						String flagMosafer="T";
@@ -1015,14 +1013,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							flagMosafer=flagMosafer+"F";
 							errorMessage=errorMessage+"\n"+"* "+getString(R.string.Enter_the_correct_mobile_format);
 						}
-					/*if(RqPartner_NationalCode != null)
-						if( RqPartner_NationalCode.length()>1 && RqPartner_NationalCode.matches("[0-9]+")){*/
+
 						if(RqPartner_NationalCode != null)
 							if( RqPartner_NationalCode.length()==10 && RqPartner_NationalCode.matches("[0-9]+")){
 								((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
 								flagMosafer=flagMosafer+"T";
 							}else{
-								//((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
+
 								flagMosafer=flagMosafer+"F";
 								errorMessage=errorMessage+"\n"+"* "+getString(R.string.The_national_code_is_not_correct);
 							}
@@ -1296,9 +1293,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							System.out.println("gender:"+Gender);
 							//	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 							if(counter-1 ==1){
-								db.insertData(counter-1,getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+								db.insertData(counter-1,getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+((RqPassenger_PassNo == null || RqPassenger_PassNo=="") ? RqPassenger_NationalCode : ""), RqPassenger_Tel);
 							}else{
-								db.insertData(counter-1,txtTitleCountM.getText().toString(),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
+								db.insertData(counter-1,txtTitleCountM.getText().toString(),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+((RqPassenger_PassNo == null || RqPassenger_PassNo=="") ? RqPassenger_NationalCode : ""), RqPassenger_Tel);
 							}
 							System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
 							if(countB>=1) {
@@ -1878,7 +1875,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					}
 
-
 					//for Services=============================================================================
 					final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
 					recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
@@ -1922,14 +1918,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					if (!flightPreFactorModels.isEmpty()) {
 						llDetailFlight.setVisibility(View.VISIBLE);
 						recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
-
-
 					}
 					setAnimation();
 				} catch (Exception e) {
 					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
 					AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege)+"fff");
-
 				}
 			}
 

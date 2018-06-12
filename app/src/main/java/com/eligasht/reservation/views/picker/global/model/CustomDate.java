@@ -25,11 +25,9 @@ import calendar.PersianDate;
 
 public class CustomDate {
 
-
     private PersianDate persianDate;
     private CivilDate civilDate;
     private CustomDate anotherCustomDate = null;
-
 
     public CustomDate(String year, String month, String day) {
         if (year.startsWith("1")) {
@@ -47,7 +45,6 @@ public class CustomDate {
                 .replace("Date", "")
                 .replace("(", "")
                 .replace(")", "");
-
 
         te = te.split("\\+")[0];
         System.out.println(te);
@@ -70,16 +67,8 @@ public class CustomDate {
         PersianCalendar calendar = new PersianCalendar();
         calendar.setTimeInMillis(time);
         calendar.setTimeZone(TimeZone.getDefault());
-//        String monthName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
-//        int month = calendar.get(Calendar.DAY_OF_MONTH);
-//        String hour = String.valueOf(calendar.get(Calendar.HOUR_OF_DAY));
-//        String min = String.valueOf(calendar.get(Calendar.MINUTE));
-//        StringBuilder builder = new StringBuilder();
-//        builder.append(month).append(" ").append(monthName).append(" ").append(SingletonContext.getInstance().getContext().getString(R.string.hour)).append(" ").append(hour).append(":").append(min);
-//        return builder.toString();
         return calendar.getPersianLongDateAndTime();
     }
-
 
     public CustomDate(int year, int month, int day) {
         String y = String.valueOf(year);
@@ -96,22 +85,18 @@ public class CustomDate {
         long start = startDate.getTimeInMillis();
         long end = endDate.getTimeInMillis();
         return TimeUnit.MILLISECONDS.toDays((end - start)) >= 0;
-        // return TimeUnit.MILLISECONDS.toDays((end - start));
     }
-
 
     public static long compareTwoDays(Calendar startDate, Calendar endDate) {
         long start = startDate.getTimeInMillis();
         long end = endDate.getTimeInMillis();
         return TimeUnit.MILLISECONDS.toDays((end - start));
-        // return TimeUnit.MILLISECONDS.toDays((end - start));
     }
 
     public static CustomDate today() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getDefault());
         return new CustomDate(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH));
-
     }
 
     public int getPersianYear() {
@@ -176,10 +161,8 @@ public class CustomDate {
             addDay(1);
             return true;
         }
-
         return false;
     }
-
 
     private void addDay(int day) {
         Calendar calendar = Calendar.getInstance();

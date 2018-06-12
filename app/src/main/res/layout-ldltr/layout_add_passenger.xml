@@ -309,7 +309,6 @@
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-
                         android:layout_marginTop="10dp"
                         android:orientation="vertical">
 
@@ -319,7 +318,6 @@
                             android:layout_marginRight="8dp"
                             android:layout_marginTop="1dp"
                             android:orientation="horizontal">
-
 
                             <TextView
                                 android:id="@+id/lblnumber_passport"
@@ -334,7 +332,6 @@
                                 android:layout_width="15dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="right"
-
                                 android:gravity="right"
                                 android:text="*"
                                 android:textColor="#ff0000" />
@@ -344,7 +341,6 @@
                             android:id="@+id/txtnumber_passport"
                             android:layout_width="match_parent"
                             android:layout_height="32dp"
-
                             android:layout_marginRight="5dp"
                             android:layout_weight="0.62"
                             android:background="@drawable/background_strock_white"

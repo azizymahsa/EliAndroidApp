@@ -22,7 +22,6 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
     private MapHotelFragment mapHotelFragment;
     int count;
 
-
     public HotelDetailViewPager(Context context, FragmentManager fm,boolean isPckage) {
         super(fm);
         this.context = context;
@@ -33,9 +32,6 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
         }else{
             count=5;
         }
-
-
-
     }
 
     public MapHotelFragment getMapHotelFragment() {
@@ -53,14 +49,12 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
                 return PanoramaFragment.instance();
             case 1:
                 return commentHotelFragment;
-
             case 2:
                 return mapHotelFragment;
             case 3:
                 return HotelFacilityFragment.instance();
             case 4:
                 return RoomHotelFragment.instance();
-
             default:
                 return RoomHotelFragment.instance();
         }
@@ -73,19 +67,15 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-
                 return "نما";
             case 1:
                 return context.getString(R.string.Comments);
-
             case 2:
                 return context.getString(R.string.Map);
             case 3:
-
                 return context.getString(R.string.Possibilities);
             case 4:
                 return context.getString(R.string.ReservRoom);
-
             default:
                 return context.getString(R.string.edit_profile);
         }

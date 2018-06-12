@@ -356,8 +356,7 @@ class OverlayRouteActivity : BaseActivity(), OnMapReadyCallback, LocationAlertDi
             view.layout(0, 0, displayMetrics.widthPixels,
                     displayMetrics.heightPixels)
             view.buildDrawingCache()
-            val bitmap = Bitmap.createBitmap(view.measuredWidth,
-                    view.measuredHeight, Bitmap.Config.ARGB_8888)
+            val bitmap = Bitmap.createBitmap(view.measuredWidth,view.measuredHeight, Bitmap.Config.ARGB_8888)
 
             val canvas = Canvas(bitmap)
             view.draw(canvas)
@@ -387,9 +386,6 @@ class OverlayRouteActivity : BaseActivity(), OnMapReadyCallback, LocationAlertDi
                 resultGiftDialog.show(fm, "dialog")          }
             catch (e: Exception) {
             }
-
-
-
         }, 2500)
     }
 

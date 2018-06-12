@@ -2383,4 +2383,5 @@
     <string name="today">امروز</string>
     <string name="nomessage">شما در حال حاضر هیچ پیامی ندارید</string>
     <string name="select_passenger">انتخاب مسافر</string>
+    <string name="_add_passenger">اضافه کردن مسافر جدید</string>
 </resources>

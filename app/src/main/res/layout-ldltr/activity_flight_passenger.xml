@@ -691,6 +691,34 @@
                         android:orientation="vertical">
 
                         <LinearLayout
+                            android:id="@+id/llAddPassenger"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/toolbar_color_press"
+                            android:foreground="?android:selectableItemBackground"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/_10dp"
+                                android:text="@string/_add_passenger"
+                                android:textAppearance="@style/IrsansBold"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14dp_txtSize" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/add"
+                                android:textAppearance="@style/IconFonts2"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_25dp_normal_iconSize" />
+                        </LinearLayout>
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="1dp"

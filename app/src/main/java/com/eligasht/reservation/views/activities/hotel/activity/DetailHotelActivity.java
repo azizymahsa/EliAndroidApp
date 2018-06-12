@@ -81,11 +81,9 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             switch (tab.getPosition()) {
                 case 0:
                     app_bar.setExpanded(false,true);
-
                     break;
                 case 1:
                     hotelDetailViewPager.getCommentHotelFragment().setDataComment(commentModelBus);
-
                     break;
 
             }
@@ -170,9 +168,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         hotelDetailViewPager.getCommentHotelFragment().setDataComment(commentModelBus);
 
                         break;
-
-                }
-            }
+                }            }
 
             @Override
             public void onPageScrollStateChanged(int state) {

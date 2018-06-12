@@ -52,8 +52,6 @@ public class FilterHotelTypeAdapter extends BaseAdapter{
             holder = new ViewHolder();
             holder.tvTitle = convertView.findViewById(R.id.tvTitle);
             holder.checkbox = convertView.findViewById(R.id.checkbox);
-
-
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -67,31 +65,17 @@ public class FilterHotelTypeAdapter extends BaseAdapter{
         if (hotelProprtiesModels.get(position).isCheck()){
             holder.checkbox.setChecked(true);
 
-
-
-
-
         }else{
             holder.checkbox.setChecked(false);
 
         }
 
-
-
-
-
-
-
-
-
         return convertView;
     }
-
 
     public class ViewHolder{
         TextView tvTitle;
         SmoothCheckBox checkbox;
-
 
     }
 }

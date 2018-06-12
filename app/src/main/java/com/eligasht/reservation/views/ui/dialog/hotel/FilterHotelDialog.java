@@ -72,7 +72,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
                 false);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
-
         btnOk = rootView.findViewById(R.id.btnOk);
         scrollViewObject = rootView.findViewById(R.id.scrollViewObject);
         btnDeletFilter = rootView.findViewById(R.id.btnDeletFilter);
@@ -93,7 +92,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         lvBestOffAdapter = new FilterHotelTypeAdapter(filterHotelBestOffModels, activity);
         starFilterAdapter = new StarFilterAdapter(filterHotelStarsModels, activity);
 
-
         lvPrice.setAdapter(priceFilterAdapter);
         lvHotelTypes.setAdapter(filterHotelTypeAdapter);
         lvLocationTypes.setAdapter(filterHotelLocationAdapter);
@@ -106,14 +104,10 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (filterHotelStarsModels.get(position).isCheck()) {
                     filterHotelStarsModels.set(position, new FilterStarModel(filterHotelStarsModels.get(position).getTitle(), false, filterHotelStarsModels.get(position).getStar()));
-
                 } else {
                     filterHotelStarsModels.set(position, new FilterStarModel(filterHotelStarsModels.get(position).getTitle(), true, filterHotelStarsModels.get(position).getStar()));
-
-
                 }
                 starFilterAdapter.notifyDataSetChanged();
-
             }
         });
 
@@ -129,7 +123,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
 
             }
         });
-
 
         lvHotelTypes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -187,8 +180,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         return rootView;
     }
 
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -217,11 +208,9 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
                 for (int i = 0; i < filterHotelPriceModel.size(); i++) {
                     filterHotelPriceModel.set(i, new FilterPriceModel(filterHotelPriceModel.get(i).getDiff(), filterHotelPriceModel.get(i).getX(), false));
 
-
                 }
                 for (int i = 0; i < filterHotelLocationModels.size(); i++) {
                     filterHotelLocationModels.set(i, new FilterHotelTypeModel(filterHotelLocationModels.get(i).getTitle(), false));
-
                 }
                 filterHotelTypeAdapter.notifyDataSetChanged();
                 filterHotelFacilitiesAdapter.notifyDataSetChanged();
@@ -231,11 +220,8 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
                 starFilterAdapter.notifyDataSetChanged();
                 if (filter.isEmpty()) {
                     filter.add(new FilterModel(false, false, false, false, false, false, false, true));
-
-
                 } else {
                     filter.set(0, new FilterModel(false, false, false, false, false, false, false, true));
-
                 }
                 filterHotelDialogListenerArray.onReturnValue(filter, searchtxt.getText().toString(), filterHotelTypeModels, filterHotelFacilitiesModels,
                         filterHotelPriceModel, filterHotelLocationModels, filterHotelBestOffModels, filterHotelStarsModels, remove);
@@ -247,11 +233,6 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
         }
     }
 
-/*public void show(){
-      *//*  if (!dialog.isShowing()){
-            dialog.show();
-        }*//*
-}*/
 
     private void initialize(final Context activity, ArrayList<FilterModel> filter,
                             FilterHotelDialogListenerArray filterHotelDialogListenerArray, final ArrayList<FilterHotelTypeModel> filterHotelTypeModels,

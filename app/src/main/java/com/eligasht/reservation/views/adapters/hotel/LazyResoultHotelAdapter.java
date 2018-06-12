@@ -45,8 +45,6 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         this.context = context;
         inflater = LayoutInflater.from(context);
 
-
-
     }
 
     @Override
@@ -81,7 +79,6 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
             holder.txt_lable_hotel = convertView.findViewById(R.id.txt_lable_hotel);
             holder.cvHotel = convertView.findViewById(R.id.cvHotel);
             holder.rlListItem = convertView.findViewById(R.id.rlListItem);
-
 
             convertView.setTag(holder);
         } else {
@@ -119,15 +116,11 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
                 i.putExtra("DateTime", DateTime.getText().toString());
 
                 i.putExtra("type", 2);
-                SwipeBackActivityHelper.activityBuilder(activity)
-                        .intent(i)
-                        .needParallax(true)
+                SwipeBackActivityHelper.activityBuilder(activity).intent(i).needParallax(true)
                         .needBackgroundShadow(true)
                         .startActivity();
             }
         });
-
-
 
 
         if (selectHotelModelArrayList.get(position).isOff()) {
@@ -209,11 +202,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
                 holder.ivRate.setVisibility(View.GONE);
 
                 break;
-
-
         }
-
-
         return convertView;
     }
 
@@ -223,8 +212,6 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         ImageView ivHotelPic, ivRate;
         CardView cvHotel;
         RelativeLayout rlListItem;
-
-
 
     }
 
