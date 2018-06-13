@@ -222,6 +222,9 @@
         <activity
             android:name=".reservation.views.activities.NotificationActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".reservation.views.activities.GetPassengerActivity"
+            android:screenOrientation="portrait" />
 
 
 

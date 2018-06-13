@@ -450,7 +450,7 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     @Override

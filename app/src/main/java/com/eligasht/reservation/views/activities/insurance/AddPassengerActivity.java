@@ -215,7 +215,7 @@ public class AddPassengerActivity extends BaseActivity implements
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     @Override

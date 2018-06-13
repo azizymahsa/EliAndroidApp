@@ -119,7 +119,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public boolean needTerminate() {
-        return false;
+        return true;
     }
 
     public void initView() {
