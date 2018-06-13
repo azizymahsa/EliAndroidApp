@@ -37,6 +37,7 @@ public class NotificationActivity extends Base {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_activity);
         Prefs.putInt("notifiCounter",0);
+        EventBus.getDefault().register(this);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "پیام ها");
         recyclerView =findViewById(R.id.recyclerView);
         elNotFound =findViewById(R.id.elNotFound);
@@ -58,7 +59,7 @@ public class NotificationActivity extends Base {
     @Override
     protected void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+
 
     }
 

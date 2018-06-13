@@ -21,6 +21,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
+import com.eligasht.reservation.base.SingletonTimer;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
@@ -643,6 +644,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 rlList.setVisibility(View.GONE);
                 llFilter.setVisibility(View.GONE);
             } else {
+                SingletonTimer.getInstance().start();
                 if (rvWeather.getAdapter()!=null){
                     rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
                     slidingDrawer.setVisibility(View.VISIBLE);
@@ -751,13 +753,19 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 adapter.notifyDataSetChanged();
             }
         } catch (Exception e) {
-            onErrors();
+            elNotFound.setVisibility(View.VISIBLE);
+            tvAlert.setText(R.string.NoResult);
+            tvAlertDesc.setText(getString(R.string.change_date));
+            list.setVisibility(View.GONE);
+            rlList.setVisibility(View.GONE);
+            llFilter.setVisibility(View.GONE);
         }
         requestCheckFlt();
     }
 
     @Override
     public void onError(String message) {
+
         onErrors();
     }
 

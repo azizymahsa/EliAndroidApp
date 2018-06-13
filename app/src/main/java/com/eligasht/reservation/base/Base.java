@@ -1,5 +1,6 @@
 package com.eligasht.reservation.base;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import java.util.Locale;
 public abstract class Base extends AppCompatActivity implements ConnectivityChangeListener {
     InternetAlert internetAlert;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         try {
@@ -43,7 +46,6 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
             getBaseContext().getResources().updateConfiguration(config,
                     getBaseContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
-            Log.e("testerror", e.getMessage());
         }
         super.onCreate(savedInstanceState);
         ConnectionBuddy.getInstance().clearNetworkCache(this, savedInstanceState);
@@ -107,6 +109,8 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
         } catch (Exception e) {
         }
     }
+
+
 
     /**
      * Override this method if you want to manually handle connectivity change events.
