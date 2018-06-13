@@ -198,7 +198,7 @@
             android:layout_height="match_parent"
 
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <ScrollView
                 android:id="@+id/scroll_partner"
@@ -635,7 +635,7 @@
             android:layout_height="match_parent"
             android:layout_margin="1dp"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <!-- ///////////////////////// -->
             <ScrollView
@@ -676,11 +676,16 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|center_vertical"
                             android:layout_marginRight="2dp"
-                            android:layout_marginTop="0dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/textview55"
+                            android:textColor="@color/text_color_2e"
 
                             android:gravity="center|center_vertical"
                             android:text="@string/First_passenger_information"
-                            android:textSize="@dimen/_13dp_normal_textSize" />
+                            android:textSize="@dimen/_13dp_normal_textSize"
+                            android:padding="8dp"
+                            android:layout_marginBottom="5dp"
+                            />
                     </LinearLayout>
 
                     <LinearLayout

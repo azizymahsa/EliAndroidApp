@@ -37,24 +37,19 @@ public class FilterFlightDialogNew implements View.OnClickListener, SmoothCheckB
     FancyButton btnOk, btnCancel, btnDeletFilter;
     SmoothCheckBox noStop, oneStop, twoStopMore, economiF, businessF, ferstF;
     TextView txtTavaghof;
-    // FilterFlightDialogListenerNew filterFlightDialogListenerNew;
     FilterFlightDialogListenerArray filterFlightDialogListenerArray;
     SmoothCheckBox remove, hotel, boutique, apartment, resort;
     ArrayList<FilterModelّFlight> filter;
     boolean noStop_;
     boolean twoStopMore_;
     boolean oneStop_;
-
     boolean economiF_;
     boolean businessF_;
     boolean ferstF_;
-
     boolean remove_;
-
     NonScrollListView lv;
     FilterAdapter adapter;
     private ArrayList<ModelCheckBox> modelCheckBoxes = new ArrayList<>();
-
 
     public FilterFlightDialogNew(final Activity activity, ArrayList<FilterModelّFlight> filter, FilterFlightDialogListenerArray filterFlightDialogListenerArray, ArrayList<ModelCheckBox> filterAirlines) {
         this.activity = activity;

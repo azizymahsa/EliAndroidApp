@@ -30,7 +30,6 @@ public class HotelNameApi extends BaseAPI {
         );
     }
 
-
     public HotelNameApi(HotelNameRequest hotelAvailRequestModel) {
         this.hotelAvailRequestModel = hotelAvailRequestModel;
         send();

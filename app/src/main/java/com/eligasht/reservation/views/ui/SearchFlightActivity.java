@@ -538,7 +538,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
         linear_expand = findViewById(R.id.linear_expand);
         linear_expand.setVisibility(View.GONE);
         RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
-        txtNoResult.setText(message);
+        txtNoResult.setText(getString(R.string.ErrorServer));
         linear_no_result.setVisibility(View.VISIBLE);
     }
 
@@ -1508,7 +1508,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 linear_expand = findViewById(R.id.linear_expand);
                 linear_expand.setVisibility(View.GONE);
                 RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
-                txtNoResult.setText(message);
+                txtNoResult.setText(getString(R.string.ErrorServer));
                 linear_no_result.setVisibility(View.VISIBLE);
             }
         }, requestChangeFlight);
@@ -2295,7 +2295,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 linear_expand = findViewById(R.id.linear_expand);
                 linear_expand.setVisibility(View.GONE);
                 RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
-                txtNoResult.setText(message);
+                txtNoResult.setText(getString(R.string.ErrorServer));
                 linear_no_result.setVisibility(View.VISIBLE);
             }
         }, requestDomesticFlight);

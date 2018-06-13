@@ -231,12 +231,10 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                 GetError = responsAirports.getGetAirportWithParentsWithCultureResult().getErrors().get(0).getMessage();
             }
             if (GetError.length() > 1) {
-     /*           AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this,true,false);
-                AlertDialogPassenger.setText(GetError, getString(R.string.massege));*/
+
                 Toast.makeText(this, GetError, Toast.LENGTH_SHORT).show();
 
             } else {
-                // responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().
                 for (int i = 0; i < responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().size(); i++) {
                     Country fishData = new Country();
                     fishData.setCityName(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getCityName());

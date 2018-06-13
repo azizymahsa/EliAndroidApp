@@ -14,7 +14,6 @@ public class PinModelHeader {
     private String txtArrivelTrueLast;
     private String txtDepurtureTrueOne;
 
-
     private String num_flight_r;
     private String  num_flight_b;
 
@@ -25,7 +24,6 @@ public class PinModelHeader {
     private String lblFlightArrivalTimeB;
 
     private String  lblAdlCost;
-
 
     private String lblProductrow;
 

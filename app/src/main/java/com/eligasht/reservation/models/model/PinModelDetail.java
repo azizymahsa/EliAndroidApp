@@ -6,23 +6,23 @@ package com.eligasht.reservation.models.model;
 
 public class PinModelDetail {
 
-private double AdlBaseFare;
-private double Taxes;
-private double TotalFare;
-private String FlightTimeR;
-private  String FlightArrivalTimeR;
+    private double AdlBaseFare;
+    private double Taxes;
+    private double TotalFare;
+    private String FlightTimeR;
+    private String FlightArrivalTimeR;
 
-private String DepartureCityNameFa;
-private String DepartureAirportNameFaR;
+    private String DepartureCityNameFa;
+    private String DepartureAirportNameFaR;
 
-private String ArrivalCityNameFa;
-private  String ArrivalAirportNameFaR;
+    private String ArrivalCityNameFa;
+    private String ArrivalAirportNameFaR;
 
-private  String AirlineCode;
-private String FlightNumberR;
-private  String AirlineNameFaR;
+    private String AirlineCode;
+    private String FlightNumberR;
+    private String AirlineNameFaR;
 
-private int sizeEpnd;
+    private int sizeEpnd;
 
     public PinModelDetail(double adlBaseFare, double taxes, double totalFare, String flightTimeR, String flightArrivalTimeR, String departureCityNameFa, String departureAirportNameFaR, String arrivalCityNameFa, String arrivalAirportNameFaR, String airlineCode, String flightNumberR, String airlineNameFaR, int sizeEpnd) {
         AdlBaseFare = adlBaseFare;

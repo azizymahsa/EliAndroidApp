@@ -86,7 +86,6 @@ public class FilterFlightDialog implements View.OnClickListener {
         if (beconomiF) {
             economiF.setChecked(true);
 
-
         }
         if (bbusinessF) {
             businessF.setChecked(true);
