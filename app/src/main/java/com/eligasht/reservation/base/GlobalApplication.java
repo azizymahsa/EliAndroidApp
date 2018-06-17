@@ -137,9 +137,6 @@ public class GlobalApplication extends ServiceApplication {
         super.onCreate();
         SugarContext.init(this);
 
-
-
-
         sAnalytics = GoogleAnalytics.getInstance(this);
 
         SingletonContext.getInstance().setContext(this);
