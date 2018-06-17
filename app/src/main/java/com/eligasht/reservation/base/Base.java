@@ -108,6 +108,10 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
                     getBaseContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
         }
+
+
+
+
     }
 
 

@@ -28,7 +28,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 public abstract class BaseActivity extends Base {
     private BroadcastReceiver sendStartTimer;
-    private AlertDialogPolicy dialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,14 +88,6 @@ public abstract class BaseActivity extends Base {
     public void terminate(TerminateBus terminateBus) {
         try {
             if (needTerminate()) {
-                if (SingletonTimer.NEED_SHOW_TOAST) {
-                    SingletonTimer.NEED_SHOW_TOAST = false;
-                 TastyToast.makeText(SingletonContext.getInstance().getContext(), "زمان نشست پایان یافته است", TastyToast.LENGTH_LONG, TastyToast.WARNING);
-                 /*   dialog = new AlertDialogPolicy(getContext());
-                    dialog.setTitle(getString(R.string.message));
-                    dialog.setText("زمان جستجو شما به پایان رسیده است، لطفا مچددا جستجو نمایید.");*/
-
-                }
                 finish();
             }
         } catch (Exception e) {

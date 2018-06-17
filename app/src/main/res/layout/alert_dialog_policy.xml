@@ -55,6 +55,7 @@
             android:text=""
             android:gravity="left"
             android:textColor="@color/text_color_4d"
+            android:visibility="gone"
             />
 
         <TextView

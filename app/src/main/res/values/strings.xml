@@ -2417,6 +2417,7 @@
     <string name="nomessage">You do not have a message at the moment</string>
     <string name="select_passenger">Select passenger</string>
     <string name="_add_passenger">Add Passenger new</string>
+    <string name="no_contract">You currently do not have any contracts.</string>
     <string-array name="array_place">
         <item>Bangalore</item>
         <item>Tokyo</item>
