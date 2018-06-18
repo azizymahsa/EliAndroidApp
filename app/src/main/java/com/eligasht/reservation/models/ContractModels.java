@@ -20,6 +20,8 @@ public class ContractModels {
     public String hotelIssue;
     public String documents;
     public String id;
+    
+
 
     public ContractModels(String num_contract, String date, String path, String depart_date, String login_date, String sum_price, String remained_price, String follower, String email, String visaConfirm,
                           String visaIssue, String ticketConfirm, String ticketIssue, String hotelConfirm, String hotelIssue, String documents, String id) {

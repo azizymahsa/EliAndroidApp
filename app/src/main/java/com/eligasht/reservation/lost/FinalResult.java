@@ -224,7 +224,6 @@ public class FinalResult extends BaseActivity {
                     }
                     try {
                         if (!getPreFactor.getPrefactorResponse.GetPreFactorDetailsResult.PreFactor.PreFactorBookingLogs.get(0).SuccessBooking) {
-
                             tvSuccses.setVisibility(View.VISIBLE);
                         }
                     } catch (Exception e) {
