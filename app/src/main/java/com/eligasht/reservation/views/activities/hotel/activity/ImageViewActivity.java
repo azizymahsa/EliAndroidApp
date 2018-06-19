@@ -61,13 +61,6 @@ public class ImageViewActivity extends BaseActivity {
         thumbnails_scroll_view = findViewById(R.id.thumbnails_scroll_view);
         viewPager = findViewById(R.id.intro_view_pager);
 
-
-
-
-      /*  viewPager.setPageMargin(0);
-        viewPager.setOffscreenPageLimit(1);*/
-
-
         try {
             JSONArray jsonObj = new JSONArray(getIntent().getExtras().getString("list"));
           //  Log.e("testest", jsonObj.toString() );
@@ -75,7 +68,6 @@ public class ImageViewActivity extends BaseActivity {
          //   Log.e("piiccc", jsonObj.toString());
             for (int i = 0; i < jsonObj.length(); i++) {
                 images.add(new String(jsonObj.getJSONObject(i).getString("image")));
-
 
             }
             introAdapter = new IntroAdapter();
@@ -164,9 +156,6 @@ public class ImageViewActivity extends BaseActivity {
 
             container.addView(view, 0);
 
-
-
-
             GlideApp.with(ImageViewActivity.this)
                     .load(images.get(position))
                     .centerCrop()
@@ -213,7 +202,6 @@ public class ImageViewActivity extends BaseActivity {
                 convertView = inflater.inflate(R.layout.row_item_image, null);
                 holder = new ViewHolder();
                 holder.ivImage = convertView.findViewById(R.id.ivImage);
-
 
                 convertView.setTag(holder);
             } else {
