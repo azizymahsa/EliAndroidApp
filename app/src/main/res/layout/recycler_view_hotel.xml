@@ -9,7 +9,6 @@
         android:id="@+id/cvHotel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_margin="7dp"
         android:layout_marginLeft="@dimen/_10dp_margin"
         android:layout_marginRight="@dimen/_10dp_margin"
@@ -20,6 +19,7 @@
 
         <RelativeLayout
             android:id="@+id/rlListItem"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -46,12 +46,13 @@
                     android:layout_alignParentStart="true"
 
                     android:layout_alignParentTop="true"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"
+                    />
 
                 <TextView
                     android:id="@+id/tvOff"
-                    android:layout_width="@dimen/_50dp_normal"
-                    android:layout_height="@dimen/_50dp_normal_im"
+                    android:layout_width="@dimen/_40dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginBottom="20dp"
@@ -59,16 +60,14 @@
                     android:gravity="center"
 
                     android:padding="2dp"
-                    android:src="@drawable/best_seller"
                     android:text="@string/best_seller"
-                    android:textAppearance="@style/IrsansBold"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_14dp_txtSize" />
+                    android:textSize="@dimen/_10dp_textSize" />
 
                 <TextView
                     android:id="@+id/ivIsBestseler"
-                    android:layout_width="@dimen/_50dp_normal"
-                    android:layout_height="@dimen/_50dp_normal_im"
+                    android:layout_width="@dimen/_40dp"
+                    android:layout_height="@dimen/_30dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_marginBottom="20dp"
@@ -77,11 +76,12 @@
 
                     android:padding="2dp"
                     android:text="@string/best_seller"
-                    android:textAppearance="@style/IrsansBold"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/_14dp_txtSize"
+                    android:textSize="@dimen/_10dp_textSize"
                     android:visibility="gone" />
             </RelativeLayout>
+
+
             <RelativeLayout
                 android:id="@+id/RelativeLayout1"
                 android:layout_width="match_parent"
@@ -99,36 +99,35 @@
                     android:id="@+id/linearLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="5dp"
-                    android:orientation="horizontal">
-
-
-                    <TextView
-                        android:id="@+id/name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_weight="100"
-                        android:ellipsize="end"
-                        android:gravity="center|left"
-                        android:maxLines="1"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
-
-
+                    android:orientation="vertical">
                     <TextView
                         android:id="@+id/txt_lable_hotel"
                         android:layout_width="@dimen/_62dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="2dp"
                         android:background="@color/green"
                         android:gravity="center"
+                        android:layout_gravity="right"
                         android:maxLines="1"
                         android:text="هتل"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10dp_textSize" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center|left"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10dp_textSize"
+                        android:layout_marginLeft="4dp"/>
+
+
+
 
 
                 </LinearLayout>
@@ -138,9 +137,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_15dp"
                     android:layout_below="@+id/linearLayout1"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_marginLeft="2dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/llLoc"
+
+                    >
 
                     <TextView
                         android:id="@+id/tvLoc"
@@ -150,7 +151,8 @@
                         android:text="@string/icon_location2"
                         android:textAppearance="@style/IconFonts"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
+                        android:textSize="@dimen/_15dp_normal_textSize"
+                        android:layout_alignParentLeft="true"/>
 
                     <TextView
                         android:id="@+id/location"
@@ -165,23 +167,28 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10dp_textSize" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_100dp_image"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="8dp">
 
-                        <ImageView
-                            android:id="@+id/ivRate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_16dp_exit_menu_textSize"
-                            android:scaleType="fitEnd" />
-
-                    </LinearLayout>
 
                 </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="2sp"
+                    android:layout_below="@+id/llLoc"
+                    android:layout_marginTop="3dp">
 
+                    <ImageView
+                        android:id="@+id/ivRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_10dp"
+                        android:scaleType="fitEnd"
+
+                        />
+
+                </LinearLayout>
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -193,56 +200,49 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp">
-
-
+                   >
                     <TextView
                         android:id="@+id/title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
                         android:ellipsize="end"
                         android:gravity="left|center"
                         android:maxLines="1"
                         android:text="1 X STANDARD ROOM"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#253e96"
-                        android:textSize="@dimen/_13dp_normal_textSize"
+                        android:textSize="@dimen/_10dp_textSize"
                         android:textStyle="bold"
-
                         />
-
-
                 </RelativeLayout>
 
                 <TextView
                     android:id="@+id/board"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="false"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@+id/title"
-                    android:gravity="left|center"
+                    android:layout_centerInParent="true"
                     android:textColor="@color/boardColor"
-                    android:textSize="@dimen/_13dp_normal_textSize"
+                    android:textSize="@dimen/_10dp_textSize"
 
                     />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal"
-                    android:padding="5dp">
+                    android:padding="1dp"
+                    >
 
                     <TextView
                         android:id="@+id/tvRial"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="left|center"
+
                         android:text="@string/curency"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="@color/green"
-                        android:textSize="@dimen/_13dp_normal_textSize"
+                        android:textSize="@dimen/_10dp_textSize"
 
 
                         />
@@ -251,12 +251,12 @@
                         android:id="@+id/tvPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="2dp"
                         android:layout_toRightOf="@+id/tvRial"
                         android:gravity="left|center"
                         android:textAppearance="@style/IrsansBold"
                         android:textColor="#000000"
-                        android:textSize="@dimen/_13dp_normal_textSize"
+                        android:textSize="@dimen/_10dp_textSize"
 
                         />
 

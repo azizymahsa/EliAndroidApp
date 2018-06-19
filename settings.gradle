@@ -7,5 +7,6 @@ include ':connectionbuddy'
 include ':stepview'
 include ':trail'
 include ':pinentryedittext'
+include ':recyclerfab'
 //include ':library2'
 
