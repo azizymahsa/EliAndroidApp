@@ -89,7 +89,6 @@ public class ViewPagerAttention {
         public Object instantiateItem(ViewGroup container, final int position) {
             View view = View.inflate(container.getContext(), R.layout.list_image_item, null);
             ImageView image = view.findViewById(R.id.ivImage);
-
             container.addView(view, 0);
 
             GlideApp.with(activity)

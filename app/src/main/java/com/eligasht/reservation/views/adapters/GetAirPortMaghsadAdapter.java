@@ -126,8 +126,6 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 						Prefs.putString("Value-Mabda-Airport",value_Mabda_Airport);
 						Prefs.putString("Value-Mabda-Airport-Code",value_Mabda_Airport_Code);
 
-						//get
-						//Prefs.getString("Value-Mabda-Airport","");
 
 						activity.finish();
 					}
@@ -148,11 +146,6 @@ public class GetAirPortMaghsadAdapter extends BaseAdapter {
 						Prefs.putString("Value-Mabda-City",value_Mabda_City);
 						Prefs.putString("Value-Mabda-Airport",value_Mabda_Airport);
 						Prefs.putString("Value-Mabda-Airport-Code",value_Mabda_Airport_Code);
-
-						//get
-						//Prefs.getString("Value-Mabda-Airport","");
-
-
 
 						activity.finish();
 					}

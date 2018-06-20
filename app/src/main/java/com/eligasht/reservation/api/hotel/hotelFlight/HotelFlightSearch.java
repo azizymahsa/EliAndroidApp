@@ -30,7 +30,6 @@ public class HotelFlightSearch extends BaseAPI {
         );
     }
 
-
     public HotelFlightSearch(HotelAR hotelAvailRequestModel) {
         this.hotelAvailRequestModel = hotelAvailRequestModel;
         Log.e("hotel",hotelAvailRequestModel.toString());

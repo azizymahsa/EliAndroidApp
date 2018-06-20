@@ -646,16 +646,23 @@
                         android:layout_marginRight="14dp"
                         android:background="@drawable/box_passenger">
 
+
                         <TextView
                             android:id="@+id/txtTitleCountM"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|center_vertical"
                             android:layout_marginRight="2dp"
-                            android:layout_marginTop="1dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_weight="1.5"
+                            android:background="@drawable/textview55"
+
                             android:gravity="right"
+                            android:padding="8dp"
+
                             android:text="@string/First_passenger_information"
+                            android:textColor="@color/text_color_2e"
                             android:textSize="@dimen/_13dp_normal_textSize" />
 
                         <TextView
@@ -669,7 +676,8 @@
                             android:gravity="center"
                             android:text=" 1 "
                             android:textColor="#fff"
-                            android:textSize="@dimen/_12dp_normal_textSize" />
+                            android:textSize="@dimen/_12dp_normal_textSize"
+                            android:visibility="gone" />
                     </LinearLayout>
 
                     <LinearLayout

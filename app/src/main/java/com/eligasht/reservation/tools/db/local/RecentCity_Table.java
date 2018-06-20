@@ -52,13 +52,10 @@ public class RecentCity_Table extends MainLocalDB {
 		ContentValues cv = new ContentValues();
 
 		cv.put(Columns.AirPortName.value(), AirPortName);
-		
 		cv.put(Columns.CityName.value(), CityName);
 		cv.put(Columns.AirPortCode.value(), AirPortCode);
 		cv.put(Columns.flag.value(), flag);
 
-		
-		
 		openDB();
 		return (int) db.insert(TABLE_NAME, null, cv);
 	}
@@ -71,8 +68,7 @@ public class RecentCity_Table extends MainLocalDB {
 	/*****************************************************************************************/
 	public void deletById(int uuID) {
 		System.out.println("remov:"+uuID);
-		DELETE_FROM_DB(TABLE_NAME,
-				String.format("%s='%s'", Columns.Id, uuID+""));
+		DELETE_FROM_DB(TABLE_NAME,String.format("%s='%s'", Columns.Id, uuID+""));
 	}
 	/*****************************************************************************************/
 	public CursorManager getAll(int typeFlag) {

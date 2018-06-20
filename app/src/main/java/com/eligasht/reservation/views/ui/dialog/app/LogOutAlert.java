@@ -52,8 +52,6 @@ public class LogOutAlert implements View.OnClickListener {
             case R.id.btnOk:
                 activity.finish();
                 dialog.cancel();
-
-
                 break;
             case R.id.btnExit:
                 Prefs.remove("WEB_USER");

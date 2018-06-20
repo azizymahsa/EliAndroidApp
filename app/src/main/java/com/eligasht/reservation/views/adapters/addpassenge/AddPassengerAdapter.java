@@ -37,8 +37,7 @@ public class AddPassengerAdapter extends RecyclerView.Adapter<AddPassengerAdapte
     @Override
     public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         this.context = parent.getContext();
-        return new ViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.recycler_view_list_row_add_passenger, parent, false));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_view_list_row_add_passenger, parent, false));
     }
 
 
@@ -82,22 +81,15 @@ public class AddPassengerAdapter extends RecyclerView.Adapter<AddPassengerAdapte
 
                 }catch (Exception e){}
 
-
             }
         });
 
-
-
-
     }
-
-
 
     @Override
     public int getItemCount() {
         return data.size();
     }
-
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
