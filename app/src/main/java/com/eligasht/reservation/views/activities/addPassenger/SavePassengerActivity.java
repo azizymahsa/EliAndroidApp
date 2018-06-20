@@ -24,6 +24,7 @@ import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalen
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.PassengerActivity;
+import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.flight.response.purchaseServiceFlight.ResponsePurchaseFlight;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
@@ -309,6 +310,7 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
 
                 String errorMessagePartner="";
                 ///Validate
+                //if(checkDomestic){
                 if (txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length() == 10) {
                     ((EditText) findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
                     flagMosafer = flagMosafer + "T";
@@ -316,11 +318,13 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
                     flagMosafer = flagMosafer + "F";
                     errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.The_national_code_is_not_correct);
                 }
+                //}
                 if(linear_number_passport.getVisibility()==View.VISIBLE) {
                     if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
                         ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
+                        //((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_number_correctly);
                     }
@@ -329,6 +333,7 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
                     ((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
                     flagMosafer=flagMosafer+"T";
                 }else{
+                    //((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
                     flagMosafer=flagMosafer+"F";
                     errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_place_of_residence);
                 }
@@ -336,6 +341,7 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
                     ((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
                     flagMosafer=flagMosafer+"T";
                 }else{
+                    //((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
                     flagMosafer=flagMosafer+"F";
                     errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_your_nationality);
                 }
@@ -343,15 +349,18 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
                     ((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
                     flagMosafer=flagMosafer+"T";
                 }else{
+                    //((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
                     flagMosafer=flagMosafer+"F";
                     errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_date_of_birth);
                 }
-
+                ////////////////////////////////////
+                /////////////////////////////////
                 if(RqPassenger_FirstNameEn != null)
                     if( RqPassenger_FirstNameEn.length()>1 && RqPassenger_FirstNameEn.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")){
                         ((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer=flagMosafer+"T";
                     }else{
+                        //((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
                         flagMosafer=flagMosafer+"F";
                         errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Name_of_at_least_2_characters_and_maximum_100_characters);
                     }
@@ -379,16 +388,27 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
                     errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Please_choose_a_gender);
                 }
                 ///endValidate
-                if (isUpdate){
+
+                if(flagMosafer.contains("F")){
+                    //Toast.makeText(this,"اطلاعات ورودی نامعتبر است!",2000).show();
+                    try {
+                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(this,false,false);
+                        AlertDialogPassenger.setText("" + "  " + errorMessagePartner, getString(R.string.EditInput));
+                    }catch (Exception e){
+                        e.getMessage();
+                    }
+                    }else if (isUpdate){
                     PassengerDBModel passengerDBModel = PassengerDBModel.findById(PassengerDBModel.class,getIntent().getExtras().getLong("Id"));
                     passengerDBModel.update(getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                     passengerDBModel.save();
+                    finish();
                 }else{
                     PassengerDBModel passengerDBModel = new PassengerDBModel(getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
                     passengerDBModel.save();
+                    finish();
                 }
 
-                finish();
+
 
                 break;
         }

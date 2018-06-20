@@ -52,6 +52,7 @@ import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.GiftDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPolicy;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
+import com.onesignal.shortcutbadger.ShortcutBadger;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import org.greenrobot.eventbus.EventBus;

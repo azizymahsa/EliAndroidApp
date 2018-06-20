@@ -716,7 +716,6 @@
                     fancy:fb_defaultColor="@android:color/transparent"
                     fancy:fb_focusColor="#d7d7d7"
                     fancy:fb_radius="6dp"
-
                     fancy:fb_text=" "
                     fancy:fb_textColor="#FFFFFF"
                     fancy:fb_textSize="25dp" />

@@ -31,8 +31,7 @@ public class MyContractsFragment extends Fragment {
 
 
     public static MyContractsFragment instance() {
-        MyContractsFragment fragment = new MyContractsFragment();
-        return fragment;
+        return new MyContractsFragment();
     }
 
     @Override

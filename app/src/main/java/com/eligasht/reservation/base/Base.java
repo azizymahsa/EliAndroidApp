@@ -57,6 +57,7 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
     protected void onStart() {
         super.onStart();
         try {
+
             String languageToLoad = Prefs.getString("lang", "fa"); // your language
             Locale locale = new Locale(languageToLoad);
             Locale.setDefault(locale);
@@ -108,13 +109,7 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
                     getBaseContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
         }
-
-
-
-
     }
-
-
 
     /**
      * Override this method if you want to manually handle connectivity change events.
@@ -126,18 +121,11 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
         try {
             JSONObject jsonObj = new JSONObject(new Gson().toJson(event));
             JSONObject getAirportsResult = jsonObj.getJSONObject("state");
-
-
             if (getAirportsResult.getString("value").equals("1")) {
-
                 internetAlert.isCancel();
             } else {
-
                 internetAlert.isShow();
-
             }
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
