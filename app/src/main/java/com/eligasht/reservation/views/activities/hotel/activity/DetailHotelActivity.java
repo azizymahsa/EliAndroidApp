@@ -72,7 +72,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     private FrameLayout flViewPager;
     protected TabLayout tab_layout;
     private CommentModelBus commentModelBus;
-    AppBarLayout app_bar;
+    private AppBarLayout app_bar;
 
     private SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {

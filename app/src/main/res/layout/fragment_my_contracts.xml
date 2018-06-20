@@ -8,6 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvNoContracts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_16dp_normal_textSize"
+            android:textColor="@color/text_color_4d"
+            android:text="@string/no_contract"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_20dp"
+            android:visibility="gone"/>
 
 
         <ListView

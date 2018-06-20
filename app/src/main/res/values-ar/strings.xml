@@ -2387,6 +2387,7 @@
     <string name="nomessage">شما در حال حاضر هیج پیامی ندارید</string>
     <string name="select_passenger">انتخاب مسافر</string>
     <string name="_add_passenger">اضافه کردن مسافر جدید</string>
+    <string name="no_contract">ليس لديك حاليا أي عقود.</string>
 
 
 </resources>

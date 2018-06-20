@@ -117,7 +117,7 @@ public class RoomsAdapter extends BaseAdapter implements OnServiceStatus<HotelPo
                 EHotelId = roomsModels.get(position).getHotelId();
                 OfferId = roomsModels.get(position).getOfferId();
                 SearchKey = roomsModels.get(position).getSearchKey();
-                alertDialogPolicy = new AlertDialogPolicy(activity);
+                alertDialogPolicy = new AlertDialogPolicy(activity,true);
                 alertDialogPolicy.setTitle(activity.getString(R.string.HotelPolicy));
                 alertDialogPolicy.setRoomName(roomsModels.get(position).getTitle() + " : ");
                 hotelPolicyRequest();

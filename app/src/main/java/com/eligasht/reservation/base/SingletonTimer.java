@@ -11,6 +11,7 @@ import org.greenrobot.eventbus.EventBus;
  */
 public class SingletonTimer {
     private CountDownTimer countDownTimer;
+    public static boolean NEED_SHOW_TOAST=false;
     private static final SingletonTimer ourInstance = new SingletonTimer();
 
     public static SingletonTimer getInstance() {
@@ -21,11 +22,11 @@ public class SingletonTimer {
         countDownTimer = new CountDownTimer(60000, 40000) {
             @Override
             public void onTick(long millisUntilFinished) {
-
             }
 
             @Override
             public void onFinish() {
+                NEED_SHOW_TOAST=true;
                 EventBus.getDefault().post(new TerminateBus());
             }
         };
@@ -33,8 +34,7 @@ public class SingletonTimer {
 
     public void start() {
         countDownTimer.cancel();
-        countDownTimer.start();
-    }
+        countDownTimer.start(); }
 
     public void stop() {
         countDownTimer.cancel();

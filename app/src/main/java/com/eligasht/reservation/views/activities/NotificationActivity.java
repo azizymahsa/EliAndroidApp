@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.eligasht.R;
+import com.eligasht.reservation.base.Base;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.db.NotificationModel;
 import com.eligasht.reservation.models.eventbus.RoomsModelBus;
@@ -28,7 +29,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 /**
  * Created by Reza Nejati on 22,May,2018
  */
-public class NotificationActivity extends BaseActivity {
+public class NotificationActivity extends Base {
     RecyclerView recyclerView;
     RelativeLayout elNotFound,llHome;
     FancyButton btnOk;
@@ -36,6 +37,7 @@ public class NotificationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_activity);
         Prefs.putInt("notifiCounter",0);
+        EventBus.getDefault().register(this);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "پیام ها");
         recyclerView =findViewById(R.id.recyclerView);
         elNotFound =findViewById(R.id.elNotFound);
@@ -57,7 +59,7 @@ public class NotificationActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+
 
     }
 
@@ -77,10 +79,7 @@ public class NotificationActivity extends BaseActivity {
 
     }
 
-    @Override
-    public boolean needTerminate() {
-        return false;
-    }
+
 
     public void onData(){
 

@@ -30,6 +30,7 @@ import com.eligasht.reservation.base.Base;
 import com.eligasht.reservation.base.SingletonTimer;
 import com.eligasht.reservation.map.OverlayRouteActivity;
 import com.eligasht.reservation.models.db.NotificationModel;
+import com.eligasht.reservation.models.eventbus.TerminateBus;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.AboutActivity;
@@ -47,8 +48,11 @@ import com.eligasht.reservation.views.fragments.hotel.HotelFragment;
 import com.eligasht.reservation.views.fragments.insurance.InsuranceFragment;
 import com.eligasht.reservation.views.fragments.pack.PackageFragment;
 import com.eligasht.reservation.views.ui.InitUi;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.GiftDialog;
+import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPolicy;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -64,6 +68,8 @@ public class MainActivity extends Base implements View.OnClickListener {
     ExpandableWeightLayout expandableLayout;
     LottieAnimationView lottieUserMenu;
     CountDownTimer countDownTimer;
+    private AlertDialogPolicy dialog;
+
     int TotalTime = 2000000;
     Button btnExit;
     LinearLayout rlHedaer;
@@ -598,6 +604,24 @@ public class MainActivity extends Base implements View.OnClickListener {
             tvBadge.setVisibility(View.GONE);
         }
     }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void terminate(TerminateBus terminateBus) {
+        try {
+            if (SingletonTimer.NEED_SHOW_TOAST) {
+                SingletonTimer.NEED_SHOW_TOAST = false;
+           //     TastyToast.makeText(SingletonContext.getInstance().getContext(), "زمان نشست پایان یافته است", TastyToast.LENGTH_LONG, TastyToast.WARNING);
+                    dialog = new AlertDialogPolicy(MainActivity.this,false);
+                    dialog.setTitle("پیغام");
+                    dialog.setText("زمان جستجو شما به پایان رسیده است، لطفا مجددا جستجو نمایید.");
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 }

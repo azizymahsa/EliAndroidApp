@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
+import com.eligasht.reservation.base.SingletonTimer;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.flight.request.airPort.Request;
@@ -128,6 +129,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     @Override
     public void onReady(ResponseSearchInsurance responseSearchInsurance) {
         {
+            SingletonTimer.getInstance().start();
             hideLoading();
             Log.d("TAG", "onResponse: ");
             if (responseSearchInsurance == null

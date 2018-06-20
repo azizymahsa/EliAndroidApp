@@ -21,6 +21,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
+import com.eligasht.reservation.base.SingletonTimer;
 import com.eligasht.reservation.lost.hotel.HotelPreFactorAdapter;
 import com.eligasht.reservation.models.HotelPreFactorModel;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
@@ -626,6 +627,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 rlList.setVisibility(View.GONE);
                 llFilter.setVisibility(View.GONE);
             } else {
+                SingletonTimer.getInstance().start();
 
                 if (rvWeather.getAdapter()!=null){
                     rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
@@ -737,10 +739,16 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             elNotFound.setVisibility(View.VISIBLE);
             if (!Utility.isNetworkAvailable(SelectHotelActivity.this)) {
                 tvAlert.setText(R.string.InternetError);
+                tvAlertDesc.setVisibility(View.GONE);
+
             } else {
-                tvAlert.setText(R.string.ErrorServer);
+                tvAlert.setText(R.string.NoResult);
+                tvAlertDesc.setVisibility(View.VISIBLE);
+                tvAlertDesc.setText(getString(R.string.change_date));
+
+
             }
-            tvAlertDesc.setVisibility(View.GONE);
+
             list.setVisibility(View.GONE);
             btnOk.setVisibility(View.VISIBLE);
             rlEr.setVisibility(View.VISIBLE);
