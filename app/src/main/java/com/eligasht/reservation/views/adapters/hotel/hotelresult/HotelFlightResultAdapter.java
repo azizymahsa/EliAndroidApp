@@ -84,22 +84,18 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
                 .duration(300)
                 .playOn(holder.cvHotel);
         String imageUri = "https://cdn.elicdn.com" + data.get(position).getImageUrl();
+        String imageUri2 = "https://cdn.elicdn.com/Content/AirLine/MblSize/" + data.get(position).getFlights().get(0).getAirlineCode() + ".png";
+
         GlideApp
                 .with(activity)
                 .load(imageUri)
                 .centerCrop()
                 .error(R.drawable.not_found)
                 .into(holder.ivHotelPic);
-        holder.btnChange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, SearchFlightActivity.class);
-                intent.putExtra("isChangeFlight", true);
-                intent.putExtra("FlightId", data.get(position).getFlightId());
-                intent.putExtra("SearchKey", data.get(position).getResultUniqID());
-                activity.startActivityForResult(intent, 155);
-            }
-        });
+
+
+
+
         holder.rlListItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,6 +114,10 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
                         .startActivity();
             }
         });
+
+
+
+
         holder.name.setText(data.get(position).getName());
         holder.location.setText(data.get(position).getLocation() + "،" + data.get(position).getCity());
         holder.title.setText(data.get(position).getTitle());
@@ -135,121 +135,6 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
         } else {
             holder.txt_lable_hotel.setVisibility(View.GONE);
         }
-        String waitRaft;
-        String waitBargasht;
-        String[] strings = data.get(position).getDepRout().split("→");
-        switch (strings.length) {
-            case 0:
-                waitRaft = activity.getString(R.string.NonStop);
-                holder.linear_1.setVisibility(View.VISIBLE);
-                holder.tvANRaft1_1.setText(strings[0]);
-                holder.tvANRaft1_2.setText(strings[1]);
-                break;
-            case 1:
-                holder.linear_1.setVisibility(View.VISIBLE);
-                holder.tvANRaft1_1.setText(strings[0]);
-                holder.tvANRaft1_2.setText(strings[1]);
-                waitRaft = activity.getString(R.string.NonStop);
-                break;
-            case 2:
-                waitRaft = activity.getString(R.string.NonStop);
-                holder.linear_1.setVisibility(View.VISIBLE);
-                holder.tvANRaft1_1.setText(strings[0]);
-                holder.tvANRaft1_2.setText(strings[1]);
-                anim(holder.lineOnstep, holder.tvPlane, position);
-                break;
-            case 3:
-                waitRaft = activity.getString(R.string.OneStop);
-                holder.linear_2.setVisibility(View.VISIBLE);
-                holder.tvANRaft2_1.setText(strings[0]);
-                holder.tvANRaft2_2.setText(strings[1]);
-                holder.tvANRaft2_3.setText(strings[2]);
-                break;
-            case 4:
-                waitRaft = activity.getString(R.string.TwoStop);
-                holder.linear_3.setVisibility(View.VISIBLE);
-                holder.tvANRaft3_1.setText(strings[0]);
-                holder.tvANRaft3_2.setText(strings[1]);
-                holder.tvANRaft3_3.setText(strings[2]);
-                holder.tvANRaft3_4.setText(strings[3]);
-                break;
-            case 5:
-                waitRaft = "سه توقف";
-                break;
-            case 6:
-                waitRaft = "چهار توقف";
-                break;
-            default:
-                waitRaft = "";
-                break;
-        }
-        String[] strings2 = data.get(position).getArrRout().split("→");
-        switch (strings2.length) {
-            case 0:
-                waitBargasht = "بدون توقف";
-                holder.linear_1_bargasht.setVisibility(View.VISIBLE);
-                holder.tvANRaft1_1_bargasht.setText(strings2[0]);
-                holder.tvANRaft1_2_bargasht.setText(strings2[1]);
-                break;
-            case 1:
-                waitBargasht = "بدون توقف";
-                try {
-                    holder.tvANRaft1_2_bargasht.setText(strings2[1]);
-                    holder.tvANRaft1_1_bargasht.setText(strings2[0]);
-                    holder.linear_1_bargasht.setVisibility(View.VISIBLE);
-                } catch (Exception e) {
-                    holder.nonStop.setText(strings2[0]);
-                    holder.nonStop.setVisibility(View.VISIBLE);
-                }
-                break;
-            case 2:
-                waitBargasht = "بدون توقف";
-                holder.linear_1_bargasht.setVisibility(View.VISIBLE);
-                holder.tvANRaft1_1_bargasht.setText(strings2[0]);
-                holder.tvANRaft1_2_bargasht.setText(strings2[1]);
-                anim(holder.lineOnstep_barhasht, holder.tvPlane_bargasht, position);
-                break;
-            case 3:
-                waitBargasht = "یک توقف";
-                holder.linear_2_bargasht.setVisibility(View.VISIBLE);
-                holder.tvANRaft2_1_bargasht.setText(strings2[0]);
-                holder.tvANRaft2_2_bargasht.setText(strings2[1]);
-                holder.tvANRaft2_3_bargasht.setText(strings2[2]);
-                break;
-            case 4:
-                waitBargasht = "دو توقف";
-                holder.linear_3_bargasht.setVisibility(View.VISIBLE);
-                holder.tvANRaft3_1_bargasht.setText(strings2[0]);
-                holder.tvANRaft3_2_bargasht.setText(strings2[1]);
-                holder.tvANRaft3_3_bargasht.setText(strings2[2]);
-                holder.tvANRaft3_4_bargasht.setText(strings2[3]);
-                break;
-            case 5:
-                waitBargasht = "سه توقف";
-                break;
-            case 6:
-                waitBargasht = "چهار توقف";
-                break;
-            default:
-                waitBargasht = "";
-                break;
-        }
-        holder.tvRaftTime.setText(waitRaft);
-        holder.tvBargashtTime.setText(waitBargasht);
-        String text = "<font color=##2e3192>" + data.get(position).getFlights().get(0).getFlightTime() + "</font> " +
-                "<font color=#4d4d4d>" + data.get(position).getFlights().get(0).getFlightNumber() + "</font>";
-        holder.tvRaftTime.setText(Html.fromHtml(text));
-        String texttvBargashtTime = "<font color=##2e3192>" + data.get(position).getFlights().get(1).getFlightTime() + "</font> " +
-                "<font color=#4d4d4d>" + data.get(position).getFlights().get(1).getFlightNumber() + "</font>";
-        holder.tvBargashtTime.setText(Html.fromHtml(texttvBargashtTime));
-        String texttvBargashtTime1 = "<font color=##2e3192>" + data.get(position).getFlights().get(0).getFlightArrivalTime() + "</font> " +
-                "<font color=#4d4d4d>" + data.get(position).getFlights().get(0).getFlightNumber() + "</font>";
-        holder.tvBargashtTime1.setText(Html.fromHtml(texttvBargashtTime1));
-        String texttvBargashtTime2 = "<font color=##2e3192>" + data.get(position).getFlights().get(1).getFlightArrivalTime() + "</font> " +
-                "<font color=#4d4d4d>" + data.get(position).getFlights().get(1).getFlightNumber() + "</font>";
-        holder.tvBargashtTime2.setText(Html.fromHtml(texttvBargashtTime2));
-        holder.tvAirLines.setText(data.get(position).getFlights().get(0).getAirlineNameFa());
-        String imageUri2 = "https://cdn.elicdn.com/Content/AirLine/MblSize/" + data.get(position).getFlights().get(0).getAirlineCode() + ".png";
         GlideApp
                 .with(activity)
                 .load(imageUri2)
@@ -273,6 +158,7 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
         } else {
             holder.ivIsBestseler.setVisibility(View.GONE);
         }
+
         switch (data.get(position).getStar()) {
             case 1:
                 holder.ivRate.setVisibility(View.VISIBLE);
@@ -299,6 +185,144 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
                 holder.ivRate.setVisibility(View.GONE);
                 break;
         }
+
+
+
+
+
+
+
+        if (!isGrid){
+
+            holder.btnChange.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(activity, SearchFlightActivity.class);
+                    intent.putExtra("isChangeFlight", true);
+                    intent.putExtra("FlightId", data.get(position).getFlightId());
+                    intent.putExtra("SearchKey", data.get(position).getResultUniqID());
+                    activity.startActivityForResult(intent, 155);
+                }
+            });
+            String waitRaft;
+            String waitBargasht;
+            String[] strings = data.get(position).getDepRout().split("→");
+            switch (strings.length) {
+                case 0:
+                    waitRaft = activity.getString(R.string.NonStop);
+                    holder.linear_1.setVisibility(View.VISIBLE);
+                    holder.tvANRaft1_1.setText(strings[0]);
+                    holder.tvANRaft1_2.setText(strings[1]);
+                    break;
+                case 1:
+                    holder.linear_1.setVisibility(View.VISIBLE);
+                    holder.tvANRaft1_1.setText(strings[0]);
+                    holder.tvANRaft1_2.setText(strings[1]);
+                    waitRaft = activity.getString(R.string.NonStop);
+                    break;
+                case 2:
+                    waitRaft = activity.getString(R.string.NonStop);
+                    holder.linear_1.setVisibility(View.VISIBLE);
+                    holder.tvANRaft1_1.setText(strings[0]);
+                    holder.tvANRaft1_2.setText(strings[1]);
+                    anim(holder.lineOnstep, holder.tvPlane, position);
+                    break;
+                case 3:
+                    waitRaft = activity.getString(R.string.OneStop);
+                    holder.linear_2.setVisibility(View.VISIBLE);
+                    holder.tvANRaft2_1.setText(strings[0]);
+                    holder.tvANRaft2_2.setText(strings[1]);
+                    holder.tvANRaft2_3.setText(strings[2]);
+                    break;
+                case 4:
+                    waitRaft = activity.getString(R.string.TwoStop);
+                    holder.linear_3.setVisibility(View.VISIBLE);
+                    holder.tvANRaft3_1.setText(strings[0]);
+                    holder.tvANRaft3_2.setText(strings[1]);
+                    holder.tvANRaft3_3.setText(strings[2]);
+                    holder.tvANRaft3_4.setText(strings[3]);
+                    break;
+                case 5:
+                    waitRaft = "سه توقف";
+                    break;
+                case 6:
+                    waitRaft = "چهار توقف";
+                    break;
+                default:
+                    waitRaft = "";
+                    break;
+            }
+            String[] strings2 = data.get(position).getArrRout().split("→");
+            switch (strings2.length) {
+                case 0:
+                    waitBargasht = "بدون توقف";
+                    holder.linear_1_bargasht.setVisibility(View.VISIBLE);
+                    holder.tvANRaft1_1_bargasht.setText(strings2[0]);
+                    holder.tvANRaft1_2_bargasht.setText(strings2[1]);
+                    break;
+                case 1:
+                    waitBargasht = "بدون توقف";
+                    try {
+                        holder.tvANRaft1_2_bargasht.setText(strings2[1]);
+                        holder.tvANRaft1_1_bargasht.setText(strings2[0]);
+                        holder.linear_1_bargasht.setVisibility(View.VISIBLE);
+                    } catch (Exception e) {
+                        holder.nonStop.setText(strings2[0]);
+                        holder.nonStop.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                case 2:
+                    waitBargasht = "بدون توقف";
+                    holder.linear_1_bargasht.setVisibility(View.VISIBLE);
+                    holder.tvANRaft1_1_bargasht.setText(strings2[0]);
+                    holder.tvANRaft1_2_bargasht.setText(strings2[1]);
+                    anim(holder.lineOnstep_barhasht, holder.tvPlane_bargasht, position);
+                    break;
+                case 3:
+                    waitBargasht = "یک توقف";
+                    holder.linear_2_bargasht.setVisibility(View.VISIBLE);
+                    holder.tvANRaft2_1_bargasht.setText(strings2[0]);
+                    holder.tvANRaft2_2_bargasht.setText(strings2[1]);
+                    holder.tvANRaft2_3_bargasht.setText(strings2[2]);
+                    break;
+                case 4:
+                    waitBargasht = "دو توقف";
+                    holder.linear_3_bargasht.setVisibility(View.VISIBLE);
+                    holder.tvANRaft3_1_bargasht.setText(strings2[0]);
+                    holder.tvANRaft3_2_bargasht.setText(strings2[1]);
+                    holder.tvANRaft3_3_bargasht.setText(strings2[2]);
+                    holder.tvANRaft3_4_bargasht.setText(strings2[3]);
+                    break;
+                case 5:
+                    waitBargasht = "سه توقف";
+                    break;
+                case 6:
+                    waitBargasht = "چهار توقف";
+                    break;
+                default:
+                    waitBargasht = "";
+                    break;
+            }
+            holder.tvRaftTime.setText(waitRaft);
+            holder.tvBargashtTime.setText(waitBargasht);
+            String text = "<font color=##2e3192>" + data.get(position).getFlights().get(0).getFlightTime() + "</font> " +
+                    "<font color=#4d4d4d>" + data.get(position).getFlights().get(0).getFlightNumber() + "</font>";
+            holder.tvRaftTime.setText(Html.fromHtml(text));
+            String texttvBargashtTime = "<font color=##2e3192>" + data.get(position).getFlights().get(1).getFlightTime() + "</font> " +
+                    "<font color=#4d4d4d>" + data.get(position).getFlights().get(1).getFlightNumber() + "</font>";
+            holder.tvBargashtTime.setText(Html.fromHtml(texttvBargashtTime));
+            String texttvBargashtTime1 = "<font color=##2e3192>" + data.get(position).getFlights().get(0).getFlightArrivalTime() + "</font> " +
+                    "<font color=#4d4d4d>" + data.get(position).getFlights().get(0).getFlightNumber() + "</font>";
+            holder.tvBargashtTime1.setText(Html.fromHtml(texttvBargashtTime1));
+            String texttvBargashtTime2 = "<font color=##2e3192>" + data.get(position).getFlights().get(1).getFlightArrivalTime() + "</font> " +
+                    "<font color=#4d4d4d>" + data.get(position).getFlights().get(1).getFlightNumber() + "</font>";
+            holder.tvBargashtTime2.setText(Html.fromHtml(texttvBargashtTime2));
+            holder.tvAirLines.setText(data.get(position).getFlights().get(0).getAirlineNameFa());
+
+        }
+
+
+
     }
 
 
