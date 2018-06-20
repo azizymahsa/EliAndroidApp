@@ -54,6 +54,8 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import mehdi.sakout.fancybuttons.FancyButton;
 public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnServiceStatus<GetRoomResponse> {
     private TextView tvTitle;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
@@ -64,7 +66,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     protected Toolbar toolbar;
     public static LatLng location;
     public static String hName;
-    private TextView tvHotelName, tvCityName, tvAdress, tvAlertError;
+    private TextView tvHotelName, tvCityName, tvAdress, tvAlert, tvAlertDesc;
     private ImageView ivImage;
     protected TextView tvDateDetail;
     private RelativeLayout elNotFound;
@@ -73,19 +75,18 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     protected TabLayout tab_layout;
     private CommentModelBus commentModelBus;
     private AppBarLayout app_bar;
-
+    private FancyButton btnOk;
     private SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
     private TabLayout.OnTabSelectedListener onTabSelectedListener = new TabLayout.OnTabSelectedListener() {
         @Override
         public void onTabSelected(TabLayout.Tab tab) {
             switch (tab.getPosition()) {
                 case 0:
-                    app_bar.setExpanded(false,true);
+                    app_bar.setExpanded(false, true);
                     break;
                 case 1:
                     hotelDetailViewPager.getCommentHotelFragment().setDataComment(commentModelBus);
                     break;
-
             }
         }
 
@@ -131,13 +132,16 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         tvCityName = findViewById(R.id.tvCityName);
         tvDateDetail = findViewById(R.id.tvDateDetail);
         elNotFound = findViewById(R.id.elNotFound);
-        tvAlertError = findViewById(R.id.tvAlertError);
+        tvAlert = findViewById(R.id.tvAlert);
+        tvAlertDesc = findViewById(R.id.tvAlertDesc);
         rlLoading2 = findViewById(R.id.rlLoading2);
         tab_layout = findViewById(R.id.tab_layout);
         view_pager = findViewById(R.id.view_pager);
         toolbar = findViewById(R.id.toolbar);
         tvTitle = findViewById(R.id.tvTitle);
         app_bar = findViewById(R.id.app_bar);
+        btnOk = findViewById(R.id.btnOk);
+        btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         tvDateDetail.setText(getIntent().getExtras().getString("DateTime"));
         hotelDetailViewPager = new HotelDetailViewPager(this, getSupportFragmentManager(), false);
         view_pager.setAdapter(hotelDetailViewPager);
@@ -161,14 +165,13 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        app_bar.setExpanded(false ,true);
-
+                        app_bar.setExpanded(false, true);
                         break;
                     case 1:
                         hotelDetailViewPager.getCommentHotelFragment().setDataComment(commentModelBus);
-
                         break;
-                }            }
+                }
+            }
 
             @Override
             public void onPageScrollStateChanged(int state) {
@@ -188,6 +191,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
             }
         }
         rlLoading2.setOnClickListener(this);
+        btnOk.setOnClickListener(this);
         Utility.setAnimLoading(this);
         initToolbar(toolbar);
         getRoomRequest();
@@ -228,7 +232,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         try {
             if (getRoomResponse.getGetRoomsListResult().getErrors() != null) {
                 elNotFound.setVisibility(View.VISIBLE);
-                tvAlertError.setText(getRoomResponse.getGetRoomsListResult().getErrors().get(0).getMessage());
+                tvAlert.setText(getRoomResponse.getGetRoomsListResult().getErrors().get(0).getMessage());
             } else {
                 for (RoomList roomList : getRoomResponse.getGetRoomsListResult().getRoomList()) {
                     roomsModels.add(new RoomsModel(roomList.getBoard(), roomList.getTitle(), roomList.getDescription(), roomList.getPrice().toString(),
@@ -240,7 +244,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         } catch (Exception e) {
             elNotFound.setVisibility(View.VISIBLE);
             rlLoading2.setVisibility(View.GONE);
-            tvAlertError.setText(R.string.ErrorServer);
+            tvAlert.setText(R.string.ErrorServer);
         }
     }
 
@@ -248,7 +252,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     public void onError(String message) {
         elNotFound.setVisibility(View.VISIBLE);
         rlLoading2.setVisibility(View.GONE);
-        tvAlertError.setText(R.string.ErrorServer);
+        tvAlert.setText(R.string.ErrorServer);
     }
 
     public void getHotelDetailRequest() {
@@ -283,7 +287,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                         imageModels.add(new ImageModel(imageHotel.getHotelImagesURL()));
                     }
                     EventBus.getDefault().post(new HotelProprtiesBus(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelProprties()));
-                    hName=hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName();
+                    hName = hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName();
                     commentModelBus = new CommentModelBus(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName(), String.valueOf(getIntent().getExtras().getInt("HotelId")));
                     EventBus.getDefault().post(new CommentModelBus(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName(), String.valueOf(getIntent().getExtras().getInt("HotelId"))));
                     YoYo.with(Techniques.FadeIn)

@@ -43,7 +43,7 @@ public class RecyclerFab extends RecyclerView implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        smoothScrollToPosition(0);
+        scrollToPosition(0);
     }
 
     @Override
@@ -62,6 +62,7 @@ public class RecyclerFab extends RecyclerView implements View.OnClickListener {
         } else if (mLayoutManager.findFirstCompletelyVisibleItemPosition() == 0 && !isAnimated) {
             mLayout.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.slide_out));
             mLayout.setVisibility(GONE);
+
             isAnimated = true;
         }
     }

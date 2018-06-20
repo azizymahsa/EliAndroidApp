@@ -105,7 +105,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     RecyclerView rvHotelResult;
     HotelFlightResultAdapter hotelFlightResultAdapter;
     boolean isGrid=false;
-    int scrollState;
 
 
 

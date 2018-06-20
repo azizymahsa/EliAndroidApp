@@ -50,8 +50,6 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
         this.activity = activity;
         this.DateTime = DateTime;
         this.isGrid = isGrid;
-
-
     }
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
@@ -80,9 +78,7 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.btnChange.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
-        YoYo.with(Techniques.FadeIn)
-                .duration(300)
-                .playOn(holder.cvHotel);
+
         String imageUri = "https://cdn.elicdn.com" + data.get(position).getImageUrl();
         String imageUri2 = "https://cdn.elicdn.com/Content/AirLine/MblSize/" + data.get(position).getFlights().get(0).getAirlineCode() + ".png";
 
@@ -193,7 +189,9 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
 
 
         if (!isGrid){
-
+           /* YoYo.with(Techniques.FadeIn)
+                    .duration(300)
+                    .playOn(holder.cvHotel);*/
             holder.btnChange.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
