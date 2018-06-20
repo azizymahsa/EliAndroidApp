@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RecyclerFab">
+        <attr name="fabHeight" format="integer"/>
+        <attr name="fabWidth" format="integer"/>
+        <attr name="fabDrawable" format="reference"/>
+        <attr name="fabMargin" format="integer"/>
+        <attr name="fabColor" format="color"/>
+        <attr name="fabAlignParent" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="right" value="1"/>
+
+        </attr>
+    </declare-styleable>
+</resources>

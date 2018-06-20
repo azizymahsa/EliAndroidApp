@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/tools"
     xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -208,24 +209,25 @@
 
             android:layout_height="0dp"
             android:layout_weight="100">
-
-            <com.eligasht.reservation.tools.ListView
-                android:id="@+id/lvHoteResult"
+            <com.example.mylibrary.RecyclerFab
+                android:id="@+id/rvHotelResult"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@null"
-                android:dividerHeight="0dp"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                app:fabHeight="200"
+                app:fabWidth="200"
+                app:fabMargin="80"
+                app:fabColor="@color/toolbar_color"
+                app:fabAlignParent="right"
+
+                app:fabDrawable="@drawable/arrow"
+
+
+
+
+
 
                 />
-
-            <com.scalified.fab.ActionButton
-                android:id="@+id/action_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="5dp" />
 
         </RelativeLayout>
 

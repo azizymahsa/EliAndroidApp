@@ -47,27 +47,26 @@
                     />
                 <TextView
                     android:id="@+id/tvOff"
-                    android:layout_width="@dimen/_50dp_normal"
-                    android:layout_height="@dimen/_50dp_normal_im"
+                    android:layout_width="@dimen/_40dp"
+                    android:layout_height="@dimen/_30dp"
                     android:background="@drawable/off"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginBottom="20dp"
                     android:text="35%  تخفیف"
                     android:gravity="center"
-                    android:textSize="@dimen/_14dp_txtSize"
-                    android:textAppearance="@style/IrsansBold"
+                    android:textSize="@dimen/_10dp_textSize"
                     android:textColor="@color/white"
                     android:visibility="gone"/>
                 <TextView
                     android:id="@+id/ivIsBestseler"
-                    android:layout_width="@dimen/_50dp_normal"
-                    android:layout_height="@dimen/_50dp_normal_im"
+                    android:layout_width="@dimen/_40dp"
+                    android:layout_height="@dimen/_30dp"
                     android:text="@string/best_seller"
                     android:background="@drawable/best_seller_back"
-                    android:textColor="@color/white"
                     android:textAppearance="@style/IrsansBold"
-                    android:textSize="@dimen/_14dp_txtSize"
+                    android:textSize="@dimen/_10dp_textSize"
+                    android:textColor="@color/white"
 
                     android:gravity="center"
                     android:padding="2dp"
@@ -84,8 +83,8 @@
                 android:id="@+id/RelativeLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_60dp_hight"
@@ -97,38 +96,34 @@
                     android:id="@+id/linearLayout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="5dp"
-                    >
-
-
-                    <TextView
-                        android:id="@+id/name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="100"
-                        android:gravity="center|left"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_15dp_normal_textSize"
-                        android:layout_alignParentLeft="true"
-                        android:ellipsize="end"
-                        android:maxLines="1"/>
-
-
+                    android:orientation="vertical">
                     <TextView
                         android:id="@+id/txt_lable_hotel"
                         android:layout_width="@dimen/_62dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/green"
                         android:gravity="center"
+                        android:layout_gravity="right"
+                        android:maxLines="1"
+                        android:text="هتل"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10dp_textSize" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center|left"
                         android:maxLines="1"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10dp_textSize"
-                        android:text="هتل"
-                        android:background="@color/green"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        />
+                        android:layout_marginLeft="4dp"/>
+
+
 
 
 
@@ -139,9 +134,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_15dp"
                     android:layout_below="@+id/linearLayout1"
+                    android:layout_marginLeft="2dp"
                     android:orientation="horizontal"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="center"
+                    android:id="@+id/llLoc"
+
                     >
 
                     <TextView
@@ -152,41 +148,42 @@
                         android:text="@string/icon_location2"
                         android:textAppearance="@style/IconFonts"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_15dp_normal_textSize" />
+                        android:textSize="@dimen/_15dp_normal_textSize"
+                        android:layout_alignParentLeft="true"/>
 
                     <TextView
-                        android:layout_toRightOf="@+id/tvLoc"
                         android:id="@+id/location"
                         android:layout_width="200dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
-                        android:gravity="left|center"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_10dp_textSize"
-                        android:text="jsdkf"
+                        android:layout_toRightOf="@+id/tvLoc"
                         android:ellipsize="end"
+                        android:gravity="left|center"
                         android:maxLines="1"
+                        android:text="jsdkf"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10dp_textSize" />
 
-                        />
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_100dp_image"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="5dp"
-
-                        >
-                        <ImageView
-                            android:id="@+id/ivRate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="@dimen/_16dp_exit_menu_textSize"
-                            android:scaleType="fitEnd"
-                            />
-
-                    </LinearLayout>
 
 
                 </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="2sp"
+                    android:layout_below="@+id/llLoc"
+                    android:layout_marginTop="3dp">
 
+                    <ImageView
+                        android:id="@+id/ivRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_10dp"
+                        android:scaleType="fitEnd"
+
+                        />
+
+                </LinearLayout>
             </RelativeLayout>
 
             <LinearLayout
@@ -203,7 +200,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/RelativeLayoutHotel"
                     android:orientation="vertical"
-                   >
+                    >
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -219,7 +216,7 @@
                             android:gravity="left|center"
                             android:text="1 X STANDARD ROOM"
                             android:textColor="#253e96"
-                            android:textSize="@dimen/_13dp_normal_textSize"
+                            android:textSize="@dimen/_10dp_textSize"
                             android:textAppearance="@style/IrsansBold"
                             android:textStyle="bold"
                             android:ellipsize="end"
@@ -238,7 +235,7 @@
                         android:layout_toRightOf="@+id/title"
                         android:gravity="left|center"
                         android:textColor="@color/boardColor"
-                        android:textSize="@dimen/_13dp_normal_textSize"
+                        android:textSize="@dimen/_10dp_textSize"
                         android:layout_marginLeft="5dp"
 
 
@@ -257,7 +254,7 @@
                             android:gravity="left|center"
                             android:text="@string/curency"
                             android:textColor="@color/green"
-                            android:textSize="@dimen/_13dp_normal_textSize"
+                            android:textSize="@dimen/_10dp_textSize"
                             android:textAppearance="@style/IrsansBold"
 
 
@@ -270,7 +267,7 @@
                             android:layout_marginLeft="5dp"
                             android:gravity="left|center"
                             android:textColor="#000000"
-                            android:textSize="@dimen/_13dp_normal_textSize"
+                            android:textSize="@dimen/_10dp_textSize"
                             android:textAppearance="@style/IrsansBold"
                             android:layout_toRightOf="@+id/tvRial"
 
@@ -282,6 +279,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginRight="5dp"
                             android:layout_alignParentRight="true"
+                            android:visibility="gone"
                             >
                             <mehdi.sakout.fancybuttons.FancyButton
                                 android:id="@+id/btnChange"
@@ -296,7 +294,7 @@
                                 fancy:fb_radius="4dp"
                                 fancy:fb_text=" "
                                 fancy:fb_textColor="#0071bc"
-                                fancy:fb_textSize="@dimen/_14dp_txtSize"
+                                fancy:fb_textSize="@dimen/_10dp_textSize"
 
 
                                 android:gravity="center|top"/>
@@ -304,7 +302,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="horizontal"
-                                android:gravity="center">
+                                android:gravity="center"
+                               >
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
@@ -315,7 +314,7 @@
                                     android:textColor="#0071bc"
                                     android:textSize="@dimen/_12dp_normal_textSize"
 
-                        />
+                                    />
                                 <TextView
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
@@ -335,11 +334,7 @@
 
 
                 </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@drawable/blue_gradient_line"
-                />
+
 
 
                 <RelativeLayout
@@ -349,7 +344,8 @@
                     android:layout_marginTop="@dimen/_10dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:visibility="gone">
 
 
 
@@ -546,7 +542,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="رفت به استانبول"
-                            android:textSize="@dimen/_14dp_txtSize"
+                            android:textSize="@dimen/_10dp_textSize"
                             android:textColor="#351f8e"
                             android:textAppearance="@style/IrsansBold"
                             android:layout_marginRight="10dp"
