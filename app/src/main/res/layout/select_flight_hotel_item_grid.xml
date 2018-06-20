@@ -201,6 +201,33 @@
                     android:layout_below="@+id/RelativeLayoutHotel"
                     android:orientation="vertical"
                     >
+                    <RelativeLayout
+                    android:layout_width="@dimen/_30dp_f_h"
+                    android:layout_height="@dimen/_30dp_f_h"
+                    android:layout_marginBottom="10dp"
+                        android:layout_gravity="center"
+                    >
+
+                    <com.wang.avi.AVLoadingIndicatorView
+                        android:id="@+id/avi2"
+                        style="@style/AVLoadingIndicatorView"
+                        android:layout_width="@dimen/_20dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:visibility="gone"
+                        app:indicatorColor="@color/app_base_color"
+                        app:indicatorName="BallSpinFadeLoaderIndicator"
+                        android:layout_centerInParent="true"
+                        />
+
+                    <ImageView
+                        android:id="@+id/ivLogo"
+                        android:layout_width="@dimen/_40dp_f"
+                        android:layout_height="@dimen/_40dp_f"
+                        android:src="@drawable/tk"
+
+
+                        />
+                </RelativeLayout>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -550,32 +577,7 @@
 
                             />
 
-                        <RelativeLayout
-                            android:layout_width="@dimen/_40dp_f"
-                            android:layout_height="@dimen/_40dp_f"
-                            android:layout_marginBottom="10dp"
-                            >
 
-                            <com.wang.avi.AVLoadingIndicatorView
-                                android:id="@+id/avi2"
-                                style="@style/AVLoadingIndicatorView"
-                                android:layout_width="@dimen/_20dp"
-                                android:layout_height="@dimen/_20dp"
-                                android:visibility="gone"
-                                app:indicatorColor="@color/app_base_color"
-                                app:indicatorName="BallSpinFadeLoaderIndicator"
-                                android:layout_centerInParent="true"
-                                />
-
-                            <ImageView
-                                android:id="@+id/ivLogo"
-                                android:layout_width="@dimen/_40dp_f"
-                                android:layout_height="@dimen/_40dp_f"
-                                android:src="@drawable/tk"
-
-
-                                />
-                        </RelativeLayout>
 
 
 

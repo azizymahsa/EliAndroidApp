@@ -96,7 +96,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private FancyButton btnNextDays, btnLastDays;
     private int maxPrice, minPrice;
     private FancyButton btnFilter, btnSort;
-    private FancyButton btnOk, btnBack, btnHome;
+    private FancyButton btnOk, btnBack, btnHome,btnChangeView;
     private String raft, bargasht;
     private String raftFa, bargashtFa;
     private HotelFlightResponse hotelFlightResponse;
@@ -105,6 +105,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     RecyclerView rvHotelResult;
     HotelFlightResultAdapter hotelFlightResultAdapter;
     boolean isGrid=false;
+    int scrollState;
+
 
 
     @Override
@@ -134,6 +136,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         btnHome = findViewById(R.id.btnHome);
         tvFilterIcon = findViewById(R.id.tvFilterIcon);
         btnHome = findViewById(R.id.btnHome);
+        btnChangeView = findViewById(R.id.btnChangeView);
         elNotFound = findViewById(R.id.elNotFound);
         tvSortIcon = findViewById(R.id.tvSortIcon);
         tvSort = findViewById(R.id.tvSort);
@@ -153,6 +156,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         btnLastDays.setOnClickListener(this);
         btnFilter.setOnClickListener(this);
         btnSort.setOnClickListener(this);
+        btnChangeView.setOnClickListener(this);
 /*        adapter = new FlightHotelAdapter(selectHotelModelArrayList, this, tvDate);
         list.setAdapter(adapter);*/
 
@@ -161,6 +165,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         Utility.loadingText(tvLoading, Prefs.getString("FH", ""));
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
+        btnChangeView.setCustomTextFont("fonts/icomoon2.ttf");
+        btnChangeView.setText(getString(R.string.icon_grid));
         btnBack.setOnClickListener(this);
         raftFa = SingletonDate.getInstance().getStartDate().getDescription();
         bargashtFa = SingletonDate.getInstance().getEndDate().getDescription();
@@ -180,8 +186,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         hotelFlightRequest();
         weather_request();
       //  Utility.init_floating(list, this);
-        rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        rvHotelResult.setLayoutManager(new GridLayoutManager(this,3));
+        rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true));
+        rvHotelResult.setLayoutManager(new LinearLayoutManager(this));
         hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
         rvHotelResult.setAdapter(hotelFlightResultAdapter);
 
@@ -223,6 +229,39 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btnChangeView:
+                if (isGrid){
+                    isGrid=false;
+                    LinearLayoutManager myLayoutManager = (GridLayoutManager) rvHotelResult.getLayoutManager();
+                    int scrollPosition = myLayoutManager.findFirstVisibleItemPosition();
+
+                    rvHotelResult.setLayoutManager(new LinearLayoutManager(this));
+                    hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+                    rvHotelResult.setAdapter(hotelFlightResultAdapter);
+                    btnChangeView.setText(getString(R.string.icon_grid));
+                    rvHotelResult.scrollToPosition(scrollPosition);
+
+                    // hotelResultAdapter.onAttachedToRecyclerView(rvHotelResult);
+                    //  hotelResultAdapter.notify();
+
+
+
+                }else{
+                    isGrid=true;
+                    LinearLayoutManager myLayoutManager = (LinearLayoutManager) rvHotelResult.getLayoutManager();
+                    int scrollPosition = myLayoutManager.findFirstVisibleItemPosition();
+
+                    rvHotelResult.setLayoutManager(new GridLayoutManager(this,3));
+                    hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+                    rvHotelResult.setAdapter(hotelFlightResultAdapter);
+                    btnChangeView.setText(getString(R.string.icon_list));
+                    rvHotelResult.scrollToPosition(scrollPosition);
+
+                    // hotelResultAdapter.onAttachedToRecyclerView(rvHotelResult);
+//                    hotelResultAdapter.notify();
+
+                }
+                break;
             case R.id.btnFilter:
                 android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
                 FilterHotelDialog filterHotelDialog = FilterHotelDialog.newInstance(SelectHotelFlightActivity.this, filterModels, SelectHotelFlightActivity.this, filterHotelTypeModel,
