@@ -545,10 +545,8 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
             case R.id.llAddPassenger:
-
                 Intent intent1 = new Intent(this, GetPassengerActivity.class);
                 startActivityForResult(intent1, 555);
-
 
                 break;
             case R.id.txtMore:

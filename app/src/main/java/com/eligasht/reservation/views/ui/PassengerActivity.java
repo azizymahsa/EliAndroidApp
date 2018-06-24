@@ -2161,7 +2161,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			linear_mosaferan.setVisibility(View.GONE);
 			linear_saler.setVisibility(View.VISIBLE);
 
-
 			txtTitle.setText(getString(R.string.Buyer_Specifications));
 			((ImageView)findViewById(R.id.btn_mosaferan)).setImageResource(R.drawable.mosaferan_passenger_off);
 			((Button)findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -2180,8 +2179,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	}
 	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int position,
-							   long id) {
+	public void onItemSelected(AdapterView<?> parent, View view, int position,long id) {
 		// On selecting a spinner item
 		String item = parent.getItemAtPosition(position).toString();
 		if(item.contains(getString(R.string.Female))) {
@@ -2189,7 +2187,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}else if(item.contains(getString(R.string.man))){
 			Gensiyat="true";
 		}
-
 
 	}
 	@Override

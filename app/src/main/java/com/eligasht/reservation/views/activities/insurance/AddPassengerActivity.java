@@ -136,7 +136,6 @@ public class AddPassengerActivity extends BaseActivity implements
         datePickerDialogDepartgGregorian.initialize(this, year - 50, 0, 1);
         datePickerDialogDepartgGregorian.setYearRange(1940, year);
 
-
         datePickerDialogBirthDay.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
             @Override
             public void onCalendarChanged(boolean isGregorian) {
@@ -151,7 +150,6 @@ public class AddPassengerActivity extends BaseActivity implements
             }
         });
         datePickerDialogDepartgGregorian.setOnDateSetListener(this);
-
 
         btn_add.setOnClickListener(this);
         btn_remove.setOnClickListener(this);

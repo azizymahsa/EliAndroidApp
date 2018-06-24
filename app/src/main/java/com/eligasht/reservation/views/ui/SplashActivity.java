@@ -187,13 +187,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         avi.setVisibility(View.VISIBLE);
         SingletonService.getInstance().getAppService().startUp(this, startupServiceRequest);
 
-
-
-
-
-
-
-
         Bundle bundle = new Bundle();
         bundle.putString("TestParam", "123");
         FirebaseAnalytics firebaseAnalytics=FirebaseAnalytics.getInstance(this);
