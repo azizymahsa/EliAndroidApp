@@ -43,6 +43,7 @@
             android:layout_height="@dimen/_30dp"
             android:layout_gravity="right|center"
             android:layout_marginRight="@dimen/_10dp_margin"
+
             android:background="@drawable/e_logo" />
 
 
