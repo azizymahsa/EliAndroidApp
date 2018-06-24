@@ -31,6 +31,20 @@
             fancy:fb_text=" "
             fancy:fb_textColor="#FFFFFF"
             fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/btnChangeView"
+            android:layout_toRightOf="@+id/btnBack"
+            android:layout_width="@dimen/toolbar_bottom_width_50dp"
+            android:layout_height="@dimen/toolbar_bottom_width_50dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            fancy:fb_defaultColor="@android:color/transparent"
+            fancy:fb_focusColor="@color/focusColor"
+            fancy:fb_radius="200dp"
+            fancy:fb_text=" "
+            fancy:fb_textColor="#FFFFFF"
+            fancy:fb_textSize="@dimen/_25dp_normal_iconSize"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"

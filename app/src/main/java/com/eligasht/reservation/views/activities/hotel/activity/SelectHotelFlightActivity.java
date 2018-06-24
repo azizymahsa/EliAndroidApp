@@ -77,8 +77,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private LinearLayout llFilter;
     private String searchIn;
     private String flId, searchKey;
-  //  private com.eligasht.reservation.tools.ListView list;
-   // private FlightHotelAdapter adapter;
+    //  private com.eligasht.reservation.tools.ListView list;
+    // private FlightHotelAdapter adapter;
     private ArrayList<SelectFlightHotelModel> selectHotelModelArrayList = new ArrayList<>();
     private ArrayList<SelectFlightHotelModel> selectHotelModelArrayListFilter = new ArrayList<>();
     private ArrayList<FilterHotelTypeModel> filterHotelTypeModel = new ArrayList<>();
@@ -90,13 +90,13 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private ArrayList<FilterModel> filterModels = new ArrayList<>();
     private List<Room> rooms = new ArrayList<>();
     private RelativeLayout rlLoading, rlRoot;
-    private TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort, tvLoading, tvAlertDesc,weatherCity;
+    private TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort, tvLoading, tvAlertDesc, weatherCity;
     private Window window;
     private RelativeLayout elNotFound, rlEr, rlList;
     private FancyButton btnNextDays, btnLastDays;
     private int maxPrice, minPrice;
     private FancyButton btnFilter, btnSort;
-    private FancyButton btnOk, btnBack, btnHome,btnChangeView;
+    private FancyButton btnOk, btnBack, btnHome, btnChangeView;
     private String raft, bargasht;
     private String raftFa, bargashtFa;
     private HotelFlightResponse hotelFlightResponse;
@@ -104,9 +104,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private RecyclerView rvWeather;
     RecyclerView rvHotelResult;
     HotelFlightResultAdapter hotelFlightResultAdapter;
-    boolean isGrid=false;
-
-
+    boolean isGrid = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +120,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         window = getWindow();
         notiRecive();
         rvHotelResult = findViewById(R.id.rvHotelResult);
-     //   list = findViewById(R.id.lvHoteResult);
+        //   list = findViewById(R.id.lvHoteResult);
         rlList = findViewById(R.id.rlList);
         btnFilter = findViewById(R.id.btnFilter);
         btnSort = findViewById(R.id.btnSort);
@@ -150,7 +148,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         tvAlertDesc = findViewById(R.id.tvAlertDesc);
         slidingDrawer = findViewById(R.id.slidingDrawer);
         rvWeather = findViewById(R.id.rvWeather);
-
         btnNextDays.setOnClickListener(this);
         btnLastDays.setOnClickListener(this);
         btnFilter.setOnClickListener(this);
@@ -158,9 +155,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         btnChangeView.setOnClickListener(this);
 /*        adapter = new FlightHotelAdapter(selectHotelModelArrayList, this, tvDate);
         list.setAdapter(adapter);*/
-
-
-
         Utility.loadingText(tvLoading, Prefs.getString("FH", ""));
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
@@ -184,37 +178,31 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         });
         hotelFlightRequest();
         weather_request();
-      //  Utility.init_floating(list, this);
-        rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true));
+        //  Utility.init_floating(list, this);
+        rvWeather.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
         rvHotelResult.setLayoutManager(new LinearLayoutManager(this));
-        hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+        hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList, this, tvDate, isGrid);
         rvHotelResult.setAdapter(hotelFlightResultAdapter);
-
-
     }
-    public void weather_request(){
+
+    public void weather_request() {
         SingletonService.getInstance().getWeatherPart().getWeatherByCity(new OnServiceStatus<WeatherApi>() {
             @Override
             public void onReady(WeatherApi weatherApi) {
-
-
-                try{
+                try {
                     rvWeather.setAdapter(new WeatherAdapter(weatherApi.getQuery().getResults().getChannel().getItem().getForecast()));
-
-                }catch (Exception e){
+                } catch (Exception e) {
                     slidingDrawer.setVisibility(View.GONE);
-
                 }
-
             }
 
             @Override
             public void onError(String message) {
                 slidingDrawer.setVisibility(View.GONE);
-
             }
         }, Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -229,36 +217,28 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnChangeView:
-                if (isGrid){
-                    isGrid=false;
+                if (isGrid) {
+                    isGrid = false;
                     LinearLayoutManager myLayoutManager = (GridLayoutManager) rvHotelResult.getLayoutManager();
                     int scrollPosition = myLayoutManager.findFirstVisibleItemPosition();
-
                     rvHotelResult.setLayoutManager(new LinearLayoutManager(this));
-                    hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+                    hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList, this, tvDate, isGrid);
                     rvHotelResult.setAdapter(hotelFlightResultAdapter);
                     btnChangeView.setText(getString(R.string.icon_grid));
                     rvHotelResult.scrollToPosition(scrollPosition);
-
                     // hotelResultAdapter.onAttachedToRecyclerView(rvHotelResult);
                     //  hotelResultAdapter.notify();
-
-
-
-                }else{
-                    isGrid=true;
+                } else {
+                    isGrid = true;
                     LinearLayoutManager myLayoutManager = (LinearLayoutManager) rvHotelResult.getLayoutManager();
                     int scrollPosition = myLayoutManager.findFirstVisibleItemPosition();
-
-                    rvHotelResult.setLayoutManager(new GridLayoutManager(this,3));
-                    hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+                    rvHotelResult.setLayoutManager(new GridLayoutManager(this, 3));
+                    hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList, this, tvDate, isGrid);
                     rvHotelResult.setAdapter(hotelFlightResultAdapter);
                     btnChangeView.setText(getString(R.string.icon_list));
                     rvHotelResult.scrollToPosition(scrollPosition);
-
                     // hotelResultAdapter.onAttachedToRecyclerView(rvHotelResult);
-//                    hotelResultAdapter.notify();
-
+//                     hotelResultAdapter.notify();
                 }
                 break;
             case R.id.btnFilter:
@@ -372,7 +352,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         if (selectHotelModelArrayListFilter.size() == selectHotelModelArrayList.size() && !remove) {
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-            hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+            hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList, this, tvDate, isGrid);
             rvHotelResult.setAdapter(hotelFlightResultAdapter);
             hotelFlightResultAdapter.notifyDataSetChanged();
             elNotFound.setVisibility(View.VISIBLE);
@@ -389,7 +369,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
              /*   adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate);
                 list.setAdapter(adapter);
                 adapter.notifyDataSetChanged();*/
-                hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+                hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList, this, tvDate, isGrid);
                 rvHotelResult.setAdapter(hotelFlightResultAdapter);
                 hotelFlightResultAdapter.notifyDataSetChanged();
                 elNotFound.setVisibility(View.VISIBLE);
@@ -405,7 +385,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
  /*               adapter = new FlightHotelAdapter(selectHotelModelArrayListFilter, SelectHotelFlightActivity.this, tvDate);
                 list.setAdapter(adapter);
                 adapter.notifyDataSetChanged();*/
-                hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayListFilter,this,tvDate,isGrid);
+                hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayListFilter, this, tvDate, isGrid);
                 rvHotelResult.setAdapter(hotelFlightResultAdapter);
                 hotelFlightResultAdapter.notifyDataSetChanged();
             }
@@ -416,7 +396,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
        /*     adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate);
             list.setAdapter(adapter);
             adapter.notifyDataSetChanged();*/
-            hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+            hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList, this, tvDate, isGrid);
             rvHotelResult.setAdapter(hotelFlightResultAdapter);
             hotelFlightResultAdapter.notifyDataSetChanged();
             searchIn = "";
@@ -655,7 +635,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
           /*  adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate);
             list.setAdapter(adapter);
             adapter.notifyDataSetChanged();*/
-            hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+            hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList, this, tvDate, isGrid);
             rvHotelResult.setAdapter(hotelFlightResultAdapter);
             hotelFlightResultAdapter.notifyDataSetChanged();
             elNotFound.setVisibility(View.VISIBLE);
@@ -668,6 +648,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         }
         return selectHotelModel;
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 155) {
@@ -707,13 +688,10 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 llFilter.setVisibility(View.GONE);
             } else {
                 SingletonTimer.getInstance().start();
-                if (rvWeather.getAdapter()!=null){
-                    rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+                if (rvWeather.getAdapter() != null) {
+                    rvWeather.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
                     slidingDrawer.setVisibility(View.VISIBLE);
-
                 }
-
-
                 maxPrice = hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getMaxPrice();
                 minPrice = hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getMinPrice();
                 int dif = maxPrice - minPrice;
@@ -795,10 +773,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     filterHotelLocationModels.add(new FilterHotelTypeModel(locations.getTitle(), false));
                 }
                 tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"));
-                SingletonAnalysis.getInstance().logTransfer(ServiceType.HOTELFLIGHT,Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"),"");
-
-                weatherCity.setText("پیش بینی وضعیت آب و هوای "+Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"));
-
+                SingletonAnalysis.getInstance().logTransfer(ServiceType.HOTELFLIGHT, Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"), "");
+                weatherCity.setText("پیش بینی وضعیت آب و هوای " + Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"));
                 tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
                 Collections.sort(selectHotelModelArrayList, new Comparator<SelectFlightHotelModel>() {
                     @Override
@@ -827,7 +803,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
     @Override
     public void onError(String message) {
-
         onErrors();
     }
 
@@ -963,7 +938,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                                     loadFlightResponse.getLoadFlightResult().getHFlight().getFlightID()));
                             //  i++;
                         }
-                        hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList,SelectHotelFlightActivity.this,tvDate,isGrid);
+                        hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate, isGrid);
                         rvHotelResult.setAdapter(hotelFlightResultAdapter);
                         hotelFlightResultAdapter.notifyDataSetChanged();
                     }
