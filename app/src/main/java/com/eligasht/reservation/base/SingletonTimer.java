@@ -19,7 +19,7 @@ public class SingletonTimer {
     }
 
     private SingletonTimer() {
-        countDownTimer = new CountDownTimer(1200000 , 40000) {
+        countDownTimer = new CountDownTimer(1080000 , 40000) {
             @Override
             public void onTick(long millisUntilFinished) {
             }
