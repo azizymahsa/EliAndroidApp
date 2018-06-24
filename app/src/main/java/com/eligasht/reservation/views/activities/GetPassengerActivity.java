@@ -25,12 +25,10 @@ public class GetPassengerActivity extends BaseActivity {
         setContentView(R.layout.activity_get_passenger);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "انتخاب مسافر");
         initViews();
-
     }
 
     public void initViews(){
         recyclerView=findViewById(R.id.recyclerView);
-
     }
 
     @Override

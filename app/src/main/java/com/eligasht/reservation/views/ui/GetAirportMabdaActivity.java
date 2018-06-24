@@ -222,7 +222,6 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
     public void onReady(ResponsAirports responsAirports) {//get Response from api
         avi.setVisibility(View.GONE);
 
-
         String GetError = "";
         List<Country> data = new ArrayList<Country>();
         ListView listAirPort;

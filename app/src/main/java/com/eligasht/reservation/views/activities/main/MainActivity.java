@@ -312,7 +312,6 @@ public class MainActivity extends Base implements View.OnClickListener {
             case R.id.rlHedaer:
                 new Handler().postDelayed(this::closeDrawer, 200);
 
-
                 try {
                     if (WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID() == -1) {
                         startActivity(new Intent(this, LogInActivity.class));

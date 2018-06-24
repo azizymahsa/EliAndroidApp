@@ -72,8 +72,7 @@ public class ServiceGenerator {
             sslContext.init(null, trustAllCerts,
                     new java.security.SecureRandom());
             // Create an ssl socket factory with our all-trusting manager
-            final SSLSocketFactory sslSocketFactory = sslContext
-                    .getSocketFactory();
+            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
 
             OkHttpClient okHttpClient = new OkHttpClient();
             okHttpClient = okHttpClient.newBuilder()
