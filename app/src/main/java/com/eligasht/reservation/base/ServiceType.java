@@ -9,5 +9,7 @@ public enum ServiceType {
     HOTELFLIGHT,
     INSURANCE,
     PACKAGE,
+   Purchase,
+
 
 }

@@ -67,6 +67,9 @@ public class SingletonAnalysis {
             case INSURANCE:
                 eventName = "INSURANCE";
                 break;
+            case Purchase:
+                eventName = "PURCHASE";
+                break;
 
         }
 

@@ -699,7 +699,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="@dimen/_10dp"
-                                android:text="اضافه کردن مسافر جدید"
+                                android:text="@string/select_passenger"
                                 android:textAppearance="@style/IrsansBold"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_14dp_txtSize" />

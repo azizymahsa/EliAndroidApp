@@ -23,7 +23,7 @@ public class GetPassengerActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_passenger);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "انتخاب مسافر");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.select_passenger));
         initViews();
     }
 

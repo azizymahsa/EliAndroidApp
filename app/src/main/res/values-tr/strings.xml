@@ -2403,8 +2403,13 @@
     <string name="message">mesajları</string>
     <string name="today">bugün</string>
     <string name="nomessage">Şu anda bir mesajınız yok</string>
-    <string name="select_passenger">انتخاب مسافر</string>
-    <string name="_add_passenger">اضافه کردن مسافر جدید</string>
+    <string name="select_passenger">Bir yolcu al</string>
+    <string name="_add_passenger">Bir yolcu al</string>
     <string name="no_contract">Şu anda herhangi bir sözleşmeniz yok.</string>
+    <string name="view">view</string>
+    <string name="add_passenger">Yeni yolcu ekle</string>
+    <string name="add_passenger_new">Gezgin ekle</string>
+    <string name="passenger_info">Yolcu profili</string>
+    <string name="tomorrow">yarın</string>
 </resources>
 

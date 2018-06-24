@@ -2383,6 +2383,11 @@
     <string name="today">امروز</string>
     <string name="nomessage">شما در حال حاضر هیچ پیامی ندارید</string>
     <string name="select_passenger">انتخاب مسافر</string>
-    <string name="_add_passenger">اضافه کردن مسافر جدید</string>
+    <string name="_add_passenger">انتخاب مسافر</string>
     <string name="no_contract">شما در حال حاضر هیچ قراردادی ندارید.</string>
+    <string name="view">نما</string>
+    <string name="add_passenger">اضافه کردن مسافر جدید</string>
+    <string name="add_passenger_new">اضافه کردن مسافر</string>
+    <string name="passenger_info">مشخصات مسافر</string>
+    <string name="tomorrow">فردا</string>
 </resources>

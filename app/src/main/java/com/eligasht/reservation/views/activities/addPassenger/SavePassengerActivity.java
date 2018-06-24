@@ -55,7 +55,7 @@ public class SavePassengerActivity extends BaseActivity implements Header.onSear
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_add_passenger);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "مشخصات مسافر");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.passenger_info));
         initView();
         onReciveData();
 
