@@ -113,8 +113,6 @@ public class MainActivity extends Base implements View.OnClickListener {
 
         InitUi.Toolbar(this, true, R.color.TRANSPARENT, "صفحه اصلی");
 
-        //  timer();
-        // timerRecive();
         initViews();
     }
 
@@ -148,8 +146,6 @@ public class MainActivity extends Base implements View.OnClickListener {
         lottieUserMenu = findViewById(R.id.lottieUserMenu);
         lottieUserMenu.setAnimation("lottie/user.json");
         lottieUserMenu.setSpeed(1.5f);
-
-        //tvTitle.setText(getString(R.string.searchFlight));
 
 
         //onClick===================================================================================
@@ -210,15 +206,12 @@ public class MainActivity extends Base implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        // super.onBackPressed();
+
         if (drawerLayout.isDrawerVisible(Gravity.RIGHT)) {
             closeDrawer();
-
         } else if (drawerLayout.isDrawerVisible(Gravity.LEFT)) {
             closeDrawer();
         } else {
-
-
             if (doubleBackToExitPressedOnce) {
                 super.onBackPressed();
                 return;
@@ -232,7 +225,6 @@ public class MainActivity extends Base implements View.OnClickListener {
                 }
 
             }, TIME_INTERVAL);
-
         }
     }
 
