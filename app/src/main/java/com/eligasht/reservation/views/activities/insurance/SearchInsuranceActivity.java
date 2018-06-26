@@ -129,6 +129,9 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     @Override
     public void onReady(ResponseSearchInsurance responseSearchInsurance) {
         {
+            Gson gson2 = new Gson();
+            gson2.toJson(responseSearchInsurance);
+            Log.e("onResponse", gson2.toJson(responseSearchInsurance) );
             SingletonTimer.getInstance().start();
             hideLoading();
             Log.d("TAG", "onResponse: ");
@@ -156,6 +159,8 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
             }
 
             com.eligasht.service.model.insurance.response.SearchInsurance.TravelInsurance travelInsurance = responseSearchInsurance.getShowInsuranceResult().getTravelInsurance();
+
+
             insurancePlan = responseSearchInsurance.getShowInsuranceResult().getInsurancePlan();
 
             if (travelInsurance == null && insurancePlan == null) {
@@ -183,7 +188,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
                 showText();
                 txt_error.setText(getString(R.string.PackgeNoFound));
                 error_layout.setVisibility(View.VISIBLE);
-                return;
+               return;
             }
 
             if (travelInsurance != null && travelInsurance.getTravelInsurances()!=null) {
@@ -376,7 +381,6 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         rclTravelInsurance = findViewById(R.id.rclTravelInsurance);
         rclInsurancePlans = findViewById(R.id.rclInsurancePlans);
         btnOk = findViewById(R.id.btnOk);
-
         rlLoading2 = findViewById(R.id.rlLoading2);
         rlRoot = findViewById(R.id.rlRoot);
         txt = findViewById(R.id.txt);
@@ -387,10 +391,8 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         error_layout = findViewById(R.id.elNotFound);
         txt_error = findViewById(R.id.tvAlert);
         error_layout.setVisibility(View.GONE);
-
         btnOk.setOnClickListener(this);
         Utility.setAnimLoading(this);
-
     }
 
     private void showLoading() {
@@ -427,7 +429,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         Prefs.putString("DtStart", departureDate);
         Prefs.putString("ReturnDate", returnDate);
         Prefs.putInt("Price", (travelInsurance.getTravelInsurancePricePP().getAmount()) * passCount);
-        Prefs.putString("Id", travelInsurance.getInsID().toString());
+        Prefs.putString("Id", travelInsurance.getTravelInsuranceID().toString());
         Prefs.putInt("PassCount", passCount);
         startActivity(intent);
     }

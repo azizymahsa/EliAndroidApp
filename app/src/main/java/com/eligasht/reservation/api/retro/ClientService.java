@@ -30,7 +30,7 @@ import retrofit2.http.POST;
  * Created by elham.bonyani on 2/28/2017.
  */
 
-public interface ClientService {
+public interface  ClientService {
 
 
     @POST("Common/StaticDataService.svc/Login")
