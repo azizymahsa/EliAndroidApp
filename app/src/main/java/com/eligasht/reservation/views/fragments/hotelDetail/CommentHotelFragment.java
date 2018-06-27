@@ -63,7 +63,6 @@ public class CommentHotelFragment extends Fragment implements View.OnClickListen
 
     public static CommentHotelFragment instance() {
         CommentHotelFragment fragment = new CommentHotelFragment();
-        //  EventBus.getDefault().register(fragment);
         return fragment;
     }
 
