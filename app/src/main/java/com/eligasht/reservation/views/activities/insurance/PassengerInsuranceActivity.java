@@ -854,7 +854,6 @@ private void RequestPurchaseInsurance(){
         request.setPlanCode(Prefs.getString("Id", "12"));
         request.setReturnDate(Prefs.getString("ReturnDate", "12"));
         request.setSearchKey(Prefs.getString("SearchKey", "12"));
-        request.setSearchKey(Prefs.getString("SearchKey", "12"));
 
         request.setCulture(getString(R.string.culture));
         requestPurchaseInsurance.setRequest(request);

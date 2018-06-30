@@ -67,7 +67,7 @@ public class HotelDetailViewPager extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "نما";
+                return context.getString(R.string.view);
             case 1:
                 return context.getString(R.string.Comments);
             case 2:

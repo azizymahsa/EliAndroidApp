@@ -2418,8 +2418,13 @@
     <string name="today">today</string>
     <string name="nomessage">You do not have a message at the moment</string>
     <string name="select_passenger">Select passenger</string>
-    <string name="_add_passenger">Add Passenger new</string>
+    <string name="_add_passenger">Select passenger</string>
     <string name="no_contract">You currently do not have any contracts.</string>
+    <string name="view">view</string>
+    <string name="add_passenger">Add new passenger</string>
+    <string name="add_passenger_new">Add passenger</string>
+    <string name="passenger_info">Passenger profile</string>
+    <string name="tomorrow">tomorrow</string>
     <string-array name="array_place">
         <item>Bangalore</item>
         <item>Tokyo</item>

@@ -68,7 +68,7 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
             case 2:
                 return context.getString(R.string.edit_profile);
             case 3:
-                return "اضافه کردن مسافر";
+                return context.getString(R.string.add_passenger_new);
             default:
                 return context.getString(R.string.edit_profile);
         }

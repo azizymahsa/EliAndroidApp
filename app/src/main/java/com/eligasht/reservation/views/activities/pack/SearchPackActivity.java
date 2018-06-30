@@ -214,6 +214,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                     error_layout.setVisibility(View.VISIBLE);
                     return;
                 }
+
                 SingletonAnalysis.getInstance().logTransfer(ServiceType.PACKAGE,departureFrom,departureTo);
 
                 pRowXfers = searchXPackageResult.getPRowXfers();

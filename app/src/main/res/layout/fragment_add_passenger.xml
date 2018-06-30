@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="اضافه کردن مسافر جدید"
+            android:text="@string/add_passenger"
             android:textColor="@color/white"
             android:layout_marginRight="@dimen/_10dp"
             android:textAppearance="@style/IrsansBold"

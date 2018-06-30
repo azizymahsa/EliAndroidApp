@@ -518,6 +518,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         txtnameP.addTextChangedListener(new GenericTextWatcher(txtnameP));
         txtnameP.setOnFocusChangeListener(this);
         txtfamilyP = (EditText) findViewById(R.id.txtfamilyP);
+
         //	txtfamilyP.setHint("لطفا نام خانوادگی را فارسی وارد کنید");
         txtfamilyP.setOnFocusChangeListener(this);
         txtfamilyP.addTextChangedListener(new GenericTextWatcher(txtfamilyP));

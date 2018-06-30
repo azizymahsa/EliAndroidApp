@@ -30,8 +30,7 @@ public class IDM_Activity extends FragmentActivity {
 		GlobalApplication.activityStack.add(this);
 		GlobalApplication.setActivity(this);
 		if (!isDBInitiated) {
-			isDBInitiated = true;
-		}
+			isDBInitiated = true;}
 		Config_Table config = new Config_Table();
 		if (!config.getValue(Config_Table.VERSION).equals(Utility.getVersionCode())) {
 			dropAllTables();
