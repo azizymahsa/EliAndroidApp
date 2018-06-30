@@ -176,10 +176,6 @@ public class MainActivity extends Base implements View.OnClickListener {
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
-              /*  if (!lottieUserMenu.isAnimating()){
-                    lottieUserMenu.playAnimation();
-
-                }*/
 
             }
 
@@ -188,7 +184,6 @@ public class MainActivity extends Base implements View.OnClickListener {
                 if (!lottieUserMenu.isAnimating() && isAnimated) {
                     isAnimated = false;
                     lottieUserMenu.playAnimation();
-
                 }
             }
 

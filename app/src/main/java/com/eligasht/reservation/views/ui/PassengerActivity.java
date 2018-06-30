@@ -1112,7 +1112,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					datePickerDialog.setMinDate(persianCalendarDatePicker1);
 					datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
 					String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 					int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
 					int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true);
@@ -1135,7 +1134,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					datePickerDialog.setMinDate(persianCalendarDatePicker1);
 					datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
 
-
 					String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 					int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
 					int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-12;
@@ -1152,15 +1150,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				if (!datePickerDialogGregorian1.isAdded())
 					datePickerDialogGregorian1.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
-				/*DialogFragment newFragment2 = new DatePickerFragment(txtTitleCountM.getText().toString());
-				newFragment2.show(getFragmentManager(), "datePicker");*/
+
 				flag = true;
 				break;
 			case  R.id.txtexp_passport:
 				if (!datePickerDialogGregorian2.isAdded())
 					datePickerDialogGregorian2.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
-				/*DialogFragment newFragment3 = new DatePickerFragment("");
-				newFragment3.show(getFragmentManager(), "datePicker");*/
+
 				flag = false;
 				break;
 			case R.id.btn_nextm:
@@ -1209,7 +1205,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
 							flagMosafer = flagMosafer + "T";
 						} else {
-							//((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
+
 							flagMosafer = flagMosafer + "F";
 							errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_number_correctly);
 						}
@@ -1226,7 +1222,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
 						flagMosafer=flagMosafer+"T";
 					}else{
-						//((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
 						flagMosafer=flagMosafer+"F";
 						errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_your_nationality);
 					}
@@ -1234,7 +1229,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
 						flagMosafer=flagMosafer+"T";
 					}else{
-						//((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
 						flagMosafer=flagMosafer+"F";
 						errorMessagePartner=errorMessagePartner+"\n"+"* "+getString(R.string.Enter_the_date_of_birth);
 					}
