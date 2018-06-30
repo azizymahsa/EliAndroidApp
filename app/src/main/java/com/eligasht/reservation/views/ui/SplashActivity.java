@@ -85,6 +85,9 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         startUpRequest();
     }
 
+
+
+
     @Override
     public void returnRestartAppValue() {
         Handler handler = new Handler();
