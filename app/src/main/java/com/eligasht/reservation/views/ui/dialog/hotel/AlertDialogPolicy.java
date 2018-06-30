@@ -22,17 +22,18 @@ public class AlertDialogPolicy implements View.OnClickListener {
     View dialogView;
     LayoutInflater inflater;
     android.app.AlertDialog.Builder builder;
-    Context activity;
+    Context context;
     FancyButton btnOk, btnCancel;
     AVLoadingIndicatorView avi;
     String text;
+    boolean isRoom;
     // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
 
 
-    public AlertDialogPolicy(final Context activity) {
-        this.activity = activity;
-        builder = new android.app.AlertDialog.Builder(activity);
-        inflater = LayoutInflater.from(activity);
+    public AlertDialogPolicy(final Context context,boolean isRoom) {
+        this.context = context;
+        builder = new android.app.AlertDialog.Builder(context);
+        inflater = LayoutInflater.from(context);
         dialogView = inflater.inflate(R.layout.alert_dialog_policy, null);
         builder.setView(dialogView);
         btnOk = dialogView.findViewById(R.id.btnOk);
@@ -40,6 +41,9 @@ public class AlertDialogPolicy implements View.OnClickListener {
         tvAlert = dialogView.findViewById(R.id.tvAlert);
         tvTitle = dialogView.findViewById(R.id.tvTitle);
         tvRoomName = dialogView.findViewById(R.id.tvRoomName);
+        if (isRoom)
+            tvRoomName.setVisibility(View.VISIBLE);
+
        /* Typeface typeface=Typeface.createFromAsset(activity.getAssets(),SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         tvAlert.setTextSize(2,12);
         tvAlert.setLineSpacing(30);

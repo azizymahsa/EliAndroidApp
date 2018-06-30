@@ -122,10 +122,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         }
         setContentView(R.layout.fragment_splash);
         StatusBarUtil.setTranslucent(this, 2);
-  /*      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.list_selection));
-        }*/
+
         splashDialog = new SplashDialog(SplashActivity.this, this);
         final PackageInfo pInfo;
         try {
@@ -189,14 +186,6 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         startupServiceRequest.setRequest(request);
         avi.setVisibility(View.VISIBLE);
         SingletonService.getInstance().getAppService().startUp(this, startupServiceRequest);
-
-
-
-
-
-
-
-
         Bundle bundle = new Bundle();
         bundle.putString("TestParam", "123");
         FirebaseAnalytics firebaseAnalytics=FirebaseAnalytics.getInstance(this);

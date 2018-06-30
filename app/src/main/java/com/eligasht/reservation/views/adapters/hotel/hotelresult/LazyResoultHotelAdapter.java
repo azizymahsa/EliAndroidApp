@@ -1,4 +1,4 @@
-package com.eligasht.reservation.views.adapters.hotel;
+package com.eligasht.reservation.views.adapters.hotel.hotelresult;
 
 import android.app.Activity;
 import android.content.Context;

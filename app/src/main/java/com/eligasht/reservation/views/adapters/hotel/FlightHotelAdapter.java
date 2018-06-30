@@ -76,9 +76,6 @@ public class FlightHotelAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.select_flight_hotel_item, null);
 
-            LinearLayout linear_1, linear_2;
-            TextView tvANRaft2_1, tvANRaft2_2, tvANRaft2_3;
-            TextView tvANRaft1_1, tvANRaft1_2;
             holder = new ViewHolder();
             holder.ivHotelPic = convertView.findViewById(R.id.ivHotelPic);
             holder.ivRate = convertView.findViewById(R.id.ivRate);

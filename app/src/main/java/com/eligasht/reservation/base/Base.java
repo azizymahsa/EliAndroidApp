@@ -1,5 +1,6 @@
 package com.eligasht.reservation.base;
 
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import java.util.Locale;
 public abstract class Base extends AppCompatActivity implements ConnectivityChangeListener {
     InternetAlert internetAlert;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         try {
@@ -43,7 +46,6 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
             getBaseContext().getResources().updateConfiguration(config,
                     getBaseContext().getResources().getDisplayMetrics());
         } catch (Exception e) {
-            Log.e("testerror", e.getMessage());
         }
         super.onCreate(savedInstanceState);
         ConnectionBuddy.getInstance().clearNetworkCache(this, savedInstanceState);
@@ -55,6 +57,7 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
     protected void onStart() {
         super.onStart();
         try {
+
             String languageToLoad = Prefs.getString("lang", "fa"); // your language
             Locale locale = new Locale(languageToLoad);
             Locale.setDefault(locale);
@@ -118,18 +121,11 @@ public abstract class Base extends AppCompatActivity implements ConnectivityChan
         try {
             JSONObject jsonObj = new JSONObject(new Gson().toJson(event));
             JSONObject getAirportsResult = jsonObj.getJSONObject("state");
-
-
             if (getAirportsResult.getString("value").equals("1")) {
-
                 internetAlert.isCancel();
             } else {
-
                 internetAlert.isShow();
-
             }
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

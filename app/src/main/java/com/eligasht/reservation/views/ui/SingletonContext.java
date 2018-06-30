@@ -20,7 +20,6 @@ public class SingletonContext {
     private Context context;
     private Typeface typeface;
 
-
     private SingletonContext() {
 
     }

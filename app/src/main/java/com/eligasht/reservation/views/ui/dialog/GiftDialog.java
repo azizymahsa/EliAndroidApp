@@ -49,7 +49,7 @@ public class GiftDialog implements View.OnClickListener{
         btnCancel.setOnClickListener(this);
         dialog = builder.create();
         dialog.setCancelable(true);
-    //    dialog.show();
+
     }
     public android.app.AlertDialog alertDialog(){
         return dialog;

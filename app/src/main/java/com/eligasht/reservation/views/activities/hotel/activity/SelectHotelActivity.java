@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SlidingDrawer;
@@ -21,14 +21,15 @@ import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
+import com.eligasht.reservation.base.SingletonTimer;
 import com.eligasht.reservation.lost.hotel.HotelPreFactorAdapter;
-import com.eligasht.reservation.models.HotelPreFactorModel;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
 import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
 import com.eligasht.reservation.tools.Utility;
-import com.eligasht.reservation.views.adapters.hotel.LazyResoultHotelAdapter;
+import com.eligasht.reservation.views.adapters.hotel.hotelresult.HotelResultAdapter;
+import com.eligasht.reservation.views.adapters.hotel.hotelresult.LazyResoultHotelAdapter;
 import com.eligasht.reservation.views.adapters.weather.WeatherAdapter;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.InitUi;
@@ -48,7 +49,6 @@ import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelType;
 import com.eligasht.service.model.hotel.hotelAvail.response.Location;
 import com.eligasht.service.model.weather.response.WeatherApi;
-import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.eligasht.reservation.tools.Prefs;
 
@@ -74,8 +74,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private FancyButton btnNextDays, btnLastDays;
     private String raft, bargasht;
     private String raftFa, bargashtFa, searchIn;
-    private com.eligasht.reservation.tools.ListView list;
-    private LazyResoultHotelAdapter adapter;
+   // private com.eligasht.reservation.tools.ListView list;
+  //  private LazyResoultHotelAdapter adapter;
     private ArrayList<SelectHotelModel> selectHotelModelArrayList = new ArrayList<>();
     private ArrayList<SelectHotelModel> selectHotelModelArrayListFilter = new ArrayList<>();
     private ArrayList<FilterModel> filterModels = new ArrayList<>();
@@ -86,9 +86,12 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private ArrayList<FilterHotelTypeModel> filterHotelBestOffModels = new ArrayList<>();
     private ArrayList<FilterStarModel> filterHotelStarsModels = new ArrayList<>();
     private List<Room> rooms = new ArrayList<>();
-    private FancyButton btnFilter, btnSort;
+    private FancyButton btnFilter, btnSort,btnChangeView;
     private  RecyclerView rvWeather;
     SlidingDrawer slidingDrawer;
+    RecyclerView rvHotelResult;
+    HotelResultAdapter hotelResultAdapter;
+    boolean isGrid=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,7 +103,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 .setNeedBackgroundShadow(true)
                 .init(this);*/
         window = getWindow();
-        list = findViewById(R.id.lvHoteResult);
+       // list = findViewById(R.id.lvHoteResult);
+        rvHotelResult = findViewById(R.id.rvHotelResult);
         rlList = findViewById(R.id.rlList);
         tvLoading = findViewById(R.id.tvLoading);
         btnFilter = findViewById(R.id.btnFilter);
@@ -113,6 +117,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         btnHome = findViewById(R.id.btnHome);
         elNotFound = findViewById(R.id.elNotFound);
         tvSortIcon = findViewById(R.id.tvSortIcon);
+        btnChangeView = findViewById(R.id.btnChangeView);
         tvSort = findViewById(R.id.tvSort);
         tvFilter = findViewById(R.id.tvFilter);
         btnOk = findViewById(R.id.btnOk);
@@ -131,6 +136,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         btnBack.setText(getString(R.string.search_back_right));
 
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
+        btnChangeView.setCustomTextFont("fonts/icomoon2.ttf");
+        btnChangeView.setText(getString(R.string.icon_grid));
         raftFa = SingletonDate.getInstance().getStartDate().getDescription();
         bargashtFa = SingletonDate.getInstance().getEndDate().getDescription();
         rooms.add(new Room(getIntent().getExtras().getInt("Adult"), getIntent().getExtras().getInt("Child")));
@@ -139,7 +146,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
         btnOk.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
-        Utility.init_floating(list, this);
+       // Utility.init_floating(list, this);
         btnFilter.setOnClickListener(this);
         btnSort.setOnClickListener(this);
         btnNextDays.setOnClickListener(this);
@@ -147,6 +154,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         btnHome.setOnClickListener(this);
         btnBack.setOnClickListener(this);
         btnOk.setOnClickListener(this);
+        btnChangeView.setOnClickListener(this);
         Utility.setAnimLoading(this);
         Utility.loadingText(tvLoading, Prefs.getString("H", ""));
         notiRecive();
@@ -154,9 +162,15 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         weather_request();
         tvDate.setText(raftFa + " - " + bargashtFa);
 
-        adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this, tvDate);
-        list.setAdapter(adapter);
+      /*  adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, this, this, tvDate);
+        list.setAdapter(adapter);*/
         rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
+
+        rvHotelResult.setLayoutManager(new LinearLayoutManager(this));
+        hotelResultAdapter = new HotelResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+        rvHotelResult.setAdapter(hotelResultAdapter);
+
     }
 
     @Override
@@ -167,6 +181,30 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btnChangeView:
+                if (isGrid){
+                    isGrid=false;
+
+                    rvHotelResult.setLayoutManager(new LinearLayoutManager(this));
+                    hotelResultAdapter = new HotelResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+                    rvHotelResult.setAdapter(hotelResultAdapter);
+                    btnChangeView.setText(getString(R.string.icon_grid));
+                   // hotelResultAdapter.onAttachedToRecyclerView(rvHotelResult);
+                  //  hotelResultAdapter.notify();
+
+
+                }else{
+                    isGrid=true;
+
+                    rvHotelResult.setLayoutManager(new GridLayoutManager(this,3));
+                    hotelResultAdapter = new HotelResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+                    rvHotelResult.setAdapter(hotelResultAdapter);
+                    btnChangeView.setText(getString(R.string.icon_list));
+                   // hotelResultAdapter.onAttachedToRecyclerView(rvHotelResult);
+//                    hotelResultAdapter.notify();
+
+                }
+                break;
             case R.id.btnOk:
                 finish();
                 break;
@@ -216,7 +254,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                               ArrayList<FilterHotelTypeModel> filterHotelLocationModels, ArrayList<FilterHotelTypeModel> filterHotelBestOffModels
             , ArrayList<FilterStarModel> filterHotelStarsModels, boolean remove) {
         elNotFound.setVisibility(View.GONE);
-        list.setVisibility(View.VISIBLE);
+        rvHotelResult.setVisibility(View.VISIBLE);
         rlList.setVisibility(View.VISIBLE);
         btnOk.setVisibility(View.VISIBLE);
         rlEr.setVisibility(View.VISIBLE);
@@ -241,11 +279,12 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         if (selectHotelModelArrayListFilter.size() == selectHotelModelArrayList.size() && !remove) {
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-            adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this, tvDate);
-            list.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+          /*  adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this, tvDate);
+            list.setAdapter(adapter);*/
+            hotelResultAdapter = new HotelResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+            rvHotelResult.setAdapter(hotelResultAdapter);
             elNotFound.setVisibility(View.VISIBLE);
-            list.setVisibility(View.GONE);
+            rvHotelResult.setVisibility(View.GONE);
             rlList.setVisibility(View.GONE);
             btnOk.setVisibility(View.GONE);
             rlEr.setVisibility(View.GONE);
@@ -255,11 +294,12 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             if (selectHotelModelArrayListFilter.isEmpty()) {
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-                adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this, tvDate);
-                list.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+             /*   adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this, tvDate);
+                list.setAdapter(adapter);*/
+                hotelResultAdapter = new HotelResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+                rvHotelResult.setAdapter(hotelResultAdapter);
                 elNotFound.setVisibility(View.VISIBLE);
-                list.setVisibility(View.GONE);
+                rvHotelResult.setVisibility(View.GONE);
                 rlList.setVisibility(View.GONE);
                 btnOk.setVisibility(View.GONE);
                 rlEr.setVisibility(View.GONE);
@@ -268,17 +308,20 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             } else {
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.red));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.red));
-                adapter = new LazyResoultHotelAdapter(selectHotelModelArrayListFilter, SelectHotelActivity.this, SelectHotelActivity.this, tvDate);
-                list.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+              /*  adapter = new LazyResoultHotelAdapter(selectHotelModelArrayListFilter, SelectHotelActivity.this, SelectHotelActivity.this, tvDate);
+                list.setAdapter(adapter);*/
+                hotelResultAdapter = new HotelResultAdapter(selectHotelModelArrayListFilter,this,tvDate,isGrid);
+                rvHotelResult.setAdapter(hotelResultAdapter);
             }
         }
         if (remove) {
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
             tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-            adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this, tvDate);
+           /* adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this, tvDate);
             list.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();*/
+            hotelResultAdapter = new HotelResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
+            rvHotelResult.setAdapter(hotelResultAdapter);
             searchIn = "";
         }
     }
@@ -524,7 +567,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         return Integer.valueOf(p2.getPrice()) - Integer.valueOf(p1.getPrice()); // Ascending
                     }
                 });
-                adapter.notifyDataSetChanged();
+                hotelResultAdapter.notifyDataSetChanged();
                 break;
             case 2:
                 Collections.sort(selectHotelModelArrayList, new Comparator<SelectHotelModel>() {
@@ -539,7 +582,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         return Integer.valueOf(p1.getPrice()) - Integer.valueOf(p2.getPrice()); // Ascending
                     }
                 });
-                adapter.notifyDataSetChanged();
+                hotelResultAdapter.notifyDataSetChanged();
                 break;
         }
     }
@@ -615,17 +658,18 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             if (hotelAvailRes.getHotelAvailResult().getErrors() != null) {
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlert.setText(hotelAvailRes.getHotelAvailResult().getErrors().get(0).getDetailedMessage());
-                list.setVisibility(View.GONE);
+                rvHotelResult.setVisibility(View.GONE);
                 rlList.setVisibility(View.GONE);
                 llFilter.setVisibility(View.GONE);
             } else if (hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getHotels().isEmpty()) {
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlert.setText(R.string.NoResult);
                 tvAlertDesc.setText(getString(R.string.change_date));
-                list.setVisibility(View.GONE);
+                rvHotelResult.setVisibility(View.GONE);
                 rlList.setVisibility(View.GONE);
                 llFilter.setVisibility(View.GONE);
             } else {
+                SingletonTimer.getInstance().start();
 
                 if (rvWeather.getAdapter()!=null){
                     rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
@@ -729,19 +773,25 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     }
                 });
             }
-            adapter.notifyDataSetChanged();
+            hotelResultAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();
-            list.setVisibility(View.GONE);
+            rvHotelResult.setVisibility(View.GONE);
             rlList.setVisibility(View.GONE);
             elNotFound.setVisibility(View.VISIBLE);
             if (!Utility.isNetworkAvailable(SelectHotelActivity.this)) {
                 tvAlert.setText(R.string.InternetError);
+                tvAlertDesc.setVisibility(View.GONE);
+
             } else {
-                tvAlert.setText(R.string.ErrorServer);
+                tvAlert.setText(R.string.NoResult);
+                tvAlertDesc.setVisibility(View.VISIBLE);
+                tvAlertDesc.setText(getString(R.string.change_date));
+
+
             }
-            tvAlertDesc.setVisibility(View.GONE);
-            list.setVisibility(View.GONE);
+
+            rvHotelResult.setVisibility(View.GONE);
             btnOk.setVisibility(View.VISIBLE);
             rlEr.setVisibility(View.VISIBLE);
         }
@@ -755,7 +805,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.colorPrimaryDark));
         }
-        list.setVisibility(View.GONE);
+        rvHotelResult.setVisibility(View.GONE);
         rlList.setVisibility(View.GONE);
         elNotFound.setVisibility(View.VISIBLE);
         tvAlertDesc.setVisibility(View.GONE);

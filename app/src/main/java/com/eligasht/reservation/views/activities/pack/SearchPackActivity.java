@@ -23,6 +23,7 @@ import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
+import com.eligasht.reservation.base.SingletonTimer;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
 import com.eligasht.reservation.models.model.pack.LstAvailableDate;
 import com.eligasht.reservation.models.model.pack.LstProwPrice;
@@ -171,10 +172,12 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 hideLoading();
 
                 if (response == null || response.body() == null) {
+
                     rcl_package.showText();
                     txt_error.setText(R.string.ErrorServer);
                     error_layout.setVisibility(View.VISIBLE);
                 }
+                SingletonTimer.getInstance().start();
 
 
                 SearchXPackageResult searchXPackageResult = response.body().getSearchXPackageResult();

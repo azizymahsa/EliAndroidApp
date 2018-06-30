@@ -48,10 +48,6 @@
         />
 
 
-
-
-
-
     <mehdi.sakout.fancybuttons.FancyButton
         android:id="@+id/btnOk"
         android:layout_width="@dimen/_90dp"

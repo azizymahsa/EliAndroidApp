@@ -25,9 +25,7 @@ public class GetRoomsList extends BaseAPI {
     public interface GetRooms {
         @RawRes
         @POST(GetRoomsList.ACTION_NAME)
-        Call<GetRoomsListResponse> get_rooms(
-                @Body GetRoomsHotelRequest getRoomsHotelRequest
-        );
+        Call<GetRoomsListResponse> get_rooms(@Body GetRoomsHotelRequest getRoomsHotelRequest);
     }
 
 
@@ -51,7 +49,6 @@ public class GetRoomsList extends BaseAPI {
 
         } catch (Exception e) {
             Log.e("errorrrrrr",e.getMessage() );
-
         }
 
 

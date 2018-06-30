@@ -45,9 +45,11 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.BuildConfig;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
+import com.eligasht.reservation.models.PassengerDBModel;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.eligasht.reservation.views.activities.GetPassengerActivity;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.helper.Const;
 import com.eligasht.service.listener.OnServiceStatus;
@@ -140,20 +142,17 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     public static TextView txtexp_passport;
     public TextView txtTitle, txtmeliyatm, txtmahale_eghamat, txtTitleCountM;
     public static TextView txtSumKhadamat;
-    public LinearLayout linear_saler, linear_mosaferan, linear_list_khadamat, linear_pish_factor, linearMahaleeghamat, linearMeliyat, btn_next_partnerInfo, btn_nextm, btn_taeed_khadamat;
+    public LinearLayout linear_saler, linear_mosaferan, linear_list_khadamat, linear_pish_factor, linearMahaleeghamat, linearMeliyat, btn_next_partnerInfo, btn_nextm, btn_taeed_khadamat,llAddPassenger;
     private Handler progressBarHandler = new Handler();
     public ListView list_airport, listKhadamat;
     ArrayList<HashMap<String, String>> mylist = null;
     public static String searchText = "";
-
     public static long GET_PRICE_KHADAMAT;
     ExpandableRelativeLayout expandableLayout;
     String paymentUrl;
     private boolean FlagTab = false;
     RelativeLayout rlLoading, rlRoot;
-
     GetKhadmatHotelFlightAdapter mAdapter;
-
     private EditText searchtxt;
     public TextView txt_shomare_factor, imgCount;
     public TextView tvPrice;
@@ -273,7 +272,6 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 int daySh = datePickerDialog.getSelectedDay().getDay();//29
                 //convert to miladi
                 String[] dateSplite3 = date_server(yearSh, monthSh - 1, daySh - 1).split("-");
-
 
                 String dayMF1 = dateSplite3[2];
                 String monthMF1 = dateSplite3[1];
@@ -443,6 +441,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         txtMore = findViewById(R.id.txtMore);
         txtMore.setOnClickListener(PassengerHotelFlightActivity.this);
 
+        llAddPassenger = (LinearLayout) findViewById(R.id.llAddPassenger);
+        llAddPassenger.setOnClickListener(this);
         txtSumKhadamat = findViewById(R.id.txtSumKhadamat);
         tvPrice = findViewById(R.id.tvPrice);
         txtSumKhadamat.setOnClickListener(PassengerHotelFlightActivity.this);
@@ -966,6 +966,13 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         Fragment fragment2;
 
         switch (v.getId()) {
+            case R.id.llAddPassenger:
+
+                Intent intent = new Intent(this, GetPassengerActivity.class);
+                startActivityForResult(intent, 555);
+
+
+                break;
             case R.id.txtMore:
                 linearMahaleeghamat.setVisibility(View.VISIBLE);
                 linearMeliyat.setVisibility(View.VISIBLE);
@@ -1016,8 +1023,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     ((Button) findViewById(R.id.txtMasaferan)).setTextColor(Color.parseColor("#4d4d4d"));
                 } else if (linear_saler.getVisibility() == View.VISIBLE) {
                     Prefs.putBoolean("BACK_HOME", true);
-                    Intent intent = new Intent("sendFinish");
-                    LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+                    Intent intentSendFinish = new Intent("sendFinish");
+                    LocalBroadcastManager.getInstance(this).sendBroadcast(intentSendFinish);
                 }
                 break;
             case R.id.btn_next_partnerInfo:
@@ -1717,9 +1724,9 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 break;
             case R.id.txt_hom:
                 Prefs.putBoolean("BACK_HOME", true);
-                Intent intent = new Intent("sendFinish");
+                Intent intentsendFinish = new Intent("sendFinish");
 
-                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intentsendFinish);
                 break;
         }
 
@@ -1905,6 +1912,32 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                 txtmahale_eghamat.setText(countryCode + "");//txtmahale_eghamat.setText(countryCode+" "+countryName);
             if (nationalityCode != null)
                 txtmeliyatm.setText(nationalityCode + "");//txtmeliyatm.setText(nationalityCode+" "+nationalityName);
+        }
+        if(requestCode == 555 && resultCode == Activity.RESULT_OK){
+
+            List<PassengerDBModel> passengerDBModels=PassengerDBModel.listAll(PassengerDBModel.class);
+            for (PassengerDBModel model:passengerDBModels) {
+                if (model.getId()==data.getLongExtra("Id",0)){
+                    txtnamem.setText(model.getRqPassenger_FirstNameEn());
+                    txtfamilym.setText(model.getRqPassenger_LastNameEn());
+                    txtnumber_passport.setText(model.getRqPassenger_PassNo());
+                    txt_NationalCode_m.setText(model.getRqPassenger_NationalCode());
+                    txttavalodm.setText(model.getRqPassenger_Birthdate());
+                    txtexp_passport.setText(model.getRqPassenger_PassExpDate());
+                    Log.e("gender", model.getGender());
+                    if(Boolean.valueOf(model.getGender())){
+                        btnzan.setChecked(true);
+                    }else{
+                        btnmard.setChecked(true);
+
+                    }
+
+
+
+                }
+
+            }
+
         }
     }
 

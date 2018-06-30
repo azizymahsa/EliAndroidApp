@@ -1,4 +1,5 @@
 package com.eligasht.reservation.views.activities;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.eligasht.reservation.views.adapters.notification.NotificationAdapter;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.onesignal.shortcutbadger.ShortcutBadger;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,6 +28,7 @@ import java.util.Collections;
 import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 /**
  * Created by Reza Nejati on 22,May,2018
  */
@@ -36,7 +39,10 @@ public class NotificationActivity extends Base {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_activity);
+        ShortcutBadger.removeCount(this);
+
         Prefs.putInt("notifiCounter",0);
+        EventBus.getDefault().register(this);
         InitUi.Toolbar(this, false, R.color.toolbar_color, "پیام ها");
         recyclerView =findViewById(R.id.recyclerView);
         elNotFound =findViewById(R.id.elNotFound);
@@ -44,12 +50,7 @@ public class NotificationActivity extends Base {
         llHome =findViewById(R.id.llHome);
         llHome.setVisibility(View.INVISIBLE);
         btnOk.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        btnOk.setOnClickListener(v -> finish());
         onData();
 
 
@@ -58,7 +59,7 @@ public class NotificationActivity extends Base {
     @Override
     protected void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+
 
     }
 
@@ -95,5 +96,11 @@ public class NotificationActivity extends Base {
             recyclerView.setVisibility(View.VISIBLE);
         }
 
+    }
+
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(context));
     }
 }

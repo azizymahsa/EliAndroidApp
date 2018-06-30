@@ -47,6 +47,7 @@ import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.lost.passenger.PassangerPreFactorAdapter;
+import com.eligasht.reservation.models.PassengerDBModel;
 import com.eligasht.reservation.models.PassengerPreFactorModel;
 import com.eligasht.reservation.lost.service.ServicePreFactorAdapter;
 import com.eligasht.reservation.models.ServicePreFactorModel;
@@ -59,6 +60,7 @@ import com.eligasht.reservation.tools.db.local.PassengerMosaferItems_Table;
 import com.eligasht.reservation.tools.db.local.PassengerPartnerInfo_Table;
 import com.eligasht.reservation.tools.db.main.CursorManager;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.eligasht.reservation.views.activities.GetPassengerActivity;
 import com.eligasht.reservation.views.adapters.GetHotelKhadmatAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.CountrycodeActivity;
@@ -149,7 +151,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     public int countK;
     public int countN;
 
-    private LinearLayout llDetailHotel, llDetailPassanger, llDetailService, llDetailFlight;
+    private LinearLayout llDetailHotel, llDetailPassanger, llDetailService, llDetailFlight,llAddPassenger;
     private boolean FlagTab = false;
     private boolean FlagMosaferan = true;
     List<String> alRoom;
@@ -169,6 +171,8 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_insurance);
+        llAddPassenger = (LinearLayout) findViewById(R.id.llAddPassenger);
+        llAddPassenger.setOnClickListener(this);
         ScrollView scroll_partner = findViewById(R.id.scroll_partner);
         scroll_partner.fullScroll(ScrollView.FOCUS_UP);
         scroll_partner.scrollTo(0, 0);
@@ -879,11 +883,13 @@ private void RequestPurchaseInsurance(){
     public void onClick(View v) {
 
         switch (v.getId()) {
-
+            case R.id.llAddPassenger:
+                Intent intent1 = new Intent(this, GetPassengerActivity.class);
+                startActivityForResult(intent1, 555);
+                break;
             case R.id.txt_hom:
                 Prefs.putBoolean("BACK_HOME", true);
                 Intent intent = new Intent("sendFinish");
-
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
                 break;
             case R.id.txtMore:
@@ -1466,6 +1472,32 @@ private void RequestPurchaseInsurance(){
                 txtmahale_eghamat.setText(countryCode + "");
             if (nationalityCode != null)
                 txtmeliyatm.setText(nationalityCode + "");
+        }
+        if(requestCode == 555 && resultCode == Activity.RESULT_OK){
+
+            List<PassengerDBModel> passengerDBModels=PassengerDBModel.listAll(PassengerDBModel.class);
+            for (PassengerDBModel model:passengerDBModels) {
+                if (model.getId()==data.getLongExtra("Id",0)){
+                    txtnamem.setText(model.getRqPassenger_FirstNameEn());
+                    txtfamilym.setText(model.getRqPassenger_LastNameEn());
+                    txtnumber_passport.setText(model.getRqPassenger_PassNo());
+                    txt_NationalCode_m.setText(model.getRqPassenger_NationalCode());
+                    txttavalodm.setText(model.getRqPassenger_Birthdate());
+                    txtexp_passport.setText(model.getRqPassenger_PassExpDate());
+                    Log.e("gender", model.getGender());
+                    if(Boolean.valueOf(model.getGender())){
+                        btnzan.setChecked(true);
+                    }else{
+                        btnmard.setChecked(true);
+
+                    }
+
+
+
+                }
+
+            }
+
         }
     }
 

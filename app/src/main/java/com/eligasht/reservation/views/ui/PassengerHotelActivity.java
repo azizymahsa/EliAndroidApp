@@ -49,9 +49,11 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
+import com.eligasht.reservation.models.PassengerDBModel;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.eligasht.reservation.views.activities.GetPassengerActivity;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -129,7 +131,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     public Button btnAddsabad, btn_pardakht_factor, txtSaler, txtMasaferan, txtKhadamat, txtPishfactor;
     public EditText txtnamem, txtfamilym;
     public static TextView txttavalodm;
-    public EditText txtnumber_passport, txtnameP,txt_NationalCode_m;
+    public EditText txtnumber_passport, txtnameP, txt_NationalCode_m;
     public static TextView txtexp_passport;
     public TextView txtTitle, txtmeliyatm, txtmahale_eghamat, txtTitleCountM;
     public static TextView txtSumKhadamat;
@@ -165,7 +167,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     private int defaultRooms = 1;
     //int count;
     //change for Prefactor=========================================================================
-    LinearLayout llDetailHotel, llDetailPassanger, llDetailService, llDetailFlight;
+    LinearLayout llDetailHotel, llDetailPassanger, llDetailService, llDetailFlight, llAddPassenger;
     private boolean FlagMosaferan = true;
     private boolean FlagTab = false;
     private RadioButton btnzan, btnmard, btnzanS, btnmardS;
@@ -180,6 +182,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger);
+        llAddPassenger = (LinearLayout) findViewById(R.id.llAddPassenger);
+        llAddPassenger.setOnClickListener(this);
         ScrollView scroll_partner = findViewById(R.id.scroll_partner);
         scroll_partner.fullScroll(ScrollView.FOCUS_UP);
         scroll_partner.scrollTo(0, 0);
@@ -481,7 +485,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         txtnumber_passport.setOnFocusChangeListener(this);
         txtnumber_passport.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         txtnumber_passport.addTextChangedListener(new GenericTextWatcher(txtnumber_passport));
-        txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
+        txt_NationalCode_m = (EditText) findViewById(R.id.txt_NationalCode_m);
 
         txt_NationalCode_m.setOnClickListener(this);
         txt_NationalCode_m.setImeOptions(EditorInfo.IME_ACTION_DONE);
@@ -1275,21 +1279,21 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     detailsJson.put("Nationality", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
                     detailsJson.put("Nationality_ID", cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
 
-                 //   detailsJson.put("RqPassenger_Address", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
+                    //   detailsJson.put("RqPassenger_Address", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
                     detailsJson.put("RqPassenger_Birthdate", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
-                   // detailsJson.put("RqPassenger_Email", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
+                    // detailsJson.put("RqPassenger_Email", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
 
                     detailsJson.put("RqPassenger_FirstNameEn", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-                  //  detailsJson.put("RqPassenger_FirstNameFa", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
+                    //  detailsJson.put("RqPassenger_FirstNameFa", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
                     detailsJson.put("RqPassenger_LastNameEn", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
 
-                   // detailsJson.put("RqPassenger_LastNameFa", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
-                 //   detailsJson.put("RqPassenger_Mobile", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
+                    // detailsJson.put("RqPassenger_LastNameFa", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
+                    //   detailsJson.put("RqPassenger_Mobile", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
                     detailsJson.put("RqPassenger_NationalCode", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
 
                     detailsJson.put("RqPassenger_PassExpDate", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
                     detailsJson.put("RqPassenger_PassNo", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
-                  //  detailsJson.put("RqPassenger_Tel", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
+                    //  detailsJson.put("RqPassenger_Tel", cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
 
                     detailJsonArray.put(detailsJson);
 
@@ -1438,7 +1442,13 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
         switch (v.getId()) {
 
+            case R.id.llAddPassenger:
 
+                Intent intent = new Intent(this, GetPassengerActivity.class);
+                startActivityForResult(intent, 555);
+
+
+                break;
             case R.id.txtMore:
 
                 linearMahaleeghamat.setVisibility(View.VISIBLE);
@@ -1523,9 +1533,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                     Prefs.putBoolean("BACK_HOME", true);
                     //	myScrollView.setOnTouchListener(null);
-                    Intent intent = new Intent("sendFinish");
+                    Intent intentsendFinish = new Intent("sendFinish");
 
-                    LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+                    LocalBroadcastManager.getInstance(this).sendBroadcast(intentsendFinish);
                 }
 
 
@@ -1553,7 +1563,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         //jadvale mosafer khali beshe
 
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerHotelActivity.this);
-                        //   db.openDB();
+                        // db.openDB();
                         db.dropTable();
                         ////////////////////////Validate
                         String RqPartner_Address = null;
@@ -1808,21 +1818,21 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 ScrollView scrolMosafer = findViewById(R.id.scrolMosafer);
                 scrolMosafer.fullScroll(ScrollView.FOCUS_UP);
                 if (FlagMosaferan) {
-                    String Gender= Gensiyat;
-                    String Nationality=txtmahale_eghamat.getText().toString();// "ir";
-                    String Nationality_ID= txtmeliyatm.getText().toString().toLowerCase();
-                    String RqPassenger_Address= null;
-                    String RqPassenger_Birthdate= txttavalodm.getText().toString();
-                    String RqPassenger_Email= null;
-                    String RqPassenger_FirstNameEn= txtnamem.getText().toString();
-                    String RqPassenger_FirstNameFa=null;
-                    String RqPassenger_LastNameEn=txtfamilym.getText().toString();
-                    String RqPassenger_LastNameFa= null;
-                    String RqPassenger_Mobile= null;
-                    String RqPassenger_NationalCode= txt_NationalCode_m.getText().toString();//codemeli
-                    String RqPassenger_PassExpDate= txtexp_passport.getText().toString();
-                    String RqPassenger_PassNo=txtnumber_passport.getText().toString();
-                    String RqPassenger_Tel= null;
+                    String Gender = Gensiyat;
+                    String Nationality = txtmahale_eghamat.getText().toString();// "ir";
+                    String Nationality_ID = txtmeliyatm.getText().toString().toLowerCase();
+                    String RqPassenger_Address = null;
+                    String RqPassenger_Birthdate = txttavalodm.getText().toString();
+                    String RqPassenger_Email = null;
+                    String RqPassenger_FirstNameEn = txtnamem.getText().toString();
+                    String RqPassenger_FirstNameFa = null;
+                    String RqPassenger_LastNameEn = txtfamilym.getText().toString();
+                    String RqPassenger_LastNameFa = null;
+                    String RqPassenger_Mobile = null;
+                    String RqPassenger_NationalCode = txt_NationalCode_m.getText().toString();//codemeli
+                    String RqPassenger_PassExpDate = txtexp_passport.getText().toString();
+                    String RqPassenger_PassNo = txtnumber_passport.getText().toString();
+                    String RqPassenger_Tel = null;
 
                     String flagMosafer = "T";
 
@@ -1838,7 +1848,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_number_correctly);
                     }
-                    if (RqPassenger_NationalCode.trim().length() == 10 ) {
+                    if (RqPassenger_NationalCode.trim().length() == 10) {
                         ((EditText) findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
                         flagMosafer = flagMosafer + "T";
                     } else {
@@ -2312,9 +2322,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             case R.id.txt_hom:
                 Prefs.putBoolean("BACK_HOME", true);
                 //	myScrollView.setOnTouchListener(null);
-                Intent intent = new Intent("sendFinish");
+                Intent intentt = new Intent("sendFinish");
 
-                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(intentt);
                 //this.startActivity(i4);
                 break;
         }
@@ -2379,6 +2389,32 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 txtmahale_eghamat.setText(countryCode + "");//txtmahale_eghamat.setText(countryCode+" "+countryName);
             if (nationalityCode != null)
                 txtmeliyatm.setText(nationalityCode + "");//txtmeliyatm.setText(nationalityCode+" "+nationalityName);
+        }
+        if(requestCode == 555 && resultCode == Activity.RESULT_OK){
+
+            List<PassengerDBModel> passengerDBModels=PassengerDBModel.listAll(PassengerDBModel.class);
+            for (PassengerDBModel model:passengerDBModels) {
+                if (model.getId()==data.getLongExtra("Id",0)){
+                    txtnamem.setText(model.getRqPassenger_FirstNameEn());
+                    txtfamilym.setText(model.getRqPassenger_LastNameEn());
+                    txtnumber_passport.setText(model.getRqPassenger_PassNo());
+                    txt_NationalCode_m.setText(model.getRqPassenger_NationalCode());
+                    txttavalodm.setText(model.getRqPassenger_Birthdate());
+                    txtexp_passport.setText(model.getRqPassenger_PassExpDate());
+                    Log.e("gender", model.getGender());
+                    if(Boolean.valueOf(model.getGender())){
+                        btnzan.setChecked(true);
+                    }else{
+                        btnmard.setChecked(true);
+
+                    }
+
+
+
+                }
+
+            }
+
         }
     }
 
@@ -2997,12 +3033,12 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                     } else {
                         //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-                     //   txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
+                        //   txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number_correctly));
                     }
                     if (txtmeliyatm.getText().toString() != null && txtmeliyatm.getText().toString().length() > 4) {
                     } else {
                         //((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-                      //  txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
+                        //  txtnumber_passport.setError(getString(R.string.Please_enter_the_passport_number));
                     }
                 }
                 break;

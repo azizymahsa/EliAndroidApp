@@ -2,7 +2,7 @@ package com.zplesac.connectionbuddy.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.support.annotation.NonNull;
 /**
  * Created by Željko Plesac on 23/09/15.
  * Connectivity event which holds all the necessary data about network connection.
@@ -15,8 +15,7 @@ public class ConnectivityEvent implements Parcelable {
 
     private ConnectivityStrength strength;
 
-    public ConnectivityEvent() {
-    }
+
 
     public ConnectivityEvent(ConnectivityState state, ConnectivityType type, ConnectivityStrength strength) {
         this.state = state;
@@ -53,6 +52,7 @@ public class ConnectivityEvent implements Parcelable {
         return 0;
     }
 
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(this.state, flags);
@@ -60,13 +60,14 @@ public class ConnectivityEvent implements Parcelable {
         dest.writeParcelable(this.strength, flags);
     }
 
-    protected ConnectivityEvent(Parcel in) {
+    private ConnectivityEvent(Parcel in) {
         this.state = in.readParcelable(ConnectivityState.class.getClassLoader());
         this.type = in.readParcelable(ConnectivityType.class.getClassLoader());
         this.strength = in.readParcelable(ConnectivityStrength.class.getClassLoader());
     }
 
     public static final Creator<ConnectivityEvent> CREATOR = new Creator<ConnectivityEvent>() {
+
         @Override
         public ConnectivityEvent createFromParcel(Parcel source) {
             return new ConnectivityEvent(source);

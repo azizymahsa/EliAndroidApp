@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.tools.WebUserTools;
@@ -20,17 +21,17 @@ import java.util.ArrayList;
  * Created by elham.bonyani on 1/25/2018.
  */
 
-public class MyContractsFragment extends Fragment implements View.OnClickListener {
+public class MyContractsFragment extends Fragment {
 
     public ViewGroup view;
 
     ListView lvContract;
+    TextView tvNoContracts;
     private ArrayList<ContractModels> contractModels = new ArrayList<>();
 
 
     public static MyContractsFragment instance() {
-        MyContractsFragment fragment = new MyContractsFragment();
-        return fragment;
+        return new MyContractsFragment();
     }
 
     @Override
@@ -45,6 +46,7 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
 
     private void initViews() {
         lvContract = view.findViewById(R.id.lvContract);
+        tvNoContracts = view.findViewById(R.id.tvNoContracts);
         try {
             for (int i = 0; i < WebUserTools.getInstance().getUser().getPreviousContracts().size(); i++) {
                 contractModels.add(new ContractModels((WebUserTools.getInstance().getUser().getPreviousContracts().get(i).getRqBaseID() + ""),
@@ -70,15 +72,18 @@ public class MyContractsFragment extends Fragment implements View.OnClickListene
 
             lvContract.setAdapter(new ContractAdapter((ProfileActivity) getActivity(), contractModels));
 
+            if (contractModels.isEmpty()||contractModels.size()==0){
+                lvContract.setVisibility(View.GONE);
+                tvNoContracts.setVisibility(View.VISIBLE);
+            }
+
         } catch (Exception e) {
+            lvContract.setVisibility(View.GONE);
+            tvNoContracts.setVisibility(View.VISIBLE);
         }
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-        }
-    }
+
 
     public boolean isValidForm() {
         return true;

@@ -35,6 +35,7 @@ import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
 import com.eligasht.service.model.identity.Identity;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
+import com.google.gson.Gson;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.apache.http.HttpResponse;
@@ -180,9 +181,12 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
 
     @Override
     public void onReady(GetHotelListResponse getHotelListResponse) {
+
         avLoadingIndicatorView.setVisibility(View.INVISIBLE);
         List<HotelCity> data = new ArrayList<HotelCity>();
         try {
+            Log.e("response: ", new Gson().toJson(getHotelListResponse));
+
             if (!TextUtils.isEmpty(searchtxt.getText())) {
                 for (City city : getHotelListResponse.getGetHotelListResult().getCities() ) {
                     HotelCity hotelCity = new HotelCity();
@@ -229,6 +233,7 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
         getHListRequest.setIdentity(identity);
         hotelListRequest.setRequest(getHListRequest);
         SingletonService.getInstance().getHotelService().getHList(this, hotelListRequest);
+        Log.e("request: ", new Gson().toJson(hotelListRequest));
 
 
     }

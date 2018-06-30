@@ -652,14 +652,20 @@
 
                         <TextView
                             android:id="@+id/txtTitleCountM"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|center_vertical"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginRight="2dp"
-                            android:layout_marginTop="1dp"
+                            android:layout_marginTop="5dp"
                             android:layout_weight="1.5"
+                            android:background="@drawable/textview55"
+
                             android:gravity="right"
+                            android:padding="8dp"
+
                             android:text="@string/First_passenger_information"
+                            android:textColor="@color/text_color_2e"
                             android:textSize="@dimen/_13dp_normal_textSize" />
 
                         <TextView
@@ -673,7 +679,8 @@
                             android:gravity="center"
                             android:text=" 1 "
                             android:textColor="#fff"
-                            android:textSize="@dimen/_12dp_normal_textSize" />
+                            android:textSize="@dimen/_12dp_normal_textSize"
+                            android:visibility="gone"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -683,6 +690,33 @@
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="1dp"
                         android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/llAddPassenger"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/toolbar_color_press"
+                            android:foreground="?android:selectableItemBackground"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="@dimen/_10dp"
+                                android:text="اضافه کردن مسافر جدید"
+                                android:textAppearance="@style/IrsansBold"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_14dp_txtSize" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/add"
+                                android:textAppearance="@style/IconFonts2"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_25dp_normal_iconSize" />
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"

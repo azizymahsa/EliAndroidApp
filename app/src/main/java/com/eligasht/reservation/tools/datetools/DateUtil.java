@@ -57,8 +57,7 @@ public class DateUtil {
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             try {
                 date = simpleDateFormat.parse(dateTime);
-            }
-            catch (ParseException e) {
+            }catch (ParseException e) {
                 e.printStackTrace();
             }
             Calendar greCal = new GregorianCalendar();
