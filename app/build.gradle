@@ -23,7 +23,7 @@ android {
     //   buildToolsVersion '27.0.3'
 
     defaultConfig {
-        applicationId "com.eligasht"
+        applicationId "com.eligasht.ajancy"
         manifestPlaceholders = [onesignal_app_id               : "637ad27e-b997-4f54-bc4b-e0622debeb96",
                                 onesignal_google_project_number: "REMOTE"]
         minSdkVersion 17
