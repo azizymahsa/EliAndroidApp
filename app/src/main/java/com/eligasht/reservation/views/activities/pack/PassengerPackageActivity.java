@@ -622,6 +622,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         String RqPartner_Mobile = txtmobileP.getText().toString();
                         String RqPartner_NationalCode = txtkodemeliP.getText().toString();
                         String RqPartner_Tel = "21587632";
+                        String AgcUser_ID = "-1";
                         String errorMessage = "";
                         String flagMosafer = "T";
                         ///Validate
@@ -707,7 +708,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                             PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerPackageActivity.this);
                             partnerInfo_Table.dropTable();
                             partnerInfo_Table.openDB();
-                            partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel,"0");
+                            partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel,AgcUser_ID);
                             partnerInfo_Table.closeDB();
                             ////////////////
                             linear_saler.setVisibility(View.GONE);
@@ -1751,6 +1752,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 detailsPartner.setRqPartnerMobile(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
                 detailsPartner.setRqPartnerNationalCode(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
                 detailsPartner.setRqPartnerTel(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
+                detailsPartner.setAgcUser_ID(cursorManager.getString(PassengerPartnerInfo_Table.Columns.AgcUser_ID.value()));
 
                 request.setPartnerList(detailsPartner);
                 request.setCulture(getString(R.string.culture));

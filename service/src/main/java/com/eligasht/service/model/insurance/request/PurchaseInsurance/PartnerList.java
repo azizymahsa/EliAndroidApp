@@ -34,6 +34,19 @@ public class PartnerList {
     @Expose
     private String webUserID;
 
+
+    @SerializedName("AgcUser_ID ")
+    @Expose
+    private String AgcUser_ID;
+
+    public String getAgcUser_ID() {
+        return AgcUser_ID;
+    }
+
+    public void setAgcUser_ID(String agcUser_ID) {
+        AgcUser_ID = agcUser_ID;
+    }
+
     public String getRqPartnerAddress() {
         return rqPartnerAddress;
     }
