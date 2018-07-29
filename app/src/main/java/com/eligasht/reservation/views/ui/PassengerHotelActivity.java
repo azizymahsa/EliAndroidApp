@@ -1313,6 +1313,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             detailsPartner.put("RqPartner_Mobile", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
             detailsPartner.put("RqPartner_NationalCode", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
             detailsPartner.put("RqPartner_Tel", cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
+            detailsPartner.put("AgcUser_ID", cursorManager.getString(PassengerPartnerInfo_Table.Columns.AgcUser_ID.value()));
             detailsPartner.put("WebUser_ID ", Prefs.getString("userId", "-1"));//Purchase
 
 
@@ -1574,6 +1575,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         String RqPartner_Mobile = txtmobileP.getText().toString();
                         String RqPartner_NationalCode = txtkodemeliP.getText().toString();
                         String RqPartner_Tel = null;
+                        String AgcUser_ID = "-1";
 
 					/*String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
 					String RqPartner_Email= "mohebbi@eligasht.com";
@@ -1683,7 +1685,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             partnerInfo_Table.openDB();
 
 
-                            partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel);
+                            partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel,AgcUser_ID);
 
 
                             partnerInfo_Table.closeDB();

@@ -828,6 +828,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
             partnerList.setRqPartnerMobile(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
             partnerList.setRqPartnerNationalCode(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
             partnerList.setRqPartnerTel(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
+            partnerList.setAgcUser_ID( cursorManager.getString(PassengerPartnerInfo_Table.Columns.AgcUser_ID.value()));
+
             partnerList.setWebUserID(Prefs.getString("userId", "-1"));//Purchase
 
             request.setPartnerList(partnerList);
@@ -1061,6 +1063,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         String RqPartner_Mobile = txtmobileP.getText().toString();
                         String RqPartner_NationalCode = txtkodemeliP.getText().toString();
                         String RqPartner_Tel = "21587632";
+                        String AgcUser_ID = "-1";
 
 					/*String RqPartner_Address= "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
 					String RqPartner_Email= "mohebbi@eligasht.com";
@@ -1158,7 +1161,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                             partnerInfo_Table.dropTable();
                             partnerInfo_Table.openDB();
 
-                            partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel);
+                            partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel,AgcUser_ID);
 
                             partnerInfo_Table.closeDB();
                             ////////////////

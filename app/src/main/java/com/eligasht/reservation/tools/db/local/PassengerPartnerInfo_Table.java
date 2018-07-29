@@ -23,7 +23,7 @@ public class PassengerPartnerInfo_Table extends MainLocalDB {
 	      "RqPartner_Tel": "21587632"*/
 		RqPartner_Address(text), RqPartner_Email(text), RqPartner_FirstNameFa(text)
 		,RqPartner_Gender(text), RqPartner_LastNameFa(text), RqPartner_Mobile(text)
-		,RqPartner_NationalCode(text), RqPartner_Tel(text);
+		,RqPartner_NationalCode(text), RqPartner_Tel(text), AgcUser_ID(text);
 		
 		public static boolean firstIsPrimery = false;
 		private String parameterValue;
@@ -59,7 +59,7 @@ public class PassengerPartnerInfo_Table extends MainLocalDB {
 	/*****************************************************************************************/
 	public int insertData(String RqPartner_Address, String RqPartner_Email, String RqPartner_FirstNameFa,
 			String RqPartner_Gender, String RqPartner_LastNameFa, String RqPartner_Mobile,
-			String RqPartner_NationalCode, String RqPartner_Tel) {
+			String RqPartner_NationalCode, String RqPartner_Tel,String AgcUser_ID) {
 		ContentValues cv = new ContentValues();
 
 		cv.put(Columns.RqPartner_Address.value(), RqPartner_Address);
@@ -72,6 +72,7 @@ public class PassengerPartnerInfo_Table extends MainLocalDB {
 		cv.put(Columns.RqPartner_Mobile.value(), RqPartner_Mobile);
 		cv.put(Columns.RqPartner_NationalCode.value(), RqPartner_NationalCode);
 		cv.put(Columns.RqPartner_Tel.value(), RqPartner_Tel);
+		cv.put(Columns.AgcUser_ID.value(), AgcUser_ID);
 
 		openDB();
 		return (int) db.insert(TABLE_NAME, null, cv);

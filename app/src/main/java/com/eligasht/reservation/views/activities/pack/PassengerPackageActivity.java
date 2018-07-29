@@ -707,7 +707,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                             PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerPackageActivity.this);
                             partnerInfo_Table.dropTable();
                             partnerInfo_Table.openDB();
-                            partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel);
+                            partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel,"0");
                             partnerInfo_Table.closeDB();
                             ////////////////
                             linear_saler.setVisibility(View.GONE);

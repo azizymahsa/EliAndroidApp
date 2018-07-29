@@ -951,7 +951,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						String RqPartner_Mobile= txtmobileP.getText().toString();
 						String RqPartner_NationalCode= txtkodemeliP.getText().toString();
 						String RqPartner_Tel= null;
-
+						String AgcUser_ID="-1";
 						String errorMessage="";
 						String flagMosafer="T";
 						///Validate
@@ -1050,7 +1050,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							partnerInfo_Table.dropTable();
 							partnerInfo_Table.openDB();
 
-							partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel);
+							partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel,AgcUser_ID);
 
 							partnerInfo_Table.closeDB();
 							////////////////
@@ -1596,6 +1596,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			partnerInfo.setRqPartnerMobile( cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
 			partnerInfo.setRqPartnerNationalCode( cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
 			partnerInfo.setRqPartnerTel( cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
+			partnerInfo.setAgcUser_ID( cursorManager.getString(PassengerPartnerInfo_Table.Columns.AgcUser_ID.value()));
 			partnerInfo.setWebUserID ( Prefs.getString("userId","-1"));//Purchase
 
 			request.setPartnerInfo(partnerInfo);
