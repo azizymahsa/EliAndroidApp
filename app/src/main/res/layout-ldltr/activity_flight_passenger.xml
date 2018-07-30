@@ -199,7 +199,7 @@
             android:layout_height="match_parent"
 
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <ScrollView
                 android:id="@+id/scroll_partner"
@@ -1509,7 +1509,7 @@
             android:background="#ffffff"
             android:orientation="vertical"
 
-            android:visibility="visible">
+            android:visibility="gone">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -1834,8 +1834,8 @@
                             android:layout_width="@dimen/_90dp"
                             android:layout_height="match_parent"
                             android:layout_gravity="left|center"
-                            android:gravity="center"
                             android:background="@drawable/background_purple_full"
+                            android:gravity="center"
                             android:text="کد تخفیف"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#ffffff"
@@ -1853,7 +1853,6 @@
                             android:textColor="#4d4d4d"
                             android:textSize="@dimen/_15dp_normal_textSize" />
                     </LinearLayout>
-
 
 
                 </RelativeLayout>
