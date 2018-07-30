@@ -2217,7 +2217,7 @@
     <string name="info_flight">Flight info</string>
     <string name="detail_hotel">Hotel details</string>
     <string name="Available_services">Included services</string>
-    <string name="The_amount_payable">Payable amount</string>
+    <string name="The_amount_payable">Total price</string>
     <string name="Registration_and_payment">Confirm and pay</string>
     <string name="text1">Select language</string>
     <string name="text2">Changes will be applied after the restoration of the program</string>

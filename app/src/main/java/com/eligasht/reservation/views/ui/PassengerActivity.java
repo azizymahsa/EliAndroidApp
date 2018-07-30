@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
@@ -64,6 +65,8 @@ import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalen
 import com.eligasht.reservation.views.activities.GetPassengerActivity;
 import com.eligasht.reservation.views.activities.insurance.AddPassengerActivity;
 import com.eligasht.reservation.views.activities.login.ProfileActivity;
+import com.eligasht.reservation.views.ui.dialog.PromotionCodeDialog;
+import com.eligasht.reservation.views.ui.dialog.ResultGiftDialog;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
@@ -121,8 +124,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public static boolean flag;
 	public static final int CONNECTION_TIMEOUT = 10000;
 	public static final int READ_TIMEOUT = 15000;
-	Handler handler;
-	ProgressDialog progressBar;
+
 	public FancyButton btnBack;
 	public ImageView btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
 	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore;
@@ -131,14 +133,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public  TextView txttavalodm;
 	public EditText txtnumber_passport,txtnameP;
 	public static TextView txtexp_passport;
-	public TextView txtTitle,txtmeliyatm,txtmahale_eghamat,txtTitleCountM;
+	public TextView txtTitle,txtmeliyatm,txtmahale_eghamat,txtTitleCountM,btnPromotionCode;
 	public static TextView txtSumKhadamat;
 	public TextView imgCount;
 	public LinearLayout linear_expdate,linear_number_passport,linear_code_meli,btn_taeed_khadamat,btn_nextm,linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat,btn_next_partnerInfo;
-	private Handler progressBarHandler = new Handler();
+
 	public ListView list_airport;
 	public NonScrollListView listKhadamat;
-	ArrayList<HashMap<String,String>> mylist=null;
+
 	public static String searchText = "";
     public boolean checkDomestic=false;
 	public static long GET_PRICE_KHADAMAT;
@@ -194,6 +196,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		txttavalodm.setOnClickListener(this);
 		txtexp_passport = (TextView) findViewById(R.id.txtexp_passport);
 		txtexp_passport.setOnClickListener(this);
+
+		btnPromotionCode = (TextView) findViewById(R.id.btnPromotionCode);
+		btnPromotionCode.setOnClickListener(this);
 
 		llAddPassenger = (LinearLayout) findViewById(R.id.llAddPassenger);
 		llAddPassenger.setOnClickListener(this);
@@ -1516,6 +1521,25 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				Prefs.putBoolean("BACK_HOME",true);
 				Intent intent2 = new Intent("sendFinish");
 				LocalBroadcastManager.getInstance(this).sendBroadcast(intent2);
+				break;
+				case R.id.btnPromotionCode:
+					try {
+						//val fm = supportFragmentManager;
+                        PromotionCodeDialog resultGiftDialog = PromotionCodeDialog.newInstance(this);
+						resultGiftDialog.show(getSupportFragmentManager(),"dialog") ;
+						/*fm = supportFragmentManager;
+						locationAlertDialog = LocationAlertDialog(this, "lottie/verify_phone.json", "پیغام", getString(R.string.locationAlert), "مکان یاب", "بازگشت", true, this);
+						arrivalDialog = LocationAlertDialog(this, "lottie/location.json", "پیغام", "مبدا شما مشخص شد! لطفا هنگامی که به مقصد خود رسیدید دکمه رسیدم را فشار دهید.", "متوجه شدم!", "مکان یاب", false, this);
+
+						Handler().postDelayed({
+						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+							locationAlertDialog.show(fm, "location");
+
+						}
+       					 }, 800);*/
+					}catch (Exception e) {
+				}
 				break;
 		}
 

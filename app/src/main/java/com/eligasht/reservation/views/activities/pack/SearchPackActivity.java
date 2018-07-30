@@ -224,8 +224,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 degreeFilters = FilterPackTools.getDegreeFilters(pRowXfers);
                 amenityFilters = FilterPackTools.getAmenityFilters(pRowXfers);
                 showList();
-
-
             }
 
             @Override

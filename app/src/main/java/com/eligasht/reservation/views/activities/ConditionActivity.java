@@ -139,13 +139,9 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
             }
 
             try {
-
                 int response_code = conn.getResponseCode();
-
                 String serial = null;
-
                 JSONObject errorObj = new JSONObject();
-
                 try {
                     errorObj.put("Success", false);
 
@@ -154,12 +150,9 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
                     serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
                 } catch (Exception ignored) {
                 }
-
-
                 String data = "";
                 try {
                     errorObj.put("Success", false);
-
                     Class<?> c = Class.forName("android.os.SystemProperties");
                     Method get = c.getMethod("get", String.class);
                     serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
@@ -227,8 +220,6 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
             } finally {
                 conn.disconnect();
             }
-
-
         }
 
         @Override
