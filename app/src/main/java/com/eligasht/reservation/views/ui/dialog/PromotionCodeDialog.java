@@ -66,9 +66,7 @@ public class PromotionCodeDialog extends DialogFragment implements View.OnClickL
         btnCancel.setCustomTextFont(SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
         btnOk.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
-   /*     YoYo.with(Techniques.FadeIn)
-                .duration(500)
-                .playOn(dialog());*/
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             revealShow();
         }else {

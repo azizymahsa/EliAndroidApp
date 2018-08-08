@@ -83,8 +83,6 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        //data.moveToPosition(position);
-        //Country current=data.get(position);
         long s = position + 1;
         //return data.getLong(Customers_Table.Columns.CUSTOMER_ID.value());
         return s;
@@ -94,14 +92,12 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
         final ViewHolder holder;
 
         if (convertView == null) {
-         //   Log.e("POSITION", "" + position);
             convertView = myInflater.inflate(R.layout.row_airport, null);
             holder = new ViewHolder();
 
             holder.AirportName = convertView.findViewById(R.id.text1);
             holder.CityName = convertView.findViewById(R.id.text2);
             holder.txtIcon = convertView.findViewById(R.id.txtIcon);
-            //holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -130,9 +126,6 @@ public class GetAirPortMabdaAdapter extends BaseAdapter {
                 Prefs.putString("Value-Maghsad-Airport", value_Maghsad_Airport);
                 Prefs.putString("Value-Maghsad-Airport-Code", value_Maghsad_Airport_Code);
                 Prefs.putString("Value-Maghsad-Airport-Code2", value_Maghsad_Airport_Code);
-
-                //get
-                //Prefs.getString("Value-Mabda-Airport","");
 
                 Prefs.putString("Value-Maghsad-Airport-Code2", value_Maghsad_Airport_Code);
                 Prefs.putString("Value-Maghsad-Airport-Code2", current.getAirportCode());

@@ -75,7 +75,6 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         resource.add(R.drawable.screen_menu);
         resource.add(R.drawable.screen_search_hotel);
 
-
         new ViewPagerLogin(LoginActivity.this, resource, R.id.intro_view_pager);
         progressBar = (LottieAnimationView) findViewById(R.id.progress);
         username = (EditText) findViewById(R.id.username);

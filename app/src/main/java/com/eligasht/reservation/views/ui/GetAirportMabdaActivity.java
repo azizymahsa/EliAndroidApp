@@ -267,9 +267,6 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                 AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
             } else {
                 Toast.makeText(this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
-
-        /*        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this,true,false);
-                AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));*/
             }
         }
     }
@@ -277,19 +274,11 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
     @Override
     public void onError(String message) {//get Errors from api
 
-
         if (!Utility.isNetworkAvailable(GetAirportMabdaActivity.this)) {
             AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this,true,false);
             AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
-
-
         } else {
-/*            AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMabdaActivity.this,true,false);
-            AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));*/
             Toast.makeText(this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
-
-
-
         }
     }
 

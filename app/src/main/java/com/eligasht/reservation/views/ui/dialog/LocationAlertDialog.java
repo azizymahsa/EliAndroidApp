@@ -56,15 +56,6 @@ public class LocationAlertDialog extends DialogFragment implements View.OnClickL
         this.hasCancelBtn = hasCancelBtn;
     }
 
-
-
-
-  /*  public static LocationAlertDialog newInstance(final Activity activity,String lottie,String title,String desc) {
-        LocationAlertDialog locationAlertDialog = new LocationAlertDialog();
-        locationAlertDialog.initialize(activity,lottie,title,desc);
-        return locationAlertDialog;
-    }*/
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -135,7 +126,6 @@ public class LocationAlertDialog extends DialogFragment implements View.OnClickL
                 break;
             case R.id.btnCancel:
                 onDialogClick.btnCancel(getTag());
-
                 break;
         }
     }

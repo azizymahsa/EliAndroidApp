@@ -275,8 +275,6 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
                 AlertDialogPassenger.setText(getString(R.string.InternetError), getString(R.string.massege));
 
-
-
             } else {
                 try {
                     Toast.makeText(GetAirportMaghsadActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
@@ -285,9 +283,6 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 {
 
                 }
-
-              /*  AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);
-                AlertDialogPassenger.setText(getString(R.string.ErrorServer), getString(R.string.massege));*/
             }
         }
     }

@@ -124,7 +124,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public static boolean flag;
 	public static final int CONNECTION_TIMEOUT = 10000;
 	public static final int READ_TIMEOUT = 15000;
-
 	public FancyButton btnBack;
 	public ImageView btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
 	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore;
@@ -137,28 +136,22 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public static TextView txtSumKhadamat;
 	public TextView imgCount;
 	public LinearLayout linear_expdate,linear_number_passport,linear_code_meli,btn_taeed_khadamat,btn_nextm,linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat,btn_next_partnerInfo;
-
 	public ListView list_airport;
 	public NonScrollListView listKhadamat;
-
 	public static String searchText = "";
     public boolean checkDomestic=false;
 	public static long GET_PRICE_KHADAMAT;
 	public LinearLayout llAddPassenger;
 	GetKhadmatAdapter mAdapter;
 	ScrollView myScrollView;
-	private EditText searchtxt;
 	public TextView txt_shomare_factor,tvPrice,tvfactorNumber;
-
 	public ImageView txt_hom;
 	LinearLayout llDetailHotel,llDetailPassanger,llDetailService,llDetailFlight;
 	private String Gensiyat="";
-
 	public int countB= SearchFlightActivity.COUNT_B;
 	public int countK= SearchFlightActivity.COUNT_K;
 	public int countN= SearchFlightActivity.COUNT_N;
 	public int sum=countB+countK+countN;
-
 	public List<PurchaseFlightResult> data;
 	int counter=2;
 	private ImageView textView4;
@@ -209,14 +202,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		PersianCalendar persianCalendar = new PersianCalendar();
 		persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
 //=====================================================================================================
-
 		datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
 				this,
 				persianCalendarDatePicker.getPersianYear(),
 				persianCalendarDatePicker.getPersianMonth(),
 				persianCalendarDatePicker.getPersianDay()
 		);
-
 //=====================================================================================================
 		datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
 		datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
@@ -257,7 +248,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		});
 ////////////
 		datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
-		//	datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
 		datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
 			@Override
 			public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
@@ -274,7 +264,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			}
 		});
-
 		//=====================================================================================================
 
 //change button shamsi to milady (date picker)
