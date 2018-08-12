@@ -164,7 +164,7 @@ public class CustomDate {
         return false;
     }
 
-    private void addDay(int day) {
+    public void addDay(int day) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(civilDate.getYear(), civilDate.getMonth() - 1, civilDate.getDayOfMonth());
         calendar.add(Calendar.DATE, day);
