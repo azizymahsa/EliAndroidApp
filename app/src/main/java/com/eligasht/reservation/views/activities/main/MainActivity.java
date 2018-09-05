@@ -41,6 +41,8 @@ import com.eligasht.reservation.views.activities.SettingsActivity;
 import com.eligasht.reservation.views.activities.ShakeActivity;
 import com.eligasht.reservation.views.activities.login.LogInActivity;
 import com.eligasht.reservation.views.activities.login.ProfileActivity;
+import com.eligasht.reservation.views.activities.new_survey.MainSurveyActivity;
+import com.eligasht.reservation.views.activities.survey.SurveyActivity;
 import com.eligasht.reservation.views.dialogs.LogOutAlert;
 import com.eligasht.reservation.views.fragments.HotelFlightFragment;
 import com.eligasht.reservation.views.fragments.PlanFragment;
@@ -77,7 +79,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
     private TextView tvTitle, tvArrow, tvBadge;
-    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting, gift, map, btn_message;
+    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting, gift, map, btn_message,survey;
     private FragmentManager manager;
     private BroadcastReceiver sendFinish;
     private BroadcastReceiver sendStartTimer, sendDetailFinish;
@@ -127,6 +129,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         tvBadge = findViewById(R.id.tvBadge);
 
         btnFlight = findViewById(R.id.btnFlight);
+        survey = findViewById(R.id.survey);
         gift = findViewById(R.id.gift);
         btnHotel = findViewById(R.id.btnHotel);
         btnPackage = findViewById(R.id.btnPackage);
@@ -172,6 +175,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         btnExit.setOnClickListener(this);
         btnLastBuy.setOnClickListener(this);
         btn_message.setOnClickListener(this);
+        survey.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
 
         addFragment(getString(R.string.searchFlight), new PlanFragment());
@@ -268,6 +272,16 @@ public class MainActivity extends Base implements View.OnClickListener {
                 addFragment(getString(R.string.hotel_reservation_and_plane_ticket), new HotelFlightFragment());
 
                 break;
+                case R.id.survey:
+
+                    new Handler().postDelayed(this::closeDrawer, 200);
+                    Intent intent4 = new Intent(this, SurveyActivity.class);
+                    startActivity(intent4);
+                   /* new Handler().postDelayed(this::closeDrawer, 200);
+                    Intent intent4 = new Intent(this, MainSurveyActivity.class);
+                    startActivity(intent4);
+*/
+                break;
 
             case R.id.btnAbout:
                 //addFragment(" درباره ما ",new HotelFlightFragment());
@@ -357,9 +371,9 @@ public class MainActivity extends Base implements View.OnClickListener {
             case R.id.btn_setting:
 
                 new Handler().postDelayed(() -> closeDrawer(), 200);
-                Intent intent4 = new Intent(this, SettingsActivity.class);
-                intent4.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent4);
+                Intent intent5 = new Intent(this, SettingsActivity.class);
+                intent5.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent5);
                 break;
             case R.id.gift:
                 //    startActivity(new Intent(this, ShakeActivity.class));

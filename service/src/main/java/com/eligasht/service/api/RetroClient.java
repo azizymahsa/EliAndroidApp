@@ -59,6 +59,10 @@ import com.eligasht.service.model.login.request.LoginRequestModel;
 import com.eligasht.service.model.login.response.LoginResponse;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
 import com.eligasht.service.model.startup.response.StartupServiceResponse;
+import com.eligasht.service.model.survey.request.RequestGetSurvey;
+import com.eligasht.service.model.survey.request.detail.RequestGetSurveyDetails;
+import com.eligasht.service.model.survey.response.ResponseGetSurvey;
+import com.eligasht.service.model.survey.response.detail.ResponseGetSurveyDetails;
 import com.eligasht.service.model.test.entity.TestRes;
 import com.eligasht.service.model.weather.response.WeatherApi;
 
@@ -200,6 +204,15 @@ public interface RetroClient {
     @POST(Const.AboutAvil)
     Observable<Response<ResponseAbout>> responseAboutObservable(
             @Body RequestAbout requestAbout
+    );
+    //*************Survey*************
+    @POST(Const.GetSurveyAvil)
+    Observable<Response<ResponseGetSurvey>> responseGetSurveyObservable(
+            @Body RequestGetSurvey requestGetSurvey
+    );
+    @POST(Const.GetSurveyDetailsAvil)
+    Observable<Response<ResponseGetSurveyDetails>> responseGetSurveyDetailsObservable(
+            @Body RequestGetSurveyDetails requestGetSurveyDetails
     );
 
     //*************insurance*************

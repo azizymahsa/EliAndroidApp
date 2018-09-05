@@ -553,7 +553,6 @@
                             android:paddingTop="0dp"
                             android:singleLine="true"
                             android:text=""
-
                             android:textColor="#4d4d4d"
                             android:textSize="@dimen/_14dp" />
                     </LinearLayout>
@@ -1810,7 +1809,8 @@
                             android:text="کد تخفیف"
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#ffffff"
-                            android:textSize="@dimen/_15dp_normal_textSize" />
+                            android:textSize="@dimen/_15dp_normal_textSize"
+                            android:visibility="gone" />
 
 
                     </LinearLayout>

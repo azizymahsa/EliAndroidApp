@@ -54,5 +54,7 @@ public class Const {
     public final static String SearchXPackageAvil = "Package/PackageService.svc/SearchXPackage";
     public final static String PurchasePackageAvil = "Package/PackageService.svc/PurchasePackage";
     public final static String GetPreFactorDetailsPackageAvil = "Common/StaticDataService.svc/GetPreFactorDetails";
-
+    //*************survey*****************
+    public final static String GetSurveyAvil = "Survey/SurveyService.svc/GetSurvey";
+    public final static String GetSurveyDetailsAvil = "Survey/SurveyService.svc/GetSurveyDetails";
 }

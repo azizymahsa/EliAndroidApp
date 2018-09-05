@@ -2390,4 +2390,12 @@
     <string name="add_passenger_new">اضافه کردن مسافر</string>
     <string name="passenger_info">مشخصات مسافر</string>
     <string name="tomorrow">فردا</string>
+    <string name="_survey">نظر سنجی</string>
+    <string name="_messages">پیام ها</string>
+    <string name="your_answer">پاسخ شما</string>
+    <string name="_next_answer">سوال بعدی</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="_new_answer">سوال بعدی</string>
+    <string name="_finish">پایان</string>
+    <string name="_selectTime">ساعت را انتخاب کنید</string>
 </resources>

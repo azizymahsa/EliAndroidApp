@@ -202,8 +202,7 @@ public class Utility {
 
     public static String getMyOperator(Context aContext) {
         TelephonyManager mTelephonyMgr;
-        mTelephonyMgr = (TelephonyManager) aContext
-                .getSystemService(Context.TELEPHONY_SERVICE);
+        mTelephonyMgr = (TelephonyManager) aContext.getSystemService(Context.TELEPHONY_SERVICE);
         String mynumber = mTelephonyMgr.getNetworkOperator();
 
         String Operator = "";

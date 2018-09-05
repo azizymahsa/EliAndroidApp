@@ -84,6 +84,7 @@
     <string name="empty_circle">&#xe627;</string>
     <string name="setting">&#xe637;</string>
     <string name="icon_mail">&#xe900;</string>
+    <string name="icon_survey">&#109;</string>
 
     <string name="no_results_found">No Results Found</string>
     <string name="back_exit">Please press the Back button once to exit</string>
@@ -2425,11 +2426,18 @@
     <string name="add_passenger_new">Add passenger</string>
     <string name="passenger_info">Passenger profile</string>
     <string name="tomorrow">tomorrow</string>
+    <string name="_survey">survey</string>
+    <string name="_messages">messages</string>
+    <string name="your_answer">your answer</string>
+    <string name="_next_answer">next answer</string>
     <string-array name="array_place">
         <item>Bangalore</item>
         <item>Tokyo</item>
         <item>New York</item>
     </string-array>
-
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="_new_answer">next question</string>
+    <string name="_finish">finish</string>
+    <string name="_selectTime">Select Current Time</string>
 </resources>
 

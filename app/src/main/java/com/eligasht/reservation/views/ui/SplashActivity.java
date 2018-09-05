@@ -188,6 +188,9 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         request.setIdentity(identity);
         startupServiceRequest.setRequest(request);
         avi.setVisibility(View.VISIBLE);
+
+        Log.e("startUpRequest: ",new Gson().toJson(startupServiceRequest).toString() );
+
         SingletonService.getInstance().getAppService().startUp(this, startupServiceRequest);
         Bundle bundle = new Bundle();
         bundle.putString("TestParam", "123");

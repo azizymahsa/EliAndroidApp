@@ -300,9 +300,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                 try {
                     startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
                 } catch (ActivityNotFoundException a) {
-                    Toast.makeText(getApplicationContext(),
-                            "Error",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
                 }
 
                 break;
@@ -317,9 +315,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
             case REQ_CODE_SPEECH_INPUT: {
                 if (resultCode == RESULT_OK && null != data) {
 
-
-                    ArrayList<String> result = data
-                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    ArrayList<String> result = data .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     searchtxt.setText(result.get(0));
                 }
                 break;

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rlRoot"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background_strock_blue_dark_back_white"
+        android:gravity="right"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar_color">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <mehdi.sakout.fancybuttons.FancyButton
+                    android:id="@+id/btnBack"
+                    style="@style/fancy_toolbar"
+                    android:layout_width="@dimen/toolbar_bottom_width_50dp"
+                    android:layout_height="@dimen/toolbar_bottom_width_50dp"
+                    android:layout_gravity="right"
+                    android:visibility="visible"
+                    fancy:fb_radius="200dp"
+                    fancy:fb_textSize="@dimen/_20dp_normal_textSize" />
+
+            </LinearLayout>
+        </RelativeLayout>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            style="@style/CustomTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_5_flight_dp"
+            android:layout_gravity="left"
+            app:tabGravity="fill"
+            android:background="@color/toolbar_color"
+            app:tabTextAppearance="@style/AppTabTextAppearance"
+            app:tabMode="fixed"/>
+       <!-- <android.support.v4.view.ViewPager
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/viewPager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:layout_below=>
+
+
+        </android.support.v4.view.ViewPager>-->
+        <com.eligasht.reservation.views.activities.new_survey.NonSwipeableViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35dp_normal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btngravity_big"
+        android:gravity="center|center_vertical"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/tvSortIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="left|center_vertical"
+            android:text="@string/arrow_left"
+            android:textAppearance="@style/IconFonts"
+            android:textColor="#ffffff"
+            android:textSize="26dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/lblMoratabSazi"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="@string/_new_answer"
+            android:textAppearance="@style/IrsansBold"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/_15dp_normal_textSize" />
+    </LinearLayout>
+
+    <!--<Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_5_flight_dp"
+        android:layout_marginRight="@dimen/_5_flight_dp"
+        android:background="@drawable/background_strock_purple"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:text="@string/_next_answer" />-->
+</RelativeLayout>

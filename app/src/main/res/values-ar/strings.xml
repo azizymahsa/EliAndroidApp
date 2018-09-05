@@ -2393,6 +2393,13 @@
     <string name="add_passenger_new">اضافه کردن مسافر</string>
     <string name="passenger_info">مشخصات مسافر</string>
     <string name="tomorrow">فردا</string>
-
+    <string name="_survey">التعليق</string>
+    <string name="_messages">رسائل</string>
+    <string name="your_answer">پاسخ شما</string>
+    <string name="_next_answer">next answer</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="_new_answer">next answer</string>
+    <string name="_finish">finish</string>
+    <string name="_selectTime">Current Time</string>
 
 </resources>

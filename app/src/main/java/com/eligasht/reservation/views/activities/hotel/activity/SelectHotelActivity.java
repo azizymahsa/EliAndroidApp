@@ -294,8 +294,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             if (selectHotelModelArrayListFilter.isEmpty()) {
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-             /*   adapter = new LazyResoultHotelAdapter(selectHotelModelArrayList, SelectHotelActivity.this, SelectHotelActivity.this, tvDate);
-                list.setAdapter(adapter);*/
+
                 hotelResultAdapter = new HotelResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
                 rvHotelResult.setAdapter(hotelResultAdapter);
                 elNotFound.setVisibility(View.VISIBLE);
@@ -308,8 +307,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             } else {
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.red));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.red));
-              /*  adapter = new LazyResoultHotelAdapter(selectHotelModelArrayListFilter, SelectHotelActivity.this, SelectHotelActivity.this, tvDate);
-                list.setAdapter(adapter);*/
+
                 hotelResultAdapter = new HotelResultAdapter(selectHotelModelArrayListFilter,this,tvDate,isGrid);
                 rvHotelResult.setAdapter(hotelResultAdapter);
             }

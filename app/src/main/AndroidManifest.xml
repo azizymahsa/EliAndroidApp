@@ -24,9 +24,11 @@
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
-
+        <!--android:name=".reservation.views.ui.SplashActivity"-->
         <activity
+
             android:name=".reservation.views.ui.SplashActivity"
+
             android:configChanges="orientation|screenSize|locale"
             android:exported="true"
             android:launchMode="singleInstance"
@@ -57,7 +59,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity
+       <activity
             android:name=".reservation.views.activities.main.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
@@ -91,6 +93,14 @@
 
         <activity
             android:name=".reservation.views.ui.PassengerActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".reservation.views.activities.survey.SurveyActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".reservation.views.activities.new_survey.MainSurveyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity

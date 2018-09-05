@@ -151,9 +151,6 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
             v3.setText("20000", true);
             List<SectionModel> data = new ArrayList<SectionModel>();
 
-
-
-
                 GetAboutUsWithCultureResult GetAirportsResult = responseAbout.getGetAboutUsWithCultureResult();
                 List<Section> jArray = GetAirportsResult.getSections();
 
@@ -167,7 +164,6 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
 
                     data.add(sectionModel);
                 }
-
 
                 nonScrollList = findViewById(R.id.lvExp);
                 nonScrollList.addItemDecoration(new DividerItemDecoration(AboutActivity.this, 1));

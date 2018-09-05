@@ -2391,7 +2391,7 @@
     <string name="_InfantP">نوزاد</string>
     <string name="_childP">کودک</string>
     <string name="weather">Hava tahmini</string>
-    <string name="gift">جایزه !</string>
+    <string name="gift">gift !</string>
     <string name="let_s_go">LET\'S GO</string>
     <string name="amazing_user_login_screen_for_your_android_device">Amazing user login screen for your android device</string>
     <string name="log_in">LOG IN</string>
@@ -2411,5 +2411,13 @@
     <string name="add_passenger_new">Gezgin ekle</string>
     <string name="passenger_info">Yolcu profili</string>
     <string name="tomorrow">yarın</string>
+    <string name="_survey">bir Yorum Yazın</string>
+    <string name="_messages">Mesajlar</string>
+    <string name="your_answer">your answer</string>
+    <string name="_next_answer">next answer</string>
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="_new_answer">next answer</string>
+    <string name="_finish">finish</string>
+    <string name="_selectTime">Current Time</string>
 </resources>
 

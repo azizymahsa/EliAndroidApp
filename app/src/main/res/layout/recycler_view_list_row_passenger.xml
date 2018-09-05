@@ -67,16 +67,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
             <com.github.aakira.expandablelayout.ExpandableLinearLayout
                 android:id="@+id/expandableLayout"
                 android:layout_width="match_parent"

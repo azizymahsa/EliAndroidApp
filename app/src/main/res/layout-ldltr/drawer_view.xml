@@ -822,6 +822,53 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="2dp"
+            android:layout_weight="70">
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/survey"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                fancy:fb_defaultColor="@android:color/transparent"
+                fancy:fb_focusColor="#d7d7d7"
+                fancy:fb_radius="6dp"
+
+                fancy:fb_text=" "
+                fancy:fb_textColor="#FFFFFF"
+                fancy:fb_textSize="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/tv_survey"
+                android:gravity="center"
+                android:text="@string/_survey"
+                android:textAppearance="@style/IrsansBold"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_12dp_normal_textSize" />
+
+            <TextView
+                android:id="@+id/tv_survey"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="@string/icon_survey"
+                android:textAppearance="@style/IconMenuFantastic"
+                android:textColor="@color/text_color_2e"
+                android:textSize="@dimen/_30dp_normal_iconSize"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
