@@ -1,6 +1,7 @@
 package com.eligasht.reservation.views.activities.new_survey;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +15,13 @@ import com.eligasht.reservation.views.activities.new_survey.model.SurveyQuestion
 
 public class SurveyMultiRadioFragment extends Fragment {
 
+    private TextView tvTitle;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.multi_check_answer_survey, container, false);
 
-        TextView tvTitle = (TextView) v.findViewById(R.id.tvTitleM);
+         tvTitle = (TextView) v.findViewById(R.id.tvTitleM);
         TextView tvDesc = (TextView) v.findViewById(R.id.tvDescM);
         tvTitle.setText(getArguments().getString("tvTitleM")+"");
         tvDesc.setText(getArguments().getString("tvDescM")+"");
@@ -83,7 +86,10 @@ public class SurveyMultiRadioFragment extends Fragment {
         });
         return v;
     }
-
+    public String updateList(String new_item) {
+        Log.i( "updateList: ","wwwwwwwwwwwww");
+        return tvTitle.getText().toString();
+    }
     public static SurveyMultiRadioFragment newInstance(String text, SurveyQuestionToShow surveyQuestionToShows) {
 
         SurveyMultiRadioFragment f = new SurveyMultiRadioFragment();

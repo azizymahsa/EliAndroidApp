@@ -2440,5 +2440,6 @@
     <string name="_finish">finish</string>
     <string name="_selectTime">Select Current Time</string>
     <string name="select_date">select date</string>
+    <string name="_prev_question">Previose question</string>
 </resources>
 
