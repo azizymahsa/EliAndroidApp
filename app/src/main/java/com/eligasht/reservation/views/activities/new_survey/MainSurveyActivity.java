@@ -17,6 +17,8 @@ import com.eligasht.reservation.views.activities.new_survey.adapter.MyPagerAdapt
 import com.eligasht.reservation.views.activities.new_survey.model.EventModel;
 import com.eligasht.reservation.views.activities.new_survey.model.SurveyQuestionToShow;
 import com.eligasht.reservation.views.activities.survey.SurveyActivity;
+import com.eligasht.reservation.views.ui.PassengerActivity;
+import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -112,8 +114,18 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
                    int i= pager.getCurrentItem();
                     i=i+1;
                     pager.setCurrentItem(i, true);
-                    if ((sizePage-1)==i)
+
+                    if (lblMoratabSazi .getText().toString().equals(getString(R.string._finish))) {
+                        try {
+                            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(MainSurveyActivity.this,false,true);
+                            alertDialogPassenger.setText("نظر شما با موفقیت ثبت شد","پیغام");
+                        }catch (Exception e){
+                            e.getMessage();
+                        }
+                    }
+                    if ((sizePage-1)==i){
                         lblMoratabSazi.setText(getString(R.string._finish)+"");
+                    }
                 break;
         }
     }

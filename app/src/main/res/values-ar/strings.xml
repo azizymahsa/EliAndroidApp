@@ -2399,7 +2399,7 @@
     <string name="_next_answer">next answer</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="_new_answer">next answer</string>
-    <string name="_finish">finish</string>
+    <string name="_finish">ثبت نهایی</string>
     <string name="_selectTime">Current Time</string>
     <string name="select_date">select date</string>
 
