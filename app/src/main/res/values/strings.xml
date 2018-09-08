@@ -2439,5 +2439,6 @@
     <string name="_new_answer">next question</string>
     <string name="_finish">finish</string>
     <string name="_selectTime">Select Current Time</string>
+    <string name="select_date">select date</string>
 </resources>
 

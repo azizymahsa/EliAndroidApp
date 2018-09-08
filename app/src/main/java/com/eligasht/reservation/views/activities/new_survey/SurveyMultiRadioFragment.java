@@ -12,9 +12,7 @@ import android.widget.Toast;
 import com.eligasht.R;
 import com.eligasht.reservation.views.activities.new_survey.model.SurveyQuestionToShow;
 
-import java.util.ArrayList;
-
-public class SurveyMultiCheckFragment extends Fragment {
+public class SurveyMultiRadioFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,9 +84,9 @@ public class SurveyMultiCheckFragment extends Fragment {
         return v;
     }
 
-    public static SurveyMultiCheckFragment newInstance(String text, SurveyQuestionToShow surveyQuestionToShows) {
+    public static SurveyMultiRadioFragment newInstance(String text, SurveyQuestionToShow surveyQuestionToShows) {
 
-        SurveyMultiCheckFragment f = new SurveyMultiCheckFragment();
+        SurveyMultiRadioFragment f = new SurveyMultiRadioFragment();
         Bundle b = new Bundle();
         b.putString("tvTitleM",(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " "  );
         b.putString("tvDescM",(surveyQuestionToShows.getQuestionQuestion() != null ) ? surveyQuestionToShows.getQuestionQuestion() : " " );

@@ -2398,4 +2398,5 @@
     <string name="_new_answer">سوال بعدی</string>
     <string name="_finish">پایان</string>
     <string name="_selectTime">ساعت را انتخاب کنید</string>
+    <string name="select_date">تاریخ موردنظر را انتخاب کنید</string>
 </resources>

@@ -8,11 +8,13 @@ import android.content.Context;
 import android.support.v13.app.FragmentPagerAdapter;
 
 import com.eligasht.reservation.views.activities.new_survey.MainSurveyActivity;
+import com.eligasht.reservation.views.activities.new_survey.SurveyAnswerDateFragment;
 import com.eligasht.reservation.views.activities.new_survey.SurveyAnswerLongFragment;
 import com.eligasht.reservation.views.activities.new_survey.SurveyAnswerSelectionFragment;
 import com.eligasht.reservation.views.activities.new_survey.SurveyAnswerShortFragment;
 import com.eligasht.reservation.views.activities.new_survey.SurveyAnswerTimeFragment;
-import com.eligasht.reservation.views.activities.new_survey.SurveyMultiCheckFragment;
+import com.eligasht.reservation.views.activities.new_survey.SurveyMultiCheckBoxFragment;
+import com.eligasht.reservation.views.activities.new_survey.SurveyMultiRadioFragment;
 import com.eligasht.reservation.views.activities.new_survey.ThirdSurveyFragment;
 import com.eligasht.reservation.views.activities.new_survey.model.SurveyQuestionToShow;
 
@@ -62,10 +64,10 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
                             return SurveyAnswerLongFragment.newInstance("SurveyAnswerLongFragment, جواب بلند 1",surveyQuestionToShows.get(i));
                         }else if(surveyQuestionToShows.get(i).getQuestionIDType() == 3){
                             //چندگزینه ای
-                            return SurveyMultiCheckFragment.newInstance("SurveyMultiCheckFragment, چندگزینه ای",surveyQuestionToShows.get(i));//
+                            return SurveyMultiRadioFragment.newInstance("SurveyMultiRadioFragment, چندگزینه ای",surveyQuestionToShows.get(i));//
                         }else if(surveyQuestionToShows.get(i).getQuestionIDType() == 4){
                             //چند جوابی
-                            return ThirdSurveyFragment.newInstance("ThirdSurveyFragment, چند جوابی ای"+"Bakhsh=");
+                            return SurveyMultiCheckBoxFragment.newInstance("ThirdSurveyFragment, چند جوابی ای"+"Bakhsh=",surveyQuestionToShows.get(i));
 
                         }else if(surveyQuestionToShows.get(i).getQuestionIDType() == 5){
                             //لیست انتخاب
@@ -73,7 +75,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
 
                         }else if(surveyQuestionToShows.get(i).getQuestionIDType() == 6){
                             //تاریخ
-                            return ThirdSurveyFragment.newInstance("ThirdSurveyFragment, تاریخ"+"Bakhsh=");
+                            return SurveyAnswerDateFragment.newInstance("ThirdSurveyFragment, تاریخ"+"Bakhsh=",surveyQuestionToShows.get(i),context);
 
                         }else if(surveyQuestionToShows.get(i).getQuestionIDType() == 7){
                             //ساعت
