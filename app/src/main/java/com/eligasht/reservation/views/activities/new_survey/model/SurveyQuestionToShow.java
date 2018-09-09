@@ -9,17 +9,15 @@ public class SurveyQuestionToShow {
         public String SectionDesc;
         public Integer SectionID;
 
+
         public Integer QuestionID;
         public Integer QuestionIDType;
         public String QuestionQuestion;
         public List<SurveyAnswer> QuestionAnswersArr = null;
 
-        public String color;
+        public boolean QuestionIsRequired;
 
-    public SurveyQuestionToShow() {
-    }
-
-    public SurveyQuestionToShow(String sectionText, String sectionDesc, Integer sectionID, Integer questionID, Integer questionIDType, String questionQuestion, List<SurveyAnswer> questionAnswersArr, String color) {
+    public SurveyQuestionToShow(String sectionText, String sectionDesc, Integer sectionID, Integer questionID, Integer questionIDType, String questionQuestion, List<SurveyAnswer> questionAnswersArr, boolean questionIsRequired, Integer mainID, String color) {
         SectionText = sectionText;
         SectionDesc = sectionDesc;
         SectionID = sectionID;
@@ -27,9 +25,35 @@ public class SurveyQuestionToShow {
         QuestionIDType = questionIDType;
         QuestionQuestion = questionQuestion;
         QuestionAnswersArr = questionAnswersArr;
+        QuestionIsRequired = questionIsRequired;
+        this.mainID = mainID;
         this.color = color;
     }
 
+    public Integer mainID;
+
+
+
+    public String color;
+
+    public SurveyQuestionToShow() {
+    }
+
+
+    public Integer getMainID() {
+        return mainID;
+    }
+
+    public void setMainID(Integer mainID) {
+        this.mainID = mainID;
+    }
+    public boolean isQuestionIsRequired() {
+        return QuestionIsRequired;
+    }
+
+    public void setQuestionIsRequired(boolean questionIsRequired) {
+        QuestionIsRequired = questionIsRequired;
+    }
     public String getSectionText() {
         return SectionText;
     }

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.views.activities.new_survey.adapter.SurveySpinnerCustomAdapter;
+import com.eligasht.reservation.views.activities.new_survey.model.GetReplyModel;
 import com.eligasht.reservation.views.activities.new_survey.model.SurveyQuestionToShow;
 
 
@@ -29,12 +30,17 @@ public class SurveyAnswerSelectionFragment extends Fragment implements View.OnCl
     String[] curencyNames = {"IRR(iran)"};
     String[] officeNames = {"Eligasht-IR", "Eligasht-UK", "Eligasht-TK"};
     private FancyButton txtIcon;
-
+    private Boolean questionIsRequired;
+    private Integer questionID;
+    SurveySpinnerCustomAdapter surveySpinnerCustomAdapter;
+    ArrayList<String> listTest=new ArrayList<>();
+    ArrayList<String> listAnswerId=new ArrayList<>();
+    int idd=0;
+    String value="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.selection_answer_survey_frag, container, false);
-        ArrayList<String> listTest=new ArrayList<>();
-        ArrayList<String> listAnswerId=new ArrayList<>();
+
         txtIcon = v.findViewById(R.id.txtIcon);
      /*   txtIcon.setCustomTextFont("fonts/icomoon.ttf");
         txtIcon.setText(getString(R.string.search_back_right));*/
@@ -45,14 +51,18 @@ public class SurveyAnswerSelectionFragment extends Fragment implements View.OnCl
         // tvDesc = (TextView) v.findViewById(R.id.tvDesc);
         tvTitle.setText(getArguments().getString("tvTitle")+"");
 
+
+        questionIsRequired = getArguments().getBoolean("QuestionIsRequired");
+        questionID = getArguments().getInt("QuestionID");
+
         languageSpinner = v.findViewById(R.id.languageSpinner);
 
         languageSpinner.setOnItemSelectedListener(this);
 
         listTest=getArguments().getStringArrayList("listTest");
         listAnswerId=getArguments().getStringArrayList("listAnswerId");
-
-        languageSpinner.setAdapter(new SurveySpinnerCustomAdapter(getContext(), listTest,listAnswerId, true));
+        surveySpinnerCustomAdapter= new SurveySpinnerCustomAdapter(getContext(), listTest,listAnswerId, true);
+        languageSpinner.setAdapter(surveySpinnerCustomAdapter);
 
         // returns current Fragment item displayed within the pager
         return v;
@@ -63,6 +73,10 @@ public class SurveyAnswerSelectionFragment extends Fragment implements View.OnCl
         SurveyAnswerSelectionFragment f = new SurveyAnswerSelectionFragment();
         Bundle b = new Bundle();
         b.putString("tvTitle",(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " "  );
+
+        b.putBoolean("QuestionIsRequired",(surveyQuestionToShows.getQuestionAnswersArr() != null ) ?  surveyQuestionToShows.isQuestionIsRequired() : false );
+        b.putInt("QuestionID",(surveyQuestionToShows.getQuestionID() != null ) ?  surveyQuestionToShows.getQuestionID() : 1 );
+
        // b.putString("tvDesc",(surveyQuestionToShows.getQuestionQuestion() != null ) ? surveyQuestionToShows.getQuestionQuestion() : " " );
         ArrayList<String> listTest=new ArrayList<>();
         ArrayList<String> listAnswerId=new ArrayList<>();
@@ -87,6 +101,10 @@ public class SurveyAnswerSelectionFragment extends Fragment implements View.OnCl
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        value= listTest.get(position);
+        idd=Integer.parseInt(listAnswerId.get(position));
+
+        System.out.println("Selectes ID == "+listAnswerId.get(position)+"Text"+ listTest.get(position));
         /*switch (position) {
             case 0:
                 //lang = "fa";
@@ -113,6 +131,16 @@ public class SurveyAnswerSelectionFragment extends Fragment implements View.OnCl
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+    public ArrayList<GetReplyModel> updateList() {
+       // surveySpinnerCustomAdapter.getData(questionID,questionIsRequired);
 
+     ArrayList<GetReplyModel> getReplyModels=new ArrayList<>();
 
+        GetReplyModel getReplyModel=new GetReplyModel(questionID,idd,value,questionIsRequired);
+        System.out.println("Selectes  == "+idd+"TEXT="+value);
+        getReplyModels.add(0,getReplyModel);
+
+        return getReplyModels;//surveySpinnerCustomAdapter.getData(questionID,questionIsRequired);
+
+    }
 }

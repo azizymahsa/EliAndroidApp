@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.activities.new_survey.model.GetReplyModel;
 import com.eligasht.reservation.views.activities.new_survey.model.InfoRowdata;
 
 import java.util.ArrayList;
@@ -67,13 +68,13 @@ public class SurveyChBoxAdapter extends BaseAdapter {
                     infodata.get(position).isclicked = true;
                 }
 
-                for(int i=0;i<infodata.size();i++)
+                /*for(int i=0;i<infodata.size();i++)
                 {
                     if (infodata.get(i).isclicked)
                     {
-                        System.out.println("Selectes Are == "+ data.get(i));
+                      //  System.out.println("Selectes Are == "+ data.get(i)+"ID="+infodata.get(i).getId()+"TEXT="+infodata.get(i).getText());
                     }
-                }
+                }*/
             }
         });
 
@@ -87,4 +88,24 @@ public class SurveyChBoxAdapter extends BaseAdapter {
         return row;
     }
 
+    public ArrayList<GetReplyModel> getData(Integer questionID, Boolean questionIsRequired) {
+       int j=0;
+        ArrayList<GetReplyModel> getReplyModels=new ArrayList<>();
+        for(int i=0;i<infodata.size();i++)
+        {
+            if(i==0){
+                getReplyModels=new ArrayList<>();
+                j=0;
+            }
+            if (infodata.get(i).isclicked)
+            {
+                GetReplyModel getReplyModel=new GetReplyModel(questionID,infodata.get(i).getId(),infodata.get(i).getText(),questionIsRequired);
+                getReplyModels.add(j,getReplyModel);
+                j=j+1;
+                System.out.println("Selectes GETDATA == i="+i+"ID"+ data.get(i)+infodata.get(i).getId()+"TEXT="+infodata.get(i).getText());
+
+            }
+        }
+        return getReplyModels;
+    }
 }

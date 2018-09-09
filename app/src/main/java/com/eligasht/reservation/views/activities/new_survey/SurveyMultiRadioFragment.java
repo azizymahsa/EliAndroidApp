@@ -11,11 +11,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.activities.new_survey.model.GetReplyModel;
 import com.eligasht.reservation.views.activities.new_survey.model.SurveyQuestionToShow;
+
+import java.util.ArrayList;
 
 public class SurveyMultiRadioFragment extends Fragment {
 
     private TextView tvTitle;
+    private TextView answer;
+    private Boolean questionIsRequired;
+    private Integer questionID;
+    RadioButton first,second,third,four;
+    private int id=0;
+    private String value="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,10 +35,13 @@ public class SurveyMultiRadioFragment extends Fragment {
         tvTitle.setText(getArguments().getString("tvTitleM")+"");
         tvDesc.setText(getArguments().getString("tvDescM")+"");
 
-        RadioButton first = (RadioButton) v.findViewById(R.id.first);
-        RadioButton second = (RadioButton)v. findViewById(R.id.second);
-        RadioButton  third = (RadioButton) v.findViewById(R.id.third);
-        RadioButton  four = (RadioButton) v.findViewById(R.id.four);
+        questionIsRequired = getArguments().getBoolean("QuestionIsRequired");
+        questionID = getArguments().getInt("QuestionID");
+
+         first = (RadioButton) v.findViewById(R.id.first);
+         second = (RadioButton)v. findViewById(R.id.second);
+          third = (RadioButton) v.findViewById(R.id.third);
+          four = (RadioButton) v.findViewById(R.id.four);
         try {
             if (getArguments().getString("rd0") != null) {
                 first.setVisibility(View.VISIBLE);
@@ -69,16 +81,24 @@ public class SurveyMultiRadioFragment extends Fragment {
                 int buttonId = radioGroup.getCheckedRadioButtonId();
                 switch(buttonId) {
                     case R.id.first:
-                        Toast.makeText(getContext(), "Your Male", Toast.LENGTH_SHORT).show();
+                       id=getArguments().getInt("rdI0");
+                       value= first.getText().toString();
+                        Toast.makeText(getContext(),  first.getText().toString(), Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.second:
-                        Toast.makeText(getContext(), "Your Female", Toast.LENGTH_SHORT).show();
+                        id=getArguments().getInt("rdI1");
+                        value= second.getText().toString();
+                        Toast.makeText(getContext(),  second.getText().toString(), Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.third:
-                        Toast.makeText(getContext(), "Your Other", Toast.LENGTH_SHORT).show();
+                        id=getArguments().getInt("rdI2");
+                        value= third.getText().toString();
+                        Toast.makeText(getContext(),  third.getText().toString(), Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.four:
-                    Toast.makeText(getContext(), "Your Other", Toast.LENGTH_SHORT).show();
+                        id=getArguments().getInt("rdI3");
+                        value= four.getText().toString();
+                    Toast.makeText(getContext(),  four.getText().toString(), Toast.LENGTH_SHORT).show();
                     break;
                 }
             }
@@ -86,10 +106,7 @@ public class SurveyMultiRadioFragment extends Fragment {
         });
         return v;
     }
-    public String updateList(String new_item) {
-        Log.i( "updateList: ","wwwwwwwwwwwww");
-        return tvTitle.getText().toString();
-    }
+
     public static SurveyMultiRadioFragment newInstance(String text, SurveyQuestionToShow surveyQuestionToShows) {
 
         SurveyMultiRadioFragment f = new SurveyMultiRadioFragment();
@@ -97,9 +114,12 @@ public class SurveyMultiRadioFragment extends Fragment {
         b.putString("tvTitleM",(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " "  );
         b.putString("tvDescM",(surveyQuestionToShows.getQuestionQuestion() != null ) ? surveyQuestionToShows.getQuestionQuestion() : " " );
 
+        b.putBoolean("QuestionIsRequired",(surveyQuestionToShows.getQuestionAnswersArr() != null ) ?  surveyQuestionToShows.isQuestionIsRequired() : false );
+        b.putInt("QuestionID",(surveyQuestionToShows.getQuestionID() != null ) ?  surveyQuestionToShows.getQuestionID() : 1 );
 
         for (int i = 0; i < surveyQuestionToShows.getQuestionAnswersArr().size(); i++) {
             b.putString("rd"+i,(surveyQuestionToShows.getQuestionAnswersArr().get(i).getText() != null ) ? surveyQuestionToShows.getQuestionAnswersArr().get(i).getText() : "null" );
+            b.putInt("rdI"+i,(surveyQuestionToShows.getQuestionAnswersArr().get(i).getAnswerId() != null ) ? Integer.parseInt(surveyQuestionToShows.getQuestionAnswersArr().get(i).getAnswerId()) : 1 );
 
 
 
@@ -107,5 +127,13 @@ public class SurveyMultiRadioFragment extends Fragment {
         f.setArguments(b);
 
         return f;
+    }
+
+    public ArrayList<GetReplyModel> updateList() {
+        ArrayList<GetReplyModel> strings=new ArrayList<>();
+        GetReplyModel getReplyModel=new GetReplyModel(questionID,id,value,questionIsRequired);
+        strings.add(getReplyModel);
+
+        return strings;
     }
 }

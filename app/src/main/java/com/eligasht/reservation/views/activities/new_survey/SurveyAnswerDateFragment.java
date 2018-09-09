@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
+import com.eligasht.reservation.views.activities.new_survey.model.GetReplyModel;
 import com.eligasht.reservation.views.activities.new_survey.model.SurveyQuestionToShow;
 import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
 import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
@@ -25,6 +26,8 @@ import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import java.util.ArrayList;
+
 public class SurveyAnswerDateFragment extends Fragment implements View.OnClickListener, ICallbackCalendarDialog {
     public TextView tvTitle,tvDesc,txtSetDate;
     public View v;
@@ -33,6 +36,8 @@ public class SurveyAnswerDateFragment extends Fragment implements View.OnClickLi
     private String departureDate;
     private LinearLayout layout_depart_date;
     CalendarDialog dialog;
+    private Boolean questionIsRequired;
+    private Integer questionID;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.date_answer_survey, container, false);
@@ -40,7 +45,7 @@ public class SurveyAnswerDateFragment extends Fragment implements View.OnClickLi
         tvTitle = (TextView) v.findViewById(R.id.tvTitle);
         tvDesc = (TextView) v.findViewById(R.id.tvDesc);
 
-       lottieCheckin = v.findViewById(R.id.lottie_checkin);
+        lottieCheckin = v.findViewById(R.id.lottie_checkin);
         lottieCheckin.setSpeed(2f);
 
 
@@ -55,6 +60,9 @@ public class SurveyAnswerDateFragment extends Fragment implements View.OnClickLi
 
         tvTitle.setText(tvTitleL+" ");
         tvDesc.setText(tvDescL+" ");
+
+        questionIsRequired = getArguments().getBoolean("QuestionIsRequired");
+        questionID = getArguments().getInt("QuestionID");
 
         dialog = new CalendarDialog();
         departureDate = SingletonDate.getInstance().getStartDate().getFullGeo();
@@ -116,6 +124,8 @@ public class SurveyAnswerDateFragment extends Fragment implements View.OnClickLi
         Bundle b = new Bundle();
         b.putString("tvTitleL",(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " "  );
         b.putString("tvDescL",(surveyQuestionToShows.getQuestionQuestion() != null ) ? surveyQuestionToShows.getQuestionQuestion() : " " );
+        b.putBoolean("QuestionIsRequired",(surveyQuestionToShows.getQuestionAnswersArr() != null ) ?  surveyQuestionToShows.isQuestionIsRequired() : false );
+        b.putInt("QuestionID",(surveyQuestionToShows.getQuestionID() != null ) ?  surveyQuestionToShows.getQuestionID() : 1 );
 
         f.setArguments(b);
 
@@ -169,5 +179,13 @@ public class SurveyAnswerDateFragment extends Fragment implements View.OnClickLi
         });
 
         lottieCheckin.playAnimation();
+    }
+
+    public ArrayList<GetReplyModel> updateList() {
+        ArrayList<GetReplyModel> strings=new ArrayList<>();
+        GetReplyModel getReplyModel=new GetReplyModel(questionID,0,txtSetDate.getText().toString(),questionIsRequired);
+        strings.add(getReplyModel);
+
+        return strings;
     }
 }

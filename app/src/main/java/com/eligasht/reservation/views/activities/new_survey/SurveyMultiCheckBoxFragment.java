@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.views.activities.new_survey.adapter.SurveyChBoxAdapter;
+import com.eligasht.reservation.views.activities.new_survey.model.GetReplyModel;
 import com.eligasht.reservation.views.activities.new_survey.model.InfoRowdata;
 import com.eligasht.reservation.views.activities.new_survey.model.SurveyQuestionToShow;
 
@@ -21,14 +22,13 @@ import java.util.ArrayList;
 public class SurveyMultiCheckBoxFragment extends Fragment {
     private ListView llChb;
 
-   /* private String[] data = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
-            "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
-            "x", "y", "z" };*/
     private ArrayList<String> arrData=null;
 
+    private SurveyChBoxAdapter surveyChBoxAdapter;
     private ArrayList<InfoRowdata> infodata;
     private ArrayList<String> listTest,listAnswerId;
-
+    private Boolean questionIsRequired;
+    private Integer questionID;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.multi_check_box_answer, container, false);//row_multi_survey_answer
@@ -39,40 +39,24 @@ public class SurveyMultiCheckBoxFragment extends Fragment {
         tvDesc.setText(getArguments().getString("tvDescM")+"");
 
 
-
-      /*  arrData=new ArrayList<String>();
-        arrData.add("a");
-        arrData.add("b");
-        arrData.add("c");
-        arrData.add("d");
-        arrData.add("e");
-        arrData.add("f");
-        arrData.add("g");
-        arrData.add("h");
-        arrData.add("i");
-        arrData.add("j");
-        arrData.add("k");
-        arrData.add("l");
-        arrData.add("m");
-        arrData.add("n");
-        arrData.add("o");
-        arrData.add("p");*/
         llChb = (ListView) v.findViewById(R.id.llChb);
 
         listTest=getArguments().getStringArrayList("listTest");
         listAnswerId=getArguments().getStringArrayList("listAnswerId");
 
+        questionIsRequired = getArguments().getBoolean("QuestionIsRequired");
+        questionID = getArguments().getInt("QuestionID");
 
         infodata = new ArrayList<InfoRowdata>();
         for (int i = 0; i < listTest.size(); i++) {
             infodata.add(new InfoRowdata(false, i,Integer.parseInt(listAnswerId.get(i)),listTest.get(i)));
-            // System.out.println(i);
-            //System.out.println("Data is == "+data[i]);
+
         }
 
 
         llChb.invalidate();
-        llChb.setAdapter(new SurveyChBoxAdapter(infodata,listTest,getContext(),getActivity()));
+        surveyChBoxAdapter=new SurveyChBoxAdapter(infodata,listTest,getContext(),getActivity());
+        llChb.setAdapter(surveyChBoxAdapter);
 
         return v;
     }
@@ -83,6 +67,10 @@ public class SurveyMultiCheckBoxFragment extends Fragment {
         Bundle b = new Bundle();
         b.putString("tvTitleM",(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " "  );
         b.putString("tvDescM",(surveyQuestionToShows.getQuestionQuestion() != null ) ? surveyQuestionToShows.getQuestionQuestion() : " " );
+
+        b.putBoolean("QuestionIsRequired",(surveyQuestionToShows.getQuestionAnswersArr() != null ) ?  surveyQuestionToShows.isQuestionIsRequired() : false );
+        b.putInt("QuestionID",(surveyQuestionToShows.getQuestionID() != null ) ?  surveyQuestionToShows.getQuestionID() : 1 );
+
         ArrayList<String> listTest=new ArrayList<>();
         ArrayList<String> listAnswerId=new ArrayList<>();
 
@@ -93,13 +81,20 @@ public class SurveyMultiCheckBoxFragment extends Fragment {
 
             listAnswerId.add(i,surveyQuestionToShows.getQuestionAnswersArr().get(i).getAnswerId());
             b.putStringArrayList("listAnswerId",listAnswerId);
-           // b.putStringArrayList(i,(surveyQuestionToShows.getQuestionAnswersArr().get(i).getText() != null ) ? surveyQuestionToShows.getQuestionAnswersArr().get(i).getText() : "null" );
-
-
 
         }
         f.setArguments(b);
 
         return f;
+    }
+    public ArrayList<GetReplyModel> updateList() {
+        surveyChBoxAdapter.getData(questionID,questionIsRequired);
+
+       /* ArrayList<GetReplyModel> strings=new ArrayList<>();
+        GetReplyModel getReplyModel=new GetReplyModel(1,1,txtSetTime.getText().toString());
+        strings.add(getReplyModel);
+*/
+
+        return surveyChBoxAdapter.getData(questionID,questionIsRequired);
     }
 }

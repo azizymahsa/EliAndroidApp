@@ -189,7 +189,7 @@ public class SurveyActivity extends BaseActivity implements SurveyRecycleAdapter
                     if (responseGetSurveyDetails!=null){
                          getSurveyDetailsResult = responseGetSurveyDetails.getGetSurveyDetailsResult();
                         //if (GetAirportsResult.getErrors()!=null  ){
-                        addItemDetail(getSurveyDetailsResult.getSurveies().get(0).getSurveySections());
+                        addItemDetail(getSurveyDetailsResult.getSurveies().get(0).getSurveySections(),getSurveyDetailsResult.getSurveies().get(0).getID());
                         // }
                     }
 
@@ -208,7 +208,7 @@ public class SurveyActivity extends BaseActivity implements SurveyRecycleAdapter
         },requestGetSurveyDetails);
     }
 
-    public void addItemDetail(List<SurveySection> surveySections) {
+    public void addItemDetail(List<SurveySection> surveySections, Integer idMain) {
         // add item in list view
        /* rvSurvey.setVisibility(View.GONE);
         adapter=null;
@@ -249,9 +249,13 @@ public class SurveyActivity extends BaseActivity implements SurveyRecycleAdapter
                      /*   surveyQuestionToShow2.setSectionText(null);
                         surveyQuestionToShow2.setSectionDesc(null);
                         surveyQuestionToShow2.setSectionID(null);*/
+                    surveyQuestionToShow2.setMainID(idMain);
+
                     surveyQuestionToShow2.setSectionText(surveySections.get(q).getText()+"");
                     surveyQuestionToShow2.setSectionDesc(surveySections.get(q).getDescription()+"");
                     surveyQuestionToShow2.setSectionID(surveySections.get(q).getID());
+
+                    surveyQuestionToShow2.setQuestionIsRequired(surveySections.get(q).getQuestions().get(j).getIsRequired());
 
                         surveyQuestionToShow2.setQuestionID(surveySections.get(q).getQuestions().get(j).getID());
                         surveyQuestionToShow2.setQuestionIDType(surveySections.get(q).getQuestions().get(j).getAnswerType().getID());

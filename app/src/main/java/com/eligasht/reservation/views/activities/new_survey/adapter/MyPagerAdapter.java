@@ -3,10 +3,7 @@ package com.eligasht.reservation.views.activities.new_survey.adapter;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
-
-
 import android.support.v13.app.FragmentPagerAdapter;
-
 import com.eligasht.reservation.views.activities.new_survey.MainSurveyActivity;
 import com.eligasht.reservation.views.activities.new_survey.SurveyAnswerDateFragment;
 import com.eligasht.reservation.views.activities.new_survey.SurveyAnswerLongFragment;
@@ -17,7 +14,6 @@ import com.eligasht.reservation.views.activities.new_survey.SurveyMultiCheckBoxF
 import com.eligasht.reservation.views.activities.new_survey.SurveyMultiRadioFragment;
 import com.eligasht.reservation.views.activities.new_survey.ThirdSurveyFragment;
 import com.eligasht.reservation.views.activities.new_survey.model.SurveyQuestionToShow;
-
 import java.util.ArrayList;
 
 public class MyPagerAdapter extends FragmentPagerAdapter {
@@ -31,11 +27,9 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
         this.sizePage=sizePage;
         this.context=context;
     }
-
     public MyPagerAdapter(FragmentManager supportFragmentManager) {
         super(supportFragmentManager);
     }
-
     // Force a refresh of the page when a different fragment is displayed
     @Override
     public int getItemPosition(Object object) {

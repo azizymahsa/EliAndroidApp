@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.activities.new_survey.model.GetReplyModel;
 import com.eligasht.reservation.views.activities.new_survey.model.SurveyQuestionToShow;
 import com.eligasht.reservation.views.activities.survey.SurveyActivity;
 import com.eligasht.reservation.views.dialogs.FilterPackageDialog;
@@ -17,12 +18,16 @@ import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import java.util.ArrayList;
+
 public class SurveyAnswerTimeFragment extends Fragment implements TimePickerDialog.OnTimeSetListener,View.OnClickListener {
     public TextView tvTitle,tvDesc,txtSetTime;
     public View v;
     private TimePickerDialog timePickerDialog2;
     private Context context;
     private DialogFragment dFragment;
+    private Boolean questionIsRequired;
+    private Integer questionID;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +44,9 @@ public class SurveyAnswerTimeFragment extends Fragment implements TimePickerDial
         tvTitle.setText(tvTitleL+" ");
         tvDesc.setText(tvDescL+" ");
 
-        //  Date currentTime = Calendar.getInstance().getTime();
+        questionIsRequired = getArguments().getBoolean("QuestionIsRequired");
+        questionID = getArguments().getInt("QuestionID");
+
 
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
         PersianCalendar persianCalendar = new PersianCalendar();
@@ -56,11 +63,11 @@ public class SurveyAnswerTimeFragment extends Fragment implements TimePickerDial
         SurveyAnswerTimeFragment f = new SurveyAnswerTimeFragment();
        // try {
 
-
-
         Bundle b = new Bundle();
         b.putString("tvTitleL",(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " "  );
         b.putString("tvDescL",(surveyQuestionToShows.getQuestionQuestion() != null ) ? surveyQuestionToShows.getQuestionQuestion() : " " );
+        b.putBoolean("QuestionIsRequired",(surveyQuestionToShows.getQuestionAnswersArr() != null ) ?  surveyQuestionToShows.isQuestionIsRequired() : false );
+        b.putInt("QuestionID",(surveyQuestionToShows.getQuestionID() != null ) ?  surveyQuestionToShows.getQuestionID() : 1 );
 
         f.setArguments(b);
 
@@ -84,5 +91,12 @@ public class SurveyAnswerTimeFragment extends Fragment implements TimePickerDial
                 timePickerDialog2.show(getFragmentManager(), "timeBargasht");
                 break;
         }
+    }
+    public ArrayList<GetReplyModel> updateList() {
+        ArrayList<GetReplyModel> strings=new ArrayList<>();
+        GetReplyModel getReplyModel=new GetReplyModel(questionID,0,txtSetTime.getText().toString(),questionIsRequired);
+        strings.add(getReplyModel);
+
+        return strings;
     }
 }
