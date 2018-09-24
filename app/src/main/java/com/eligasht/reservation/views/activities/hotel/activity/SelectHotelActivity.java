@@ -184,7 +184,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             case R.id.btnChangeView:
                 if (isGrid){
                     isGrid=false;
-
+                    Log.e("selectHotelModelArrayList: ",selectHotelModelArrayList.size()+"" );
                     rvHotelResult.setLayoutManager(new LinearLayoutManager(this));
                     hotelResultAdapter = new HotelResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
                     rvHotelResult.setAdapter(hotelResultAdapter);
@@ -195,7 +195,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                 }else{
                     isGrid=true;
-
+                    Log.e("selectHotelModelArrayList: ",selectHotelModelArrayList.size()+"" );
                     rvHotelResult.setLayoutManager(new GridLayoutManager(this,3));
                     hotelResultAdapter = new HotelResultAdapter(selectHotelModelArrayList,this,tvDate,isGrid);
                     rvHotelResult.setAdapter(hotelResultAdapter);

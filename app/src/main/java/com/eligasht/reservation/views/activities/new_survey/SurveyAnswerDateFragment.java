@@ -66,7 +66,7 @@ public class SurveyAnswerDateFragment extends Fragment implements View.OnClickLi
 
         dialog = new CalendarDialog();
         departureDate = SingletonDate.getInstance().getStartDate().getFullGeo();
-        txtSetDate.setText(SingletonDate.getInstance().getStartDate().getDescription());
+       // txtSetDate.setText("");
 
      /*   PersianCalendar persianCalendarDatePicker = new PersianCalendar();
         PersianCalendar persianCalendar = new PersianCalendar();
@@ -183,9 +183,10 @@ public class SurveyAnswerDateFragment extends Fragment implements View.OnClickLi
 
     public ArrayList<GetReplyModel> updateList() {
         ArrayList<GetReplyModel> strings=new ArrayList<>();
-        GetReplyModel getReplyModel=new GetReplyModel(questionID,0,txtSetDate.getText().toString(),questionIsRequired);
-        strings.add(getReplyModel);
-
+        //if (txtSetDate.getText().toString().length()>2) {
+            GetReplyModel getReplyModel = new GetReplyModel(questionID, 0, txtSetDate.getText().toString(), questionIsRequired);
+            strings.add(getReplyModel);
+       // }
         return strings;
     }
 }

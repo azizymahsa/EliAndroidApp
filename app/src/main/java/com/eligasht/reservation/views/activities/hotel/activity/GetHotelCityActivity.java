@@ -250,15 +250,12 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
             case R.id.btnMic:
                 searchtxt.setText("");
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                        RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Prefs.getString("lang","fa"));
                 try {
                     startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
                 } catch (ActivityNotFoundException a) {
-                    Toast.makeText(getApplicationContext(),
-                            "Error",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Error",Toast.LENGTH_SHORT).show();
                 }
 
                 break;
@@ -271,8 +268,7 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
         switch (requestCode) {
             case REQ_CODE_SPEECH_INPUT: {
                 if (resultCode == RESULT_OK && null != data) {
-                    ArrayList<String> result = data
-                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     searchtxt.setText(result.get(0));
                 }
                 break;

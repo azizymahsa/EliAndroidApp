@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.activities.new_survey;
 import android.app.FragmentManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 
@@ -23,6 +24,18 @@ import com.eligasht.reservation.views.activities.new_survey.model.SurveyResultDe
 import com.eligasht.reservation.views.activities.survey.SurveyActivity;
 import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.flight.request.airPort.Identity;
+import com.eligasht.service.model.flight.request.airPort.Request;
+import com.eligasht.service.model.flight.request.airPort.RequestAirports;
+import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
+import com.eligasht.service.model.survey.request.addServeyResult.Answer;
+import com.eligasht.service.model.survey.request.addServeyResult.RequestSetAnswer;
+import com.eligasht.service.model.survey.request.addServeyResult.SurveyResult;
+import com.eligasht.service.model.survey.request.addServeyResult.SurveyResultDetail;
+import com.eligasht.service.model.survey.response.addServeyResult.ResponseSetAnswer;
+import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -33,7 +46,7 @@ import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
-public class MainSurveyActivity extends FragmentActivity implements View.OnClickListener{
+public class MainSurveyActivity extends FragmentActivity implements View.OnClickListener, OnServiceStatus<ResponseSetAnswer> {
     ArrayList<SurveyQuestionToShow> surveyQuestionToShows=new ArrayList<>();
     private int sizePage= SurveyActivity.COUNT_FRAG;
     private FancyButton btnBack;
@@ -45,6 +58,10 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
     ArrayList<SurveyResultDetailsFake> surveyResultDetailsFakes;
   //  MyPagerAdapter myPagerAdapter=new MyPagerAdapter(MainSurveyActivity.this);
     ViewPager pager;
+    private boolean FlagSend=false;
+    private boolean FlagIsRequestable=true;
+    private boolean FlagAnswer=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,17 +144,17 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
             case R.id.btnBack:
                 finish();
                 break;
-                case R.id.btnPrev:
-                   try {
-                        int j= pager.getCurrentItem();
-                        j=j-1;
-                        pager.setCurrentItem(j, true);
-                        if (lblMoratabSazi .getText().toString().equals(getString(R.string._finish))) {
-                            lblMoratabSazi.setText(getString(R.string._new_answer)+"");
-                        }
-                    }catch (Exception e){
-                        e.getMessage();
+            case R.id.btnPrev:
+                try {
+                    int j = pager.getCurrentItem();
+                    j = j - 1;
+                    pager.setCurrentItem(j, true);
+                    if (lblMoratabSazi.getText().toString().equals(getString(R.string._finish))) {
+                        lblMoratabSazi.setText(getString(R.string._new_answer) + "");
                     }
+                } catch (Exception e) {
+                    e.getMessage();
+                }
 
                         /*if (pager.getCurrentItem() == i && page != null) {
                             String ff=((SurveyMultiRadioFragment)page).updateList("new item");
@@ -145,43 +162,55 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
                         }*/
 
 
+                break;
+            case R.id.btnNext:
+                //int size=pager.getChildCount();
+                int i = pager.getCurrentItem();
+                setdataAnswer(i);
+                if (FlagAnswer){
 
-                    break;
-                case R.id.btnNext:
-                    //int size=pager.getChildCount();
-                    int i= pager.getCurrentItem();
-                    setdataAnswer(i);
-                    i=i+1;
+                    i = i + 1;
                     pager.setCurrentItem(i, true);
 
-                    if (lblMoratabSazi .getText().toString().equals(getString(R.string._finish))) {
-                        sendRequestAnswer();
-                        //dialog o bebar tu response
-                        try {
-                            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(MainSurveyActivity.this,false,true);
-                            alertDialogPassenger.setText("نظر شما با موفقیت ثبت شد","پیغام");
-                        }catch (Exception e){
-                            e.getMessage();
+                    if (lblMoratabSazi.getText().toString().equals(getString(R.string._finish))) {
+                        if (FlagSend) {
+                            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(MainSurveyActivity.this, true, true);
+                            alertDialogPassenger.setText(getString(R.string._register_already_opinion)+"", getString(R.string.massege));
+                        } else {
+                            sendRequestAnswer();
                         }
-                        ///
+
                     }
 
-                    if ((sizePage-1)==i){
-                        lblMoratabSazi.setText(getString(R.string._finish)+"");
+                    if ((sizePage - 1) == i) {
+                        lblMoratabSazi.setText(getString(R.string._finish) + "");
                     }
+                 }else if (FlagIsRequestable) {
+                    AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(MainSurveyActivity.this, true, false);
+                    alertDialogPassenger.setText(getString(R.string._answer_question_mandatory), getString(R.string.massege));
+                }else{
+                    i = i + 1;
+                    pager.setCurrentItem(i, true);
+
+                    if (lblMoratabSazi.getText().toString().equals(getString(R.string._finish))) {
+                        if (FlagSend) {
+                            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(MainSurveyActivity.this, true, true);
+                            alertDialogPassenger.setText(getString(R.string._register_already_opinion), getString(R.string.massege));
+                        } else {
+                            sendRequestAnswer();
+                        }
+
+                    }
+
+                    if ((sizePage - 1) == i) {
+                        lblMoratabSazi.setText(getString(R.string._finish) + "");
+                    }
+                }
                 break;
         }
     }
 
-    private void sendRequestAnswer() {
-        //ID=12
-        surveyQuestionToShows.get(0).getMainID();
-        for (int i = 0; i <  surveyResultDetailsFakes.size(); i++) {
-            Log.e("surveyAnswerModel: ",i+" "+ surveyResultDetailsFakes.get(i).getAnswerModels().toString());
-        }
 
-
-    }
 
     private void setdataAnswer(int prevPagePos) {
         Log.i( "prevPagePos: ",prevPagePos+"");
@@ -190,104 +219,115 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
         FragmentManager fragment=page.getChildFragmentManager();
        // int size=pager.getChildCount();
 
-
-
-
-
         if ( pagerAdapter.getItem(prevPagePos) instanceof SurveyAnswerDateFragment){
-
+                FlagAnswer=false;
                 Log.i( " == ","SurveyAnswerDateFragment");
                 ArrayList<GetReplyModel> ff= ((SurveyAnswerDateFragment)page).updateList();
 
 
                 List<AnswerModel> answerModels=new ArrayList<>();
                 for (int i = 0; i < ff.size(); i++) {
+                    if(ff.get(i).Value.length()>2){
+                        FlagAnswer=true;
+                    }
                     AnswerModel answerModel=new AnswerModel(ff.get(i).ID,ff.get(i).Value);
                     answerModels.add(i,answerModel);
+                    FlagIsRequestable=ff.get(0).IsRequired;
 
                 }
-                SurveyResultDetailsFake surveyResultDetailsFake=new SurveyResultDetailsFake(ff.get(0).SurveyQuestionID,answerModels);
-                /*if(surveyResultDetailsFakes.size() <= prevPagePos){
-                    surveyResultDetailsFakes.add(prevPagePos,surveyResultDetailsFake);
-                }else{*/
-                    surveyResultDetailsFakes.set(prevPagePos,surveyResultDetailsFake);
-               // }
+                if (ff.size()>0) {
+                    SurveyResultDetailsFake surveyResultDetailsFake = new SurveyResultDetailsFake(ff.get(0).SurveyQuestionID, answerModels);
+                    surveyResultDetailsFakes.set(prevPagePos, surveyResultDetailsFake);
+                }
 
 
         }else if ( pagerAdapter.getItem(prevPagePos) instanceof SurveyAnswerLongFragment){
-
+            FlagAnswer=false;
                 Log.i( " == ","SurveyAnswerLongFragment");
                 ArrayList<GetReplyModel> ff=((SurveyAnswerLongFragment)page).updateList();
 
                 List<AnswerModel> answerModels=new ArrayList<>();
                 for (int i = 0; i < ff.size(); i++) {
+                    if (ff.get(i).Value.length()>2){
+                        FlagAnswer=true;
+                    }
                     AnswerModel answerModel=new AnswerModel(ff.get(i).ID,ff.get(i).Value);
                     answerModels.add(i,answerModel);
+                    FlagIsRequestable=ff.get(0).IsRequired;
+
 
                 }
-                SurveyResultDetailsFake surveyResultDetailsFake=new SurveyResultDetailsFake(ff.get(0).SurveyQuestionID,answerModels);
-               /*if(surveyResultDetailsFakes.size() <= prevPagePos){
-                    surveyResultDetailsFakes.add(prevPagePos,surveyResultDetailsFake);
-                }else{*/
-                    surveyResultDetailsFakes.set(prevPagePos,surveyResultDetailsFake);
-               // }
+                
+               if (ff.size()>0) {
+                    SurveyResultDetailsFake surveyResultDetailsFake = new SurveyResultDetailsFake(ff.get(0).SurveyQuestionID, answerModels);
+                    surveyResultDetailsFakes.set(prevPagePos, surveyResultDetailsFake);
+                }
+
 
         }else if ( pagerAdapter.getItem(prevPagePos) instanceof SurveyAnswerSelectionFragment){
-
+            FlagAnswer=false;
                 Log.i( " == ","SurveyAnswerSelectionFragment");
                 ArrayList<GetReplyModel> ff =((SurveyAnswerSelectionFragment)page).updateList();
 
                 List<AnswerModel> answerModels=new ArrayList<>();
                 for (int i = 0; i < ff.size(); i++) {
+                    if(ff.get(i).Value.length()>1){
+                        FlagAnswer=true;
+                    }
                     AnswerModel answerModel=new AnswerModel(ff.get(i).ID,ff.get(i).Value);
                     answerModels.add(i,answerModel);
+                    FlagIsRequestable=ff.get(0).IsRequired;
+
 
                 }
-                SurveyResultDetailsFake surveyResultDetailsFake=new SurveyResultDetailsFake(ff.get(0).SurveyQuestionID,answerModels);
-               /*if(surveyResultDetailsFakes.size() <= prevPagePos){
-                    surveyResultDetailsFakes.add(prevPagePos,surveyResultDetailsFake);
-                }else{*/
-                    surveyResultDetailsFakes.set(prevPagePos,surveyResultDetailsFake);
-                //}
+               if (ff.size()>0) {
+                    SurveyResultDetailsFake surveyResultDetailsFake = new SurveyResultDetailsFake(ff.get(0).SurveyQuestionID, answerModels);
+                    surveyResultDetailsFakes.set(prevPagePos, surveyResultDetailsFake);
+                }
 
         }else if ( pagerAdapter.getItem(prevPagePos) instanceof SurveyAnswerShortFragment){
-
+            FlagAnswer=false;
                 Log.i( " == ","SurveyAnswerShortFragment");
                 ArrayList<GetReplyModel> ff =((SurveyAnswerShortFragment)page).updateList();
 
                 List<AnswerModel> answerModels=new ArrayList<>();
                 for (int i = 0; i < ff.size(); i++) {
+                    if(ff.get(i).Value.length()>2){
+                        FlagAnswer=true;
+                    }
                     AnswerModel answerModel=new AnswerModel(ff.get(i).ID,ff.get(i).Value);
                     answerModels.add(i,answerModel);
+                    FlagIsRequestable=ff.get(0).IsRequired;
+
 
                 }
-                SurveyResultDetailsFake surveyResultDetailsFake=new SurveyResultDetailsFake(ff.get(0).SurveyQuestionID,answerModels);
-               /*if(surveyResultDetailsFakes.size() <= prevPagePos){
-                    surveyResultDetailsFakes.add(prevPagePos,surveyResultDetailsFake);
-                }else{*/
-                    surveyResultDetailsFakes.set(prevPagePos,surveyResultDetailsFake);
-                //}
+               if (ff.size()>0) {
+                    SurveyResultDetailsFake surveyResultDetailsFake = new SurveyResultDetailsFake(ff.get(0).SurveyQuestionID, answerModels);
+                    surveyResultDetailsFakes.set(prevPagePos, surveyResultDetailsFake);
+                }
 
         }else if ( pagerAdapter.getItem(prevPagePos) instanceof SurveyAnswerTimeFragment){
-
+            FlagAnswer=false;
                 Log.i( " == ","SurveyAnswerTimeFragment");
                 ArrayList<GetReplyModel> ff =((SurveyAnswerTimeFragment)page).updateList();
 
                 List<AnswerModel> answerModels=new ArrayList<>();
                 for (int i = 0; i < ff.size(); i++) {
+                    if(ff.get(i).Value.length()>2){
+                        FlagAnswer=true;
+                    }
                     AnswerModel answerModel=new AnswerModel(ff.get(i).ID,ff.get(i).Value);
                     answerModels.add(i,answerModel);
+                    FlagIsRequestable=ff.get(0).IsRequired;
 
                 }
-                SurveyResultDetailsFake surveyResultDetailsFake=new SurveyResultDetailsFake(ff.get(0).SurveyQuestionID,answerModels);
-               /*if(surveyResultDetailsFakes.size() <= prevPagePos){
-                    surveyResultDetailsFakes.add(prevPagePos,surveyResultDetailsFake);
-                }else{*/
-                    surveyResultDetailsFakes.set(prevPagePos,surveyResultDetailsFake);
-                //}
+               if (ff.size()>0) {
+                    SurveyResultDetailsFake surveyResultDetailsFake = new SurveyResultDetailsFake(ff.get(0).SurveyQuestionID, answerModels);
+                    surveyResultDetailsFakes.set(prevPagePos, surveyResultDetailsFake);
+                }
 
         }else if ( pagerAdapter.getItem(prevPagePos) instanceof SurveyMultiCheckBoxFragment){
-
+            FlagAnswer=false;
                 Log.i( " == ","SurveyMultiCheckBoxFragment");
                 ArrayList<GetReplyModel> ff =((SurveyMultiCheckBoxFragment)page).updateList();
 
@@ -295,36 +335,38 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
                 for (int i = 0; i < ff.size(); i++) {
                     AnswerModel answerModel=new AnswerModel(ff.get(i).ID,ff.get(i).Value);
                     answerModels.add(i,answerModel);
+                    FlagIsRequestable=ff.get(0).IsRequired;
+                    FlagAnswer=true;
 
                 }
                 int SurveyQuestionID=0;
-                if(ff.size()>0)
+                if(ff.size()>0){
                     SurveyQuestionID=ff.get(0).SurveyQuestionID;
 
                 SurveyResultDetailsFake surveyResultDetailsFake=new SurveyResultDetailsFake(SurveyQuestionID,answerModels);
-               /*if(surveyResultDetailsFakes.size() <= prevPagePos){
-                    surveyResultDetailsFakes.add(prevPagePos,surveyResultDetailsFake);
-                }else{*/
-                    surveyResultDetailsFakes.set(prevPagePos,surveyResultDetailsFake);
-                //}
+                surveyResultDetailsFakes.set(prevPagePos,surveyResultDetailsFake);
+                }
+
 
         }else if ( pagerAdapter.getItem(prevPagePos) instanceof SurveyMultiRadioFragment){
-
+            FlagAnswer=false;
                 Log.i( " == ","SurveyMultiRadioFragment");
                 ArrayList<GetReplyModel> ff =((SurveyMultiRadioFragment)page).updateList();
 
                 List<AnswerModel> answerModels=new ArrayList<>();
                 for (int i = 0; i < ff.size(); i++) {
+                    if (ff.get(i).Value.length()>2){
+                        FlagAnswer=true;
+                    }
                     AnswerModel answerModel=new AnswerModel(ff.get(i).ID,ff.get(i).Value);
                     answerModels.add(i,answerModel);
+                    FlagIsRequestable=ff.get(0).IsRequired;
 
                 }
-                SurveyResultDetailsFake surveyResultDetailsFake=new SurveyResultDetailsFake(ff.get(0).SurveyQuestionID,answerModels);
-               /*if(surveyResultDetailsFakes.size() <= prevPagePos){
-                    surveyResultDetailsFakes.add(prevPagePos,surveyResultDetailsFake);
-                }else{*/
-                    surveyResultDetailsFakes.set(prevPagePos,surveyResultDetailsFake);
-                //}
+               if (ff.size()>0) {
+                    SurveyResultDetailsFake surveyResultDetailsFake = new SurveyResultDetailsFake(ff.get(0).SurveyQuestionID, answerModels);
+                    surveyResultDetailsFakes.set(prevPagePos, surveyResultDetailsFake);
+                }
 
         }
         //print
@@ -334,5 +376,96 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
 
     }
 
+    private void sendRequestAnswer() {
+        //ID=12
+        surveyQuestionToShows.get(0).getMainID();
+        for (int i = 0; i <  surveyResultDetailsFakes.size(); i++) {
+            Log.e("surveyAnswerModel: ",i+" "+ surveyResultDetailsFakes.get(i).getAnswerModels().toString());
+        }
+//
+       // avi.setVisibility(View.VISIBLE);
 
+        RequestSetAnswer requestAirports = new RequestSetAnswer();
+        com.eligasht.service.model.survey.request.addServeyResult.Request request = new  com.eligasht.service.model.survey.request.addServeyResult.Request();
+
+        com.eligasht.service.model.survey.request.addServeyResult.Identity identity = new com.eligasht.service.model.survey.request.addServeyResult.Identity();
+        identity.setPassword("123qwe!@#QWE");
+        identity.setTermianlId("Mobile");
+        identity.setUserName("EligashtMlb");
+
+        request.setCulture(getString(R.string.culture));
+        request.setIdentity(identity);
+//////////////////////////
+        SurveyResult surveyResult=new SurveyResult();
+        surveyResult.setSurveyID(surveyQuestionToShows.get(0).getMainID());
+        List<SurveyResultDetail> surveyResultDetails=new ArrayList<>();
+
+
+        for (int i = 0; i <  surveyResultDetailsFakes.size(); i++){
+            SurveyResultDetail surveyResultDetail=new SurveyResultDetail();
+            surveyResultDetail.setSurveyQuestionID(surveyResultDetailsFakes.get(i).getSurveyQuestionID());
+
+             List<Answer> answers=new ArrayList<>();
+            for (int j = 0; j <  surveyResultDetailsFakes.get(i).getAnswerModels().size(); j++) {
+                    com.eligasht.service.model.survey.request.addServeyResult.Answer answer=new com.eligasht.service.model.survey.request.addServeyResult.Answer();
+                    answer.setID(surveyResultDetailsFakes.get(i).getAnswerModels().get(j).getID());
+                    answer.setValue(surveyResultDetailsFakes.get(i).getAnswerModels().get(j).getValue());
+                    answers.add(j,answer);
+            }
+            surveyResultDetail.setAnswers(answers);
+            surveyResultDetails.add(surveyResultDetail);
+        }
+
+
+
+        surveyResult.setSurveyResultDetails(surveyResultDetails);
+
+        request.setSurveyResult(surveyResult);
+//////////////////////////
+        requestAirports.setRequest(request);
+        Log.i("sendRequestAnswer: ",new Gson().toJson(requestAirports) );
+        SingletonService.getInstance().getSurveyService().AddSurveyResultAvail(this, requestAirports);
+
+    }
+    @Override
+    public void onReady(ResponseSetAnswer responseSetAnswer) {
+        Log.i("ResponseSetAnswer: ",new Gson().toJson(responseSetAnswer.getAddSurveyResultResult().getSuccessResult()) );
+        try {
+            if (responseSetAnswer != null){
+               Integer okey= responseSetAnswer.getAddSurveyResultResult().getSuccessResult();
+               if (okey==2){
+                   //show dialog
+                         FlagSend=true;
+                         btnPrev.setEnabled(false);
+                         btnPrev.setBackgroundResource(R.drawable.background_strock_gray_pur);
+
+                       AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(MainSurveyActivity.this,true,true);
+                       alertDialogPassenger.setText(getString(R.string.comment_successfully),getString(R.string.massege));//
+
+                   ///
+               }else{
+                   AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(MainSurveyActivity.this,true,true);
+                   alertDialogPassenger.setText(responseSetAnswer.getAddSurveyResultResult().getErrors().get(0).getMessage()+"",getString(R.string._error));
+               }
+            }
+        }catch (Exception e){
+            e.getMessage();
+        }
+    }
+
+    @Override
+    public void onError(String message){
+        try {
+
+            //show dialog
+            FlagSend=false;
+            AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(MainSurveyActivity.this,false,true);
+            alertDialogPassenger.setText(getString(R.string._comment_not_successfully),getString(R.string._error));//
+
+            ///
+
+        }catch (Exception e){
+            e.getMessage();
+        }
+    }
 }

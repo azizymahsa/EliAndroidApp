@@ -94,9 +94,10 @@ public class SurveyAnswerTimeFragment extends Fragment implements TimePickerDial
     }
     public ArrayList<GetReplyModel> updateList() {
         ArrayList<GetReplyModel> strings=new ArrayList<>();
-        GetReplyModel getReplyModel=new GetReplyModel(questionID,0,txtSetTime.getText().toString(),questionIsRequired);
-        strings.add(getReplyModel);
-
+       // if (txtSetTime.getText().toString().length()>2) {
+            GetReplyModel getReplyModel = new GetReplyModel(questionID, 0, txtSetTime.getText().toString(), questionIsRequired);
+            strings.add(getReplyModel);
+       // }
         return strings;
     }
 }

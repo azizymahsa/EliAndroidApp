@@ -58,4 +58,5 @@ public class Const {
     public final static String GetSurveyAvil = "Survey/SurveyService.svc/GetSurvey";
     public final static String GetSurveyDetailsAvil = "Survey/SurveyService.svc/GetSurveyDetails";
     public final static String AddSurveyResultAvil = "Survey/SurveyService.svc/AddSurveyResult";
+    public final static String CheckValidSurveyAvil = "Survey/SurveyService.svc/CheckValidResultDetail";
 }

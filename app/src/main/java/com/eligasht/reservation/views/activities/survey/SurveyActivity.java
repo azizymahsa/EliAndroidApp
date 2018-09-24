@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.tools.Utility;
+import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.new_survey.MainSurveyActivity;
 import com.eligasht.reservation.views.activities.new_survey.model.EventModel;
 import com.eligasht.reservation.views.activities.new_survey.model.SurveyAnswer;
@@ -25,14 +26,18 @@ import com.eligasht.reservation.views.activities.survey.adapter.SurveyQuestionsR
 import com.eligasht.reservation.views.activities.survey.adapter.SurveyRecycleAdapter;
 import com.eligasht.reservation.views.adapters.AboutAdapter;
 import com.eligasht.reservation.views.ticker.TickerView;
+import com.eligasht.reservation.views.ui.PassengerActivity;
+import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.survey.request.Identity;
 import com.eligasht.service.model.survey.request.RequestGetSurvey;
+import com.eligasht.service.model.survey.request.checkValid.RequestCheckValidResultDetail;
 import com.eligasht.service.model.survey.request.detail.RequestGetSurveyDetails;
 import com.eligasht.service.model.survey.response.GetSurveyResult;
 import com.eligasht.service.model.survey.response.ResponseGetSurvey;
 import com.eligasht.service.model.survey.response.Surveie;
+import com.eligasht.service.model.survey.response.checkValid.ResponseCheckValidResultDetail;
 import com.eligasht.service.model.survey.response.detail.GetSurveyDetailsResult;
 import com.eligasht.service.model.survey.response.detail.ResponseGetSurveyDetails;
 import com.eligasht.service.model.survey.response.detail.SurveySection;
@@ -127,14 +132,75 @@ public class SurveyActivity extends BaseActivity implements SurveyRecycleAdapter
     @Override
     public void onItemClick(View view, int position) {
         if(adapter!= null){
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-        SendRequestGetSurveyDetails(adapter.getItem(position));
+       // Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        sendCheckValidResultDetail(adapter.getItem(position));
+        //SendRequestGetSurveyDetails(adapter.getItem(position));
         }
         //set Question
        /* if (surveyDetailsRecycleAdapter !=null){
             Toast.makeText(this, "You clicked Details: " + surveyDetailsRecycleAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
             setQuestionsData(surveyDetailsRecycleAdapter.getItem(position));
         }*/
+    }
+
+    private void sendCheckValidResultDetail(String item) {
+        try {
+            //this method will be running on UI thread
+            //this method will be running on UI thread
+            rlLoading.setVisibility(View.VISIBLE);
+            Utility.disableEnableControls(false,rlRoot);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        RequestCheckValidResultDetail requestCheckValidResultDetail = new RequestCheckValidResultDetail();
+        com.eligasht.service.model.survey.request.checkValid.Request request = new com.eligasht.service.model.survey.request.checkValid.Request();
+        com.eligasht.service.model.survey.request.checkValid.Identity identity=new com.eligasht.service.model.survey.request.checkValid.Identity();
+
+        identity.setPassword("123qwe!@#QWE");
+        identity.setTermianlId("Mobile");
+        identity.setUserName("EligashtMlb");
+
+        request.setIdentity(identity);
+        request.setCulture(getString(R.string.culture));
+        request.setEncryptedSurveyID(item);
+        request.setApplicationUserID(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserID());
+
+
+        requestCheckValidResultDetail.setRequest(request);
+        Log.e("RequestCheckValidResultDetail:", new Gson().toJson(requestCheckValidResultDetail));
+        SingletonService.getInstance().getSurveyService().CheckValidResultDetailAvail(new OnServiceStatus<ResponseCheckValidResultDetail>() {
+            @Override
+            public void onReady(ResponseCheckValidResultDetail responseCheckValidResultDetail) {
+                try {
+                    rlLoading.setVisibility(View.GONE);
+                    Utility.disableEnableControls(true,rlRoot);
+
+
+                    if (responseCheckValidResultDetail!=null){
+                       if(responseCheckValidResultDetail.getCheckValidResultDetailResult().getSuccessResult() == 9000){
+                           SendRequestGetSurveyDetails(item);
+                       }else
+                       {
+                           AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(SurveyActivity.this,true,true);
+                           AlertDialogPassenger.setText(getString(R.string._previously_survey),getString(R.string.massege)+" ");
+                       }
+                    }
+
+                } catch (Exception e) {
+                   // Toast.makeText(SurveyActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+                    AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(SurveyActivity.this,true,true);
+                    AlertDialogPassenger.setText(getString(R.string.error_in_connection),getString(R.string._error)+" ");
+                }
+            }
+
+            @Override
+            public void onError(String message) {
+                rlLoading.setVisibility(View.GONE);
+                Utility.disableEnableControls(true,rlRoot);
+            }
+        },requestCheckValidResultDetail);
     }
 
     private void setQuestionsData(String item) {
@@ -153,7 +219,6 @@ public class SurveyActivity extends BaseActivity implements SurveyRecycleAdapter
 
     private void SendRequestGetSurveyDetails(String item) {
         try {
-            //this method will be running on UI thread
             //this method will be running on UI thread
             rlLoading.setVisibility(View.VISIBLE);
             Utility.disableEnableControls(false,rlRoot);
@@ -194,16 +259,17 @@ public class SurveyActivity extends BaseActivity implements SurveyRecycleAdapter
                     }
 
                 } catch (Exception e) {
-                    Toast.makeText(SurveyActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(SurveyActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+                    AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(SurveyActivity.this,true,true);
+                    AlertDialogPassenger.setText(getString(R.string.error_in_connection),getString(R.string._error)+" ");
                 }
 
             }
 
-
-
             @Override
             public void onError(String message) {
-
+                rlLoading.setVisibility(View.GONE);
+                Utility.disableEnableControls(true,rlRoot);
             }
         },requestGetSurveyDetails);
     }
@@ -225,7 +291,7 @@ public class SurveyActivity extends BaseActivity implements SurveyRecycleAdapter
 
         for (int q = 0; q < surveySections.size() ; q++) {
             Log.e( "addItemDetail: ",q +"");
-      /*      SurveyQuestionToShow surveyQuestionToShow=new SurveyQuestionToShow();
+      /*    SurveyQuestionToShow surveyQuestionToShow=new SurveyQuestionToShow();
 
             surveyQuestionToShow.setSectionText(surveySections.get(q).getText()+"");
             surveyQuestionToShow.setSectionDesc(surveySections.get(q).getDescription()+"");
@@ -243,10 +309,9 @@ public class SurveyActivity extends BaseActivity implements SurveyRecycleAdapter
 
                 //Add QUestions ONe Section in (surveyQuestionToShows)
 
-
                 for (int j = 0; j < surveySections.get(q).getQuestions().size(); j++) {
                     SurveyQuestionToShow surveyQuestionToShow2=new SurveyQuestionToShow();
-                     /*   surveyQuestionToShow2.setSectionText(null);
+                     /* surveyQuestionToShow2.setSectionText(null);
                         surveyQuestionToShow2.setSectionDesc(null);
                         surveyQuestionToShow2.setSectionID(null);*/
                     surveyQuestionToShow2.setMainID(idMain);
@@ -265,8 +330,8 @@ public class SurveyActivity extends BaseActivity implements SurveyRecycleAdapter
                             ArrayList<SurveyAnswer> surveyAnswers=new ArrayList<>();
                             for (int k = 0; k <surveySections.get(q).getQuestions().get(j).getQuestionAnswers().size() ; k++) {
                                     SurveyAnswer surveyAnswer=new SurveyAnswer();
-                                        surveyAnswer.setText(surveySections.get(q).getQuestions().get(j).getQuestionAnswers().get(k).getText());
-                                        surveyAnswer.setAnswerId(surveySections.get(q).getQuestions().get(j).getQuestionAnswers().get(k).getID()+"");
+                                    surveyAnswer.setText(surveySections.get(q).getQuestions().get(j).getQuestionAnswers().get(k).getText());
+                                    surveyAnswer.setAnswerId(surveySections.get(q).getQuestions().get(j).getQuestionAnswers().get(k).getID()+"");
 
                                 surveyAnswers.add(surveyAnswer);
                             }
@@ -309,7 +374,9 @@ public class SurveyActivity extends BaseActivity implements SurveyRecycleAdapter
             }
 
         } catch (Exception e) {
-            Toast.makeText(SurveyActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+           // Toast.makeText(SurveyActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+            AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(SurveyActivity.this,true,true);
+            AlertDialogPassenger.setText(getString(R.string.error_in_connection),getString(R.string._error)+" ");
         }
 
     }
@@ -318,8 +385,9 @@ public class SurveyActivity extends BaseActivity implements SurveyRecycleAdapter
     public void onError(String message) {
         rlLoading.setVisibility(View.GONE);
         Utility.disableEnableControls(true,rlRoot);
-        Toast.makeText(SurveyActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
-
+      //  Toast.makeText(SurveyActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+        AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(SurveyActivity.this,true,true);
+        AlertDialogPassenger.setText(getString(R.string.error_in_connection),getString(R.string._error)+" ");
     }
 
 

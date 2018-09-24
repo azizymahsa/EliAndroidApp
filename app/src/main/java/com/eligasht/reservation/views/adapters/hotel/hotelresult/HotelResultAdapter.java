@@ -50,7 +50,7 @@ public class HotelResultAdapter extends RecyclerView.Adapter<HotelResultAdapter.
         this.DateTime = DateTime;
         this.isGrid = isGrid;
 
-
+        Log.e("selectHotelModelArrayList: ",data.size()+"" );
     }
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {

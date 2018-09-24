@@ -2400,4 +2400,11 @@
     <string name="_selectTime">ساعت را انتخاب کنید</string>
     <string name="select_date">تاریخ موردنظر را انتخاب کنید</string>
     <string name="_prev_question">سوال قبلی</string>
+    <string name="please_select_date">تاریخ مورد نظر را انتخاب کنید</string>
+    <string name="_register_already_opinion">نظر شما قبلا ثبت شده است</string>
+    <string name="_answer_question_mandatory">پاسخ به این سوال اجباری می باشد</string>
+    <string name="_comment_not_successfully">متاسفانه نظر شما با موفقیت ثبت نشد</string>
+    <string name="comment_successfully">نظر شما با موفقیت ثبت شد</string>
+    <string name="_error">خطا</string>
+    <string name="_previously_survey">قبلا در این نظر سنجی شرکت کرده اید !</string>
 </resources>

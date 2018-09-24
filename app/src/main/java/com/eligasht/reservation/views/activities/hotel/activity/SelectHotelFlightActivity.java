@@ -264,8 +264,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
                     hotelFlightRequest();
                 } else {
-                    Toast.makeText(getApplicationContext(), R.string.datePickerError,
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.datePickerError,Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btnLastDays:

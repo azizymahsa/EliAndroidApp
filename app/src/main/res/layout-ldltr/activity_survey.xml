@@ -34,7 +34,8 @@
         android:id="@+id/rvSurvey"
         android:layout_below="@+id/relative"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/gray_light"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvSurveyDetails"
         android:layout_below="@+id/relative"

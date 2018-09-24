@@ -75,7 +75,7 @@
                 android:layout_weight="0.8"
                 android:background="#fff"
                 android:gravity="right|center"
-                android:text="@string/please_select_one"
+                android:hint="@string/please_select_date"
                 android:textColor="@color/text_color_2"
                 android:textSize="@dimen/_12dp_normal_textSize"
                 android:textStyle="bold" />

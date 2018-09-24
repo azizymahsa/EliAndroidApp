@@ -40,8 +40,8 @@ public class SurveyMultiRadioFragment extends Fragment {
 
          first = (RadioButton) v.findViewById(R.id.first);
          second = (RadioButton)v. findViewById(R.id.second);
-          third = (RadioButton) v.findViewById(R.id.third);
-          four = (RadioButton) v.findViewById(R.id.four);
+         third = (RadioButton) v.findViewById(R.id.third);
+         four = (RadioButton) v.findViewById(R.id.four);
         try {
             if (getArguments().getString("rd0") != null) {
                 first.setVisibility(View.VISIBLE);
@@ -83,22 +83,22 @@ public class SurveyMultiRadioFragment extends Fragment {
                     case R.id.first:
                        id=getArguments().getInt("rdI0");
                        value= first.getText().toString();
-                        Toast.makeText(getContext(),  first.getText().toString(), Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(getContext(),  first.getText().toString(), Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.second:
                         id=getArguments().getInt("rdI1");
                         value= second.getText().toString();
-                        Toast.makeText(getContext(),  second.getText().toString(), Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(getContext(),  second.getText().toString(), Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.third:
                         id=getArguments().getInt("rdI2");
                         value= third.getText().toString();
-                        Toast.makeText(getContext(),  third.getText().toString(), Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(getContext(),  third.getText().toString(), Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.four:
                         id=getArguments().getInt("rdI3");
                         value= four.getText().toString();
-                    Toast.makeText(getContext(),  four.getText().toString(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(),  four.getText().toString(), Toast.LENGTH_SHORT).show();
                     break;
                 }
             }
@@ -131,8 +131,9 @@ public class SurveyMultiRadioFragment extends Fragment {
 
     public ArrayList<GetReplyModel> updateList() {
         ArrayList<GetReplyModel> strings=new ArrayList<>();
-        GetReplyModel getReplyModel=new GetReplyModel(questionID,id,value,questionIsRequired);
-        strings.add(getReplyModel);
+
+            GetReplyModel getReplyModel = new GetReplyModel(questionID, id, value, questionIsRequired);
+            strings.add(getReplyModel);
 
         return strings;
     }

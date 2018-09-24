@@ -2441,5 +2441,12 @@
     <string name="_selectTime">Select Current Time</string>
     <string name="select_date">select date</string>
     <string name="_prev_question">Previose question</string>
+    <string name="please_select_date">please select date</string>
+    <string name="_register_already_opinion">Your comment has already been registered</string>
+    <string name="_answer_question_mandatory">The answer to this question is mandatory</string>
+    <string name="_comment_not_successfully">Sorry, your comment was not successfully recorded</string>
+    <string name="comment_successfully">Your comment has been successfully recorded</string>
+    <string name="_error">Error</string>
+    <string name="_previously_survey">Previously participated in this survey!</string>
 </resources>
 

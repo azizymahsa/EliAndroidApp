@@ -1676,7 +1676,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 								purchaseFlightResult.setServiceNameEn(json_data.getServiceNameEn());
 								purchaseFlightResult.setServiceNameFa(json_data.getServiceNameFa());
 
-
 								purchaseFlightResult.setServiceTypeEn(json_data.getServiceTypeEn());
 								purchaseFlightResult.setServiceTypeFa(json_data.getServiceTypeFa());
 								purchaseFlightResult.setServiceTypeID(json_data.getServiceTypeID()+"");

@@ -309,6 +309,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
         expListViewExpanding = findViewById(R.id.lvExp);
         // preparing list data
         expandingListData(true);
+        Log.e("dataExpandingList: ",dataExpandingList.size()+"" );
         listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
         // setting list adapter
         expListViewExpanding.setAdapter(listAdapterExpanding);
@@ -1242,6 +1243,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
     public void showDataExpanding() {
         // preparing list data
         expandingListData(false);
+        Log.e("dataExpandingList: ",dataExpandingList.size()+"" );
         listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
         runOnUiThread(new Runnable() {
             @Override

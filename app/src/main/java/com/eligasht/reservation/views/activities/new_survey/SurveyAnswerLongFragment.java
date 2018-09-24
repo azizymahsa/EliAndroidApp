@@ -63,9 +63,10 @@ public class SurveyAnswerLongFragment extends Fragment {
     }
    public ArrayList<GetReplyModel> updateList() {
         ArrayList<GetReplyModel> strings=new ArrayList<>();
-        GetReplyModel getReplyModel=new GetReplyModel(questionID,0,editText.getText().toString(),questionIsRequired);
-        strings.add(getReplyModel);
-
+       //if (editText.getText().toString().length()>2) {
+           GetReplyModel getReplyModel = new GetReplyModel(questionID, 0, editText.getText().toString(), questionIsRequired);
+           strings.add(getReplyModel);
+      // }
         return strings;
     }
 }

@@ -64,8 +64,7 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
         Window window = getWindow();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-            window.setStatusBarColor(ContextCompat.getColor(AddRoomActivity.this
-                    ,R.color.colorPrimaryDark));
+            window.setStatusBarColor(ContextCompat.getColor(AddRoomActivity.this,R.color.colorPrimaryDark));
         }
         initViews();
         roomPresenter = new RoomPresenter(this);
@@ -189,7 +188,7 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
                 Intent intent = new Intent();
                 intent.putExtra("Rooms",new Gson().toJson(roomPresenter.getRooms()));
                 Prefs.putString("Rooms",new Gson().toJson(roomPresenter.getRooms()));
-//                startActivity(intent);
+//              startActivity(intent);
                 setResult(RESULT_OK,intent);
                 finish();
                 break;

@@ -135,11 +135,11 @@ public class SurveyAnswerSelectionFragment extends Fragment implements View.OnCl
        // surveySpinnerCustomAdapter.getData(questionID,questionIsRequired);
 
      ArrayList<GetReplyModel> getReplyModels=new ArrayList<>();
-
-        GetReplyModel getReplyModel=new GetReplyModel(questionID,idd,value,questionIsRequired);
-        System.out.println("Selectes  == "+idd+"TEXT="+value);
-        getReplyModels.add(0,getReplyModel);
-
+       // if (value.length()>1) {
+            GetReplyModel getReplyModel = new GetReplyModel(questionID, idd, value, questionIsRequired);
+            System.out.println("Selectes  == " + idd + "TEXT=" + value);
+            getReplyModels.add(0, getReplyModel);
+      //  }
         return getReplyModels;//surveySpinnerCustomAdapter.getData(questionID,questionIsRequired);
 
     }
