@@ -25,9 +25,7 @@ public class HotelNameApi extends BaseAPI {
     public interface GetHotelName {
         @RawRes
         @POST(HotelNameApi.ACTION_NAME)
-        Call<HotelNameApiResponse> get_hotel(
-                @Body HotelNameRequest hotelAvailRequestModel
-        );
+        Call<HotelNameApiResponse> get_hotel(@Body HotelNameRequest hotelAvailRequestModel);
     }
 
     public HotelNameApi(HotelNameRequest hotelAvailRequestModel) {

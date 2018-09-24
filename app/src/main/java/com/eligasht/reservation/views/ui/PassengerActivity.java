@@ -124,6 +124,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public static boolean flag;
 	public static final int CONNECTION_TIMEOUT = 10000;
 	public static final int READ_TIMEOUT = 15000;
+	Handler handler;
+	ProgressDialog progressBar;
 	public FancyButton btnBack;
 	public ImageView btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
 	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore;
@@ -132,26 +134,32 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public  TextView txttavalodm;
 	public EditText txtnumber_passport,txtnameP;
 	public static TextView txtexp_passport;
-	public TextView txtTitle,txtmeliyatm,txtmahale_eghamat,txtTitleCountM,btnPromotionCode;
+	public TextView txtTitle,txtmeliyatm,txtmahale_eghamat,txtTitleCountM;
 	public static TextView txtSumKhadamat;
 	public TextView imgCount;
 	public LinearLayout linear_expdate,linear_number_passport,linear_code_meli,btn_taeed_khadamat,btn_nextm,linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat,btn_next_partnerInfo;
+	private Handler progressBarHandler = new Handler();
 	public ListView list_airport;
 	public NonScrollListView listKhadamat;
+	ArrayList<HashMap<String,String>> mylist=null;
 	public static String searchText = "";
     public boolean checkDomestic=false;
 	public static long GET_PRICE_KHADAMAT;
 	public LinearLayout llAddPassenger;
 	GetKhadmatAdapter mAdapter;
 	ScrollView myScrollView;
+	private EditText searchtxt;
 	public TextView txt_shomare_factor,tvPrice,tvfactorNumber;
+
 	public ImageView txt_hom;
 	LinearLayout llDetailHotel,llDetailPassanger,llDetailService,llDetailFlight;
 	private String Gensiyat="";
+
 	public int countB= SearchFlightActivity.COUNT_B;
 	public int countK= SearchFlightActivity.COUNT_K;
 	public int countN= SearchFlightActivity.COUNT_N;
 	public int sum=countB+countK+countN;
+
 	public List<PurchaseFlightResult> data;
 	int counter=2;
 	private ImageView textView4;
@@ -202,12 +210,14 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		PersianCalendar persianCalendar = new PersianCalendar();
 		persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
 //=====================================================================================================
+
 		datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
 				this,
 				persianCalendarDatePicker.getPersianYear(),
 				persianCalendarDatePicker.getPersianMonth(),
 				persianCalendarDatePicker.getPersianDay()
 		);
+
 //=====================================================================================================
 		datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
 		datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
@@ -248,6 +258,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		});
 ////////////
 		datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(1);
+		//	datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
 		datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
 			@Override
 			public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
@@ -264,6 +275,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 			}
 		});
+
 		//=====================================================================================================
 
 //change button shamsi to milady (date picker)
@@ -945,7 +957,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						String RqPartner_Mobile= txtmobileP.getText().toString();
 						String RqPartner_NationalCode= txtkodemeliP.getText().toString();
 						String RqPartner_Tel= null;
-						String AgcUser_ID="-1";
+
 						String errorMessage="";
 						String flagMosafer="T";
 						///Validate
@@ -1044,7 +1056,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							partnerInfo_Table.dropTable();
 							partnerInfo_Table.openDB();
 
-							partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel,AgcUser_ID);
+							partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel);
 
 							partnerInfo_Table.closeDB();
 							////////////////
@@ -1291,8 +1303,10 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							System.out.println("gender:"+Gender);
 							//	db.insertData(counter-1,Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo, RqPassenger_Tel);
 							if(counter-1 ==1){
+								db.insertData(counter-1,getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+((RqPassenger_PassNo == null || RqPassenger_PassNo.equals("")) ? RqPassenger_NationalCode : ""), RqPassenger_Tel);
 								db.insertData(counter-1,getString(R.string.First_passenger_information),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+((RqPassenger_PassNo .equals(null) || RqPassenger_PassNo.equals("")) ? RqPassenger_NationalCode : ""), RqPassenger_Tel);
 							}else{
+								db.insertData(counter-1,txtTitleCountM.getText().toString(),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+((RqPassenger_PassNo == null || RqPassenger_PassNo.equals("")) ? RqPassenger_NationalCode : ""), RqPassenger_Tel);
 								db.insertData(counter-1,txtTitleCountM.getText().toString(),"",Gender, Nationality, Nationality_ID, RqPassenger_Address, RqPassenger_Birthdate, RqPassenger_Email, RqPassenger_FirstNameEn, RqPassenger_FirstNameFa, RqPassenger_LastNameEn, RqPassenger_LastNameFa, RqPassenger_Mobile, RqPassenger_NationalCode, RqPassenger_PassExpDate, RqPassenger_PassNo+((RqPassenger_PassNo.equals(null) || RqPassenger_PassNo.equals("")) ? RqPassenger_NationalCode : ""), RqPassenger_Tel);
 							}
 							System.out.println("InsertMosafer:"+(counter-1)+" "+txtTitleCountM.getText().toString()+" "+RqPassenger_FirstNameEn);
@@ -1675,6 +1689,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 								purchaseFlightResult.setServiceInfPrice(json_data.getServiceInfPrice()+"");
 								purchaseFlightResult.setServiceNameEn(json_data.getServiceNameEn());
 								purchaseFlightResult.setServiceNameFa(json_data.getServiceNameFa());
+
 
 								purchaseFlightResult.setServiceTypeEn(json_data.getServiceTypeEn());
 								purchaseFlightResult.setServiceTypeFa(json_data.getServiceTypeFa());

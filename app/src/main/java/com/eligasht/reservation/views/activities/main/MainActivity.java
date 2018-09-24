@@ -115,8 +115,6 @@ public class MainActivity extends Base implements View.OnClickListener {
 
         InitUi.Toolbar(this, true, R.color.TRANSPARENT, "صفحه اصلی");
 
-        //  timer();
-        // timerRecive();
         initViews();
     }
 
@@ -152,8 +150,6 @@ public class MainActivity extends Base implements View.OnClickListener {
         lottieUserMenu.setAnimation("lottie/user.json");
         lottieUserMenu.setSpeed(1.5f);
 
-        //tvTitle.setText(getString(R.string.searchFlight));
-
 
         //onClick===================================================================================
         btnMenu.setOnClickListener(this);
@@ -184,10 +180,6 @@ public class MainActivity extends Base implements View.OnClickListener {
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
-              /*  if (!lottieUserMenu.isAnimating()){
-                    lottieUserMenu.playAnimation();
-
-                }*/
 
             }
 
@@ -196,7 +188,6 @@ public class MainActivity extends Base implements View.OnClickListener {
                 if (!lottieUserMenu.isAnimating() && isAnimated) {
                     isAnimated = false;
                     lottieUserMenu.playAnimation();
-
                 }
             }
 
@@ -214,15 +205,12 @@ public class MainActivity extends Base implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        // super.onBackPressed();
+
         if (drawerLayout.isDrawerVisible(Gravity.RIGHT)) {
             closeDrawer();
-
         } else if (drawerLayout.isDrawerVisible(Gravity.LEFT)) {
             closeDrawer();
         } else {
-
-
             if (doubleBackToExitPressedOnce) {
                 super.onBackPressed();
                 return;
@@ -236,7 +224,6 @@ public class MainActivity extends Base implements View.OnClickListener {
                 }
 
             }, TIME_INTERVAL);
-
         }
     }
 
