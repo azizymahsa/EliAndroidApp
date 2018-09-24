@@ -172,6 +172,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
 	com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
 	com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog2;
+	private TextView btnPromotionCode;
 
 	@SuppressLint("WrongViewCast")
 	@Override
@@ -957,7 +958,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						String RqPartner_Mobile= txtmobileP.getText().toString();
 						String RqPartner_NationalCode= txtkodemeliP.getText().toString();
 						String RqPartner_Tel= null;
-
+						String AgcUser_ID="-1";
 						String errorMessage="";
 						String flagMosafer="T";
 						///Validate
@@ -1056,8 +1057,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 							partnerInfo_Table.dropTable();
 							partnerInfo_Table.openDB();
 
-							partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel);
-
+							//partnerInfo_Table.insertData(RqPartner_Address+"", RqPartner_Email+"", RqPartner_FirstNameFa+"", RqPartner_Gender+"", RqPartner_LastNameFa+"", RqPartner_Mobile+"", RqPartner_NationalCode+"", RqPartner_Tel+"","");
+							partnerInfo_Table.insertData(RqPartner_Address, RqPartner_Email, RqPartner_FirstNameFa, RqPartner_Gender, RqPartner_LastNameFa, RqPartner_Mobile, RqPartner_NationalCode, RqPartner_Tel,AgcUser_ID);
 							partnerInfo_Table.closeDB();
 							////////////////
 							linear_saler.setVisibility(View.GONE);
