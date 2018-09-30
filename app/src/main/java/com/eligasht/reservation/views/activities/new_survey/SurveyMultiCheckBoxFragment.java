@@ -1,6 +1,7 @@
 package com.eligasht.reservation.views.activities.new_survey;
 
 import android.app.Fragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,9 +33,11 @@ public class SurveyMultiCheckBoxFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.multi_check_box_answer, container, false);//row_multi_survey_answer
-
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/iran_sans_normal.ttf");
         TextView tvTitle = (TextView) v.findViewById(R.id.tvTitleM);
+        tvTitle.setTypeface(type);
         TextView tvDesc = (TextView) v.findViewById(R.id.tvDescM);
+        tvDesc.setTypeface(type);
         tvTitle.setText(getArguments().getString("tvTitleM")+"");
         tvDesc.setText(getArguments().getString("tvDescM")+"");
 
@@ -66,6 +69,7 @@ public class SurveyMultiCheckBoxFragment extends Fragment {
         SurveyMultiCheckBoxFragment f = new SurveyMultiCheckBoxFragment();
         Bundle b = new Bundle();
         b.putString("tvTitleM",(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " "  );
+        MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " ";
         b.putString("tvDescM",(surveyQuestionToShows.getQuestionQuestion() != null ) ? surveyQuestionToShows.getQuestionQuestion() : " " );
 
         b.putBoolean("QuestionIsRequired",(surveyQuestionToShows.getQuestionAnswersArr() != null ) ?  surveyQuestionToShows.isQuestionIsRequired() : false );

@@ -1,4 +1,5 @@
 package com.eligasht.reservation.views.activities.new_survey;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -29,9 +30,11 @@ public class SurveyMultiRadioFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.multi_check_answer_survey, container, false);
-
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/iran_sans_normal.ttf");
          tvTitle = (TextView) v.findViewById(R.id.tvTitleM);
+         tvTitle.setTypeface(type);
         TextView tvDesc = (TextView) v.findViewById(R.id.tvDescM);
+        tvDesc.setTypeface(type);
         tvTitle.setText(getArguments().getString("tvTitleM")+"");
         tvDesc.setText(getArguments().getString("tvDescM")+"");
 
@@ -39,9 +42,13 @@ public class SurveyMultiRadioFragment extends Fragment {
         questionID = getArguments().getInt("QuestionID");
 
          first = (RadioButton) v.findViewById(R.id.first);
+         first.setTypeface(type);
          second = (RadioButton)v. findViewById(R.id.second);
+        second.setTypeface(type);
          third = (RadioButton) v.findViewById(R.id.third);
+        third.setTypeface(type);
          four = (RadioButton) v.findViewById(R.id.four);
+        four.setTypeface(type);
         try {
             if (getArguments().getString("rd0") != null) {
                 first.setVisibility(View.VISIBLE);
@@ -112,6 +119,7 @@ public class SurveyMultiRadioFragment extends Fragment {
         SurveyMultiRadioFragment f = new SurveyMultiRadioFragment();
         Bundle b = new Bundle();
         b.putString("tvTitleM",(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " "  );
+        MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " ";
         b.putString("tvDescM",(surveyQuestionToShows.getQuestionQuestion() != null ) ? surveyQuestionToShows.getQuestionQuestion() : " " );
 
         b.putBoolean("QuestionIsRequired",(surveyQuestionToShows.getQuestionAnswersArr() != null ) ?  surveyQuestionToShows.isQuestionIsRequired() : false );
@@ -120,8 +128,6 @@ public class SurveyMultiRadioFragment extends Fragment {
         for (int i = 0; i < surveyQuestionToShows.getQuestionAnswersArr().size(); i++) {
             b.putString("rd"+i,(surveyQuestionToShows.getQuestionAnswersArr().get(i).getText() != null ) ? surveyQuestionToShows.getQuestionAnswersArr().get(i).getText() : "null" );
             b.putInt("rdI"+i,(surveyQuestionToShows.getQuestionAnswersArr().get(i).getAnswerId() != null ) ? Integer.parseInt(surveyQuestionToShows.getQuestionAnswersArr().get(i).getAnswerId()) : 1 );
-
-
 
         }
         f.setArguments(b);

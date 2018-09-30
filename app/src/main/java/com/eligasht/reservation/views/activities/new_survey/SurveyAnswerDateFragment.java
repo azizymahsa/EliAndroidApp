@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,16 +42,19 @@ public class SurveyAnswerDateFragment extends Fragment implements View.OnClickLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.date_answer_survey, container, false);
-
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/iran_sans_normal.ttf");
         tvTitle = (TextView) v.findViewById(R.id.tvTitle);
+        tvTitle.setTypeface(type);
         tvDesc = (TextView) v.findViewById(R.id.tvDesc);
+        tvDesc.setTypeface(type);
 
         lottieCheckin = v.findViewById(R.id.lottie_checkin);
         lottieCheckin.setSpeed(2f);
 
 
         txtSetDate = (TextView) v.findViewById(R.id.txtSetDate);
-        txtSetDate.setOnClickListener(this);
+        txtSetDate.setTypeface(type);
+       // txtSetDate.setOnClickListener(this);
 
         layout_depart_date = (LinearLayout) v.findViewById(R.id.layout_depart_date);
         layout_depart_date.setOnClickListener(this);
@@ -120,9 +124,9 @@ public class SurveyAnswerDateFragment extends Fragment implements View.OnClickLi
     public static SurveyAnswerDateFragment newInstance(String text, SurveyQuestionToShow surveyQuestionToShows, Context context) {
         SurveyAnswerDateFragment f = new SurveyAnswerDateFragment();
 
-
         Bundle b = new Bundle();
         b.putString("tvTitleL",(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " "  );
+        MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " ";
         b.putString("tvDescL",(surveyQuestionToShows.getQuestionQuestion() != null ) ? surveyQuestionToShows.getQuestionQuestion() : " " );
         b.putBoolean("QuestionIsRequired",(surveyQuestionToShows.getQuestionAnswersArr() != null ) ?  surveyQuestionToShows.isQuestionIsRequired() : false );
         b.putInt("QuestionID",(surveyQuestionToShows.getQuestionID() != null ) ?  surveyQuestionToShows.getQuestionID() : 1 );
@@ -137,9 +141,9 @@ public class SurveyAnswerDateFragment extends Fragment implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.txtSetDate:
+            /*case R.id.txtSetDate:
 
-                break;
+                break;*/
                 case R.id.layout_depart_date:
 
                 this.dialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), TypeUsageOfCalendar.InternationalFlight);

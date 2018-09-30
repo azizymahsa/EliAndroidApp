@@ -2,6 +2,7 @@ package com.eligasht.reservation.views.activities.new_survey;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
@@ -32,11 +33,14 @@ public class SurveyAnswerTimeFragment extends Fragment implements TimePickerDial
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.time_answer_survey, container, false);
-
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/iran_sans_normal.ttf");
         tvTitle = (TextView) v.findViewById(R.id.tvTitle);
+        tvTitle.setTypeface(type);
         tvDesc = (TextView) v.findViewById(R.id.tvDesc);
+        tvDesc.setTypeface(type);
         txtSetTime = (TextView) v.findViewById(R.id.txtSetTime);
         txtSetTime.setOnClickListener(this);
+        txtSetTime.setTypeface(type);
 
         String tvTitleL = getArguments().getString("tvTitleL");
         String tvDescL = getArguments().getString("tvDescL");
@@ -65,6 +69,7 @@ public class SurveyAnswerTimeFragment extends Fragment implements TimePickerDial
 
         Bundle b = new Bundle();
         b.putString("tvTitleL",(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " "  );
+        MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " ";
         b.putString("tvDescL",(surveyQuestionToShows.getQuestionQuestion() != null ) ? surveyQuestionToShows.getQuestionQuestion() : " " );
         b.putBoolean("QuestionIsRequired",(surveyQuestionToShows.getQuestionAnswersArr() != null ) ?  surveyQuestionToShows.isQuestionIsRequired() : false );
         b.putInt("QuestionID",(surveyQuestionToShows.getQuestionID() != null ) ?  surveyQuestionToShows.getQuestionID() : 1 );

@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.activities.new_survey;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -40,7 +41,7 @@ public class SurveyAnswerSelectionFragment extends Fragment implements View.OnCl
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.selection_answer_survey_frag, container, false);
-
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/iran_sans_normal.ttf");
         txtIcon = v.findViewById(R.id.txtIcon);
      /*   txtIcon.setCustomTextFont("fonts/icomoon.ttf");
         txtIcon.setText(getString(R.string.search_back_right));*/
@@ -50,6 +51,8 @@ public class SurveyAnswerSelectionFragment extends Fragment implements View.OnCl
         tvTitle = (TextView) v.findViewById(R.id.tvTitle);
         // tvDesc = (TextView) v.findViewById(R.id.tvDesc);
         tvTitle.setText(getArguments().getString("tvTitle")+"");
+        tvTitle.setTypeface(type);
+
 
 
         questionIsRequired = getArguments().getBoolean("QuestionIsRequired");
@@ -73,7 +76,7 @@ public class SurveyAnswerSelectionFragment extends Fragment implements View.OnCl
         SurveyAnswerSelectionFragment f = new SurveyAnswerSelectionFragment();
         Bundle b = new Bundle();
         b.putString("tvTitle",(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " "  );
-
+        MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " ";
         b.putBoolean("QuestionIsRequired",(surveyQuestionToShows.getQuestionAnswersArr() != null ) ?  surveyQuestionToShows.isQuestionIsRequired() : false );
         b.putInt("QuestionID",(surveyQuestionToShows.getQuestionID() != null ) ?  surveyQuestionToShows.getQuestionID() : 1 );
 

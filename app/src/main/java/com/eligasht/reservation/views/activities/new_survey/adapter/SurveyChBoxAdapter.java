@@ -2,6 +2,7 @@ package com.eligasht.reservation.views.activities.new_survey.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -51,7 +52,9 @@ public class SurveyChBoxAdapter extends BaseAdapter {
         // TODO Auto-generated method stub
         View row = null;
         row = View.inflate(context, R.layout.row_multi_survey_answer, null);
+        Typeface type = Typeface.createFromAsset(context.getAssets(), "fonts/iran_sans_normal.ttf");
         TextView tvContent=(TextView) row.findViewById(R.id.tvContent);
+        tvContent.setTypeface(type);
         //tvContent.setText(data[position]);
         tvContent.setText(data.get(position));
         //System.out.println("The Text is here like.. == "+tvContent.getText().toString());

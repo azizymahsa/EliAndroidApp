@@ -35,6 +35,7 @@ public class AlertDialogPassenger implements View.OnClickListener {
     // FilterHotelDialog.FilterHotelDialogListener filterHotelDialogListener;
 
     public AlertDialogPassenger(final Activity activity, boolean warning, boolean isFinish) {
+        Typeface type = Typeface.createFromAsset(activity.getAssets(), "fonts/iran_sans_normal.ttf");
         this.activity = activity;
         this.isFinish = isFinish;
         builder = new android.app.AlertDialog.Builder(activity);
@@ -44,7 +45,9 @@ public class AlertDialogPassenger implements View.OnClickListener {
         btnOk = dialogView.findViewById(R.id.btnOk);
         avi = dialogView.findViewById(R.id.avi);
         tvAlert = dialogView.findViewById(R.id.tvAlert);
+        tvAlert.setTypeface(type);
         tvTitle = dialogView.findViewById(R.id.tvTitle);
+        tvTitle.setTypeface(type);
         animation_view = dialogView.findViewById(R.id.animation_view);
         if (warning)
             animation_view.setAnimation("lottie/warning.json");

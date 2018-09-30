@@ -5,14 +5,14 @@
     android:layout_height="wrap_content"
     android:id="@+id/rlRoot"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ffffff">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/background_strock_blue_dark_back_white"
+
         android:gravity="right"
         android:orientation="vertical">
 
@@ -39,6 +39,20 @@
                     fancy:fb_textSize="@dimen/_20dp_normal_textSize" />
 
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5dp_margin"
+                android:text="@string/_survey"
+                android:textAppearance="@style/fontello_flight"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_18dp_ff" />
+
         </RelativeLayout>
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
@@ -69,11 +83,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/toolbar_height_70dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_45_profile"
+        android:layout_marginLeft="@dimen/_18dp_ff"
+        android:layout_marginRight="@dimen/_18dp_ff"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:textAppearance="@style/fontello_flight">
 
         <LinearLayout
             android:id="@+id/btnPrev"
@@ -81,9 +99,9 @@
             android:layout_height="@dimen/_35dp_normal"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:textAppearance="@style/fontello_flight"
             android:layout_weight="1"
-            android:layout_margin="@dimen/_5_flight_dp"
-            android:background="@drawable/background_strock_red"
+            android:background="@drawable/background_strock_blue_purple_out"
             android:gravity="center|center_vertical"
             android:orientation="horizontal">
 
@@ -109,8 +127,8 @@
                 android:layout_marginLeft="5dp"
                 android:gravity="center"
                 android:text="@string/_prev_question"
-                android:textAppearance="@style/IrsansBold"
-                android:textColor="#FFFFFF"
+                android:textAppearance="@style/fontello_flight"
+                android:textColor="#6422F9"
                 android:textSize="@dimen/_15dp_normal_textSize" />
         </LinearLayout>
 
@@ -118,9 +136,9 @@
             android:id="@+id/btnNext"
             android:layout_width="0dp"
             android:layout_height="@dimen/_35dp_normal"
+            android:layout_marginLeft="@dimen/_5_flight_dp"
             android:layout_weight="1"
-            android:layout_margin="@dimen/_5_flight_dp"
-            android:background="@drawable/background_strock_green"
+            android:background="@drawable/background_strock_blue_purple"
             android:gravity="center|center_vertical"
             android:orientation="horizontal">
 
@@ -140,13 +158,13 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/lblMoratabSazi"
+                android:id="@+id/txtNext"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:gravity="center"
                 android:text="@string/_new_answer"
-                android:textAppearance="@style/IrsansBold"
+                android:textAppearance="@style/fontello_flight"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_15dp_normal_textSize" />
         </LinearLayout>

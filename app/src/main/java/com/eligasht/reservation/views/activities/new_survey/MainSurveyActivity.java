@@ -1,6 +1,7 @@
 package com.eligasht.reservation.views.activities.new_survey;
 import android.app.FragmentManager;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 
@@ -23,6 +24,7 @@ import com.eligasht.reservation.views.activities.new_survey.model.SurveyQuestion
 import com.eligasht.reservation.views.activities.new_survey.model.SurveyResultDetailsFake;
 import com.eligasht.reservation.views.activities.survey.SurveyActivity;
 import com.eligasht.reservation.views.ui.PassengerActivity;
+import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
@@ -49,10 +51,11 @@ import mehdi.sakout.fancybuttons.FancyButton;
 public class MainSurveyActivity extends FragmentActivity implements View.OnClickListener, OnServiceStatus<ResponseSetAnswer> {
     ArrayList<SurveyQuestionToShow> surveyQuestionToShows=new ArrayList<>();
     private int sizePage= SurveyActivity.COUNT_FRAG;
+    public static String TV_TITLE="";
     private FancyButton btnBack;
     private LinearLayout btnNext,btnPrev;
     private TabLayout tabLayout;
-    private TextView lblMoratabSazi;
+    private TextView lblMoratabSazi,tvTitle,txtPrev,txtNext;
     private int currentPagePos;
     MyPagerAdapter pagerAdapter;
     ArrayList<SurveyResultDetailsFake> surveyResultDetailsFakes;
@@ -66,12 +69,22 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_survey);
+
+      //  Typeface type = Typeface.createFromAsset(getApplicationContext().getAssets(), SingletonContext.getInstance().getContext().getResources().getString(R.string.iran_sans_normal_ttf));
+        Typeface type = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/iran_sans_normal.ttf");
         EventBus.getDefault().register(this);
         surveyQuestionToShows=SurveyActivity.surveyQuestionToShows;
          pager = (ViewPager) findViewById(R.id.viewPager);
       //  StatusBarUtil.immersive(this);
         tabLayout = findViewById(R.id.tab_layout);
-        lblMoratabSazi = (TextView) findViewById(R.id.lblMoratabSazi);
+        lblMoratabSazi = (TextView) findViewById(R.id.txtNext);
+        tvTitle = (TextView) findViewById(R.id.tvTitle);
+        tvTitle.setTypeface(type);
+
+
+        if (surveyQuestionToShows !=null)
+        tvTitle.setText((surveyQuestionToShows.get(0).getSectionText() != null ) ? surveyQuestionToShows.get(0).getSectionText() : " ");
+
         pagerAdapter=new MyPagerAdapter(getFragmentManager(),surveyQuestionToShows,sizePage,getBaseContext());
         pager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(pager);
@@ -98,7 +111,11 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
         btnNext = findViewById(R.id.btnNext);
         btnNext.setOnClickListener(this);
         btnPrev = findViewById(R.id.btnPrev);
+        txtPrev = findViewById(R.id.txtPrev);
+        txtNext = findViewById(R.id.txtNext);
         btnPrev.setOnClickListener(this);
+        txtPrev.setTypeface(type);
+        txtNext.setTypeface(type);
 
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
@@ -145,27 +162,35 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
                 finish();
                 break;
             case R.id.btnPrev:
+
                 try {
                     int j = pager.getCurrentItem();
                     j = j - 1;
+                    if (surveyQuestionToShows !=null)
+                        tvTitle.setText((surveyQuestionToShows.get(j).getSectionText() != null ) ? surveyQuestionToShows.get(j).getSectionText() : " ");
                     pager.setCurrentItem(j, true);
+
                     if (lblMoratabSazi.getText().toString().equals(getString(R.string._finish))) {
                         lblMoratabSazi.setText(getString(R.string._new_answer) + "");
                     }
+                   // tvTitle.setText(TV_TITLE+"");
                 } catch (Exception e) {
                     e.getMessage();
                 }
 
-                        /*if (pager.getCurrentItem() == i && page != null) {
-                            String ff=((SurveyMultiRadioFragment)page).updateList("new item");
-                            Log.i( "updateList: ","FFFFFFFFFFFFFFFFFF"+ff);
-                        }*/
+
 
 
                 break;
             case R.id.btnNext:
                 //int size=pager.getChildCount();
                 int i = pager.getCurrentItem();
+                try{
+                    if (surveyQuestionToShows !=null )
+                        tvTitle.setText((surveyQuestionToShows.get(i+1).getSectionText() != null ) ? surveyQuestionToShows.get(i+1).getSectionText() : " ");
+                }catch (Exception e){
+                    e.getMessage();
+                }
                 setdataAnswer(i);
                 if (FlagAnswer){
 
@@ -188,6 +213,12 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
                  }else if (FlagIsRequestable) {
                     AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(MainSurveyActivity.this, true, false);
                     alertDialogPassenger.setText(getString(R.string._answer_question_mandatory), getString(R.string.massege));
+                    try{
+                        if (surveyQuestionToShows !=null )
+                            tvTitle.setText((surveyQuestionToShows.get(i).getSectionText() != null ) ? surveyQuestionToShows.get(i).getSectionText() : " ");
+                    }catch (Exception e){
+                        e.getMessage();
+                    }
                 }else{
                     i = i + 1;
                     pager.setCurrentItem(i, true);
@@ -206,6 +237,7 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
                         lblMoratabSazi.setText(getString(R.string._finish) + "");
                     }
                 }
+              // tvTitle.setText(TV_TITLE+"");
                 break;
         }
     }
@@ -437,7 +469,8 @@ public class MainSurveyActivity extends FragmentActivity implements View.OnClick
                    //show dialog
                          FlagSend=true;
                          btnPrev.setEnabled(false);
-                         btnPrev.setBackgroundResource(R.drawable.background_strock_gray_pur);
+                         btnPrev.setBackgroundResource(R.drawable.background_strock_gray);
+                         txtPrev.setTextColor(Color.parseColor("#a9a9a9"));
 
                        AlertDialogPassenger alertDialogPassenger = new AlertDialogPassenger(MainSurveyActivity.this,true,true);
                        alertDialogPassenger.setText(getString(R.string.comment_successfully),getString(R.string.massege));//

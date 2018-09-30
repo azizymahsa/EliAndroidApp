@@ -21,7 +21,8 @@
     <LinearLayout
         android:id="@+id/rlInner"
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/_50_flight_dp"
+
         android:layout_marginTop="@dimen/_5_flight_dp"
         android:orientation="horizontal"
         android:weightSum="2">
@@ -35,6 +36,7 @@
             android:layout_marginRight="20dp"
             android:text="Medium Text"
             android:gravity="right"
+            android:textSize="@dimen/_18dp_ff"
             android:textColor="#000000" />
 
         <CheckBox

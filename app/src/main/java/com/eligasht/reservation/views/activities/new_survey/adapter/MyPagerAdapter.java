@@ -51,27 +51,34 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
                 if(surveyQuestionToShows.get(i).getQuestionIDType()!=null){
                     try{
                         if (surveyQuestionToShows.get(i).getQuestionIDType() == 1) {
+                           // MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.get(i).getSectionText() != null ) ? surveyQuestionToShows.get(i).getSectionText() : " ";
                             //جواب کوتاه
                             return SurveyAnswerShortFragment.newInstance("SurveyAnswerShortFragment, جواب کوتاه",surveyQuestionToShows.get(i));
                         }else if(surveyQuestionToShows.get(i).getQuestionIDType() == 2){
+                          //  MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.get(i).getSectionText() != null ) ? surveyQuestionToShows.get(i).getSectionText() : " ";
                             //جواب بلند
                             return SurveyAnswerLongFragment.newInstance("SurveyAnswerLongFragment, جواب بلند 1",surveyQuestionToShows.get(i));
                         }else if(surveyQuestionToShows.get(i).getQuestionIDType() == 3){
+                            //MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.get(i).getSectionText() != null ) ? surveyQuestionToShows.get(i).getSectionText() : " ";
                             //چندگزینه ای
                             return SurveyMultiRadioFragment.newInstance("SurveyMultiRadioFragment, چندگزینه ای",surveyQuestionToShows.get(i));//
                         }else if(surveyQuestionToShows.get(i).getQuestionIDType() == 4){
+                          //  MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.get(i).getSectionText() != null ) ? surveyQuestionToShows.get(i).getSectionText() : " ";
                             //چند جوابی
                             return SurveyMultiCheckBoxFragment.newInstance("ThirdSurveyFragment, چند جوابی ای"+"Bakhsh=",surveyQuestionToShows.get(i));
 
                         }else if(surveyQuestionToShows.get(i).getQuestionIDType() == 5){
+                          //  MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.get(i).getSectionText() != null ) ? surveyQuestionToShows.get(i).getSectionText() : " ";
                             //لیست انتخاب
                             return SurveyAnswerSelectionFragment.newInstance("SurveyAnswerSelectionFragment,لیست انتخاب",surveyQuestionToShows.get(i));
 
                         }else if(surveyQuestionToShows.get(i).getQuestionIDType() == 6){
+                          //  MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.get(i).getSectionText() != null ) ? surveyQuestionToShows.get(i).getSectionText() : " ";
                             //تاریخ
                             return SurveyAnswerDateFragment.newInstance("ThirdSurveyFragment, تاریخ"+"Bakhsh=",surveyQuestionToShows.get(i),context);
 
                         }else if(surveyQuestionToShows.get(i).getQuestionIDType() == 7){
+                           // MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.get(i).getSectionText() != null ) ? surveyQuestionToShows.get(i).getSectionText() : " ";
                             //ساعت
                             return SurveyAnswerTimeFragment.newInstance("ThirdSurveyFragment, ساعت"+"Bakhsh=",surveyQuestionToShows.get(i),context);
 

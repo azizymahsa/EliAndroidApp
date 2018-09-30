@@ -1,5 +1,6 @@
 package com.eligasht.reservation.views.activities.new_survey;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,11 +24,14 @@ public class SurveyAnswerShortFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.short_answer_survey_frag, container, false);
+        Typeface type = Typeface.createFromAsset(getActivity().getAssets(), "fonts/iran_sans_normal.ttf");
 
         editText = (EditText) v.findViewById(R.id.editText);
 
         tvTitle = (TextView) v.findViewById(R.id.tvTitle);
+        tvTitle.setTypeface(type);
         tvDesc = (TextView) v.findViewById(R.id.tvDesc);
+        tvDesc.setTypeface(type);
         tvTitle.setText(getArguments().getString("tvTitleS")+"");
         tvDesc.setText(getArguments().getString("tvDescS")+"");
 
@@ -49,6 +53,7 @@ public class SurveyAnswerShortFragment extends Fragment {
         SurveyAnswerShortFragment f = new SurveyAnswerShortFragment();
         Bundle b = new Bundle();
         b.putString("tvTitleS",(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " "  );
+        MainSurveyActivity.TV_TITLE=(surveyQuestionToShows.getSectionText() != null ) ? surveyQuestionToShows.getSectionText() : " ";
         b.putString("tvDescS",(surveyQuestionToShows.getQuestionQuestion() != null ) ? surveyQuestionToShows.getQuestionQuestion() : " " );
 
         b.putBoolean("QuestionIsRequired",(surveyQuestionToShows.getQuestionAnswersArr() != null ) ?  surveyQuestionToShows.isQuestionIsRequired() : false );
