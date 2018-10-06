@@ -29,10 +29,10 @@
     <string name="icon_pass_login">&#xe619;</string>
     <string name="icon_forget_login">&#xe612;</string>
     <string name="icon_check">&#xe5ca;</string>
-    <string name="searchFlight"> Uçuşta Arama </string>
+    <string name="searchFlight"> Uçuş Arama </string>
     <string name="search_package"> Arama Paketi </string>
     <string name="search_hotel"> Otel arama </string>
-    <string name="reserve_package"> Paket Rezervi </string>
+    <string name="reserve_package">  Rezervasyon Yap </string>
     <string name="icon_calander">&#xe908;</string>
     <string name="search_back_right">&#xea40;</string>
     <string name="icon_plane">&#xe622;</string>
@@ -1863,18 +1863,18 @@
     <string name="NoResult"> Aramanız için hiçbir sonuç bulunamadı :(</string>    
     <string name="off">% İndirim </string>
     <string name="_1star"> 1 Yıldızlı </string>
-    <string name="_2star"> 2 Yıldız </string>
-    <string name="_3star"> 3 Star </string>
+    <string name="_2star"> 2 Yıldızlı </string>
+    <string name="_3star"> 3 Yıldızlı </string>
     <string name="_4star"> 4 Yıldızlı </string>
     <string name="_5star"> 5 Yıldızlı </string>
     <string name="WithoutStar"> Yıldız yok </string>
-    <string name="BestSell"> Çoğu satar </string>
+    <string name="BestSell"> Çok satar </string>
     <string name="BestOff"> Özel İndirim </string> 
     <string name="InternetError"> İnternet bağlantınız kesildi veya ulaşılamadı </string>
-    <string name="ErrorServer"> Eligasht\'dan bilgi alma hatası </string>
+    <string name="ErrorServer"> Belirlediğiniz kriterlerde seçenek bulunamadi </string>
     <string name="Sort"> Sıralama </string>
     <string name="Filter"> Filtre </string>
-    <string name="NextDay"> Sonraki \ nGün </string>
+    <string name="NextDay"> Sonraki Gün </string>
     <string name="LastDay"> Önceki Gün </string>
     <string name="curency"> Rial </string>
     <string name="ApartmenHotel"> Apartman Otel </string>
@@ -1920,23 +1920,23 @@
     <string name="Passanger"> Yolcu </string>
     <string name="select_return_date"> tarih seç </string>
     <string name="please_select_one"> Lütfen birini seçin </string>
-    <string name="please_select_destination_city"> Lütfen yolculuk şehrinizi seçin </string>
+    <string name="please_select_destination_city"> Lütfen seyahat etmek istediğiniz destinasyonu seçiniz</string>
     <string name="something_went_wron"> Bir hata oluştu </string>
     <string name="please_select_start_trip_date"> Gezinin başlangıç ​​tarihini seçin </string>
     <string name="select_destination_country"> Hedef ülkeyi seçin </string>
     <string name="select_departure_date_and_travel_duration"> Kalkış ve seyahat süresini seçin </string>
-    <string name="departure_date"> Ayrılış tarihi </string>
+    <string name="departure_date"> Gidiş Tarihi </string>
     <string name="select_travel_duration">Ayrılış tarihi</string>
     <string name="passenger">Yolcu</string>
     <string name="number_of_passengers">Yolcuların sayısı</string>
     <string name="error_in_connection">Bağlantı Hatası</string>
     <string name="there_is_no_city_to_show">göstermek için hiçbir şehir yok</string>
-    <string name="return_date">Dönüş tarihi</string>
+    <string name="return_date">Dönüş Tarihi</string>
     <string name="select_departure_and_return_date">Kalkış tarihini seçin</string>
     <string name="select_destination_city_first">varış şehri seçin</string>
     <string name="enter_your_password">şifrenizi girin.</string>
-    <string name="re_enter_your_password">Şifreyi yeniden gir</string>
-    <string name="enter_your_new_password">Yeni şifrenizi giriniz.</string>
+    <string name="re_enter_your_password">Yeni şifrenizi tekrar yazınız </string>
+    <string name="enter_your_new_password">Parola Değiştirme</string>
     <string name="enter_your_birth_date">doğum tarihinizi giriniz.</string>
     <string name="enter_your_name_in_persian">İsminizi Farsça yazınız.</string>
     <string name="enter_your_name_in_english">isminizi ingilizce giriniz.</string>
@@ -1946,16 +1946,16 @@
     <string name="edit_profile">Profili Düzenle</string>
     <string name="my_contracts">Sözleşmelerim</string>
     <string name="change_password">Parolaları Değiştir</string>
-    <string name="select_destination_city_or_airport">Varış havalimanını seçin</string>
-    <string name="select_origin_city_or_airport">Menşei şehir veya havaalanı seçin</string>
+    <string name="select_destination_city_or_airport">Lütfen dönüş şehir veya havalimanı adını yazınız</string>
+    <string name="select_origin_city_or_airport"> Lütfen gidiş şehir veya havalimanı adını yazınız</string>
     <string name="destination">Hedef</string>
     <string name="origin">Menşei</string>
     <string name="travel_to">Seyahat :</string>
-    <string name="checkout_date">Tarihi kontrol et</string>
-    <string name="checkin_date">Checkin Tarih</string>
+    <string name="checkout_date">Check-Out Tarihi </string>
+    <string name="checkin_date">Check-In Tarihi</string>
     <string name="baby">Çocuk</string>
     <string name="adault">Yetişkin</string>
-    <string name="search">Arama</string>
+    <string name="search">Ara</string>
     <string name="login">Oturum aç</string>
     <string name="hotel_reservation">Otel rezervasyonu</string>
 
@@ -1988,7 +1988,7 @@
     <string name="Try">Tekrar deneyin</string>
     <string name="Update">Güncelleştirme</string>
     <string name="UpdateAlert">Yazılımın güncellenmesi gerekiyor, yazılımı güncellemek istiyor musunuz?</string>
-    <string name="SelectFilter">Filtre seçimi</string>
+    <string name="SelectFilter">Filtreleme</string>
     <string name="Stop">durdurmak</string>
     <string name="TwoStopAndMore">2 ve daha</string>
     <string name="Economi">Ekonomik</string>
@@ -2004,7 +2004,7 @@
     <string name="EditInput"> Lütfen aşağıdaki düzeltmeleri yapın </string>
     <string name="UserRating"> Bu otelde oy verin </string>
     <string name="back"> Geri </string> 
-    <string name="SearchHotel"> Otel adını ara </string> 
+    <string name="SearchHotel"> Otel Adıyla Ara </string> 
     <string name="StarRateHotel"> Derecelendirme </string>
     <string name="HotelType"> Tür </string>
     <string name="FacilitiType"> Tesisler </string>
@@ -2042,17 +2042,17 @@
     <string name="mobile"> Mobil </string>
     <string name="please_enter_your_address"> Lütfen adresinizi girin </string>
     <string name="address"> Adres </string>
-    <string name="female"> kadın </string>
+    <string name="female"> Kadın </string>
     <string name="male"> Erkek </string>
-    <string name="sex"> Sex </string>
-    <string name="departure_from"> Gidiş yeri: </string>
+    <string name="sex"> Cinsiyet </string>
+    <string name="departure_from"> Gidiş : </string>
     <string name="istanbul"> İstanbul </string>
-    <string name="departure_to"> Gidilecek yer: </string>
-    <string name="origin_colon"> Menşei: </string>
-    <string name="destination_colon"> Hedef: </string>
+    <string name="departure_to"> Dönüş: </string>
+    <string name="origin_colon"> Gidiş: </string>
+    <string name="destination_colon"> Dönüş: </string>
     <string name="newborn"> Bebek </string>
-    <string name="departure"> Tek Yönlü </string>
-    <string name="departure_and_return"> Gidiş dönüş </string>
+    <string name="departure"> Tek Yön </string>
+    <string name="departure_and_return"> Gidiş-Dönüş </string>
     <string name="name_en"> Ad (En) * </string>
     <string name="please_enter_your_mobile_number"> Cep numarasını giriniz </string>
     <string name="SelectLanguage"> Uygulama </string>
@@ -2107,12 +2107,12 @@
     <string name="none_stop">Non stop </string>
     <string name="just"> Sadece </string>
     <string name="people"> Kişiler </string>
-    <string name="saturday"> Sat </string>
-    <string name="sunday">pazar</string>
-    <string name="monday">Mon</string>
-    <string name="tuesday">suesday</string>
-    <string name="wednesday">çarşamba</string>
-    <string name="thursday">perşembe</string>
+    <string name="saturday"> Cts </string>
+    <string name="sunday">Pzr</string>
+    <string name="monday">Pts</string>
+    <string name="tuesday">Sul</string>
+    <string name="wednesday">çar</string>
+    <string name="thursday">Per</string>
     <string name="friday">Cum</string>
     <string name="costs_table"> Maliyet Fiyatı </string>
     <string name="base_price"> Esas Fiyatı </string>
@@ -2146,7 +2146,7 @@
     <string name="Approval_and_payment_of_pre_invoice"> Ön faturanın onaylanması ve ödenmesi </string>
     <string name="Add_to_cart_services"> Alışveriş sepetine ekle </string>
     <string name="passneger_info"> Yolcuların bilgileri </string>
-    <string name="Buyer_Specifications">Alıcı Spesifikasyonları</string>
+    <string name="Buyer_Specifications">Alıcı Bilgileri</string>
     <string name="Traveler_info">Yolcu bilgileri</string>
     <string name="Email_format_is_correct"> E-posta biçimi doğru (test@test.com) </string>
     <string name="Name_of_at_least_2_characters_and_maximum_100_characters"> En az 2 karakter ve maksimum 100 karakterden oluşan isim </string>
@@ -2184,19 +2184,19 @@
     <string name="passengers">Yolcular</string>
     <string name="partner">Alıcı</string>
     <string name="gender">Cinsiyet</string>
-    <string name="please_pesrsian">Lütfen girin</string>
+    <string name="please_pesrsian">Lütfen boş bırakmayınız</string>
     <string name="name_family">Soyadı</string>
-    <string name="code_meli">ulusal kod</string>
+    <string name="code_meli">Ulusal Kod</string>
     <string name="email_">E-posta</string>
     <string name="Verification_and_next_step">Onayla ve bir sonraki adım</string>
     <string name="first_room">Ilk oda</string>
-    <string name="please_eng">Lütfen ingilizce girin</string>
-    <string name="number_pass">Pasaport numarası</string>
+    <string name="please_eng">Lütfen ingilizce giriniz</string>
+    <string name="number_pass">Pasaport Numarası</string>
     <string name="icon_mic">&#xe91b;</string>
 
-    <string name="meli_code">Ulusal kod</string>
-    <string name="date_birth">Doğum günü</string>
-    <string name="exp_pas">Pasaportun son kullanma tarihi</string>
+    <string name="meli_code">Ulusal Kod</string>
+    <string name="date_birth">Doğum Günü</string>
+    <string name="exp_pas">Pasaportun Geçerlilik Tarihi</string>
     <string name="more_data">Daha fazla bilgi</string>
     <string name="nationality">milliyet</string>
     <string name="eghamat_local">İkamet yeri</string>
@@ -2236,8 +2236,8 @@
     <string name="around_hotel">Otel çevresinde</string>
     <string name="info_hotel">Otel bilgisi</string>
     <string name="password">parola</string>
-    <string name="forgot_password">Parolanızı mı unuttunuz</string>
-    <string name="register">Kayıt olmak</string>
+    <string name="forgot_password">Parolanızı mı unuttunuz ?</string>
+    <string name="register">Kayıt Ol</string>
     <string name="login_">Oturum aç</string>
     <!--azizi-->
     <!--fonts-->
@@ -2305,7 +2305,7 @@
     <string name="tracking_code"> İzleme kodu </string>
     <string name="our_specialists_will_call_you_soon"> Lütfen sizi aramamızı bekleyin </string>
     <string name="re_pay"> Yeniden ödeyin </string>
-    <string name="return_"> dönüş </string>
+    <string name="return_"> Geri Dön </string>
     <string name="text51"> Bilgileri kaydedin ve kaydedin </string>
     <string name="text52"> Parolaları değiştirin </string>
     <string name="country"> Ülke </string>
@@ -2333,13 +2333,13 @@
     <string name="end_date_must_be_more_than_start_date">Bitiş tarihi başlangıç tarihinden az olmamalıdır</string>
 
 
-    <string name="package_a"> Yetişkin kişi </string>
+    <string name="package_a"> Yetişkin Kişi </string>
         
-    <string name="package_b"> Yataklı çocuk </string>
+    <string name="package_b"> Yataklı Çocuk </string>
         
-    <string name="package_c"> yataksız çocuk </string>
+    <string name="package_c"> yataksız Çocuk </string>
         
-    <string name="package_d"> Herkesin bir bebeği var </string>
+    <string name="package_d"> Herkesin bir bebek var </string>
     <string name="culture">tr</string>
     <string name="dialog_ok">Doğrula </string>
     <string name="cancel_dialog"> İptal et</string>
@@ -2364,7 +2364,7 @@
     <string name="number"> No</string>
     <string name="airline"> Hawaiian font </string>
     <string name="arabic">العربی</string>
-    <string name="hotel_policy">Hotel policy</string>
+    <string name="hotel_policy">Otel politikası</string>
     <string name="please_enter_your_email_to_reset_your_pass"> Please enter your email password to retrieve </string>
     <string name="reset_pass"> Password Recovery </string>
     <string name="activate_account"> Activate account </string>
@@ -2400,13 +2400,13 @@
     <string name="create_account">CREATE ACCOUNT</string>
     <string name="calculated">Calculated</string>
     <string name="service_name">Hizmet adı</string>
-    <string name="message">mesajları</string>
+    <string name="message">mesaj Kutusu</string>
     <string name="today">bugün</string>
     <string name="nomessage">Şu anda bir mesajınız yok</string>
     <string name="select_passenger">Bir yolcu al</string>
     <string name="_add_passenger">Bir yolcu al</string>
     <string name="no_contract">Şu anda herhangi bir sözleşmeniz yok.</string>
-    <string name="view">view</string>
+    <string name="view">Görüntüle</string>
     <string name="add_passenger">Yeni yolcu ekle</string>
     <string name="add_passenger_new">Gezgin ekle</string>
     <string name="passenger_info">Yolcu profili</string>
@@ -2414,13 +2414,13 @@
     <string name="_survey">bir Yorum Yazın</string>
     <string name="_messages">Mesajlar</string>
     <string name="your_answer">senin cevabın</string>
-    <string name="_next_answer">bir sonraki cevap</string>
+    <string name="_next_answer">Sonraki soruyu cevapla</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
     <string name="_new_answer">bir sonraki cevap</string>
     <string name="_finish">finish</string>
     <string name="_selectTime">Şimdiki zaman</string>
     <string name="select_date">tarih seç</string>
-    <string name="_prev_question">Önceki soru</string>
+    <string name="_prev_question">Önceki Soru</string>
     <string name="please_select_date">lütfen tarihi seç</string>
     <string name="_register_already_opinion">Yorumunuz zaten kayıtlı</string>
     <string name="_answer_question_mandatory">Bu sorunun cevabı zorunludur</string>
