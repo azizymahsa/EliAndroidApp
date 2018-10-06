@@ -2412,7 +2412,7 @@
     <string name="sign_up">SIGN UP</string>
     <string name="join_user">JOIN USER</string>
     <string name="create_account">CREATE ACCOUNT</string>
-    <string name="locationAlert">مکان یاب شما خاموش می باشد، لطفا برای استفاده از این قسمت مکان یاب خود را روشن نمایید.</string>
+    <string name="locationAlert">Your location is off, please turn on your locator to use this section.</string>
     <string name="calculated">Calculated</string>
     <string name="service_name">Hizmet adı</string>
     <string name="message">Messages</string>
@@ -2448,5 +2448,7 @@
     <string name="comment_successfully">Your comment has been successfully recorded</string>
     <string name="_error">Error</string>
     <string name="_previously_survey">Previously participated in this survey!</string>
+    <string name="_not_found">item was found</string>
+    <string name="please_wait">Please wait a moment ...</string>
 </resources>
 

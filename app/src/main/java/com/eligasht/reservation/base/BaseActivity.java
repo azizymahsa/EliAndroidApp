@@ -63,7 +63,7 @@ public abstract class BaseActivity extends Base {
     protected void needShowProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
-            mProgressDialog.setMessage("لطفا کمی صبر کنید ...");
+            mProgressDialog.setMessage(getString(R.string.please_wait));
             mProgressDialog.setIndeterminate(true);
         }
         mProgressDialog.show();

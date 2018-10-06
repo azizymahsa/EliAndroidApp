@@ -444,6 +444,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 request.setInfCount(Integer.parseInt(infCount));
                 request.setCulture(getString(R.string.culture));
                 requestSearchFlight.setRequest(request);
+                Log.d("sendRequestFlight: ",new Gson().toJson(requestSearchFlight));
                 SingletonService.getInstance().getFlight().flightSearchAvail(SearchFlightActivity.this, requestSearchFlight);
                 System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Raft" + Raft + "Bargasht" + Bargasht);
             } else {
@@ -510,6 +511,8 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 if (Locale.getDefault().getLanguage().equals("fa")) {
                     getDataFaJson(responsSearchFlight);
                 } else if (Locale.getDefault().getLanguage().equals("en")) {
+                    getDataEnJson(responsSearchFlight);
+                }else{
                     getDataEnJson(responsSearchFlight);
                 }
             }

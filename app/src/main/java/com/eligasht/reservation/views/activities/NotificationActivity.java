@@ -43,7 +43,7 @@ public class NotificationActivity extends Base {
 
         Prefs.putInt("notifiCounter",0);
         EventBus.getDefault().register(this);
-        InitUi.Toolbar(this, false, R.color.toolbar_color, "پیام ها");
+        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.message));
         recyclerView =findViewById(R.id.recyclerView);
         elNotFound =findViewById(R.id.elNotFound);
         btnOk =findViewById(R.id.btnOk);

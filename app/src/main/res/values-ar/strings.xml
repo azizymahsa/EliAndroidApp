@@ -2410,5 +2410,7 @@
     <string name="comment_successfully">تم تسجيل تعليقك بنجاح</string>
     <string name="_error">Error</string>
     <string name="_previously_survey">Previously participated in this survey!</string>
+    <string name="_not_found">item was found</string>
+    <string name="please_wait">Please wait a moment ...</string>
 
 </resources>

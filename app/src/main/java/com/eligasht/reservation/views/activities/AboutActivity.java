@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -31,6 +32,7 @@ import com.eligasht.service.model.about.response.Section;
 import com.eligasht.service.model.flight.request.contactUs.RequestContactUs;
 import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
 import com.eligasht.service.part.AboutService;
+import com.google.gson.Gson;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import org.apache.http.HttpResponse;
@@ -111,7 +113,7 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         com.eligasht.service.model.about.request.RequestAbout request = new com.eligasht.service.model.about.request.RequestAbout();
 
         request.setCulture(getString(R.string.culture));
-
+        Log.d("SendRequestAbout: ",new Gson().toJson(request));
         SingletonService.getInstance().getAboutService().aboutAvail(this,request);
     }
 

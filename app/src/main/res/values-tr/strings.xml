@@ -2385,11 +2385,11 @@
     <string name="icon_comments">&#xe638;</string>
     <string name="icon_room">&#xe639;</string>
     <string name="icon_ac">&#xe640;</string>
-    <string name="massege">پیغام</string>
+    <string name="massege">Mesaj</string>
     <string name="please_enter_your_name_english">Lütfen adınızı girin (En)</string>
-    <string name="please_enter_your_family_name_english">الرجاء إدخال اسم العائلة</string>
-    <string name="_InfantP">نوزاد</string>
-    <string name="_childP">کودک</string>
+    <string name="please_enter_your_family_name_english">Lütfen bir soyadı giriniz</string>
+    <string name="_InfantP">Infant</string>
+    <string name="_childP">child</string>
     <string name="weather">Hava tahmini</string>
     <string name="gift">gift !</string>
     <string name="let_s_go">LET\'S GO</string>
@@ -2399,7 +2399,7 @@
     <string name="join_user">JOIN USER</string>
     <string name="create_account">CREATE ACCOUNT</string>
     <string name="calculated">Calculated</string>
-    <string name="service_name">نام سرویس</string>
+    <string name="service_name">Hizmet adı</string>
     <string name="message">mesajları</string>
     <string name="today">bugün</string>
     <string name="nomessage">Şu anda bir mesajınız yok</string>
@@ -2413,20 +2413,22 @@
     <string name="tomorrow">yarın</string>
     <string name="_survey">bir Yorum Yazın</string>
     <string name="_messages">Mesajlar</string>
-    <string name="your_answer">your answer</string>
-    <string name="_next_answer">next answer</string>
+    <string name="your_answer">senin cevabın</string>
+    <string name="_next_answer">bir sonraki cevap</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
-    <string name="_new_answer">next answer</string>
+    <string name="_new_answer">bir sonraki cevap</string>
     <string name="_finish">finish</string>
-    <string name="_selectTime">Current Time</string>
-    <string name="select_date">select date</string>
-    <string name="_prev_question">Previose question</string>
-    <string name="please_select_date">please select date</string>
-    <string name="_register_already_opinion">Your comment has already been registered</string>
-    <string name="_answer_question_mandatory">The answer to this question is mandatory</string>
-    <string name="_comment_not_successfully">Sorry, your comment was not successfully recorded</string>
+    <string name="_selectTime">Şimdiki zaman</string>
+    <string name="select_date">tarih seç</string>
+    <string name="_prev_question">Önceki soru</string>
+    <string name="please_select_date">lütfen tarihi seç</string>
+    <string name="_register_already_opinion">Yorumunuz zaten kayıtlı</string>
+    <string name="_answer_question_mandatory">Bu sorunun cevabı zorunludur</string>
+    <string name="_comment_not_successfully">Üzgünüz, yorumunuz başarıyla kaydedilmedi</string>
     <string name="comment_successfully">Yorumunuz başarıyla kaydedildi</string>
     <string name="_error">Error</string>
-    <string name="_previously_survey">Previously participated in this survey!</string>
+    <string name="_previously_survey">Bu ankete daha önce katıldı!</string>
+    <string name="_not_found">Ürün bulundu</string>
+    <string name="please_wait">Lütfen biraz bekleyin ...</string>
 </resources>
 

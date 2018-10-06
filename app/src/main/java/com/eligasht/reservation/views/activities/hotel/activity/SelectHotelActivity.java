@@ -756,8 +756,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 SingletonAnalysis.getInstance().logTransfer(ServiceType.HOTEL,"",Prefs.getString("Value-Hotel-City-Fa", "استانبول"));
 
 
-                weatherCity.setText("پیش بینی وضعیت آب و هوای "+Prefs.getString("Value-Hotel-City-Fa", "استانبول"));
-                tvCount.setText("(" + selectHotelModelArrayList.size() + "مورد یافت شد" + ")");
+                weatherCity.setText(getString(R.string.weather)+Prefs.getString("Value-Hotel-City-Fa", "استانبول"));
+                tvCount.setText("(" + selectHotelModelArrayList.size() + getString(R.string._not_found) + ")");
                 Collections.sort(selectHotelModelArrayList, new Comparator<SelectHotelModel>() {
                     @Override
                     public int compare(SelectHotelModel p1, SelectHotelModel p2) {
