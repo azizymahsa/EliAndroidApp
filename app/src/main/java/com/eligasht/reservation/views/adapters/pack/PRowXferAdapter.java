@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Handler;
 
 /**
  * Created by elham.bonyani on 1/6/2018.
@@ -68,7 +69,8 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
 
     @Override
     public PRowXferRowHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.adapter_list_pack_item, null);
+        View view =LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.adapter_list_pack_item, parent, false);
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(lp);
         return new PRowXferRowHolder(view);
@@ -104,8 +106,17 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
                     sections.add(section);
                 }
             }
+
+
             item.setLstProwPriceAdapter(new LstProwPriceAdapter(context, sections));
-        }
+
+ /*           new android.os.Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            }, 100);
+       */ }
 
         if(item.getLstProwHotelAdapter() == null){
             item.setLstProwHotelAdapter(new LstProwHotelAdapter(context, item.getLstProwHotels(),Date));

@@ -23,7 +23,13 @@ import java.util.ArrayList;
  */
 
 public class LstProwPriceAdapter extends SectioningAdapter {
+    @Override
+    public GhostHeaderViewHolder onCreateGhostHeaderViewHolder(ViewGroup parent) {//مشکل در ورژن جدید
+        final View ghostView = new View(parent.getContext());
+        ghostView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
+        return new GhostHeaderViewHolder(ghostView);
+    }
     private Context context;
     private ArrayList<Section> feedItemList;
     public class ItemViewHolder extends SectioningAdapter.ItemViewHolder {

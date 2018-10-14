@@ -446,7 +446,6 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             goneView(txtNotFoundResualt, R.anim.slide_out_top);
         }
 
-
         long departureToMilis = DateUtil.getMiliSecondFromJSONDate(String.valueOf(pRowXfers.get(0).getXferList().getXFlightsList().get(1).getFltArrDate()));
         departureTo = DateUtil.getDateTime(String.valueOf(departureToMilis), "yyyy/MM/dd");
 

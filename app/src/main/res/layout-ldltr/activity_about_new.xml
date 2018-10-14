@@ -25,7 +25,7 @@
                 android:id="@+id/relative"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200dp"
-                android:background="@drawable/about_us_back">
+                android:background="@drawable/en_logo_about">
 
                 <LinearLayout
                     android:layout_width="match_parent"

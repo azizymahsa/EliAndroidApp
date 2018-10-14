@@ -43,7 +43,8 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
 
     @Override
     public LstProwHotelRowHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.adapter_lst_pro_hotel, null);
+        View view =LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.adapter_lst_pro_hotel, parent, false);
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         view.setLayoutParams(lp);
         return new LstProwHotelRowHolder(view);

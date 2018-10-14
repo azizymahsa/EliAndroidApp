@@ -109,7 +109,6 @@ public class MainActivity extends Base implements View.OnClickListener {
         sendDetailFinish();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
-
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.flight_status));
         }
 

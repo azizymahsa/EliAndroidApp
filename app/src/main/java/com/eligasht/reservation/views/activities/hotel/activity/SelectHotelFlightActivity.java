@@ -365,7 +365,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
             if (selectHotelModelArrayListFilter.isEmpty()) {
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
-             /*   adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate);
+             /* adapter = new FlightHotelAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate);
                 list.setAdapter(adapter);
                 adapter.notifyDataSetChanged();*/
                 hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList, this, tvDate, isGrid);
@@ -381,7 +381,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
             } else {
                 tvFilter.setTextColor(ContextCompat.getColor(this, R.color.red));
                 tvFilterIcon.setTextColor(ContextCompat.getColor(this, R.color.red));
- /*               adapter = new FlightHotelAdapter(selectHotelModelArrayListFilter, SelectHotelFlightActivity.this, tvDate);
+ /*             adapter = new FlightHotelAdapter(selectHotelModelArrayListFilter, SelectHotelFlightActivity.this, tvDate);
                 list.setAdapter(adapter);
                 adapter.notifyDataSetChanged();*/
                 hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayListFilter, this, tvDate, isGrid);
