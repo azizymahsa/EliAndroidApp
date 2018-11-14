@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
@@ -67,6 +68,7 @@ import com.eligasht.reservation.views.activities.insurance.AddPassengerActivity;
 import com.eligasht.reservation.views.activities.login.ProfileActivity;
 import com.eligasht.reservation.views.ui.dialog.PromotionCodeDialog;
 import com.eligasht.reservation.views.ui.dialog.ResultGiftDialog;
+import com.eligasht.reservation.views.ui.scan.PassportScannerActivity;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
@@ -127,7 +129,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	Handler handler;
 	ProgressDialog progressBar;
 	public FancyButton btnBack;
-	public ImageView btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;
+	public ImageView btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;//,escanImage;
 	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore;
 	public Button btnAddsabad,btn_pardakht_factor,txtSaler,txtMasaferan,txtKhadamat,txtPishfactor;
 	public EditText txtnamem,txtfamilym,txt_NationalCode_m;
@@ -504,6 +506,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		btn_saler= (ImageView) findViewById(R.id.btn_saler);
 		btn_mosaferan=(ImageView)findViewById(R.id.btn_mosaferan);
 		btn_khadamat=(ImageView)findViewById(R.id.btn_khadamat);
+		//escanImage=(ImageView)findViewById(R.id.escanImage);
 		btn_pish_factor=(ImageView)findViewById(R.id.btn_pish_factor);
 
 		txtSaler= (Button) findViewById(R.id.txtSaler);
@@ -514,6 +517,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		btn_saler.setOnClickListener(this);
 		btn_mosaferan.setOnClickListener(this);
 		btn_khadamat.setOnClickListener(this);
+		//escanImage.setOnClickListener(this);
 		btn_pish_factor.setOnClickListener(this);
 		setAnimation();
 
@@ -647,6 +651,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}}
 				break;
 			case R.id.txttavalodm:
+
 				if(hasFocus){//txtTitleCountM
 					System.out.println("t");
 				}else{
@@ -862,8 +867,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				Intent intent = new Intent(this, GetPassengerActivity.class);
 				startActivityForResult(intent, 555);
-
-
 				break;
 				case R.id.txtMore:
 
@@ -1079,7 +1082,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}
 				break;
 			case R.id.txttavalodm:
-
 				String RengAge=txtTitleCountM.getText().toString();
 
 ///////////////setmin
@@ -1094,7 +1096,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					datePickerDialog.setMinDate(persianCalendarDatePicker1);
 					datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker1.toGregorianCalendar());
-
 
 					String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
 					int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
@@ -1164,12 +1165,17 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				flag = true;
 				break;
 			case  R.id.txtexp_passport:
+				//startActivityForResult(new Intent(PassengerActivity.this, PassportScannerActivity.class),1234);
+
 				if (!datePickerDialogGregorian2.isAdded())
 					datePickerDialogGregorian2.show(getFragmentManager() , "DatePickerDialogGregorianRaft");
-				/*DialogFragment newFragment3 = new DatePickerFragment("");
-				newFragment3.show(getFragmentManager(), "datePicker");*/
+
 				flag = false;
 				break;
+				/*case  R.id.escanImage:
+				startActivityForResult(new Intent(PassengerActivity.this, PassportScannerActivity.class),1234);
+
+				break;*/
 			case R.id.btn_nextm:
 				LinearLayout mainLayout;
 				mainLayout = (LinearLayout)findViewById(R.id.linear_list_khadamat);
@@ -1780,7 +1786,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				AlertDialogPassenger.setText(message,getString(R.string.massege));
 			}
 
-			if(successResult >1) {
+			if(successResult >1){
 				txt_shomare_factor.setText(GetAirportsResult.getSuccessResult()+"");
 
 				tvfactorNumber.setText(GetAirportsResult.getSuccessResult()+"");
@@ -2102,6 +2108,35 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+
+
+			if (resultCode == Activity.RESULT_OK && requestCode == 1234) {
+
+				JSONObject obj = null;
+				try {
+					obj = new JSONObject(data.getStringExtra("result"));
+					txtfamilym.setText(obj.getString("Surname"));
+					txtnamem.setText(obj.getString("Given Name"));
+					txttavalodm.setText(obj.getString("Date of Birth"));
+					txtnumber_passport.setText(obj.getString("Document Number"));
+					txtexp_passport.setText(obj.getString("Expiration Date"));
+					Log.e( "onActivityResult: ", obj.getString("Surname")+" ** "+obj.getString("Given Name")+" ** "+obj.getString("Expiration Date")+" ** "+obj.getString("Sex"));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+
+				/*etFirstNameEn.setText(obj.getString("Given Name"));
+				etLastNameEn.setText(obj.getString("Surname"));
+				etPassportId.setText(obj.getString("Document Number"));
+				etExpireDate.setText(obj.getString("Expiration Date"));
+				etGender.setText(obj.getString("Sex").equals("M") ? "مرد" : "زن");*/
+				// genderCode = obj.getString("Sex").equals("M") ? 25 : 27;
+
+
+
+
+			}
+
 		if(requestCode == 1 && resultCode == Activity.RESULT_OK){
 			String countryCode = data.getStringExtra(CountrycodeActivity.RESULT_CONTRYCODE);//RESULT_CONTRYNAME
 			String countryName = data.getStringExtra(CountrycodeActivity.RESULT_CONTRYNAME);

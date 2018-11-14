@@ -204,9 +204,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         avi.setVisibility(View.GONE);
         try {
             if (startupServiceResponse.getMobileAppStartupServiceResult().getErrors() != null) {
-                splashDialog.seeText(
-                        startupServiceResponse.getMobileAppStartupServiceResult().getErrors().get(0)
-                                .getDetailedMessage());
+                splashDialog.seeText(startupServiceResponse.getMobileAppStartupServiceResult().getErrors().get(0).getDetailedMessage());
                 splashDialog.showAlert();
             } else {
                 Utility.sendTag("Splash", true, true);

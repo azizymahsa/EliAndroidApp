@@ -66,11 +66,11 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
         holder.setIsRecyclable(false);
         Typeface face;
         if(Prefs.getString("lang","fa").equals("fa")){
-             face = Typeface.createFromAsset(context.getAssets(),"fonts/iran_sans_normal.ttf");
+            face = Typeface.createFromAsset(context.getAssets(),"fonts/iran_sans_normal.ttf");
             holder.txtSectionNameEn.setVisibility(View.GONE);
             holder.txtDescriptionEn.setVisibility(View.GONE);
         }else{
-             face = Typeface.createFromAsset(context.getAssets(),"fonts/times.ttf");
+            face = Typeface.createFromAsset(context.getAssets(),"fonts/times.ttf");
             holder.txtSectionName.setVisibility(View.GONE);
             holder.txtDescription.setVisibility(View.GONE);
 

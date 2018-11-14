@@ -137,15 +137,11 @@ public class GlobalApplication extends ServiceApplication {
         super.onCreate();
         SugarContext.init(this);
 
-
-
-
         sAnalytics = GoogleAnalytics.getInstance(this);
 
         SingletonContext.getInstance().setContext(this);
         SingletonDate.getInstance().initDate();
-        ConnectionBuddyConfiguration networkInspectorConfiguration = new ConnectionBuddyConfiguration.Builder(
-                this).build();
+        ConnectionBuddyConfiguration networkInspectorConfiguration = new ConnectionBuddyConfiguration.Builder(this).build();
         ConnectionBuddy.getInstance().init(networkInspectorConfiguration);
         OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)

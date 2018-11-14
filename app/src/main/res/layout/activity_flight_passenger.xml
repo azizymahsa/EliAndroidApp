@@ -210,8 +210,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="1dp"
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -282,16 +282,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-
                         android:layout_marginTop="10dp"
+
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="1dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -325,8 +325,8 @@
                             android:gravity="center|center_vertical"
                             android:hint="@string/please_pesrsian"
                             android:maxLength="20"
-                            android:paddingRight="10dp"
                             android:paddingTop="0dp"
+                            android:paddingRight="10dp"
                             android:singleLine="true"
                             android:text=""
                             android:textColor="#000000"
@@ -340,16 +340,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-
                         android:layout_marginTop="10dp"
+
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="1dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -383,8 +383,8 @@
                             android:gravity="center|center_vertical"
                             android:hint="@string/please_pesrsian"
                             android:maxLength="20"
-                            android:paddingRight="10dp"
                             android:paddingTop="0dp"
+                            android:paddingRight="10dp"
                             android:singleLine="true"
                             android:text=""
                             android:textColor="#4d4d4d"
@@ -397,16 +397,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="1dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -439,8 +438,8 @@
                             android:background="@drawable/background_strock_white"
                             android:gravity="center|center_vertical"
                             android:inputType="number"
-                            android:paddingRight="10dp"
                             android:paddingTop="0dp"
+                            android:paddingRight="10dp"
                             android:singleLine="true"
                             android:text=""
                             android:textColor="#4d4d4d"
@@ -452,16 +451,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="1dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -494,8 +492,8 @@
                             android:background="@drawable/background_strock_white"
                             android:gravity="center|center_vertical"
                             android:inputType="number"
-                            android:paddingRight="10dp"
                             android:paddingTop="0dp"
+                            android:paddingRight="10dp"
                             android:singleLine="true"
                             android:text=""
                             android:textColor="#4d4d4d"
@@ -507,16 +505,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="1dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -549,8 +546,8 @@
                             android:background="@drawable/background_strock_white"
                             android:gravity="center|center_vertical"
                             android:inputType="textEmailAddress"
-                            android:paddingRight="10dp"
                             android:paddingTop="0dp"
+                            android:paddingRight="10dp"
                             android:singleLine="true"
                             android:text=""
                             android:textColor="#4d4d4d"
@@ -578,10 +575,10 @@
                         android:id="@+id/btn_next_partnerInfo"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35dp_normal"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"
                         android:layout_marginTop="15dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginBottom="15dp"
                         android:background="@drawable/btngravity_big"
                         android:gravity="center|center_vertical"
                         android:orientation="horizontal">
@@ -652,9 +649,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center|center_vertical"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginRight="2dp"
                             android:layout_marginTop="5dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_marginBottom="5dp"
                             android:layout_weight="1.5"
                             android:background="@drawable/textview55"
 
@@ -684,8 +681,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="1dp"
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
@@ -751,6 +748,14 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
+                           <!-- <ImageView
+                                android:id="@+id/escanImage"
+                                android:layout_width="@dimen/_80dp_fh_"
+                                android:layout_height="@dimen/toolbar_height_70dp"
+                                android:layout_marginRight="@dimen/_50_flight_dp"
+                                android:gravity="left"
+                                android:src="@drawable/eskan" />-->
+
                             <RadioButton
                                 android:id="@+id/zan"
                                 android:layout_width="wrap_content"
@@ -782,15 +787,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="5dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -827,8 +832,8 @@
                             android:inputType="text"
                             android:maxLength="20"
                             android:nextFocusDown="@+id/txtfamilym"
-                            android:paddingRight="10dp"
                             android:paddingTop="0dp"
+                            android:paddingRight="10dp"
                             android:singleLine="true"
                             android:text=""
                             android:textColor="#4d4d4d"
@@ -842,15 +847,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="5dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -887,8 +892,8 @@
                             android:inputType="text"
                             android:maxLength="20"
                             android:nextFocusDown="@+id/txtfamilym"
-                            android:paddingRight="10dp"
                             android:paddingTop="0dp"
+                            android:paddingRight="10dp"
                             android:singleLine="true"
                             android:text=""
                             android:textColor="#4d4d4d"
@@ -904,16 +909,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-
                         android:layout_marginTop="10dp"
+
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="1dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -946,8 +951,8 @@
                             android:background="@drawable/background_strock_white"
                             android:gravity="center|center_vertical"
                             android:inputType="text"
-                            android:paddingRight="10dp"
                             android:paddingTop="0dp"
+                            android:paddingRight="10dp"
                             android:singleLine="true"
                             android:text=""
                             android:textColor="#4d4d4d"
@@ -961,16 +966,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-
                         android:layout_marginTop="10dp"
+
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="1dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -1003,8 +1008,8 @@
                             android:gravity="center|center_vertical"
                             android:inputType="number"
 
-                            android:paddingRight="10dp"
                             android:paddingTop="0dp"
+                            android:paddingRight="10dp"
                             android:singleLine="true"
                             android:text=""
                             android:textColor="#4d4d4d"
@@ -1016,16 +1021,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-
                         android:layout_marginTop="10dp"
+
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="1dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -1067,15 +1072,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="1dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -1115,8 +1120,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:layout_marginRight="24dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="24dp"
                         android:text="@string/more_data"
                         android:textColor="#000099"
                         android:textSize="@dimen/_15dp_normal_textSize"
@@ -1128,16 +1133,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical"
                         android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="1dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -1178,16 +1183,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/toolbar_height_70dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:orientation="vertical"
                         android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
                             android:layout_marginTop="1dp"
+                            android:layout_marginRight="8dp"
                             android:orientation="horizontal">
 
                             <TextView
@@ -1226,10 +1231,10 @@
                         android:id="@+id/btn_nextm"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35dp_normal"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"
                         android:layout_marginTop="15dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_marginBottom="15dp"
                         android:background="@drawable/btngravity_big"
                         android:gravity="center|center_vertical"
                         android:orientation="horizontal">

@@ -321,8 +321,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                     departureFrom = SingletonDate.getInstance().getStartDate().getFullGeo();
                     getPackages(country, departureFrom, departureTo, roomList, culture, PreferedAir);
                 } else {
-                    Toast.makeText(getApplicationContext(), R.string.datePickerError,
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.datePickerError, Toast.LENGTH_SHORT).show();
 
                 }
                 break;
@@ -332,8 +331,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                     getPackages(country, departureFrom, departureTo, roomList, culture, PreferedAir);
 
                 } else {
-                    Toast.makeText(getApplicationContext(), R.string.DatePickerError2,
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.DatePickerError2,Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btnFilter:
