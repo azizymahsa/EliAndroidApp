@@ -764,7 +764,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}else{
 					System.out.println("f");
 					if(txtnameP.getText().toString() != null){
-						if(Locale.getDefault().getLanguage().equals("en")){
+						if(Locale.getDefault().getLanguage().contains("en")|| Locale.getDefault().getLanguage().contains("tr")){
 							if( txtnameP.getText().toString().length()>2 && ((txtnameP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(txtnameP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")))){
 								((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
 
@@ -791,7 +791,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				}else{
 					System.out.println("f");
 					if(txtfamilyP.getText().toString() != null){
-						if(Locale.getDefault().getLanguage().equals("en")){
+						if(Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")){
 							if( txtfamilyP.getText().toString().length()>2 && ((txtfamilyP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(txtfamilyP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")))){
 								((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
 
@@ -977,7 +977,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						//	if(RqPartner_FirstNameFa != null && RqPartner_FirstNameFa.length()>1){
 						//if( RqPartner_FirstNameFa.trim().length()>3 && RqPartner_FirstNameFa.trim().length()<20 && !(RqPartner_FirstNameFa.matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
 						if(RqPartner_FirstNameFa != null){
-							if(Locale.getDefault().getLanguage().equals("en")){
+							if(Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")){
 								if( RqPartner_FirstNameFa.length()>2 && ((RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) )){
 									((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
 									flagMosafer=flagMosafer+"T";
@@ -999,7 +999,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 						}
 						//if(RqPartner_LastNameFa != null && RqPartner_LastNameFa.length()>1){
 						if(RqPartner_LastNameFa != null){
-							if(Locale.getDefault().getLanguage().equals("en")){
+							if(Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")){
 								if( RqPartner_LastNameFa.length()>2 && ((RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) )){
 									((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
 									flagMosafer=flagMosafer+"T";
@@ -1334,7 +1334,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 								countN--;
 							}
 							if(countB!=0){
-								if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
+								if(Locale.getDefault().getLanguage().contains("en")||Locale.getDefault().getLanguage().contains("tr")){
 									txtTitleCountM.setText( getCounter(counter)+" " +getString(R.string.Passenger_information)+" " + getString(R.string.adult_));
 
 								}else {
@@ -1343,7 +1343,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 								imgCount.setText(counter+"");
 							}
 							else if(countK!=0){
-								if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
+								if(Locale.getDefault().getLanguage().contains("en")||Locale.getDefault().getLanguage().contains("tr")){
 									txtTitleCountM.setText( getCounter(counter) +" " +getString(R.string.Passenger_information) +" " + getString(R.string.child_));
 
 								}else {
@@ -1352,7 +1352,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 								imgCount.setText(counter+"");
 							}
 							else if(countN!=0){
-								if(Locale.getDefault().getLanguage().equals("en")||Locale.getDefault().getLanguage().equals("tr")){
+								if(Locale.getDefault().getLanguage().contains("en")||Locale.getDefault().getLanguage().contains("tr")){
 									txtTitleCountM.setText( getCounter(counter) +" " +getString(R.string.Passenger_information) +" " + getString(R.string.baby_));
 
 								}else {
@@ -1402,8 +1402,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					linear_mosaferan.setVisibility(View.GONE);
 					linear_list_khadamat.setVisibility(View.VISIBLE);
 					linear_pish_factor.setVisibility(View.GONE);
-
-
 
 					((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_off);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
@@ -1592,7 +1590,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					passList.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
 					passList.setNationality( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-					passList.setNationalityID(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+					passList.setNationalityID((cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value())).toUpperCase());
 
 				//	passList.setRqPassengerAddress( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
 					passList.setRqPassengerBirthdate( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));

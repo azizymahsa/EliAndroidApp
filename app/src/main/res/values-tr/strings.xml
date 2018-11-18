@@ -2340,7 +2340,7 @@
     <string name="package_c"> yataksız Çocuk </string>
         
     <string name="package_d"> Herkesin bir bebek var </string>
-    <string name="culture">tr</string>
+    <string name="culture">tr-TR</string>
     <string name="dialog_ok">Doğrula </string>
     <string name="cancel_dialog"> İptal et</string>
     <string name="geo_dialog">AD</string>

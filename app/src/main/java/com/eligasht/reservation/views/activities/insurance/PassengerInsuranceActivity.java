@@ -801,8 +801,8 @@ private void RequestPurchaseInsurance(){
                 com.eligasht.service.model.insurance.request.PurchaseInsurance.PassList passList=new com.eligasht.service.model.insurance.request.PurchaseInsurance.PassList();
                 passList.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));//.put("Gender", cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
                 passList.setNationality( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-                passList.setNationalityID(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
-                passList.setNationalityID(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                passList.setNationalityID((cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value())).toUpperCase());
+               // passList.setNationalityID((cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value())).toUpperCase());
                 passList.setPackRoomTypeID(Prefs.getInt("PackRoomType_ID",12));
                 passList.setRoomNo(Prefs.getInt("Room_No", 12));
 

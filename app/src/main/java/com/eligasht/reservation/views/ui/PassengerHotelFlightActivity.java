@@ -790,7 +790,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                     passList1.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
                     passList1.setNationality(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-                    passList1.setNationalityID(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                    passList1.setNationalityID((cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value())).toUpperCase());
 
                     passList1.setRqPassengerAddress(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
                     passList1.setRqPassengerBirthdate(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));

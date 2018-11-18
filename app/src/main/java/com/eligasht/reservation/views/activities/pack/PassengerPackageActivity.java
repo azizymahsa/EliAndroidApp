@@ -1718,7 +1718,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         passList = new PassList();
                         passList.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
                         passList.setNationality(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
-                        passList.setNationalityID(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value()));
+                        passList.setNationalityID((cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value())).toUpperCase());
                         passList.setPackRoomTypeID(packageRoomNoToRequestList.get(i).getPackRoomType_ID());
                         passList.setRoomNo(packageRoomNoToRequestList.get(i).getRoom_No());
                         passList.setRqPassengerAddress(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));

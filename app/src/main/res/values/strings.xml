@@ -2356,7 +2356,7 @@
     <string name="package_b"> Child with bed</string>
     <string name="package_c"> Child without bed </string>
     <string name="package_d"> Infant </string>
-    <string name="culture">en</string>
+    <string name="culture">en-US</string>
     <string name="dialog_ok">OK</string>
     <string name="cancel_dialog">Cancel</string>
     <string name="geo_dialog">Georgian</string>

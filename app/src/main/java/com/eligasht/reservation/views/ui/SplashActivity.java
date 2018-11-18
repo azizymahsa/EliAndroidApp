@@ -239,6 +239,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                         Prefs.putString("P", new Gson().toJson(strings));
                     }
                 }
+                //baraye avalin bar check shavaf
                 if (startupServiceResponse.getMobileAppStartupServiceResult().getAdjustEnabled()) {
                     if (Prefs.getBoolean("isAdjustSend", true)) {
                         Prefs.putBoolean("isAdjustSend", false);
