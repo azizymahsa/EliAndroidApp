@@ -23,6 +23,7 @@ import com.eligasht.reservation.views.viewholders.LstProwHotelRowHolder;
 
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by elham.bonyani on 1/6/2018.
@@ -74,8 +75,19 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
         }
         holder.txt_hotel_name.setText(ValidationTools.isEmptyOrNull(item.getHotelNameE()) ? item.getHotelNameE() : item.getHotelNameE());
         holder.txt_hotel_name.setEllipsize(TextUtils.TruncateAt.END);
-        holder.txt_location_full_name.setText(ValidationTools.isEmptyOrNull(item.getLocationFullNameFa()) ? item.getLocationFullNameFa() : item.getLocationFullNameFa() + " ");
-        holder.txt_city_name.setText(ValidationTools.isEmptyOrNull(item.getCityPersianName()) ? item.getCityPersianName() : item.getCityPersianName() + " ،");
+
+        if (Locale.getDefault().getLanguage().equals("fa")) {
+            holder.txt_location_full_name.setText(ValidationTools.isEmptyOrNull(item.getLocationFullNameFa()) ? item.getLocationFullNameFa() : item.getLocationFullNameFa() + " ");
+            holder.txt_city_name.setText(ValidationTools.isEmptyOrNull(item.getCityPersianName()) ? item.getCityPersianName() : item.getCityPersianName() + " ،");
+        } else if (Locale.getDefault().getLanguage().equals("en")) {
+            holder.txt_location_full_name.setText(ValidationTools.isEmptyOrNull(item.getLocationFullNameEn()) ? item.getLocationFullNameEn() : item.getLocationFullNameEn() + " ");
+            holder.txt_city_name.setText(ValidationTools.isEmptyOrNull(item.getCityEnglishName()) ? item.getCityEnglishName() : item.getCityEnglishName() + " ،");
+        }else{
+            holder.txt_location_full_name.setText(ValidationTools.isEmptyOrNull(item.getLocationFullNameEn()) ? item.getLocationFullNameEn() : item.getLocationFullNameEn() + " ");
+            holder.txt_city_name.setText(ValidationTools.isEmptyOrNull(item.getCityEnglishName()) ? item.getCityEnglishName() : item.getCityEnglishName() + " ،");
+        }
+
+
 
         long checkin_milis = DateUtil.getMiliSecondFromJSONDate(item.getCheckIn());
         long checkout_milis = DateUtil.getMiliSecondFromJSONDate(item.getCheckOut());

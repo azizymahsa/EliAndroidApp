@@ -16,6 +16,7 @@ import com.eligasht.reservation.views.components.stickyheaders.Section;
 import com.eligasht.reservation.views.components.stickyheaders.SectioningAdapter;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by elham.bonyani on 1/6/2018.
@@ -120,9 +121,13 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         }
 
         holder.totalPrice.setText(Utility.priceFormat(String.valueOf(item.getSumPrice())));
-        holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF())?item.getHRroomList():item.getHRroomListF());
-        holder.txt_hr_room_list2.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF())?item.getHRroomList(): item.getHServiceF() + "(" + item.getHService() +")");
-
+        if (Locale.getDefault().getLanguage().equals("fa")) {
+            holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF()) ? item.getHRroomList() : item.getHRroomListF());
+            holder.txt_hr_room_list2.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF()) ? item.getHRroomList() : item.getHServiceF() + "(" + item.getHService() + ")");
+        }else{
+            holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomList()) ? item.getHRroomList() : item.getHRroomList());
+            holder.txt_hr_room_list2.setText(ValidationTools.isEmptyOrNull(item.getHRroomList()) ? item.getHRroomList() : item.getHService() );
+        }
         holder.chk_prow_price.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(SmoothCheckBox checkBox, boolean isChecked) {

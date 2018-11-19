@@ -15,6 +15,7 @@ import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.viewholders.LstAvailableDateRowHolder;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by elham.bonyani on 1/6/2018.
@@ -86,11 +87,21 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
         //todo change this
 
         long milis = DateUtil.getMiliSecondFromJSONDate(item.getDepartDate());
-        String date=DateUtil.getShortStringDateFromMilis(String.valueOf(milis),"yyyy-MM-dd",true).replaceAll("شنبه","").replaceAll("جمعه","")
-                .replaceAll("سه","").replaceAll("چهار","").replaceAll("پنج","").replaceAll("یک","")
-                .replaceAll("دو","");
+        String date="";
+        if (Locale.getDefault().getLanguage().equals("fa")) {
+             date = DateUtil.getShortStringDateFromMilis(String.valueOf(milis), "yyyy-MM-dd", true).replaceAll("شنبه", "").replaceAll("جمعه", "")
+                    .replaceAll("سه", "").replaceAll("چهار", "").replaceAll("پنج", "").replaceAll("یک", "")
+                    .replaceAll("دو", "");
 
-        holder.txt_depart_date.setText(date);
+
+        }else{
+             date = DateUtil.getShortStringDateFromMilis(String.valueOf(milis), "yyyy-MM-dd", false).replaceAll("Sat", "").replaceAll("Fri", "")
+                    .replaceAll("Tue", "").replaceAll("Wed", "").replaceAll("Thu", "").replaceAll("Sun", "")
+                    .replaceAll("Mon", "");
+
+
+        }
+        holder.txt_depart_date.setText(date);//  7  آذر
         Glide.with(context)
                 .load("http://www.eligasht.com/Content/AirLine/" + item.getAirlineCode() + ".png")
                 .into(holder.img_airLine);

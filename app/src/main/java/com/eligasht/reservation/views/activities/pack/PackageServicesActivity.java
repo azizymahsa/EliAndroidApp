@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -31,8 +32,13 @@ public class PackageServicesActivity extends BaseActivity {
         try {
             JSONArray jsonObj = new JSONArray(getIntent().getExtras().getString("services"));
             for (int i = 0; i < jsonObj.length(); i++) {
-                Log.e("test", jsonObj.getJSONObject(i).getString("PRowServiceNameF"));
-                arrayList.add(new String(jsonObj.getJSONObject(i).getString("PRowServiceNameF").toString()));
+                if (Locale.getDefault().getLanguage().equals("fa")) {
+                    Log.e("test", jsonObj.getJSONObject(i).getString("PRowServiceNameF"));
+                    arrayList.add(new String(jsonObj.getJSONObject(i).getString("PRowServiceNameF").toString()));
+                }else{
+                    Log.e("test", jsonObj.getJSONObject(i).getString("PRowServiceNameE"));
+                    arrayList.add(new String(jsonObj.getJSONObject(i).getString("PRowServiceNameE").toString()));
+                }
 
             }
             lvServices.setAdapter(new PackageServicesAdapter(this,arrayList));

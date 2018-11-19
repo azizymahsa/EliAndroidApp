@@ -117,6 +117,8 @@
                             android:layout_marginLeft="@dimen/_20dp_margin_p"
                             android:gravity="center"
                             android:text="tehran"
+                            android:ellipsize="end"
+                            android:singleLine="true"
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_12dp_normal_textSize" />
                     </LinearLayout>
@@ -194,6 +196,8 @@
                             android:layout_below="@+id/time_deprt_go"
                             android:gravity="right"
                             android:text="siraz"
+                            android:ellipsize="end"
+                            android:singleLine="true"
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_12dp_normal_textSize"
 
@@ -247,6 +251,8 @@
                             android:layout_below="@+id/time_drt_back"
                             android:gravity="center"
                             android:text="tehran"
+                            android:ellipsize="end"
+                            android:singleLine="true"
                             android:textColor="@color/text_color_4d"
                             android:textSize="@dimen/_12dp_normal_textSize" />
                     </LinearLayout>
@@ -322,7 +328,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/time_drt_back"
-
+                            android:ellipsize="end"
+                            android:singleLine="true"
                             android:gravity="right"
                             android:text="siraz"
                             android:textColor="@color/text_color_4d"

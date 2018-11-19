@@ -57,6 +57,7 @@ import com.eligasht.reservation.tools.Prefs;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
@@ -446,10 +447,14 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
         long departureToMilis = DateUtil.getMiliSecondFromJSONDate(String.valueOf(pRowXfers.get(0).getXferList().getXFlightsList().get(1).getFltArrDate()));
         departureTo = DateUtil.getDateTime(String.valueOf(departureToMilis), "yyyy/MM/dd");
-
-        String date = DateUtil.getShortStringDate(departureFrom, "yyyy/MM/dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy/MM/dd", true);
-        toolbar_date.setText(date);
-
+        //title date
+        if (Locale.getDefault().getLanguage().equals("fa")) {
+            String date = DateUtil.getShortStringDate(departureFrom, "yyyy/MM/dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy/MM/dd", true);
+            toolbar_date.setText(date);
+        }else{
+            String date = DateUtil.getShortStringDate(departureFrom, "yyyy/MM/dd", false) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy/MM/dd", false);
+            toolbar_date.setText(date);
+        }
         rcl_available_date.showList(lstAvailableDateAdapter);
         rcl_available_date.setVisibility(View.VISIBLE);
         rcl_available_date.getRecyclerView().scrollToPosition(indexSeletedItem - 2);

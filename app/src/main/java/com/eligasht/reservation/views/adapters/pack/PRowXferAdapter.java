@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Handler;
 
 /**
@@ -141,10 +142,20 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
         } else {
           //  holder.txt_count.setText(item.getXferList().getXFlightsList().get(0).getAvailable());
         }
-        holder.country_depart_go.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getDepartureCityName()) ? item.getXferList().getXFlightsList().get(0).getDepartureCityName() : item.getXferList().getXFlightsList().get(0).getDepartureCityName()));
-        holder.country_arive_go.setText( (ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getArrivalCityName()) ? item.getXferList().getXFlightsList().get(0).getArrivalCityName() : item.getXferList().getXFlightsList().get(0).getArrivalCityName()));
-        holder.country_depart_back.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(1).getDepartureCityName()) ? item.getXferList().getXFlightsList().get(1).getDepartureCityName() : item.getXferList().getXFlightsList().get(1).getDepartureCityName()));
-        holder.country_arive_back.setText( (ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(1).getArrivalCityName()) ? item.getXferList().getXFlightsList().get(1).getArrivalCityName() : item.getXferList().getXFlightsList().get(1).getArrivalCityName()));
+        if (Locale.getDefault().getLanguage().equals("fa")) {
+            holder.country_depart_go.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getDepartureCityName()) ? item.getXferList().getXFlightsList().get(0).getDepartureCityName() : item.getXferList().getXFlightsList().get(0).getDepartureCityName()));
+            holder.country_arive_go.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getArrivalCityName()) ? item.getXferList().getXFlightsList().get(0).getArrivalCityName() : item.getXferList().getXFlightsList().get(0).getArrivalCityName()));
+
+            holder.country_depart_back.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(1).getDepartureCityName()) ? item.getXferList().getXFlightsList().get(1).getDepartureCityName() : item.getXferList().getXFlightsList().get(1).getDepartureCityName()));
+            holder.country_arive_back.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(1).getArrivalCityName()) ? item.getXferList().getXFlightsList().get(1).getArrivalCityName() : item.getXferList().getXFlightsList().get(1).getArrivalCityName()));
+        }else{
+            holder.country_depart_go.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getDepartureCityNameEn()) ? item.getXferList().getXFlightsList().get(0).getDepartureCityNameEn() : item.getXferList().getXFlightsList().get(0).getDepartureCityNameEn()));
+            holder.country_arive_go.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getArrivalCityNameEn()) ? item.getXferList().getXFlightsList().get(0).getArrivalCityNameEn() : item.getXferList().getXFlightsList().get(0).getArrivalCityNameEn()));
+
+            holder.country_depart_back.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(1).getDepartureCityNameEn()) ? item.getXferList().getXFlightsList().get(1).getDepartureCityNameEn() : item.getXferList().getXFlightsList().get(1).getDepartureCityNameEn()));
+            holder.country_arive_back.setText((ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(1).getArrivalCityNameEn()) ? item.getXferList().getXFlightsList().get(1).getArrivalCityNameEn() : item.getXferList().getXFlightsList().get(1).getArrivalCityNameEn()));
+
+        }
         //holder.date_arrive.setText(ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(0).getShamsi())? item.getXferList().getXFlightsList().get(0).getShamsi() : item.getXferList().getXFlightsList().get(0).getShamsi());
         //holder.date_arrive.setText(ValidationTools.isEmptyOrNull(item.getXferList().getXFlightsList().get(1).getShamsi())? item.getXferList().getXFlightsList().get(1).getShamsi() : item.getXferList().getXFlightsList().get(1).getShamsi());
 
