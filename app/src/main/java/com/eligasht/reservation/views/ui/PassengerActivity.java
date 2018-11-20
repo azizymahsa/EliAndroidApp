@@ -1920,10 +1920,15 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					List<PreFactorService> jArray4 = jArray.getPreFactorServices();
 
 					for (int i = 0; i < jArray4.size(); i++) {
+						if (Locale.getDefault().getLanguage().equals("fa")) {
 						servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
-								jArray4.get(i).getServicePrice()+"",jArray4.get(i).getServiceType(),
-								jArray4.get(i).getCityFa(),jArray4.get(i).getServiceNameFa(),jArray4.get(i).getCountryFa()));
-
+								jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
+								jArray4.get(i).getCityFa(), jArray4.get(i).getServiceNameFa(), jArray4.get(i).getCountryFa()));
+						}else{
+							servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
+									jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
+									jArray4.get(i).getCityEn(), jArray4.get(i).getServiceNameEn(), jArray4.get(i).getCountryEn()));
+						}
 					}
 					if (!servicePreFactorModels.isEmpty()) {
 						llDetailService.setVisibility(View.VISIBLE);

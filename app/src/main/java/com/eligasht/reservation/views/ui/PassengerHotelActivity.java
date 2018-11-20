@@ -781,7 +781,6 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                 JSONArray jArray3 = jArray.getJSONArray("RequestPassenger");
 
-
                 for (int i = 0; i < jArray3.length(); i++) {
                     passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.getJSONObject(i).getString("Gender"), jArray3.getJSONObject(i).getString("Nationality"),
                             jArray3.getJSONObject(i).getString("RqPassenger_Birthdate"), jArray3.getJSONObject(i).getString("RqPassenger_PassNo"),

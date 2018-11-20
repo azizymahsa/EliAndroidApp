@@ -21,6 +21,7 @@ import com.eligasht.reservation.views.ui.PassengerHotelActivity;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class GetHotelKhadmatAdapter extends BaseAdapter {
@@ -114,9 +115,15 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 		}
 		//cursor.moveToPosition(position);
 		final PurchaseFlightResult current=data.get(position);
-		holder.txtDescription.setText(current.getServiceDescFa()+ "");
+		if (Locale.getDefault().getLanguage().equals("fa")) {
+			holder.txtDescription.setText(current.getServiceDescFa() + "");
 
-		holder.txtServiceNameFa.setText(current.getServiceNameFa());
+			holder.txtServiceNameFa.setText(current.getServiceNameFa());
+		}else{
+			holder.txtDescription.setText(current.getServiceDescEn() + "");
+
+			holder.txtServiceNameFa.setText(current.getServiceNameEn());
+		}
 		holder.txtServiceTotalPrice.setText(current.getServiceTotalPrice() > 0 ? String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice())) : "It");//String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice()))+"");
 		if(current.getServiceTypeID().equals("4"))
 			holder.imageView1.setBackgroundResource(R.drawable.cip_service_khadamat);
