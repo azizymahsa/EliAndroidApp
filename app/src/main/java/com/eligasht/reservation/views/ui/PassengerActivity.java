@@ -1938,19 +1938,31 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					List<PreFactorFlight> jArray5 = jArray.getPreFactorFlights();
 
 					for (int i = 0; i < jArray5.size(); i++) {
+						if (Locale.getDefault().getLanguage().equals("fa")) {
+							flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameFa(),
+									jArray5.get(i).getDepAirPortFa() + "",//String("DepAirPortFa"),
+									jArray5.get(i).getArrAirPortFa() + "",//String("ArrAirPortFa"),
+									Utility.dateShow(jArray5.get(i).getFltDate()) + "",//String("FltDate")),
+									jArray5.get(i).getFltTime() + "",//String("FltTime"),
+									//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+									jArray5.get(i).getFltCheckinTime() + "",//;//String("FltCheckinTime"),
 
-						flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameFa(),
-								jArray5.get(i).getDepAirPortFa()+"",//String("DepAirPortFa"),
-								jArray5.get(i).getArrAirPortFa()+"",//String("ArrAirPortFa"),
-								Utility.dateShow(jArray5.get(i).getFltDate())+"",//String("FltDate")),
-								jArray5.get(i).getFltTime()+"",//String("FltTime"),
-								//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
-								jArray5.get(i).getFltCheckinTime()+"",//;//String("FltCheckinTime"),
+									jArray5.get(i).getFltNumber() + "",
+									jArray5.get(i).getAirlineNameFa() + "",
+									jArray5.get(i).getDepartureCityFa() + "", jArray5.get(i).getAirlineCode() + "", jArray5.get(i).getArrivalCityFa()));
+						}else{
+							flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameEn(),
+									jArray5.get(i).getDepAirPortEn() + "",//String("DepAirPortFa"),
+									jArray5.get(i).getArrAirPortEn() + "",//String("ArrAirPortFa"),
+									Utility.dateShow(jArray5.get(i).getFltDate()) + "",//String("FltDate")),
+									jArray5.get(i).getFltTime() + "",//String("FltTime"),
+									//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+									jArray5.get(i).getFltCheckinTime() + "",//;//String("FltCheckinTime"),
 
-								jArray5.get(i).getFltNumber()+"",
-								jArray5.get(i).getAirlineNameFa()+"",
-								jArray5.get(i).getDepartureCityFa()+"",jArray5.get(i).getAirlineCode()+"",jArray5.get(i).getArrivalCityFa()));
-
+									jArray5.get(i).getFltNumber() + "",
+									jArray5.get(i).getAirlineNameEn() + "",
+									jArray5.get(i).getDepartureCityEn() + "", jArray5.get(i).getAirlineCode() + "", jArray5.get(i).getArrivalCityEn()));
+						}
 					}
 					if (!flightPreFactorModels.isEmpty()) {
 						llDetailFlight.setVisibility(View.VISIBLE);
@@ -2123,15 +2135,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					e.printStackTrace();
 				}
 
-				/*etFirstNameEn.setText(obj.getString("Given Name"));
-				etLastNameEn.setText(obj.getString("Surname"));
-				etPassportId.setText(obj.getString("Document Number"));
-				etExpireDate.setText(obj.getString("Expiration Date"));
-				etGender.setText(obj.getString("Sex").equals("M") ? "مرد" : "زن");*/
-				// genderCode = obj.getString("Sex").equals("M") ? 25 : 27;
-
-
-
 
 			}
 
@@ -2264,161 +2267,6 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	}
 
-/*
-	private class GenericTextWatcher implements TextWatcher{
-
-		private View view;
-		private GenericTextWatcher(View view) {
-			this.view = view;
-		}
-
-		public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-		public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-		public void afterTextChanged(Editable editable) {
-			String text = editable.toString();
-
-			switch(view.getId()){
-				*/
-/*//*
-/مسافر
-				case R.id.txtmahale_eghamat:
-					if(text != null && text.length()>1){
-						((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#4d4d4d"));
-						//flagMosafer=flagMosafer+"T";
-					}else{
-						((TextView)findViewById(R.id.txtmahale_eghamat)).setTextColor(Color.parseColor("#ff3300"));
-						txtmahale_eghamat.setError("لطفا محل اقامت را وارد کنید ");
-					}
-					break;
-				case R.id.txtmeliyatm:
-					if(text != null && text.length()>1){
-						((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#4d4d4d"));
-						//flagMosafer=flagMosafer+"T";
-					}else{
-						((TextView)findViewById(R.id.txtmeliyatm)).setTextColor(Color.parseColor("#ff3300"));
-						txtmeliyatm.setError("لطفا ملیت را وارد کنید ");
-					}
-					break;
-				case R.id.txttavalodm:
-					if(text != null && text.length()>4){
-						((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
-						//flagMosafer=flagMosafer+"T";
-					}else{
-						((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#ff3300"));
-						txttavalodm.setError("لطفا تاریخ تولد را وارد کنید ");
-					}
-					break;
-
-				case R.id.txtnamem:
-					if(text != null)
-						if( text.length()>1 && text.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")){
-							((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#4d4d4d"));
-							//flagMosafer=flagMosafer+"T";
-						}else{
-							((EditText)findViewById(R.id.txtnamem)).setTextColor(Color.parseColor("#ff3300"));
-							txtnamem.setError("لطفا نام را انگلیسی وارد کنید ");
-						}
-					break;
-				case R.id.txtfamilym:
-					if(text != null)
-						if( text.length()>1 && text.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$") ){
-							((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#4d4d4d"));
-							//flagMosafer=flagMosafer+"T";
-						}else{
-							((EditText)findViewById(R.id.txtfamilym)).setTextColor(Color.parseColor("#ff3300"));
-							txtfamilym.setError("لطفا نام خانوادگی را انگلیسی وارد کنید ");
-						}
-					break;
-				case R.id.txtexp_passport:
-					if(text != null && text.length()>4){
-						((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
-
-					}else{
-						((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
-						txtexp_passport.setError("لطفا انقضاء پاسپورت را وارد کنید ");
-					}
-					break;
-				case R.id.txtnumber_passport:
-
-					if( text.trim().length()>6 && text.trim().length()<10 && (text.trim().substring(0,1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && text.trim().substring(1, text.length()-1).matches("[0-9]+")){
-						((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
-
-					}else{
-						((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-						txtnumber_passport.setError("لطفا شماره پاسپورت را صحیح وارد کنید ");
-					}
-					if(text != null && text.length()>4){
-					}else{
-						((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-						txtnumber_passport.setError("لطفا شماره پاسپورت را وارد کنید ");
-					}
-
-					break;
-
-				//خریدار
-				case R.id.txtemeliP:
-					String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-					if (text.matches(emailPattern) && text.length() > 0){
-						//if( Patterns.EMAIL_ADDRESS.matcher(text).matches() ){
-						((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
-
-					}else{
-						((EditText)findViewById(R.id.txtemeliP)).setTextColor(Color.parseColor("#ff3300"));
-						txtemeliP.setError("لطفا ایمیل را وارد کنید ");
-					}
-
-					break;
-				case R.id.txtnameP:
-
-					if(text != null)
-						if( text.length()>2 && !(text.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
-							((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
-
-						}else{
-							((EditText)findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#ff3300"));
-							txtnameP.setError("لطفا نام را فارسی وارد کنید ");
-						}
-					break;
-				case R.id.txtfamilyP:
-
-					if(text != null)
-						if( text.length()>2 && !(text.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$"))){
-							((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
-
-						}else{
-							((EditText)findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#ff3300"));
-							txtfamilyP.setError("لطفا نام خانوادگی را فارسی وارد کنید ");
-						}
-					break;
-
-				case R.id.txtmobileP:
-
-					if(text != null && text.length()>9 && text.matches("[0-9]+")){
-						((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#4d4d4d"));
-
-					}else{
-						((EditText)findViewById(R.id.txtmobileP)).setTextColor(Color.parseColor("#ff3300"));
-						txtmobileP.setError("لطفا شماره موبایل را وارد کنید ");
-					}
-					break;
-				case R.id.txtkodemeliP:
-					if(text != null)
-						if( text.length()>9 &&  text.length()<12 && text.matches("[0-9]+")){
-							((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));
-
-						}else{
-							((EditText)findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#ff3300"));
-							txtkodemeliP.setError("لطفا کد ملی را وارد کنید ");
-						}
-					break;*//*
-
-
-			}
-		}
-	}
-*/
-
 
 	public static Bitmap getBitmap(String barcode, int barcodeType, int width, int height)
 	{
@@ -2531,14 +2379,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		return yearS + "-" + "0" + monthS + "-" + dayS;
 	}
-	/*String currentDateTime2 = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
-	int currentDay2 = DateUtil.getDayOfMonth(currentDateTime2, "yyyy-MM-dd", true);
-	int currentYear2 = DateUtil.getYear(currentDateTime2, "yyyy-MM-dd", true)-2;
-	int currentMonth2 = DateUtil.getMonth(currentDateTime2, "yyyy-MM-dd", true)-1 ;
-	PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
-	persianCalendarDatePicker2.set(currentYear2, currentMonth2, currentDay2);
 
-	datePickerDialogGregorian1.setMaxDate(persianCalendarDatePicker2.toGregorianCalendar());*/
 	@Override
 	public void onDateSet(com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
 

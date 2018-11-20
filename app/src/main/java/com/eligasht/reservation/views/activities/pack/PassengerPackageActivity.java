@@ -1603,11 +1603,19 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
                         List<PreFactorHotel> jArray2 = jArray.getPreFactorHotels();
                         for (int i = 0; i < jArray2.size(); i++) {
-                            hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
-                                    Utility.dateShow(jArray2.get(i).getHotelChekin()),
-                                    Utility.dateShow(jArray2.get(i).getHotelChekout()),
-                                    jArray2.get(i).getAdlCount() + "",
-                                    jArray2.get(i).getChdCount() + "", jArray2.get(i).getRoomTitleFa(),jArray2.get(i).getCityEn()));
+                            if (Locale.getDefault().getLanguage().equals("fa")) {
+                                hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
+                                        Utility.dateShow(jArray2.get(i).getHotelChekin()),
+                                        Utility.dateShow(jArray2.get(i).getHotelChekout()),
+                                        jArray2.get(i).getAdlCount() + "",
+                                        jArray2.get(i).getChdCount() + "", jArray2.get(i).getRoomTitleFa(), jArray2.get(i).getCityEn()));
+                            }else{
+                                hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
+                                        Utility.dateShow(jArray2.get(i).getHotelChekin()),
+                                        Utility.dateShow(jArray2.get(i).getHotelChekout()),
+                                        jArray2.get(i).getAdlCount() + "",
+                                        jArray2.get(i).getChdCount() + "", jArray2.get(i).getRoomTitleEn(), jArray2.get(i).getCityEn()));
+                            }
                         }
                         if (!hotelPreFactorModels.isEmpty()) {
                             recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
@@ -1635,9 +1643,15 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
                         List<PreFactorService> jArray4 = jArray.getPreFactorServices();
                         for (int i = 0; i < jArray4.size(); i++) {
-                            servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
-                                    jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
-                                    jArray4.get(i).getCityFa(), jArray4.get(i).getServiceNameFa(), jArray4.get(i).getCountryFa()));
+                            if (Locale.getDefault().getLanguage().equals("fa")) {
+                                servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
+                                        jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
+                                        jArray4.get(i).getCityFa(), jArray4.get(i).getServiceNameFa(), jArray4.get(i).getCountryFa()));
+                            }else{
+                                servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
+                                        jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
+                                        jArray4.get(i).getCityEn(), jArray4.get(i).getServiceNameEn(), jArray4.get(i).getCountryEn()));
+                            }
                         }
                         if (!servicePreFactorModels.isEmpty()) {
                             llDetailService.setVisibility(View.VISIBLE);
@@ -1650,16 +1664,29 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
                         List<PreFactorFlight> jArray5 = jArray.getPreFactorFlights();
                         for (int i = 0; i < jArray5.size(); i++) {
-                            flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameFa(),
-                                    jArray5.get(i).getDepAirPortFa(),
-                                    jArray5.get(i).getArrAirPortFa(),
-                                    Utility.dateShow(jArray5.get(i).getFltDate()),
-                                    jArray5.get(i).getFltTime(),
-                                    //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
-                                    jArray5.get(i).getFltCheckinTime(),
-                                    jArray5.get(i).getFltNumber(),
-                                    jArray5.get(i).getAirlineNameFa(),
-                                    jArray5.get(i).getDepartureCityFa(), jArray5.get(i).getAirlineCode(),jArray5.get(i).getArrivalCityFa()));
+                            if (Locale.getDefault().getLanguage().equals("fa")) {
+                                flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameFa(),
+                                        jArray5.get(i).getDepAirPortFa(),
+                                        jArray5.get(i).getArrAirPortFa(),
+                                        Utility.dateShow(jArray5.get(i).getFltDate()),
+                                        jArray5.get(i).getFltTime(),
+                                        //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+                                        jArray5.get(i).getFltCheckinTime(),
+                                        jArray5.get(i).getFltNumber(),
+                                        jArray5.get(i).getAirlineNameFa(),
+                                        jArray5.get(i).getDepartureCityFa(), jArray5.get(i).getAirlineCode(), jArray5.get(i).getArrivalCityFa()));
+                            }else{
+                                flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameEn(),
+                                        jArray5.get(i).getDepAirPortEn(),
+                                        jArray5.get(i).getArrAirPortEn(),
+                                        Utility.dateShow(jArray5.get(i).getFltDate()),
+                                        jArray5.get(i).getFltTime(),
+                                        //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+                                        jArray5.get(i).getFltCheckinTime(),
+                                        jArray5.get(i).getFltNumber(),
+                                        jArray5.get(i).getAirlineNameEn(),
+                                        jArray5.get(i).getDepartureCityEn(), jArray5.get(i).getAirlineCode(), jArray5.get(i).getArrivalCityEn()));
+                            }
                         }
                         if (!flightPreFactorModels.isEmpty()) {
                             llDetailFlight.setVisibility(View.VISIBLE);

@@ -2414,7 +2414,7 @@
     <string name="create_account">CREATE ACCOUNT</string>
     <string name="locationAlert">Your location is off, please turn on your locator to use this section.</string>
     <string name="calculated">Calculated</string>
-    <string name="service_name">Hizmet adı</string>
+    <string name="service_name">Service Name</string>
     <string name="message">Messages</string>
     <string name="today">today</string>
     <string name="nomessage">You do not have a message at the moment</string>

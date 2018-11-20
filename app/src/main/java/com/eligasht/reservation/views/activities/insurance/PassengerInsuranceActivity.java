@@ -716,11 +716,17 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     List<PreFactorService> preFactor4 = preFactor.getPreFactorServices();
 
                     for (int i = 0; i < preFactor4.size(); i++) {
-                        servicePreFactorModels.add(new ServicePreFactorModel(preFactor4.get(i).getServiceNameEn(),
-                                preFactor4.get(i).getServicePrice()+"", preFactor4.get(i).getServiceType(),
-                                preFactor4.get(i).getCityFa(), preFactor4.get(i).getServiceNameFa(), preFactor4.get(i).getCountryFa()))
-                        ;
-
+                        if (Locale.getDefault().getLanguage().equals("fa")) {
+                            servicePreFactorModels.add(new ServicePreFactorModel(preFactor4.get(i).getServiceNameEn(),
+                                    preFactor4.get(i).getServicePrice() + "", preFactor4.get(i).getServiceType(),
+                                    preFactor4.get(i).getCityFa(), preFactor4.get(i).getServiceNameFa(), preFactor4.get(i).getCountryFa()))
+                            ;
+                        }else{
+                            servicePreFactorModels.add(new ServicePreFactorModel(preFactor4.get(i).getServiceNameEn(),
+                                    preFactor4.get(i).getServicePrice() + "", preFactor4.get(i).getServiceType(),
+                                    preFactor4.get(i).getCityEn(), preFactor4.get(i).getServiceNameEn(), preFactor4.get(i).getCountryEn()))
+                            ;
+                        }
                     }
                     if (!servicePreFactorModels.isEmpty()) {
                         llDetailService.setVisibility(View.VISIBLE);

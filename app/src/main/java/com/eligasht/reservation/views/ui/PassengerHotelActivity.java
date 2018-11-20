@@ -803,11 +803,17 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 JSONArray jArray4 = jArray.getJSONArray("PreFactorServices");
 
                 for (int i = 0; i < jArray4.length(); i++) {
-                    servicePreFactorModels.add(new ServicePreFactorModel(jArray4.getJSONObject(i).getString("ServiceNameEn"),
-                            jArray4.getJSONObject(i).getString("ServicePrice"), jArray4.getJSONObject(i).getString("ServiceType"),
-                            jArray4.getJSONObject(i).getString("CityFa"), jArray4.getJSONObject(i).getString("ServiceNameFa"),
-                            jArray4.getJSONObject(i).getString("CountryFa")));
-
+                    if (Locale.getDefault().getLanguage().equals("fa")) {
+                        servicePreFactorModels.add(new ServicePreFactorModel(jArray4.getJSONObject(i).getString("ServiceNameEn"),
+                                jArray4.getJSONObject(i).getString("ServicePrice"), jArray4.getJSONObject(i).getString("ServiceType"),
+                                jArray4.getJSONObject(i).getString("CityFa"), jArray4.getJSONObject(i).getString("ServiceNameFa"),
+                                jArray4.getJSONObject(i).getString("CountryFa")));
+                    }else{
+                        servicePreFactorModels.add(new ServicePreFactorModel(jArray4.getJSONObject(i).getString("ServiceNameEn"),
+                                jArray4.getJSONObject(i).getString("ServicePrice"), jArray4.getJSONObject(i).getString("ServiceType"),
+                                jArray4.getJSONObject(i).getString("CityEn"), jArray4.getJSONObject(i).getString("ServiceNameEn"),
+                                jArray4.getJSONObject(i).getString("CountryEn")));
+                    }
                 }
                 if (!servicePreFactorModels.isEmpty()) {
                     llDetailService.setVisibility(View.VISIBLE);
@@ -822,23 +828,35 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
 
                 for (int i = 0; i < jArray5.length(); i++) {
-                    /////////////////////////////////////////////
+                    if (Locale.getDefault().getLanguage().equals("fa")) {
+                        flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameFa"),
+                                jArray5.getJSONObject(i).getString("DepAirPortFa"),
+                                jArray5.getJSONObject(i).getString("ArrAirPortFa"),
+                                Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
+                                jArray5.getJSONObject(i).getString("FltTime"),
+                                //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+                                jArray5.getJSONObject(i).getString("FltCheckinTime"),
 
+                                jArray5.getJSONObject(i).getString("FltNumber"),
+                                jArray5.getJSONObject(i).getString("AirlineNameFa"),
+                                jArray5.getJSONObject(i).getString("DepartureCityFa"),
+                                jArray5.getJSONObject(i).getString("AirlineCode"),
+                                jArray5.getJSONObject(i).getString("ArrivalCityFa")));
+                    }else{
+                        flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameEn"),
+                                jArray5.getJSONObject(i).getString("DepAirPortEn"),
+                                jArray5.getJSONObject(i).getString("ArrAirPortEn"),
+                                Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
+                                jArray5.getJSONObject(i).getString("FltTime"),
+                                //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+                                jArray5.getJSONObject(i).getString("FltCheckinTime"),
 
-                    ////////////////////////
-                    flightPreFactorModels.add(new FlightPreFactorModel(jArray5.getJSONObject(i).getString("AirlineNameFa"),
-                            jArray5.getJSONObject(i).getString("DepAirPortFa"),
-                            jArray5.getJSONObject(i).getString("ArrAirPortFa"),
-                            Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
-                            jArray5.getJSONObject(i).getString("FltTime"),
-                            //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
-                            jArray5.getJSONObject(i).getString("FltCheckinTime"),
-
-                            jArray5.getJSONObject(i).getString("FltNumber"),
-                            jArray5.getJSONObject(i).getString("AirlineNameFa"),
-                            jArray5.getJSONObject(i).getString("DepartureCityFa"),
-                            jArray5.getJSONObject(i).getString("AirlineCode"),
-                            jArray5.getJSONObject(i).getString("ArrivalCityFa")));
+                                jArray5.getJSONObject(i).getString("FltNumber"),
+                                jArray5.getJSONObject(i).getString("AirlineNameEn"),
+                                jArray5.getJSONObject(i).getString("DepartureCityEn"),
+                                jArray5.getJSONObject(i).getString("AirlineCode"),
+                                jArray5.getJSONObject(i).getString("ArrivalCityEn")));
+                    }
                 }
                 if (!flightPreFactorModels.isEmpty()) {
                     llDetailFlight.setVisibility(View.VISIBLE);

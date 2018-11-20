@@ -1480,7 +1480,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                     } else {
                         if (Locale.getDefault().getLanguage().equals("fa")) {
                             GetFlightFa(responsSearchFlight);
-                        } else if (Locale.getDefault().getLanguage().equals("en")) {
+                        } else  {
                             getFlightEn(responsSearchFlight);
                         }
                         //Add to list expanding :
