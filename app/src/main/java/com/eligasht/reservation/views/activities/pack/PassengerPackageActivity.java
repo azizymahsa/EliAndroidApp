@@ -349,7 +349,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         alRoom.addAll(hs);
         rooms = alRoom.size();
         imgCount = (TextView) findViewById(R.id.imgCount);
-        if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+        if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
             imgCount.setText(getCounter(room) + " " + getString(R.string.room));
         } else {
             imgCount.setText(getString(R.string.room) + " " + getCounter(room));
@@ -636,7 +636,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                             errorMessage = errorMessage + "\n" + "* " + getString(R.string.Email_format_is_correct);
                         }
                         if (RqPartner_FirstNameFa != null) {
-                            if (Locale.getDefault().getLanguage().equals("en")) {
+                            if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                                 if (RqPartner_FirstNameFa.length() > 2 && ((RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(RqPartner_FirstNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")))) {
                                     ((EditText) findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
@@ -656,7 +656,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                             }
                         }
                         if (RqPartner_LastNameFa != null) {
-                            if (Locale.getDefault().getLanguage().equals("en")) {
+                            if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                                 if (RqPartner_LastNameFa.length() > 2 && ((RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(RqPartner_LastNameFa.toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")))) {
                                     ((EditText) findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
                                     flagMosafer = flagMosafer + "T";
@@ -958,21 +958,21 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 }
                                 if (countB != 0) {
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + " " + getCounter(counter) + getString(R.string.adult_));
-                                    if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+                                    if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                     }
                                 } else if (countK != 0) {
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + " " + getCounter(counter) + getString(R.string.child_));
-                                    if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+                                    if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                     }
                                 } else if (countN != 0) {
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + " " + getCounter(counter) + getString(R.string.baby_));
-                                    if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+                                    if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
@@ -1026,7 +1026,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 if (countB >= 1) {
                                     System.out.println("countB:" + countB);
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter - 1) + getString(R.string.adult_));
-                                    if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+                                    if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
@@ -1035,7 +1035,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 } else if (countK >= 1) {
                                     System.out.println("countK:" + countK);
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + " " + getCounter(counter - 1) + getString(R.string.child_));
-                                    if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+                                    if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
@@ -1044,7 +1044,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 } else if (countN >= 1) {
                                     System.out.println("countN:" + countN);
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + " " + getCounter(counter - 1) + getString(R.string.baby_));
-                                    if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+                                    if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
@@ -1053,21 +1053,21 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                 }
                                 if (countB != 0) {
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + " " + getCounter(counter) + getString(R.string.adult_));
-                                    if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+                                    if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                     }
                                 } else if (countK != 0) {
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.child_));
-                                    if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+                                    if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                     }
                                 } else if (countN != 0) {
                                     txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.baby_));
-                                    if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
+                                    if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                                         imgCount.setText(getCounter(room) + " " + getString(R.string.room));
                                     } else {
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
@@ -1979,7 +1979,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 } else {
                     System.out.println("f");
                     if (txtnameP.getText().toString() != null) {
-                        if (Locale.getDefault().getLanguage().equals("en")) {
+                        if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                             if (txtnameP.getText().toString().length() > 2 && ((txtnameP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(txtnameP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")))) {
                                 ((EditText) findViewById(R.id.txtnameP)).setTextColor(Color.parseColor("#4d4d4d"));
                             } else {
@@ -2001,7 +2001,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                 } else {
                     System.out.println("f");
                     if (txtfamilyP.getText().toString() != null) {
-                        if (Locale.getDefault().getLanguage().equals("en")) {
+                        if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
                             if (txtfamilyP.getText().toString().length() > 2 && ((txtfamilyP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) || !(txtfamilyP.getText().toString().toLowerCase().matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")))) {
                                 ((EditText) findViewById(R.id.txtfamilyP)).setTextColor(Color.parseColor("#4d4d4d"));
                             } else {
