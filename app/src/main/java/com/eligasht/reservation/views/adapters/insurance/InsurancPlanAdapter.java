@@ -58,11 +58,42 @@ public class InsurancPlanAdapter extends RecyclerView.Adapter<InsuranceRowHolder
     @Override
     public void onBindViewHolder(InsuranceRowHolder holder, final int position) {
         final com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_ item = feedItemList.get(position);
-        holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getPrice() * count)));
+
+        switch (item.getCode()) {
+            case 1:
+                //cell.photoImage.image =  imageLiteral(resourceName: "yellow-border")//yellow
+                //cell.titleLabel.textColor =  colorLiteral(red: 0.9686434865, green: 0.578962326, blue: 0.1115724519, alpha: 1)
+                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getPrice())));
+                holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.yellow_border));//yellow
+            case -3:
+                //cell.photoImage.image =  imageLiteral(resourceName: "red-border")//c
+                //cell.titleLabel.textColor =  colorLiteral(red: 0.9255638719, green: 0.4216762483, blue: 0.4419255555, alpha: 1)
+               // price1 = price1 * categoryArray.count
+
+                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getPrice() * count)));
+                holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.red_border));//red
+            case -2:
+               /* cell.photoImage.image =  imageLiteral(resourceName: "green-border")//green
+                cell.titleLabel.textColor =  colorLiteral(red: 0.1016399041, green: 0.7363144159, blue: 0.6097738743, alpha: 1)
+                price1 = price1 * categoryArray.count*/
+                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getPrice() * count)));
+                holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.green_border));//green
+            case -1:
+               /* cell.photoImage.image =  imageLiteral(resourceName: "blue-border")//blue
+                cell.titleLabel.textColor =  colorLiteral(red: 0, green: 0.6590303183, blue: 0.9333506227, alpha: 1)
+                price1 = price1 * categoryArray.count*/
+                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getPrice() * count)));
+                holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.blue_border));//blue
+            default:
+                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getPrice())));
+                holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.yellow_border));//yellow
+
+        }
+
         holder.txtPlan.setText(item.getTitle());
         holder.txtTitle.setText(item.getTitleEnglish());
 
-        holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.yellow_border));
+
         holder.txtPlan.setTextColor(ContextCompat.getColor(context, R.color.color_hotel));
 
         holder.btn_insurance_booking.setOnClickListener(new View.OnClickListener() {
