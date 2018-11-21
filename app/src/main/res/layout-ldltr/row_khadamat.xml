@@ -38,6 +38,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_weight="1.03"
                     android:text="بیمه مسافرتی سامان"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:textColor="#000000"
                     android:textSize="@dimen/_12_dp_khadamat" />
 
