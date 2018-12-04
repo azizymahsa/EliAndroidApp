@@ -654,10 +654,8 @@
                             android:layout_marginBottom="5dp"
                             android:layout_weight="1.5"
                             android:background="@drawable/textview55"
-
                             android:gravity="right"
                             android:padding="8dp"
-
                             android:text="@string/First_passenger_information"
                             android:textColor="@color/text_color_2e"
                             android:textSize="@dimen/_13dp_normal_textSize" />

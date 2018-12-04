@@ -17,6 +17,7 @@ import com.eligasht.reservation.tools.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class GeCitiesForPackAdapter extends BaseAdapter {
@@ -88,9 +89,15 @@ public class GeCitiesForPackAdapter extends BaseAdapter {
         }
         //cursor.moveToPosition(position);
         final HotelCity current = data.getCities().get(position);
+        if (Locale.getDefault().getLanguage().equals("fa")) {
         holder.countryName.setText(current.getCityNameFa() + "");
 
         holder.countryName.setTag(current.getCityNameFa());
+        }else{
+            holder.countryName.setText(current.getCityNameEn() + "");
+
+            holder.countryName.setTag(current.getCityNameEn());
+        }
         holder.countryName.setOnClickListener(new View.OnClickListener() {
 
             @Override

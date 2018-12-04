@@ -145,7 +145,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public NonScrollListView listKhadamat;
 	ArrayList<HashMap<String,String>> mylist=null;
 	public static String searchText = "";
-    public boolean checkDomestic=false;
+	public boolean checkDomestic=false;
 	public static long GET_PRICE_KHADAMAT;
 	public LinearLayout llAddPassenger;
 	GetKhadmatAdapter mAdapter;
@@ -453,7 +453,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		txtnamem = (EditText) findViewById(R.id.txtnamem);
 		txtnamem.setOnClickListener(this);
-	//	txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
+		//	txtnamem.addTextChangedListener(new GenericTextWatcher(txtnamem));
 		txtnamem.setOnFocusChangeListener(this);
 
 		txtfamilym = (EditText) findViewById(R.id.txtfamilym);
@@ -561,7 +561,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		llDetailFlight = (LinearLayout) findViewById(R.id.llDetailFlight);
 		Utility.setAnimLoading(this);
 
-		 checkDomestic=Prefs.getBoolean("IsDemostic",false);
+		checkDomestic=Prefs.getBoolean("IsDemostic",false);
 		if(checkDomestic){
 			//linear_code_meli.setVisibility(View.VISIBLE);
 			linear_number_passport.setVisibility(View.GONE);
@@ -658,7 +658,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					System.out.println("f");
 					if(txttavalodm.getText().toString() != null && txttavalodm.getText().toString().length()>4){
 						((TextView)findViewById(R.id.txttavalodm)).setTextColor(Color.parseColor("#4d4d4d"));
-						}else{
+					}else{
 						txttavalodm.setError(getString(R.string.Please_enter_the_date_of_birth));
 					}
 				}
@@ -868,7 +868,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				Intent intent = new Intent(this, GetPassengerActivity.class);
 				startActivityForResult(intent, 555);
 				break;
-				case R.id.txtMore:
+			case R.id.txtMore:
 
 				linearMahaleeghamat.setVisibility(View.VISIBLE);
 				linearMeliyat.setVisibility(View.VISIBLE);
@@ -1209,13 +1209,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					String errorMessagePartner="";
 					///Validate
 					//if(checkDomestic){
-						if (txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length() == 10) {
-							((EditText) findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
-							flagMosafer = flagMosafer + "T";
-						} else {
-							flagMosafer = flagMosafer + "F";
-							errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.The_national_code_is_not_correct);
-						}
+					if (txt_NationalCode_m.getText().toString() != null && txt_NationalCode_m.getText().toString().length() == 10) {
+						((EditText) findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
+						flagMosafer = flagMosafer + "T";
+					} else {
+						flagMosafer = flagMosafer + "F";
+						errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.The_national_code_is_not_correct);
+					}
 					//}
 					if(linear_number_passport.getVisibility()==View.VISIBLE) {
 						if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
@@ -1530,11 +1530,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				Intent intent2 = new Intent("sendFinish");
 				LocalBroadcastManager.getInstance(this).sendBroadcast(intent2);
 				break;
-				case R.id.btnPromotionCode:
-					try {
-						//val fm = supportFragmentManager;
-                        PromotionCodeDialog resultGiftDialog = PromotionCodeDialog.newInstance(this);
-						resultGiftDialog.show(getSupportFragmentManager(),"dialog") ;
+			case R.id.btnPromotionCode:
+				try {
+					//val fm = supportFragmentManager;
+					PromotionCodeDialog resultGiftDialog = PromotionCodeDialog.newInstance(this);
+					resultGiftDialog.show(getSupportFragmentManager(),"dialog") ;
 						/*fm = supportFragmentManager;
 						locationAlertDialog = LocationAlertDialog(this, "lottie/verify_phone.json", "پیغام", getString(R.string.locationAlert), "مکان یاب", "بازگشت", true, this);
 						arrivalDialog = LocationAlertDialog(this, "lottie/location.json", "پیغام", "مبدا شما مشخص شد! لطفا هنگامی که به مقصد خود رسیدید دکمه رسیدم را فشار دهید.", "متوجه شدم!", "مکان یاب", false, this);
@@ -1546,7 +1546,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 						}
        					 }, 800);*/
-					}catch (Exception e) {
+				}catch (Exception e) {
 				}
 				break;
 		}
@@ -1592,7 +1592,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					passList.setNationality( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
 					passList.setNationalityID((cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value())).toUpperCase());
 
-				//	passList.setRqPassengerAddress( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
+					//	passList.setRqPassengerAddress( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
 					passList.setRqPassengerBirthdate( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
 					//passList.setRqPassengerEmail(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
 
@@ -1600,13 +1600,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					//passList.setRqPassengerFirstNameFa( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
 					passList.setRqPassengerLastNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
 
-				//	passList.setRqPassengerLastNameFa( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
-				//	passList.setRqPassengerMobile( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
+					//	passList.setRqPassengerLastNameFa( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
+					//	passList.setRqPassengerMobile( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
 					passList.setRqPassengerNationalCode(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
 
 					passList.setRqPassengerPassExpDate( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
 					passList.setRqPassengerPassNo( cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
-				//	passList.setRqPassengerTel(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
+					//	passList.setRqPassengerTel(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
 					passLists.add(i,passList);
 
 				}
@@ -1735,7 +1735,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 							mAdapter.setData(data);
 							listKhadamat.setAdapter(mAdapter);
-                            if(checkDomestic){
+							if(checkDomestic){
 								listKhadamat.setVisibility(View.GONE);
 							}
 							setAnimation();
@@ -1921,9 +1921,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					for (int i = 0; i < jArray4.size(); i++) {
 						if (Locale.getDefault().getLanguage().equals("fa")) {
-						servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
-								jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
-								jArray4.get(i).getCityFa(), jArray4.get(i).getServiceNameFa(), jArray4.get(i).getCountryFa()));
+							servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
+									jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
+									jArray4.get(i).getCityFa(), jArray4.get(i).getServiceNameFa(), jArray4.get(i).getCountryFa()));
 						}else{
 							servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
 									jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
@@ -2125,23 +2125,23 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		super.onActivityResult(requestCode, resultCode, data);
 
 
-			if (resultCode == Activity.RESULT_OK && requestCode == 1234) {
+		if (resultCode == Activity.RESULT_OK && requestCode == 1234) {
 
-				JSONObject obj = null;
-				try {
-					obj = new JSONObject(data.getStringExtra("result"));
-					txtfamilym.setText(obj.getString("Surname"));
-					txtnamem.setText(obj.getString("Given Name"));
-					txttavalodm.setText(obj.getString("Date of Birth"));
-					txtnumber_passport.setText(obj.getString("Document Number"));
-					txtexp_passport.setText(obj.getString("Expiration Date"));
-					Log.e( "onActivityResult: ", obj.getString("Surname")+" ** "+obj.getString("Given Name")+" ** "+obj.getString("Expiration Date")+" ** "+obj.getString("Sex"));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-
-
+			JSONObject obj = null;
+			try {
+				obj = new JSONObject(data.getStringExtra("result"));
+				txtfamilym.setText(obj.getString("Surname"));
+				txtnamem.setText(obj.getString("Given Name"));
+				txttavalodm.setText(obj.getString("Date of Birth"));
+				txtnumber_passport.setText(obj.getString("Document Number"));
+				txtexp_passport.setText(obj.getString("Expiration Date"));
+				Log.e( "onActivityResult: ", obj.getString("Surname")+" ** "+obj.getString("Given Name")+" ** "+obj.getString("Expiration Date")+" ** "+obj.getString("Sex"));
+			} catch (JSONException e) {
+				e.printStackTrace();
 			}
+
+
+		}
 
 		if(requestCode == 1 && resultCode == Activity.RESULT_OK){
 			String countryCode = data.getStringExtra(CountrycodeActivity.RESULT_CONTRYCODE);//RESULT_CONTRYNAME
@@ -2315,6 +2315,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				return BarcodeFormat.CODE_128;
 		}
 	}
+
 
 
 	/**************************************************************

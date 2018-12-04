@@ -43,7 +43,6 @@
             android:layout_height="@dimen/_30dp"
             android:layout_gravity="right|center"
             android:layout_marginRight="@dimen/_10dp_margin"
-
             android:background="@drawable/e_logo" />
 
 
@@ -774,13 +773,13 @@
                                 android:gravity="center"
                                 android:text="@string/man"
                                 android:textSize="@dimen/_15dp_normal_textSize" />
-                           <!-- <ImageView
-                                android:id="@+id/escanImage"
-                                android:layout_width="@dimen/_80dp_fh_"
-                                android:layout_height="@dimen/toolbar_height_70dp"
-                                android:layout_marginLeft="@dimen/_50_flight_dp"
-                                android:gravity="right"
-                                android:src="@drawable/eskan" />-->
+                            <!-- <ImageView
+                                 android:id="@+id/escanImage"
+                                 android:layout_width="@dimen/_80dp_fh_"
+                                 android:layout_height="@dimen/toolbar_height_70dp"
+                                 android:layout_marginLeft="@dimen/_50_flight_dp"
+                                 android:gravity="right"
+                                 android:src="@drawable/eskan" />-->
                         </LinearLayout>
 
                         <Spinner
