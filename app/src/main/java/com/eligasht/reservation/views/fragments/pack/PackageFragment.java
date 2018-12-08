@@ -43,6 +43,7 @@ import com.eligasht.reservation.tools.Prefs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,7 +97,11 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         super.onResume();
         hotelCity = Hawk.get("Value-Insurance-City", null);
         if (hotelCity != null && txtCity != null)
+            if (Locale.getDefault().getLanguage().equals("fa")) {
             txtCity.setText(hotelCity.getCityNameFa());
+        }else{
+            txtCity.setText(hotelCity.getCityNameEn());
+            }
     }
 
     @Override
