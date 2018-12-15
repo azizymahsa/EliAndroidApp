@@ -360,35 +360,35 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         int hTrue = 0;
         int mTrue = 0;
-        for (int i = 0; i < dataExpandingList.get(groupPosition).Header.SegmentTrueCount; i++) {
-            Log.e("SegmentTrueCount:", dataExpandingList.get(groupPosition).Header.SegmentTrueCount + "");
+       // for (int i = 0; i < dataExpandingList.get(groupPosition).Header.SegmentTrueCount; i++) {
+          Log.e("SegmentTrueCount:", dataExpandingList.get(groupPosition).Header.SegmentTrueCount + "");
             try {
-                hTrue = hTrue + Integer.parseInt(item2.segmentListtrueAkhari.get(i).getFltDurationH());
-                mTrue = mTrue + Integer.parseInt(item2.segmentListtrueAkhari.get(i).getFltDurationM());
+                hTrue = hTrue + Integer.parseInt(item2.segmentListtrueAkhari.get(item2.segmentListtrueAkhari.size()-1).getFltDurationH());
+                mTrue = mTrue + Integer.parseInt(item2.segmentListtrueAkhari.get(item2.segmentListtrueAkhari.size()-1).getFltDurationM());
             } catch (Exception e) {
                 lblFlightArrivalTimeLongR.setVisibility(View.INVISIBLE);
                 lblFlightArrivalTimeLongB.setVisibility(View.INVISIBLE);
             }
 
-        }
+      //  }
         int hour = mTrue / 60;
         int min = mTrue % 60;
         int sumTrueH = hTrue + hour;
         int sumTrueM = min;
         int hFalse = 0;
         int mFalse = 0;
-        for (int i = 0; i < dataExpandingList.get(groupPosition).Header.SegmentFalseCount; i++) {
+       // for (int i = 0; i < dataExpandingList.get(groupPosition).Header.SegmentFalseCount; i++) {
             Log.e("SegmentFalseCount:", dataExpandingList.get(groupPosition).Header.SegmentFalseCount + "");
             try {
-                hFalse = hFalse + Integer.parseInt(item2.segmentListfalseAkhari.get(i).getFltDurationH());
-                mFalse = mFalse + Integer.parseInt(item2.segmentListfalseAkhari.get(i).getFltDurationM());
+                hFalse = hFalse + Integer.parseInt(item2.segmentListfalseAkhari.get(item2.segmentListfalseAkhari.size()-1).getFltDurationH());
+                mFalse = mFalse + Integer.parseInt(item2.segmentListfalseAkhari.get(item2.segmentListfalseAkhari.size()-1).getFltDurationM());
             } catch (Exception e) {
                 lblFlightArrivalTimeLongR.setVisibility(View.INVISIBLE);
                 lblFlightArrivalTimeLongB.setVisibility(View.INVISIBLE);
 
             }
 
-        }
+       // }
         int hourF = mFalse / 60;
         int minF = mFalse % 60;
         int sumFalseH = hFalse + hourF;
@@ -499,7 +499,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             txtArrivelFalseLast.setText(item2.DepartureCityNameFaB);
             txtDepurtureFalseOne.setText(item2.ArrivalCityNameFaB);
 
-            num_flight_b.setText(item2.AirlineCode + item2.FlightNumberB);
+           // num_flight_b.setText(item2.AirlineCode + item2.FlightNumberB);
+            num_flight_b.setText(item2.segmentListfalseAkhari.get(item2.segmentListfalseAkhari.size()-1).getAirlineCode() + item2.segmentListfalseAkhari.get(item2.segmentListfalseAkhari.size()-1).getFlightNumber());
+
             ///////////////
             //lblArrivalCityNameFaB.setText(" برگشت به "+item2.DepartureCityNameFaB+"");
             System.out.println("bargasgt:" + item2.FltDateDayOfWeekFalse);
@@ -519,7 +521,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         txtDepurtureTrueOne.setText(item2.ArrivalCityNameFaR);
 
 
-        num_flight_r.setText(item2.AirlineCode + item2.FlightNumberR);
+       // num_flight_r.setText(item2.AirlineCode + item2.FlightNumberR);
+        num_flight_r.setText(item2.segmentListtrueAkhari.get(item2.segmentListtrueAkhari.size()-1).getAirlineCode() + item2.segmentListtrueAkhari.get(item2.segmentListtrueAkhari.size()-1).getFlightNumber());
         //
         //	lblArrivalCityNameFaR.setText(" رفت به "+item2.DepartureCityNameFaR+"");
         System.out.println("raft:" + item2.FltDateDayOfWeek);
