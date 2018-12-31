@@ -113,10 +113,10 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
     public TextView lblMoratabSazi,txtWeatherCity;
     public TextView txtRuzeBad, txtRuzeGhabl, iconFilter, txtFilter, txtNoResult;
     public FancyButton btnLastDays, btnNextDays;
-    public String RaftF;
-    public String BargashtF;
-    public String Raft;
-    public String Bargasht;
+    public String RaftF="";
+    public String BargashtF="";
+    public String Raft="";
+    public String Bargasht="";
     public TextView txtDateOnvan, txtDateOnvanB, tvLoading, txticon, tvChangeFlight, txticonDate;
     public RelativeLayout linear_expand;
     public SearchParvazPinAdapter searchParvazPinAdapter;
@@ -144,6 +144,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
     private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
     private ExpandableListAdapter listAdapterExpanding;
     private  RecyclerView recyclerViewHotel;
+    String flagWay="";
     public static void updateAdapterPin(List<PinModelDetail> pinModelDetails, List<PinModelHeader> pinModelHeaders, Context activity) {
         // TODO Auto-generated method stub
         // recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
@@ -274,11 +275,13 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 } else {
                     if (getIntent().getExtras().getBoolean("Geo")) {
                         txtDateOnvan.setText(BargashtF);
+                        txtDateOnvanB.setText(null);
                         txtDateOnvanB.setText(RaftF);
                         txtWeatherCity.setText(maghsadf+" "+getString(R.string.weather));
 
                     } else {
                         txtDateOnvan.setText(BargashtF);
+                        txtDateOnvanB.setText(null);
                         txtDateOnvanB.setText(RaftF);
                         txtWeatherCity.setText(getString(R.string.weather)+" "+maghsadf);
                     }
@@ -420,7 +423,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 }
                 String maghsadf = extras.getString("Value-Maghsad-Airport-Code");
                 String mabdaf = extras.getString("Value-Mabda-Airport-Code");
-                String flagWay = extras.getString("Value-Flag-Two");
+                 flagWay = extras.getString("Value-Flag-Two");
                 String adlCount = extras.getString("Value-AdlCount");
                 String chdCount = extras.getString("Value-ChdCount");
                 String infCount = extras.getString("Value-InfCount");
@@ -446,7 +449,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 requestSearchFlight.setRequest(request);
                 Log.d("sendRequestFlight: ",new Gson().toJson(requestSearchFlight));
                 SingletonService.getInstance().getFlight().flightSearchAvail(SearchFlightActivity.this, requestSearchFlight);
-                System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Raft" + Raft + "Bargasht" + Bargasht);
+               // System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Raft" + Raft + "Bargasht" + Bargasht);
             } else {
                 RequestSearchFlight requestSearchFlight = new RequestSearchFlight();
                 com.eligasht.service.model.flight.request.searchFlight.Request request = new com.eligasht.service.model.flight.request.searchFlight.Request();
@@ -1168,8 +1171,16 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                     Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
                     RaftF = SingletonDate.getInstance().getStartDate().getDescription();
                     BargashtF = SingletonDate.getInstance().getEndDate().getDescription();
-                    txtDateOnvanB.setText(RaftF);
-                    txtDateOnvan.setText(BargashtF);
+
+                    if(flagWay.trim().equals("2")){// اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2
+                        txtDateOnvanB.setText(null);
+                        txtDateOnvanB.setText(RaftF);
+                        txtDateOnvan.setText(BargashtF);
+                    }else{
+                        txticonDate.setText(RaftF);
+                        txtDateOnvanB.setText(null);
+                       // txtDateOnvanB.setText(RaftF);
+                    }
                     callApiDateNext();
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.datePickerError, Toast.LENGTH_SHORT).show();
@@ -1181,8 +1192,15 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                     Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
                     RaftF = SingletonDate.getInstance().getStartDate().getDescription();
                     BargashtF = SingletonDate.getInstance().getEndDate().getDescription();
-                    txtDateOnvanB.setText(RaftF);
-                    txtDateOnvan.setText(BargashtF);
+                    if(flagWay.trim().equals("2")){// اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2
+                        txtDateOnvanB.setText(null);
+                        txtDateOnvanB.setText(RaftF);
+                        txtDateOnvan.setText(BargashtF);
+                    }else{
+                        txticonDate.setText(RaftF);
+                        txtDateOnvanB.setText(null);
+                        // txtDateOnvanB.setText(RaftF);
+                    }
                     callApiDateNext();
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.datePickerError,
@@ -1198,8 +1216,15 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                     Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
                     RaftF = SingletonDate.getInstance().getStartDate().getDescription();
                     BargashtF = SingletonDate.getInstance().getEndDate().getDescription();
-                    txtDateOnvanB.setText(RaftF);
-                    txtDateOnvan.setText(BargashtF);
+                    if(flagWay.trim().equals("2")){// اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2
+                        txtDateOnvanB.setText(null);
+                        txtDateOnvanB.setText(RaftF);
+                        txtDateOnvan.setText(BargashtF);
+                    }else{
+                        txticonDate.setText(RaftF);
+                        txtDateOnvanB.setText(null);
+                        // txtDateOnvanB.setText(RaftF);
+                    }
                     callApiDateNext();
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.DatePickerError2,
@@ -1212,8 +1237,15 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                     Bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
                     RaftF = SingletonDate.getInstance().getStartDate().getDescription();
                     BargashtF = SingletonDate.getInstance().getEndDate().getDescription();
-                    txtDateOnvanB.setText(RaftF);
-                    txtDateOnvan.setText(BargashtF);
+                    if(flagWay.trim().equals("2")){// اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2
+                        txtDateOnvanB.setText(null);
+                        txtDateOnvanB.setText(RaftF);
+                        txtDateOnvan.setText(BargashtF);
+                    }else{
+                        txticonDate.setText(RaftF);
+                        txtDateOnvanB.setText(null);
+                        // txtDateOnvanB.setText(RaftF);
+                    }
                     callApiDateNext();
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.DatePickerError2, Toast.LENGTH_SHORT).show();
