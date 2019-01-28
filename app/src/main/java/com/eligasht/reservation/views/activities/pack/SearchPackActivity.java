@@ -228,7 +228,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             }
 
             @Override
-            public void onFailure(Call<PackageListRes> call, Throwable t) {
+            public void onFailure(Call<PackageListRes> call, Throwable t)  {
                 hideLoading();
                 rcl_package.showText();
                 txt_error.setText(R.string.ErrorServer);

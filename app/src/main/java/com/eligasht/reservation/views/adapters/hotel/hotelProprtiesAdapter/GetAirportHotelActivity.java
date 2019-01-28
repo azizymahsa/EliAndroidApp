@@ -226,7 +226,7 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 
                 // Enter URL address where your json file resides
                 // Even you can make call to php file which returns json data
-                url = new URL("http://mobilews.eligasht.com/Services/CommonRest/StaticDataService.svc/GetAirportWithParents");
+                url = new URL("https://mobilews.eligasht.com/Services/CommonRest/StaticDataService.svc/GetAirportWithParents");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -275,7 +275,7 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 
 
                 HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/Services/CommonRest/StaticDataService.svc/GetAirportWithParents");
+                post = new HttpPost("https://mobilews.eligasht.com/Services/CommonRest/StaticDataService.svc/GetAirportWithParents");
                 post.setHeader("Content-Type", "application/json; charset=UTF-8");
                 post.setHeader("Accept", "application/json; charset=UTF-8");
 

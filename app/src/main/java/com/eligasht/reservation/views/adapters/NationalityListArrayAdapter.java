@@ -1,6 +1,7 @@
 package com.eligasht.reservation.views.adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.eligasht.R;
+import com.eligasht.reservation.views.ui.CountrycodeActivity;
 import com.eligasht.reservation.views.ui.NationalitycodeActivity;
 
 import java.util.List;
@@ -38,6 +40,18 @@ public class NationalityListArrayAdapter extends ArrayAdapter<NationalitycodeAct
             view = inflator.inflate(R.layout.activity_countrycode_row, null);
             final ViewHolder viewHolder = new ViewHolder();
             viewHolder.name = view.findViewById(R.id.name);
+            viewHolder.name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                   /* CountrycodeActivity.Country c = countryList.get(position);
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra(RESULT_CONTRYCODE, c.getCode());
+                    returnIntent.putExtra(RESULT_CONTRYNAME, c.getName());
+                    setResult(RESULT_OK, returnIntent);
+                    imgs.recycle(); //recycle images
+                    finish();*/
+                }
+            });
           //  viewHolder.flag = view.findViewById(R.id.flag);
             view.setTag(viewHolder);
         } else {

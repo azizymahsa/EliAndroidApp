@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:orientation="vertical"
-    android:padding="10dp"
-    android:background="#ffffff"
-    android:id="@+id/llLayout"
-    android:gravity="center">
+
     <LinearLayout
-        android:id="@+id/llContentLayout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/_80dp_fh_"
+    android:layout_margin="@dimen/_20dp_margin_p"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,4 +32,3 @@
                 android:textSize="@dimen/icon_size_25dp" />
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>

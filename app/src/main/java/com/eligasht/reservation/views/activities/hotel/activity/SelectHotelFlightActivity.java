@@ -664,6 +664,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
 
     @Override
     public void onReady(HotelFlightResponse hotelFlightResponse) {
+        if(hotelFlightResponse != null)
+        Log.e("hotelFlightRespons:", new Gson().toJson(hotelFlightResponse ));
+
         this.hotelFlightResponse = hotelFlightResponse;
         new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -835,6 +838,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         request.setCulture(getString(R.string.culture));
         request.setSource(Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"));
         hotelFlightRequest.setRequest(request);
+        Log.e( "hotelFlightRequest: ",new Gson().toJson(request ));
         SingletonService.getInstance().getHotelService().hotelFlight(this, hotelFlightRequest);
     }
 
@@ -863,6 +867,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.colorPrimaryDark));
                 }
                 try {
+
                     selectHotelModelArrayList.clear();
                     if (loadFlightResponse.getLoadFlightResult().getErrors() != null) {
                         elNotFound.setVisibility(View.VISIBLE);
@@ -937,6 +942,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                                     loadFlightResponse.getLoadFlightResult().getHFlight().getFlightID()));
                             //  i++;
                         }
+
+
                         hotelFlightResultAdapter = new HotelFlightResultAdapter(selectHotelModelArrayList, SelectHotelFlightActivity.this, tvDate, isGrid);
                         rvHotelResult.setAdapter(hotelFlightResultAdapter);
                         hotelFlightResultAdapter.notifyDataSetChanged();

@@ -630,7 +630,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             try {
                 // Enter URL address where your json file resides
                 // Even you can make call to php file which returns json data
-                url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetPreFactorDetails");
+                url = new URL("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetPreFactorDetails");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -675,7 +675,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 HttpClient client = new DefaultHttpClient();
 
                 HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetPreFactorDetails");
+                post = new HttpPost("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetPreFactorDetails");
                 post.setHeader("Content-Type", "application/json; charset=UTF-8");
                 post.setHeader("Accept", "application/json; charset=UTF-8");
 
@@ -900,7 +900,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                 // Enter URL address where your json file resides
                 // Even you can make call to php file which returns json data
-                url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/PurchaseService");
+                url = new URL("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/PurchaseService");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -949,7 +949,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
                 HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/PurchaseService");
+                post = new HttpPost("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/PurchaseService");
                 post.setHeader("Content-Type", "application/json; charset=UTF-8");
                 post.setHeader("Accept", "application/json; charset=UTF-8");
 
@@ -1062,7 +1062,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                 // Enter URL address where your json file resides
                 // Even you can make call to php file which returns json data
-                url = new URL("http://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/PurchaseFlightHotel");
+                url = new URL("https://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/PurchaseFlightHotel");
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
@@ -1112,7 +1112,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
 
                 HttpPost post = new HttpPost();
-                post = new HttpPost("http://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/PurchaseFlightHotel");
+                post = new HttpPost("https://mobilews.eligasht.com/LightServices/Rest/Hotel/HotelService.svc/PurchaseFlightHotel");
                 post.setHeader("Content-Type", "application/json; charset=UTF-8");
                 post.setHeader("Accept", "application/json; charset=UTF-8");
 

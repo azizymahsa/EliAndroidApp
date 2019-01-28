@@ -11,6 +11,6 @@ public class APIConf extends BaseConf {
 
     static {
 
-      CORE_REST_API_URI = "http://mobilews.eligasht.com/LightServices/Rest/";
+      CORE_REST_API_URI = "https://mobilews.eligasht.com/LightServices/Rest/";
     }
 }
