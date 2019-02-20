@@ -56,13 +56,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public static final int READ_TIMEOUT = 15000;
     boolean isChangeFlight;
     String searchKey;
+    String searchKeyConfirm;
     String FlightId;
     ExpandableListViewE expListViewExpanding;
     int childPosition;
 
     public ExpandableListAdapter(Activity context, List<SearchFlightActivity.ParentItemExpandingPlan> dataList,
                                  SearchParvazPinAdapter searchParvazPinAdapter,
-                                 boolean isChangeFlight, String searchKey, String FlightId, ExpandableListViewE expListViewExpanding) {
+                                 boolean isChangeFlight, String searchKey, String FlightId, ExpandableListViewE expListViewExpanding,String searchKeyConfirm) {
         this._context = context;
         this.expListViewExpanding = expListViewExpanding;
 
@@ -71,6 +72,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         this.isChangeFlight = isChangeFlight;
         this.FlightId = FlightId;
         this.searchKey = searchKey;
+        this.searchKeyConfirm = searchKeyConfirm;
 
     }
 
@@ -108,6 +110,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                 Intent i4 = new Intent(_context, PassengerActivity.class);
 
                 i4.putExtra("Flight_GUID", item.flGUID + "");//current.getCityName()
+                i4.putExtra("Search_Key_Confirm", searchKeyConfirm + "");//current.getCityName()
 
                 // _context.startActivity(i4);
                 SwipeBackActivityHelper.activityBuilder(_context)
@@ -252,9 +255,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
                     _context.setResult(Activity.RESULT_OK, returnIntent);
                     _context.finish();
                 } else {
+                    //SearchFlightActivity.getConfirmFlightPrice();
                     Intent i4 = new Intent(_context, PassengerActivity.class);
 
                     i4.putExtra("Flight_GUID", item.flGUID + "");//current.getCityName()
+                    i4.putExtra("Search_Key_Confirm", searchKeyConfirm + "");//current.getCityName()
+
 
                     // _context.startActivity(i4);
                     SwipeBackActivityHelper.activityBuilder(_context)

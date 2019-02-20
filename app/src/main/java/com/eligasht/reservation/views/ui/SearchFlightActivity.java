@@ -34,7 +34,7 @@ import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.base.SingletonTimer;
-import com.eligasht.reservation.models.Country;
+
 import com.eligasht.reservation.models.model.ModelCheckBox;
 import com.eligasht.reservation.models.model.PinModelDetail;
 import com.eligasht.reservation.models.model.PinModelHeader;
@@ -53,30 +53,16 @@ import com.eligasht.reservation.views.ui.OBGFlight.PriceField;
 import com.eligasht.reservation.views.ui.dialog.flight.FilterFlightDialogNew;
 import com.eligasht.reservation.views.ui.dialog.flight.FilterModelّFlight;
 import com.eligasht.reservation.views.ui.dialog.flight.SortFlightDialog;
-import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.flight.request.ChangeFlight.RequestChangeFlight;
-import com.eligasht.service.model.flight.request.DomesticFlight.RequestDomesticFlight;
-import com.eligasht.service.model.flight.request.searchFlight.RequestSearchFlight;
+
 import com.eligasht.service.model.flight.response.ChangeFlight.ResponseChangeFlight;
-import com.eligasht.service.model.flight.response.DomesticFlight.GetIsDomesticResult;
-import com.eligasht.service.model.flight.response.DomesticFlight.ResponseDomesticFlight;
-import com.eligasht.service.model.flight.response.searchFlight.AdlBaseFare;
-import com.eligasht.service.model.flight.response.searchFlight.AdlCost;
-import com.eligasht.service.model.flight.response.searchFlight.AdlTotalFare;
-import com.eligasht.service.model.flight.response.searchFlight.BaseFare;
-import com.eligasht.service.model.flight.response.searchFlight.ChdBaseFare;
-import com.eligasht.service.model.flight.response.searchFlight.ChdCost;
-import com.eligasht.service.model.flight.response.searchFlight.ChdTotalFare;
-import com.eligasht.service.model.flight.response.searchFlight.InfBaseFare;
-import com.eligasht.service.model.flight.response.searchFlight.InfCost;
-import com.eligasht.service.model.flight.response.searchFlight.InfTotalFare;
-import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
-import com.eligasht.service.model.flight.response.searchFlight.SegmentList;
-import com.eligasht.service.model.flight.response.searchFlight.Taxes;
-import com.eligasht.service.model.flight.response.searchFlight.TotalFare;
-import com.eligasht.service.model.flight.response.searchFlight.TotalFareCost;
+
+import com.eligasht.service.model.newModel.flight.searchFlight.response.ResponseSearchFlight;
+
+
 import com.eligasht.service.model.weather.response.WeatherApi;
 import com.google.gson.Gson;
 import com.eligasht.reservation.tools.Prefs;
@@ -92,7 +78,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 import mehdi.sakout.fancybuttons.FancyButton;
-public class SearchFlightActivity extends BaseActivity implements SortFlightDialog.SortFlightDialogListener, FilterFlightDialogNew.FilterFlightDialogListenerArray, Header.onSearchTextChangedListener, OnItemClickListener, OnClickListener, OnItemSelectedListener, OnServiceStatus<ResponsSearchFlight> {
+public class SearchFlightActivity extends BaseActivity implements SortFlightDialog.SortFlightDialogListener, FilterFlightDialogNew.FilterFlightDialogListenerArray, Header.onSearchTextChangedListener, OnItemClickListener, OnClickListener, OnItemSelectedListener, OnServiceStatus<com.eligasht.service.model.newModel.flight.searchFlight.response.ResponseSearchFlight> {
 
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
@@ -139,6 +125,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
     Window window;
     boolean isChangeFlight;
     String searchKey;
+    String searchKeyConfirm;
     String FlightId;
     LinearLayout llNextLastDays, llDateToolbar, llBottom, llSort;
     private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
@@ -147,28 +134,10 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
     String flagWay="";
     public static void updateAdapterPin(List<PinModelDetail> pinModelDetails, List<PinModelHeader> pinModelHeaders, Context activity) {
         // TODO Auto-generated method stub
-        // recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+
         recyclerViewFlight.addItemDecoration(new DividerItemDecoration(activity, 1));
         recyclerViewFlight.setLayoutManager(new LinearLayoutManager(activity));
-        //ArrayList<PinModelDetail> pinModelDetails = new ArrayList<>();
-        //ArrayList<PinModelHeader> pinModelHeaders = new ArrayList<>();
-        //JSONArray jArray5 = jArray.getJSONArray("PreFactorFlights");
 
-		/*for (int i = 0; i < jArray5.length(); i++) {
-
-			pinModelDetails.add(new PinModelDetail(jArray5.getJSONObject(i).getString("AirlineNameFa"),
-					jArray5.getJSONObject(i).getString("DepAirPortFa"),
-					jArray5.getJSONObject(i).getString("ArrAirPortFa"),
-					Utility.dateShow(jArray5.getJSONObject(i).getString("FltDate")),
-					jArray5.getJSONObject(i).getString("FltTime"),
-					//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
-					jArray5.getJSONObject(i).getString("FltCheckinTime"),
-
-					jArray5.getJSONObject(i).getString("FltNumber"),
-					jArray5.getJSONObject(i).getString("AirlineNameFa"),
-					jArray5.getJSONObject(i).getString("DepartureCityFa")));
-
-		}*/
         if (!pinModelDetails.isEmpty()) {
             recyclerViewFlight.setVisibility(View.VISIBLE);
             recyclerViewFlight.setAdapter(new SearchParvazPinAdapter(pinModelDetails, pinModelHeaders));
@@ -313,7 +282,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
         // preparing list data
         expandingListData(true);
         Log.e("dataExpandingList: ",dataExpandingList.size()+"" );
-        listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
+        listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding,searchKeyConfirm);
         // setting list adapter
         expListViewExpanding.setAdapter(listAdapterExpanding);
         // Listview Group click listener
@@ -431,42 +400,44 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 COUNT_B = Integer.parseInt(adlCount);
                 COUNT_K = Integer.parseInt(chdCount);
                 COUNT_N = Integer.parseInt(infCount);
-                RequestSearchFlight requestSearchFlight = new RequestSearchFlight();
-                com.eligasht.service.model.flight.request.searchFlight.Request request = new com.eligasht.service.model.flight.request.searchFlight.Request();
-                com.eligasht.service.model.flight.request.searchFlight.Identity identity = new com.eligasht.service.model.flight.request.searchFlight.Identity();
+                com.eligasht.service.model.newModel.flight.searchFlight.request.RequestSearchFlight requestSearchFlight = new com.eligasht.service.model.newModel.flight.searchFlight.request.RequestSearchFlight();
+                com.eligasht.service.model.newModel.flight.searchFlight.request.QueryModel request = new com.eligasht.service.model.newModel.flight.searchFlight.request.QueryModel();
+                //com.eligasht.service.model.flight.request.searchFlight.Identity identity = new com.eligasht.service.model.flight.request.searchFlight.Identity();
                 //identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","jUserName":"EligashtMlb"}
-                request.setIdentity(identity);
-                request.setDepartureAirportcode(mabdaf);
-                request.setArrivalAirportcode(maghsadf);
-                request.setDepartureDate(Utility.convertNumbersToEnglish(Raft));
-                request.setArrivalDate(Utility.convertNumbersToEnglish(Bargasht));
-                request.setOneWay(flagWay);// اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
-                request.setCabinClassCode("all");
-                request.setAdlCount(Integer.parseInt(adlCount));
-                request.setChdCount(Integer.parseInt(chdCount));
-                request.setInfCount(Integer.parseInt(infCount));
-                request.setCulture(getString(R.string.culture));
-                requestSearchFlight.setRequest(request);
+               // request.setIdentity(identity);
+                request.setSourceText(mabdaf);
+                request.setDestinationText(maghsadf);
+                request.setCheckIn(Utility.convertNumbersToEnglish(Raft));
+                request.setCheckOut(Utility.convertNumbersToEnglish(Bargasht));
+                request.setTrip(mabdaf+"-"+maghsadf+"-"+Utility.convertNumbersToEnglish(Raft).replace("/","-")+"|"+maghsadf+"-"+mabdaf+"-"+Utility.convertNumbersToEnglish(Bargasht).replace("/","-"));//THR-IST-2019-03-06|IST-THR-2019-03-12//OneWay(flagWay);// اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
+                request.setPreferredClass("all");
+                request.setAdult(adlCount);
+                request.setChild(chdCount);
+                request.setInfant(infCount);
+                request.setCurrentCulture(getString(R.string.culture));
+                request.setExclusiveTrain(false);
+                requestSearchFlight.setQueryModel(request);
                 Log.d("sendRequestFlight: ",new Gson().toJson(requestSearchFlight));
-                SingletonService.getInstance().getFlight().flightSearchAvail(SearchFlightActivity.this, requestSearchFlight);
+                SingletonService.getInstance().getFlight().newFlightSearchAvail(SearchFlightActivity.this, requestSearchFlight);
                // System.out.println("maghsadf" + maghsadf + "mabda" + mabdaf + "flagWay" + flagWay + "aadlcount:" + adlCount + "Raft" + Raft + "Bargasht" + Bargasht);
             } else {
-                RequestSearchFlight requestSearchFlight = new RequestSearchFlight();
-                com.eligasht.service.model.flight.request.searchFlight.Request request = new com.eligasht.service.model.flight.request.searchFlight.Request();
-                com.eligasht.service.model.flight.request.searchFlight.Identity identity = new com.eligasht.service.model.flight.request.searchFlight.Identity();
-                request.setIdentity(identity);
-                request.setDepartureAirportcode("IST");
-                request.setArrivalAirportcode("IKA");
-                request.setDepartureDate("2017-12-24");
-                request.setArrivalDate("2018-01-29");
-                request.setOneWay("2");// اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
-                request.setCabinClassCode("all");
-                request.setAdlCount(1);
-                request.setChdCount(0);
-                request.setInfCount(0);
-                request.setCulture(getString(R.string.culture));
-                requestSearchFlight.setRequest(request);
-                SingletonService.getInstance().getFlight().flightSearchAvail(SearchFlightActivity.this, requestSearchFlight);
+                com.eligasht.service.model.newModel.flight.searchFlight.request.RequestSearchFlight requestSearchFlight = new com.eligasht.service.model.newModel.flight.searchFlight.request.RequestSearchFlight();
+                com.eligasht.service.model.newModel.flight.searchFlight.request.QueryModel request = new com.eligasht.service.model.newModel.flight.searchFlight.request.QueryModel();
+                //com.eligasht.service.model.flight.request.searchFlight.Identity identity = new com.eligasht.service.model.flight.request.searchFlight.Identity();
+                //requestSearchFlight.setIdentity(identity);
+                request.setSourceText("IST");
+                request.setDestinationText("IKA");
+                request.setCheckIn("2017-12-24");
+                request.setCheckOut("2018-01-29");
+                request.setTrip("IST"+"-"+"IKA"+"-"+Utility.convertNumbersToEnglish(Raft)+"|"+"IKA"+"-"+"IST"+"-"+Utility.convertNumbersToEnglish(Bargasht));//THR-IST-2019-03-06|IST-THR-2019-03-12//OneWay(flagWay);// اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
+                request.setPreferredClass("all");
+                request.setAdult("1");
+                request.setChild("0");
+                request.setInfant("0");
+                request.setCurrentCulture(getString(R.string.culture));
+                request.setExclusiveTrain(false);
+              requestSearchFlight.setQueryModel(request);
+                SingletonService.getInstance().getFlight().newFlightSearchAvail(SearchFlightActivity.this, requestSearchFlight);
                 //Global
                 COUNT_B = 1;
                 COUNT_K = 0;
@@ -479,19 +450,24 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
     }
 
     @Override
-    public void onReady(ResponsSearchFlight responsSearchFlight) {
+    public void onReady(ResponseSearchFlight responsSearchFlight) {
+        if (responsSearchFlight != null){
+        Log.d("responsSearchFlight: ",new Gson().toJson(responsSearchFlight));
 
-
+        txtCityRaft.setText(responsSearchFlight.getFlightSearched().getFlightSearchSegments().get(0).getSourceText()+"");//mabdaf
+        txtCityBargashtt.setText(responsSearchFlight.getFlightSearched().getFlightSearchSegments().get(0).getDestinationText()+"");//maghsadf
+        txtCityBargasht.setText(responsSearchFlight.getFlightSearched().getFlightSearchSegments().get(0).getDestinationText() + "");//maghsadf
+          }
         if (flightsList != null) {
             flightsList.clear();
         }
-        try {
+       try {
             SingletonTimer.getInstance().start();
             new InitUi().Loading(SearchFlightActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 window.setStatusBarColor(ContextCompat.getColor(SearchFlightActivity.this, R.color.colorPrimaryDark));
             }
-            if (responsSearchFlight.getSearchFlightsResult().getErrors() != null) {
+            if (responsSearchFlight.getErrors().size() >0 ) {
                 new InitUi().Loading(SearchFlightActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
                 // Log.e("date", result);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -500,7 +476,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 linear_expand = findViewById(R.id.linear_expand);
                 linear_expand.setVisibility(View.GONE);
                 RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
-                txtNoResult.setText(responsSearchFlight.getSearchFlightsResult().getErrors().get(0).getDetailedMessage());
+                txtNoResult.setText(responsSearchFlight.getErrors().get(0).getDetailedMessage());
                 linear_no_result.setVisibility(View.VISIBLE);
             } else {
                 if (recyclerViewHotel.getAdapter()!=null){
@@ -508,9 +484,9 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                     slidingDrawer.setVisibility(View.VISIBLE);
 
                 }
-
-                if (responsSearchFlight.getSearchFlightsResult().getFlights().size() > 0)
-                    responsSearchFlight.getSearchFlightsResult().getFlights().get(0).getBaseFare();
+                 searchKeyConfirm= responsSearchFlight.getFlightSearched().getSearchKey();
+                if (responsSearchFlight.getFlights().size() > 0)
+                    responsSearchFlight.getFlights().get(0).getBaseFare();
                 if (Locale.getDefault().getLanguage().equals("fa")) {
                     getDataFaJson(responsSearchFlight);
                 } else if (Locale.getDefault().getLanguage().equals("en")) {
@@ -887,7 +863,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 }
             }
             if (filterModel.isRemove()) {
-                listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
+                listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding,searchKeyConfirm);
                 expListViewExpanding.setAdapter(listAdapterExpanding);
                 iconFilter.setTextColor(Color.parseColor("#4d4d4d"));
                 txtFilter.setTextColor(Color.parseColor("#4d4d4d"));
@@ -919,7 +895,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
             }
 
         } else {
-            listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingListFilter, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
+            listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingListFilter, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding,searchKeyConfirm);
             expListViewExpanding.setAdapter(listAdapterExpanding);
             iconFilter.setTextColor(Color.RED);
             txtFilter.setTextColor(Color.RED);
@@ -946,7 +922,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                     }
                 });
 
-                listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
+                listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding,searchKeyConfirm);
 
                 expListViewExpanding.setAdapter(listAdapterExpanding);
                 listAdapterExpanding.notifyDataSetChanged();
@@ -960,7 +936,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                         return Double.compare(o1.Header.AdlCost, o2.Header.AdlCost);
                     }
                 });
-                listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
+                listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding,searchKeyConfirm);
                 expListViewExpanding.setAdapter(listAdapterExpanding);
                 listAdapterExpanding.notifyDataSetChanged();
                 break;
@@ -1269,6 +1245,16 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
         Log.e("DEBUG", "onResume of SearchFlightActivity");
         super.onResume();
     }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("lifecycle","onRestart invoked");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("lifecycle","onDestroy invoked");
+    }
 
     @Override
     public void onNothingSelected(AdapterView<?> arg0) {
@@ -1279,7 +1265,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
         // preparing list data
         expandingListData(false);
         Log.e("dataExpandingList: ",dataExpandingList.size()+"" );
-        listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding);
+        listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding,searchKeyConfirm);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -2003,58 +1989,65 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
         }
     }
 
-    void getDataFaJson(ResponsSearchFlight responsSearchFlight) {
-        try {
-            String GetError = "";
-            if (responsSearchFlight.getSearchFlightsResult().getErrors() != null) {
-                // if (!GetAirportsResult.getString("Errors").equals("null")) {
-                GetError = responsSearchFlight.getSearchFlightsResult().getErrors().get(0).getDetailedMessage();
-            }
-            if (GetError.length() > 1) {
-                if (GetError.contains("|")) {
-                    String[] s = GetError.split(Pattern.quote("|"));
-                    linear_expand = findViewById(R.id.linear_expand);
-                    linear_expand.setVisibility(View.GONE);
-                    RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
-                    txtNoResult.setText(s[1] + "");
-                    linear_no_result.setVisibility(View.VISIBLE);
-                } else {
-                    linear_expand = findViewById(R.id.linear_expand);
-                    linear_expand.setVisibility(View.GONE);
-                    RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
-                    txtNoResult.setText(GetError);
-                    linear_no_result.setVisibility(View.VISIBLE);
-                }
-            } else {
-                String ResultUniqID = null;//
-                ResultUniqID = responsSearchFlight.getSearchFlightsResult().getResultUniqID();
-                globalResultUniqID = ResultUniqID;
-                GetFlightFa(responsSearchFlight);
-                ///////////Parvaz
-                //Add to list expanding :
-                showDataExpanding();
-                //dakheli khareji
-                //  new AsyncCheckFlight().execute();
-                SendReqCheckFlight();
-                getAirLine();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+void getDataFaJson(com.eligasht.service.model.newModel.flight.searchFlight.response.ResponseSearchFlight responsSearchFlight) {
+    try {
+        String GetError = "";
+        if (responsSearchFlight.getErrors().size()> 0 ) {
+            // if (!GetAirportsResult.getString("Errors").equals("null")) {
+            GetError = responsSearchFlight.getErrors().get(0).getDetailedMessage();
         }
-    }//end fa
+        if (GetError.length() > 1) {
+            if (GetError.contains("|")) {
+                String[] s = GetError.split(Pattern.quote("|"));
+                linear_expand = findViewById(R.id.linear_expand);
+                linear_expand.setVisibility(View.GONE);
+                RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
+                txtNoResult.setText(s[1] + "");
+                linear_no_result.setVisibility(View.VISIBLE);
+            } else {
+                linear_expand = findViewById(R.id.linear_expand);
+                linear_expand.setVisibility(View.GONE);
+                RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
+                txtNoResult.setText(GetError);
+                linear_no_result.setVisibility(View.VISIBLE);
+            }
+        } else {
+            String ResultUniqID = null;//
+            ResultUniqID = responsSearchFlight.getResultUniqID();
+            globalResultUniqID = ResultUniqID;
+            GetFlightFa(responsSearchFlight);
+            ///////////Parvaz
+            //Add to list expanding :
+            showDataExpanding();
+            //dakheli khareji
+            //  new AsyncCheckFlight().execute();
+          //  SendReqCheckFlight();
+           boolean IsDemostic = responsSearchFlight.getFlights().get(0).getIsDomestic();//false khareji true dakheli//false khareji true dakheli
+            if (IsDemostic)
+                Prefs.putBoolean("IsDemostic", true);
+            else
+                Prefs.putBoolean("IsDemostic", false);
 
-    private void GetFlightFa(ResponsSearchFlight responsSearchFlight) {
+            getAirLine();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}//end fa
+
+    private void GetFlightFa(com.eligasht.service.model.newModel.flight.searchFlight.response.ResponseSearchFlight responsSearchFlight) {
         //Flights
-        for (int i = 0; i < responsSearchFlight.getSearchFlightsResult().getFlights().size(); i++) {
+        for (int i = 0; i < responsSearchFlight.getFlights().size(); i++) {
             Flight flight = new Flight();
             //SegmentList
             //  JSONArray ss = jPricedItinerary.getJSONArray("SegmentList");
             List<FlightSegment> SegmentList = new ArrayList<FlightSegment>();
             List<FlightSegmentTrue> SegmentListTrue = new ArrayList<FlightSegmentTrue>();
             List<FlightSegmentFalse> SegmentListFalse = new ArrayList<FlightSegmentFalse>();
-            for (int i1 = 0; i1 < responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getSegmentList().size(); i1++) {
+            for (int i1 = 0; i1 < responsSearchFlight.getFlights().get(i).getSegmentList().size(); i1++) {
                 //SONObject jPricedIfdgtinerary = ss.getJSONObject(i1);//
-                SegmentList jPricedIfdgtinerary = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getSegmentList().get(i1);
+                com.eligasht.service.model.newModel.flight.searchFlight.response.SegmentList jPricedIfdgtinerary = responsSearchFlight.getFlights().get(i).getSegmentList().get(i1);
                 FlightSegment flightSegment = new FlightSegment();
                 flightSegment.setAirlineCode(jPricedIfdgtinerary.getAirlineCode());
                 flightSegment.setAirlineID(jPricedIfdgtinerary.getAirlineID());
@@ -2195,75 +2188,75 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
             }//for segment parvazha
             ///////////////////////////////////////
             //  Flight flight =new Flight();
-            flight.setAdults(responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getAdults()); //int Adults ;
-            flight.setRemainSeats(responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getRemainSeats()); //int Adults ;
-            flight.setIsCharter(responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getIsCharter()); //int Adults ;
-            flight.setAccountID(responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getAccountID());// AccountID;
-            flight.setChilds(responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getChilds());//AdlBaseFare
-            flight.setFlightGUID(responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getFlightGUID());
-            AdlBaseFare jAdlBaseFare = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getAdlBaseFare();
+            flight.setAdults(responsSearchFlight.getFlights().get(i).getAdults()); //int Adults ;
+            flight.setRemainSeats(responsSearchFlight.getFlights().get(i).getRemainSeats()); //int Adults ;
+            flight.setIsCharter(responsSearchFlight.getFlights().get(i).getIsCharter()); //int Adults ;
+            flight.setAccountID(responsSearchFlight.getFlights().get(i).getAccountID());// AccountID;
+            flight.setChilds(responsSearchFlight.getFlights().get(i).getChilds());//AdlBaseFare
+            flight.setFlightGUID(responsSearchFlight.getFlights().get(i).getFlightGUID());
+            com.eligasht.service.model.newModel.flight.searchFlight.response.AdlBaseFare jAdlBaseFare = responsSearchFlight.getFlights().get(i).getAdlBaseFare();
             PriceField priceField = new PriceField();
             priceField.setAmount(jAdlBaseFare.getAmount());
             priceField.setCurrencyCode(jAdlBaseFare.getCurrencyCode());
             flight.setAdlBaseFare(priceField);//AdlCost
-            AdlCost AdlCost = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getAdlCost();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.AdlCost AdlCost = responsSearchFlight.getFlights().get(i).getAdlCost();
             PriceField priceField2 = new PriceField();
             priceField2.setAmount(AdlCost.getAmount());
             priceField2.setCurrencyCode(AdlCost.getCurrencyCode());
             flight.setAdlCost(priceField2);//AdlTotalFare
-            AdlTotalFare AdlTotalFare = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getAdlTotalFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.AdlTotalFare AdlTotalFare = responsSearchFlight.getFlights().get(i).getAdlTotalFare();
             PriceField priceField3 = new PriceField();
             priceField3.setAmount(AdlTotalFare.getAmount());
             priceField3.setCurrencyCode(AdlTotalFare.getCurrencyCode());
             flight.setAdlTotalFare(priceField3);//BaseFare
-            BaseFare BaseFare = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getBaseFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.BaseFare BaseFare = responsSearchFlight.getFlights().get(i).getBaseFare();
             PriceField priceField4 = new PriceField();
             priceField4.setAmount(BaseFare.getAmount());
             priceField4.setCurrencyCode(BaseFare.getCurrencyCode());
             flight.setBaseFare(priceField4);//ChdBaseFare
-            ChdBaseFare ChdBaseFare = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getChdBaseFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.ChdBaseFare ChdBaseFare = responsSearchFlight.getFlights().get(i).getChdBaseFare();
             PriceField priceField5 = new PriceField();
             priceField5.setAmount(ChdBaseFare.getAmount());
             priceField5.setCurrencyCode(ChdBaseFare.getCurrencyCode());
             flight.setChdBaseFare(priceField5);//BaseFare
             //  ChdCost  ChdTotalFare InfBaseFare InfCost InfTotalFare
-            ChdCost ChdCost = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getChdCost();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.ChdCost ChdCost = responsSearchFlight.getFlights().get(i).getChdCost();
             PriceField priceField6 = new PriceField();
             priceField6.setAmount(ChdCost.getAmount());
             priceField6.setCurrencyCode(ChdCost.getCurrencyCode());
             flight.setChdCost(priceField6);//
-            ChdTotalFare ChdTotalFare = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getChdTotalFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.ChdTotalFare ChdTotalFare = responsSearchFlight.getFlights().get(i).getChdTotalFare();
             PriceField priceField7 = new PriceField();
             priceField7.setAmount(ChdTotalFare.getAmount());
             priceField7.setCurrencyCode(ChdTotalFare.getCurrencyCode());
             flight.setChdTotalFare(priceField7);//
-            InfBaseFare InfBaseFare = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getInfBaseFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.InfBaseFare InfBaseFare = responsSearchFlight.getFlights().get(i).getInfBaseFare();
             PriceField priceField8 = new PriceField();
             priceField8.setAmount(InfBaseFare.getAmount());
             priceField8.setCurrencyCode(InfBaseFare.getCurrencyCode());
             flight.setInfBaseFare(priceField8);//
-            InfCost InfCost = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getInfCost();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.InfCost InfCost = responsSearchFlight.getFlights().get(i).getInfCost();
             PriceField priceField9 = new PriceField();
             priceField9.setAmount(InfCost.getAmount());
             priceField9.setCurrencyCode(InfCost.getCurrencyCode());
             flight.setInfCost(priceField9);//
-            InfTotalFare InfTotalFare = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getInfTotalFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.InfTotalFare InfTotalFare = responsSearchFlight.getFlights().get(i).getInfTotalFare();
             PriceField priceField10 = new PriceField();
             priceField10.setAmount(InfTotalFare.getAmount());
             priceField10.setCurrencyCode(InfTotalFare.getCurrencyCode());
             flight.setInfTotalFare(priceField10);//
             // Taxes TotalFare TotalFareCost
-            Taxes Taxes = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getTaxes();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.Taxes Taxes = responsSearchFlight.getFlights().get(i).getTaxes();
             PriceField priceField11 = new PriceField();
             priceField11.setAmount(Taxes.getAmount());
             priceField11.setCurrencyCode(Taxes.getCurrencyCode());
             flight.setTaxes(priceField11);//
-            TotalFare TotalFare = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getTotalFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.TotalFare TotalFare = responsSearchFlight.getFlights().get(i).getTotalFare();
             PriceField priceField12 = new PriceField();
             priceField12.setAmount(TotalFare.getAmount());
             priceField12.setCurrencyCode(TotalFare.getCurrencyCode());
             flight.setTotalFare(priceField12);//
-            TotalFareCost TotalFareCost = responsSearchFlight.getSearchFlightsResult().getFlights().get(i).getTotalFareCost();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.TotalFareCost TotalFareCost = responsSearchFlight.getFlights().get(i).getTotalFareCost();
             PriceField priceField13 = new PriceField();
             priceField13.setAmount(TotalFareCost.getAmount());
             priceField13.setCurrencyCode(TotalFareCost.getCurrencyCode());
@@ -2271,79 +2264,12 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
             flightsList.add(flight);
         }
     }//end GeflightFa
-
-    private void SendReqCheckFlight() {
-        RequestDomesticFlight requestDomesticFlight = new RequestDomesticFlight();
-        com.eligasht.service.model.flight.request.DomesticFlight.Request request = new com.eligasht.service.model.flight.request.DomesticFlight.Request();
-        try {
-            Bundle extras = getIntent().getExtras();
-            String maghsadf = "IST";
-            String mabdaf = "THR";
-            if (extras != null) {
-                maghsadf = extras.getString("Value-Maghsad-Airport-Code");
-                mabdaf = extras.getString("Value-Mabda-Airport-Code");
-            }
-            request.setUserName("EligashtMlb");
-            request.setPassword("123qwe!@#QWE");
-            request.setTermianlId("Mobile");
-            request.setCode(mabdaf);////inja esme forudgah mikhore
-            request.setToCode(maghsadf);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        requestDomesticFlight.setRequest(request);
-        SingletonService.getInstance().getFlight().domesticFlightAvail(new OnServiceStatus<ResponseDomesticFlight>() {
-            @Override
-            public void onReady(ResponseDomesticFlight responseDomesticFlight) {
-                System.out.println("DomesticResult:" + responseDomesticFlight.getGetIsDomesticResult().getIsDomestic());
-                new InitUi().Loading(SearchFlightActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    window.setStatusBarColor(ContextCompat.getColor(SearchFlightActivity.this, R.color.colorPrimaryDark));
-                }
-                List<Country> data = new ArrayList<Country>();
-                String GetError = "";
-                Object jError = null;
-                GetIsDomesticResult GetAirportsResult = responseDomesticFlight.getGetIsDomesticResult();//Error
-                if (GetAirportsResult.getErrors() != null) {
-                    jError = GetAirportsResult.getErrors();//
-                    GetError = GetAirportsResult.getErrors().get(0).getMessage();//.getString("Message");
-                }
-                if (GetError.length() > 1) {
-                    AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(SearchFlightActivity.this,false,false);
-                    AlertDialogPassenger.setText(GetError, getString(R.string.massege));
-                } else {
-                    boolean IsDemostic = GetAirportsResult.getIsDomestic();//false khareji true dakheli
-                    if (IsDemostic)
-                        Prefs.putBoolean("IsDemostic", true);
-                    else
-                        Prefs.putBoolean("IsDemostic", false);
-                }
-            }
-
-            @Override
-            public void onError(String message) {
-                System.out.println("onError: " + message);
-                new InitUi().Loading(SearchFlightActivity.this, rlLoading, rlRoot, false, R.drawable.flight_loading);//dismiss
-                // Log.e("date", result);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    window.setStatusBarColor(ContextCompat.getColor(SearchFlightActivity.this, R.color.colorPrimaryDark));
-                }
-                linear_expand = findViewById(R.id.linear_expand);
-                linear_expand.setVisibility(View.GONE);
-                RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
-                txtNoResult.setText(getString(R.string.ErrorServer));
-                linear_no_result.setVisibility(View.VISIBLE);
-            }
-        }, requestDomesticFlight);
-    }
-
-    private void getDataEnJson(ResponsSearchFlight responsSearchFlight) {
+    private void getDataEnJson(com.eligasht.service.model.newModel.flight.searchFlight.response.ResponseSearchFlight responsSearchFlight) {
         try {
             String GetError = "";
-            if (responsSearchFlight.getSearchFlightsResult().getErrors() != null) {
+            if (responsSearchFlight.getErrors().size() >0) {
                 // if (!GetAirportsResult.getString("Errors").equals("null")) {
-                GetError = responsSearchFlight.getSearchFlightsResult().getErrors().get(0).getDetailedMessage();
+                GetError = responsSearchFlight.getErrors().get(0).getDetailedMessage();
             }
             if (GetError.length() > 1) {
                 if (GetError.contains("|")) {
@@ -2362,7 +2288,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 }
             } else {
                 String ResultUniqID = null;//
-                ResultUniqID = responsSearchFlight.getSearchFlightsResult().getResultUniqID();//GetAirportsResult.getString("ResultUniqID");
+                ResultUniqID = responsSearchFlight.getResultUniqID();//GetAirportsResult.getString("ResultUniqID");
                 globalResultUniqID = ResultUniqID;
                 getFlightEn(responsSearchFlight);
                 ///////////Parvaz
@@ -2370,7 +2296,12 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 showDataExpanding();
                 //dakheli khareji
                 // new AsyncCheckFlight().execute();
-                SendReqCheckFlight();
+               // SendReqCheckFlight();
+                boolean IsDemostic = responsSearchFlight.getFlights().get(0).getIsDomestic();//false khareji true dakheli
+                if (IsDemostic)
+                    Prefs.putBoolean("IsDemostic", true);
+                else
+                    Prefs.putBoolean("IsDemostic", false);
                 getAirLine();
             }
         } catch (Exception e) {
@@ -2378,18 +2309,18 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
         }
     }//end en
 
-    private void getFlightEn(ResponsSearchFlight responsSearchFlight) {
+    private void getFlightEn(com.eligasht.service.model.newModel.flight.searchFlight.response.ResponseSearchFlight responsSearchFlight) {
         //Flights
-        for (int i = 0; i < responsSearchFlight.getSearchFlightsResult().getFlights().size(); i++) {
-            com.eligasht.service.model.flight.response.searchFlight.Flight jPricedItinerary = responsSearchFlight.getSearchFlightsResult().getFlights().get(i);//jArray.getJSONObject(i);//
+        for (int i = 0; i < responsSearchFlight.getFlights().size(); i++) {
+            com.eligasht.service.model.newModel.flight.searchFlight.response.Flight jPricedItinerary = responsSearchFlight.getFlights().get(i);//jArray.getJSONObject(i);//
             Flight flight = new Flight();
             //SegmentList
-            List<SegmentList> ss = jPricedItinerary.getSegmentList();
+            List<com.eligasht.service.model.newModel.flight.searchFlight.response.SegmentList> ss = jPricedItinerary.getSegmentList();
             List<FlightSegment> SegmentList = new ArrayList<FlightSegment>();
             List<FlightSegmentTrue> SegmentListTrue = new ArrayList<FlightSegmentTrue>();
             List<FlightSegmentFalse> SegmentListFalse = new ArrayList<FlightSegmentFalse>();
             for (int i1 = 0; i1 < ss.size(); i1++) {
-                com.eligasht.service.model.flight.response.searchFlight.SegmentList jPricedIfdgtinerary = ss.get(i1);//
+                com.eligasht.service.model.newModel.flight.searchFlight.response.SegmentList jPricedIfdgtinerary = ss.get(i1);//
                 FlightSegment flightSegment = new FlightSegment();
                 flightSegment.setAirlineCode(jPricedIfdgtinerary.getAirlineCode());
                 flightSegment.setAirlineID(jPricedIfdgtinerary.getAirlineID());
@@ -2537,69 +2468,69 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
             flight.setAccountID(jPricedItinerary.getAccountID());// AccountID;
             flight.setChilds(jPricedItinerary.getChilds());//AdlBaseFare
             flight.setFlightGUID(jPricedItinerary.getFlightGUID());
-            AdlBaseFare jAdlBaseFare = jPricedItinerary.getAdlBaseFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.AdlBaseFare jAdlBaseFare = jPricedItinerary.getAdlBaseFare();
             PriceField priceField = new PriceField();
             priceField.setAmount(jAdlBaseFare.getAmount());
             priceField.setCurrencyCode(jAdlBaseFare.getCurrencyCode());
             flight.setAdlBaseFare(priceField);//AdlCost
-            AdlCost AdlCost = jPricedItinerary.getAdlCost();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.AdlCost AdlCost = jPricedItinerary.getAdlCost();
             PriceField priceField2 = new PriceField();
             priceField2.setAmount(AdlCost.getAmount());
             priceField2.setCurrencyCode(AdlCost.getCurrencyCode());
             flight.setAdlCost(priceField2);//AdlTotalFare
-            AdlTotalFare AdlTotalFare = jPricedItinerary.getAdlTotalFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.AdlTotalFare AdlTotalFare = jPricedItinerary.getAdlTotalFare();
             PriceField priceField3 = new PriceField();
             priceField3.setAmount(AdlTotalFare.getAmount());
             priceField3.setCurrencyCode(AdlTotalFare.getCurrencyCode());
             flight.setAdlTotalFare(priceField3);//BaseFare
-            BaseFare BaseFare = jPricedItinerary.getBaseFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.BaseFare BaseFare = jPricedItinerary.getBaseFare();
             PriceField priceField4 = new PriceField();
             priceField4.setAmount(BaseFare.getAmount());
             priceField4.setCurrencyCode(BaseFare.getCurrencyCode());
             flight.setBaseFare(priceField4);//ChdBaseFare
-            ChdBaseFare ChdBaseFare = jPricedItinerary.getChdBaseFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.ChdBaseFare ChdBaseFare = jPricedItinerary.getChdBaseFare();
             PriceField priceField5 = new PriceField();
             priceField5.setAmount(ChdBaseFare.getAmount());
             priceField5.setCurrencyCode(ChdBaseFare.getCurrencyCode());
             flight.setChdBaseFare(priceField5);//BaseFare
             //  ChdCost  ChdTotalFare InfBaseFare InfCost InfTotalFare
-            ChdCost ChdCost = jPricedItinerary.getChdCost();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.ChdCost ChdCost = jPricedItinerary.getChdCost();
             PriceField priceField6 = new PriceField();
             priceField6.setAmount(ChdCost.getAmount());
             priceField6.setCurrencyCode(ChdCost.getCurrencyCode());
             flight.setChdCost(priceField6);//
-            ChdTotalFare ChdTotalFare = jPricedItinerary.getChdTotalFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.ChdTotalFare ChdTotalFare = jPricedItinerary.getChdTotalFare();
             PriceField priceField7 = new PriceField();
             priceField7.setAmount(ChdTotalFare.getAmount());
             priceField7.setCurrencyCode(ChdTotalFare.getCurrencyCode());
             flight.setChdTotalFare(priceField7);//
-            InfBaseFare InfBaseFare = jPricedItinerary.getInfBaseFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.InfBaseFare InfBaseFare = jPricedItinerary.getInfBaseFare();
             PriceField priceField8 = new PriceField();
             priceField8.setAmount(InfBaseFare.getAmount());
             priceField8.setCurrencyCode(InfBaseFare.getCurrencyCode());
             flight.setInfBaseFare(priceField8);//
-            InfCost InfCost = jPricedItinerary.getInfCost();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.InfCost InfCost = jPricedItinerary.getInfCost();
             PriceField priceField9 = new PriceField();
             priceField9.setAmount(InfCost.getAmount());
             priceField9.setCurrencyCode(InfCost.getCurrencyCode());
             flight.setInfCost(priceField9);//
-            InfTotalFare InfTotalFare = jPricedItinerary.getInfTotalFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.InfTotalFare InfTotalFare = jPricedItinerary.getInfTotalFare();
             PriceField priceField10 = new PriceField();
             priceField10.setAmount(InfTotalFare.getAmount());
             priceField10.setCurrencyCode(InfTotalFare.getCurrencyCode());
             flight.setInfTotalFare(priceField10);//
             // Taxes TotalFare TotalFareCost
-            Taxes Taxes = jPricedItinerary.getTaxes();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.Taxes Taxes = jPricedItinerary.getTaxes();
             PriceField priceField11 = new PriceField();
             priceField11.setAmount(Taxes.getAmount());
             priceField11.setCurrencyCode(Taxes.getCurrencyCode());
             flight.setTaxes(priceField11);//
-            TotalFare TotalFare = jPricedItinerary.getTotalFare();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.TotalFare TotalFare = jPricedItinerary.getTotalFare();
             PriceField priceField12 = new PriceField();
             priceField12.setAmount(TotalFare.getAmount());
             priceField12.setCurrencyCode(TotalFare.getCurrencyCode());
             flight.setTotalFare(priceField12);//
-            TotalFareCost TotalFareCost = jPricedItinerary.getTotalFareCost();
+            com.eligasht.service.model.newModel.flight.searchFlight.response.TotalFareCost TotalFareCost = jPricedItinerary.getTotalFareCost();
             PriceField priceField13 = new PriceField();
             priceField13.setAmount(TotalFareCost.getAmount());
             priceField13.setCurrencyCode(TotalFareCost.getCurrencyCode());

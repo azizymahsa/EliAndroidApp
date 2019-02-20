@@ -30,6 +30,8 @@ import com.eligasht.service.model.flight.request.airPort.Identity;
 import com.eligasht.service.model.flight.request.airPort.Request;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.reservation.tools.Prefs;
+import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
+import com.eligasht.service.model.newModel.airport.response.ResponseAirport;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
@@ -43,7 +45,7 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
-public class GetAirportMaghsadActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnServiceStatus<ResponsAirports> {
+public class GetAirportMaghsadActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnServiceStatus<List<ResponseAirport>> {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     private final int REQ_CODE_SPEECH_INPUT = 100;
@@ -211,45 +213,38 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
     private void sendRequest(String searchText) {
         avi.setVisibility(View.VISIBLE);
 
-        RequestAirports requestAirports = new RequestAirports();
-        Request request = new Request();
+        AutoCompleteParameterModel requestAutoCompleteParameterModel = new AutoCompleteParameterModel();
 
-        Identity identity = new Identity();
-        identity.setCode(searchText);
-        request.setIdentity(identity);
+        requestAutoCompleteParameterModel.setPart(searchText);
 
-        request.setCity("");
-        request.setCulture(getString(R.string.culture));
-        requestAirports.setRequest(request);
-
-        SingletonService.getInstance().getFlight().airPortsAvail(this, requestAirports);
+        SingletonService.getInstance().getFlight().newAirportsAvail(this, requestAutoCompleteParameterModel);
     }
 
     @Override
-    public void onReady(ResponsAirports responsAirports) {
+    public void onReady(List<ResponseAirport> responsAirports) {
 
         avi.setVisibility(View.GONE);
         String GetError = "";
         List<Country> data = new ArrayList<Country>();
         ListView listAirPort;
         try {
-            if (responsAirports.getGetAirportWithParentsWithCultureResult().getErrors() != null) {
-                GetError = responsAirports.getGetAirportWithParentsWithCultureResult().getErrors().get(0).getMessage();
-            }
-            if (GetError.length() > 1) {
-
-                Toast.makeText(activity, GetError, Toast.LENGTH_SHORT).show();
-
-
-            } else {
-
-                for (int i = 0; i < responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().size(); i++) {
+           /* if (responsAirports != null) {
+                GetError = responsAirports.get(0).get().get(0).getMessage();
+            }*/
+//            if (GetError.length() > 1) {
+//
+//                Toast.makeText(activity, GetError, Toast.LENGTH_SHORT).show();
+//
+//
+//            } else {
+            if (responsAirports !=null)
+                for (int i = 0; i < responsAirports.size(); i++) {
                     Country fishData = new Country();
-                    fishData.setCityName(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getCityName());
-                    fishData.setAirportName(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getAirportName());
-                    fishData.setAirportCode(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getAirportCode());
-                    fishData.setAirportID(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getAirportID());
-                    fishData.setParentId(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getParentId());
+                    fishData.setCityName(responsAirports.get(i).getTextFa());
+                    fishData.setAirportName(responsAirports.get(i).getText());//.getAirports().get(i).getAirportName());
+                    fishData.setAirportCode(responsAirports.get(i).getValue());
+                    // fishData.setAirportID(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getAirportID());
+                  //  fishData.setParentId(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getParentId());
 
                     data.add(fishData);
                 }
@@ -269,7 +264,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
                 //mAdapter.setAdapter(mAdapter);
                 mAdapter.setData(data);
                 listAirPort.setAdapter(mAdapter);
-            }
+           // }
         } catch (Exception e) {
             if (!Utility.isNetworkAvailable(GetAirportMaghsadActivity.this)) {
                 AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(GetAirportMaghsadActivity.this,true,false);

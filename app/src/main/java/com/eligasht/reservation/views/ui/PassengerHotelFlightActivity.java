@@ -928,15 +928,15 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         fishData.setSelectID(json_data.getSelectID());
 
                         fishData.setBookingCode(jsonResult.getBookingCode() + "");
-
-                        fishData.setExcursionData(new ExcursionDta(excursionDta.getArrialAirportCode(),
+//movaghatan
+                        /* fishData.setExcursionData(new ExcursionDta(excursionDta.getArrialAirportCode(),
                                 excursionDta.getArrialAirportName(),
                                 excursionDta.getArrivalFltDate()
                                 , excursionDta.getArrivalFltNo(),
                                 excursionDta.getArrivalFltTime(),
                                 excursionDta.getCityID() + "", excursionDta.getDepartureFltDate(),
                                 excursionDta.getDepartureFltNo(), excursionDta.getDepartureFltTime(),
-                                excursionDta.getHotelID() + "", excursionDta.getHotelNameEn(), excursionDta.getPassengerList()));
+                                excursionDta.getHotelID() + "", excursionDta.getHotelNameEn(), excursionDta.getPassengerList()));*/
                         data.add(fishData);
                     }
 

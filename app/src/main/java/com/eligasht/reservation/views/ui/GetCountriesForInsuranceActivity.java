@@ -39,6 +39,8 @@ import com.eligasht.service.model.flight.request.airPort.RequestAirports;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.service.model.insurance.request.GetCountry.RequestGetCountry;
 import com.eligasht.service.model.insurance.response.GetCountry.ResponseGetCountry;
+import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
+import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
 import com.google.gson.Gson;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -47,6 +49,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Timer;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -55,7 +58,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class GetCountriesForInsuranceActivity extends BaseActivity implements  OnClickListener , OnServiceStatus<ResponseGetCountry> {
+public class GetCountriesForInsuranceActivity extends BaseActivity implements  OnClickListener , OnServiceStatus<List<ResponseInsuranceCountry>> {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     public static String searchText = "";
@@ -123,18 +126,19 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
     }
 
     @Override
-    public void onReady(ResponseGetCountry responseGetCountry) {
+    public void onReady(List<ResponseInsuranceCountry> responseGetCountry) {
         hideLoading();
-        if (responseGetCountry == null) {
-            searchtxt.setText("");
-            needShowAlertDialog(getString(R.string.ErrorServer), true);
-            return;
-        }
-        if (responseGetCountry.getGetCountryAjaxWithCultureResult().getCountries() == null ) {
-            return;
-        }
         try {
-            GetCountriesForInsuranceAdapter adapter = new GetCountriesForInsuranceAdapter(GetCountriesForInsuranceActivity.this, responseGetCountry.getGetCountryAjaxWithCultureResult().getCountries(), GetCountriesForInsuranceActivity.this);
+            if (responseGetCountry == null) {
+                searchtxt.setText("");
+                needShowAlertDialog(getString(R.string.ErrorServer), true);
+                return;
+            }
+            if (responseGetCountry == null ||  responseGetCountry.size()<1) {//.getCountries() == null ) {
+                return;
+            }
+
+            GetCountriesForInsuranceAdapter adapter = new GetCountriesForInsuranceAdapter(GetCountriesForInsuranceActivity.this, responseGetCountry, GetCountriesForInsuranceActivity.this);
             onPostExecute(adapter);
 
         } catch (Exception e) {
@@ -154,7 +158,7 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
     private void getCountries(String cityCode) {
         showLoading();
 
-        RequestGetCountry requestGetCountry = new RequestGetCountry();
+       /* RequestGetCountry requestGetCountry = new RequestGetCountry();
         com.eligasht.service.model.insurance.request.GetCountry.Request request = new com.eligasht.service.model.insurance.request.GetCountry.Request();
 
         com.eligasht.service.model.insurance.request.GetCountry.Identity identity = new  com.eligasht.service.model.insurance.request.GetCountry.Identity();
@@ -164,7 +168,12 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
         request.setCulture(getString(R.string.culture));
         requestGetCountry.setRequest(request);
         Log.e("getCountryInsurance: " , new Gson().toJson(requestGetCountry));
-        SingletonService.getInstance().getInsurance().getCountryInsuranceAvail(this, requestGetCountry);
+        SingletonService.getInstance().getInsurance().getCountryInsuranceAvail(this, requestGetCountry);*/
+        AutoCompleteParameterModel requestAutoCompleteParameterModel = new AutoCompleteParameterModel();
+
+        requestAutoCompleteParameterModel.setPart(cityCode);
+
+        SingletonService.getInstance().getInsurance().newInsuranceCountriesAvail(this, requestAutoCompleteParameterModel);
 
     }
 

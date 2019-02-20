@@ -13,6 +13,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.Country;
 import com.eligasht.reservation.tools.db.local.RecentCity_Table;
 import com.eligasht.reservation.views.ui.GetCountriesForInsuranceActivity;
+import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
 import com.orhanobut.hawk.Hawk;
 import com.eligasht.reservation.tools.Prefs;
 
@@ -28,7 +29,7 @@ public class GetCountriesForInsuranceAdapter extends BaseAdapter {
     public String customerName;
     public int catt_ID = 0;
     private LayoutInflater inflater;
-    private List<com.eligasht.service.model.insurance.response.GetCountry.Country> data;
+    private List<ResponseInsuranceCountry> data;
     public String value_Maghsad_City;
     public String value_Maghsad_Airport;
     public String value_Maghsad_Airport_Code;
@@ -44,7 +45,7 @@ public class GetCountriesForInsuranceAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }*/
 
-    public GetCountriesForInsuranceAdapter(Context context, List<com.eligasht.service.model.insurance.response.GetCountry.Country> countryList, GetCountriesForInsuranceActivity activity) {
+    public GetCountriesForInsuranceAdapter(Context context, List<ResponseInsuranceCountry> countryList, GetCountriesForInsuranceActivity activity) {
         this.activity = activity;
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -53,7 +54,7 @@ public class GetCountriesForInsuranceAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public void setData(List<com.eligasht.service.model.insurance.response.GetCountry.Country> data) {
+    public void setData(List<ResponseInsuranceCountry> data) {
         this.data = data;
         notifyDataSetChanged();
     }
@@ -97,17 +98,17 @@ public class GetCountriesForInsuranceAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         //cursor.moveToPosition(position);
-        final com.eligasht.service.model.insurance.response.GetCountry.Country current = data.get(position);
-        holder.countryName.setText(current.getCountryName() + "");
+        final ResponseInsuranceCountry current = data.get(position);
+        holder.countryName.setText(current.getText() + "");
 
-        holder.countryName.setTag(current.getCountryName());
+        holder.countryName.setTag(current.getText());//getCountryName());
         holder.countryName.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Hawk.put("Value-Insurance-Country", current);
-                Prefs.putString("Value-Insurance-Country-Code", current.getCountryCode());
-                Prefs.putInt("Value-Insurance-Country-Id", current.getCountryID());
+                Prefs.putString("Value-Insurance-Country-Code", current.getCityCode());//getCountryCode());
+                Prefs.putInt("Value-Insurance-Country-Id", Integer.parseInt(current.getID()));//getCountryID());
 
                 activity.finish();
             }

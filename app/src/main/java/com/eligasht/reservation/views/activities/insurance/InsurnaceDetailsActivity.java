@@ -35,22 +35,22 @@ public class InsurnaceDetailsActivity extends AppCompatActivity {
             JSONArray jsonObj = new JSONArray(getIntent().getExtras().getString("details"));
             //Log.e("testttt", jsonObj.toString() );
 
-            if (getIntent().getExtras().getBoolean("plan")){
+          //  if (getIntent().getExtras().getBoolean("plan")){
                 for (int i = 0; i < jsonObj.length(); i++) {
-                    arrayList.add(new DetailsModel(jsonObj.getJSONObject(i).getString("TitleFa").toString(),jsonObj.getJSONObject(i).getString("CoverLimit").toString()));
+                    arrayList.add(new DetailsModel(jsonObj.getJSONObject(i).getString("TileFa").toString(),jsonObj.getJSONObject(i).getString("DefaultValue").toString()));
 
 
                 }
                 lvDetails.setAdapter(new InsurnaceDetailAdapter(this,arrayList));
 
-            }else{
+            /*}else{
                 for (int i = 0; i < jsonObj.length(); i++) {
                     arrayList.add(new DetailsModel(jsonObj.getJSONObject(i).getString("TravelInsuranceCoverageTile").toString(),jsonObj.getJSONObject(i).getString("TravelInsuranceCoverageVal").toString()));
 
 
                 }
                 lvDetails.setAdapter(new InsurnaceDetailAdapter(this,arrayList));
-            }
+            }*/
 
 
 

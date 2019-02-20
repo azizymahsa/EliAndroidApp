@@ -28,18 +28,19 @@ import java.util.List;
 public class InsurancPlanAdapter extends RecyclerView.Adapter<InsuranceRowHolder> {
 
     private Context context;
-    private List<com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_> feedItemList;
+  //  private List<com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_> feedItemList;
+    private List<com.eligasht.service.model.newModel.insurance.response.Insurance> feedItemList;
     private int count;
     private ListenerInsurancPlanAdapter listener;
 
-    public InsurancPlanAdapter(Context context, List<com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_> feedItemList, int count) {
+    public InsurancPlanAdapter(Context context, List<com.eligasht.service.model.newModel.insurance.response.Insurance> feedItemList, int count) {
         this.context = context;
         this.feedItemList = feedItemList;
         this.count = count;
     }
 
     public interface ListenerInsurancPlanAdapter {
-        void onClickInsurancPlanItem(com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_ insurancePlan);
+        void onClickInsurancPlanItem(com.eligasht.service.model.newModel.insurance.response.Insurance insurancePlan);
     }
 
     public InsurancPlanAdapter setListener(ListenerInsurancPlanAdapter listener) {
@@ -57,41 +58,41 @@ public class InsurancPlanAdapter extends RecyclerView.Adapter<InsuranceRowHolder
 
     @Override
     public void onBindViewHolder(InsuranceRowHolder holder, final int position) {
-        final com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_ item = feedItemList.get(position);
+        final com.eligasht.service.model.newModel.insurance.response.Insurance item = feedItemList.get(position);
 
-        switch (item.getCode()) {
-            case 1:
+        switch (item.getInsuranceID()) {//InsuranceID
+            case "1":
                 //cell.photoImage.image =  imageLiteral(resourceName: "yellow-border")//yellow
                 //cell.titleLabel.textColor =  colorLiteral(red: 0.9686434865, green: 0.578962326, blue: 0.1115724519, alpha: 1)
-                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getPrice())));
+                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getInsurancePrice())));//InsurancePrice
                 holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.yellow_border));//yellow
-            case -3:
+            case "-3":
                 //cell.photoImage.image =  imageLiteral(resourceName: "red-border")//c
                 //cell.titleLabel.textColor =  colorLiteral(red: 0.9255638719, green: 0.4216762483, blue: 0.4419255555, alpha: 1)
                // price1 = price1 * categoryArray.count
 
-                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getPrice() * count)));
+                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getInsurancePrice() * count)));
                 holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.red_border));//red
-            case -2:
+            case "-2":
                /* cell.photoImage.image =  imageLiteral(resourceName: "green-border")//green
                 cell.titleLabel.textColor =  colorLiteral(red: 0.1016399041, green: 0.7363144159, blue: 0.6097738743, alpha: 1)
                 price1 = price1 * categoryArray.count*/
-                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getPrice() * count)));
+                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getInsurancePrice() * count)));
                 holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.green_border));//green
-            case -1:
+            case "-1":
                /* cell.photoImage.image =  imageLiteral(resourceName: "blue-border")//blue
                 cell.titleLabel.textColor =  colorLiteral(red: 0, green: 0.6590303183, blue: 0.9333506227, alpha: 1)
                 price1 = price1 * categoryArray.count*/
-                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getPrice() * count)));
+                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getInsurancePrice() * count)));
                 holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.blue_border));//blue
             default:
-                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getPrice())));
+                holder.txtPrice.setText(Utility.priceFormat(String.valueOf(item.getInsurancePrice())));
                 holder.txtPlan.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.yellow_border));//yellow
 
         }
 
-        holder.txtPlan.setText(item.getTitle());
-        holder.txtTitle.setText(item.getTitleEnglish());
+        holder.txtPlan.setText(item.getInsuranceNameFa());//InsuranceNameFa
+        holder.txtTitle.setText(item.getInsuranceNameEn());//InsuranceNameEn
 
 
         holder.txtPlan.setTextColor(ContextCompat.getColor(context, R.color.color_hotel));
@@ -109,7 +110,7 @@ public class InsurancPlanAdapter extends RecyclerView.Adapter<InsuranceRowHolder
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context,InsurnaceDetailsActivity.class);
-                intent.putExtra("details", new Gson().toJson(item.getCoverInfos()));
+                intent.putExtra("details", new Gson().toJson(item.getTravelInsuranceCoverages()));//getCoverInfos()));
                 intent.putExtra("plan", true);
                 context.startActivity(intent);
 

@@ -15,7 +15,18 @@ import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFa
 import com.eligasht.service.model.flight.response.PurchaseFlight.ResponsePurchaseFlight;
 import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
-import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
+import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
+import com.eligasht.service.model.newModel.airport.response.ResponseAirport;
+import com.eligasht.service.model.newModel.flight.confirmFlightPrice.request.RequestConfirmFlightPrice;
+import com.eligasht.service.model.newModel.flight.purchaseFlight.request.PurchaseFlightParameterModel;
+import com.eligasht.service.model.newModel.flight.purchaseFlight.response.TmpReserveResult;
+import com.eligasht.service.model.newModel.flight.purchaseServices.request.RequestGetPurchaseServices;
+import com.eligasht.service.model.newModel.flight.purchaseServices.response.ResponsePurchaseServices;
+import com.eligasht.service.model.newModel.flight.services.request.RequestGetServices;
+import com.eligasht.service.model.newModel.flight.services.response.ResponseGetServices;
+
+
+import java.util.List;
 
 
 public class Flight extends BasePart {
@@ -62,4 +73,26 @@ public class Flight extends BasePart {
     public void domesticFlightAvail(OnServiceStatus<ResponseDomesticFlight> listener, RequestDomesticFlight req) {
         start(getServiceGenerator().createService().responseDomesticFlightObservable(req), listener);
     }
+    //*************NEW******************************************************************
+    //*************Flight*****************
+  //  @Mock(jsonName = "get_new_airports", response = String)
+    public void newAirportsAvail(OnServiceStatus<List<ResponseAirport>> listener, AutoCompleteParameterModel req) {
+        start(getServiceGenerator().createService().responseNewAirportsObservable(req), listener);
+    }
+    public void newFlightSearchAvail(OnServiceStatus<com.eligasht.service.model.newModel.flight.searchFlight.response.ResponseSearchFlight> listener, com.eligasht.service.model.newModel.flight.searchFlight.request.RequestSearchFlight requestSearchFlightt) {
+        start(getServiceGenerator().createService().responseSearchFlightObservable(requestSearchFlightt), listener);
+    }
+    public void newConfirmFlightPriceAvail(OnServiceStatus<com.eligasht.service.model.newModel.flight.confirmFlightPrice.response.ResponseSearchFlight> listener, RequestConfirmFlightPrice requestSearchFlightt) {
+        start(getServiceGenerator().createService().responseConfirmFlightPriceObservable(requestSearchFlightt), listener);
+    }
+    public void newPurchaseFlightAvail(OnServiceStatus<TmpReserveResult> listener, PurchaseFlightParameterModel purchaseFlightParameterModel) {
+        start(getServiceGenerator().createService().responsePurchaseFlightObservable(purchaseFlightParameterModel), listener);
+    }
+    public void newGetServicesAvail(OnServiceStatus<ResponseGetServices> listener, RequestGetServices requestGetServices) {
+        start(getServiceGenerator().createService().responseGetServicesObservable(requestGetServices), listener);
+    }
+    public void newGetPurchaseServiceAvail(OnServiceStatus<ResponsePurchaseServices> listener, RequestGetPurchaseServices requestGetPurchaseServices) {
+        start(getServiceGenerator().createService().responseGetGetPurchaseServiceObservable(requestGetPurchaseServices), listener);
+    }
+
 }

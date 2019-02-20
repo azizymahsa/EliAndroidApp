@@ -57,6 +57,21 @@ import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
 import com.eligasht.service.model.login.request.LoginRequestModel;
 import com.eligasht.service.model.login.response.LoginResponse;
+import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
+import com.eligasht.service.model.newModel.airport.response.ResponseAirport;
+import com.eligasht.service.model.newModel.flight.confirmFlightPrice.request.RequestConfirmFlightPrice;
+
+import com.eligasht.service.model.newModel.flight.purchaseFlight.request.PurchaseFlightParameterModel;
+import com.eligasht.service.model.newModel.flight.purchaseFlight.response.TmpReserveResult;
+import com.eligasht.service.model.newModel.flight.purchaseServices.request.RequestGetPurchaseServices;
+import com.eligasht.service.model.newModel.flight.purchaseServices.response.ResponsePurchaseServices;
+import com.eligasht.service.model.newModel.flight.services.request.RequestGetServices;
+import com.eligasht.service.model.newModel.flight.services.response.ResponseGetServices;
+import com.eligasht.service.model.newModel.insurance.request.searchInsurance.RequestInsuranceSearchResultViewModel;
+import com.eligasht.service.model.newModel.insurance.request.purchase.PurchaseParameterModel;
+import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
+import com.eligasht.service.model.newModel.insurance.response.ResponseInsuranceSearchResult;
+import com.eligasht.service.model.newModel.insurance.response.purchase.ResponseInsurancePurchase;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
 import com.eligasht.service.model.startup.response.StartupServiceResponse;
 import com.eligasht.service.model.survey.request.RequestGetSurvey;
@@ -69,6 +84,8 @@ import com.eligasht.service.model.survey.response.checkValid.ResponseCheckValidR
 import com.eligasht.service.model.survey.response.detail.ResponseGetSurveyDetails;
 import com.eligasht.service.model.test.entity.TestRes;
 import com.eligasht.service.model.weather.response.WeatherApi;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.Response;
@@ -289,12 +306,67 @@ public interface RetroClient {
             @Query("format") String format
     );
 
+    //*************NEW**********************************************************************************************************
 
+    //*************Flight*************
 
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewAirports)
+    Observable<Response<List<ResponseAirport>>> responseNewAirportsObservable(
+            @Body AutoCompleteParameterModel requestAutoCompleteParameterModel
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewFlightSearch)
+    Observable<Response<com.eligasht.service.model.newModel.flight.searchFlight.response.ResponseSearchFlight>> responseSearchFlightObservable(
+            @Body com.eligasht.service.model.newModel.flight.searchFlight.request.RequestSearchFlight requestSearchFlight
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewConfirmFlightPrice)
+    Observable<Response<com.eligasht.service.model.newModel.flight.confirmFlightPrice.response.ResponseSearchFlight>> responseConfirmFlightPriceObservable(
+            @Body RequestConfirmFlightPrice requestConfirmFlightPrice
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewPurchaseFlight)
+    Observable<Response<TmpReserveResult>> responsePurchaseFlightObservable(
+            @Body PurchaseFlightParameterModel requestPurchaseFlightParameterModel
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewServices)
+    Observable<Response<ResponseGetServices>> responseGetServicesObservable(
+            @Body RequestGetServices requestGetServices
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewServices)
+    Observable<Response<ResponsePurchaseServices>> responseGetGetPurchaseServiceObservable(
+            @Body RequestGetPurchaseServices requestGetPurchaseServices
+    );
+    //*************Insurance*************
 
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewInsuranceCountries)
+    Observable<Response<List<ResponseInsuranceCountry>>> responseNewInsuranceCountriesObservable(
+            @Body AutoCompleteParameterModel requestAutoCompleteParameterModel
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewInsuranceSearchResult)
+    Observable<Response<ResponseInsuranceSearchResult>> responseInsuranceSearchResult(
+            @Body RequestInsuranceSearchResultViewModel requestInsuranceSearchResultViewModel
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewInsurancePurchase)
+    Observable<Response<ResponseInsurancePurchase>> responsePurchaseParameterModel(
+            @Body PurchaseParameterModel requestPurchaseParameterModel
+    );
+    //*************Hotel*************
 
-   /* @POST(Const.GetPreFactorDetailsPackageAvil)
-    Observable<ResponseGePreFactorDetails> RESPONSE_GE_PRE_FACTOR_DETAILS_OBSERVABLE(
-            @Body RequestGePreFactorDetails requestGePreFactorDetailsPack
-    );*/
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewHotelCities)
+    Observable<Response<String>> responseNewHotelCitiesObservable(
+            @Body AutoCompleteParameterModel requestAutoCompleteParameterModel
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewHotelNames)
+    Observable<Response<String>> responseNewHotelNamesObservable(
+            @Body AutoCompleteParameterModel requestAutoCompleteParameterModel
+    );
 }

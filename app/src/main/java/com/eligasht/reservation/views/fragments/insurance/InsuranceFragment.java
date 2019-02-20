@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ui.GetCountriesForInsuranceActivity;
 import com.eligasht.service.model.insurance.response.GetCountry.Country;
+import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -57,7 +59,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     LinearLayout layout_duringTrip;
     TextView txt_during_trip;
     TextView txt_count_passenger;
-    com.eligasht.service.model.insurance.response.GetCountry.Country country;
+    ResponseInsuranceCountry country;
     private ArrayList<BirthDateList> passengers;
     private Gson gson;
     private String departureDate;
@@ -80,7 +82,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
             super.onResume();
             country = Hawk.get("Value-Insurance-Country", null);
             if (country != null && txtCity != null)
-                txtCity.setText(country.getCountryName());
+                txtCity.setText(country.getText());//getCountryName());
         }
         catch (Exception e)
         {
@@ -225,14 +227,20 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
                     Toast.makeText(getActivity(), R.string.please_specify_traverels_birth_date, Toast.LENGTH_SHORT).show();
                     return;
                 }
+                String birthDateString="";
+                for (int i = 0; i <passengers.size() ; i++) {
+                     birthDateString = birthDateString+"|"+passengers.get(i).getBirthDate();
+                    Log.d("birthDateString:", "birthDateString"+"i"+":"+ birthDateString);
+                }
 
                 Intent _intent = new Intent(getActivity(), SearchInsuranceActivity.class);
                 _intent.putExtra("BirthDateList", gson.toJson(passengers));
+                _intent.putExtra("BirthDateListString",birthDateString);
                 Prefs.putString("BirthDateListInsuranc", gson.toJson(passengers));//mahsa
                 _intent.putExtra("DepartureDate", departureDate);
                 _intent.putExtra("Culture", getString(R.string.culture));
-                _intent.putExtra("CountryCode", country.getCountryCode());
-                _intent.putExtra("CountryName", country.getCountryNameFa());
+                _intent.putExtra("CountryCode", country.getCityCode());//getCountryCode());
+                _intent.putExtra("CountryName", country.getTextFa());//getCountryNameFa());
                 _intent.putExtra("AccomodationDays", accomodationDays);
                 startActivity(_intent);
 

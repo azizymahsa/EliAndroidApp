@@ -24,14 +24,14 @@ import com.eligasht.reservation.models.model.insurance.BirthDateList;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.adapters.insurance.InsurancPlanAdapter;
-import com.eligasht.reservation.views.adapters.insurance.TravelInsurancAdapter;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.insurance.request.SearchInsurance.RequestSearchInsurance;
-import com.eligasht.service.model.insurance.response.SearchInsurance.ResponseSearchInsurance;
+import com.eligasht.service.model.newModel.insurance.request.searchInsurance.RequestInsuranceSearchResultViewModel;
+import com.eligasht.service.model.newModel.insurance.response.Insurance;
+import com.eligasht.service.model.newModel.insurance.response.ResponseInsuranceSearchResult;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -44,7 +44,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
  * Created by elham.bonyani on 1/15/2018.
  */
 
-public class SearchInsuranceActivity extends BaseActivity implements View.OnClickListener, TravelInsurancAdapter.ListenerTravelInsurancAdapter, InsurancPlanAdapter.ListenerInsurancPlanAdapter, OnServiceStatus<ResponseSearchInsurance> {
+public class SearchInsuranceActivity extends BaseActivity implements View.OnClickListener,  InsurancPlanAdapter.ListenerInsurancPlanAdapter, OnServiceStatus<ResponseInsuranceSearchResult> {//TravelInsurancAdapter.ListenerTravelInsurancAdapter,
 
     private List<com.eligasht.service.model.insurance.request.SearchInsurance.BirthDateList> birthDateLists;
     private int passCount;
@@ -59,13 +59,18 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     private String culture;
     private int accomodationDays;
     private Gson gson;
-    private List<com.eligasht.service.model.insurance.response.SearchInsurance.TravelInsurance_> travelInsurances;
-    private List<com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_> insurancePlans;
-    private com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan insurancePlan;
+   /* private List<com.eligasht.service.model.insurance.response.SearchInsurance.TravelInsurance_> travelInsurances;
+    private List<com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_> insurancePlans;*/
+    private List<com.eligasht.service.model.newModel.insurance.response.Insurance> Insurances;
+    private List<com.eligasht.service.model.newModel.insurance.response.TravelInsuranceCoverage> travelInsuranceCoverages;//detailInsurance
+
+  //  private com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan insurancePlan;
+    private com.eligasht.service.model.newModel.insurance.response.InsuranceSearchResult insurancePlan;
     private RelativeLayout error_layout;
     private TextView txt_error;
     private FancyButton btnOk;
     private RelativeLayout rlLoading2, rlRoot;
+    private String birthDateString="";
 
 
     @SuppressLint("NewApi")
@@ -90,12 +95,13 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
             birthDateLists = gson.fromJson(bundle.getString("BirthDateList"), new TypeToken<List<BirthDateList>>() {
             }.getType());
             passCount = birthDateLists.size();
+
             countryCode = bundle.getString("CountryCode");
             countryName = bundle.getString("CountryName");
             departureDate = bundle.getString("DepartureDate");
             accomodationDays = bundle.getInt("AccomodationDays");
             culture = bundle.getString("Culture");
-
+            birthDateString=bundle.getString("BirthDateListString");
 
             CustomDate startDate = SingletonDate.getInstance().getEndDate();
             startDate.addDay(accomodationDays);
@@ -114,81 +120,83 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     }
 
     @Override
-    public void onReady(ResponseSearchInsurance responseSearchInsurance) {
-        {
+    public void onReady(ResponseInsuranceSearchResult responseSearchInsurance) {
+        Log.e("onResponse", responseSearchInsurance+"");
+       /* {
             Gson gson2 = new Gson();
             gson2.toJson(responseSearchInsurance);
-            Log.e("onResponse", gson2.toJson(responseSearchInsurance));
-            SingletonTimer.getInstance().start();
-            hideLoading();
-            Log.d("TAG", "onResponse: ");
-            if (responseSearchInsurance == null
-                    || responseSearchInsurance.getShowInsuranceResult() == null) {
-                showText();
-                if (!Utility.isNetworkAvailable(SearchInsuranceActivity.this)) {
+            Log.e("onResponse", gson2.toJson(responseSearchInsurance));*/
+           /* */
+        SingletonTimer.getInstance().start();
+        hideLoading();
+        Log.d("TAG", "onResponse: ");
+        if (responseSearchInsurance == null) {
+               // || responseSearchInsurance.getShowInsuranceResult() == null) {
+            showText();
+            if (!Utility.isNetworkAvailable(SearchInsuranceActivity.this)) {
 
-                    txt_error.setText(getString(R.string.InternetError));
+                txt_error.setText(getString(R.string.InternetError));
 
-                } else {
+            } else {
 
-                    txt_error.setText(getString(R.string.ErrorServer));
+                txt_error.setText(getString(R.string.ErrorServer));
 
-                }
-                error_layout.setVisibility(View.VISIBLE);
-                return;
             }
-
-            if (responseSearchInsurance.getShowInsuranceResult().getErrors() != null) {
-                showText();
-                txt_error.setText(responseSearchInsurance.getShowInsuranceResult().getErrors().get(0).getMessage());
-                error_layout.setVisibility(View.VISIBLE);
-                return;
-            }
-
-            com.eligasht.service.model.insurance.response.SearchInsurance.TravelInsurance travelInsurance = responseSearchInsurance.getShowInsuranceResult().getTravelInsurance();
-
-
-            insurancePlan = responseSearchInsurance.getShowInsuranceResult().getInsurancePlan();
-
-            if (travelInsurance == null && insurancePlan == null) {
-                showText();
-                txt_error.setText(getString(R.string.PackgeNoFound));
-                error_layout.setVisibility(View.VISIBLE);
-                return;
-            }
-
-            if (travelInsurance == null && (insurancePlan != null && insurancePlan.getInsurancePlans() == null)) {
-                showText();
-                txt_error.setText(getString(R.string.PackgeNoFound));
-                error_layout.setVisibility(View.VISIBLE);
-                return;
-            }
-
-            if ((travelInsurance != null && travelInsurance.getTravelInsurances() == null) && insurancePlan == null) {
-                showText();
-                txt_error.setText(getString(R.string.PackgeNoFound));
-                error_layout.setVisibility(View.VISIBLE);
-                return;
-            }
-
-            if ((travelInsurance != null && travelInsurance.getTravelInsurances() == null) && (insurancePlan != null && insurancePlan.getInsurancePlans() == null)) {
-                showText();
-                txt_error.setText(getString(R.string.PackgeNoFound));
-                error_layout.setVisibility(View.VISIBLE);
-                return;
-            }
-
-            if (travelInsurance != null && travelInsurance.getTravelInsurances() != null) {
-                travelInsurances = travelInsurance.getTravelInsurances();
-                showTravelInsurances();
-            }
-
-            if (insurancePlan != null && insurancePlan.getInsurancePlans() != null) {
-                insurancePlans = insurancePlan.getInsurancePlans();
-                showInsurancePlans();
-            }
-
+            error_layout.setVisibility(View.VISIBLE);
+            return;
         }
+
+        if (responseSearchInsurance.getInsuranceSearchResult().getErrors().size() >0){// != null) {
+            showText();
+            txt_error.setText(responseSearchInsurance.getInsuranceSearchResult().getErrors().get(0).getMessage());
+            error_layout.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        List<Insurance> travelInsurance = responseSearchInsurance.getInsuranceSearchResult().getInsurances();
+
+
+
+
+        if (travelInsurance == null ) {// && insurancePlan == null) {
+            showText();
+            txt_error.setText(getString(R.string.PackgeNoFound));
+            error_layout.setVisibility(View.VISIBLE);
+            return;
+        }
+
+       /* if (travelInsurance == null && (insurancePlan != null && insurancePlan.getInsurancePlans() == null)) {
+            showText();
+            txt_error.setText(getString(R.string.PackgeNoFound));
+            error_layout.setVisibility(View.VISIBLE);
+            return;
+        }*/
+
+       /* if ((travelInsurance != null && travelInsurance.getTravelInsurances() == null) && insurancePlan == null) {
+            showText();
+            txt_error.setText(getString(R.string.PackgeNoFound));
+            error_layout.setVisibility(View.VISIBLE);
+            return;
+        }*/
+
+     /*   if ((travelInsurance != null && travelInsurance.getTravelInsurances() == null) && (insurancePlan != null && insurancePlan.getInsurancePlans() == null)) {
+            showText();
+            txt_error.setText(getString(R.string.PackgeNoFound));
+            error_layout.setVisibility(View.VISIBLE);
+            return;
+        }*/
+        insurancePlan = responseSearchInsurance.getInsuranceSearchResult();//getShowInsuranceResult().getInsurancePlan();
+        /*if (travelInsurance != null && responseSearchInsurance.getInsuranceSearchResult() != null) {
+            Insurances = travelInsurance;//getTravelInsurances();
+            showTravelInsurances();
+        }*/
+
+        if (insurancePlan != null && insurancePlan.getInsurances() != null) {
+            Insurances = insurancePlan.getInsurances();
+            showInsurancePlans();
+        }
+
+
     }
 
     @Override
@@ -205,157 +213,58 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.Travel_insurance_to_travel_to_the_country) + " " + countryName);
 
         showLoading();
-        /* InsuranceListReq insuranceListReq = new InsuranceListReq();
-        insuranceListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
-        insuranceListReq.setCountryCode(countryCode);
-        Log.d("TAG", "showInsurance: "+countryCode);
-        insuranceListReq.setDepartureDate(departureDate);
-        Log.d("TAG", "showInsurance: "+departureDate);
 
-        insuranceListReq.setAccomodationDays(accomodationDays);
-        Log.d("TAG", "showInsurance: "+accomodationDays);
-
-        insuranceListReq.setReturnDate(returnDate);
-        Log.d("TAG", "showInsurance: "+returnDate);
-
-        insuranceListReq.setPassCount(passCount);
-        Log.d("TAG", "showInsurance: "+passCount);
-
-        insuranceListReq.setBirthDateList(birthDateLists);
-        Log.d("TAG", "showInsurance: "+birthDateLists);
-
-        insuranceListReq.setCulture(culture);
-        Log.d("TAG", "showInsurance: "+culture);*/
 
 //send GetHListRequest Insurance search
-        //Call<InsuranceRes> call = service.showInsurance(new InsuranceRequestModel(insuranceListReq));
-        RequestSearchInsurance requestSearchInsurance = new RequestSearchInsurance();
-        com.eligasht.service.model.insurance.request.SearchInsurance.Request request = new com.eligasht.service.model.insurance.request.SearchInsurance.Request();
 
-        com.eligasht.service.model.insurance.request.SearchInsurance.Identity identity = new com.eligasht.service.model.insurance.request.SearchInsurance.Identity();
+        RequestInsuranceSearchResultViewModel request = new RequestInsuranceSearchResultViewModel();
+        com.eligasht.service.model.newModel.insurance.request.searchInsurance.QueryModel queryModel = new com.eligasht.service.model.newModel.insurance.request.searchInsurance.QueryModel();
 
-        request.setIdentity(identity);
 
-        request.setCountryCode(countryCode);
-        Log.d("TAG", "showInsurance: " + countryCode);
-        request.setDepartureDate(departureDate);
-        Log.d("TAG", "showInsurance: " + departureDate);
 
-        request.setAccomodationDays(accomodationDays);
+        queryModel.setTravelDuration(String.valueOf(accomodationDays));
         Log.d("TAG", "showInsurance: " + accomodationDays);
 
-        request.setReturnDate(returnDate);
-        Log.d("TAG", "showInsurance: " + returnDate);
+        queryModel.setCategory("Insurance");
+        queryModel.setCurrentCulture("tr-TR");
+        queryModel.setDestinationText("Turkey");
+        queryModel.setDestination("TR");
+        queryModel.setExclusiveTrain(0);
+        queryModel.setIsSearchRequest(1);
+        queryModel.setPreferredClass("All");
+        queryModel.setTrip("TR");
+       Log.d("TAG", "showInsurance: " + returnDate);
 
-        request.setPassCount(passCount);
-        Log.d("TAG", "showInsurance: " + passCount);
+      //  request.setPassCount(passCount);
+      //  Log.d("TAG", "showInsurance: " + passCount);
 
-        request.setBirthDateList(birthDateLists);
-        Log.d("TAG", "showInsurance: " + birthDateLists);
+        queryModel.setBirthDay(birthDateString.substring(1, birthDateString.length() ));
+        Log.d("TAG", "showInsurance: " + birthDateString);
+        request.setQueryModel(queryModel);
+
+       // request.setCulture(getString(R.string.culture));
+      //  requestSearchInsurance.setRequest(request);
+        Log.e("InsuranceRequestModel: ", new Gson().toJson(request));
+        SingletonService.getInstance().getInsurance().newInsuranceSearchAvail(this, request);
 
 
-        request.setCulture(getString(R.string.culture));
-        requestSearchInsurance.setRequest(request);
-        Log.e("InsuranceRequestModel: ", new Gson().toJson(requestSearchInsurance));
-        SingletonService.getInstance().getInsurance().getSearchInsuranceAvail(this, requestSearchInsurance);
-
-/*
-        call.enqueue(new Callback<InsuranceRes>() {
-            @Override
-            public void onResponse(Call<InsuranceRes> call, Response<InsuranceRes> response) {
-                hideLoading();
-                Log.d("TAG", "onResponse: ");
-                if (response == null
-                        || response.body() == null
-                        || response.body().getShowInsuranceResult() == null) {
-                    showText();
-                    if (!Utility.isNetworkAvailable(SearchInsuranceActivity.this)) {
-
-                        txt_error.setText(getString(R.string.InternetError));
-
-                    } else {
-
-                        txt_error.setText(getString(R.string.ErrorServer));
-
-                    }
-                    error_layout.setVisibility(View.VISIBLE);
-                    return;
-                }
-
-                if (!ValidationTools.isEmptyOrNull(response.body().getShowInsuranceResult().getError())) {
-                    showText();
-                    txt_error.setText(response.body().getShowInsuranceResult().getError().get(0).getDetailedMessage());
-                    error_layout.setVisibility(View.VISIBLE);
-                    return;
-                }
-
-                TravelInsurance travelInsurance = response.body().getShowInsuranceResult().getTravelInsurance();
-                insurancePlan = response.body().getShowInsuranceResult().getInsurancePlan();
-
-                if (travelInsurance == null && insurancePlan == null) {
-                    showText();
-                    txt_error.setText(getString(R.string.PackgeNoFound));
-                    error_layout.setVisibility(View.VISIBLE);
-                    return;
-                }
-
-                if (travelInsurance == null && (insurancePlan != null && ValidationTools.isEmptyOrNull(insurancePlan.getInsurancePlans()))) {
-                    showText();
-                    txt_error.setText(getString(R.string.PackgeNoFound));
-                    error_layout.setVisibility(View.VISIBLE);
-                    return;
-                }
-
-                if ((travelInsurance != null && ValidationTools.isEmptyOrNull(travelInsurance.getTravelInsurances())) && insurancePlan == null) {
-                    showText();
-                    txt_error.setText(getString(R.string.PackgeNoFound));
-                    error_layout.setVisibility(View.VISIBLE);
-                    return;
-                }
-
-                if ((travelInsurance != null && ValidationTools.isEmptyOrNull(travelInsurance.getTravelInsurances())) && (insurancePlan != null && ValidationTools.isEmptyOrNull(insurancePlan.getInsurancePlans()))) {
-                    showText();
-                    txt_error.setText(getString(R.string.PackgeNoFound));
-                    error_layout.setVisibility(View.VISIBLE);
-                    return;
-                }
-
-                if (travelInsurance != null && !ValidationTools.isEmptyOrNull(travelInsurance.getTravelInsurances())) {
-                    travelInsurances = travelInsurance.getTravelInsurances();
-                    showTravelInsurances();
-                }
-
-                if (insurancePlan != null && !ValidationTools.isEmptyOrNull(insurancePlan.getInsurancePlans())) {
-                    insurancePlans = insurancePlan.getInsurancePlans();
-                    showInsurancePlans();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<InsuranceRes> call, Throwable t) {
-                hideLoading();
-                showText();
-                txt_error.setText(getString(R.string.ErrorServer));
-                error_layout.setVisibility(View.VISIBLE);
-
-            }
-        });
-*/
     }
 
     //first list of insurance
     private void showInsurancePlans() {
         rclInsurancePlans.setVisibility(View.VISIBLE);
-        InsurancPlanAdapter insurancPlanAdapter = new InsurancPlanAdapter(this, insurancePlans, passCount).setListener(this);
+        InsurancPlanAdapter insurancPlanAdapter = new InsurancPlanAdapter(this, Insurances, passCount).setListener(this);
         rclInsurancePlans.setAdapter(insurancPlanAdapter);
     }
-
+//در سمپل جدید این نوع از لیست را نداریم
     //second list of insurance
-    private void showTravelInsurances() {
-        rclTravelInsurance.setVisibility(View.VISIBLE);
-        TravelInsurancAdapter travelInsurancAdapter = new TravelInsurancAdapter(this, travelInsurances, passCount).setListener(this);
-        rclTravelInsurance.setAdapter(travelInsurancAdapter);
+   private void showTravelInsurances() {
+        /*rclTravelInsurance.setVisibility(View.VISIBLE);
+        TravelInsurancAdapter travelInsurancAdapter = new TravelInsurancAdapter(this, travelInsuranceCoverages, passCount).setListener(this);
+        rclTravelInsurance.setAdapter(travelInsurancAdapter);*/
+       rclInsurancePlans.setVisibility(View.VISIBLE);
+       InsurancPlanAdapter insurancPlanAdapter = new InsurancPlanAdapter(this, Insurances, passCount).setListener(this);
+       rclInsurancePlans.setAdapter(insurancPlanAdapter);
     }
 
     private void showText() {
@@ -408,7 +317,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     }
 
     //onclick the first's list from  insurance
-    @Override
+   /* @Override
     public void onClickTravelInsurancItem(com.eligasht.service.model.insurance.response.SearchInsurance.TravelInsurance_ travelInsurance) {
         Intent intent = new Intent(this, PassengerInsuranceActivity.class);
 
@@ -420,22 +329,27 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
         Prefs.putString("Id", travelInsurance.getTravelInsuranceID().toString());
         Prefs.putInt("PassCount", passCount);
         startActivity(intent);
-    }
+    }*/
 
     //onclick the second's list from  insurance
     @Override
-    public void onClickInsurancPlanItem(com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_ _insurancePlan) {
+    public void onClickInsurancPlanItem(Insurance _insurancePlan) {
         Intent intent = new Intent(this, PassengerInsuranceActivity.class);
         Prefs.putString("CountryCode", countryCode);
         Prefs.putString("DepartureDate", departureDate);
         Prefs.putString("DtStart", departureDate);
         Prefs.putString("ReturnDate", returnDate);
-        Prefs.putInt("Price", (_insurancePlan.getPrice()) * passCount);
-        Prefs.putString("Id", _insurancePlan.getCode().toString());
+        Prefs.putInt("Price", (_insurancePlan.getInsurancePrice()));// * passCount);
+        Prefs.putString("Id", _insurancePlan.getInsuranceID());//getCode().toString());
         Prefs.putString("SearchKey", insurancePlan.getSearchKey());
         Prefs.putInt("PassCount", passCount);
         startActivity(intent);
     }
+
+   /* @Override
+    public void onClickInsurancPlanItem(Insurance insurancePlan) {
+
+    }*/
 
 
   /*  @Override

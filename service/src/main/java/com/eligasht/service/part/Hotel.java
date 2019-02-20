@@ -29,6 +29,7 @@ import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
 import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
+import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
 
 
 /**
@@ -96,5 +97,13 @@ public class Hotel extends BasePart {
 
     public void getPishFactor(OnServiceStatus<ResponsePurchaseService> listener, RequestPurchaseService req) {
         start(getServiceGenerator().createService().RESPONSE_OBSERVABLE(req), listener);
+    }
+
+    //*************NEW*****************
+    public void newHotelCitiesAvail(OnServiceStatus<String> listener, AutoCompleteParameterModel req) {
+        start(getServiceGenerator().createService().responseNewHotelCitiesObservable(req), listener);
+    }
+    public void newHotelNamesAvail(OnServiceStatus<String> listener, AutoCompleteParameterModel req) {
+        start(getServiceGenerator().createService().responseNewHotelNamesObservable(req), listener);
     }
 }

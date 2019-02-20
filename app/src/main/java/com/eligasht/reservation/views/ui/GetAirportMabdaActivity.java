@@ -1,5 +1,7 @@
 package com.eligasht.reservation.views.ui;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +16,7 @@ import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -23,11 +26,10 @@ import android.widget.Toast;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.flight.request.airPort.RequestAirports;
-import com.eligasht.service.model.flight.request.airPort.Identity;
-import com.eligasht.service.model.flight.request.airPort.Request;
-import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
+
 import com.eligasht.reservation.tools.Prefs;
+import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
+import com.eligasht.service.model.newModel.airport.response.ResponseAirport;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
@@ -37,12 +39,17 @@ import com.eligasht.reservation.tools.db.main.CursorManager;
 import com.eligasht.reservation.views.adapters.GetAirPortMabdaAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapter;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonToken;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class GetAirportMabdaActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnServiceStatus<ResponsAirports> {
+public class GetAirportMabdaActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnServiceStatus<List<ResponseAirport>> {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     private static final String TAG = "GetAirport";
@@ -195,6 +202,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
         );
     }//end oncreate
 
+
     @Override
     public boolean needTerminate() {
         return false;
@@ -203,26 +211,55 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
     private void sendRequest(String searchText) {
         avi.setVisibility(View.VISIBLE);
 
-        RequestAirports requestAirports = new RequestAirports();
-        Request request = new Request();
+        AutoCompleteParameterModel requestAutoCompleteParameterModel = new AutoCompleteParameterModel();
 
-        Identity identity = new Identity();
-        identity.setCode(searchText);
-        request.setIdentity(identity);
+        requestAutoCompleteParameterModel.setPart(searchText);
 
-        request.setCity("");
-        request.setCulture(getString(R.string.culture));
-        requestAirports.setRequest(request);
-
-        SingletonService.getInstance().getFlight().airPortsAvail(this, requestAirports);
+        SingletonService.getInstance().getFlight().newAirportsAvail(this, requestAutoCompleteParameterModel);
     }
 
 
     @Override
-    public void onReady(ResponsAirports responsAirports) {//get Response from api
+    public void onReady(List<ResponseAirport> responsAirports) {//get Response from api
+        System.out.println("dddddddddddddddddddddddd"+responsAirports);
         avi.setVisibility(View.GONE);
 
-        String GetError = "";
+        /*GsonBuilder gsonb = new GsonBuilder();
+        Gson gson = gsonb.create();
+
+
+
+        Type listType = new TypeToken<List<ResponseAirport>>(){}.getType();
+        List<ResponseAirport> responsAirports = gson.fromJson(responsAirport, listType);*/
+        List<Country> data = new ArrayList<Country>();
+        if (responsAirports !=null){
+            for (int i = 0; i < responsAirports.size(); i++) {
+                Country fishData = new Country();
+                fishData.setCityName(responsAirports.get(i).getTextFa());
+                fishData.setAirportName(responsAirports.get(i).getText());//.getAirports().get(i).getAirportName());
+                fishData.setAirportCode(responsAirports.get(i).getValue()); //.get(i).getAirportCode());
+              //  fishData.setAirportID(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getAirportID());
+               // fishData.setParentId(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getParentId());
+
+                data.add(fishData);
+            }
+        }
+        String Value_Maghsad_City = "";
+        String Value_Maghsad_Airport = "";
+        String Value_Maghsad_Airport_Code = "";
+
+        if (Prefs.getString("Value-Maghsad-City", "") != null) {
+            Value_Maghsad_City = Prefs.getString("Value-Maghsad-City", "");
+            Value_Maghsad_Airport = Prefs.getString("Value-Maghsad-Airport", "");
+            Value_Maghsad_Airport_Code = Prefs.getString("Value-Maghsad-Airport-Code", "");
+        }
+
+        ListView listAirPort = findViewById(R.id.listAirPort);
+        mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportMabdaActivity.this);
+
+        mAdapter.setData(data);
+        listAirPort.setAdapter(mAdapter);
+      /*  String GetError = "";
         List<Country> data = new ArrayList<Country>();
         ListView listAirPort;
         try {
@@ -268,7 +305,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
             } else {
                 Toast.makeText(this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
             }
-        }
+        }*/
     }
 
     @Override

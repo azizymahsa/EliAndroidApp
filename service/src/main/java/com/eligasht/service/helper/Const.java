@@ -10,7 +10,8 @@ public class Const {
 
     public static Boolean TEST=false;
 
-    public final static String BASEURL = "http://mobilews.eligasht.com/LightServices/Rest/";
+// public final static String BASEURL = "http://mobilews.eligasht.com/LightServices/Rest/";
+ public final static String BASEURL = "http://192.168.1.82:120/api/";
 
     public final static String BaseGitLab="https://gitlab.com/api/v4/projects/6147852/";
 
@@ -59,4 +60,23 @@ public class Const {
     public final static String GetSurveyDetailsAvil = "Survey/SurveyService.svc/GetSurveyDetails";
     public final static String AddSurveyResultAvil = "Survey/SurveyService.svc/AddSurveyResult";
     public final static String CheckValidSurveyAvil = "Survey/SurveyService.svc/CheckValidResultDetail";
+    //*************NEW******************************************************************
+    //*************Flight*****************
+    public final static String GetNewAirports = "LoadAndFillAPI/Airports";
+    public final static String GetNewFlightSearch = "FlightServiceAPI/Search";
+    public final static String GetNewConfirmFlightPrice = "FlightServiceAPI/ConfirmFlightPrice";
+    public final static String GetNewPurchaseFlight = "FlightServiceAPI/PurchaseFlight";
+    public final static String GetNewServices = "ServicesServiceAPI/GetServices";
+    public final static String GetNewPurchaseServices = "ServicesServiceAPI/PurchaseServices";
+
+    //*************Hotel*****************
+    public final static String GetNewHotelCities = "LoadAndFillAPI/HotelCities";
+    public final static String GetNewHotelNames = "LoadAndFillAPI/HotelNames";
+    //*************Insurance*****************
+    public final static String GetNewInsuranceCountries = "LoadAndFillAPI/InsuranceCountries";
+    public final static String GetNewInsuranceSearchResult = "InsuranceAPI/InsuranceSearchResultViewModel";
+    public final static String GetNewInsurancePurchase = "InsuranceAPI/Purchase";
+
+
+
 }

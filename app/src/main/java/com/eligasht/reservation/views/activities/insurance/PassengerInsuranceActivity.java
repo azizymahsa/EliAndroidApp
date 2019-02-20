@@ -82,6 +82,10 @@ import com.eligasht.service.model.insurance.response.ResponsePreFactorDetail.Req
 import com.eligasht.service.model.insurance.response.ResponsePreFactorDetail.ResponsePreFactorDetails;
 import com.eligasht.service.model.insurance.response.PurchaseInsurance.ResponsePurchaseInsurance;
 import com.eligasht.service.model.insurance.response.PurchaseInsurance.TmpReserveResult;
+import com.eligasht.service.model.newModel.insurance.request.purchase.Customer;
+import com.eligasht.service.model.newModel.insurance.request.purchase.Passenger;
+import com.eligasht.service.model.newModel.insurance.request.purchase.PurchaseParameterModel;
+import com.eligasht.service.model.newModel.insurance.response.purchase.ResponseInsurancePurchase;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
@@ -112,7 +116,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 //this class just me send request of insurance and set sum of passenger but there is problem of ui
 public class PassengerInsuranceActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener, OnItemSelectedListener, View.OnFocusChangeListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,
-        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener,OnServiceStatus<ResponsePurchaseInsurance> {
+        com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener,OnServiceStatus<ResponseInsurancePurchase> {
 
 
     public static boolean flag;
@@ -560,10 +564,10 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     }
 
     @Override
-    public void onReady(ResponsePurchaseInsurance responsePurchaseInsurance) {
+    public void onReady(ResponseInsurancePurchase responsePurchaseInsurance) {
         Log.e("PurchaseInsurance:", new Gson().toJson(responsePurchaseInsurance));
         rlLoading.setVisibility(View.GONE);
-        try {
+     /*   try {
 
             Object GetError = null;
 
@@ -601,7 +605,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
             AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this);
             AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
         }
-
+*/
     }
 
     @Override
@@ -780,11 +784,11 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
 
 private void RequestPurchaseInsurance(){
     rlLoading.setVisibility(View.VISIBLE);
-    RequestPurchaseInsurance requestPurchaseInsurance = new RequestPurchaseInsurance();
-    com.eligasht.service.model.insurance.request.PurchaseInsurance.Request request = new com.eligasht.service.model.insurance.request.PurchaseInsurance.Request();
+    PurchaseParameterModel requestPurchaseInsurance = new PurchaseParameterModel();
+    //com.eligasht.service.model.insurance.request.PurchaseInsurance.Request request = new com.eligasht.service.model.insurance.request.PurchaseInsurance.Request();
 
-    com.eligasht.service.model.insurance.request.PurchaseInsurance.Identity identity = new com.eligasht.service.model.insurance.request.PurchaseInsurance.Identity();
-    request.setIdentity(identity);
+   // com.eligasht.service.model.insurance.request.PurchaseInsurance.Identity identity = new com.eligasht.service.model.insurance.request.PurchaseInsurance.Identity();
+    //request.setIdentity(identity);
 
     try {
         String GUID = "";
@@ -795,7 +799,7 @@ private void RequestPurchaseInsurance(){
             ResultUniqId = SearchFlightActivity.globalResultUniqID;
         }
 
-        List<com.eligasht.service.model.insurance.request.PurchaseInsurance.PassList> passLists = new ArrayList<>();
+        List<Passenger> passLists = new ArrayList<>();
 
         PassengerMosaferItems_Table items_Table = new PassengerMosaferItems_Table(PassengerInsuranceActivity.this);
         CursorManager cursorM = items_Table.getAllMosafer();
@@ -804,69 +808,69 @@ private void RequestPurchaseInsurance(){
 
                 cursorM.moveToPosition(i);
 
-                com.eligasht.service.model.insurance.request.PurchaseInsurance.PassList passList=new com.eligasht.service.model.insurance.request.PurchaseInsurance.PassList();
+                Passenger passList=new Passenger();
                 passList.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));//.put("Gender", cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
                 passList.setNationality( cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
                 passList.setNationalityID((cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value())).toUpperCase());
                // passList.setNationalityID((cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value())).toUpperCase());
                 passList.setPackRoomTypeID(Prefs.getInt("PackRoomType_ID",12));
-                passList.setRoomNo(Prefs.getInt("Room_No", 12));
+                passList.setRoomNo(Integer.toString(Prefs.getInt("Room_No", 12)));
 
-                passList.setRqPassengerAddress(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
-                passList.setRqPassengerBirthdate(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
-                passList.setRqPassengerEmail(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
+                passList.setAddress(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
+                passList.setBirthday(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
+                passList.setEmail(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
 
-                passList.setRqPassengerFirstNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-                passList.setRqPassengerFirstNameFa(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
-                passList.setRqPassengerLastNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
+                passList.setFirstNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
+                passList.setFirstNameFa(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
+                passList.setLastNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
 
-                passList.setRqPassengerLastNameFa(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
-                passList.setRqPassengerMobile(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
-                passList.setRqPassengerNationalCode(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
+                passList.setFirstNameFa(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
+                passList.setMobile(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
+                passList.setNationalCode(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
 
-                passList.setRqPassengerPassExpDate(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
-                passList.setRqPassengerPassNo(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
-                passList.setRqPassengerTel(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
-                passList.setRqPassengerInsPrice(Prefs.getInt("Price", 0));
+                passList.setPassportExpiration(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
+                passList.setPassportNo(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
+                passList.setTel(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
+                passList.setInsurancePrice(Prefs.getInt("Price", 0));
 
                 passLists.add(passList);
 
             }
-            request.setPassList( passLists);
+            requestPurchaseInsurance.setPassengersList( passLists);
         }
 
         ////kharidar
         PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerInsuranceActivity.this);
         CursorManager cursorManager = partnerInfo_Table.getPartner();
         cursorManager.moveToPosition(0);
-        PartnerList partnerList=new PartnerList();
-        partnerList.setRqPartnerAddress(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
-        partnerList.setRqPartnerEmail(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
-        partnerList.setRqPartnerFirstNameFa(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
-        partnerList.setRqPartnerGender(cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
-        partnerList.setRqPartnerLastNameFa(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
-        partnerList.setRqPartnerMobile(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
-        partnerList.setRqPartnerNationalCode(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
-        partnerList.setRqPartnerTel(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
-        partnerList.setAgcUser_ID(cursorManager.getString(PassengerPartnerInfo_Table.Columns.AgcUser_ID.value()));
-        partnerList.setWebUserID (Prefs.getString("userId", "-1"));//Purchase
+        Customer partnerList=new Customer();
+        partnerList.setAddress(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
+        partnerList.setAdMail(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
+        partnerList.setFirstNameFa(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
+        partnerList.setGender(cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
+        partnerList.setLastNameFa(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
+        partnerList.setMobile(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
+        partnerList.setNationalCode(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
+        partnerList.setTel(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
+        partnerList.setAgcUserID(cursorManager.getInt(PassengerPartnerInfo_Table.Columns.AgcUser_ID.value()));
+        partnerList.setWebUserID (Integer.parseInt(Prefs.getString("userId", "-1")));//Purchase
 
-        request.setPartnerList(partnerList);
+        requestPurchaseInsurance.setCustomerInfo(partnerList);
 
-        request.setCulture(getString(R.string.culture));
+        //request.setCulture(getString(R.string.culture));
 
-        request.setCountryCode(Prefs.getString("CountryCode", "12"));
-        request.setDepartureDate(Prefs.getString("DepartureDate", "12"));
-        request.setDtStart(Prefs.getString("DtStart", "12"));
-        request.setPlanCode(Prefs.getString("Id", "12"));
-        request.setReturnDate(Prefs.getString("ReturnDate", "12"));
-        request.setSearchKey(Prefs.getString("SearchKey", "12"));
+       // request.setCountryCode(Prefs.getString("CountryCode", "12"));
+       // request.setDepartureDate(Prefs.getString("DepartureDate", "12"));
+       // request.setDtStart(Prefs.getString("DtStart", "12"));
+        requestPurchaseInsurance.setSelectedInsuranseId(Prefs.getString("Id", "12"));//PlanCode(Prefs.getString("Id", "12"));
+      //  request.setReturnDate(Prefs.getString("ReturnDate", "12"));
+        requestPurchaseInsurance.setSearchKey(Prefs.getString("SearchKey", "12"));
 
-        request.setCulture(getString(R.string.culture));
-        requestPurchaseInsurance.setRequest(request);
+       // request.setCulture(getString(R.string.culture));
+        //requestPurchaseInsurance.setRequest(request);
         Log.e("PurchaseInsurance:", new Gson().toJson(requestPurchaseInsurance));
 
-        SingletonService.getInstance().getInsurance().purchaseInsuranceAvail(this, requestPurchaseInsurance);
+        SingletonService.getInstance().getInsurance().newInsurancePurchaseAvail(this, requestPurchaseInsurance);
     } catch (Exception e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
