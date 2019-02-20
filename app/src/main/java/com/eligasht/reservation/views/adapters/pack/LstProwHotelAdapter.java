@@ -13,7 +13,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.eligasht.R;
-import com.eligasht.reservation.models.model.pack.LstProwHotel;
+
+import com.eligasht.reservation.models.model.pack.response.responseSearch.LstProwHotel;
 import com.eligasht.reservation.tools.GlideApp;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.ValidationTools;
@@ -87,23 +88,26 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
             holder.txt_city_name.setText(ValidationTools.isEmptyOrNull(item.getCityEnglishName()) ? item.getCityEnglishName() : item.getCityEnglishName() + " ،");
         }
 
+      /*  String chI=item.getCheckIn();
+        System.out.println("chI:"+chI.substring(0,10)+"|||"+item.getCheckIn());*/
 
+      /*  long checkin_milis = DateUtil.getMiliSecondFromJSONDate(item.getCheckIn().substring(0,10));
 
-        long checkin_milis = DateUtil.getMiliSecondFromJSONDate(item.getCheckIn());
-        long checkout_milis = DateUtil.getMiliSecondFromJSONDate(item.getCheckOut());
+        long checkout_milis = DateUtil.getMiliSecondFromJSONDate(item.getCheckOut().substring(0,10));*/
+
         long diferent_day = DateUtil.getTimeDifference(item.getCheckIn(), item.getCheckOut()).getDay();
         if (Prefs.getString("lang", "fa").equals("fa")) {
             holder.txt_date.setText(context.getString(R.string.from) + " " +
-                    DateUtil.getShortStringDateFromMilis(String.valueOf(checkin_milis), "yyyy-MM-dd", true) + " " +
+                    DateUtil.getShortStringDate(item.getCheckIn().substring(0,10), "yyyy-MM-dd", true) + " " +
                     context.getString(R.string.to) + " " +
-                    DateUtil.getShortStringDateFromMilis(String.valueOf(checkout_milis), "yyyy-MM-dd", true) +
+                    DateUtil.getShortStringDate(item.getCheckOut().substring(0,10), "yyyy-MM-dd", true) +
                     " - " +
                     diferent_day + " " + context.getString(R.string.night));
         } else {
             holder.txt_date.setText(context.getString(R.string.from) + " " +
-                    DateUtil.getShortStringDateFromMilis(String.valueOf(checkin_milis), "yyyy-MM-dd", false) + " " +
+                    DateUtil.getShortStringDate(item.getCheckIn().substring(0,10), "yyyy-MM-dd", false) + " " +
                     context.getString(R.string.to) + " " +
-                    DateUtil.getShortStringDateFromMilis(String.valueOf(checkout_milis), "yyyy-MM-dd", false) +
+                    DateUtil.getShortStringDate(item.getCheckOut().substring(0,10), "yyyy-MM-dd", false) +
                     " - " +
                     diferent_day + " " + context.getString(R.string.night));
         }

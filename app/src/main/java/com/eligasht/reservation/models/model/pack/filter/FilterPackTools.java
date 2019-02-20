@@ -2,7 +2,8 @@ package com.eligasht.reservation.models.model.pack.filter;
 
 import com.eligasht.reservation.models.model.pack.LstHotelAmenity;
 import com.eligasht.reservation.models.model.pack.LstProwHotel;
-import com.eligasht.reservation.models.model.pack.PRowXfer;
+
+import com.eligasht.reservation.models.model.pack.response.responseSearch.PRowXfer;
 import com.eligasht.reservation.tools.ValidationTools;
 
 import java.util.ArrayList;
@@ -38,8 +39,8 @@ public class FilterPackTools {
         int max = 0;
 
         for (PRowXfer pRowXfer : pRowXfers) {
-            if (pRowXfer.getSumPrice() > max) {
-                max = pRowXfer.getSumPrice();
+            if (pRowXfer.getSumPrice().getAmount() > max) {
+                max = pRowXfer.getSumPrice().getAmount();
             }
         }
         return max;
@@ -50,11 +51,11 @@ public class FilterPackTools {
             return 0;
         }
 
-        int min = pRowXfers.get(0).getSumPrice();
+        int min = pRowXfers.get(0).getSumPrice().getAmount();
 
         for (PRowXfer pRowXfer : pRowXfers) {
-            if (pRowXfer.getSumPrice() < min) {
-                min = pRowXfer.getSumPrice();
+            if (pRowXfer.getSumPrice().getAmount() < min) {
+                min = pRowXfer.getSumPrice().getAmount();
             }
         }
         return min;
@@ -79,7 +80,7 @@ public class FilterPackTools {
         }
 
         for(PRowXfer pRowXfer : pRowXfers){
-            for (LstProwHotel lstProwHotel : pRowXfer.getLstProwHotels()){
+            for (com.eligasht.reservation.models.model.pack.response.responseSearch.LstProwHotel lstProwHotel : pRowXfer.getLstProwHotels()){
                 if(!isExistPlaceFilter(placeFilters,lstProwHotel.getLocationID())){
                     placeFilters.add(new PlaceFilter(lstProwHotel.getLocationID(),
                             ValidationTools.isEmptyOrNull(lstProwHotel.getLocationFullNameFa())?lstProwHotel.getLocationFullNameEn():lstProwHotel.getLocationFullNameFa()));
@@ -112,7 +113,7 @@ public class FilterPackTools {
         }
 
         for(PRowXfer pRowXfer : pRowXfers){
-            for (LstProwHotel lstProwHotel : pRowXfer.getLstProwHotels()){
+            for (com.eligasht.reservation.models.model.pack.response.responseSearch.LstProwHotel lstProwHotel : pRowXfer.getLstProwHotels()){
                 if(!isExistHotelTypeFilter(hotelTypeFilters,lstProwHotel.getHTypeNameE(),lstProwHotel.getHTypeNameF())){
                     hotelTypeFilters.add(new HotelTypeFilter(lstProwHotel.getHTypeNameE(),lstProwHotel.getHTypeNameF()));
                 }
@@ -144,7 +145,7 @@ public class FilterPackTools {
         }
 
         for(PRowXfer pRowXfer : pRowXfers){
-            for (LstHotelAmenity lstHotelAmenity : pRowXfer.getLstHotelAmenity()){
+            for (com.eligasht.reservation.models.model.pack.response.responseSearch.LstHotelAmenity lstHotelAmenity : pRowXfer.getLstHotelAmenity()){
                 if(!isExistAmenityFilter(amenityFilters,lstHotelAmenity.getAmenityID())){
                     amenityFilters.add(new AmenityFilter(lstHotelAmenity));
                 }

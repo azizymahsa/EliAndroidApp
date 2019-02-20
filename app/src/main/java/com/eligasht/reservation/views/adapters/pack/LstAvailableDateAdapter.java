@@ -8,8 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+
 import com.eligasht.R;
-import com.eligasht.reservation.models.model.pack.LstAvailableDate;
+import com.eligasht.reservation.models.model.pack.response.responseSearch.LstAvailableDate;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.views.viewholders.LstAvailableDateRowHolder;
@@ -86,16 +87,16 @@ public class  LstAvailableDateAdapter extends RecyclerView.Adapter<LstAvailableD
         }
         //todo change this
 
-        long milis = DateUtil.getMiliSecondFromJSONDate(item.getDepartDate());
+       // long milis = DateUtil.getMiliSecondFromJSONDate(item.getDepartDate());
         String date="";
         if (Locale.getDefault().getLanguage().equals("fa")) {
-             date = DateUtil.getShortStringDateFromMilis(String.valueOf(milis), "yyyy-MM-dd", true).replaceAll("شنبه", "").replaceAll("جمعه", "")
+             date = DateUtil.getShortStringDate(String.valueOf(item.getDepartDate().substring(0,10)), "yyyy-MM-dd", true).replaceAll("شنبه", "").replaceAll("جمعه", "")
                     .replaceAll("سه", "").replaceAll("چهار", "").replaceAll("پنج", "").replaceAll("یک", "")
                     .replaceAll("دو", "");
 
 
         }else{
-             date = DateUtil.getShortStringDateFromMilis(String.valueOf(milis), "yyyy-MM-dd", false).replaceAll("Sat", "").replaceAll("Fri", "")
+             date = DateUtil.getShortStringDate(String.valueOf(item.getDepartDate().substring(0,10)), "yyyy-MM-dd", false).replaceAll("Sat", "").replaceAll("Fri", "")
                     .replaceAll("Tue", "").replaceAll("Wed", "").replaceAll("Thu", "").replaceAll("Sun", "")
                     .replaceAll("Mon", "");
 

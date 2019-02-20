@@ -12,12 +12,13 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eligasht.reservation.models.model.pack.response.responseSearch.LstHotelAmenity;
+import com.eligasht.reservation.models.model.pack.response.responseSearch.LstProwHotel;
+import com.eligasht.reservation.models.model.pack.response.responseSearch.LstProwPrice;
+import com.eligasht.reservation.models.model.pack.response.responseSearch.PRowXfer;
 import com.google.gson.Gson;
 import com.eligasht.R;
-import com.eligasht.reservation.models.model.pack.LstHotelAmenity;
-import com.eligasht.reservation.models.model.pack.LstProwHotel;
-import com.eligasht.reservation.models.model.pack.LstProwPrice;
-import com.eligasht.reservation.models.model.pack.PRowXfer;
+
 import com.eligasht.reservation.models.model.pack.filter.AmenityFilter;
 import com.eligasht.reservation.models.model.pack.filter.DegreeFilter;
 import com.eligasht.reservation.models.model.pack.filter.HotelTypeFilter;
@@ -44,13 +45,13 @@ import java.util.logging.Handler;
 public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
 
     private Context context;
-    private ArrayList<PRowXfer> feedItemList;
-    private ArrayList<PRowXfer> filtertemList;
+    private List<PRowXfer> feedItemList;
+    private List<PRowXfer> filtertemList;
     TextView Date;
     private ListenerSearchPackAdapter listenerPackAdapter;
     private int type = 2;
 
-    public PRowXferAdapter(Context context, ArrayList<PRowXfer> NameItem,TextView Date) {
+    public PRowXferAdapter(Context context, List<PRowXfer> NameItem,TextView Date) {
 
         this.context = context;
         this.feedItemList = NameItem;
@@ -60,7 +61,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
 
     public interface ListenerSearchPackAdapter {
         void onClickPackageBookingItem(PRowXfer pack);
-        void onFilterListChange(ArrayList<PRowXfer> filtertemList);
+        void onFilterListChange(List<PRowXfer> filtertemList);
     }
 
     public PRowXferAdapter setListener(ListenerSearchPackAdapter listener) {
@@ -93,7 +94,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
                     return String.valueOf(lstProwPrice.getRoomNo());
                 }
             });
-            ArrayList<Section> sections = new ArrayList<>();
+            List<Section> sections = new ArrayList<>();
             for (String header : list) {
                 Section section = new Section();
                 section.setTitle(header);
@@ -120,7 +121,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
        */ }
 
         if(item.getLstProwHotelAdapter() == null){
-            item.setLstProwHotelAdapter(new LstProwHotelAdapter(context, item.getLstProwHotels(),Date));
+            item.setLstProwHotelAdapter(new LstProwHotelAdapter(context, (ArrayList<LstProwHotel>)item.getLstProwHotels(),Date));
         }
 
 
@@ -189,19 +190,19 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
     }
 
 
-    public void filter(ArrayList<DegreeFilter> degreeFiltersSelected,
-                       ArrayList<PriceFilter> priceFiltersSelected,
-                       ArrayList<PlaceFilter> placeFiltersSelected,
-                       ArrayList<HotelTypeFilter> hotelTypeFiltersSelected,
-                       ArrayList<AmenityFilter> amenityFiltersSelected){
+    public void filter(List<DegreeFilter> degreeFiltersSelected,
+                       List<PriceFilter> priceFiltersSelected,
+                       List<PlaceFilter> placeFiltersSelected,
+                       List<HotelTypeFilter> hotelTypeFiltersSelected,
+                       List<AmenityFilter> amenityFiltersSelected){
 
 
         filtertemList = new ArrayList<>(feedItemList);
-        ArrayList<PRowXfer> filterDegreeList = new ArrayList<>();
-        ArrayList<PRowXfer> filterPriceList = new ArrayList<>();
-        ArrayList<PRowXfer> filterPlaceList = new ArrayList<>();
-        ArrayList<PRowXfer> filterHotelTypeList = new ArrayList<>();
-        ArrayList<PRowXfer> filterAmenityList = new ArrayList<>();
+        List<PRowXfer> filterDegreeList = new ArrayList<>();
+        List<PRowXfer> filterPriceList = new ArrayList<>();
+        List<PRowXfer> filterPlaceList = new ArrayList<>();
+        List<PRowXfer> filterHotelTypeList = new ArrayList<>();
+        List<PRowXfer> filterAmenityList = new ArrayList<>();
 
         if(!ValidationTools.isEmptyOrNull(degreeFiltersSelected)){
 
@@ -221,7 +222,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
         if(!ValidationTools.isEmptyOrNull(priceFiltersSelected)){
             for(PriceFilter priceFilter : priceFiltersSelected){
                 for(PRowXfer pRowXfer : filtertemList){
-                    if(pRowXfer.getSumPrice() <= priceFilter.getMaxPrice() && pRowXfer.getSumPrice() >= priceFilter.getMinPrice()){
+                    if(pRowXfer.getSumPrice().getAmount() <= priceFilter.getMaxPrice() && pRowXfer.getSumPrice().getAmount() >= priceFilter.getMinPrice()){
                         if(!isExistPack(filterPriceList,pRowXfer)){
                             filterPriceList.add(pRowXfer);
                         }
@@ -285,7 +286,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
                 Collections.sort(filtertemList, new Comparator<PRowXfer>() {
                     @Override
                     public int compare(PRowXfer p1, PRowXfer p2) {
-                        return Integer.valueOf(p2.getSumPrice()) - Integer.valueOf(p1.getSumPrice()); // Ascending
+                        return Integer.valueOf(p2.getSumPrice().getAmount()) - Integer.valueOf(p1.getSumPrice().getAmount()); // Ascending
                     }
                 });
                 notifyDataSetChanged();
@@ -295,7 +296,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
                 Collections.sort(filtertemList, new Comparator<PRowXfer>() {
                     @Override
                     public int compare(PRowXfer p1, PRowXfer p2) {
-                        return Integer.valueOf(p1.getSumPrice()) - Integer.valueOf(p2.getSumPrice()); // Ascending
+                        return Integer.valueOf(p1.getSumPrice().getAmount()) - Integer.valueOf(p2.getSumPrice().getAmount()); // Ascending
                     }
                 });
                 notifyDataSetChanged();
@@ -306,7 +307,7 @@ public class PRowXferAdapter extends RecyclerView.Adapter<PRowXferRowHolder> {
         }
 
     }
-    private boolean isExistPack(ArrayList<PRowXfer> filterPriceList, PRowXfer pRowXfer) {
+    private boolean isExistPack(List<PRowXfer> filterPriceList, PRowXfer pRowXfer) {
         if(ValidationTools.isEmptyOrNull(filterPriceList)){
             return false;
         }

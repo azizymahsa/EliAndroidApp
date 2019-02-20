@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.eligasht.R;
-import com.eligasht.reservation.models.model.pack.LstProwPrice;
+
+import com.eligasht.reservation.models.model.pack.response.responseSearch.LstProwPrice;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
@@ -16,6 +17,7 @@ import com.eligasht.reservation.views.components.stickyheaders.Section;
 import com.eligasht.reservation.views.components.stickyheaders.SectioningAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -32,7 +34,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         return new GhostHeaderViewHolder(ghostView);
     }
     private Context context;
-    private ArrayList<Section> feedItemList;
+    private List<Section> feedItemList;
     public class ItemViewHolder extends SectioningAdapter.ItemViewHolder {
         private TextView adaultPrice;
         private TextView wChildPrice;
@@ -67,7 +69,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         }
     }
 
-    public LstProwPriceAdapter(Context context, ArrayList<Section> feedItemList) {
+    public LstProwPriceAdapter(Context context, List<Section> feedItemList) {
         this.context = context;
         this.feedItemList = feedItemList;
     }
@@ -94,33 +96,33 @@ public class LstProwPriceAdapter extends SectioningAdapter {
 
         holder.chk_prow_price.setOnCheckedChangeListener(null);
         holder.chk_prow_price.setChecked(item.isChecked());
-        holder.adaultPrice.setText(Utility.priceFormat(String.valueOf(item.getAdl())));
+        holder.adaultPrice.setText(Utility.priceFormat(String.valueOf(item.getAdlPrice().getAmount())));
 
         if (item.getChdWBCount() == 0) {
             holder.wChildPrice.setText(R.string.Nothing);
-        } else if (item.getChWb() == 0) {
+        } else if (item.getChWbPrice().getAmount() == 0) {
             holder.wChildPrice.setText(R.string.Nothing);
         } else {
-            holder.wChildPrice.setText(Utility.priceFormat(String.valueOf(item.getChWb())));
+            holder.wChildPrice.setText(Utility.priceFormat(String.valueOf(item.getChWbPrice().getAmount())));
         }
 
         if (item.getChdNBCount()==0 ) {
             holder.nChildPrice.setText(R.string.Nothing);
-        } else if (item.getChNb() == 0 ) {
+        } else if (item.getChNbPrice().getAmount() == 0 ) {
             holder.nChildPrice.setText(R.string.Nothing);
         } else {
-            holder.nChildPrice.setText(Utility.priceFormat(String.valueOf( item.getChNb() ) ));
+            holder.nChildPrice.setText(Utility.priceFormat(String.valueOf( item.getChNbPrice().getAmount() ) ));
         }
 
         if (item.getInfCount()  == 0) {
             holder.infantPrice.setText(R.string.Nothing);
-        } else if (item.getInf()  == 0) {
+        } else if (item.getInfPrice().getAmount() == 0) {
             holder.infantPrice.setText(R.string.Nothing);
         } else {
-            holder.infantPrice.setText(Utility.priceFormat(String.valueOf( item.getInf())));
+            holder.infantPrice.setText(Utility.priceFormat(String.valueOf( item.getInfPrice().getAmount())));
         }
 
-        holder.totalPrice.setText(Utility.priceFormat(String.valueOf(item.getSumPrice())));
+        holder.totalPrice.setText(Utility.priceFormat(String.valueOf(item.getSumPrice().getAmount())));
         if (Locale.getDefault().getLanguage().equals("fa")) {
             holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF()) ? item.getHRroomList() : item.getHRroomListF());
             holder.txt_hr_room_list2.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF()) ? item.getHRroomList() : item.getHServiceF() + "(" + item.getHService() + ")");
@@ -138,7 +140,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         });
     }
 
-    private void unchedOtherItem(ArrayList<LstProwPrice> list, int itemIndex) {
+    private void unchedOtherItem(List<LstProwPrice> list, int itemIndex) {
         if(ValidationTools.isEmptyOrNull(list)){
             return;
         }
@@ -235,7 +237,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         }
     }
 
-    private boolean isCheckedAnyOne(ArrayList<LstProwPrice> lstProwPrices){
+    private boolean isCheckedAnyOne(List<LstProwPrice> lstProwPrices){
         if(ValidationTools.isEmptyOrNull(lstProwPrices)){
             return false;
         }

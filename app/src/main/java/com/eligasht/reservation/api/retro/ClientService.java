@@ -15,13 +15,12 @@ import com.eligasht.reservation.models.model.login.response.WebUserRememberPassw
 import com.eligasht.reservation.models.model.login.response.WebUserUpdateProfileRes;
 import com.eligasht.reservation.models.model.pack.call.CityRequestModel;
 import com.eligasht.reservation.models.model.pack.call.CountryRequestModel;
-import com.eligasht.reservation.models.model.pack.call.PackageRequestModel;
 import com.eligasht.reservation.models.model.pack.call.PurchaseRequestModel;
-import com.eligasht.reservation.models.model.pack.response.CityListRes;
 import com.eligasht.reservation.models.model.pack.response.CountryListRes;
-import com.eligasht.reservation.models.model.pack.response.PackageListRes;
+import com.eligasht.reservation.models.model.pack.response.ResponseSearchPackage;
 import com.eligasht.reservation.models.model.pack.response.PurchaseRes;
 import com.eligasht.service.model.newModel.xpackage.packageCity.response.ResponseGetPackageCity;
+import com.eligasht.service.model.newModel.xpackage.searchPack.request.RequestSearchPackage;
 
 import java.util.List;
 
@@ -64,8 +63,8 @@ public interface  ClientService {
     @POST("LoadAndFillAPI/GetPackageCities")
     Call<List<ResponseGetPackageCity>> getCityListResult(@Body CityRequestModel cityRequestModel);
 
-    @POST("Package/PackageService.svc/SearchXPackage")
-    Call<PackageListRes> getPackageListResult(@Body PackageRequestModel packageRequestModel);
+    @POST("PackageServiceAPI/Search")
+    Call<ResponseSearchPackage> getPackageListResult(@Body RequestSearchPackage packageRequestModel);
 
     @POST("Package/PackageService.svc/PurchaseFlightService")
     Call<PurchaseRes> getPurchaseResult(@Body PurchaseRequestModel purchaseRequestModel);

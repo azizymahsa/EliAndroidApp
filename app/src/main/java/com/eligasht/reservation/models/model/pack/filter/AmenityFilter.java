@@ -1,6 +1,7 @@
 package com.eligasht.reservation.models.model.pack.filter;
 
-import com.eligasht.reservation.models.model.pack.LstHotelAmenity;
+
+import com.eligasht.reservation.models.model.pack.response.responseSearch.LstHotelAmenity;
 
 /**
  * Created by elham.bonyani on 1/20/18.

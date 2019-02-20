@@ -9,7 +9,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
-import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -24,25 +23,21 @@ import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.base.SingletonTimer;
-import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
-import com.eligasht.reservation.models.model.pack.LstAvailableDate;
-import com.eligasht.reservation.models.model.pack.LstProwPrice;
-import com.eligasht.reservation.models.model.pack.PRowXfer;
+
 import com.eligasht.reservation.models.model.pack.PackageRoomNoToRequest;
-import com.eligasht.reservation.models.model.pack.SearchXPackageResult;
-import com.eligasht.reservation.models.model.pack.call.PackageListReq;
-import com.eligasht.reservation.models.model.pack.call.PackageRequestModel;
 import com.eligasht.reservation.models.model.pack.filter.AmenityFilter;
 import com.eligasht.reservation.models.model.pack.filter.DegreeFilter;
 import com.eligasht.reservation.models.model.pack.filter.FilterPackTools;
 import com.eligasht.reservation.models.model.pack.filter.HotelTypeFilter;
 import com.eligasht.reservation.models.model.pack.filter.PlaceFilter;
 import com.eligasht.reservation.models.model.pack.filter.PriceFilter;
-import com.eligasht.reservation.models.model.pack.response.PackageListRes;
+import com.eligasht.reservation.models.model.pack.response.ResponseSearchPackage;
+import com.eligasht.reservation.models.model.pack.response.responseSearch.LstAvailableDate;
+import com.eligasht.reservation.models.model.pack.response.responseSearch.LstProwPrice;
+import com.eligasht.reservation.models.model.pack.response.responseSearch.PRowXfer;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.datetools.DateUtil;
-import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
 import com.eligasht.reservation.views.adapters.pack.LstAvailableDateAdapter;
 import com.eligasht.reservation.views.adapters.pack.PRowXferAdapter;
 import com.eligasht.reservation.views.components.SimpleRecycleView;
@@ -51,12 +46,15 @@ import com.eligasht.reservation.views.dialogs.SortDialogPackage;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.eligasht.service.model.newModel.xpackage.searchPack.request.QueryModel;
+import com.eligasht.service.model.newModel.xpackage.searchPack.request.RequestSearchPackage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.eligasht.reservation.tools.Prefs;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -155,21 +153,22 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         goneView(layout_availabel_date, R.anim.slide_out_top);
         goneView(txtNotFoundResualt, R.anim.slide_out_top);
         showLoading();
-        PackageListReq packageListReq = new PackageListReq();
+        RequestSearchPackage requestSearchPackage = new RequestSearchPackage();
+        QueryModel queryModel = new QueryModel();
 
-        packageListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
-        packageListReq.setCountry(country);
-        packageListReq.setRoomList(roomList);
-        packageListReq.setDepartureFrom(Utility.convertNumbersToEnglish(departureFrom));
-        packageListReq.setDepartureTo(Utility.convertNumbersToEnglish(departureTo));
-        packageListReq.setCulture(culture);
-        packageListReq.setPreferedAir(PreferedAir);
+        queryModel.setIsSearchRequest(true);
+        queryModel.setCategory("Package");
+        queryModel.setRooms(roomList);
+        queryModel.setCheckIn(Utility.convertNumbersToEnglish(departureFrom));
+        queryModel.setCheckOut(Utility.convertNumbersToEnglish(departureTo));
+        queryModel.setTrip(country);//cityId
+        requestSearchPackage.setQueryModel(queryModel);
 
-
-        Call<PackageListRes> call = service.getPackageListResult(new PackageRequestModel(packageListReq));
-        call.enqueue(new Callback<PackageListRes>() {
+        Log.d("requestSearchPackage: ",new Gson().toJson(requestSearchPackage));
+        Call<ResponseSearchPackage> call = service.getPackageListResult(requestSearchPackage);
+        call.enqueue(new Callback<ResponseSearchPackage>() {
             @Override
-            public void onResponse(Call<PackageListRes> call, Response<PackageListRes> response) {
+            public void onResponse(Call<ResponseSearchPackage> call, Response<ResponseSearchPackage> response) {
                 hideLoading();
 
                 if (response == null || response.body() == null) {
@@ -181,9 +180,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 SingletonTimer.getInstance().start();
 
 
-                SearchXPackageResult searchXPackageResult = response.body().getSearchXPackageResult();
-
-                if (searchXPackageResult == null) {
+                if (response.body() == null) {
 
                     rcl_package.showText();
                     if (!Utility.isNetworkAvailable(SearchPackActivity.this)) {
@@ -200,14 +197,14 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                     return;
                 }
 
-                if (!ValidationTools.isEmptyOrNull(searchXPackageResult.getError())) {
+                if (!ValidationTools.isEmptyOrNull(response.body().getErrors())) {
                     rcl_package.showText();
-                    txt_error.setText(response.body().getSearchXPackageResult().getError().get(0).getDetailedMessage());
+                    txt_error.setText(response.body().getErrors().get(0).getMessage());
                     error_layout.setVisibility(View.VISIBLE);
                     return;
                 }
 
-                if (ValidationTools.isEmptyOrNull(searchXPackageResult.getPRowXfers())) {
+                if (ValidationTools.isEmptyOrNull(response.body().getPRowXfers())) {
                     rcl_package.showText();
                     txt_error.setText(R.string.NoResult);
                     tvAlertDesc.setText(getString(R.string.change_date));
@@ -218,7 +215,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 SingletonAnalysis.getInstance().logTransfer(ServiceType.PACKAGE,departureFrom,departureTo);
 
-                pRowXfers = searchXPackageResult.getPRowXfers();
+                pRowXfers = (ArrayList<PRowXfer>) response.body().getPRowXfers();
                 priceFilters = FilterPackTools.getPriceFilters(pRowXfers);
                 placeFilters = FilterPackTools.getPlaceFilters(pRowXfers);
                 hotelTypeFilters = FilterPackTools.getHotelTypeFilters(pRowXfers);
@@ -228,7 +225,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             }
 
             @Override
-            public void onFailure(Call<PackageListRes> call, Throwable t)  {
+            public void onFailure(Call<ResponseSearchPackage> call, Throwable t)  {
                 hideLoading();
                 rcl_package.showText();
                 txt_error.setText(R.string.ErrorServer);
@@ -424,10 +421,9 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         LstAvailableDateAdapter lstAvailableDateAdapter = new LstAvailableDateAdapter(this, lstAvailableDates).setListener(new LstAvailableDateAdapter.ListenerLstAvailableDateAdapter() {
             @Override
             public void onClickLstAvailableDateItem(LstAvailableDate lstAvailableDate) {
-                long milis = DateUtil.getMiliSecondFromJSONDate(lstAvailableDate.getDepartDate());
-                departureFrom = DateUtil.getDateTime(String.valueOf(milis), "yyyy/MM/dd");
+
+                departureFrom = lstAvailableDate.getDepartDate().substring(0,10);
                 Log.e("PackageTest", departureFrom);
-                Log.e("PackageTest2", milis + "");
                 Log.e("PackageTest3", lstAvailableDate.getPackID() + "");
 
 
@@ -436,20 +432,18 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         });
 
         int indexSeletedItem = lstAvailableDateAdapter.getIndexSelectedItem();
-        long departMilis = DateUtil.getMiliSecondGregorianDateTime(departureFrom, "yyyy/MM/dd");
 
-        if (departMilis != DateUtil.getMiliSecondFromJSONDate(lstAvailableDates.get(indexSeletedItem).getDepartDate())) {
-            departureFrom = DateUtil.getDateTime(String.valueOf(DateUtil.getMiliSecondFromJSONDate(lstAvailableDates.get(indexSeletedItem).getDepartDate())), "yyyy/MM/dd");
-            visibileView(txtNotFoundResualt, R.anim.slide_in_top);
-        } else {
-            goneView(txtNotFoundResualt, R.anim.slide_out_top);
+        departureTo = String.valueOf(pRowXfers.get(0).getXferList().getXFlightsList().get(1).getFltArrDate()).substring(0,10);
+
+        if(departureTo.contains("-")){
+            departureTo=departureTo.replace("-","/");
         }
-
-        long departureToMilis = DateUtil.getMiliSecondFromJSONDate(String.valueOf(pRowXfers.get(0).getXferList().getXFlightsList().get(1).getFltArrDate()));
-        departureTo = DateUtil.getDateTime(String.valueOf(departureToMilis), "yyyy/MM/dd");
+        if(departureFrom.contains("-")){
+            departureFrom=departureFrom.replace("-","/");
+        }
         //title date
         if (Locale.getDefault().getLanguage().equals("fa")) {
-            String date = DateUtil.getShortStringDate(departureFrom, "yyyy/MM/dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy/MM/dd", true);
+            String date = DateUtil.getShortStringDate(departureFrom, "yyyy/MM/dd", true) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy/MM/dd", true);//2019-04-01
             toolbar_date.setText(date);
         }else{
             String date = DateUtil.getShortStringDate(departureFrom, "yyyy/MM/dd", false) + " - " + DateUtil.getShortStringDate(departureTo, "yyyy/MM/dd", false);
@@ -470,18 +464,27 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         Prefs.putString("PackRow_ID", pack.getPackRowID().toString());
         Prefs.putString("PackXfer_IDs", pack.getXFerIDs());
         Prefs.putString("Flt_IDs", pack.getFltIDs());
-        intent.putExtra("PackageRoomNoToRequest", new GsonBuilder().create().toJson(getPackageRoomNoToRequest(pack.getLstProwPrices())));
+        intent.putExtra("PackageRoomNoToRequest", new GsonBuilder().create().toJson(getPackageRoomNoToRequest((ArrayList<LstProwPrice>) pack.getLstProwPrices())));
         startActivity(intent);
     }
 
     @Override
-    public void onFilterListChange(ArrayList<PRowXfer> filtertemList) {
+    public void onFilterListChange(List<PRowXfer> filtertemList) {
         if (ValidationTools.isEmptyOrNull(filtertemList)) {
             rcl_package.showText();
         } else {
             rcl_package.showList(pRowXferAdapter);
         }
     }
+
+    /* @Override
+     public void onFilterListChange(ArrayList<PRowXfer> filtertemList) {
+         if (ValidationTools.isEmptyOrNull(filtertemList)) {
+             rcl_package.showText();
+         } else {
+             rcl_package.showList(pRowXferAdapter);
+         }
+     }*/
     //get list of ever passenger with id and room's number
     private ArrayList<PackageRoomNoToRequest> getPackageRoomNoToRequest(ArrayList<LstProwPrice> lstProwPriceArrayList) {
         ArrayList<PackageRoomNoToRequest> packageRoomNoToRequests = new ArrayList<>();
