@@ -21,6 +21,9 @@ import com.eligasht.reservation.models.model.pack.response.CityListRes;
 import com.eligasht.reservation.models.model.pack.response.CountryListRes;
 import com.eligasht.reservation.models.model.pack.response.PackageListRes;
 import com.eligasht.reservation.models.model.pack.response.PurchaseRes;
+import com.eligasht.service.model.newModel.xpackage.packageCity.response.ResponseGetPackageCity;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -57,8 +60,9 @@ public interface  ClientService {
     @POST("Common/StaticDataService.svc/GetCountryAjax")
     Call<CountryListRes> getCountryListResult(@Body CountryRequestModel countryRequestModel);
 
-    @POST("Common/StaticDataService.svc/GetPackageRoutes")
-    Call<CityListRes> getCityListResult(@Body CityRequestModel cityRequestModel);
+    //@POST("Common/StaticDataService.svc/GetPackageRoutes")
+    @POST("LoadAndFillAPI/GetPackageCities")
+    Call<List<ResponseGetPackageCity>> getCityListResult(@Body CityRequestModel cityRequestModel);
 
     @POST("Package/PackageService.svc/SearchXPackage")
     Call<PackageListRes> getPackageListResult(@Body PackageRequestModel packageRequestModel);

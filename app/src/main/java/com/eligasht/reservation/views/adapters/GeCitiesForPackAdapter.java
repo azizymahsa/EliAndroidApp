@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.HotelCity;
 import com.eligasht.reservation.models.model.pack.GetPackageRoutesResult;
+import com.eligasht.service.model.newModel.xpackage.packageCity.response.ResponseGetPackageCity;
 import com.orhanobut.hawk.Hawk;
 import com.eligasht.reservation.tools.Prefs;
 
@@ -28,14 +29,15 @@ public class GeCitiesForPackAdapter extends BaseAdapter {
     public String customerName;
     public int catt_ID = 0;
     private LayoutInflater inflater;
-    private GetPackageRoutesResult data;
+   // private GetPackageRoutesResult data;
+    private List<ResponseGetPackageCity> data;
     public String value_Maghsad_City;
     public String value_Maghsad_Airport;
     public String value_Maghsad_Airport_Code;
     public static String GET_FRAGMENT = null;
     Activity activity;
 
-    public GeCitiesForPackAdapter(Context context, GetPackageRoutesResult data, Activity activity) {
+    public GeCitiesForPackAdapter(Context context, List<ResponseGetPackageCity> data, Activity activity) {
         this.activity = activity;
         this.context = context;
         inflater = LayoutInflater.from(context);
@@ -44,7 +46,7 @@ public class GeCitiesForPackAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public void setData(GetPackageRoutesResult data) {
+    public void setData(List<ResponseGetPackageCity> data) {
         this.data = data;
         notifyDataSetChanged();
     }
@@ -56,7 +58,7 @@ public class GeCitiesForPackAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return data == null ? 0 : data.getCities().size();
+        return data == null ? 0 : data.size();
     }
 
 
@@ -88,21 +90,22 @@ public class GeCitiesForPackAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         //cursor.moveToPosition(position);
-        final HotelCity current = data.getCities().get(position);
+      //  final HotelCity current = data.get(position);
         if (Locale.getDefault().getLanguage().equals("fa")) {
-        holder.countryName.setText(current.getCityNameFa() + "");
+        holder.countryName.setText(data.get(position).getCityNameFa() + "");
 
-        holder.countryName.setTag(current.getCityNameFa());
+        holder.countryName.setTag(data.get(position).getCityNameFa());
         }else{
-            holder.countryName.setText(current.getCityNameEn() + "");
+            holder.countryName.setText(data.get(position).getCityNameEn() + "");
 
-            holder.countryName.setTag(current.getCityNameEn());
+            holder.countryName.setTag(data.get(position).getCityNameEn());
         }
         holder.countryName.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                Hawk.put("Value-Insurance-City", current);
+
+                Hawk.put("Value-Insurance-City", data.get(position));
 //                Prefs.putString("Value-Insurance-Country-Code", current.getCountryCode());
 //                Prefs.putInt("Value-Insurance-Country-Id", current.getCountryID());
 

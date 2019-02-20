@@ -72,6 +72,7 @@ import com.eligasht.service.model.newModel.insurance.request.purchase.PurchasePa
 import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
 import com.eligasht.service.model.newModel.insurance.response.ResponseInsuranceSearchResult;
 import com.eligasht.service.model.newModel.insurance.response.purchase.ResponseInsurancePurchase;
+import com.eligasht.service.model.newModel.xpackage.packageCity.response.ResponseGetPackageCity;
 import com.eligasht.service.model.startup.request.StartupServiceRequest;
 import com.eligasht.service.model.startup.response.StartupServiceResponse;
 import com.eligasht.service.model.survey.request.RequestGetSurvey;
@@ -307,7 +308,12 @@ public interface RetroClient {
     );
 
     //*************NEW**********************************************************************************************************
-
+    //*************package*************
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewPackageCities)
+    Observable<Response<List<ResponseGetPackageCity>>> responseGetPackCityObservable(
+            @Body com.eligasht.service.model.newModel.xpackage.packageCity.request.AutoCompleteParameterModel requestGetPackCity
+    );
     //*************Flight*************
 
     @Headers("Content-Type: application/json")

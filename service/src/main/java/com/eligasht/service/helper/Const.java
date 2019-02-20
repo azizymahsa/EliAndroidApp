@@ -76,6 +76,8 @@ public class Const {
     public final static String GetNewInsuranceCountries = "LoadAndFillAPI/InsuranceCountries";
     public final static String GetNewInsuranceSearchResult = "InsuranceAPI/InsuranceSearchResultViewModel";
     public final static String GetNewInsurancePurchase = "InsuranceAPI/Purchase";
+   //*************Package*****************
+   public final static String GetNewPackageCities = "LoadAndFillAPI/GetPackageCities";
 
 
 

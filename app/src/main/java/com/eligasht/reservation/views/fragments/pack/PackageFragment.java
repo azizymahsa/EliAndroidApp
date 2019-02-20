@@ -32,6 +32,7 @@ import com.eligasht.reservation.views.picker.global.model.CustomDate;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ui.GetCitiesForPackActivity;
+import com.eligasht.service.model.newModel.xpackage.packageCity.response.ResponseGetPackageCity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -82,7 +83,8 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     private TextView txt_count_adult;
     private TextView txt_count_child;
     private TextView txt_count_room;
-    private HotelCity hotelCity;
+   // private HotelCity hotelCity;
+    private ResponseGetPackageCity hotelCity;
     private String departureFrom;
     private String departureTo;
     private LottieAnimationView lottieCheckin, lottieCheckout;
@@ -158,10 +160,13 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     //send request to server for get cities os spinner
     private void getCities() {
         showLoading();
-        Call<CityListRes> call = service.getCityListResult(new CityRequestModel(new CityListRq(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"))));
-        call.enqueue(new Callback<CityListRes>() {
+        ////new call
+
+        ////
+        Call<List<ResponseGetPackageCity>> call = service.getCityListResult(new CityRequestModel(""));
+        call.enqueue(new Callback<List<ResponseGetPackageCity>>() {
             @Override
-            public void onResponse(Call<CityListRes> call, Response<CityListRes> response) {
+            public void onResponse(Call<List<ResponseGetPackageCity>> call, Response<List<ResponseGetPackageCity>> response) {
                 try {
                     hideLoading();
                     if (response == null || response.body() == null) {
@@ -169,12 +174,12 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                         return;
                     }
 
-                    if (response.body().getGetHotelListResult() == null || response.body().getGetHotelListResult().getCities() == null) {
+                    if (response.body() == null || response.body().size()<1) {
                         needShowAlertDialog(getString(R.string.there_is_no_city_to_show), true);
                         return;
                     }
                     try {
-                        Hawk.put("PackCityData", response.body().getGetHotelListResult());
+                        Hawk.put("PackCityData", response.body());
                     } catch (Exception e) {
 
                     }
@@ -187,8 +192,10 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
             }
 
+
+
             @Override
-            public void onFailure(Call<CityListRes> call, Throwable t) {
+            public void onFailure(Call<List<ResponseGetPackageCity>> call, Throwable t) {
                 try {
                     hideLoading();
                   //  needShowAlertDialog(getString(R.string.error_in_connection), true);
