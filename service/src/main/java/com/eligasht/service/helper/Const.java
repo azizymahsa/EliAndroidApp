@@ -79,6 +79,7 @@ public class Const {
    //*************Package*****************
    public final static String GetNewPackageCities = "LoadAndFillAPI/GetPackageCities";
    public final static String GetNewPackageBasket = "PackageServiceAPI/GetPackageBasket";
+   public final static String GetNewPurchasePackage = "PackageServiceAPI/PurchasePackage";
 
 
 

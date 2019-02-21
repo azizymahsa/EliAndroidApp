@@ -45,4 +45,7 @@ public class XPackage extends BasePart {
     public void GetPackageBasketAvail(OnServiceStatus<ResponseGetPackageBasket> listener, GetPackageBasketParameterModel req) {
         start(getServiceGenerator().createService().responseGetPackageBasketObservable(req), listener);
     }
+    public void GetPurchasePackageAvail(OnServiceStatus<com.eligasht.service.model.newModel.xpackage.PurchasePackage.response.ResponsePurchasePackage> listener, com.eligasht.service.model.newModel.xpackage.PurchasePackage.request.RequestPurchasePackage req) {
+        start(getServiceGenerator().createService().responsePurchasePackageObservable(req), listener);
+    }
 }

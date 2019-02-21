@@ -476,6 +476,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         }//1,188448, اتاق دولوکس با يک تخت يک نفره|
 
         Prefs.putString("Rooms",roomStr);// roomList);
+        Prefs.putString("RoomList",roomList);// roomList);
         Prefs.putString("PackRow_ID", pack.getPackRowID().toString());
         Prefs.putString("PackXfer_IDs", pack.getXFerIDs());
         Prefs.putString("Flt_IDs", pack.getFltIDs());

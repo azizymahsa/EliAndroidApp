@@ -56,9 +56,6 @@ import com.eligasht.reservation.views.activities.GetPassengerActivity;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.XPackage.request.GetPreFactorDetails.RequestGePreFactorDetails;
-import com.eligasht.service.model.XPackage.request.PurchasePackage.PartnerList;
-import com.eligasht.service.model.XPackage.request.PurchasePackage.PassList;
-import com.eligasht.service.model.XPackage.request.PurchasePackage.RequestPurchasePackage;
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.FactorSummary;
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.GetPreFactorDetailsResult;
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.PreFactor;
@@ -66,10 +63,11 @@ import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.PreFacto
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.PreFactorHotel;
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.PreFactorService;
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.RequestPassenger;
-import com.eligasht.service.model.XPackage.response.PurchasePackage.PurchasePackageResult;
-import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
-import com.eligasht.service.model.XPackage.response.PurchasePackage.TmpReserveResult;
+import com.eligasht.service.model.newModel.xpackage.PurchasePackage.request.Customers;
+import com.eligasht.service.model.newModel.xpackage.PurchasePackage.request.RequestPurchasePackage;
+import com.eligasht.service.model.newModel.xpackage.PurchasePackage.response.ResponsePurchasePackage;
 import com.eligasht.service.model.error.Error;
+import com.eligasht.service.model.newModel.xpackage.PurchasePackage.request.Passenger;
 import com.eligasht.service.model.newModel.xpackage.packageBasket.request.GetPackageBasketParameterModel;
 import com.eligasht.service.model.newModel.xpackage.packageBasket.response.ResponseGetPackageBasket;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
@@ -1751,11 +1749,11 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         rlLoading.setVisibility(View.VISIBLE);
         Utility.disableEnableControls(false, rlRoot);
         RequestPurchasePackage requestPurchasePackage = new RequestPurchasePackage();
-        com.eligasht.service.model.XPackage.request.PurchasePackage.Request request = new com.eligasht.service.model.XPackage.request.PurchasePackage.Request();
+       // com.eligasht.service.model.XPackage.request.PurchasePackage.Request request = new com.eligasht.service.model.XPackage.request.PurchasePackage.Request();
 
-        com.eligasht.service.model.XPackage.request.PurchasePackage.Identity identity = new com.eligasht.service.model.XPackage.request.PurchasePackage.Identity();
+        //com.eligasht.service.model.XPackage.request.PurchasePackage.Identity identity = new com.eligasht.service.model.XPackage.request.PurchasePackage.Identity();
 
-        request.setIdentity(identity);
+        //request.setIdentity(identity);
 
         {
 
@@ -1768,94 +1766,93 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                     ResultUniqId = SearchFlightActivity.globalResultUniqID;
                 }
 
-                PartnerList detailsPartner = new PartnerList();
-                PassList passList = new PassList();
-                List<PassList> passLists = new ArrayList<>();
+                Customers detailsPartner = new Customers();
+                Passenger passList = new Passenger();
+                List<Passenger> passLists = new ArrayList<>();
                 PassengerMosaferItems_Table items_Table = new PassengerMosaferItems_Table(PassengerPackageActivity.this);
                 CursorManager cursorM = items_Table.getAllMosafer();
                 if (cursorM != null) {
                     for (int i = 0; i < cursorM.getCount(); i++) {
                         cursorM.moveToPosition(i);
-                        passList = new PassList();
+                        passList = new Passenger();
                         passList.setGender(cursorM.getBoolean(PassengerMosaferItems_Table.Columns.Gender.value()));
                         passList.setNationality(cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality.value()));
                         passList.setNationalityID((cursorM.getString(PassengerMosaferItems_Table.Columns.Nationality_ID.value())).toUpperCase());
-                        passList.setPackRoomTypeID(packageRoomNoToRequestList.get(i).getPackRoomType_ID());
-                        passList.setRoomNo(packageRoomNoToRequestList.get(i).getRoom_No());
-                        passList.setRqPassengerAddress(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
-                        passList.setRqPassengerBirthdate(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
-                        passList.setRqPassengerEmail(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
-                        passList.setRqPassengerFirstNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
-                        passList.setRqPassengerFirstNameFa(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
-                        passList.setRqPassengerLastNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
-                        passList.setRqPassengerLastNameFa(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
-                        passList.setRqPassengerMobile(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
-                        passList.setRqPassengerNationalCode(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
-                        passList.setRqPassengerPassExpDate(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
-                        passList.setRqPassengerPassNo(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
-                        passList.setRqPassengerTel(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
+                        passList.setPackRowRoomTypeID(packageRoomNoToRequestList.get(i).getPackRoomType_ID());
+                        passList.setRoomNo(String.valueOf(packageRoomNoToRequestList.get(i).getRoom_No()));
+                        //passList.setAddress(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Address.value()));
+                        passList.setBirthday(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Birthdate.value()));
+                        //passList.setEmail(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Email.value()));
+                        passList.setFirstNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameEn.value()));
+                        passList.setFirstNameFa(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_FirstNameFa.value()));
+                        passList.setLastNameEn(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameEn.value()));
+                        passList.setLastNameFa(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_LastNameFa.value()));
+                       // passList.setMobile(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Mobile.value()));
+                        passList.setNationalCode(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_NationalCode.value()));
+                        passList.setPassportExpiration(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassExpDate.value()));
+                        passList.setPassportNo(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_PassNo.value()));
+                       // passList.setTel(cursorM.getString(PassengerMosaferItems_Table.Columns.RqPassenger_Tel.value()));
                         passLists.add(passList);
                     }
-                    request.setPassList(passLists);
+                    requestPurchasePackage.setPassengers(passLists);
                 }
                 ////kharidar
                 PassengerPartnerInfo_Table partnerInfo_Table = new PassengerPartnerInfo_Table(PassengerPackageActivity.this);
                 CursorManager cursorManager = partnerInfo_Table.getPartner();
                 cursorManager.moveToPosition(0);
-                detailsPartner.setRqPartnerAddress(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
-                detailsPartner.setRqPartnerEmail(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
-                detailsPartner.setRqPartnerFirstNameFa(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
-                detailsPartner.setRqPartnerGender(cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
-                detailsPartner.setRqPartnerLastNameFa(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
-                detailsPartner.setRqPartnerMobile(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
-                detailsPartner.setRqPartnerNationalCode(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
-                detailsPartner.setRqPartnerTel(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
-                detailsPartner.setAgcUser_ID(cursorManager.getString(PassengerPartnerInfo_Table.Columns.AgcUser_ID.value()));
+                detailsPartner.setAddress(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Address.value()));
+                detailsPartner.setEmail(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Email.value()));
+                detailsPartner.setFirstNameFa(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_FirstNameFa.value()));
+                detailsPartner.setGender(cursorManager.getBoolean(PassengerPartnerInfo_Table.Columns.RqPartner_Gender.value()));
+                detailsPartner.setLastNameFa(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_LastNameFa.value()));
+                detailsPartner.setMobile(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Mobile.value()));
+                detailsPartner.setNationalCode(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_NationalCode.value()));
+                detailsPartner.setTel(cursorManager.getString(PassengerPartnerInfo_Table.Columns.RqPartner_Tel.value()));
+                detailsPartner.setAgcUserID(cursorManager.getInt(PassengerPartnerInfo_Table.Columns.AgcUser_ID.value()));
 
-                request.setPartnerList(detailsPartner);
-                request.setCulture(getString(R.string.culture));
-                request.setWebUserID(Prefs.getString("userId", "-1"));
-                request.setPackRowID(Prefs.getString("PackRow_ID", "12"));
-                request.setPackXferIDs(Prefs.getString("PackXfer_IDs", "12"));
-                request.setFltIDs(Prefs.getString("Flt_IDs", "12"));
-                request.setRooms(Prefs.getString("Rooms", "12"));
+                requestPurchasePackage.setCustomers(detailsPartner);
+                requestPurchasePackage.setSearchKey( Prefs.getString("Search_Key_Pack", "12"));
+               /* requestPurchasePackage.setCulture(getString(R.string.culture));
+                requestPurchasePackage.setWebUserID(Prefs.getString("userId", "-1"));
+                requestPurchasePackage.setPackRowID(Prefs.getString("PackRow_ID", "12"));
+                requestPurchasePackage.setPackXferIDs(Prefs.getString("PackXfer_IDs", "12"));
+                requestPurchasePackage.setFltIDs(Prefs.getString("Flt_IDs", "12"));*/
+                requestPurchasePackage.setRooms(Prefs.getString("RoomList", "12"));//1و0و0
 
-                request.setIdentity(identity);
+               // request.setIdentity(identity);
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        requestPurchasePackage.setRequest(request);
+
         Log.e("onPurchasePackage: ", new Gson().toJson(requestPurchasePackage));
 
-        SingletonService.getInstance().getXPackage().PurchasePackageAvail(this, requestPurchasePackage);
+        SingletonService.getInstance().getXPackage().GetPurchasePackageAvail(this, requestPurchasePackage);
     }
 
     @Override
     public void onReady(ResponsePurchasePackage responsePurchasePackage) {
+        Log.d("responsePurchasePackage: ",new Gson().toJson(responsePurchasePackage));
 
         FlagMosaferan = false;
         rlLoading.setVisibility(View.GONE);
         Utility.disableEnableControls(true, rlRoot);
         try {
             List<Error> GetError = null;
-            PurchasePackageResult GetAirportsResult = responsePurchasePackage.getPurchasePackageResult();//Errors
-            if (GetAirportsResult.getErrors() != null) {
-                GetError = GetAirportsResult.getErrors();
-            }
-            if (GetError != null) {
+            if (responsePurchasePackage != null)
+            if (responsePurchasePackage.getErrors().size() >0) {
                 AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerPackageActivity.this);
-                AlertDialogPassengerFlight.setText(GetAirportsResult.getErrors().get(0).getMessage(), getString(R.string.massege));
+                AlertDialogPassengerFlight.setText(responsePurchasePackage.getErrors().get(0).getMessage()+responsePurchasePackage.getBookingMessageEn(), getString(R.string.massege));
             } else {
                 try {
-                    TmpReserveResult jsonResult = GetAirportsResult.getTmpReserveResult();
-                    Prefs.putString("BookingCode_NumFactor", jsonResult.getBookingCode() + "");
-                    txt_shomare_factor.setText(jsonResult.getBookingCode() + "");
-                    textView4.setImageBitmap(getBitmap(jsonResult.getBookingCode() + "", 128, 300, 150));
-                    Prefs.putString("BookingCode_NumFactor", jsonResult.getBookingCode() + "");
-                    tvfactorNumber.setText(jsonResult.getBookingCode() + "");
+                    //TmpReserveResult jsonResult = responsePurchasePackage.getTmpReserveResult();
+                    Prefs.putString("BookingCode_NumFactor", responsePurchasePackage.getBookingCode() + "");
+                    txt_shomare_factor.setText(responsePurchasePackage.getBookingCode() + "");
+                    textView4.setImageBitmap(getBitmap(responsePurchasePackage.getBookingCode() + "", 128, 300, 150));
+                    Prefs.putString("BookingCode_NumFactor", responsePurchasePackage.getBookingCode() + "");
+                    tvfactorNumber.setText(responsePurchasePackage.getBookingCode() + "");
 
                     linear_saler.setVisibility(View.GONE);
                     linear_mosaferan.setVisibility(View.GONE);

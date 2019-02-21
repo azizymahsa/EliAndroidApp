@@ -321,6 +321,11 @@ public interface RetroClient {
     Observable<Response<ResponseGetPackageBasket>> responseGetPackageBasketObservable(
             @Body GetPackageBasketParameterModel requestGetPackCity
     );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewPurchasePackage)
+    Observable<Response<com.eligasht.service.model.newModel.xpackage.PurchasePackage.response.ResponsePurchasePackage>> responsePurchasePackageObservable(
+            @Body com.eligasht.service.model.newModel.xpackage.PurchasePackage.request.RequestPurchasePackage requestPackagePurchase
+    );
     //*************Flight*************
 
     @Headers("Content-Type: application/json")
