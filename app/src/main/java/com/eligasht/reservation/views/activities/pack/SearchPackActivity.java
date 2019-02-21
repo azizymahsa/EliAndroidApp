@@ -221,6 +221,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                 hotelTypeFilters = FilterPackTools.getHotelTypeFilters(pRowXfers);
                 degreeFilters = FilterPackTools.getDegreeFilters(pRowXfers);
                 amenityFilters = FilterPackTools.getAmenityFilters(pRowXfers);
+                Prefs.putString("Search_Key_Pack", response.body().getSearchKey());
                 showList();
             }
 
@@ -454,16 +455,31 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
         rcl_available_date.getRecyclerView().scrollToPosition(indexSeletedItem - 2);
 
     }
+/*    var roomStr = ""
+        for pRowPrice in pRowXfersArr![index].LstProwPrices ?? [PRowPrice]() {
+        if pRowPrice.isCheck {
+            roomStr += "\(pRowPrice.RoomNo!),\(pRowPrice.PackRowRoomType_ID!),\(pRowPrice.HRroomListF!)|"
+        }
+    }*/
 
     //onclick in booking ever pack
     @Override
     public void onClickPackageBookingItem(PRowXfer pack) {
         Intent intent = new Intent(this, PassengerPackageActivity.class);
+        String roomStr = "";
+        for (int i = 0; i < pack.getLstProwPrices().size(); i++) {
 
-        Prefs.putString("Rooms", roomList);
+
+            if(pack.getLstProwPrices().get(0).isChecked()) {
+                roomStr+=pack.getLstProwPrices().get(0).getRoomNo()+","+pack.getLstProwPrices().get(0).getPackRowRoomTypeID()+","+pack.getLstProwPrices().get(0).getHRroomListF()+"|";
+            }
+        }//1,188448, اتاق دولوکس با يک تخت يک نفره|
+
+        Prefs.putString("Rooms",roomStr);// roomList);
         Prefs.putString("PackRow_ID", pack.getPackRowID().toString());
         Prefs.putString("PackXfer_IDs", pack.getXFerIDs());
         Prefs.putString("Flt_IDs", pack.getFltIDs());
+
         intent.putExtra("PackageRoomNoToRequest", new GsonBuilder().create().toJson(getPackageRoomNoToRequest((ArrayList<LstProwPrice>) pack.getLstProwPrices())));
         startActivity(intent);
     }

@@ -70,6 +70,8 @@ import com.eligasht.service.model.XPackage.response.PurchasePackage.PurchasePack
 import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
 import com.eligasht.service.model.XPackage.response.PurchasePackage.TmpReserveResult;
 import com.eligasht.service.model.error.Error;
+import com.eligasht.service.model.newModel.xpackage.packageBasket.request.GetPackageBasketParameterModel;
+import com.eligasht.service.model.newModel.xpackage.packageBasket.response.ResponseGetPackageBasket;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -338,9 +340,11 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
         datePickerDialogGregorian2.setMaxDate(persianCalendar2.toGregorianCalendar());
         ///////end setMin
         alRoom = new ArrayList<>();
+        String modelRqRoom="";
         if (!ValidationTools.isEmptyOrNull(packageRoomNoToRequestList)) {
             for (PackageRoomNoToRequest packageRoomNoToRequest : packageRoomNoToRequestList) {
                 alRoom.add(packageRoomNoToRequest.getRoom_No() + "");
+                modelRqRoom=modelRqRoom+","+packageRoomNoToRequest.getRoom_No();
             }
         }
         Set<String> hs = new HashSet<>();
@@ -355,7 +359,37 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
             imgCount.setText(getString(R.string.room) + " " + getCounter(room));
         }
         imgCount.setOnClickListener(this);
+        sendRequestGetBasketPkg(packageRoomNoToRequestList,modelRqRoom);
+    }//endOncreat
+
+    private void sendRequestGetBasketPkg(ArrayList<PackageRoomNoToRequest> packageRoomNoToRequestList,String modelRqRoom) {
+
+        //
+        // Prefs.putString("Rooms", roomList);
+        // Prefs.putString("Search_Key_Pack", roomList);
+
+        GetPackageBasketParameterModel requestBasketParameterModel = new GetPackageBasketParameterModel();
+       // com.eligasht.service.model.newModel.flight.searchFlight.request.QueryModel request = new com.eligasht.service.model.newModel.flight.searchFlight.request.QueryModel();
+
+
+        requestBasketParameterModel.setRoomNo(Prefs.getString("Rooms", "12"));
+        requestBasketParameterModel.setSearchKey(Prefs.getString("Search_Key_Pack", "12"));//packageRoomNoToRequestList.get(0).getPackRoomType_ID()+"");
+
+        Log.d("sendRequestGetBasketPkg: ",new Gson().toJson(requestBasketParameterModel));
+        SingletonService.getInstance().getXPackage().GetPackageBasketAvail(new OnServiceStatus<ResponseGetPackageBasket>() {
+            @Override
+            public void onReady(ResponseGetPackageBasket responseGetPackageBasket) {
+                Log.d("responsePackageBasket: ",new Gson().toJson(responseGetPackageBasket));
+                Prefs.putString("Search_Key_Pack", responseGetPackageBasket.getSearchKey());
+            }
+
+            @Override
+            public void onError(String message) {
+
+            }
+        },requestBasketParameterModel);
     }
+
 
     private void initViews() {
         rlLoading = findViewById(R.id.rlLoading);

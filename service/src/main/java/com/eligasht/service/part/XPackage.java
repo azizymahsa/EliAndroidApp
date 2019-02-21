@@ -8,6 +8,8 @@ import com.eligasht.service.model.XPackage.request.searchXPackage.RequestSearchX
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.ResponseGePreFactorDetails;
 import com.eligasht.service.model.XPackage.response.PurchasePackage.ResponsePurchasePackage;
 import com.eligasht.service.model.XPackage.response.searchXPackage.ResponseSearchXPackage;
+import com.eligasht.service.model.newModel.xpackage.packageBasket.request.GetPackageBasketParameterModel;
+import com.eligasht.service.model.newModel.xpackage.packageBasket.response.ResponseGetPackageBasket;
 import com.eligasht.service.model.newModel.xpackage.packageCity.request.AutoCompleteParameterModel;
 import com.eligasht.service.model.newModel.xpackage.packageCity.response.ResponseGetPackageCity;
 
@@ -35,8 +37,12 @@ public class XPackage extends BasePart {
         start(getServiceGenerator().createService().RESPONSE_GE_PRE_FACTOR_DETAILS_OBSERVABLE(req), listener);
     }
     //*************NEW******************************************************************
-    @Mock(jsonName = "pre_factor_detail_pack",response = ResponseGetPackageCity.class)
+    //@Mock(jsonName = "pre_factor_detail_pack",response = ResponseGetPackageCity.class)
     public void GetPreFactorDetailsAvail(OnServiceStatus<List<ResponseGetPackageCity>> listener, AutoCompleteParameterModel req) {
         start(getServiceGenerator().createService().responseGetPackCityObservable(req), listener);
+    }
+   // @Mock(jsonName = "pre_factor_detail_pack",response = ResponseGetPackageCity.class)
+    public void GetPackageBasketAvail(OnServiceStatus<ResponseGetPackageBasket> listener, GetPackageBasketParameterModel req) {
+        start(getServiceGenerator().createService().responseGetPackageBasketObservable(req), listener);
     }
 }
