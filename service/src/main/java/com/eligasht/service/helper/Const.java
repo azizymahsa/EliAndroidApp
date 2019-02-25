@@ -71,7 +71,8 @@ public class Const {
 
     //*************Hotel*****************
     public final static String GetNewHotelCities = "LoadAndFillAPI/HotelCities";
-    public final static String GetNewHotelNames = "LoadAndFillAPI/HotelNames";
+
+
     //*************Insurance*****************
     public final static String GetNewInsuranceCountries = "LoadAndFillAPI/InsuranceCountries";
     public final static String GetNewInsuranceSearchResult = "InsuranceAPI/InsuranceSearchResultViewModel";
@@ -81,6 +82,8 @@ public class Const {
    public final static String GetNewPackageBasket = "PackageServiceAPI/GetPackageBasket";
    public final static String GetNewPurchasePackage = "PackageServiceAPI/PurchasePackage";
 
+
+   public final static String GetNewHotelNames = "LoadAndFillAPI/HotelNames";
 
 
 }

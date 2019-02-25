@@ -34,6 +34,8 @@ import com.eligasht.service.model.hotel.getHotelList.response.GetHotelListRespon
 import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
 import com.eligasht.service.model.hotelpolicy.request.HotelPolicyRequest;
 import com.eligasht.service.model.identity.Identity;
+import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
+import com.eligasht.service.model.newModel.airport.response.ResponseAirport;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -66,7 +68,7 @@ import java.util.TimerTask;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class GetHotelCityActivity extends BaseActivity implements  OnClickListener,OnServiceStatus<GetHotelListResponse> {
+public class GetHotelCityActivity extends BaseActivity implements  OnClickListener,OnServiceStatus<List<ResponseAirport>> {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     public ListView listCityHotel;
@@ -180,21 +182,23 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
     }
 
     @Override
-    public void onReady(GetHotelListResponse getHotelListResponse) {
+    public void onReady(List<ResponseAirport> getHotelListResponse) {
 
         avLoadingIndicatorView.setVisibility(View.INVISIBLE);
         List<HotelCity> data = new ArrayList<HotelCity>();
         try {
-            Log.e("response: ", new Gson().toJson(getHotelListResponse));
+            Log.e("responseHotelCity: ", new Gson().toJson(getHotelListResponse));
 
             if (!TextUtils.isEmpty(searchtxt.getText())) {
-                for (City city : getHotelListResponse.getGetHotelListResult().getCities() ) {
+              //  for (City city : getHotelListResponse.getCities() ) {
+                 for (int i = 0; i <getHotelListResponse.size() ; i++) {
+
                     HotelCity hotelCity = new HotelCity();
-                    hotelCity.setCityCode(city.getCityCode());
-                    hotelCity.setCityID(city.getCityID());
-                    hotelCity.setCityNameEn(city.getCityNameEn());
-                    hotelCity.setCityNameFa(city.getCityNameFa());
-                    hotelCity.setCountryID(city.getCountryID());
+                    hotelCity.setCityCode(getHotelListResponse.get(i).getCityCode());
+                   // hotelCity.setCityID(getHotelListResponse.get(i).geteValue());//t//getCityID());
+                    hotelCity.setCityNameEn(getHotelListResponse.get(i).getText());
+                    hotelCity.setCityNameFa(getHotelListResponse.get(i).getTextFa());
+                    //hotelCity.setCountryID(getHotelListResponse.get(i).getEValue());
 
                     data.add(hotelCity);
                 }
@@ -223,18 +227,11 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
     public void request(String text){
         avLoadingIndicatorView.setVisibility(View.VISIBLE);
 
-        GetHotelListRequest hotelListRequest = new GetHotelListRequest();
-        GetHListRequest getHListRequest = new GetHListRequest();
-        Identity identity = new Identity();
-        identity.setUserName("EligashtMlb");
-        identity.setTermianlId("Mobile");
-        identity.setPassword("123qwe!@#QWE");
-        getHListRequest.setCity(text.toLowerCase());
-        getHListRequest.setIdentity(identity);
-        hotelListRequest.setRequest(getHListRequest);
-        SingletonService.getInstance().getHotelService().getHList(this, hotelListRequest);
-        Log.e("request: ", new Gson().toJson(hotelListRequest));
+        AutoCompleteParameterModel hotelListRequest = new AutoCompleteParameterModel();
+        hotelListRequest.setPart(text.toLowerCase());
 
+        SingletonService.getInstance().getHotelService().newHotelCitiesAvail(this, hotelListRequest);
+        Log.e("request: ", new Gson().toJson(hotelListRequest));
 
     }
 

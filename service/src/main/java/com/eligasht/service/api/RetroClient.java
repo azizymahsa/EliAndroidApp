@@ -379,9 +379,11 @@ public interface RetroClient {
 
     @Headers("Content-Type: application/json")
     @POST(Const.GetNewHotelCities)
-    Observable<Response<String>> responseNewHotelCitiesObservable(
+    Observable<Response<List<ResponseAirport>>> responseNewHotelCitiesObservable(
             @Body AutoCompleteParameterModel requestAutoCompleteParameterModel
     );
+
+    //**************************
     @Headers("Content-Type: application/json")
     @POST(Const.GetNewHotelNames)
     Observable<Response<String>> responseNewHotelNamesObservable(

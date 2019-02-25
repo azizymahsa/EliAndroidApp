@@ -766,7 +766,6 @@
 
                             <RadioButton
                                 android:id="@+id/zan"
-
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="@dimen/_10dp_margin"
@@ -778,7 +777,6 @@
 
                             <RadioButton
                                 android:id="@+id/mard"
-
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"

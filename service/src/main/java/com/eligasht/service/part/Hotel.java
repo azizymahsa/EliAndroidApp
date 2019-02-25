@@ -30,6 +30,9 @@ import com.eligasht.service.model.hotelpolicy.response.HotelPolicyResponse;
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
 import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
+import com.eligasht.service.model.newModel.airport.response.ResponseAirport;
+
+import java.util.List;
 
 
 /**
@@ -100,9 +103,13 @@ public class Hotel extends BasePart {
     }
 
     //*************NEW*****************
-    public void newHotelCitiesAvail(OnServiceStatus<String> listener, AutoCompleteParameterModel req) {
+    public void newHotelCitiesAvail(OnServiceStatus<List<ResponseAirport>> listener, AutoCompleteParameterModel req) {
         start(getServiceGenerator().createService().responseNewHotelCitiesObservable(req), listener);
     }
+
+
+
+
     public void newHotelNamesAvail(OnServiceStatus<String> listener, AutoCompleteParameterModel req) {
         start(getServiceGenerator().createService().responseNewHotelNamesObservable(req), listener);
     }

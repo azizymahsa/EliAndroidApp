@@ -866,12 +866,28 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         flagMosafer = flagMosafer + "F";
                         errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.The_national_code_is_not_correct);
                     }
-                    if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
-                        ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
-                        flagMosafer = flagMosafer + "T";
-                    } else {
-                        flagMosafer = flagMosafer + "F";
-                        errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_number_correctly);
+                    String isIranian="IR";
+                    if (isIranian == "IR"){
+                        if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
+                            ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+                            flagMosafer = flagMosafer + "T";
+                        } else {
+                            flagMosafer = flagMosafer + "F";
+                            errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_number_correctly);
+                        }
+                    }else{
+                        /*String pattern = "@"^[a-zA-Z0-9]{1,15}$")"
+                        ;
+                        Pattern regexPattern = Pattern.compile(pattern);
+                        Matcher matcher = regexPattern.matcher(content);
+                        boolean isMatch = matcher.find();*/
+                        if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
+                            ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+                            flagMosafer = flagMosafer + "T";
+                        } else {
+                            flagMosafer = flagMosafer + "F";
+                            errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_number_correctly);
+                        }
                     }
                     if (RqPassenger_NationalCode.trim().length() == 10 ) {
                         ((EditText) findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
