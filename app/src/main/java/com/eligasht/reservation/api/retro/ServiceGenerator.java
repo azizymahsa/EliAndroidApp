@@ -5,6 +5,7 @@ import com.eligasht.reservation.conf.APIConf;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.service.generator.SingletonService;
 
+import java.io.IOException;
 import java.security.cert.CertificateException;
 import java.util.concurrent.TimeUnit;
 
@@ -13,7 +14,10 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -32,7 +36,7 @@ public class ServiceGenerator {
             .client(SingletonService.getInstance().getOkHttpClient());
 
     public static <S> S createService(Class<S> serviceClass) {
-        Retrofit retrofit = builder.client(httpClient).build();
+        Retrofit retrofit = builder.client(getUnsafeOkHttpClient()).build();
         return retrofit.create(serviceClass);
     }
 
@@ -76,6 +80,7 @@ public class ServiceGenerator {
 
             OkHttpClient okHttpClient = new OkHttpClient();
             okHttpClient = okHttpClient.newBuilder()
+                    .addNetworkInterceptor(new AddHeaderInterceptor())
                     .sslSocketFactory(sslSocketFactory)
                     .readTimeout(60, TimeUnit.MINUTES)
                     .writeTimeout(60, TimeUnit.MINUTES)
@@ -86,5 +91,16 @@ public class ServiceGenerator {
             throw new RuntimeException(e);
         }
 
+    }
+    public static class AddHeaderInterceptor implements Interceptor {
+        @Override
+        public Response
+        intercept(Interceptor.Chain chain) throws IOException {
+
+            Request.Builder builder = chain.request().newBuilder();
+            builder.addHeader("Authorization", "bearer rpgB0g3q01GR7Hk7ua5MB9nn_WDFpzv6NHPj14HB00T-ceACFqbXgg7vYYIBOl70r3Vl-mK95q0Qno1T-Gei_LLHDkSwMdIcHmQ1kTWAbGp0k27cl1I_hzZ7clRlPHemXewXNd31mxmORFr-clnP6oqfyV8uF8wm53xkRkvZEUmckqHXjEEdpvPxHiEvE2YTip6Rv_eHbYdMpU5wRTSZ0gZcIvzC_5pfzaRiOH-zGoEGBbcDUvAoKj5_TIlLRf_e");
+
+            return chain.proceed(builder.build());
+        }
     }
 }

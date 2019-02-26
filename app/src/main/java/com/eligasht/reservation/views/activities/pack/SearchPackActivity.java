@@ -170,7 +170,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onResponse(Call<ResponseSearchPackage> call, Response<ResponseSearchPackage> response) {
                 hideLoading();
-
+                Log.d("ResponseSearchPackage: ",new Gson().toJson(response.body()));
                 if (response == null || response.body() == null) {
 
                     rcl_package.showText();

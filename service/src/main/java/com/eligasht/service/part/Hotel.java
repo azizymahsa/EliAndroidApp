@@ -31,6 +31,10 @@ import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
 import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
 import com.eligasht.service.model.newModel.airport.response.ResponseAirport;
+import com.eligasht.service.model.newModel.hotel.preSearch.request.RequestHotelPreSearch;
+import com.eligasht.service.model.newModel.hotel.preSearch.response.ResponseHotelPreSearch;
+import com.eligasht.service.model.newModel.hotel.search.request.RequestHotelSearch;
+import com.eligasht.service.model.newModel.hotel.search.response.ResponseHotelSearch;
 
 import java.util.List;
 
@@ -105,6 +109,12 @@ public class Hotel extends BasePart {
     //*************NEW*****************
     public void newHotelCitiesAvail(OnServiceStatus<List<ResponseAirport>> listener, AutoCompleteParameterModel req) {
         start(getServiceGenerator().createService().responseNewHotelCitiesObservable(req), listener);
+    }
+    public void newHotelPreSearchAvail(OnServiceStatus<ResponseHotelPreSearch> listener, RequestHotelPreSearch req) {
+        start(getServiceGenerator().createService().responseNewHotelPreSearchObservable(req), listener);
+    }
+    public void newHotelSearchAvail(OnServiceStatus<ResponseHotelSearch> listener, RequestHotelSearch req) {
+        start(getServiceGenerator().createService().responseNewHotelSearchObservable(req), listener);
     }
 
 

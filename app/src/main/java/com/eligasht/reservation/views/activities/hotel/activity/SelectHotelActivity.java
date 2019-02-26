@@ -39,15 +39,18 @@ import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelTypeModel;
 import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.hotel.hotelAvail.request.HotelAvailReq;
+
 import com.eligasht.service.model.identity.Identity;
 import com.eligasht.service.model.hotel.hotelAvail.request.Request;
 import com.eligasht.service.model.hotel.hotelAvail.request.Room;
-import com.eligasht.service.model.hotel.hotelAvail.response.Facility;
-import com.eligasht.service.model.hotel.hotelAvail.response.Hotel;
-import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
-import com.eligasht.service.model.hotel.hotelAvail.response.HotelType;
-import com.eligasht.service.model.hotel.hotelAvail.response.Location;
+
+import com.eligasht.service.model.newModel.hotel.preSearch.request.QueryModel;
+import com.eligasht.service.model.newModel.hotel.preSearch.request.RequestHotelPreSearch;
+import com.eligasht.service.model.newModel.hotel.preSearch.response.ResponseHotelPreSearch;
+import com.eligasht.service.model.newModel.hotel.search.request.RequestHotelSearch;
+import com.eligasht.service.model.newModel.hotel.search.request.UserAgentObject;
+import com.eligasht.service.model.newModel.hotel.search.response.Facility;
+import com.eligasht.service.model.newModel.hotel.search.response.ResponseHotelSearch;
 import com.eligasht.service.model.weather.response.WeatherApi;
 import com.google.gson.Gson;
 import com.eligasht.reservation.tools.Prefs;
@@ -62,7 +65,7 @@ import java.util.Set;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 public class SelectHotelActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener,
-        OnServiceStatus<HotelAvailRes> {
+        OnServiceStatus<ResponseHotelSearch> {
     private RelativeLayout rlLoading, rlRoot, rlList;
     private TextView tvAlert, tvTitle, tvDate, tvCount, tvFilterIcon, tvFilter, tvSortIcon, tvSort;
     private Window window;
@@ -586,6 +589,45 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     }
 
     public void hotel_request() {
+        hotelPreSearchReq();
+
+    }
+
+    private void hotelPreSearchReq() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.status_loading));
+        }
+        new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
+        RequestHotelPreSearch requestHotelPreSearch = new RequestHotelPreSearch();
+        QueryModel request = new QueryModel();
+        request.setCheckIn(Utility.convertNumbersToEnglish(raft));
+        request.setCheckOut(Utility.convertNumbersToEnglish(bargasht));
+        request.setDestination(Prefs.getString("Value-Hotel-City-Code", "c25972"));
+        request.setCategory("Hotel");
+       // request.setRoomsString(getIntent().getExtras().getString("Rooms"));
+
+        request.setRooms(getIntent().getExtras().getString("Rooms"));//rooms);
+
+
+        requestHotelPreSearch.setQueryModel(request);
+        Gson gson = new Gson();
+        Log.e("RequestHotelPreSearch", gson.toJson(requestHotelPreSearch));
+        SingletonService.getInstance().getHotelService().newHotelPreSearchAvail(new OnServiceStatus<ResponseHotelPreSearch>() {
+            @Override
+            public void onReady(ResponseHotelPreSearch responseHotelPreSearch) {
+                Log.e("responseHotelPreSearch", gson.toJson(responseHotelPreSearch));
+                hotelSearchRequest(responseHotelPreSearch);
+            }
+
+            @Override
+            public void onError(String message) {
+
+            }
+        }, requestHotelPreSearch);
+    }
+
+    private void hotelSearchRequest(ResponseHotelPreSearch responseHotelPreSearch) {
+        Log.e("responseHotelPreSearch: ", new Gson().toJson(responseHotelPreSearch));
         selectHotelModelArrayList.clear();
         selectHotelModelArrayListFilter.clear();
         filterModels.clear();
@@ -599,25 +641,24 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.status_loading));
         }
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
-        HotelAvailReq hotelAvailReq = new HotelAvailReq();
-        Request request = new Request();
-        request.setCheckinString(Utility.convertNumbersToEnglish(raft));
+        RequestHotelSearch hotelAvailReq = new RequestHotelSearch();
+        UserAgentObject request = new UserAgentObject();
+        /*request.set(Utility.convertNumbersToEnglish(raft));
         request.setCheckoutString(Utility.convertNumbersToEnglish(bargasht));
         request.setDepart(Prefs.getString("Value-Hotel-City-Code", "c25972"));
         request.setRoomsString(getIntent().getExtras().getString("Rooms"));
-        Identity identity = new Identity();
-        identity.setPassword("123qwe!@#QWE");
-        identity.setTermianlId("Mobile");
-        identity.setUserName("EligashtMlb");
-        request.setIdentity(identity);
+
         request.setRooms(rooms);
         request.setSource("");
-        request.setCulture(getString(R.string.culture));
-        hotelAvailReq.setRequest(request);
+        request.setCulture(getString(R.string.culture));*/
+        hotelAvailReq.setPreSearchUniqueId(responseHotelPreSearch.getResultText());//583a1157-3624-44c7-9728-e7254dcd88c8
+        hotelAvailReq.setCultureName(getString(R.string.culture));//583a1157-3624-44c7-9728-e7254dcd88c8
+
         Gson gson = new Gson();
-        Log.e("testt", gson.toJson(request));
-        SingletonService.getInstance().getHotelService().hotelAvail(this, hotelAvailReq);
+        Log.e("RequestHotelSearch:", gson.toJson(hotelAvailReq));
+        SingletonService.getInstance().getHotelService().newHotelSearchAvail(this, hotelAvailReq);
     }
+
     public void weather_request(){
         SingletonService.getInstance().getWeatherPart().getWeatherByCity(new OnServiceStatus<WeatherApi>() {
             @Override
@@ -644,7 +685,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     }
 
     @Override
-    public void onReady(HotelAvailRes hotelAvailRes) {
+    public void onReady(ResponseHotelSearch hotelAvailRes) {
+        Gson gson = new Gson();
+        Log.e("ResponseHotelSearch:", gson.toJson(hotelAvailRes));
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -653,13 +696,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         selectHotelModelArrayList.clear();
         selectHotelModelArrayListFilter.clear();
         try {
-            if (hotelAvailRes.getHotelAvailResult().getErrors() != null) {
+            if (hotelAvailRes.getErrors().size() > 0) {
                 elNotFound.setVisibility(View.VISIBLE);
-                tvAlert.setText(hotelAvailRes.getHotelAvailResult().getErrors().get(0).getDetailedMessage());
+                tvAlert.setText(hotelAvailRes.getErrors().get(0).getMessage());
                 rvHotelResult.setVisibility(View.GONE);
                 rlList.setVisibility(View.GONE);
                 llFilter.setVisibility(View.GONE);
-            } else if (hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getHotels().isEmpty()) {
+            } else if (hotelAvailRes.getHotels().isEmpty()) {
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlert.setText(R.string.NoResult);
                 tvAlertDesc.setText(getString(R.string.change_date));
@@ -675,8 +718,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                 }
 
-                maxPrice = hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getMaxPrice();
-                minPrice = hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getMinPrice();
+                maxPrice = hotelAvailRes.getMaxPrice();
+                minPrice = hotelAvailRes.getMinPrice();
                 int dif = maxPrice - minPrice;
                 dif = dif / 5;
                 int x0 = minPrice;
@@ -692,11 +735,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x4)) + "-" + Utility.priceFormat(String.valueOf(x5)), 5, false));
                 Collections.reverse(filterHotelPriceModels);
                 int i = 0;
-                for (Hotel hotels : hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getHotels()) {
+                for (com.eligasht.service.model.newModel.hotel.search.response.Hotel hotels : hotelAvailRes.getHotels()){
+                //for (int j = 0; j < hotelAvailRes.getHotels().size(); j++) {
+
                     String off = "";
                     boolean isOff = false;
                     int xiff = 0;
-                    int hotelPrice = hotels.getAvailability().getRoomLists().get(i).getPrice();
+                    int hotelPrice = hotelAvailRes.getHotels().get(i).getAvailability().getRoomLists().get(i).getPrice();
                     if ((hotels.getAvailability().getRoomLists().get(i).getOldPrice() > 0) &&
                             (hotels.getAvailability().getRoomLists().get(i).getOldPrice() > hotels.getAvailability().getRoomLists().get(i).getPrice())) {
                         int p1 = hotels.getAvailability().getRoomLists().get(i).getOldPrice() - hotels.getAvailability().getRoomLists().get(i).getPrice();
@@ -729,10 +774,11 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                             hotels.getMainImage(), hotels.getLocation(),
                             hotels.getAvailability().getRoomLists().get(i).getOldPrice(), hotels.getStarRating(),
                             Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getEHotelId()),
-                            hotelAvailRes.getHotelAvailResult().getResultUniqID(), hotels.isBestSell(), isOff,
+                            hotelAvailRes.getHotels().get(i).getHotelID()+"",//.getResultUniqID(),
+                            hotels.getBestSell(), isOff,
                             off, hotels.getTypeText(), hotels.getFacilities(),
                             xiff, hotels.getAvailability().getRoomLists().get(i).getOfferId(),
-                            hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getLocations()));
+                            hotelAvailRes.getLocations()));
                    // Log.e("keeey", hotelAvailRes.getHotelAvailResult().getResultUniqID() );
                 }
                 filterHotelStarsModels.add(new FilterStarModel(getString(R.string._1star), false, 1));
@@ -743,13 +789,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 filterHotelStarsModels.add(new FilterStarModel(getString(R.string.WithoutStar), false, -1));
                 filterHotelBestOffModels.add(new FilterHotelTypeModel(getString(R.string.BestSell), false));
                 filterHotelBestOffModels.add(new FilterHotelTypeModel(getString(R.string.BestOff), false));
-                for (Facility facilities : hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getFacilities()) {
+                for (Facility facilities : hotelAvailRes.getFacilities()) {
                     filterHotelFacilitiesModels.add(new FilterHotelTypeModel(facilities.getTitle(), false));
                 }
-                for (HotelType hotelTypes : hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getHotelTypes()) {
+                for (com.eligasht.service.model.newModel.hotel.search.response.HotelType hotelTypes : hotelAvailRes.getHotelTypes()) {
                     filterHotelTypeModel.add(new FilterHotelTypeModel(hotelTypes.getTitle(), false));
                 }
-                for (Location locations : hotelAvailRes.getHotelAvailResult().getHotelSearchResult().getLocations()) {
+                for (com.eligasht.service.model.newModel.hotel.search.response.Location locations : hotelAvailRes.getLocations()) {
                     filterHotelLocationModels.add(new FilterHotelTypeModel(locations.getTitle(), false));
                 }
                 tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa", "استانبول"));

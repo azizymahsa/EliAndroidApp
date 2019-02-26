@@ -67,6 +67,10 @@ import com.eligasht.service.model.newModel.flight.purchaseServices.request.Reque
 import com.eligasht.service.model.newModel.flight.purchaseServices.response.ResponsePurchaseServices;
 import com.eligasht.service.model.newModel.flight.services.request.RequestGetServices;
 import com.eligasht.service.model.newModel.flight.services.response.ResponseGetServices;
+import com.eligasht.service.model.newModel.hotel.preSearch.request.RequestHotelPreSearch;
+import com.eligasht.service.model.newModel.hotel.preSearch.response.ResponseHotelPreSearch;
+import com.eligasht.service.model.newModel.hotel.search.request.RequestHotelSearch;
+import com.eligasht.service.model.newModel.hotel.search.response.ResponseHotelSearch;
 import com.eligasht.service.model.newModel.insurance.request.searchInsurance.RequestInsuranceSearchResultViewModel;
 import com.eligasht.service.model.newModel.insurance.request.purchase.PurchaseParameterModel;
 import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
@@ -381,6 +385,16 @@ public interface RetroClient {
     @POST(Const.GetNewHotelCities)
     Observable<Response<List<ResponseAirport>>> responseNewHotelCitiesObservable(
             @Body AutoCompleteParameterModel requestAutoCompleteParameterModel
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewHotelPreSearch)
+    Observable<Response<ResponseHotelPreSearch>> responseNewHotelPreSearchObservable(
+            @Body RequestHotelPreSearch requestHotelPreSearch
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewHotelSearch)
+    Observable<Response<ResponseHotelSearch>> responseNewHotelSearchObservable(
+            @Body RequestHotelSearch requestHotelSearch
     );
 
     //**************************

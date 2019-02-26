@@ -11,7 +11,7 @@ public class Const {
     public static Boolean TEST=false;
 
 // public final static String BASEURL = "http://mobilews.eligasht.com/LightServices/Rest/";
- public final static String BASEURL = "http://192.168.1.82:120/api/";
+ public final static String BASEURL = "http://192.168.103.74/api/";
 
     public final static String BaseGitLab="https://gitlab.com/api/v4/projects/6147852/";
 
@@ -71,6 +71,9 @@ public class Const {
 
     //*************Hotel*****************
     public final static String GetNewHotelCities = "LoadAndFillAPI/HotelCities";
+    public final static String GetNewHotelPreSearch = "HotelServiceAPI/PreSearch";
+    public final static String GetNewHotelSearch = "HotelServiceAPI/Search";
+    public final static String GetNewHotelDetail = "HotelServiceAPI/GetHotelDetail";
 
 
     //*************Insurance*****************

@@ -78,33 +78,7 @@ public class GlobalApplication extends ServiceApplication {
                 getResources().getDisplayMetrics());
     }
 
-    public static String getSoftwareDirectoryAddress() {
-        String address = Environment.getExternalStorageDirectory()
-                + "/JameNegar_Pakhsh_new/Software/";
-        new File(address).mkdirs();
-        return address;
-    }
 
-    public static String getMapAddress() {
-        String address = Environment.getExternalStorageDirectory()
-                + "/JameNegar_Pakhsh_new/Map/iran.Map";
-        new File(address).getParentFile().mkdirs();
-        return address;
-    }
-
-    public static String getPhotosDirectoryAddress() {
-        String address = Environment.getExternalStorageDirectory()
-                .getAbsolutePath() + "/JameNegar_Pakhsh_new/Products_Photos/";
-        new File(address).mkdirs();
-        return address;
-    }
-
-    public static String getReportsDirectoryAddress() {
-        String address = Environment.getExternalStorageDirectory().getAbsolutePath()
-                + "/JameNegar_Pakhsh_new/Reports/";
-        new File(address).mkdirs();
-        return address;
-    }
 
     public static String getLogsDirectoryAddress() {
         String address =

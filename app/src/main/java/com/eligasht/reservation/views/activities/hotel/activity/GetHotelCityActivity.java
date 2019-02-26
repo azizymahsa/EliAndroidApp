@@ -231,7 +231,7 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
         hotelListRequest.setPart(text.toLowerCase());
 
         SingletonService.getInstance().getHotelService().newHotelCitiesAvail(this, hotelListRequest);
-        Log.e("request: ", new Gson().toJson(hotelListRequest));
+        Log.e("requestHotelCity: ", new Gson().toJson(hotelListRequest));
 
     }
 
