@@ -17,13 +17,14 @@ import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.models.eventbus.HotelProprtiesBus;
-import com.eligasht.reservation.models.hotel.api.detail.call.HotelProprties;
+
 import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.HotelFacilityAdapter;
 import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.HotelProprtiesAdapter;
 import com.eligasht.reservation.views.adapters.hotel.hotelProprtiesAdapter.HotelProprtiesModels;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.ui.NonScrollGridView;
-import com.eligasht.service.model.hotel.detail.response.HotelProprty;
+import com.eligasht.service.model.newModel.hotel.hotelDetail.response.HotelProprty;
+
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

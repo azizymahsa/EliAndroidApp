@@ -31,6 +31,10 @@ import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
 import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
 import com.eligasht.service.model.newModel.airport.response.ResponseAirport;
+import com.eligasht.service.model.newModel.hotel.getRoom.request.RequestGetRoomsList;
+import com.eligasht.service.model.newModel.hotel.getRoom.response.ResponseGetRoomsList;
+import com.eligasht.service.model.newModel.hotel.hotelDetail.request.RequestHotelDetails;
+import com.eligasht.service.model.newModel.hotel.hotelDetail.response.ResponseHotelDetails;
 import com.eligasht.service.model.newModel.hotel.preSearch.request.RequestHotelPreSearch;
 import com.eligasht.service.model.newModel.hotel.preSearch.response.ResponseHotelPreSearch;
 import com.eligasht.service.model.newModel.hotel.search.request.RequestHotelSearch;
@@ -115,6 +119,12 @@ public class Hotel extends BasePart {
     }
     public void newHotelSearchAvail(OnServiceStatus<ResponseHotelSearch> listener, RequestHotelSearch req) {
         start(getServiceGenerator().createService().responseNewHotelSearchObservable(req), listener);
+    }
+    public void newHotelDetailsAvail(OnServiceStatus<ResponseHotelDetails> listener, RequestHotelDetails req) {
+        start(getServiceGenerator().createService().responseNewHotelDetailsObservable(req), listener);
+    }
+    public void newHotelRoomListAvail(OnServiceStatus<List<ResponseGetRoomsList>> listener, RequestGetRoomsList req) {
+        start(getServiceGenerator().createService().responseNewHotelRoomListObservable(req), listener);
     }
 
 

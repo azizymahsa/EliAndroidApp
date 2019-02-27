@@ -1,6 +1,8 @@
 package com.eligasht.reservation.models.eventbus;
 
-import com.eligasht.service.model.hotel.detail.response.HotelProprty;
+
+
+import com.eligasht.service.model.newModel.hotel.hotelDetail.response.HotelProprty;
 
 import java.util.List;
 

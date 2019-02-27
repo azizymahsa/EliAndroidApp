@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -28,7 +29,7 @@ import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.eventbus.CommentModelBus;
 import com.eligasht.reservation.models.eventbus.HotelProprtiesBus;
 import com.eligasht.reservation.models.eventbus.RoomsModelBus;
-import com.eligasht.service.model.hotel.detail.response.HotelImage;
+import com.eligasht.service.model.newModel.hotel.hotelDetail.response.HotelImage;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.model.hotel.detail.request.HotelDetailReq;
 import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
@@ -47,16 +48,23 @@ import com.eligasht.service.model.hotel.room.request.GetRoomReq;
 import com.eligasht.service.model.hotel.room.request.GetRoomRequest;
 import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
 import com.eligasht.service.model.identity.Identity;
+import com.eligasht.service.model.newModel.hotel.getRoom.request.RequestGetRoomsList;
+import com.eligasht.service.model.newModel.hotel.getRoom.response.ResponseGetRoomsList;
+import com.eligasht.service.model.newModel.hotel.getRoom.response.Room;
+import com.eligasht.service.model.newModel.hotel.hotelDetail.request.RequestHotelDetails;
+import com.eligasht.service.model.newModel.hotel.hotelDetail.response.ResponseHotelDetails;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
-public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnServiceStatus<GetRoomResponse> {
+public class DetailHotelActivity extends BaseActivity implements View.OnClickListener, OnServiceStatus<List<ResponseGetRoomsList>> {
     private TextView tvTitle;
     private ArrayList<RoomsModel> roomsModels = new ArrayList<>();
     private RelativeLayout rlLoading2;
@@ -211,36 +219,31 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.blue2));
         }
-        GetRoomRequest getRoomRequest = new GetRoomRequest();
-        GetRoomReq getRoomReq = new GetRoomReq();
-        getRoomReq.setCulture(getString(R.string.culture));
-        getRoomReq.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
-        getRoomReq.setFltGUID("");
-        getRoomReq.setFltId("");
-        Identity identity = new Identity();
-        identity.setPassword("123qwe!@#QWE");
-        identity.setTermianlId("Mobile");
-        identity.setUserName("EligashtMlb");
-        getRoomReq.setIdentity(identity);
-        getRoomReq.setResultUniqID(getIntent().getExtras().getString("ResultUniqID"));
-        getRoomRequest.setRequest(getRoomReq);
-        SingletonService.getInstance().getHotelService().getRoom(this, getRoomRequest);
+        RequestGetRoomsList getRoomRequest = new RequestGetRoomsList();
+
+        getRoomRequest.setCulture(getString(R.string.culture));
+        getRoomRequest.setHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
+        getRoomRequest.setPreSearchUniqueId(getIntent().getExtras().getString("ResultUniqID"));
+        Log.e("RequestGetRoomsList: ", new Gson().toJson(getRoomRequest));
+        SingletonService.getInstance().getHotelService().newHotelRoomListAvail(this, getRoomRequest);
     }
 
     @Override
-    public void onReady(GetRoomResponse getRoomResponse) {
+    public void onReady(List<ResponseGetRoomsList> getRoomResponse) {
+        Log.e("ResponseGetRoomsList: ", new Gson().toJson(getRoomResponse));
         try {
-            if (getRoomResponse.getGetRoomsListResult().getErrors() != null) {
+           /* if (getRoomResponse.getErrors() != null) {
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlert.setText(getRoomResponse.getGetRoomsListResult().getErrors().get(0).getMessage());
-            } else {
-                for (RoomList roomList : getRoomResponse.getGetRoomsListResult().getRoomList()) {
-                    roomsModels.add(new RoomsModel(roomList.getBoard(), roomList.getTitle(), roomList.getDescription(), roomList.getPrice().toString(),
-                            roomList.getOfferId(), roomList.getHotelId(), getRoomResponse.getGetRoomsListResult().getSearchKey()));
+            } else {*/
+                for (ResponseGetRoomsList roomList : getRoomResponse){//getGetRoomsListResult().getRoomList()) {
+           // for (int i = 0; i < getRoomResponse.size(); i++) {
+                 roomsModels.add(new RoomsModel(roomList.getBoard(), roomList.getTitle(), roomList.getDescription(), roomList.getPrice().toString(),
+                            roomList.getOfferId(), roomList.getHotelId(), getIntent().getExtras().getString("ResultUniqID")+""));//getRoomResponse.getGetRoomsListResult().getSearchKey()));
                 }
                 EventBus.getDefault().post(new RoomsModelBus(roomsModels));
                 getHotelDetailRequest();
-            }
+            //}
         } catch (Exception e) {
             elNotFound.setVisibility(View.VISIBLE);
             rlLoading2.setVisibility(View.GONE);
@@ -256,15 +259,16 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
     }
 
     public void getHotelDetailRequest() {
-        HotelDetailRequest hotelDetailRequest = new HotelDetailRequest();
-        HotelDetailReq getRoomRequest = new HotelDetailReq();
-        getRoomRequest.setCulture(getString(R.string.culture));
-        getRoomRequest.setEHotelId(String.valueOf(getIntent().getExtras().getInt("HotelId")));
-        hotelDetailRequest.setRequest(getRoomRequest);
-        SingletonService.getInstance().getHotelService().getHotelDetail(new OnServiceStatus<HotelDetailResponse>() {
+        RequestHotelDetails hotelDetailRequest = new RequestHotelDetails();
+       // HotelDetailReq getRoomRequest = new HotelDetailReq();
+        hotelDetailRequest.setCulture(getString(R.string.culture));
+        hotelDetailRequest.setHotelID(getIntent().getExtras().getInt("HotelId"));
+        Log.e("RequestHotelDetails: ", new Gson().toJson(hotelDetailRequest));
+        SingletonService.getInstance().getHotelService().newHotelDetailsAvail(new OnServiceStatus<ResponseHotelDetails>() {
             @Override
-            public void onReady(HotelDetailResponse hotelDetailResponse) {
+            public void onReady(ResponseHotelDetails hotelDetailResponse) {
                 rlLoading2.setVisibility(View.GONE);
+                Log.e("ResponseHotelDetails: ", new Gson().toJson(hotelDetailResponse));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     window.setStatusBarColor(ContextCompat.getColor(DetailHotelActivity.this, R.color.colorPrimaryDark));
                 }
@@ -274,29 +278,29 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                     YoYo.with(Techniques.FadeIn)
                             .duration(400)
                             .playOn(cvHotel);
-                    tvHotelName.setText(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName());
+                    tvHotelName.setText(hotelDetailResponse.getHotelName());
                     tvHotelName.setVisibility(View.GONE);
-                    tvTitle.setText(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName());
-                    tvAdress.setText(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getAddress());
+                    tvTitle.setText(hotelDetailResponse.getHotelName());
+                    tvAdress.setText(hotelDetailResponse.getAddress());
                     try {
-                        location = new LatLng(Double.valueOf(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getLatitude()),
-                                Double.valueOf(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getLongitude()));
+                        location = new LatLng(Double.valueOf(hotelDetailResponse.getLatitude()),
+                                Double.valueOf(hotelDetailResponse.getLongitude()));
                     } catch (Exception e) {
                     }
-                    for (HotelImage imageHotel : hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelImages()) {
+                    for (HotelImage imageHotel : hotelDetailResponse.getHotelImages()) {
                         imageModels.add(new ImageModel(imageHotel.getHotelImagesURL()));
                     }
-                    EventBus.getDefault().post(new HotelProprtiesBus(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelProprties()));
-                    hName = hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName();
-                    commentModelBus = new CommentModelBus(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName(), String.valueOf(getIntent().getExtras().getInt("HotelId")));
-                    EventBus.getDefault().post(new CommentModelBus(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName(), String.valueOf(getIntent().getExtras().getInt("HotelId"))));
+                    EventBus.getDefault().post(new HotelProprtiesBus(hotelDetailResponse.getHotelProprties()));
+                    hName = hotelDetailResponse.getHotelName();
+                    commentModelBus = new CommentModelBus(hotelDetailResponse.getHotelName(), String.valueOf(getIntent().getExtras().getInt("HotelId")));
+                    EventBus.getDefault().post(new CommentModelBus(hotelDetailResponse.getHotelName(), String.valueOf(getIntent().getExtras().getInt("HotelId"))));
                     YoYo.with(Techniques.FadeIn)
                             .duration(400)
                             .playOn(flViewPager);
                     Collections.reverse(imageModels);
-                    new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager, hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getHotelName());
-                    tvCityName.setText(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getCityName() + " " + getString(R.string.comma) + " " + hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getCountryName());
-                    switch (Integer.valueOf(hotelDetailResponse.getGetHotelDetailResult().getHotelDetail().getStarRating())) {
+                    new ViewPagerAttention(DetailHotelActivity.this, imageModels, R.id.intro_view_pager, hotelDetailResponse.getHotelName());
+                    tvCityName.setText(hotelDetailResponse.getCityName() + " " + getString(R.string.comma) + " " + hotelDetailResponse.getCountryName());
+                    switch (Integer.valueOf(hotelDetailResponse.getStarRating())) {
                         case 1:
                             //todo change this
                             ivImage.setImageDrawable(ContextCompat.getDrawable(DetailHotelActivity.this, R.drawable._1star));

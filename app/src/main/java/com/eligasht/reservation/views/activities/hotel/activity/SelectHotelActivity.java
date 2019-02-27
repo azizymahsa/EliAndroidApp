@@ -651,6 +651,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         request.setRooms(rooms);
         request.setSource("");
         request.setCulture(getString(R.string.culture));*/
+        Prefs.putString("PreSearchUniqueId", responseHotelPreSearch.getResultText());
         hotelAvailReq.setPreSearchUniqueId(responseHotelPreSearch.getResultText());//583a1157-3624-44c7-9728-e7254dcd88c8
         hotelAvailReq.setCultureName(getString(R.string.culture));//583a1157-3624-44c7-9728-e7254dcd88c8
 
@@ -774,7 +775,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                             hotels.getMainImage(), hotels.getLocation(),
                             hotels.getAvailability().getRoomLists().get(i).getOldPrice(), hotels.getStarRating(),
                             Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getEHotelId()),
-                            hotelAvailRes.getHotels().get(i).getHotelID()+"",//.getResultUniqID(),
+                            //hotelAvailRes.getHotels().get(i).getHotelID()+"",//.getResultUniqID(),
+                            Prefs.getString("PreSearchUniqueId", "")+"",
                             hotels.getBestSell(), isOff,
                             off, hotels.getTypeText(), hotels.getFacilities(),
                             xiff, hotels.getAvailability().getRoomLists().get(i).getOfferId(),
