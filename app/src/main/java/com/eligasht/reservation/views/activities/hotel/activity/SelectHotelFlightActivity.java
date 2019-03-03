@@ -54,12 +54,9 @@ import com.eligasht.service.model.newModel.hotelFlight.response.HotelType;
 import com.eligasht.service.model.newModel.hotelFlight.response.Location;
 import com.eligasht.service.model.newModel.hotelFlight.response.ResponseHotelFlight;
 import com.eligasht.service.model.weather.response.WeatherApi;
-import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
+
 import com.google.gson.Gson;
 import com.eligasht.reservation.tools.Prefs;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,7 +65,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.eligasht.service.model.hotelflight.search.response.Hotel;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 public class SelectHotelFlightActivity extends BaseActivity implements View.OnClickListener, FilterHotelDialog.FilterHotelDialogListenerArray,
@@ -751,7 +747,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                             hotelFlightResponse.getSearchKey()+""//getResultUniqID()
                             ,hotels.getBestSell(), isOff,
                             off, hotels.getTypeText(), hotels.getFacilities(),
-                            xiff, hotelFlightResponse.getFlights().getFltList(),
+                            xiff,
+                            hotelFlightResponse.getFlights().getFltList(),
                             hotelFlightResponse.getFlights().getArrRout(),
                             hotelFlightResponse.getFlights().getDepRout(),
                             hotelFlightResponse.getFlights().getAmount() + "",

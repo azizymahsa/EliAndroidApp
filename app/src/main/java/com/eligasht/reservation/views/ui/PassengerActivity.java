@@ -81,6 +81,11 @@ import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFa
 
 import com.eligasht.service.model.newModel.flight.confirmFlightPrice.request.RequestConfirmFlightPrice;
 
+import com.eligasht.service.model.newModel.flight.prefactor.request.RequestGetPreFactor;
+import com.eligasht.service.model.newModel.flight.prefactor.response.Flight;
+import com.eligasht.service.model.newModel.flight.prefactor.response.Hotel;
+import com.eligasht.service.model.newModel.flight.prefactor.response.ResponseGetPreFactor;
+import com.eligasht.service.model.newModel.flight.prefactor.response.Summary;
 import com.eligasht.service.model.newModel.flight.purchaseFlight.request.PartnerList;
 import com.eligasht.service.model.newModel.flight.purchaseFlight.request.PassList;
 import com.eligasht.service.model.newModel.flight.purchaseFlight.request.PurchaseFlightParameterModel;
@@ -1922,9 +1927,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		rlLoading.setVisibility(View.GONE);
 		Utility.disableEnableControls(true,rlRoot);
-	/*	try {
+		try {
 
-			PurchaseServiceResult GetAirportsResult = responsePurchaseFlight.getPurchaseServiceResult();//jsonObj.getJSONObject("PurchaseServiceResult");
+			/*PurchaseServiceResult GetAirportsResult = responsePurchaseFlight.getPurchaseServiceResult();//jsonObj.getJSONObject("PurchaseServiceResult");
 			int successResult=GetAirportsResult.getSuccessResult();
 			if(successResult==0){
 				//get Error
@@ -1934,13 +1939,13 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 				AlertDialogPassenger.setText(message,getString(R.string.massege));
 			}
 
-			if(successResult >1){
-				txt_shomare_factor.setText(GetAirportsResult.getSuccessResult()+"");
+			if(successResult >1){*/
+				txt_shomare_factor.setText(responsePurchaseFlight.getResultKey()+"");
 
-				tvfactorNumber.setText(GetAirportsResult.getSuccessResult()+"");
+				tvfactorNumber.setText(responsePurchaseFlight.getResultKey()+"");
 
-				textView4.setImageBitmap(getBitmap(GetAirportsResult.getSuccessResult()+"", 128, 300, 150));
-			}else{
+				textView4.setImageBitmap(getBitmap(responsePurchaseFlight.getResultKey()+"", 128, 300, 150));
+			/*}else{
 
 				AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
 				AlertDialogPassenger.setText(getString(R.string.An_error_has_occurred),getString(R.string.massege));
@@ -1949,7 +1954,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 				finish();
 
-			}
+			}*/
 
 			// Setup and Handover data to recyclerview
 			((ImageView)findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.factor_passenger_on);
@@ -1969,31 +1974,28 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
 			AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
 
-		}*/
+		}
 	}
-
+	//list pishfactor
 	private void RequestPreFactorDetails() {
 
 		//this method will be running on UI thread
 		rlLoading.setVisibility(View.VISIBLE);
 		Utility.disableEnableControls(false,rlRoot);
-		RequestPreFactorDetails requestPreFactorDetails = new RequestPreFactorDetails();
-		com.eligasht.service.model.flight.request.PreFactorDetails.Request request = new com.eligasht.service.model.flight.request.PreFactorDetails.Request();
-		com.eligasht.service.model.flight.request.PreFactorDetails.Identity identity = new com.eligasht.service.model.flight.request.PreFactorDetails.Identity();
-		request.setIdentity(identity);
+		RequestGetPreFactor requestPreFactorDetails = new RequestGetPreFactor();
 
-		request.setCulture(getString(R.string.culture));
-		request.setType("F");
 
-		request.setInvoiceNo(tvfactorNumber.getText().toString());//perches service
 
-		requestPreFactorDetails.setRequest(request);
-		SingletonService.getInstance().getFlight().flightPreFactorDetailAvail(new OnServiceStatus<ResponsePreFactorDetails>() {
+		//request.setInvoiceNo(tvfactorNumber.getText().toString());//perches service
+
+		requestPreFactorDetails.setPreFactorNo(tvfactorNumber.getText().toString());
+		SingletonService.getInstance().getFlight().newGetPreFactorServiceAvail(new OnServiceStatus<ResponseGetPreFactor>() {
 			@Override
-			public void onReady(ResponsePreFactorDetails responsePreFactorDetails) {
+			public void onReady(ResponseGetPreFactor responsePreFactorDetails) {
+				Log.e("ResponseGetPreFactorHotel:", new Gson().toJson(responsePreFactorDetails) );
 
 
-				Log.e("ResponsePreFactor",responsePreFactorDetails.getGetPreFactorDetailsResult().getPreFactor().toString()+"");
+				// Log.e("ResponsePreFactor",responsePreFactorDetails.getGetPreFactorDetailsResult().getPreFactor().toString()+"");
 
 
 				rlLoading.setVisibility(View.GONE);
@@ -2002,12 +2004,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					SingletonAnalysis.getInstance().logPreBooking(ServiceType.FLIGHT);
 
 					// Getting JSON Array node
-					GetPreFactorDetailsResult GetAirportsResult = responsePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
+					//GetPreFactorDetailsResult GetAirportsResult = responsePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
 
-					PreFactor jArray = GetAirportsResult.getPreFactor();//("PreFactor");//FactorSummary
+					com.eligasht.service.model.newModel.flight.prefactor.response.PreFactor jArray = responsePreFactorDetails.getFactorDetails().getPreFactor();//("PreFactor");//FactorSummary
 
 					//FactorSummary
-					FactorSummary jFact = jArray.getFactorSummary();
+					Summary jFact = responsePreFactorDetails.getFactorDetails().getPreFactor().getSummary();//getFactorSummary();
 					if (jFact.getOnlinePaymentURL()==null||jFact.getOnlinePaymentURL().equals("")|| TextUtils.isEmpty(jFact.getOnlinePaymentURL())){
 						btn_pardakht_factor.setVisibility(View.INVISIBLE);
 					}else{
@@ -2016,7 +2018,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					int RqBase_ID = jFact.getRqBaseID();//Int("RqBase_ID");
 					//////////////////////////////
-					long totalprice = jFact.getTotalPrice();
+					long totalprice = jFact.getTotalPrice().getAmount();//TotalPrice();
 
 					tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+getString(R.string.Rial) : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
 //for hotel==========================================================================================
@@ -2025,7 +2027,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
 					ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
 
-					List<PreFactorHotel> jArray2 = jArray.getPreFactorHotels();//PreFactorHotels();
+					List<Hotel> jArray2 = jArray.getHotels();//PreFactorHotels();//PreFactorHotels();
 
 
 					for (int i = 0; i < jArray2.size(); i++) {
@@ -2047,13 +2049,15 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
 					ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
 
-					List<RequestPassenger> jArray3 = jArray.getRequestPassenger();//RequestPassenger");
+					List<com.eligasht.service.model.newModel.flight.prefactor.response.Passenger> jArray3 = jArray.getPassengers();//RequestPassenger();//RequestPassenger");
 
 					System.out.println("json detail mossfaer:"+jArray3);
 					for (int i = 0; i < jArray3.size(); i++) {
-						passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.get(i).getGender()+"",jArray3.get(i).getNationality(),
-								jArray3.get(i).getRqPassengerBirthdate(),jArray3.get(i).getRqPassengerPassNo(),
-								jArray3.get(i).getRqPassengerName(),jArray3.get(i).getRqPassengerNationalCode()+""));
+						passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.get(i).getGender()+"",jArray3.get(i).getNationality()+"",
+								jArray3.get(i).getBirthday()//RqPassengerBirthdate()
+								,jArray3.get(i).getPassportNo()//RqPassengerPassNo()
+								,jArray3.get(i).getName()//RqPassengerName()
+								,jArray3.get(i).getNationalCode()+""));//RqPassengerNationalCode()+""));
 
 					}
 					if (!passengerPreFactorModels.isEmpty()) {
@@ -2067,16 +2071,17 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
 					recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
 					ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
-					List<PreFactorService> jArray4 = jArray.getPreFactorServices();
+					//List<PreFactorService> jArray4 = jArray.getPreFactorServices();
+					List<com.eligasht.service.model.newModel.flight.prefactor.response.Service> jArray4 = jArray.getServices();
 
 					for (int i = 0; i < jArray4.size(); i++) {
 						if (Locale.getDefault().getLanguage().equals("fa")) {
 							servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
-									jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
+									jArray4.get(i).getServicePrice().getAmount() + "", jArray4.get(i).getServiceType(),
 									jArray4.get(i).getCityFa(), jArray4.get(i).getServiceNameFa(), jArray4.get(i).getCountryFa()));
 						}else{
 							servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
-									jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
+									jArray4.get(i).getServicePrice().getAmount() + "", jArray4.get(i).getServiceType(),
 									jArray4.get(i).getCityEn(), jArray4.get(i).getServiceNameEn(), jArray4.get(i).getCountryEn()));
 						}
 					}
@@ -2090,7 +2095,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
 					recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
 					ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
-					List<PreFactorFlight> jArray5 = jArray.getPreFactorFlights();
+					//List<PreFactorFlight> jArray5 = jArray.getPreFactorFlights();
+					List<Flight> jArray5 = jArray.getFlights();
 
 					for (int i = 0; i < jArray5.size(); i++) {
 						if (Locale.getDefault().getLanguage().equals("fa")) {

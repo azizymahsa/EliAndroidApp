@@ -238,9 +238,9 @@ public class GetNewKhadmatAdapter extends BaseAdapter {
                                 sumGheymat = sumGheymat + data.get(i).getServiceTotalPrice();
                                 if(sumSelectId.length()>2) {
 
-                                    sumSelectId = sumSelectId + "|" + data.get(i).getSelectID();
+                                    sumSelectId = sumSelectId + "|" + data.get(i).getServiceID();
                                 }else {
-                                    sumSelectId = data.get(i).getSelectID();//avalin bar
+                                    sumSelectId = data.get(i).getServiceID();//avalin bar
                                 }
                             }
                         }
