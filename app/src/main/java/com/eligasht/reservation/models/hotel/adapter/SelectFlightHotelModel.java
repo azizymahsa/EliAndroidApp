@@ -1,8 +1,6 @@
 package com.eligasht.reservation.models.hotel.adapter;
-import com.eligasht.service.model.hotelflight.search.response.FltList;
-import com.eligasht.service.model.hotelflight.search.response.Location;
-import com.eligasht.service.model.hotelflight.search.response.Facility_;
-
+import com.eligasht.service.model.newModel.hotelFlight.response.Facility;
+import com.eligasht.service.model.newModel.hotelFlight.response.Location;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -25,16 +23,16 @@ public class SelectFlightHotelModel {
     private boolean isOff;
     private String off;
     private String TypeText;
-    private List<Facility_> Facilities;
+    private List<Facility> Facilities;
     private int diff;
-    private List<FltList> Flights;
+    private List<com.eligasht.service.model.newModel.hotelFlight.response.FltList> Flights;
     private String ArrRout;
     private String DepRout;
     private String Amount;
     private List<Location> Locations;
     private String FlightId;
 
-    public SelectFlightHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, List<Facility_> facilities, int diff, List<FltList> flights, String arrRout, String depRout, String amount, List<Location> locations, String flightId) {
+    public SelectFlightHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, List<Facility> facilities, int diff, List<com.eligasht.service.model.newModel.hotelFlight.response.FltList> flights, String arrRout, String depRout, String amount, List<Location> locations, String flightId) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -61,6 +59,9 @@ public class SelectFlightHotelModel {
         booleans.add(false);
         booleans.add(false);
     }
+
+
+
 
     public List<Boolean> getBooleans() {
         return booleans;
@@ -190,11 +191,11 @@ public class SelectFlightHotelModel {
         TypeText = typeText;
     }
 
-    public List<Facility_> getFacilities() {
+    public List<Facility> getFacilities() {
         return Facilities;
     }
 
-    public void setFacilities(List<Facility_> facilities) {
+    public void setFacilities(List<Facility> facilities) {
         Facilities = facilities;
     }
 
@@ -206,11 +207,11 @@ public class SelectFlightHotelModel {
         this.diff = diff;
     }
 
-    public List<FltList> getFlights() {
+    public List<com.eligasht.service.model.newModel.hotelFlight.response.FltList> getFlights() {
         return Flights;
     }
 
-    public void setFlights(ArrayList<FltList> flights) {
+    public void setFlights(ArrayList<com.eligasht.service.model.newModel.hotelFlight.response.FltList> flights) {
         Flights = flights;
     }
 

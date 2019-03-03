@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -23,11 +24,16 @@ import com.eligasht.reservation.models.model.login.WebUserLogin;
 import com.eligasht.reservation.models.model.login.call.LoginListReq;
 import com.eligasht.reservation.models.model.login.call.LoginRequestModel;
 import com.eligasht.reservation.models.model.login.response.LoginRes;
+import com.eligasht.reservation.models.model.pack.response.ResponseSearchPackage;
 import com.eligasht.reservation.tools.ValidationTools;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.eligasht.service.model.newModel.login.loginUser.request.RequestLoginUser;
+import com.eligasht.service.model.newModel.login.loginUser.response.ResponseLoginUser;
+import com.eligasht.service.model.newModel.login.loginUser.response.WebUserProperties;
+import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -78,50 +84,59 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
     //request for login
     private void Login() {
 
-        LoginListReq loginListReq = new LoginListReq();
-        loginListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
-        loginListReq.setCulture(getString(R.string.culture));
-        loginListReq.setUserName(txtEmail.getText().toString());
-        loginListReq.setPassword(txtPassword.getText().toString());
+        RequestLoginUser loginListReq = new RequestLoginUser();
+        //loginListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
+       // loginListReq.setCulture(getString(R.string.culture));
+        loginListReq.setUserMailOrMobile(txtEmail.getText().toString());
+        loginListReq.setUserPassword(txtPassword.getText().toString());
 
         needShowProgressDialog();
-        // Log.e(" request " ,new GsonBuilder().create().toJson(new LoginRequestModel(loginListReq)));
-        Call<LoginRes> call = service.Login(new LoginRequestModel(loginListReq));
-        call.enqueue(new Callback<LoginRes>() {
+        Log.d("RequestLoginUser: ",new Gson().toJson(loginListReq));
+        Call<ResponseLoginUser> call = service.Login(loginListReq);
+        call.enqueue(new Callback<ResponseLoginUser>() {
             @Override
-            public void onResponse(Call<LoginRes> call, Response<LoginRes> response) {
-                needHideProgressDialog();
-                if (response == null
-                        || response.body() == null
-                        || response.body().getLoginResult() == null) {
-                    Toast.makeText(LogInActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
-                    return;
+            public void onResponse(Call<ResponseLoginUser> call, Response<ResponseLoginUser> response) {
+                Log.d("ResponseLoginUser: ",new Gson().toJson(response));
+                try {
+                    needHideProgressDialog();
+                    if (response == null
+                            || response.body() == null
+                            ) {
+                        Toast.makeText(LogInActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (response.body().getErrors() != null) {
+                        Toast.makeText(LogInActivity.this, response.body().getErrors().get(0).getMessage(), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    WebUserProperties webUserLogin = response.body().getWebUserProperties();//WebUserLogin();
+                    if (webUserLogin == null) {
+                        Toast.makeText(LogInActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+
+                    if (response.body().getLoginStatus().equals("NotRegistered")) {//ino khodam ezafe kardam
+                        Toast.makeText(LogInActivity.this,R.string.not_register_user, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (response.body().getLoginStatus().equals("NO")) {
+                        Toast.makeText(LogInActivity.this, R.string.mail_or_pass_is_wrong, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (response.body().getLoginStatus().equals("ACT")) {
+                        Toast.makeText(LogInActivity.this, R.string.activation_link_has_been_sent_to_your_email, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+
+                    //WebUserTools.getInstance().setUser(webUserLogin);//movaghatan pak kardam
+                    MainActivity.setUserName(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
+                }catch (Exception e){
+                    e.getMessage();
                 }
-
-                if (response.body().getLoginResult().getError() != null) {
-                    Toast.makeText(LogInActivity.this, response.body().getLoginResult().getError().get(0).getMessage(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                WebUserLogin webUserLogin = response.body().getLoginResult().getWebUserLogin();
-                if (webUserLogin == null) {
-                    Toast.makeText(LogInActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-
-                if (webUserLogin.getLoginStatus().equals("NO")) {
-                    Toast.makeText(LogInActivity.this, R.string.mail_or_pass_is_wrong, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (webUserLogin.getLoginStatus().equals("ACT")) {
-                    Toast.makeText(LogInActivity.this, R.string.activation_link_has_been_sent_to_your_email, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-
-                WebUserTools.getInstance().setUser(webUserLogin);
-                MainActivity.setUserName(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
                 //  Log.e("contract" , response.body().getLoginResult().getWebUserLogin().getPreviousContracts().get(0).getCntID() +"");
                 Intent intent = new Intent(LogInActivity.this, ProfileActivity.class);
                 startActivity(intent);
@@ -131,7 +146,7 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
             }
 
             @Override
-            public void onFailure(Call<LoginRes> call, Throwable t) {
+            public void onFailure(Call<ResponseLoginUser> call, Throwable t) {
                 needHideProgressDialog();
                 Toast.makeText(LogInActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
 

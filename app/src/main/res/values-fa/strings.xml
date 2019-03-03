@@ -2409,4 +2409,5 @@
     <string name="_previously_survey">قبلا در این نظر سنجی شرکت کرده اید !</string>
     <string name="_not_found">مورد یافت شد</string>
     <string name="please_wait">لطفا کمی صبر کنید ...</string>
+    <string name="not_register_user">کاربری با این مشخصات ثبت نشده است</string>
 </resources>

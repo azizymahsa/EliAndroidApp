@@ -43,15 +43,16 @@ import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelTypeModel;
 import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.hotelflight.search.request.HotelFlightRequest;
-import com.eligasht.service.model.hotelflight.search.request.HotelFlightSubRequest;
-import com.eligasht.service.model.hotelflight.search.response.Facility;
-import com.eligasht.service.model.hotelflight.search.response.HotelFlightResponse;
-import com.eligasht.service.model.hotelflight.search.response.HotelType;
-import com.eligasht.service.model.hotelflight.search.response.Location;
+
 import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
 import com.eligasht.service.model.loadflight.request.LoadFlightSubRequest;
 import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
+import com.eligasht.service.model.newModel.hotelFlight.request.QueryModel;
+import com.eligasht.service.model.newModel.hotelFlight.request.RequestHotelFlight;
+import com.eligasht.service.model.newModel.hotelFlight.response.Facility;
+import com.eligasht.service.model.newModel.hotelFlight.response.HotelType;
+import com.eligasht.service.model.newModel.hotelFlight.response.Location;
+import com.eligasht.service.model.newModel.hotelFlight.response.ResponseHotelFlight;
 import com.eligasht.service.model.weather.response.WeatherApi;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
@@ -71,7 +72,7 @@ import com.eligasht.service.model.hotelflight.search.response.Hotel;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 public class SelectHotelFlightActivity extends BaseActivity implements View.OnClickListener, FilterHotelDialog.FilterHotelDialogListenerArray,
-        SortDialog.SortHotelDialogListener, OnServiceStatus<HotelFlightResponse> {
+        SortDialog.SortHotelDialogListener, OnServiceStatus<ResponseHotelFlight> {
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     private LinearLayout llFilter;
@@ -99,7 +100,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     private FancyButton btnOk, btnBack, btnHome, btnChangeView;
     private String raft, bargasht;
     private String raftFa, bargashtFa;
-    private HotelFlightResponse hotelFlightResponse;
+    private ResponseHotelFlight hotelFlightResponse;
     SlidingDrawer slidingDrawer;
     private RecyclerView rvWeather;
     RecyclerView rvHotelResult;
@@ -663,11 +664,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     }
 
     @Override
-    public void onReady(HotelFlightResponse hotelFlightResponse) {
+    public void onReady(ResponseHotelFlight hotelFlightResponse) {
         if(hotelFlightResponse != null)
-        Log.e("hotelFlightRespons:", new Gson().toJson(hotelFlightResponse ));
+        Log.e("ResponseHotelFlight:", new Gson().toJson(hotelFlightResponse ));
 
-        this.hotelFlightResponse = hotelFlightResponse;
+       this.hotelFlightResponse = hotelFlightResponse;
         new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.colorPrimaryDark));
@@ -675,13 +676,13 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         selectHotelModelArrayList.clear();
         selectHotelModelArrayListFilter.clear();
         try {
-            if (hotelFlightResponse.getHotelFlightSearchResult().getErrors() != null) {
+            if (hotelFlightResponse.getErrors().size() >0) {
                 elNotFound.setVisibility(View.VISIBLE);
-                tvAlert.setText(hotelFlightResponse.getHotelFlightSearchResult().getErrors().get(0).getDetailedMessage());
+                tvAlert.setText(hotelFlightResponse.getErrors().get(0).getDetailedMessage());
                 rvHotelResult.setVisibility(View.GONE);
                 rlList.setVisibility(View.GONE);
                 llFilter.setVisibility(View.GONE);
-            } else if (hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getHotels().isEmpty()) {
+            } else if (hotelFlightResponse.getHotels().isEmpty()) {
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlert.setText(R.string.NoResult);
                 tvAlertDesc.setText(getString(R.string.change_date));
@@ -694,8 +695,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     rvWeather.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
                     slidingDrawer.setVisibility(View.VISIBLE);
                 }
-                maxPrice = hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getMaxPrice();
-                minPrice = hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getMinPrice();
+                maxPrice = hotelFlightResponse.getMaxPrice();
+                minPrice = hotelFlightResponse.getMinPrice();
                 int dif = maxPrice - minPrice;
                 dif = dif / 5;
                 int x0 = minPrice;
@@ -712,7 +713,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 Collections.reverse(filterHotelPriceModels);
                 int i = 0;
                 int j = 0;
-                for (Hotel hotels : hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getHotels()) {
+                for (com.eligasht.service.model.newModel.hotelFlight.response.Hotel hotels : hotelFlightResponse.getHotels()) {
                     String off = "";
                     boolean isOff = false;
                     int xiff = 0;
@@ -747,15 +748,16 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                             hotels.getAvailability().getRoomLists().get(i).getBoard(), hotels.getAvailability().getRoomLists().get(i).getPrice() + "", hotels.getMainImage(), hotels.getLocation(),
                             hotels.getAvailability().getRoomLists().get(i).getOldPrice(), hotels.getStarRating(),
                             Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getEHotelId()),
-                            hotelFlightResponse.getHotelFlightSearchResult().getResultUniqID(), hotels.getBestSell(), isOff,
+                            hotelFlightResponse.getSearchKey()+""//getResultUniqID()
+                            ,hotels.getBestSell(), isOff,
                             off, hotels.getTypeText(), hotels.getFacilities(),
-                            xiff, hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getFlights().getFltList(),
-                            hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getFlights().getArrRout(),
-                            hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getFlights().getDepRout(),
-                            hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getFlights().getAmount() + "",
-                            hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getLocations(),
-                            hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getFlights().getFlightID()));
-                    hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getFlights().getFlightID();
+                            xiff, hotelFlightResponse.getFlights().getFltList(),
+                            hotelFlightResponse.getFlights().getArrRout(),
+                            hotelFlightResponse.getFlights().getDepRout(),
+                            hotelFlightResponse.getFlights().getAmount() + "",
+                            hotelFlightResponse.getLocations(),
+                            hotelFlightResponse.getFlights().getFlightID()));
+                    hotelFlightResponse.getFlights().getFlightID();
                 }
                 filterHotelStarsModels.add(new FilterStarModel(getString(R.string._1star), false, 1));
                 filterHotelStarsModels.add(new FilterStarModel(getString(R.string._2star), false, 2));
@@ -765,13 +767,13 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 filterHotelStarsModels.add(new FilterStarModel(getString(R.string.WithoutStar), false, -1));
                 filterHotelBestOffModels.add(new FilterHotelTypeModel(getString(R.string.BestSell), false));
                 filterHotelBestOffModels.add(new FilterHotelTypeModel(getString(R.string.BestOff), false));
-                for (Facility facilities : hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getFacilities()) {
+                for (Facility facilities : hotelFlightResponse.getFacilities()) {
                     filterHotelFacilitiesModels.add(new FilterHotelTypeModel(facilities.getTitle(), false));
                 }
-                for (HotelType hotelTypes : hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getHotelTypes()) {
+                for (HotelType hotelTypes : hotelFlightResponse.getHotelTypes()) {
                     filterHotelTypeModel.add(new FilterHotelTypeModel(hotelTypes.getTitle(), false));
                 }
-                for (Location locations : hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getLocations()) {
+                for (Location locations : hotelFlightResponse.getLocations()) {
                     filterHotelLocationModels.add(new FilterHotelTypeModel(locations.getTitle(), false));
                 }
                 tvTitle.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", "استانبول"));
@@ -822,24 +824,24 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         filterHotelPriceModels.clear();
         filterHotelBestOffModels.clear();
         filterHotelStarsModels.clear();
-        HotelFlightRequest hotelFlightRequest = new HotelFlightRequest();
-        HotelFlightSubRequest request = new HotelFlightSubRequest();
-        com.eligasht.service.model.hotelflight.search.request.Identity identity = new com.eligasht.service.model.hotelflight.search.request.Identity();
-        identity.setPassword("123qwe!@#QWE");
-        identity.setTermianlId("Mobile");
-        identity.setUserName("EligashtMlb");
-        request.setIdentity(identity);
-        request.setEchoToken("HF");
-        request.setCheckinString(Utility.convertNumbersToEnglish(raft));
-        request.setCheckoutString(Utility.convertNumbersToEnglish(bargasht));
-        request.setDepart(Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));
-        request.setRooms(rooms);
-        request.setRoomsString(getIntent().getExtras().getString("Rooms"));
-        request.setCulture(getString(R.string.culture));
+        RequestHotelFlight hotelFlightRequest = new RequestHotelFlight();
+        QueryModel request = new QueryModel();
+
+       // request.setEchoToken("HF");
+        request.setCategory("Tour");
+        request.setIsSearchRequest(true);
+        request.setCheckIn(Utility.convertNumbersToEnglish(raft));
+        request.setCheckOut(Utility.convertNumbersToEnglish(bargasht));
+        request.setFromDate(Utility.convertNumbersToEnglish(raft));
+        request.setToDate(Utility.convertNumbersToEnglish(bargasht));
+        request.setDestination(Prefs.getString("Value-Hotel-City-Code-HF-Raft", "IST"));
+        //request.setRooms(rooms);
+        request.setRooms(getIntent().getExtras().getString("Rooms"));
+        request.setCurrentCulture(getString(R.string.culture));
         request.setSource(Prefs.getString("Value-Hotel-City-Code-HF-Source", "THR"));
-        hotelFlightRequest.setRequest(request);
-        Log.e( "hotelFlightRequest: ",new Gson().toJson(request ));
-        SingletonService.getInstance().getHotelService().hotelFlight(this, hotelFlightRequest);
+        hotelFlightRequest.setQueryModel(request);
+        Log.e( "RequestHotelFlight: ",new Gson().toJson(hotelFlightRequest ));
+        SingletonService.getInstance().getHotelService().newHotelFlightSearchAvail(this, hotelFlightRequest);
     }
 
     public void loadFlightRequest() {
@@ -862,7 +864,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         SingletonService.getInstance().getHotelService().loadFlight(new OnServiceStatus<LoadFlightResponse>() {
             @Override
             public void onReady(LoadFlightResponse loadFlightResponse) {
-                new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
+                /*new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.colorPrimaryDark));
                 }
@@ -880,8 +882,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                         rvHotelResult.setVisibility(View.GONE);
                         llFilter.setVisibility(View.GONE);
                     } else {
-                        maxPrice = hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getMaxPrice();
-                        minPrice = hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getMinPrice();
+                        maxPrice = hotelFlightResponse.getMaxPrice();
+                        minPrice = hotelFlightResponse.getMinPrice();
                         int dif = maxPrice - minPrice;
                         dif = dif / 5;
                         int x0 = minPrice;
@@ -892,7 +894,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                         int x5 = x4 + dif;
                         int i = 0;
                         int j = 0;
-                        for (Hotel hotels : hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getHotels()) {
+                        for (com.eligasht.service.model.newModel.hotelFlight.response.Hotel hotels : hotelFlightResponse.getHotels()) {
                             String off = "";
                             boolean isOff = false;
                             int xiff = 0;
@@ -932,13 +934,14 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                                     hotels.getAvailability().getRoomLists().get(i).getOldPrice(),
                                     hotels.getStarRating(),
                                     Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getEHotelId()),
-                                    hotelFlightResponse.getHotelFlightSearchResult().getResultUniqID(), hotels.getBestSell(), isOff,
+                                    hotelFlightResponse.getSearchKey()//getResultUniqID()
+                                    , hotels.getBestSell(), isOff,
                                     off, hotels.getTypeText(), hotels.getFacilities(),
                                     xiff, loadFlightResponse.getLoadFlightResult().getHFlight().getFltList(),
                                     loadFlightResponse.getLoadFlightResult().getHFlight().getArrRout(),
                                     loadFlightResponse.getLoadFlightResult().getHFlight().getDepRout(),
                                     loadFlightResponse.getLoadFlightResult().getHFlight().getAmount() + "",
-                                    hotelFlightResponse.getHotelFlightSearchResult().getHotelSearchResult().getLocations(),
+                                    hotelFlightResponse.getLocations(),
                                     loadFlightResponse.getLoadFlightResult().getHFlight().getFlightID()));
                             //  i++;
                         }
@@ -950,7 +953,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     }
                 } catch (Exception e) {
                     onErrors();
-                }
+                }*/
             }
 
             @Override

@@ -24,7 +24,7 @@ public class RoomList {
     private String title;
     @SerializedName("SourcePrice")
     @Expose
-    private Integer sourcePrice;
+    private Double sourcePrice;
     @SerializedName("OldPrice")
     @Expose
     private Integer oldPrice;
@@ -67,6 +67,21 @@ public class RoomList {
     @SerializedName("OfferId")
     @Expose
     private String offerId;
+    @SerializedName("Errors")
+    @Expose
+    private List<Object> errors = null;
+    @SerializedName("Warningss")
+    @Expose
+    private List<Object> warningss = null;
+    @SerializedName("Comments")
+    @Expose
+    private Comments comments;
+    @SerializedName("ResultKey")
+    @Expose
+    private Object resultKey;
+    @SerializedName("TimeStamp")
+    @Expose
+    private String timeStamp;
 
     public String getId() {
         return id;
@@ -108,11 +123,11 @@ public class RoomList {
         this.title = title;
     }
 
-    public Integer getSourcePrice() {
+    public Double getSourcePrice() {
         return sourcePrice;
     }
 
-    public void setSourcePrice(Integer sourcePrice) {
+    public void setSourcePrice(Double sourcePrice) {
         this.sourcePrice = sourcePrice;
     }
 
@@ -226,6 +241,46 @@ public class RoomList {
 
     public void setOfferId(String offerId) {
         this.offerId = offerId;
+    }
+
+    public List<Object> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(List<Object> errors) {
+        this.errors = errors;
+    }
+
+    public List<Object> getWarningss() {
+        return warningss;
+    }
+
+    public void setWarningss(List<Object> warningss) {
+        this.warningss = warningss;
+    }
+
+    public Comments getComments() {
+        return comments;
+    }
+
+    public void setComments(Comments comments) {
+        this.comments = comments;
+    }
+
+    public Object getResultKey() {
+        return resultKey;
+    }
+
+    public void setResultKey(Object resultKey) {
+        this.resultKey = resultKey;
+    }
+
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
 }

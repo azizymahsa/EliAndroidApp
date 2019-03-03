@@ -19,6 +19,9 @@ import com.eligasht.reservation.models.model.pack.call.PurchaseRequestModel;
 import com.eligasht.reservation.models.model.pack.response.CountryListRes;
 import com.eligasht.reservation.models.model.pack.response.ResponseSearchPackage;
 import com.eligasht.reservation.models.model.pack.response.PurchaseRes;
+import com.eligasht.service.model.newModel.auth.response.ResponseAuth;
+import com.eligasht.service.model.newModel.login.loginUser.request.RequestLoginUser;
+import com.eligasht.service.model.newModel.login.loginUser.response.ResponseLoginUser;
 import com.eligasht.service.model.newModel.xpackage.packageCity.response.ResponseGetPackageCity;
 import com.eligasht.service.model.newModel.xpackage.searchPack.request.RequestSearchPackage;
 
@@ -26,6 +29,8 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
@@ -35,39 +40,47 @@ import retrofit2.http.POST;
 public interface  ClientService {
 
 
-    @POST("Common/StaticDataService.svc/Login")
-    Call<LoginRes> Login(@Body LoginRequestModel loginRequestModel);
+  /*  @POST("Common/StaticDataService.svc/Login")
+    Call<LoginRes> Login(@Body LoginRequestModel loginRequestModel);*/
+    @POST("api/UserAutentication/LoginUser")
+    Call<ResponseLoginUser> Login(@Body RequestLoginUser loginRequestModel);
 
-    @POST("Common/StaticDataService.svc/WebUserUpdateProfile")
+    @POST("api/Common/StaticDataService.svc/WebUserUpdateProfile")
     Call<WebUserUpdateProfileRes> updateProfile(@Body RegisterRequestModel registerRequestModel);
 
-    @POST("Common/StaticDataService.svc/EmailContract")
+    @POST("api/Common/StaticDataService.svc/EmailContract")
     Call<EmailContractRes> emailContractProfile(@Body EmailContractRequestModel emailContractRequestModel);
 
-    @POST("Common/StaticDataService.svc/WebUserChangePassword")
+    @POST("api/Common/StaticDataService.svc/WebUserChangePassword")
     Call<WebUserChangePasswordRes> changePasswordProfile(@Body ChangePasswordRequestModel changePasswordRequestModel);
 
-    @POST("Common/StaticDataService.svc/WebUserRegister")
+    @POST("api/Common/StaticDataService.svc/WebUserRegister")
     Call<WebUserRegisterRes> Register(@Body RegisterRequestModel registerRequestModel);
 
-    @POST("Common/StaticDataService.svc/WebUserRememberPassword")
+    @POST("api/Common/StaticDataService.svc/WebUserRememberPassword")
     Call<WebUserRememberPasswordRes> ResetPassword(@Body ResetPassRequestModel registerRequestModel);
 
-    @POST("Insurance/InsuranceService.svc/ShowInsurance")
+    @POST("api/Insurance/InsuranceService.svc/ShowInsurance")
     Call<InsuranceRes> showInsurance(@Body InsuranceRequestModel insuranceRequestModel);
     //"/Common/StaticDataService.svc/GetCountryAjax"GetCountryAjaxWithCulture
-    @POST("Common/StaticDataService.svc/GetCountryAjax")
+    @POST("api/Common/StaticDataService.svc/GetCountryAjax")
     Call<CountryListRes> getCountryListResult(@Body CountryRequestModel countryRequestModel);
 
     //@POST("Common/StaticDataService.svc/GetPackageRoutes")
-    @POST("LoadAndFillAPI/GetPackageCities")
+    @POST("api/LoadAndFillAPI/GetPackageCities")
     Call<List<ResponseGetPackageCity>> getCityListResult(@Body CityRequestModel cityRequestModel);
 
-    @POST("PackageServiceAPI/Search")
+    @POST("api/PackageServiceAPI/Search")
     Call<ResponseSearchPackage> getPackageListResult(@Body RequestSearchPackage packageRequestModel);
 
-    @POST("Package/PackageService.svc/PurchaseFlightService")
+    @POST("api/Package/PackageService.svc/PurchaseFlightService")
     Call<PurchaseRes> getPurchaseResult(@Body PurchaseRequestModel purchaseRequestModel);
+
+    @FormUrlEncoded
+    @POST("token")
+    Call<ResponseAuth> getAuthResult( @Field("grant_type") String grantType,
+            @Field("username") String username,
+            @Field("password") String password);
 
 
 }

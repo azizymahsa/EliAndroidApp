@@ -17,6 +17,8 @@ import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
 import com.eligasht.service.model.flight.response.searchFlight.ResponsSearchFlight;
 import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
 import com.eligasht.service.model.newModel.airport.response.ResponseAirport;
+import com.eligasht.service.model.newModel.auth.request.RequestAuth;
+import com.eligasht.service.model.newModel.auth.response.ResponseAuth;
 import com.eligasht.service.model.newModel.flight.confirmFlightPrice.request.RequestConfirmFlightPrice;
 import com.eligasht.service.model.newModel.flight.purchaseFlight.request.PurchaseFlightParameterModel;
 import com.eligasht.service.model.newModel.flight.purchaseFlight.response.TmpReserveResult;
@@ -94,5 +96,7 @@ public class Flight extends BasePart {
     public void newGetPurchaseServiceAvail(OnServiceStatus<ResponsePurchaseServices> listener, RequestGetPurchaseServices requestGetPurchaseServices) {
         start(getServiceGenerator().createService().responseGetGetPurchaseServiceObservable(requestGetPurchaseServices), listener);
     }
-
+    public void newGetAuthAvail(OnServiceStatus<ResponseAuth> listener, RequestAuth reqAuth) {
+        start(getServiceGenerator().createService().responseGetAuthObservable(reqAuth), listener);
+    }
 }

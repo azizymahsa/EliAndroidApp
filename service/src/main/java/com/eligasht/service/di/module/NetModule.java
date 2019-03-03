@@ -1,6 +1,7 @@
 package com.eligasht.service.di.module;
 
 import com.eligasht.service.BuildConfig;
+import com.eligasht.service.helper.Const;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -57,8 +58,10 @@ public class NetModule {
         public Response intercept(Chain chain) throws IOException {
 
             Request.Builder builder = chain.request().newBuilder();
-            builder.addHeader("Authorization", "bearer 99pXw4WJqFdHvrK35089uYhdw4kaGcplY4xBVsr18KOGRILsuga73kgLkbpIsV8wbqhQeI6SwX6o0MjNCxyG2gr57W1zI1atyCxTgCWGH-retC6GFZO0n2z1xN94760GN2sBgloJkJZaqu2YwlC1kFxprmw-vYNxrYGSh-ovBNWf6md4uH-WQQhvckkBdOAE8KVRgIP_Eracic4XWzdi3nIuHv5tV1K1MwEW0maINyxxuIfWaA7ewkqgtIKzfefN");
-
+            builder.addHeader("Authorization", Const.TOKEN);
+            /*builder.addHeader("grant_type","password");
+            builder.addHeader("username","eli_gasht_1397");
+            builder.addHeader("password","Eli@accesstoken");*/
             return chain.proceed(builder.build());
         }
     }

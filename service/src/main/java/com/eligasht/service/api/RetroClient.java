@@ -59,6 +59,8 @@ import com.eligasht.service.model.login.request.LoginRequestModel;
 import com.eligasht.service.model.login.response.LoginResponse;
 import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
 import com.eligasht.service.model.newModel.airport.response.ResponseAirport;
+import com.eligasht.service.model.newModel.auth.request.RequestAuth;
+import com.eligasht.service.model.newModel.auth.response.ResponseAuth;
 import com.eligasht.service.model.newModel.flight.confirmFlightPrice.request.RequestConfirmFlightPrice;
 
 import com.eligasht.service.model.newModel.flight.purchaseFlight.request.PurchaseFlightParameterModel;
@@ -67,14 +69,25 @@ import com.eligasht.service.model.newModel.flight.purchaseServices.request.Reque
 import com.eligasht.service.model.newModel.flight.purchaseServices.response.ResponsePurchaseServices;
 import com.eligasht.service.model.newModel.flight.services.request.RequestGetServices;
 import com.eligasht.service.model.newModel.flight.services.response.ResponseGetServices;
+import com.eligasht.service.model.newModel.hotel.basket.request.RequestHotelFlightBasket;
+import com.eligasht.service.model.newModel.hotel.basket.response.ResponseSelectedHotelFlightBasket;
 import com.eligasht.service.model.newModel.hotel.getRoom.request.RequestGetRoomsList;
 import com.eligasht.service.model.newModel.hotel.getRoom.response.ResponseGetRoomsList;
+import com.eligasht.service.model.newModel.hotel.holdSelectRoom.request.RequestHoldSelectRoom;
+import com.eligasht.service.model.newModel.hotel.holdSelectRoom.response.ResponseHoldSelectRoom;
 import com.eligasht.service.model.newModel.hotel.hotelDetail.request.RequestHotelDetails;
 import com.eligasht.service.model.newModel.hotel.hotelDetail.response.ResponseHotelDetails;
+import com.eligasht.service.model.newModel.hotel.policy.request.RequestHotelPolicy;
+import com.eligasht.service.model.newModel.hotel.policy.response.ResponseHotelPolicy;
 import com.eligasht.service.model.newModel.hotel.preSearch.request.RequestHotelPreSearch;
 import com.eligasht.service.model.newModel.hotel.preSearch.response.ResponseHotelPreSearch;
+import com.eligasht.service.model.newModel.hotel.reserve.request.RequestReserveFlightHotel;
+import com.eligasht.service.model.newModel.hotel.reserve.response.ResponseReserveFlightHotel;
+import com.eligasht.service.model.newModel.hotel.review.request.RequestAddHotelReview;
 import com.eligasht.service.model.newModel.hotel.search.request.RequestHotelSearch;
 import com.eligasht.service.model.newModel.hotel.search.response.ResponseHotelSearch;
+import com.eligasht.service.model.newModel.hotelFlight.request.RequestHotelFlight;
+import com.eligasht.service.model.newModel.hotelFlight.response.ResponseHotelFlight;
 import com.eligasht.service.model.newModel.insurance.request.searchInsurance.RequestInsuranceSearchResultViewModel;
 import com.eligasht.service.model.newModel.insurance.request.purchase.PurchaseParameterModel;
 import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
@@ -101,6 +114,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -366,6 +380,12 @@ public interface RetroClient {
     Observable<Response<ResponsePurchaseServices>> responseGetGetPurchaseServiceObservable(
             @Body RequestGetPurchaseServices requestGetPurchaseServices
     );
+   // @FormUrlEncoded
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetToken)
+    Observable<Response<ResponseAuth>> responseGetAuthObservable(
+            @Body RequestAuth requestAuth
+    );
     //*************Insurance*************
 
     @Headers("Content-Type: application/json")
@@ -410,6 +430,38 @@ public interface RetroClient {
     Observable<Response<List<ResponseGetRoomsList>>> responseNewHotelRoomListObservable(
             @Body RequestGetRoomsList requestGetRoomsList
     );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewHotelPolicy)
+    Observable<Response<List<ResponseHotelPolicy>>> responseNewHotelGetPolicyObservable(
+            @Body RequestHotelPolicy requestGetRoomsList
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewHoldSelectRoom)
+    Observable<Response<ResponseHoldSelectRoom>> responseNewHotelHoldSelectRoomObservable(
+            @Body RequestHoldSelectRoom requestHoldSelectRoom
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewHotelReview)
+    Observable<Response<String>> responseNewHotelReviewObservable(
+            @Body RequestAddHotelReview requestAddHotelReview
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewHotelBasket)
+    Observable<Response<ResponseSelectedHotelFlightBasket>> responseNewHotelBasketObservable(
+            @Body RequestHotelFlightBasket requestHotelFlightBasket
+    );
+
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewHotelFlightSearch)
+    Observable<Response<ResponseHotelFlight>> responsenewHotelFlightSearchObservable(
+            @Body RequestHotelFlight requestHotelFlight
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewHotelFlightReserve)
+    Observable<Response<ResponseReserveFlightHotel>> responsenewHotelFlightReserveObservable(
+            @Body RequestReserveFlightHotel requestHotelFlight
+    );
+
 
     //**************************
     @Headers("Content-Type: application/json")

@@ -2,7 +2,6 @@
 package com.eligasht.service.model.newModel.hotel.search.response;
 
 import java.util.List;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

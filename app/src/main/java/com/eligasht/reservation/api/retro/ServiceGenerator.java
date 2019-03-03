@@ -4,6 +4,7 @@ package com.eligasht.reservation.api.retro;
 import com.eligasht.reservation.conf.APIConf;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.helper.Const;
 
 import java.io.IOException;
 import java.security.cert.CertificateException;
@@ -98,7 +99,7 @@ public class ServiceGenerator {
         intercept(Interceptor.Chain chain) throws IOException {
 
             Request.Builder builder = chain.request().newBuilder();
-            builder.addHeader("Authorization", "bearer 99pXw4WJqFdHvrK35089uYhdw4kaGcplY4xBVsr18KOGRILsuga73kgLkbpIsV8wbqhQeI6SwX6o0MjNCxyG2gr57W1zI1atyCxTgCWGH-retC6GFZO0n2z1xN94760GN2sBgloJkJZaqu2YwlC1kFxprmw-vYNxrYGSh-ovBNWf6md4uH-WQQhvckkBdOAE8KVRgIP_Eracic4XWzdi3nIuHv5tV1K1MwEW0maINyxxuIfWaA7ewkqgtIKzfefN");
+            builder.addHeader("Authorization", Const.TOKEN);//"bearer mpdjYhla4nncC-1L2z_CFx5TpzC-VEcJ_dLoEgL28svnEpVGe7xlUyLVVV2aa23cXKiZWYQYLrBS0VRQHb3KPU2GGvs8pE2ZB0dqHwPEAp7nvpGDQudOhySmiZTwgMNXpx1SRNwn-1AYgw1rxfF58nPzSyhwtc7v5MVmNyiRrk_7e6gojEsuG_iSGViww_fELBJC6zRy6ob2Pd-yhA-dr1m6U7d9CX_y7Cf7PZq72uQ8u_dVPNBYh5eFnKjsLS6m");
 
             return chain.proceed(builder.build());
         }

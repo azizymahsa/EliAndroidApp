@@ -2430,5 +2430,6 @@
     <string name="_previously_survey">Bu ankete daha önce katıldı!</string>
     <string name="_not_found">Ürün bulundu</string>
     <string name="please_wait">Lütfen biraz bekleyin ...</string>
+    <string name="not_register_user">User has not been registered</string>
 </resources>
 

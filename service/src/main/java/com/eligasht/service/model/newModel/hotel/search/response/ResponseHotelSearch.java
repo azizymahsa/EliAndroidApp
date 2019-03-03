@@ -2,13 +2,23 @@
 package com.eligasht.service.model.newModel.hotel.search.response;
 
 import java.util.List;
-
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ResponseHotelSearch {
 
+    @SerializedName("Errors")
+    @Expose
+    private List<Error> errors = null;
+    @SerializedName("Warningss")
+    @Expose
+    private Object warningss;
+    @SerializedName("Comments")
+    @Expose
+    private Object comments;
+    @SerializedName("TimeStamp")
+    @Expose
+    private String timeStamp;
     @SerializedName("FilterHtml")
     @Expose
     private Object filterHtml;
@@ -72,21 +82,41 @@ public class ResponseHotelSearch {
     @SerializedName("IsDomestic")
     @Expose
     private Boolean isDomestic;
-    @SerializedName("Errors")
-    @Expose
-    private List<Error> errors = null;
-    @SerializedName("Warningss")
-    @Expose
-    private Object warningss;
-    @SerializedName("Comments")
-    @Expose
-    private Object comments;
     @SerializedName("ResultKey")
     @Expose
     private Object resultKey;
-    @SerializedName("TimeStamp")
-    @Expose
-    private String timeStamp;
+
+    public List<Error> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(List<Error> errors) {
+        this.errors = errors;
+    }
+
+    public Object getWarningss() {
+        return warningss;
+    }
+
+    public void setWarningss(Object warningss) {
+        this.warningss = warningss;
+    }
+
+    public Object getComments() {
+        return comments;
+    }
+
+    public void setComments(Object comments) {
+        this.comments = comments;
+    }
+
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
 
     public Object getFilterHtml() {
         return filterHtml;
@@ -256,44 +286,12 @@ public class ResponseHotelSearch {
         this.isDomestic = isDomestic;
     }
 
-    public List<Error> getErrors() {
-        return errors;
-    }
-
-    public void setErrors(List<Error> errors) {
-        this.errors = errors;
-    }
-
-    public Object getWarningss() {
-        return warningss;
-    }
-
-    public void setWarningss(Object warningss) {
-        this.warningss = warningss;
-    }
-
-    public Object getComments() {
-        return comments;
-    }
-
-    public void setComments(Object comments) {
-        this.comments = comments;
-    }
-
     public Object getResultKey() {
         return resultKey;
     }
 
     public void setResultKey(Object resultKey) {
         this.resultKey = resultKey;
-    }
-
-    public String getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
     }
 
 }

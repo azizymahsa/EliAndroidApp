@@ -11,7 +11,8 @@ public class Const {
     public static Boolean TEST=false;
 
 // public final static String BASEURL = "http://mobilews.eligasht.com/LightServices/Rest/";
- public final static String BASEURL = "http://192.168.1.82:120/api/";
+ public final static String BASEURL = "http://192.168.1.82:120/";
+ public  static String TOKEN = "";
 
     public final static String BaseGitLab="https://gitlab.com/api/v4/projects/6147852/";
 
@@ -62,32 +63,41 @@ public class Const {
     public final static String CheckValidSurveyAvil = "Survey/SurveyService.svc/CheckValidResultDetail";
     //*************NEW******************************************************************
     //*************Flight*****************
-    public final static String GetNewAirports = "LoadAndFillAPI/Airports";
-    public final static String GetNewFlightSearch = "FlightServiceAPI/Search";
-    public final static String GetNewConfirmFlightPrice = "FlightServiceAPI/ConfirmFlightPrice";
-    public final static String GetNewPurchaseFlight = "FlightServiceAPI/PurchaseFlight";
-    public final static String GetNewServices = "ServicesServiceAPI/GetServices";
-    public final static String GetNewPurchaseServices = "ServicesServiceAPI/PurchaseServices";
+    public final static String GetNewAirports = "api/LoadAndFillAPI/Airports";
+    public final static String GetNewFlightSearch = "api/FlightServiceAPI/Search";
+    public final static String GetNewConfirmFlightPrice = "api/FlightServiceAPI/ConfirmFlightPrice";
+    public final static String GetNewPurchaseFlight = "api/FlightServiceAPI/PurchaseFlight";
+    public final static String GetNewServices = "api/ServicesServiceAPI/GetServices";
+    public final static String GetNewPurchaseServices = "api/ServicesServiceAPI/PurchaseServices";
 
     //*************Hotel*****************
-    public final static String GetNewHotelCities = "LoadAndFillAPI/HotelCities";
-    public final static String GetNewHotelPreSearch = "HotelServiceAPI/PreSearch";
-    public final static String GetNewHotelSearch = "HotelServiceAPI/Search";
-    public final static String GetNewHotelDetail = "HotelServiceAPI/GetHotelDetail";
-    public final static String GetNewHotelRoom = "HotelServiceAPI/GetRoomsList";
+    public final static String GetNewHotelCities = "api/LoadAndFillAPI/HotelCities";
+    public final static String GetNewHotelPreSearch = "api/HotelServiceAPI/PreSearch";
+    public final static String GetNewHotelSearch = "api/HotelServiceAPI/Search";
+    public final static String GetNewHotelDetail = "api/HotelServiceAPI/GetHotelDetail";
+    public final static String GetNewHotelRoom = "api/HotelServiceAPI/GetRoomsList";
+    public final static String GetNewHotelPolicy = "api/HotelServiceAPI/GetHotelPolicy";
+    public final static String GetNewHoldSelectRoom = "api/HotelServiceAPI/HoldSelectedRoom";
+    public final static String GetNewHotelReview = "api/HotelServiceAPI/AddHotelReview";
+    public final static String GetNewHotelBasket = "api/HotelServiceAPI/GetSelectedHotelFlightBasket";
+
+    public final static String GetNewHotelFlightSearch = "api/FlightHotelServiceAPI/PreSearchFlightHotel";
+    public final static String GetNewHotelFlightReserve = "api/FlightHotelServiceApi/ReserveFlightHotel";
 
 
     //*************Insurance*****************
-    public final static String GetNewInsuranceCountries = "LoadAndFillAPI/InsuranceCountries";
-    public final static String GetNewInsuranceSearchResult = "InsuranceAPI/InsuranceSearchResultViewModel";
-    public final static String GetNewInsurancePurchase = "InsuranceAPI/Purchase";
+    public final static String GetNewInsuranceCountries = "api/LoadAndFillAPI/InsuranceCountries";
+    public final static String GetNewInsuranceSearchResult = "api/InsuranceAPI/InsuranceSearchResultViewModel";
+    public final static String GetNewInsurancePurchase = "api/InsuranceAPI/Purchase";
    //*************Package*****************
-   public final static String GetNewPackageCities = "LoadAndFillAPI/GetPackageCities";
-   public final static String GetNewPackageBasket = "PackageServiceAPI/GetPackageBasket";
-   public final static String GetNewPurchasePackage = "PackageServiceAPI/PurchasePackage";
+   public final static String GetNewPackageCities = "api/LoadAndFillAPI/GetPackageCities";
+   public final static String GetNewPackageBasket = "api/PackageServiceAPI/GetPackageBasket";
+   public final static String GetNewPurchasePackage = "api/PackageServiceAPI/PurchasePackage";
 
 
-   public final static String GetNewHotelNames = "LoadAndFillAPI/HotelNames";
+   public final static String GetNewHotelNames = "api/LoadAndFillAPI/HotelNames";
 
 
+   //*************Auth*****************
+   public final static String GetToken = "token";
 }
