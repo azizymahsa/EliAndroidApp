@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.R;
 import com.eligasht.reservation.models.model.PurchaseFlightResult;
+import com.eligasht.reservation.views.activities.newFlight.PurchaseFlightServices;
 import com.eligasht.reservation.views.activities.transfer.TransferActivity;
 import com.eligasht.reservation.views.ui.PassengerHotelActivity;
 
@@ -32,7 +33,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 	public String customerName;
 	public int catt_ID=0;
 	private LayoutInflater inflater;
-	private List<PurchaseFlightResult> data;
+	private List<PurchaseFlightServices> data;
 	public String value_Maghsad_City;
 	public String value_Maghsad_Airport;
 	public String value_Maghsad_Airport_Code;
@@ -44,7 +45,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 
 	// create constructor to innitilize context and data sent from MainActivity
 
-	public GetHotelKhadmatAdapter(Context context, List<PurchaseFlightResult> data, Activity activity,long Tprice){
+	public GetHotelKhadmatAdapter(Context context, List<PurchaseFlightServices> data, Activity activity, long Tprice){
 		this.context=context;
 		this.activity=activity;
 		inflater= LayoutInflater.from(context);
@@ -60,7 +61,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 		myInflater = LayoutInflater.from(activity);
 	}
 
-	public void setData(List<PurchaseFlightResult> data) {
+	public void setData(List<PurchaseFlightServices> data) {
 		this.data = data;
 		notifyDataSetChanged();
 	}
@@ -114,7 +115,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 			holder = (GetKhadmatAdapter.ViewHolder) convertView.getTag();
 		}
 		//cursor.moveToPosition(position);
-		final PurchaseFlightResult current=data.get(position);
+		final PurchaseFlightServices current=data.get(position);
 		if (Locale.getDefault().getLanguage().equals("fa")) {
 			holder.txtDescription.setText(current.getServiceDescFa() + "");
 
@@ -190,7 +191,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 				if(current.getServiceNameEn().contains("Airport Transfer")&& current.getLoadDB().equals("false") && Tprice==0 && Prefs.getString("Flag_First_Computing","F").equals("F")){
 					Intent intent=	new Intent(context, TransferActivity.class);
 
-					intent.putExtra("ArrialAirportCode",current.getExcursionData().ArrialAirportCode);
+					/*intent.putExtra("ArrialAirportCode",current.getExcursionData().ArrialAirportCode);////MOVAGHATAN BARDASHTAM
 					intent.putExtra("ArrivalFltDate",current.getExcursionData().ArrivalFltDate);
 					intent.putExtra("ArrivalFltNo",current.getExcursionData().ArrivalFltNo);
 					intent.putExtra("ArrivalFltTime",current.getExcursionData().ArrivalFltTime);
@@ -204,7 +205,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 
 					intent.putExtra("ServiceID",current.getSelectID());
 					intent.putExtra("PassengerList",current.getExcursionData().PassengerList);
-					intent.putExtra("BookingCode",current.getBookingCode());
+					intent.putExtra("BookingCode",current.getBookingCode());*/
 					context.startActivity(intent);
 
 
@@ -237,9 +238,9 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 							sumGheymat = sumGheymat + data.get(i).getServiceTotalPrice();
 							if(sumSelectId.length()>2) {
 
-								sumSelectId = sumSelectId + "|" + data.get(i).getSelectID();
+								sumSelectId = sumSelectId + "|" + data.get(i).getServiceID();
 							}else {
-								sumSelectId = data.get(i).getSelectID();//avalin bar
+								sumSelectId = data.get(i).getServiceID();//avalin bar
 							}
 						}
 					}

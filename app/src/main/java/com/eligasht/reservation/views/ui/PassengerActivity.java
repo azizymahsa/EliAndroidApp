@@ -84,6 +84,7 @@ import com.eligasht.service.model.newModel.flight.confirmFlightPrice.request.Req
 import com.eligasht.service.model.newModel.flight.purchaseFlight.request.PartnerList;
 import com.eligasht.service.model.newModel.flight.purchaseFlight.request.PassList;
 import com.eligasht.service.model.newModel.flight.purchaseFlight.request.PurchaseFlightParameterModel;
+import com.eligasht.service.model.newModel.flight.purchaseServices.request.AdditionalServicesObject;
 import com.eligasht.service.model.newModel.flight.purchaseServices.request.RequestGetPurchaseServices;
 import com.eligasht.service.model.newModel.flight.purchaseServices.request.SelectedService;
 import com.eligasht.service.model.newModel.flight.purchaseServices.response.ResponsePurchaseServices;
@@ -1622,9 +1623,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		Utility.disableEnableControls(false,rlRoot);
 
 		PurchaseFlightParameterModel requestPurchaseFlightt = new PurchaseFlightParameterModel();
-		//com.eligasht.service.model.flight.request.PurchaseFlight.Request request = new com.eligasht.service.model.flight.request.PurchaseFlight.Request();
-		//com.eligasht.service.model.flight.request.PurchaseFlight.Identity identity = new com.eligasht.service.model.flight.request.PurchaseFlight.Identity();
-		//request.setIdentity(identity);
+
 
 		try {
 			String GUID ="";
@@ -1866,8 +1865,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			//this method will be running on UI thread
 			rlLoading.setVisibility(View.VISIBLE);
 			Utility.disableEnableControls(false,rlRoot);
-
-			RequestGetPurchaseServices requestPurchaseFlight = new RequestGetPurchaseServices();
+			AdditionalServicesObject requestPurchaseFlight=new AdditionalServicesObject();
+			RequestGetPurchaseServices purchaseServices = new RequestGetPurchaseServices();
 			List<SelectedService> selectedServices = new ArrayList<>();;
 
 			JSONObject jsone = new JSONObject();
@@ -1904,9 +1903,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 				requestPurchaseFlight.setSelectedServices(selectedServices);
-
+				purchaseServices.setAdditionalServicesObject(requestPurchaseFlight);
 				Log.e("requestPurchaseFlight:", new Gson().toJson(requestPurchaseFlight));
-				SingletonService.getInstance().getFlight().newGetPurchaseServiceAvail(PassengerActivity.this, requestPurchaseFlight);
+				SingletonService.getInstance().getFlight().newGetPurchaseServiceAvail(PassengerActivity.this, purchaseServices);
 			}catch (Exception e){
 				e.getMessage();
 			}

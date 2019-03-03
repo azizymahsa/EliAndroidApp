@@ -6,6 +6,21 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ResponsePurchaseServices {
+    /*open class ResponsePurchaseServices: Codable {
+
+        open var URL: String?
+                open var Key: String?
+                open var Message: String?
+                open var ResultCode: Int?
+                open var Line: String?
+                open var Method: String?
+
+                open var Errors: [ErrorObject]?
+        open var Warningss: [Warning]?
+        open var Comments: Comment?
+                open var ResultKey: String?
+                open var TimeStamp: String?
+    }*/
 
     @SerializedName("Error")
     @Expose
@@ -37,6 +52,19 @@ public class ResponsePurchaseServices {
     @SerializedName("Method")
     @Expose
     private Object method;
+
+    public String getResultKey() {
+        return ResultKey;
+    }
+
+    public void setResultKey(String resultKey) {
+        ResultKey = resultKey;
+    }
+
+    @SerializedName("ResultKey")
+    @Expose
+
+    private String ResultKey;
 
     public Error getError() {
         return error;

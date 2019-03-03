@@ -20,6 +20,8 @@ import com.eligasht.service.model.newModel.airport.response.ResponseAirport;
 import com.eligasht.service.model.newModel.auth.request.RequestAuth;
 import com.eligasht.service.model.newModel.auth.response.ResponseAuth;
 import com.eligasht.service.model.newModel.flight.confirmFlightPrice.request.RequestConfirmFlightPrice;
+import com.eligasht.service.model.newModel.flight.prefactor.request.RequestGetPreFactor;
+import com.eligasht.service.model.newModel.flight.prefactor.response.ResponseGetPreFactor;
 import com.eligasht.service.model.newModel.flight.purchaseFlight.request.PurchaseFlightParameterModel;
 import com.eligasht.service.model.newModel.flight.purchaseFlight.response.TmpReserveResult;
 import com.eligasht.service.model.newModel.flight.purchaseServices.request.RequestGetPurchaseServices;
@@ -96,6 +98,11 @@ public class Flight extends BasePart {
     public void newGetPurchaseServiceAvail(OnServiceStatus<ResponsePurchaseServices> listener, RequestGetPurchaseServices requestGetPurchaseServices) {
         start(getServiceGenerator().createService().responseGetGetPurchaseServiceObservable(requestGetPurchaseServices), listener);
     }
+    public void newGetPreFactorServiceAvail(OnServiceStatus<ResponseGetPreFactor> listener, RequestGetPreFactor requestGetPreFactor) {
+        start(getServiceGenerator().createService().responseGetPreFactorObservable(requestGetPreFactor), listener);
+    }
+
+
     public void newGetAuthAvail(OnServiceStatus<ResponseAuth> listener, RequestAuth reqAuth) {
         start(getServiceGenerator().createService().responseGetAuthObservable(reqAuth), listener);
     }

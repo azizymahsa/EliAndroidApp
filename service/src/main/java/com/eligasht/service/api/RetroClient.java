@@ -63,6 +63,8 @@ import com.eligasht.service.model.newModel.auth.request.RequestAuth;
 import com.eligasht.service.model.newModel.auth.response.ResponseAuth;
 import com.eligasht.service.model.newModel.flight.confirmFlightPrice.request.RequestConfirmFlightPrice;
 
+import com.eligasht.service.model.newModel.flight.prefactor.request.RequestGetPreFactor;
+import com.eligasht.service.model.newModel.flight.prefactor.response.ResponseGetPreFactor;
 import com.eligasht.service.model.newModel.flight.purchaseFlight.request.PurchaseFlightParameterModel;
 import com.eligasht.service.model.newModel.flight.purchaseFlight.response.TmpReserveResult;
 import com.eligasht.service.model.newModel.flight.purchaseServices.request.RequestGetPurchaseServices;
@@ -81,6 +83,7 @@ import com.eligasht.service.model.newModel.hotel.policy.request.RequestHotelPoli
 import com.eligasht.service.model.newModel.hotel.policy.response.ResponseHotelPolicy;
 import com.eligasht.service.model.newModel.hotel.preSearch.request.RequestHotelPreSearch;
 import com.eligasht.service.model.newModel.hotel.preSearch.response.ResponseHotelPreSearch;
+import com.eligasht.service.model.newModel.hotel.purchase.request.RequestHotelPurchase;
 import com.eligasht.service.model.newModel.hotel.reserve.request.RequestReserveFlightHotel;
 import com.eligasht.service.model.newModel.hotel.reserve.response.ResponseReserveFlightHotel;
 import com.eligasht.service.model.newModel.hotel.review.request.RequestAddHotelReview;
@@ -376,9 +379,14 @@ public interface RetroClient {
             @Body RequestGetServices requestGetServices
     );
     @Headers("Content-Type: application/json")
-    @POST(Const.GetNewServices)
+    @POST(Const.GetNewPurchaseServices)
     Observable<Response<ResponsePurchaseServices>> responseGetGetPurchaseServiceObservable(
             @Body RequestGetPurchaseServices requestGetPurchaseServices
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewPreFactServices)
+    Observable<Response<ResponseGetPreFactor>> responseGetPreFactorObservable(
+            @Body RequestGetPreFactor requestGetPreFactor
     );
    // @FormUrlEncoded
     @Headers("Content-Type: application/json")
@@ -460,6 +468,11 @@ public interface RetroClient {
     @POST(Const.GetNewHotelFlightReserve)
     Observable<Response<ResponseReserveFlightHotel>> responsenewHotelFlightReserveObservable(
             @Body RequestReserveFlightHotel requestHotelFlight
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewHotelPurchaseReserve)
+    Observable<Response<com.eligasht.service.model.newModel.hotel.purchase.response.TmpReserveResult>> responsenewHotelPurchaseObservable(
+            @Body RequestHotelPurchase requestHotelFlight
     );
 
 

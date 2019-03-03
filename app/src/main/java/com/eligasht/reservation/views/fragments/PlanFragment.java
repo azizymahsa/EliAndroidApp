@@ -2,8 +2,10 @@ package com.eligasht.reservation.views.fragments;
 import android.animation.Animator;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,11 +25,14 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
+import com.eligasht.reservation.api.retro.ClientService;
+import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
+import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
 import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
 import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
@@ -36,8 +41,11 @@ import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.GetAirportMabdaActivity;
 import com.eligasht.reservation.views.ui.GetAirportMaghsadActivity;
+import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.eligasht.service.helper.Const;
+import com.eligasht.service.model.newModel.auth.response.ResponseAuth;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
@@ -45,8 +53,16 @@ import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.eligasht.reservation.tools.Prefs;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PlanFragment extends Fragment implements OnClickListener, TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, ICallbackCalendarDialog {
     public static boolean flag;
     public static TextView tarikh_az_picker;
@@ -86,7 +102,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
    com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;*/
     public CalendarDialog calendarDialog;
     private LottieAnimationView lottieCheckin, lottieCheckout;
-
+    private ClientService service;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_plane, container, false);
@@ -321,11 +337,43 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
         tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
-
-
+        service = ServiceGenerator.createService(ClientService.class);
+        Auth_request();
         return rootView;
     }//end oncreat
+    private void Auth_request() {
+       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.status_loading));
+        }
+        new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);*/
 
+
+        try {
+            JSONObject paramObject = new JSONObject();
+            paramObject.put("grant_type", "password");
+            paramObject.put("username", "eli_gasht_1397");
+            paramObject.put("password", "Eli@accesstoken");
+
+            Call<ResponseAuth> call = service.getAuthResult("password","eli_gasht_1397","Eli@accesstoken");
+            call.enqueue(new Callback<ResponseAuth>() {
+                @Override
+                public void onResponse(Call<ResponseAuth> call, Response<ResponseAuth> response) {
+                    Log.d("ResponseToken: ","res:"+response.body().getTokenType()+" "+response.body().getAccessToken());
+                    Const.TOKEN=response.body().getTokenType()+" "+response.body().getAccessToken();
+                    //hotel_request();
+                }
+                @Override
+                public void onFailure(Call<ResponseAuth> call, Throwable t)  {
+                    Log.d("requestSearchPackage: ","error");
+
+                }
+            });
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
     @Override
     public void onResume() {
         Prefs.putBoolean("geo", Geo);

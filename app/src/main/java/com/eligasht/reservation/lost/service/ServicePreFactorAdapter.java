@@ -58,7 +58,7 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
         if(item.getServicePrice().equals("0"))
             holder.tvPrice.setText(R.string.calculated);
         else
-        holder.tvPrice.setText(Utility.priceFormat(item.getServicePrice()));
+        holder.tvPrice.setText(Utility.priceFormat(item.getServicePrice())+"");
 
         if (item.getServiceNameFa().contains("بیمه")) {
             holder.tvServiceCityUi.setText(context.getString(R.string.country));

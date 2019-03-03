@@ -43,6 +43,7 @@ import com.eligasht.service.model.newModel.hotel.policy.request.RequestHotelPoli
 import com.eligasht.service.model.newModel.hotel.policy.response.ResponseHotelPolicy;
 import com.eligasht.service.model.newModel.hotel.preSearch.request.RequestHotelPreSearch;
 import com.eligasht.service.model.newModel.hotel.preSearch.response.ResponseHotelPreSearch;
+import com.eligasht.service.model.newModel.hotel.purchase.request.RequestHotelPurchase;
 import com.eligasht.service.model.newModel.hotel.reserve.request.RequestReserveFlightHotel;
 import com.eligasht.service.model.newModel.hotel.reserve.response.ResponseReserveFlightHotel;
 import com.eligasht.service.model.newModel.hotel.review.request.RequestAddHotelReview;
@@ -156,6 +157,9 @@ public class Hotel extends BasePart {
     public void newHotelFlightReserveAvail(OnServiceStatus<ResponseReserveFlightHotel> listener, RequestReserveFlightHotel req) {
         start(getServiceGenerator().createService().responsenewHotelFlightReserveObservable(req), listener);
     }
+    public void newHotelPurchaseAvail(OnServiceStatus<com.eligasht.service.model.newModel.hotel.purchase.response.TmpReserveResult> listener, RequestHotelPurchase req) {
+            start(getServiceGenerator().createService().responsenewHotelPurchaseObservable(req), listener);
+        }
 
 
 

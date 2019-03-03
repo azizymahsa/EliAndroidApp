@@ -69,6 +69,7 @@ public class Const {
     public final static String GetNewPurchaseFlight = "api/FlightServiceAPI/PurchaseFlight";
     public final static String GetNewServices = "api/ServicesServiceAPI/GetServices";
     public final static String GetNewPurchaseServices = "api/ServicesServiceAPI/PurchaseServices";
+    public final static String GetNewPreFactServices = "api/Prefactory/GetPreFactor";
 
     //*************Hotel*****************
     public final static String GetNewHotelCities = "api/LoadAndFillAPI/HotelCities";
@@ -83,6 +84,7 @@ public class Const {
 
     public final static String GetNewHotelFlightSearch = "api/FlightHotelServiceAPI/PreSearchFlightHotel";
     public final static String GetNewHotelFlightReserve = "api/FlightHotelServiceApi/ReserveFlightHotel";
+    public final static String GetNewHotelPurchaseReserve = "api/HotelServiceApi/Purchase";
 
 
     //*************Insurance*****************

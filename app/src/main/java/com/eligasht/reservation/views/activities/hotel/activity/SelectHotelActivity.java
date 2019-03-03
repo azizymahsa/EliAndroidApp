@@ -4,7 +4,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,26 +17,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eligasht.R;
-import com.eligasht.reservation.api.auth.ApiInterface;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
 import com.eligasht.reservation.base.SingletonTimer;
-import com.eligasht.reservation.lost.hotel.HotelPreFactorAdapter;
 import com.eligasht.reservation.models.hotel.FilterPriceModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterModel;
 import com.eligasht.reservation.models.hotel.adapter.FilterStarModel;
 import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
-import com.eligasht.reservation.models.model.pack.response.ResponseSearchPackage;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.adapters.hotel.hotelresult.HotelResultAdapter;
-import com.eligasht.reservation.views.adapters.hotel.hotelresult.LazyResoultHotelAdapter;
 import com.eligasht.reservation.views.adapters.weather.WeatherAdapter;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.InitUi;
-import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelTypeModel;
 import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
@@ -47,7 +41,6 @@ import com.eligasht.service.listener.OnServiceStatus;
 
 import com.eligasht.service.model.hotel.hotelAvail.request.Room;
 
-import com.eligasht.service.model.newModel.auth.request.RequestAuth;
 import com.eligasht.service.model.newModel.auth.response.ResponseAuth;
 import com.eligasht.service.model.newModel.hotel.preSearch.request.QueryModel;
 import com.eligasht.service.model.newModel.hotel.preSearch.request.RequestHotelPreSearch;
@@ -56,7 +49,6 @@ import com.eligasht.service.model.newModel.hotel.search.request.RequestHotelSear
 import com.eligasht.service.model.newModel.hotel.search.request.UserAgentObject;
 import com.eligasht.service.model.newModel.hotel.search.response.Facility;
 import com.eligasht.service.model.newModel.hotel.search.response.ResponseHotelSearch;
-import com.eligasht.service.model.newModel.xpackage.searchPack.request.RequestSearchPackage;
 import com.eligasht.service.model.weather.response.WeatherApi;
 import com.google.gson.Gson;
 import com.eligasht.reservation.tools.Prefs;
@@ -76,8 +68,6 @@ import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SelectHotelActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener,
         OnServiceStatus<ResponseHotelSearch> {
@@ -92,7 +82,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private FancyButton btnNextDays, btnLastDays;
     private String raft, bargasht;
     private String raftFa, bargashtFa, searchIn;
-
+    public static String globalResultUniqID;
     private ArrayList<SelectHotelModel> selectHotelModelArrayList = new ArrayList<>();
     private ArrayList<SelectHotelModel> selectHotelModelArrayListFilter = new ArrayList<>();
     private ArrayList<FilterModel> filterModels = new ArrayList<>();
@@ -177,8 +167,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         Utility.setAnimLoading(this);
         Utility.loadingText(tvLoading, Prefs.getString("H", ""));
         notiRecive();
-        Auth_request();
-       // hotel_request();
+       // Auth_request();
+        hotel_request();
        // weather_request();
         tvDate.setText(raftFa + " - " + bargashtFa);
 
@@ -193,39 +183,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
     }
 
-    private void Auth_request() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.status_loading));
-        }
-        new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
 
-
-        try {
-            JSONObject paramObject = new JSONObject();
-            paramObject.put("grant_type", "password");
-            paramObject.put("username", "eli_gasht_1397");
-            paramObject.put("password", "Eli@accesstoken");
-
-        Call<ResponseAuth> call = service.getAuthResult("password","eli_gasht_1397","Eli@accesstoken");
-        call.enqueue(new Callback<ResponseAuth>() {
-            @Override
-            public void onResponse(Call<ResponseAuth> call, Response<ResponseAuth> response) {
-                Log.d("ResponseToken: ","res:"+response.body().getTokenType()+" "+response.body().getAccessToken());
-                Const.TOKEN=response.body().getTokenType()+" "+response.body().getAccessToken();
-                hotel_request();
-            }
-            @Override
-            public void onFailure(Call<ResponseAuth> call, Throwable t)  {
-                Log.d("requestSearchPackage: ","error");
-
-            }
-        });
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     @Override
     public boolean needTerminate() {
@@ -740,6 +698,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     public void onReady(ResponseHotelSearch hotelAvailRes) {
         Gson gson = new Gson();
        Log.e("ResponseHotelSearch:", gson.toJson(hotelAvailRes));
+
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -748,6 +707,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         selectHotelModelArrayList.clear();
         selectHotelModelArrayListFilter.clear();
         try {
+            globalResultUniqID= hotelAvailRes.getSearchKey();
             if (hotelAvailRes.getErrors().size() > 0) {
                 elNotFound.setVisibility(View.VISIBLE);
                 tvAlert.setText(hotelAvailRes.getErrors().get(0).getMessage());

@@ -1880,10 +1880,10 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
 
                     sendRequestGetPreFactorDetails();
                     FlagTab = true;
-                    mAdapter = new GetHotelKhadmatAdapter(PassengerPackageActivity.this, data, PassengerPackageActivity.this, 0);
+                   /* mAdapter = new GetHotelKhadmatAdapter(PassengerPackageActivity.this, data, PassengerPackageActivity.this, 0);
 
                     mAdapter.setData(data);
-                    listKhadamat.setAdapter(mAdapter);
+                    listKhadamat.setAdapter(mAdapter);*/
                 } catch (Exception e) {
                     e.getMessage();
                 }

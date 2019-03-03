@@ -289,7 +289,7 @@ public class RoomsAdapter extends BaseAdapter implements OnServiceStatus<List<Re
                         flightId = "";
                         Intent intent = new Intent(activity, PassengerHotelActivity.class);
                         intent.putExtra("HotelOfferId", holdRoomResponse.getOfferId());
-                        intent.putExtra("FlightGuID", activity.getIntent().getExtras().getString("ResultUniqID"));
+                        intent.putExtra("FlightGuID", activity.getIntent().getExtras().getString("ResultUniqID"));//setPreSearchUniqueId
                         intent.putExtra("CheckIn", activity.getIntent().getExtras().getString("CheckIn"));
                         intent.putExtra("CheckOut", activity.getIntent().getExtras().getString("CheckOut"));
                         activity.startActivity(intent);
