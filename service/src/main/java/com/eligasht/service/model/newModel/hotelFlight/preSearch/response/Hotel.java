@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.newModel.hotelFlight.response;
+package com.eligasht.service.model.newModel.hotelFlight.preSearch.response;
 
 import com.eligasht.service.model.newModel.hotel.search.response.Availability;
 import com.eligasht.service.model.newModel.hotel.search.response.WSIDs;
@@ -159,7 +159,7 @@ public class Hotel {
     private Object queryString;
     @SerializedName("Errors")
     @Expose
-    private Object errors;
+    private Error errors;
     @SerializedName("Warningss")
     @Expose
     private Object warningss;
@@ -565,11 +565,11 @@ public class Hotel {
         this.queryString = queryString;
     }
 
-    public Object getErrors() {
+    public Error getErrors() {
         return errors;
     }
 
-    public void setErrors(Object errors) {
+    public void setErrors(Error errors) {
         this.errors = errors;
     }
 

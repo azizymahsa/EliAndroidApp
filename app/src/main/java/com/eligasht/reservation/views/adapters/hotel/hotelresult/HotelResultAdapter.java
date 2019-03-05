@@ -105,7 +105,7 @@ public class HotelResultAdapter extends RecyclerView.Adapter<HotelResultAdapter.
         holder.location.setText(data.get(position).getLocation() + "،" + data.get(position).getCity());
         holder.title.setText(data.get(position).getTitle());
         holder.board.setText(data.get(position).getBoard());
-        holder.tvPrice.setText(Utility.priceFormat(data.get(position).getPrice()));
+        holder.tvPrice.setText(Utility.priceFormat(Integer.valueOf(data.get(position).getPrice().intValue()).toString()));
 
 
 

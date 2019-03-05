@@ -32,15 +32,32 @@ public class HotelSearchResult {
     @SerializedName("LoadDB")
     @Expose
     private boolean loadDB;
+
+    public Integer getMaxPrice() {
+        return maxPrice;
+    }
+
+    public void setMaxPrice(Integer maxPrice) {
+        this.maxPrice = maxPrice;
+    }
+
+    public Integer getMinPrice() {
+        return minPrice;
+    }
+
+    public void setMinPrice(Integer minPrice) {
+        this.minPrice = minPrice;
+    }
+
     @SerializedName("Locations")
     @Expose
     private List<Location> locations = null;
     @SerializedName("MaxPrice")
     @Expose
-    private int maxPrice;
+    private Integer maxPrice;
     @SerializedName("MinPrice")
     @Expose
-    private int minPrice;
+    private Integer minPrice;
     @SerializedName("NightCounts")
     @Expose
     private int nightCounts;
@@ -123,21 +140,7 @@ public class HotelSearchResult {
         this.locations = locations;
     }
 
-    public int getMaxPrice() {
-        return maxPrice;
-    }
 
-    public void setMaxPrice(int maxPrice) {
-        this.maxPrice = maxPrice;
-    }
-
-    public int getMinPrice() {
-        return minPrice;
-    }
-
-    public void setMinPrice(int minPrice) {
-        this.minPrice = minPrice;
-    }
 
     public int getNightCounts() {
         return nightCounts;

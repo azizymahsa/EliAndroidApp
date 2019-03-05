@@ -33,10 +33,10 @@ public class ResponseHotelSearch {
     private SearchedProduct searchedProduct;
     @SerializedName("MinPrice")
     @Expose
-    private Integer minPrice;
+    private Double minPrice;
     @SerializedName("MaxPrice")
     @Expose
-    private Integer maxPrice;
+    private Double maxPrice;
     @SerializedName("Hotels")
     @Expose
     private List<Hotel> hotels = null;
@@ -150,19 +150,19 @@ public class ResponseHotelSearch {
         this.searchedProduct = searchedProduct;
     }
 
-    public Integer getMinPrice() {
+    public Double getMinPrice() {
         return minPrice;
     }
 
-    public void setMinPrice(Integer minPrice) {
+    public void setMinPrice(Double minPrice) {
         this.minPrice = minPrice;
     }
 
-    public Integer getMaxPrice() {
+    public Double getMaxPrice() {
         return maxPrice;
     }
 
-    public void setMaxPrice(Integer maxPrice) {
+    public void setMaxPrice(Double maxPrice) {
         this.maxPrice = maxPrice;
     }
 

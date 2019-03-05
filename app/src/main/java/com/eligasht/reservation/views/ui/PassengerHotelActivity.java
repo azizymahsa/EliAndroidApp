@@ -1642,7 +1642,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         }
 
     }
-    //khadamat
+    //khadamat GetService
     private void sendRequestGetServices(Integer bookingCode) {
         rlLoading.setVisibility(View.VISIBLE);
         Utility.disableEnableControls(false,rlRoot);
@@ -1722,7 +1722,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                     excursionData.getArrivalFltTime(),
                                     excursionData.getCityID(),excursionData.getDepartureFltDate(),
                                     excursionData.getDepartureFltNo(),excursionData.getDepartureFltTime(),
-                                    excursionData.getHotelID(),excursionData.getHotelNameEn(),excursionData.getPassengerList()));
+                                    excursionData.getHotelID(),excursionData.getHotelNameEn(),excursionData.getPassengerList(),excursionData.getLoadDB()));
 
                             purchaseFlightResult.setFlag(false);
                             data.add(purchaseFlightResult);

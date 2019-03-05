@@ -1815,7 +1815,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 										excursionData.getArrivalFltTime(),
 										excursionData.getCityID(),excursionData.getDepartureFltDate(),
 										excursionData.getDepartureFltNo(),excursionData.getDepartureFltTime(),
-										excursionData.getHotelID(),excursionData.getHotelNameEn(),excursionData.getPassengerList()));
+										excursionData.getHotelID(),excursionData.getHotelNameEn(),excursionData.getPassengerList(),excursionData.getLoadDB()));
 
 								purchaseFlightResult.setFlag(false);
 								data.add(purchaseFlightResult);

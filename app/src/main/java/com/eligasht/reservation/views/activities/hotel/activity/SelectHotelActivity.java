@@ -76,7 +76,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private Window window;
     private RelativeLayout elNotFound, rlEr;
     private TextView tvLoading, tvAlertDesc,weatherCity;
-    private int maxPrice, minPrice;
+    private double  maxPrice, minPrice;
     private LinearLayout llFilter;
     private FancyButton btnOk, btnBack, btnHome;
     private FancyButton btnNextDays, btnLastDays;
@@ -568,13 +568,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 Collections.sort(selectHotelModelArrayList, new Comparator<SelectHotelModel>() {
                     @Override
                     public int compare(SelectHotelModel p1, SelectHotelModel p2) {
-                        return Integer.valueOf(p2.getPrice()) - Integer.valueOf(p1.getPrice()); // Ascending
+                        return Integer.valueOf(p2.getPrice().intValue()) - Integer.valueOf(p1.getPrice().intValue()); // Ascending
                     }
                 });
                 Collections.sort(selectHotelModelArrayListFilter, new Comparator<SelectHotelModel>() {
                     @Override
                     public int compare(SelectHotelModel p1, SelectHotelModel p2) {
-                        return Integer.valueOf(p2.getPrice()) - Integer.valueOf(p1.getPrice()); // Ascending
+                        return Integer.valueOf(p2.getPrice().intValue()) - Integer.valueOf(p1.getPrice().intValue()); // Ascending
                     }
                 });
                 hotelResultAdapter.notifyDataSetChanged();
@@ -583,13 +583,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 Collections.sort(selectHotelModelArrayList, new Comparator<SelectHotelModel>() {
                     @Override
                     public int compare(SelectHotelModel p1, SelectHotelModel p2) {
-                        return Integer.valueOf(p1.getPrice()) - Integer.valueOf(p2.getPrice()); // Ascending
+                        return Integer.valueOf(p1.getPrice().intValue()) - Integer.valueOf(p2.getPrice().intValue()); // Ascending
                     }
                 });
                 Collections.sort(selectHotelModelArrayListFilter, new Comparator<SelectHotelModel>() {
                     @Override
                     public int compare(SelectHotelModel p1, SelectHotelModel p2) {
-                        return Integer.valueOf(p1.getPrice()) - Integer.valueOf(p2.getPrice()); // Ascending
+                        return Integer.valueOf(p1.getPrice().intValue()) - Integer.valueOf(p2.getPrice().intValue()); // Ascending
                     }
                 });
                 hotelResultAdapter.notifyDataSetChanged();
@@ -732,14 +732,14 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                 maxPrice = hotelAvailRes.getMaxPrice();
                 minPrice = hotelAvailRes.getMinPrice();
-                int dif = maxPrice - minPrice;
+                double  dif = maxPrice - minPrice;
                 dif = dif / 5;
-                int x0 = minPrice;
-                int x1 = x0 + dif;
-                int x2 = x1 + dif;
-                int x3 = x2 + dif;
-                int x4 = x3 + dif;
-                int x5 = x4 + dif;
+                double  x0 = minPrice;
+                double  x1 = x0 + dif;
+                double  x2 = x1 + dif;
+                double  x3 = x2 + dif;
+                double  x4 = x3 + dif;
+                double  x5 = x4 + dif;
                 filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x0)) + "-" + Utility.priceFormat(String.valueOf(x1)), 1, false));
                 filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x1)) + "-" + Utility.priceFormat(String.valueOf(x2)), 2, false));
                 filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x2)) + "-" + Utility.priceFormat(String.valueOf(x3)), 3, false));
@@ -753,12 +753,12 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     String off = "";
                     boolean isOff = false;
                     int xiff = 0;
-                    int hotelPrice = hotelAvailRes.getHotels().get(i).getAvailability().getRoomLists().get(i).getPrice();
+                    int hotelPrice = hotelAvailRes.getHotels().get(i).getAvailability().getRoomLists().get(i).getPrice().intValue();
                     if ((hotels.getAvailability().getRoomLists().get(i).getOldPrice() > 0) &&
                             (hotels.getAvailability().getRoomLists().get(i).getOldPrice() > hotels.getAvailability().getRoomLists().get(i).getPrice())) {
-                        int p1 = hotels.getAvailability().getRoomLists().get(i).getOldPrice() - hotels.getAvailability().getRoomLists().get(i).getPrice();
+                        int p1 = Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getOldPrice().intValue()) - Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getPrice().intValue());
                         int p2 = p1 * 100;
-                        int p3 = p2 / hotels.getAvailability().getRoomLists().get(i).getOldPrice();
+                        int p3 = p2 / Integer.parseInt(String.valueOf(hotels.getAvailability().getRoomLists().get(i).getOldPrice().intValue()));
                         if (p3 != 0) {
                             if (p3 > 0) {
                                 isOff = true;
@@ -782,7 +782,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                         xiff = 5;
                     }
                     selectHotelModelArrayList.add(new SelectHotelModel(hotels.getName(), hotels.getCity(), hotels.getAvailability().getRoomLists().get(i).getTitle(),
-                            hotels.getAvailability().getRoomLists().get(i).getBoard(), hotels.getAvailability().getRoomLists().get(i).getPrice() + "",
+                            hotels.getAvailability().getRoomLists().get(i).getBoard(), hotels.getAvailability().getRoomLists().get(i).getPrice() ,
                             hotels.getMainImage(), hotels.getLocation(),
                             hotels.getAvailability().getRoomLists().get(i).getOldPrice(), hotels.getStarRating(),
                             Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getEHotelId()),
@@ -820,13 +820,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 Collections.sort(selectHotelModelArrayList, new Comparator<SelectHotelModel>() {
                     @Override
                     public int compare(SelectHotelModel p1, SelectHotelModel p2) {
-                        return Integer.valueOf(p1.getPrice()) - Integer.valueOf(p2.getPrice()); // Ascending
+                        return Integer.valueOf(p1.getPrice().intValue()) - Integer.valueOf(p2.getPrice().intValue()); // Ascending
                     }
                 });
                 Collections.sort(selectHotelModelArrayListFilter, new Comparator<SelectHotelModel>() {
                     @Override
                     public int compare(SelectHotelModel p1, SelectHotelModel p2) {
-                        return Integer.valueOf(p1.getPrice()) - Integer.valueOf(p2.getPrice()); // Ascending
+                        return Integer.valueOf(p1.getPrice().intValue()) - Integer.valueOf(p2.getPrice().intValue()); // Ascending
                     }
                 });
             }

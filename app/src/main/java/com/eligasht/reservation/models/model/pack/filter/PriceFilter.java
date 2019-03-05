@@ -6,11 +6,11 @@ package com.eligasht.reservation.models.model.pack.filter;
 
 public class PriceFilter {
 
-    private int maxPrice;
-    private int minPrice;
+    private double  maxPrice;
+    private double  minPrice;
     private boolean isSelected;
 
-    public PriceFilter(int minPrice, int maxPrice) {
+    public PriceFilter(double  minPrice, double  maxPrice) {
         this.maxPrice = maxPrice;
         this.minPrice = minPrice;
     }
@@ -18,19 +18,19 @@ public class PriceFilter {
     public PriceFilter() {
     }
 
-    public int getMaxPrice() {
+    public double  getMaxPrice() {
         return maxPrice;
     }
 
-    public void setMaxPrice(int maxPrice) {
+    public void setMaxPrice(double  maxPrice) {
         this.maxPrice = maxPrice;
     }
 
-    public int getMinPrice() {
+    public double getMinPrice() {
         return minPrice;
     }
 
-    public void setMinPrice(int minPrice) {
+    public void setMinPrice(double  minPrice) {
         this.minPrice = minPrice;
     }
 

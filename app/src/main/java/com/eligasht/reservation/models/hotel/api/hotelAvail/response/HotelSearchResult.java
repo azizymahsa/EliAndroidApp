@@ -16,10 +16,10 @@ public class HotelSearchResult {
     public final ArrayList<Facilities> Facilities;
     public final ArrayList<Locations> Locations;
     public final com.eligasht.reservation.models.hotel.api.flightHotelRequest.Flights Flights;
-    public final int MaxPrice;
-    public final int MinPrice;
+    public final double  MaxPrice;
+    public final double  MinPrice;
 
-    public HotelSearchResult(List<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Hotels> hotels, List<com.eligasht.reservation.models.hotel.api.hotelAvail.response.HotelTypes> hotelTypes, ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities> facilities, ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> locations, com.eligasht.reservation.models.hotel.api.flightHotelRequest.Flights flights, int maxPrice, int minPrice) {
+    public HotelSearchResult(List<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Hotels> hotels, List<com.eligasht.reservation.models.hotel.api.hotelAvail.response.HotelTypes> hotelTypes, ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Facilities> facilities, ArrayList<com.eligasht.reservation.models.hotel.api.hotelAvail.response.Locations> locations, com.eligasht.reservation.models.hotel.api.flightHotelRequest.Flights flights, double  maxPrice, double  minPrice) {
         Hotels = hotels;
         HotelTypes = hotelTypes;
         Facilities = facilities;

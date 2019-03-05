@@ -53,6 +53,7 @@ import com.eligasht.reservation.tools.datetools.DateUtil;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.reservation.views.activities.GetPassengerActivity;
+
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.XPackage.request.GetPreFactorDetails.RequestGePreFactorDetails;
@@ -63,6 +64,12 @@ import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.PreFacto
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.PreFactorHotel;
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.PreFactorService;
 import com.eligasht.service.model.XPackage.response.GetPreFactorDetails.RequestPassenger;
+import com.eligasht.service.model.newModel.flight.prefactor.request.RequestGetPreFactor;
+import com.eligasht.service.model.newModel.flight.prefactor.response.FactorDetails;
+import com.eligasht.service.model.newModel.flight.prefactor.response.Flight;
+import com.eligasht.service.model.newModel.flight.prefactor.response.Hotel;
+import com.eligasht.service.model.newModel.flight.prefactor.response.ResponseGetPreFactor;
+import com.eligasht.service.model.newModel.flight.prefactor.response.Summary;
 import com.eligasht.service.model.newModel.xpackage.PurchasePackage.request.Customers;
 import com.eligasht.service.model.newModel.xpackage.PurchasePackage.request.RequestPurchasePackage;
 import com.eligasht.service.model.newModel.xpackage.PurchasePackage.response.ResponsePurchasePackage;
@@ -1596,48 +1603,48 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     public boolean needTerminate() {
         return true;
     }
-
+    //list pishfactor
     private void sendRequestGetPreFactorDetails() {
         rlLoading.setVisibility(View.VISIBLE);
         Utility.disableEnableControls(false, rlRoot);
 
-        RequestGePreFactorDetails requestGePreFactorDetails = new RequestGePreFactorDetails();
-        com.eligasht.service.model.XPackage.request.GetPreFactorDetails.Request request = new com.eligasht.service.model.XPackage.request.GetPreFactorDetails.Request();
-        com.eligasht.service.model.XPackage.request.searchXPackage.Identity identity = new com.eligasht.service.model.XPackage.request.searchXPackage.Identity();
-        request.setIdentity(identity);
-
+        RequestGetPreFactor requestGePreFactorDetails = new RequestGetPreFactor();
+       // com.eligasht.service.model.XPackage.request.GetPreFactorDetails.Request request = new com.eligasht.service.model.XPackage.request.GetPreFactorDetails.Request();
+       // com.eligasht.service.model.XPackage.request.searchXPackage.Identity identity = new com.eligasht.service.model.XPackage.request.searchXPackage.Identity();
+       // request.setIdentity(identity);
+/*
         try {
-            request.setCulture(getString(R.string.culture));
-            request.setInvoiceNo(tvfactorNumber.getText().toString());//perches service
-            request.setType("P");
+            requestGePreFactorDetails.setCulture(getString(R.string.culture));
+            requestGePreFactorDetails.setInvoiceNo(tvfactorNumber.getText().toString());//perches service
+            requestGePreFactorDetails.setType("P");
 
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
 
-        requestGePreFactorDetails.setRequest(request);
-        Log.e("OrderToJsontorDetails: ", new Gson().toJson(requestGePreFactorDetails));
-        SingletonService.getInstance().getXPackage().GetPreFactorDetailsAvail(new OnServiceStatus<com.eligasht.service.model.XPackage.response.GetPreFactorDetails.ResponseGePreFactorDetails>() {
+        requestGePreFactorDetails.setPreFactorNo(tvfactorNumber.getText().toString());
+        Log.e("RequestGetPreFactor: ", new Gson().toJson(requestGePreFactorDetails));
+        SingletonService.getInstance().getFlight().newGetPreFactorServiceAvail(new OnServiceStatus<ResponseGetPreFactor>() {
             @Override
-            public void onReady(com.eligasht.service.model.XPackage.response.GetPreFactorDetails.ResponseGePreFactorDetails responseGePreFactorDetails) {
+            public void onReady(ResponseGetPreFactor responseGePreFactorDetails) {
 
-
+                Log.e("ResponseGetPreFactor: ", new Gson().toJson(responseGePreFactorDetails));
                 rlLoading.setVisibility(View.GONE);
                 Utility.disableEnableControls(true, rlRoot);
                 try {
                     SingletonAnalysis.getInstance().logPreBooking(ServiceType.PACKAGE);
 
-                    if (responseGePreFactorDetails.getGetPreFactorDetailsResult().getErrors() != null ) {
+                   /* if (responseGePreFactorDetails.get().getErrors() != null ) {
                         AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerPackageActivity.this);
                         AlertDialogPassengerFlight.setText(responseGePreFactorDetails.getGetPreFactorDetailsResult().getErrors().get(0).getMessage(), getString(R.string.massege));
-                    }else {
-                        GetPreFactorDetailsResult GetAirportsResult = responseGePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
-                        PreFactor jArray = GetAirportsResult.getPreFactor();//FactorSummary
+                    }else {*/
+                      //  GetPreFactorDetailsResult GetAirportsResult = responseGePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
+                    com.eligasht.service.model.newModel.flight.prefactor.response.PreFactor jArray = responseGePreFactorDetails.getFactorDetails().getPreFactor();//("PreFactor");//FactorSummary
 
-                        FactorSummary jFact = jArray.getFactorSummary();
-                        int RqBase_ID = jFact.getRqBaseID();
-                        long totalprice = jFact.getTotalPrice();
+                    Summary jFact = responseGePreFactorDetails.getFactorDetails().getPreFactor().getSummary();//getFactorSummary();
+                        Integer RqBase_ID = jFact.getRqBaseID();
+                        Integer totalprice = jFact.getTotalPrice().getAmount();
                         if (jFact.getOnlinePaymentURL() == null || jFact.getOnlinePaymentURL().equals("") || TextUtils.isEmpty(jFact.getOnlinePaymentURL())) {
                             btn_pardakht_factor.setVisibility(View.INVISIBLE);
                         } else {
@@ -1649,7 +1656,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
                         recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
                         ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
-                        List<PreFactorHotel> jArray2 = jArray.getPreFactorHotels();
+                        List<Hotel> jArray2 = jArray.getHotels();
                         for (int i = 0; i < jArray2.size(); i++) {
                             if (Locale.getDefault().getLanguage().equals("fa")) {
                                 hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
@@ -1674,43 +1681,47 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
                         recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
                         ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
-                        List<RequestPassenger> jArray3 = jArray.getRequestPassenger();
+                        List<com.eligasht.service.model.newModel.flight.prefactor.response.Passenger> jArray3 = jArray.getPassengers();
                         for (int i = 0; i < jArray3.size(); i++) {
                             passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.get(i).getGender() + "", jArray3.get(i).getNationality(),
-                                    jArray3.get(i).getRqPassengerBirthdate(), jArray3.get(i).getRqPassengerPassNo(),
-                                    jArray3.get(i).getRqPassengerName(), (String) jArray3.get(i).getRqPassengerNationalCode()));
+                                    jArray3.get(i).getBirthday(), jArray3.get(i).getPassportNo(),
+                                    jArray3.get(i).getName(), (String) jArray3.get(i).getNationalCode()));
                         }
                         if (!passengerPreFactorModels.isEmpty()) {
                             llDetailPassanger.setVisibility(View.VISIBLE);
                             recyclerViewPassenger.setAdapter(new PassangerPreFactorAdapter(passengerPreFactorModels));
                         }
                         //for Services=============================================================================
-                        final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
-                        recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
-                        recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
-                        ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
-                        List<PreFactorService> jArray4 = jArray.getPreFactorServices();
-                        for (int i = 0; i < jArray4.size(); i++) {
-                            if (Locale.getDefault().getLanguage().equals("fa")) {
-                                servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
-                                        jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
-                                        jArray4.get(i).getCityFa(), jArray4.get(i).getServiceNameFa(), jArray4.get(i).getCountryFa()));
-                            }else{
-                                servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
-                                        jArray4.get(i).getServicePrice() + "", jArray4.get(i).getServiceType(),
-                                        jArray4.get(i).getCityEn(), jArray4.get(i).getServiceNameEn(), jArray4.get(i).getCountryEn()));
-                            }
+                    final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
+                    recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
+                    recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
+                    ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
+                    //List<PreFactorService> jArray4 = jArray.getPreFactorServices();
+                    List<com.eligasht.service.model.newModel.flight.prefactor.response.Service> jArray4 = jArray.getServices();
+
+                    for (int i = 0; i < jArray4.size(); i++) {
+                        if (Locale.getDefault().getLanguage().equals("fa")) {
+                            servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
+                                    jArray4.get(i).getServicePrice().getAmount() + "", jArray4.get(i).getServiceType(),
+                                    jArray4.get(i).getCityFa(), jArray4.get(i).getServiceNameFa(), jArray4.get(i).getCountryFa()));
+                        }else{
+                            servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
+                                    jArray4.get(i).getServicePrice().getAmount() + "", jArray4.get(i).getServiceType(),
+                                    jArray4.get(i).getCityEn(), jArray4.get(i).getServiceNameEn(), jArray4.get(i).getCountryEn()));
                         }
-                        if (!servicePreFactorModels.isEmpty()) {
-                            llDetailService.setVisibility(View.VISIBLE);
-                            recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
-                        }
+                    }
+                    if (!servicePreFactorModels.isEmpty()) {
+                        llDetailService.setVisibility(View.VISIBLE);
+                        recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
+
+                    }
                         //for flight==================================================================================
-                        final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
-                        recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
-                        recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
-                        ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
-                        List<PreFactorFlight> jArray5 = jArray.getPreFactorFlights();
+                    final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
+                    recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerPackageActivity.this, 1));
+                    recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerPackageActivity.this));
+                    ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
+                    //List<PreFactorFlight> jArray5 = jArray.getPreFactorFlights();
+                    List<Flight> jArray5 = jArray.getFlights();
                         for (int i = 0; i < jArray5.size(); i++) {
                             if (Locale.getDefault().getLanguage().equals("fa")) {
                                 flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameFa(),
@@ -1741,7 +1752,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                             recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
                         }
                         setAnimation();
-                    }
+                   // }end Error
                 } catch (Exception e) {
                     Toast.makeText(PassengerPackageActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 }

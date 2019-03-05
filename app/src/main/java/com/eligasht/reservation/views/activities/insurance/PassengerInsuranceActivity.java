@@ -46,7 +46,11 @@ import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.base.ServiceType;
 import com.eligasht.reservation.base.SingletonAnalysis;
+import com.eligasht.reservation.lost.flight.FlightPreFactorAdapter;
+import com.eligasht.reservation.lost.hotel.HotelPreFactorAdapter;
 import com.eligasht.reservation.lost.passenger.PassangerPreFactorAdapter;
+import com.eligasht.reservation.models.FlightPreFactorModel;
+import com.eligasht.reservation.models.HotelPreFactorModel;
 import com.eligasht.reservation.models.PassengerDBModel;
 import com.eligasht.reservation.models.PassengerPreFactorModel;
 import com.eligasht.reservation.lost.service.ServicePreFactorAdapter;
@@ -61,6 +65,8 @@ import com.eligasht.reservation.tools.db.local.PassengerPartnerInfo_Table;
 import com.eligasht.reservation.tools.db.main.CursorManager;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.reservation.views.activities.GetPassengerActivity;
+import com.eligasht.reservation.views.activities.newFlight.PurchaseFlightServices;
+
 import com.eligasht.reservation.views.adapters.GetHotelKhadmatAdapter;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.CountrycodeActivity;
@@ -70,6 +76,7 @@ import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
+import com.eligasht.service.model.error.Error;
 import com.eligasht.service.model.insurance.request.PurchaseInsurance.PartnerList;
 import com.eligasht.service.model.insurance.request.PurchaseInsurance.RequestPurchaseInsurance;
 import com.eligasht.service.model.insurance.request.RequestPreFactorDetail.RequestPreFactorDetails;
@@ -82,6 +89,11 @@ import com.eligasht.service.model.insurance.response.ResponsePreFactorDetail.Req
 import com.eligasht.service.model.insurance.response.ResponsePreFactorDetail.ResponsePreFactorDetails;
 import com.eligasht.service.model.insurance.response.PurchaseInsurance.ResponsePurchaseInsurance;
 import com.eligasht.service.model.insurance.response.PurchaseInsurance.TmpReserveResult;
+import com.eligasht.service.model.newModel.flight.prefactor.request.RequestGetPreFactor;
+import com.eligasht.service.model.newModel.flight.prefactor.response.Flight;
+import com.eligasht.service.model.newModel.flight.prefactor.response.Hotel;
+import com.eligasht.service.model.newModel.flight.prefactor.response.ResponseGetPreFactor;
+import com.eligasht.service.model.newModel.flight.prefactor.response.Summary;
 import com.eligasht.service.model.newModel.insurance.request.purchase.Customer;
 import com.eligasht.service.model.newModel.insurance.request.purchase.Passenger;
 import com.eligasht.service.model.newModel.insurance.request.purchase.PurchaseParameterModel;
@@ -145,7 +157,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     private ExpandableRelativeLayout expandableLayout;
     public TextView imgCount;
     private String paymentUrl;
-    public List<PurchaseFlightResult> data;
+    public List<PurchaseFlightServices> data;
     private GetHotelKhadmatAdapter mAdapter;
     public TextView txt_shomare_factor;
     public TextView tvPrice;
@@ -566,54 +578,206 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     @Override
     public void onReady(ResponseInsurancePurchase responsePurchaseInsurance) {
         Log.e("PurchaseInsurance:", new Gson().toJson(responsePurchaseInsurance));
+        FlagMosaferan = false;
         rlLoading.setVisibility(View.GONE);
-     /*   try {
+        //  Utility.disableEnableControls(true, rlRoot);
+        try {
+            List<Error> GetError = null;
+            if (responsePurchaseInsurance != null)
+                if (responsePurchaseInsurance.getErrors().size() > 0) {
+                    AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this);
+                    AlertDialogPassengerFlight.setText(responsePurchaseInsurance.getErrors().get(0).getMessage() + responsePurchaseInsurance.getBookingMessageEn(), getString(R.string.massege));
+                } else {
+                    try {
+                        //TmpReserveResult jsonResult = responsePurchasePackage.getTmpReserveResult();
+                        Prefs.putString("BookingCode_NumFactor", responsePurchaseInsurance.getBookingCode() + "");
+                        txt_shomare_factor.setText(responsePurchaseInsurance.getBookingCode() + "");
+                        textView4.setImageBitmap(getBitmap(responsePurchaseInsurance.getBookingCode() + "", 128, 300, 150));
+                        Prefs.putString("BookingCode_NumFactor", responsePurchaseInsurance.getBookingCode() + "");
+                        tvfactorNumber.setText(responsePurchaseInsurance.getBookingCode() + "");
 
-            Object GetError = null;
+                        linear_saler.setVisibility(View.GONE);
+                        linear_mosaferan.setVisibility(View.GONE);
+                        linear_list_khadamat.setVisibility(View.GONE);
+                        linear_pish_factor.setVisibility(View.VISIBLE);
+                        ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
+                        ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
+                        txtTitle.setText(getString(R.string.Approval_and_payment_of_pre_invoice));
 
-            PurchaseInsuranceResult perchusInsuranceResult = responsePurchaseInsurance.getPurchaseInsuranceResult();//.getJSONObject("PurchaseInsuranceResult");//Errors
-            if (perchusInsuranceResult.getErrors() != null){
-                GetError = perchusInsuranceResult.getErrors();//("Errors");
-            }
-            if (GetError != null) {
+                        sendRequestGetPreFactorDetails();
+                        FlagTab = true;
+                   /* mAdapter = new GetHotelKhadmatAdapter(PassengerInsuranceActivity.this, data, PassengerInsuranceActivity.this, 0);
 
-            } else {
-
-                TmpReserveResult jsonResult = perchusInsuranceResult.getTmpReserveResult();
-                txt_shomare_factor.setText(jsonResult.getBookingCode()+"");
-
-                textView4.setImageBitmap(getBitmap(jsonResult.getBookingCode()+"", 128, 300, 150));
-                Prefs.putString("BookingCode_NumFactor", jsonResult.getBookingCode()+"");
-                tvfactorNumber.setText(jsonResult.getBookingCode()+"");
-
-                linear_saler.setVisibility(View.GONE);
-                linear_mosaferan.setVisibility(View.GONE);
-                linear_list_khadamat.setVisibility(View.GONE);
-                linear_pish_factor.setVisibility(View.VISIBLE);
-                ((ImageView) findViewById(R.id.btn_pish_factor)).setImageResource(R.drawable.khadamat_passenger_on);
-                ((Button) findViewById(R.id.txtPishfactor)).setTextColor(Color.parseColor("#000000"));
-                txtTitle.setText(getString(R.string.Approval_and_payment_of_pre_invoice));
-                FlagTab = true;
-                RequestPreFactorDetails();
-                mAdapter = new GetHotelKhadmatAdapter(PassengerInsuranceActivity.this, data, PassengerInsuranceActivity.this, 0);
-
-                mAdapter.setData(data);
-                listKhadamat.setAdapter(mAdapter);
-            }
-
+                    mAdapter.setData(data);
+                    listKhadamat.setAdapter(mAdapter);*/
+                    } catch (Exception e) {
+                        e.getMessage();
+                    }
+                }
         } catch (Exception e) {
             AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this);
-            AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
+            AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli), getString(R.string.massege));
         }
-*/
     }
-
     @Override
     public void onError(String message) {
         rlLoading.setVisibility(View.GONE);
         AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this);
         AlertDialogPassengerFlight.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege));
     }
+    private void sendRequestGetPreFactorDetails() {
+        rlLoading.setVisibility(View.VISIBLE);
+       // Utility.disableEnableControls(false, rlRoot);
+
+        RequestGetPreFactor requestGePreFactorDetails = new RequestGetPreFactor();
+
+
+        requestGePreFactorDetails.setPreFactorNo(tvfactorNumber.getText().toString());
+        Log.e("RequestGetPreFactor: ", new Gson().toJson(requestGePreFactorDetails));
+        SingletonService.getInstance().getFlight().newGetPreFactorServiceAvail(new OnServiceStatus<ResponseGetPreFactor>() {
+            @Override
+            public void onReady(ResponseGetPreFactor responseGePreFactorDetails) {
+
+                Log.e("ResponseGetPreFactor: ", new Gson().toJson(responseGePreFactorDetails));
+                rlLoading.setVisibility(View.GONE);
+              //  Utility.disableEnableControls(true, rlRoot);
+                try {
+                    SingletonAnalysis.getInstance().logPreBooking(ServiceType.PACKAGE);
+
+                   /* if (responseGePreFactorDetails.get().getErrors() != null ) {
+                        AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this);
+                        AlertDialogPassengerFlight.setText(responseGePreFactorDetails.getGetPreFactorDetailsResult().getErrors().get(0).getMessage(), getString(R.string.massege));
+                    }else {*/
+                    //  GetPreFactorDetailsResult GetAirportsResult = responseGePreFactorDetails.getGetPreFactorDetailsResult();//.getJSONObject("GetPreFactorDetailsResult");
+                    com.eligasht.service.model.newModel.flight.prefactor.response.PreFactor jArray = responseGePreFactorDetails.getFactorDetails().getPreFactor();//("PreFactor");//FactorSummary
+
+                    Summary jFact = responseGePreFactorDetails.getFactorDetails().getPreFactor().getSummary();//getFactorSummary();
+                    Integer RqBase_ID = jFact.getRqBaseID();
+                    Integer totalprice = jFact.getTotalPrice().getAmount();
+                    if (jFact.getOnlinePaymentURL() == null || jFact.getOnlinePaymentURL().equals("") || TextUtils.isEmpty(jFact.getOnlinePaymentURL())) {
+                        btn_pardakht_factor.setVisibility(View.INVISIBLE);
+                    } else {
+                        paymentUrl = jFact.getOnlinePaymentURL();
+                    }
+                    tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " " + getString(R.string.Rial));
+//for hotel==========================================================================================
+                    final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
+                    recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerInsuranceActivity.this, 1));
+                    recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerInsuranceActivity.this));
+                    ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
+                    List<Hotel> jArray2 = jArray.getHotels();
+                    for (int i = 0; i < jArray2.size(); i++) {
+                        if (Locale.getDefault().getLanguage().equals("fa")) {
+                            hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
+                                    Utility.dateShow(jArray2.get(i).getHotelChekin()),
+                                    Utility.dateShow(jArray2.get(i).getHotelChekout()),
+                                    jArray2.get(i).getAdlCount() + "",
+                                    jArray2.get(i).getChdCount() + "", jArray2.get(i).getRoomTitleFa(), jArray2.get(i).getCityEn()));
+                        }else{
+                            hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
+                                    Utility.dateShow(jArray2.get(i).getHotelChekin()),
+                                    Utility.dateShow(jArray2.get(i).getHotelChekout()),
+                                    jArray2.get(i).getAdlCount() + "",
+                                    jArray2.get(i).getChdCount() + "", jArray2.get(i).getRoomTitleEn(), jArray2.get(i).getCityEn()));
+                        }
+                    }
+                    if (!hotelPreFactorModels.isEmpty()) {
+                        recyclerViewHotel.setAdapter(new HotelPreFactorAdapter(hotelPreFactorModels));
+                        llDetailHotel.setVisibility(View.VISIBLE);
+                    }
+//for passenger======================================================================================
+                    final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+                    recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerInsuranceActivity.this, 1));
+                    recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerInsuranceActivity.this));
+                    ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
+                    List<com.eligasht.service.model.newModel.flight.prefactor.response.Passenger> jArray3 = jArray.getPassengers();
+                    for (int i = 0; i < jArray3.size(); i++) {
+                        passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.get(i).getGender() + "", jArray3.get(i).getNationality(),
+                                jArray3.get(i).getBirthday(), jArray3.get(i).getPassportNo(),
+                                jArray3.get(i).getName(), (String) jArray3.get(i).getNationalCode()));
+                    }
+                    if (!passengerPreFactorModels.isEmpty()) {
+                        llDetailPassanger.setVisibility(View.VISIBLE);
+                        recyclerViewPassenger.setAdapter(new PassangerPreFactorAdapter(passengerPreFactorModels));
+                    }
+                    //for Services=============================================================================
+                    final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
+                    recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerInsuranceActivity.this, 1));
+                    recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerInsuranceActivity.this));
+                    ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
+                    //List<PreFactorService> jArray4 = jArray.getPreFactorServices();
+                    List<com.eligasht.service.model.newModel.flight.prefactor.response.Service> jArray4 = jArray.getServices();
+
+                    for (int i = 0; i < jArray4.size(); i++) {
+                        if (Locale.getDefault().getLanguage().equals("fa")) {
+                            servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
+                                    jArray4.get(i).getServicePrice().getAmount() + "", jArray4.get(i).getServiceType(),
+                                    jArray4.get(i).getCityFa(), jArray4.get(i).getServiceNameFa(), jArray4.get(i).getCountryFa()));
+                        }else{
+                            servicePreFactorModels.add(new ServicePreFactorModel(jArray4.get(i).getServiceNameEn(),
+                                    jArray4.get(i).getServicePrice().getAmount() + "", jArray4.get(i).getServiceType(),
+                                    jArray4.get(i).getCityEn(), jArray4.get(i).getServiceNameEn(), jArray4.get(i).getCountryEn()));
+                        }
+                    }
+                    if (!servicePreFactorModels.isEmpty()) {
+                        llDetailService.setVisibility(View.VISIBLE);
+                        recyclerViewService.setAdapter(new ServicePreFactorAdapter(servicePreFactorModels));
+
+                    }
+                    //for flight==================================================================================
+                    final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
+                    recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerInsuranceActivity.this, 1));
+                    recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerInsuranceActivity.this));
+                    ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
+                    //List<PreFactorFlight> jArray5 = jArray.getPreFactorFlights();
+                    List<Flight> jArray5 = jArray.getFlights();
+                    for (int i = 0; i < jArray5.size(); i++) {
+                        if (Locale.getDefault().getLanguage().equals("fa")) {
+                            flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameFa(),
+                                    jArray5.get(i).getDepAirPortFa(),
+                                    jArray5.get(i).getArrAirPortFa(),
+                                    Utility.dateShow(jArray5.get(i).getFltDate()),
+                                    jArray5.get(i).getFltTime(),
+                                    //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+                                    jArray5.get(i).getFltCheckinTime(),
+                                    jArray5.get(i).getFltNumber(),
+                                    jArray5.get(i).getAirlineNameFa(),
+                                    jArray5.get(i).getDepartureCityFa(), jArray5.get(i).getAirlineCode(), jArray5.get(i).getArrivalCityFa()));
+                        }else{
+                            flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameEn(),
+                                    jArray5.get(i).getDepAirPortEn(),
+                                    jArray5.get(i).getArrAirPortEn(),
+                                    Utility.dateShow(jArray5.get(i).getFltDate()),
+                                    jArray5.get(i).getFltTime(),
+                                    //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
+                                    jArray5.get(i).getFltCheckinTime(),
+                                    jArray5.get(i).getFltNumber(),
+                                    jArray5.get(i).getAirlineNameEn(),
+                                    jArray5.get(i).getDepartureCityEn(), jArray5.get(i).getAirlineCode(), jArray5.get(i).getArrivalCityEn()));
+                        }
+                    }
+                    if (!flightPreFactorModels.isEmpty()) {
+                        llDetailFlight.setVisibility(View.VISIBLE);
+                        recyclerViewFlight.setAdapter(new FlightPreFactorAdapter(flightPreFactorModels));
+                    }
+                    setAnimation();
+                    // }end Error
+                } catch (Exception e) {
+                    Toast.makeText(PassengerInsuranceActivity.this, e.toString(), Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+            @Override
+            public void onError(String message) {
+                rlLoading.setVisibility(View.GONE);
+              //  Utility.disableEnableControls(true, rlRoot);
+                AlertDialogPassengerFlight AlertDialogPassengerFlight = new AlertDialogPassengerFlight(PassengerInsuranceActivity.this);
+                AlertDialogPassengerFlight.setText(message.toString(), getString(R.string.massege));
+            }
+        }, requestGePreFactorDetails);
+    }
+
     private void RequestPreFactorDetails() {
         rlLoading.setVisibility(View.VISIBLE);
 

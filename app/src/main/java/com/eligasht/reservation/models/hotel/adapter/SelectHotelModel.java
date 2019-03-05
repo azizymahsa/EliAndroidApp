@@ -16,11 +16,11 @@ public class SelectHotelModel {
     private String city;
     private String title;
     private String board;
-    private String price;
+;
     private String imageUrl;
     private String location;
-
-    int oldPrice;
+    Double price;
+    Double oldPrice;
     int star;
     private int eHotelId;
     private String ResultUniqID;
@@ -33,7 +33,7 @@ public class SelectHotelModel {
     String offerId;
     List<Location> Locations;
 
-    public SelectHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, List<Facility> facilities, int diff, String offerId, List<com.eligasht.service.model.newModel.hotel.search.response.Location> locations) {
+    public SelectHotelModel(String name, String city, String title, String board, Double price, String imageUrl, String location, Double oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, List<Facility> facilities, int diff, String offerId, List<com.eligasht.service.model.newModel.hotel.search.response.Location> locations) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -87,11 +87,11 @@ public class SelectHotelModel {
         this.board = board;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -111,11 +111,11 @@ public class SelectHotelModel {
         this.location = location;
     }
 
-    public int getOldPrice() {
+    public Double getOldPrice() {
         return oldPrice;
     }
 
-    public void setOldPrice(int oldPrice) {
+    public void setOldPrice(Double oldPrice) {
         this.oldPrice = oldPrice;
     }
 

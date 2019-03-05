@@ -1,5 +1,5 @@
 
-package com.eligasht.service.model.newModel.hotelFlight.response;
+package com.eligasht.service.model.newModel.hotelFlight.preSearch.response;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -21,10 +21,10 @@ public class ResponseHotelFlight {
     private SearchedProduct searchedProduct;
     @SerializedName("MinPrice")
     @Expose
-    private Integer minPrice;
+    private double minPrice;
     @SerializedName("MaxPrice")
     @Expose
-    private Integer maxPrice;
+    private double maxPrice;
     @SerializedName("Hotels")
     @Expose
     private List<Hotel> hotels = null;
@@ -118,19 +118,19 @@ public class ResponseHotelFlight {
         this.searchedProduct = searchedProduct;
     }
 
-    public Integer getMinPrice() {
+    public double getMinPrice() {
         return minPrice;
     }
 
-    public void setMinPrice(Integer minPrice) {
+    public void setMinPrice(double minPrice) {
         this.minPrice = minPrice;
     }
 
-    public Integer getMaxPrice() {
+    public double getMaxPrice() {
         return maxPrice;
     }
 
-    public void setMaxPrice(Integer maxPrice) {
+    public void setMaxPrice(double maxPrice) {
         this.maxPrice = maxPrice;
     }
 
@@ -214,11 +214,11 @@ public class ResponseHotelFlight {
         this.loadDB = loadDB;
     }
 
-    public com.eligasht.service.model.newModel.hotelFlight.response.Flights getFlights() {
+    public com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Flights getFlights() {
         return flights;
     }
 
-    public void setFlights(com.eligasht.service.model.newModel.hotelFlight.response.Flights flights) {
+    public void setFlights(com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Flights flights) {
         this.flights = flights;
     }
 

@@ -49,8 +49,8 @@ import com.eligasht.service.model.newModel.hotel.reserve.response.ResponseReserv
 import com.eligasht.service.model.newModel.hotel.review.request.RequestAddHotelReview;
 import com.eligasht.service.model.newModel.hotel.search.request.RequestHotelSearch;
 import com.eligasht.service.model.newModel.hotel.search.response.ResponseHotelSearch;
-import com.eligasht.service.model.newModel.hotelFlight.request.RequestHotelFlight;
-import com.eligasht.service.model.newModel.hotelFlight.response.ResponseHotelFlight;
+import com.eligasht.service.model.newModel.hotelFlight.preSearch.request.RequestHotelFlight;
+import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.ResponseHotelFlight;
 
 import java.util.List;
 

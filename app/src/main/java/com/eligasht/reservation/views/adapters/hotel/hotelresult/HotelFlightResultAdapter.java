@@ -103,6 +103,9 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
                 i.putExtra("CheckOutHF", activity.getIntent().getExtras().getString("CheckOutHF"));
                 i.putExtra("DateTime", DateTime.getText().toString());
                 i.putExtra("type", 1);
+                //for Hotel+Flight
+                i.putExtra("FlightOfferID", data.get(position).getFlightList().getOfferId());
+                i.putExtra("FlightGuID", data.get(position).getFlightList().getFlightGUID());
                 SwipeBackActivityHelper.activityBuilder(activity)
                         .intent(i)
                         .needParallax(true)
@@ -118,7 +121,7 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
         holder.location.setText(data.get(position).getLocation() + "،" + data.get(position).getCity());
         holder.title.setText(data.get(position).getTitle());
         holder.board.setText(data.get(position).getBoard());
-        holder.tvPrice.setText(Utility.priceFormat(String.valueOf(Integer.valueOf(data.get(position).getPrice()) + Integer.valueOf(data.get(position).getAmount()))));
+        holder.tvPrice.setText(Utility.priceFormat(String.valueOf(Integer.valueOf(data.get(position).getPrice().intValue()) + Integer.valueOf(data.get(position).getAmount()))));
         if (data.get(position).getTypeText().contains("آپارتمان") || data.get(position).getTypeText().toLowerCase().contains("apart")) {
             holder.txt_lable_hotel.setText(R.string.ApartmenHotel);
             holder.txt_lable_hotel.setVisibility(View.VISIBLE);

@@ -102,7 +102,7 @@ public class LazyResoultHotelAdapter extends BaseAdapter {
         holder.location.setText(selectHotelModelArrayList.get(position).getLocation() + "،" + selectHotelModelArrayList.get(position).getCity());
         holder.title.setText(selectHotelModelArrayList.get(position).getTitle());
         holder.board.setText(selectHotelModelArrayList.get(position).getBoard());
-        holder.tvPrice.setText(Utility.priceFormat(selectHotelModelArrayList.get(position).getPrice()));
+        holder.tvPrice.setText(Utility.priceFormat(Integer.valueOf(selectHotelModelArrayList.get(position).getPrice().intValue()).toString()));
 
         holder.rlListItem.setOnClickListener(new View.OnClickListener() {
             @Override

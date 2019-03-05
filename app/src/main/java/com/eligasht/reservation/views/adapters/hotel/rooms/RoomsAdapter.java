@@ -136,6 +136,7 @@ public class RoomsAdapter extends BaseAdapter implements OnServiceStatus<List<Re
                 try {
                     offerIds = roomsModels.get(position).getOfferId();
                     eHotelId = roomsModels.get(position).getHotelId();
+                   // eHotelId = roomsModels.get(position).get();
                     getHoldRoomRequest();
                 } catch (Exception e) {
                 }
@@ -246,7 +247,7 @@ public class RoomsAdapter extends BaseAdapter implements OnServiceStatus<List<Re
 
         SingletonService.getInstance().getHotelService().newHotelGetPolicyAvail(this, holdRoomRequest);
     }
-
+//ReserveHotelFlight+Hotel
     private void getHoldRoomRequest() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -257,6 +258,9 @@ public class RoomsAdapter extends BaseAdapter implements OnServiceStatus<List<Re
         holdRoomRequest.setHotelId(eHotelId);
         holdRoomRequest.setHotelOfferId(offerIds);
         holdRoomRequest.setPreSearchUniqueId(activity.getIntent().getExtras().getString("ResultUniqID"));
+//for Hotel+flight
+        holdRoomRequest.setFlightGuid(activity.getIntent().getExtras().getString("FlightGuID"));
+        holdRoomRequest.setFlightOfferId(activity.getIntent().getExtras().getString("FlightOfferID"));//FlightOfferID
 
 
         Log.e("RequestReserveFlightHotel:", new Gson().toJson(holdRoomRequest));
@@ -277,10 +281,12 @@ public class RoomsAdapter extends BaseAdapter implements OnServiceStatus<List<Re
                         flightId = activity.getIntent().getExtras().getString("FlightID");
                         Intent intent = new Intent(activity, PassengerHotelFlightActivity.class);
                         intent.putExtra("HotelOfferId", holdRoomResponse.getOfferId());
-                        intent.putExtra("FlightGuID", flightId);
+                        intent.putExtra("FlightGuID", flightId);//changeFlight
                         intent.putExtra("CheckIn", activity.getIntent().getExtras().getString("CheckInHF"));
                         intent.putExtra("CheckOut", activity.getIntent().getExtras().getString("CheckOutHF"));
                         intent.putExtra("flightId", activity.getIntent().getExtras().getString("ResultUniqID"));
+                        intent.putExtra("flightOfferId", activity.getIntent().getExtras().getString("FlightOfferID"));
+                        intent.putExtra("PreSearchUniqueId", holdRoomResponse.getPreSearchUniqueId());
                         activity.startActivity(intent);
                         activity.finish();
                     }

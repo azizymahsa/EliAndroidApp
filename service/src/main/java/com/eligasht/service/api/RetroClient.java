@@ -89,8 +89,8 @@ import com.eligasht.service.model.newModel.hotel.reserve.response.ResponseReserv
 import com.eligasht.service.model.newModel.hotel.review.request.RequestAddHotelReview;
 import com.eligasht.service.model.newModel.hotel.search.request.RequestHotelSearch;
 import com.eligasht.service.model.newModel.hotel.search.response.ResponseHotelSearch;
-import com.eligasht.service.model.newModel.hotelFlight.request.RequestHotelFlight;
-import com.eligasht.service.model.newModel.hotelFlight.response.ResponseHotelFlight;
+import com.eligasht.service.model.newModel.hotelFlight.preSearch.request.RequestHotelFlight;
+import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.ResponseHotelFlight;
 import com.eligasht.service.model.newModel.insurance.request.searchInsurance.RequestInsuranceSearchResultViewModel;
 import com.eligasht.service.model.newModel.insurance.request.purchase.PurchaseParameterModel;
 import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
@@ -117,7 +117,6 @@ import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.Body;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;

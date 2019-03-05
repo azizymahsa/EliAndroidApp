@@ -1,6 +1,7 @@
 package com.eligasht.reservation.models.hotel.adapter;
-import com.eligasht.service.model.newModel.hotelFlight.response.Facility;
-import com.eligasht.service.model.newModel.hotelFlight.response.Location;
+import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Facility;
+import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Flights;
+import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Location;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -11,11 +12,11 @@ public class SelectFlightHotelModel {
     private String city;
     private String title;
     private String board;
-    private String price;
+    private Double price;
     private String imageUrl;
     private String location;
     private List<Boolean> booleans = new ArrayList<>();
-    private int oldPrice;
+    private Double oldPrice;
     private int star;
     private int eHotelId;
     private String ResultUniqID;
@@ -25,14 +26,22 @@ public class SelectFlightHotelModel {
     private String TypeText;
     private List<Facility> Facilities;
     private int diff;
-    private List<com.eligasht.service.model.newModel.hotelFlight.response.FltList> Flights;
+    private List<com.eligasht.service.model.newModel.hotelFlight.preSearch.response.FltList> Flights;
+    private com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Flights FlightList;
+
+
+
     private String ArrRout;
     private String DepRout;
     private String Amount;
     private List<Location> Locations;
     private String FlightId;
+    private String FlightOfferId;
+    private String FlightGUID;
 
-    public SelectFlightHotelModel(String name, String city, String title, String board, String price, String imageUrl, String location, int oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, List<Facility> facilities, int diff, List<com.eligasht.service.model.newModel.hotelFlight.response.FltList> flights, String arrRout, String depRout, String amount, List<Location> locations, String flightId) {
+
+
+    public SelectFlightHotelModel(String name, String city, String title, String board, Double price, String imageUrl, String location, Double oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, List<Facility> facilities, int diff, List<com.eligasht.service.model.newModel.hotelFlight.preSearch.response.FltList> flights, String arrRout, String depRout, String amount, List<Location> locations, String flightId, String FlightOfferId, Flights FlightList, String FlightGUID) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -58,11 +67,35 @@ public class SelectFlightHotelModel {
         FlightId = flightId;
         booleans.add(false);
         booleans.add(false);
+
+        this.FlightOfferId = FlightOfferId;
+        this.FlightList = FlightList;
+        this.FlightGUID = FlightGUID;
     }
 
 
+    public String getFlightGUID() {
+        return FlightGUID;
+    }
 
+    public void setFlightGUID(String flightGUID) {
+        FlightGUID = flightGUID;
+    }
+    public Flights getFlightList() {
+        return FlightList;
+    }
 
+    public void setFlightList(Flights flightList) {
+        FlightList = flightList;
+    }
+
+    public String getFlightOfferId() {
+        return FlightOfferId;
+    }
+
+    public void setFlightOfferId(String flightOfferId) {
+        FlightOfferId = flightOfferId;
+    }
     public List<Boolean> getBooleans() {
         return booleans;
     }
@@ -103,11 +136,11 @@ public class SelectFlightHotelModel {
         this.board = board;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -127,11 +160,11 @@ public class SelectFlightHotelModel {
         this.location = location;
     }
 
-    public int getOldPrice() {
+    public Double getOldPrice() {
         return oldPrice;
     }
 
-    public void setOldPrice(int oldPrice) {
+    public void setOldPrice(Double oldPrice) {
         this.oldPrice = oldPrice;
     }
 
@@ -207,11 +240,11 @@ public class SelectFlightHotelModel {
         this.diff = diff;
     }
 
-    public List<com.eligasht.service.model.newModel.hotelFlight.response.FltList> getFlights() {
+    public List<com.eligasht.service.model.newModel.hotelFlight.preSearch.response.FltList> getFlights() {
         return Flights;
     }
 
-    public void setFlights(ArrayList<com.eligasht.service.model.newModel.hotelFlight.response.FltList> flights) {
+    public void setFlights(ArrayList<com.eligasht.service.model.newModel.hotelFlight.preSearch.response.FltList> flights) {
         Flights = flights;
     }
 

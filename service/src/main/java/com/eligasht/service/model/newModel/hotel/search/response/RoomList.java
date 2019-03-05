@@ -27,10 +27,10 @@ public class RoomList {
     private Double sourcePrice;
     @SerializedName("OldPrice")
     @Expose
-    private Integer oldPrice;
+    private Double oldPrice;
     @SerializedName("Price")
     @Expose
-    private Integer price;
+    private Double price;
     @SerializedName("CurrencyPrice")
     @Expose
     private Double currencyPrice;
@@ -131,19 +131,19 @@ public class RoomList {
         this.sourcePrice = sourcePrice;
     }
 
-    public Integer getOldPrice() {
+    public Double getOldPrice() {
         return oldPrice;
     }
 
-    public void setOldPrice(Integer oldPrice) {
+    public void setOldPrice(Double oldPrice) {
         this.oldPrice = oldPrice;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
