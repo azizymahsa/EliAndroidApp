@@ -87,6 +87,8 @@ public class Const {
     public final static String GetNewHotelPurchaseReserve = "api/HotelServiceApi/Purchase";
 
 
+    //*************Train*****************
+    public final static String GetNewTrainStat = "api/LoadAndFillAPI/TrainStations";
     //*************Insurance*****************
     public final static String GetNewInsuranceCountries = "api/LoadAndFillAPI/InsuranceCountries";
     public final static String GetNewInsuranceSearchResult = "api/InsuranceAPI/InsuranceSearchResultViewModel";

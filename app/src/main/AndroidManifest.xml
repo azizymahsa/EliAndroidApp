@@ -120,6 +120,12 @@
             android:name=".reservation.views.ui.GetAirportMabdaActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".reservation.views.activities.train.GetCityTrainMabdaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reservation.views.activities.train.GetCityTrainMaghsadActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".reservation.views.ui.GetAirportMaghsadActivity"
             android:screenOrientation="portrait" />
         <activity

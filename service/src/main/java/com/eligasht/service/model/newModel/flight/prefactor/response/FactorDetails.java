@@ -2,6 +2,8 @@
 package com.eligasht.service.model.newModel.flight.prefactor.response;
 
 import java.util.List;
+
+import com.eligasht.service.model.error.Error;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -12,7 +14,7 @@ public class FactorDetails {
     private PreFactor preFactor;
     @SerializedName("Errors")
     @Expose
-    private List<Object> errors = null;
+    private List<Error> errors = null;
     @SerializedName("Warningss")
     @Expose
     private List<Object> warningss = null;
@@ -34,11 +36,11 @@ public class FactorDetails {
         this.preFactor = preFactor;
     }
 
-    public List<Object> getErrors() {
+    public List<Error> getErrors() {
         return errors;
     }
 
-    public void setErrors(List<Object> errors) {
+    public void setErrors(List<Error> errors) {
         this.errors = errors;
     }
 

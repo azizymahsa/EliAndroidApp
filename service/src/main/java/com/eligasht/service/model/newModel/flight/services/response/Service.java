@@ -6,93 +6,82 @@ import com.google.gson.annotations.SerializedName;
 
 public class Service {
 
-    @SerializedName("ServiceID")
+    @SerializedName("AdditionalParam")
     @Expose
-    private String serviceID;
-    @SerializedName("ServiceTypeID")
-    @Expose
-    private Integer serviceTypeID;
+    private String additionalParam;
     @SerializedName("CityEn")
     @Expose
     private String cityEn;
     @SerializedName("CityFa")
     @Expose
     private String cityFa;
-    @SerializedName("ServiceNameFa")
+    @SerializedName("CurrencyCode")
     @Expose
-    private String serviceNameFa;
-    @SerializedName("ServiceNameEn")
+    private String currencyCode;
+    @SerializedName("Currency_ID")
     @Expose
-    private String serviceNameEn;
-    @SerializedName("ServiceDescFa")
+    private Integer currencyID;
+    @SerializedName("HasFlight")
     @Expose
-    private String serviceDescFa;
-    @SerializedName("ServiceDescEn")
+    private Boolean hasFlight;
+    @SerializedName("HasHotel")
     @Expose
-    private String serviceDescEn;
+    private Boolean hasHotel;
+    @SerializedName("LoadDB")
+    @Expose
+    private Boolean loadDB;
+    @SerializedName("SelectID")
+    @Expose
+    private String selectID;
     @SerializedName("ServiceAdlPrice")
     @Expose
     private Integer serviceAdlPrice;
     @SerializedName("ServiceChdPrice")
     @Expose
     private Integer serviceChdPrice;
-    @SerializedName("ServiceInfPrice")
+    @SerializedName("ServiceDescEn")
     @Expose
-    private Integer serviceInfPrice;
-    @SerializedName("Currency_ID")
+    private String serviceDescEn;
+    @SerializedName("ServiceDescFa")
     @Expose
-    private Integer currencyID;
+    private String serviceDescFa;
+    @SerializedName("ServiceID")
+    @Expose
+    private String serviceID;
     @SerializedName("ServiceImgURL")
     @Expose
     private String serviceImgURL;
+    @SerializedName("ServiceInfPrice")
+    @Expose
+    private Integer serviceInfPrice;
+    @SerializedName("ServiceNameEn")
+    @Expose
+    private String serviceNameEn;
+    @SerializedName("ServiceNameFa")
+    @Expose
+    private String serviceNameFa;
+    @SerializedName("ServiceTotalPrice")
+    @Expose
+    private Integer serviceTotalPrice;
     @SerializedName("ServiceTypeEn")
     @Expose
     private String serviceTypeEn;
     @SerializedName("ServiceTypeFa")
     @Expose
     private String serviceTypeFa;
+    @SerializedName("ServiceTypeID")
+    @Expose
+    private Integer serviceTypeID;
     @SerializedName("ServiceTypeImgURL")
     @Expose
     private String serviceTypeImgURL;
-    @SerializedName("LoadDB")
-    @Expose
-    private Boolean loadDB;
-    @SerializedName("AdditionalParam")
-    @Expose
-    private String additionalParam;
-    @SerializedName("LstPassenger")
-    @Expose
-    private Object lstPassenger;
-    @SerializedName("HasHotel")
-    @Expose
-    private Boolean hasHotel;
-    @SerializedName("HasFlight")
-    @Expose
-    private Boolean hasFlight;
-    @SerializedName("ServiceTotalPrice")
-    @Expose
-    private Integer serviceTotalPrice;
-    @SerializedName("SelectID")
-    @Expose
-    private String selectID;
-    @SerializedName("CurrencyCode")
-    @Expose
-    private String currencyCode;
 
-    public String getServiceID() {
-        return serviceID;
+    public String getAdditionalParam() {
+        return additionalParam;
     }
 
-    public void setServiceID(String serviceID) {
-        this.serviceID = serviceID;
-    }
-
-    public Integer getServiceTypeID() {
-        return serviceTypeID;
-    }
-
-    public void setServiceTypeID(Integer serviceTypeID) {
-        this.serviceTypeID = serviceTypeID;
+    public void setAdditionalParam(String additionalParam) {
+        this.additionalParam = additionalParam;
     }
 
     public String getCityEn() {
@@ -111,36 +100,52 @@ public class Service {
         this.cityFa = cityFa;
     }
 
-    public String getServiceNameFa() {
-        return serviceNameFa;
+    public String getCurrencyCode() {
+        return currencyCode;
     }
 
-    public void setServiceNameFa(String serviceNameFa) {
-        this.serviceNameFa = serviceNameFa;
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
     }
 
-    public String getServiceNameEn() {
-        return serviceNameEn;
+    public Integer getCurrencyID() {
+        return currencyID;
     }
 
-    public void setServiceNameEn(String serviceNameEn) {
-        this.serviceNameEn = serviceNameEn;
+    public void setCurrencyID(Integer currencyID) {
+        this.currencyID = currencyID;
     }
 
-    public String getServiceDescFa() {
-        return serviceDescFa;
+    public Boolean getHasFlight() {
+        return hasFlight;
     }
 
-    public void setServiceDescFa(String serviceDescFa) {
-        this.serviceDescFa = serviceDescFa;
+    public void setHasFlight(Boolean hasFlight) {
+        this.hasFlight = hasFlight;
     }
 
-    public String getServiceDescEn() {
-        return serviceDescEn;
+    public Boolean getHasHotel() {
+        return hasHotel;
     }
 
-    public void setServiceDescEn(String serviceDescEn) {
-        this.serviceDescEn = serviceDescEn;
+    public void setHasHotel(Boolean hasHotel) {
+        this.hasHotel = hasHotel;
+    }
+
+    public Boolean getLoadDB() {
+        return loadDB;
+    }
+
+    public void setLoadDB(Boolean loadDB) {
+        this.loadDB = loadDB;
+    }
+
+    public String getSelectID() {
+        return selectID;
+    }
+
+    public void setSelectID(String selectID) {
+        this.selectID = selectID;
     }
 
     public Integer getServiceAdlPrice() {
@@ -159,20 +164,28 @@ public class Service {
         this.serviceChdPrice = serviceChdPrice;
     }
 
-    public Integer getServiceInfPrice() {
-        return serviceInfPrice;
+    public String getServiceDescEn() {
+        return serviceDescEn;
     }
 
-    public void setServiceInfPrice(Integer serviceInfPrice) {
-        this.serviceInfPrice = serviceInfPrice;
+    public void setServiceDescEn(String serviceDescEn) {
+        this.serviceDescEn = serviceDescEn;
     }
 
-    public Integer getCurrencyID() {
-        return currencyID;
+    public String getServiceDescFa() {
+        return serviceDescFa;
     }
 
-    public void setCurrencyID(Integer currencyID) {
-        this.currencyID = currencyID;
+    public void setServiceDescFa(String serviceDescFa) {
+        this.serviceDescFa = serviceDescFa;
+    }
+
+    public String getServiceID() {
+        return serviceID;
+    }
+
+    public void setServiceID(String serviceID) {
+        this.serviceID = serviceID;
     }
 
     public String getServiceImgURL() {
@@ -181,6 +194,38 @@ public class Service {
 
     public void setServiceImgURL(String serviceImgURL) {
         this.serviceImgURL = serviceImgURL;
+    }
+
+    public Integer getServiceInfPrice() {
+        return serviceInfPrice;
+    }
+
+    public void setServiceInfPrice(Integer serviceInfPrice) {
+        this.serviceInfPrice = serviceInfPrice;
+    }
+
+    public String getServiceNameEn() {
+        return serviceNameEn;
+    }
+
+    public void setServiceNameEn(String serviceNameEn) {
+        this.serviceNameEn = serviceNameEn;
+    }
+
+    public String getServiceNameFa() {
+        return serviceNameFa;
+    }
+
+    public void setServiceNameFa(String serviceNameFa) {
+        this.serviceNameFa = serviceNameFa;
+    }
+
+    public Integer getServiceTotalPrice() {
+        return serviceTotalPrice;
+    }
+
+    public void setServiceTotalPrice(Integer serviceTotalPrice) {
+        this.serviceTotalPrice = serviceTotalPrice;
     }
 
     public String getServiceTypeEn() {
@@ -199,76 +244,20 @@ public class Service {
         this.serviceTypeFa = serviceTypeFa;
     }
 
+    public Integer getServiceTypeID() {
+        return serviceTypeID;
+    }
+
+    public void setServiceTypeID(Integer serviceTypeID) {
+        this.serviceTypeID = serviceTypeID;
+    }
+
     public String getServiceTypeImgURL() {
         return serviceTypeImgURL;
     }
 
     public void setServiceTypeImgURL(String serviceTypeImgURL) {
         this.serviceTypeImgURL = serviceTypeImgURL;
-    }
-
-    public Boolean getLoadDB() {
-        return loadDB;
-    }
-
-    public void setLoadDB(Boolean loadDB) {
-        this.loadDB = loadDB;
-    }
-
-    public String getAdditionalParam() {
-        return additionalParam;
-    }
-
-    public void setAdditionalParam(String additionalParam) {
-        this.additionalParam = additionalParam;
-    }
-
-    public Object getLstPassenger() {
-        return lstPassenger;
-    }
-
-    public void setLstPassenger(Object lstPassenger) {
-        this.lstPassenger = lstPassenger;
-    }
-
-    public Boolean getHasHotel() {
-        return hasHotel;
-    }
-
-    public void setHasHotel(Boolean hasHotel) {
-        this.hasHotel = hasHotel;
-    }
-
-    public Boolean getHasFlight() {
-        return hasFlight;
-    }
-
-    public void setHasFlight(Boolean hasFlight) {
-        this.hasFlight = hasFlight;
-    }
-
-    public Integer getServiceTotalPrice() {
-        return serviceTotalPrice;
-    }
-
-    public void setServiceTotalPrice(Integer serviceTotalPrice) {
-        this.serviceTotalPrice = serviceTotalPrice;
-    }
-
-    public String getSelectID() {
-        return selectID;
-    }
-
-    public void setSelectID(String selectID) {
-        this.selectID = selectID;
-    }
-
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
-
-    public void setCurrencyCode(String currencyCode) {
-        this.currencyCode = currencyCode;
     }
 
 }

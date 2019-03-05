@@ -13,7 +13,26 @@ public class Country {
     private String AirportID;
     private String ParentId;
     private String CityNameEn;
-    
+//for Train
+    private String Text;
+    private String Value;
+
+
+    public String getText() {
+        return Text;
+    }
+
+    public void setText(String text) {
+        Text = text;
+    }
+
+    public String getValue() {
+        return Value;
+    }
+
+    public void setValue(String value) {
+        Value = value;
+    }
 
     public String getAirportName() {
         return AirportName;

@@ -98,6 +98,8 @@
     <string name="change_password">تغییر کلمه عبور</string>
     <string name="select_destination_city_or_airport">شهر یا فرودگاه مقصد را انتخاب کنید</string>
     <string name="select_origin_city_or_airport">شهر یا فرودگاه مبدا را انتخاب کنید</string>
+    <string name="select_destination_city">شهر مقصد را انتخاب کنید</string>
+    <string name="select_origin_city">شهر مبدا را انتخاب کنید</string>
     <string name="destination">مقصد</string>
     <string name="origin">مبدا</string>
     <string name="travel_to">سفر به :</string>
@@ -112,7 +114,7 @@
     <string name="travel_tour">تور مسافرتی</string>
     <string name="travel_insurance">بیمه مسافرتی</string>
     <string name="soon">(به زودی)</string>
-    <string name="trains">قطار خارجی</string>
+    <string name="trains">قطار </string>
     <string name="terms_and_conditions">شرایط و قوانین</string>
     <string name="contact_us">تماس با ما</string>
     <string name="about_us">درباره ما</string>

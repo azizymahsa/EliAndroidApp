@@ -49,6 +49,7 @@ import com.eligasht.reservation.views.fragments.PlanFragment;
 import com.eligasht.reservation.views.fragments.hotel.HotelFragment;
 import com.eligasht.reservation.views.fragments.insurance.InsuranceFragment;
 import com.eligasht.reservation.views.fragments.pack.PackageFragment;
+import com.eligasht.reservation.views.fragments.train.TrainFragment;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.dialog.GiftDialog;
@@ -79,7 +80,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
     private TextView tvTitle, tvArrow, tvBadge;
-    private FancyButton btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting, gift, map, btn_message,survey;
+    private FancyButton btnGhatar,btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting, gift, map, btn_message,survey;
     private FragmentManager manager;
     private BroadcastReceiver sendFinish;
     private BroadcastReceiver sendStartTimer, sendDetailFinish;
@@ -126,6 +127,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         tvBadge = findViewById(R.id.tvBadge);
 
         btnFlight = findViewById(R.id.btnFlight);
+        btnGhatar = findViewById(R.id.btnGhatar);
         survey = findViewById(R.id.survey);
         gift = findViewById(R.id.gift);
         btnHotel = findViewById(R.id.btnHotel);
@@ -167,6 +169,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         lottieUserMenu.setOnClickListener(this);
         rlHedaer.setOnClickListener(this);
         btnFlight.setOnClickListener(this);
+        btnGhatar.setOnClickListener(this);
         btnExit.setOnClickListener(this);
         btnLastBuy.setOnClickListener(this);
         btn_message.setOnClickListener(this);
@@ -235,6 +238,11 @@ public class MainActivity extends Base implements View.OnClickListener {
             case R.id.btnFlight:
                 addFragment(getString(R.string.searchFlight), new PlanFragment());
                 Prefs.putInt("type", 0);
+
+                break;
+             case R.id.btnGhatar:
+                addFragment(getString(R.string.trains), new TrainFragment());
+                Prefs.putInt("type", 5);
 
                 break;
             case R.id.btnHotel:

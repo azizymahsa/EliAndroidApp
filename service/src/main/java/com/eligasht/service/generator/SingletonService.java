@@ -11,6 +11,7 @@ import com.eligasht.service.part.Hotel;
 import com.eligasht.service.part.Insurance;
 import com.eligasht.service.part.LoginProfile;
 import com.eligasht.service.part.Survey;
+import com.eligasht.service.part.Train;
 import com.eligasht.service.part.WeatherPart;
 import com.eligasht.service.part.XPackage;
 
@@ -61,6 +62,9 @@ public class SingletonService {
     public Flight getFlight() {
         return new Flight(serviceGenerator);
     }
+    public Train getTrain() {
+            return new Train(serviceGenerator);
+        }
 
     public Insurance getInsurance() {
         return new Insurance(serviceGenerator);

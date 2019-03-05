@@ -1963,6 +1963,8 @@
     <string name="change_password">Change Pass</string>
     <string name="select_destination_city_or_airport">Select the destination city or airport</string>
     <string name="select_origin_city_or_airport">Choose the city or airport of origin</string>
+    <string name="select_destination_city">Select the destination city </string>
+    <string name="select_origin_city">Choose the city of origin</string>
     <string name="destination">Destination</string>
     <string name="origin">From</string>
     <string name="travel_to">Travel to :</string>

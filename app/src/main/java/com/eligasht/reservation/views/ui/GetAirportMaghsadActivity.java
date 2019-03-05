@@ -7,11 +7,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
+
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+
 import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,10 +25,7 @@ import android.widget.Toast;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.flight.request.airPort.RequestAirports;
-import com.eligasht.service.model.flight.request.airPort.Identity;
-import com.eligasht.service.model.flight.request.airPort.Request;
-import com.eligasht.service.model.flight.response.airPort.ResponsAirports;
+
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.service.model.newModel.airport.request.AutoCompleteParameterModel;
 import com.eligasht.service.model.newModel.airport.response.ResponseAirport;
@@ -50,9 +47,6 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
     public static final int READ_TIMEOUT = 15000;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
-    Handler handler;
-    ProgressDialog progressBar;
-    private Handler progressBarHandler = new Handler();
     public ListView list_airport;
     ArrayList<HashMap<String, String>> mylist = null;
     public static String searchText = "";
@@ -62,7 +56,7 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
     private EditText searchtxt;
     AVLoadingIndicatorView avi;
     Activity activity;
-    private static final String TAG = "GetAirport";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

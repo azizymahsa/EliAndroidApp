@@ -9,27 +9,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class ResponseGetServices {
 
-    @SerializedName("Services")
-    @Expose
-    private List<Service> services = null;
-    @SerializedName("ExcursionDetails")
-    @Expose
-    private ExcursionDetails excursionDetails;
-    @SerializedName("Passengers")
-    @Expose
-    private List<Passenger> passengers = null;
     @SerializedName("Errors")
     @Expose
     private List<Error> errors = null;
-
-    public List<Error> getErrors() {
-        return errors;
-    }
-
-    public void setErrors(List<Error> errors) {
-        this.errors = errors;
-    }
-
     @SerializedName("Warningss")
     @Expose
     private List<Object> warningss = null;
@@ -42,32 +24,23 @@ public class ResponseGetServices {
     @SerializedName("TimeStamp")
     @Expose
     private String timeStamp;
+    @SerializedName("ExcursionDetails")
+    @Expose
+    private ExcursionDetails excursionDetails;
+    @SerializedName("Passengers")
+    @Expose
+    private List<Passenger> passengers = null;
+    @SerializedName("Services")
+    @Expose
+    private List<Service> services = null;
 
-    public List<Service> getServices() {
-        return services;
+    public List<Error> getErrors() {
+        return errors;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
+    public void setErrors(List<Error> errors) {
+        this.errors = errors;
     }
-
-    public ExcursionDetails getExcursionDetails() {
-        return excursionDetails;
-    }
-
-    public void setExcursionDetails(ExcursionDetails excursionDetails) {
-        this.excursionDetails = excursionDetails;
-    }
-
-    public List<Passenger> getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(List<Passenger> passengers) {
-        this.passengers = passengers;
-    }
-
-
 
     public List<Object> getWarningss() {
         return warningss;
@@ -99,6 +72,30 @@ public class ResponseGetServices {
 
     public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    public ExcursionDetails getExcursionDetails() {
+        return excursionDetails;
+    }
+
+    public void setExcursionDetails(ExcursionDetails excursionDetails) {
+        this.excursionDetails = excursionDetails;
+    }
+
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
+    }
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
     }
 
 }

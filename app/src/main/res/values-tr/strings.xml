@@ -1948,6 +1948,8 @@
     <string name="change_password">Parolaları Değiştir</string>
     <string name="select_destination_city_or_airport">Lütfen dönüş şehir veya havalimanı adını yazınız</string>
     <string name="select_origin_city_or_airport"> Lütfen gidiş şehir veya havalimanı adını yazınız</string>
+    <string name="select_destination_city">شهر مقصد را انتخاب کنید</string>
+    <string name="select_origin_city">شهر مبدا را انتخاب کنید</string>
     <string name="destination">Hedef</string>
     <string name="origin">Menşei</string>
     <string name="travel_to">Seyahat :</string>

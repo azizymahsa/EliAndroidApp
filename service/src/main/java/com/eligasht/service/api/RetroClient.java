@@ -96,6 +96,7 @@ import com.eligasht.service.model.newModel.insurance.request.purchase.PurchasePa
 import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
 import com.eligasht.service.model.newModel.insurance.response.ResponseInsuranceSearchResult;
 import com.eligasht.service.model.newModel.insurance.response.purchase.ResponseInsurancePurchase;
+import com.eligasht.service.model.newModel.train.trainStation.response.ResponseTrainStation;
 import com.eligasht.service.model.newModel.xpackage.packageBasket.request.GetPackageBasketParameterModel;
 import com.eligasht.service.model.newModel.xpackage.packageBasket.response.ResponseGetPackageBasket;
 import com.eligasht.service.model.newModel.xpackage.packageCity.response.ResponseGetPackageCity;
@@ -473,8 +474,12 @@ public interface RetroClient {
     Observable<Response<com.eligasht.service.model.newModel.hotel.purchase.response.TmpReserveResult>> responsenewHotelPurchaseObservable(
             @Body RequestHotelPurchase requestHotelFlight
     );
-
-
+    //*************Train*************
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewTrainStat)
+    Observable<Response<List<ResponseTrainStation>>> responseGetStatTrainObservable(
+            @Body com.eligasht.service.model.newModel.train.trainStation.request.AutoCompleteParameterModel reqTrainState
+    );
     //**************************
     @Headers("Content-Type: application/json")
     @POST(Const.GetNewHotelNames)
