@@ -1813,7 +1813,7 @@
                             android:textAppearance="@style/IrsansBold"
                             android:textColor="#ffffff"
                             android:textSize="@dimen/_15dp_normal_textSize"
-                            android:visibility="gone" />
+                            android:visibility="visible" />
 
 
                     </LinearLayout>

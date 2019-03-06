@@ -36,8 +36,10 @@ public class PromotionCodeDialog extends DialogFragment implements View.OnClickL
     FancyButton btnOk, btnCancel;
     AVLoadingIndicatorView avi;
     Dialog dialog;
+    Boolean isFinish=false;
 
-    public static PromotionCodeDialog newInstance(final Activity activity) {
+    public static PromotionCodeDialog newInstance(final Activity activity,Boolean isFinish) {
+       isFinish=isFinish;
         PromotionCodeDialog resultGiftDialog = new PromotionCodeDialog();
         resultGiftDialog.initialize(activity);
         return resultGiftDialog;
@@ -89,7 +91,10 @@ public class PromotionCodeDialog extends DialogFragment implements View.OnClickL
                 activity.startActivity(new Intent(activity, LogInActivity.class));
                 break;
             case R.id.btnCancel:
-                activity.finish();
+               if (isFinish)
+                    activity.finish();
+                else
+                    dialog.cancel();
                 break;
         }
     }

@@ -1602,7 +1602,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			case R.id.btnPromotionCode:
 				try {
 					//val fm = supportFragmentManager;
-					PromotionCodeDialog resultGiftDialog = PromotionCodeDialog.newInstance(this);
+					PromotionCodeDialog resultGiftDialog = PromotionCodeDialog.newInstance(this,false);
 					resultGiftDialog.show(getSupportFragmentManager(),"dialog") ;
 						/*fm = supportFragmentManager;
 						locationAlertDialog = LocationAlertDialog(this, "lottie/verify_phone.json", "پیغام", getString(R.string.locationAlert), "مکان یاب", "بازگشت", true, this);

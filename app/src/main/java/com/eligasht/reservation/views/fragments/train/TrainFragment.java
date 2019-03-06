@@ -1,6 +1,7 @@
 package com.eligasht.reservation.views.fragments.train;
 
 import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,8 +15,11 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,8 +43,10 @@ import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
 import com.eligasht.reservation.views.ticker.TickerView;
 
+import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.eligasht.reservation.views.ui.dialog.train.DialogPassCount;
 import com.eligasht.service.helper.Const;
 import com.eligasht.service.model.newModel.auth.response.ResponseAuth;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
@@ -55,11 +61,13 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import cn.refactor.library.SmoothCheckBox;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TrainFragment extends Fragment implements OnClickListener, TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, ICallbackCalendarDialog {
+    private static Boolean Darbast = false;
     public static boolean flag;
     public static TextView tarikh_az_picker;
     public static TextView tarikh_be_picker;
@@ -67,6 +75,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
     public TextView tvStart, tvMaghsad, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne, searchTrain;
     public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     public int flagOneTwo = 2;
+    public String flagTypePass = "F";
     private static String picker_az_format = "29 December 2017";
     private static String picker_be_format = "25 December 2017";
     private View rootView;
@@ -83,7 +92,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
     public ImageView ivImage;
     public LinearLayout linear_tarikh_az_picker, linear_picker;
     public static int countNafar = 1;
-    public LinearLayout llButton;
+    public LinearLayout llButton,lnr_pass_count;
     public DatePickerDialog datePickerDialog;
     public DatePickerDialog datePickerDialog2;
     public com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
@@ -91,6 +100,10 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
     public CalendarDialog calendarDialog;
     private LottieAnimationView lottieCheckin, lottieCheckout;
     private ClientService service;
+    public TextView txtPassNat,txtPassWom,txtPassMen;
+    private CheckBox rd_darbast;
+    private int flagRd=0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_train, container, false);
@@ -221,12 +234,13 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         tarikh_az = rootView.findViewById(R.id.tarikh_az);
         tarikh_be = rootView.findViewById(R.id.tarikh_be);
         ivImage = rootView.findViewById(R.id.ivImage);
-        btnPlusB = rootView.findViewById(R.id.btnPlusB);
-        btnMinesB = rootView.findViewById(R.id.btnMinesB);
-        btnPlusK = rootView.findViewById(R.id.btnPlusK);
-        btnMinesK = rootView.findViewById(R.id.btnMinesK);
-        btnPlusN = rootView.findViewById(R.id.btnPlusN);
-        btnMinesN = rootView.findViewById(R.id.btnMinesN);
+
+        lnr_pass_count = rootView.findViewById(R.id.lnr_pass_count);
+
+        txtPassNat = rootView.findViewById(R.id.txtPassNat);
+        txtPassWom = rootView.findViewById(R.id.txtPassWom);
+        txtPassMen = rootView.findViewById(R.id.txtPassMen);
+
         btntwo = rootView.findViewById(R.id.btntwo);
         btnOne = rootView.findViewById(R.id.btnOne);
         searchTrain = rootView.findViewById(R.id.searchTrain);
@@ -243,18 +257,26 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
 
         linear_tarikh_az_picker.setOnClickListener(this);
 
-        btnPlusB.setOnClickListener(this);
-        btnMinesB.setOnClickListener(this);
-        btnPlusK.setOnClickListener(this);
-        btnMinesK.setOnClickListener(this);
-        btnPlusN.setOnClickListener(this);
-        btnMinesN.setOnClickListener(this);
+
         linearLayout_mabda.setOnClickListener(this);
         linearLayout_maghsad.setOnClickListener(this);
         txtOption.setOnClickListener(this);
         btntwo.setOnClickListener(this);
         btnOne.setOnClickListener(this);
         searchTrain.setOnClickListener(this);
+
+        lnr_pass_count.setOnClickListener(this);
+
+        txtPassNat.setOnClickListener(this);
+        txtPassWom.setOnClickListener(this);
+        txtPassMen.setOnClickListener(this);
+        rd_darbast = (CheckBox) rootView.findViewById(R.id.rd_darbast);
+        rd_darbast.setOnClickListener(this);
+
+
+
+
+
     }
 
     private void Auth_request() {
@@ -359,90 +381,48 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         lottieCheckout.playAnimation();
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
         switch (v.getId()) {
-            case R.id.btnPlusB:
-                countNafar = Integer.parseInt(txtCountB.getText().toString()) + Integer.parseInt(txtCountK.getText().toString()) + Integer.parseInt(txtCountN.getText().toString());
-                if (countNafar < 9) {
-                    try {
-                        String btnPlusBStr = txtCountB.getText().toString();
-                        int btnPlusBIntVal = Integer.parseInt(btnPlusBStr);
-                        if (isInRange(1, 8, btnPlusBIntVal))
-                            btnPlusBIntVal = btnPlusBIntVal + 1;
-                        txtCountB.setText(String.valueOf(btnPlusBIntVal));//}
-                    } catch (Exception e) {
-                        e.printStackTrace();
 
-                    }
-                }
-                break;
-            case R.id.btnMinesB:
-                try {
-                    String btnMinesBValStr = txtCountB.getText().toString();
-                    int btnMinesBIntVal = Integer.parseInt(btnMinesBValStr);
-                    if (isInRange(2, 9, btnMinesBIntVal))
-                        btnMinesBIntVal = btnMinesBIntVal - 1;
-                    txtCountB.setText(String.valueOf(btnMinesBIntVal));//}
-//                    YoYo.with(Techniques.Shake)
-//                            .duration(200)
-//                            .playOn(txtCountB);
-                } catch (Exception e) {
-                    e.printStackTrace();
 
-                }
-                break;
-            case R.id.btnPlusK:
-                countNafar = Integer.parseInt(txtCountB.getText().toString()) + Integer.parseInt(txtCountK.getText().toString()) + Integer.parseInt(txtCountN.getText().toString());
-                if (countNafar < 9) {
+                case R.id.lnr_pass_count:
+
                     try {
-                        String btnPlusKValStr = txtCountK.getText().toString();
-                        int btnPlisKIntVal = Integer.parseInt(btnPlusKValStr);
-                        if (isInRange(0, 8, btnPlisKIntVal))
-                            btnPlisKIntVal = btnPlisKIntVal + 1;
-                        txtCountK.setText(String.valueOf(btnPlisKIntVal));//}
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        DialogPassCount dialogPassCount = new DialogPassCount(getActivity(),false,false);
+                        dialogPassCount.setText( "لطفا تعداد را وارد کنید");
+                    }catch (Exception e){
+                        e.getMessage();
                     }
-                }
                 break;
-            case R.id.btnMinesK:
-                try {
-                    String btnMinesKValStr = txtCountK.getText().toString();
-                    int btnMinesKIntVal = Integer.parseInt(btnMinesKValStr);
-                    if (isInRange(1, 9, btnMinesKIntVal))
-                        btnMinesKIntVal = btnMinesKIntVal - 1;
-                    txtCountK.setText(String.valueOf(btnMinesKIntVal));//}
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-            case R.id.btnPlusN:
-                countNafar = Integer.parseInt(txtCountB.getText().toString()) + Integer.parseInt(txtCountK.getText().toString()) + Integer.parseInt(txtCountN.getText().toString());
-                if (countNafar < 9) {
-                    try {
-                        String presentValStr3 = txtCountN.getText().toString();
-                        int presentIntVal3 = Integer.parseInt(presentValStr3);
-                        if (isInRange(0, 8, presentIntVal3))
-                            presentIntVal3 = presentIntVal3 + 1;
-                        txtCountN.setText(String.valueOf(presentIntVal3));//}
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                case R.id.rd_darbast:
+                    if (((CheckBox) v).isChecked()) {
+                        Darbast=true;
+                        System.out.println("Darbast1"+Darbast);
+                    }else{
+                        Darbast=false;
+                        System.out.println("Darbast2"+Darbast);
                     }
-                }
+
                 break;
-            case R.id.btnMinesN:
-                try {
-                    String presentValStr4 = txtCountN.getText().toString();
-                    int presentIntVal4 = Integer.parseInt(presentValStr4);
-                    if (isInRange(1, 9, presentIntVal4))
-                        presentIntVal4 = presentIntVal4 - 1;
-                    txtCountN.setText(String.valueOf(presentIntVal4));//}
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+               case R.id.txtPassNat:
+                    flagTypePass="F";
+                    clickPassNat();
+
                 break;
+                case R.id.txtPassMen:
+                    flagTypePass="B";
+                    clickPassMen();
+
+                break;
+                case R.id.txtPassWom:
+                    flagTypePass="S";
+                    clickPassWo();
+
+                break;
+
             case R.id.linearLayout_maghsad:
                 Intent i3 = new Intent(getActivity(), GetCityTrainMaghsadActivity.class);
 
@@ -465,63 +445,14 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                 anim();
                 break;
             case R.id.btntwo:
-                SingletonDate.getInstance().checkConflictDate();
-                tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
-                bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
-                tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
-                raft = SingletonDate.getInstance().getStartDate().getFullGeo();
-                flagOneTwo = 2;
-                llButton.setBackgroundResource(R.drawable.raftobargasht_button);
-                YoYo.with(Techniques.Pulse)
-                        .duration(200)
-                        .playOn(llButton);
-                ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#ffffff"));
-                ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
-                //  linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
-                linear_picker = rootView.findViewById(R.id.linear_picker);
-                tarikh_be.setVisibility(View.VISIBLE);
-                linear_picker.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.Pulse)
-                        .duration(200)
-                        .playOn(linear_picker);
-                YoYo.with(Techniques.Pulse)
-                        .duration(200)
-                        .playOn(tarikh_be);
-                YoYo.with(Techniques.Pulse)
-                        .duration(200)
-                        .playOn(linear_picker);
+               btnTwo();
 
                 break;
             case R.id.btnOne:
-                SingletonDate.getInstance().checkConflictDate();
-                tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
-                bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
-                tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
-                raft = SingletonDate.getInstance().getStartDate().getFullGeo();
-                flagOneTwo = 1;
-                llButton.setBackgroundResource(R.drawable.raft_button);
-                YoYo.with(Techniques.Pulse)
-                        .duration(200)
-                        .playOn(llButton);
-                //((Button) rootView.findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.raft_big);
-                ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#ffffff"));
-                ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#d9d9d9"));
-                //linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
-                linear_picker = rootView.findViewById(R.id.linear_picker);
-                tarikh_be.setVisibility(View.INVISIBLE);
-                linear_picker.setVisibility(View.INVISIBLE);
-                YoYo.with(Techniques.Pulse)
-                        .duration(200)
-                        .playOn(linear_picker);
-                YoYo.with(Techniques.Pulse)
-                        .duration(400)
-                        .playOn(tarikh_be);
-                YoYo.with(Techniques.Pulse)
-                        .duration(200)
-                        .playOn(linear_picker);
+                btnOne();
+
                 break;
 
-            //case R.id.tarikh_az_picker:
             case R.id.linear_tarikh_az_picker:
                 SingletonDate.getInstance().checkConflictDate();
                 if (flagOneTwo == 1) {
@@ -533,30 +464,16 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                 break;
             case R.id.searchTrain:
                 boolean ok = true;
+                Prefs.getString("Value_Pass_CountB","");
+                Prefs.getString("Value_Pass_CountK", "");
+                Prefs.getString("Value_Pass_CountN", "");
                /* try {
                     Intent intent1 = new Intent(getActivity(), SearchFlightActivity.class);
                     if (Prefs.getString("Value-Mabda-City-Train", "") != null && Prefs.getString("Value-Mabda-City-Train", "").length() > 0 && Prefs.getString("Value-Maghsad-Airport-Code-Train", "") != null && Prefs.getString("Value-Maghsad-Airport-Code-Train", "").length() > 0) {
                         System.out.println("not default" + Prefs.getString("Value-Mabda-City-Train", ""));
-                        if (Prefs.getString("Value-Mabda-Airport-Code-Train", "") != null && Prefs.getString("Value-Mabda-Airport-Code-Train", "").length() > 0) {
-                            intent1.putExtra("Value-Mabda-City-Train", Prefs.getString("Value-Mabda-City-Train", ""));
-                            intent1.putExtra("Value-Mabda-Airport-Train", Prefs.getString("Value-Mabda-Airport-Train", ""));
-                            intent1.putExtra("Value-Mabda-Airport-Code-Train", Prefs.getString("Value-Mabda-Airport-Code-Train", ""));//*THR
-                        } else {
-                            intent1.putExtra("Value-Mabda-City-Train", tvStart.getText().toString());
-                            intent1.putExtra("Value-Mabda-Airport-Train", lbl_forudgah_mabda.getText().toString());
-                            intent1.putExtra("Value-Mabda-Airport-Code-Train", "THR");//*THR
-                        }
-                        if (Prefs.getString("Value-Maghsad-Airport-Code-Train", "") != null && Prefs.getString("Value-Maghsad-Airport-Code-Train", "").length() > 0) {
-                            intent1.putExtra("Value-Maghsad-City-Train", Prefs.getString("Value-Maghsad-City-Train", ""));
-                            intent1.putExtra("Value-Maghsad-Airport-Train", Prefs.getString("Value-Maghsad-Airport-Train", ""));
-                            intent1.putExtra("Value-Maghsad-Airport-Code-Train", Prefs.getString("Value-Maghsad-Airport-Code-Train", ""));//*
-                        } else {
-                            intent1.putExtra("Value-Maghsad-City-Train", tvMaghsad.getText().toString());
-                            intent1.putExtra("Value-Maghsad-Airport-Train", lbl_forudgah_maghsad.getText().toString());
-                            intent1.putExtra("Value-Maghsad-Airport-Code-Train", "IST");//*
-                        }
-                        intent1.putExtra("Value-Mabda-City-Train", tvStart.getText().toString());
-                        intent1.putExtra("Value-Maghsad-City-Train", tvMaghsad.getText().toString());
+
+                        intent1.putExtra("Value_Mabda_City_Train", tvStart.getText().toString());
+                        intent1.putExtra("Value_Maghsad_City_Train", tvMaghsad.getText().toString());
                         intent1.putExtra("Value-Flag-Two", Integer.toString(flagOneTwo));
                         intent1.putExtra("Value-AdlCount", txtCountB.getText().toString());
                         intent1.putExtra("Value-ChdCount", txtCountK.getText().toString());
@@ -591,6 +508,116 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                     Toast.makeText(getActivity(), getString(R.string.something_went_wron), Toast.LENGTH_SHORT).show();
                 }*/
                 break;
+        }
+    }
+
+    private void btnTwo() {
+        SingletonDate.getInstance().checkConflictDate();
+        tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+        tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+        flagOneTwo = 2;
+        llButton.setBackgroundResource(R.drawable.raftobargasht_button);
+        YoYo.with(Techniques.Pulse)
+                .duration(200)
+                .playOn(llButton);
+        ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#ffffff"));
+        ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
+        //  linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
+        linear_picker = rootView.findViewById(R.id.linear_picker);
+        tarikh_be.setVisibility(View.VISIBLE);
+        linear_picker.setVisibility(View.VISIBLE);
+        YoYo.with(Techniques.Pulse)
+                .duration(200)
+                .playOn(linear_picker);
+        YoYo.with(Techniques.Pulse)
+                .duration(200)
+                .playOn(tarikh_be);
+        YoYo.with(Techniques.Pulse)
+                .duration(200)
+                .playOn(linear_picker);
+    }
+
+    private void btnOne() {
+        SingletonDate.getInstance().checkConflictDate();
+        tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+        tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+        flagOneTwo = 1;
+        llButton.setBackgroundResource(R.drawable.raft_button);
+        YoYo.with(Techniques.Pulse)
+                .duration(200)
+                .playOn(llButton);
+        ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#ffffff"));
+        ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#d9d9d9"));
+        linear_picker = rootView.findViewById(R.id.linear_picker);
+        tarikh_be.setVisibility(View.INVISIBLE);
+        linear_picker.setVisibility(View.INVISIBLE);
+        YoYo.with(Techniques.Pulse)
+                .duration(200)
+                .playOn(linear_picker);
+        YoYo.with(Techniques.Pulse)
+                .duration(400)
+                .playOn(tarikh_be);
+        YoYo.with(Techniques.Pulse)
+                .duration(200)
+                .playOn(linear_picker);
+    }
+
+    private void clickPassNat() {
+        try {
+
+            txtPassNat.setBackgroundResource(R.drawable.background_strock_purple_mat);
+            txtPassMen.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+            txtPassWom.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+
+            txtPassNat.setTextColor(Color.parseColor(getString(R.color.white)));
+            txtPassMen.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassWom.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            YoYo.with(Techniques.Pulse)
+                    .duration(200)
+                    .playOn(txtPassNat);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+    private void clickPassWo() {
+        try {
+
+            txtPassNat.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+            txtPassMen.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+            txtPassWom.setBackgroundResource(R.drawable.background_strock_purple_mat);
+
+            txtPassNat.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassMen.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassWom.setTextColor(Color.parseColor(getString(R.color.white)));
+            YoYo.with(Techniques.Pulse)
+                    .duration(200)
+                    .playOn(txtPassWom);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+    private void clickPassMen() {
+        try {
+
+            txtPassNat.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+            txtPassMen.setBackgroundResource(R.drawable.background_strock_purple_mat);
+            txtPassWom.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+
+            txtPassNat.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassMen.setTextColor(Color.parseColor(getString(R.color.white)));
+            txtPassWom.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            YoYo.with(Techniques.Pulse)
+                    .duration(200)
+                    .playOn(txtPassMen);
+        } catch (Exception e) {
+            e.printStackTrace();
+
         }
     }
 
@@ -651,12 +678,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         YoYo.with(Techniques.SlideOutDown).duration(500).interpolate(new AccelerateDecelerateInterpolator()).withListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-            /*    YoYo.with(Techniques.SlideOutDown)
-                        .duration(500)
-                        .playOn(lbl_forudgah_mabda);
-                YoYo.with(Techniques.SlideOutUp)
-                        .duration(500)
-                        .playOn(lbl_forudgah_maghsad);*/
+
                 YoYo.with(Techniques.SlideOutUp)
                         .duration(500)
                         .playOn(tvMaghsad);
@@ -670,27 +692,22 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                 String endF = "";
                 start = tvStart.getText().toString();
                 end = tvMaghsad.getText().toString();
-             /*   startF = lbl_forudgah_mabda.getText().toString();
-                endF = lbl_forudgah_maghsad.getText().toString();*/
+
                 tvStart.setText(end);
                 tvMaghsad.setText(start);
-             /*   lbl_forudgah_mabda.setText(endF);
-                lbl_forudgah_maghsad.setText(startF);*/
+
                 if (start.contains(getString(R.string.origin)) && end.contains(getString(R.string.destination))) {
                     tvStart.setText(getString(R.string.select_origin_city));
                     tvMaghsad.setText(getString(R.string.select_destination_city));
                 } else if (start.contains(getString(R.string.origin))) {
                     tvMaghsad.setText(getString(R.string.select_destination_city));
-                    //lbl_forudgah_maghsad.setText("");
+
                 } else if (end.contains(getString(R.string.destination))) {
                     tvStart.setText(getString(R.string.select_origin_city));
-                  //  lbl_forudgah_mabda.setText("");
+
                 }
 /////////////////////////
-                /*Prefs.putString("Value_Mabda_Train", current.getText());
-                Prefs.putString("Value_Mabda_Key_Train", current.getValue());
-                Prefs.putString("Value_Maghsad_Train", current.getText());
-                Prefs.putString("Value_Maghsad_Key_Train", current.getValue());*/
+
                 String airportMaghsad = Prefs.getString("Value-Maghsad-Airport-Code-Train", "");
                 String airPortMabda = Prefs.getString("Value-Mabda-Airport-Code-Train", "");
                 Prefs.putString("Value_Mabda_Key_Train", airportMaghsad);
@@ -704,12 +721,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                 Prefs.putString("Value_Maghsad_Train", mabdaCity);
                 Prefs.putString("Value_Maghsad_Key_Train", mabdaAirPort);
 ////////////////////////
-             /*   YoYo.with(Techniques.SlideInUp)
-                        .duration(500)
-                        .playOn(lbl_forudgah_mabda);
-                YoYo.with(Techniques.SlideInDown)
-                        .duration(500)
-                        .playOn(lbl_forudgah_maghsad);*/
+
                 YoYo.with(Techniques.SlideInUp)
                         .duration(500)
                         .playOn(tvStart);
