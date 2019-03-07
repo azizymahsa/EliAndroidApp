@@ -36,6 +36,8 @@ import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
 import com.eligasht.reservation.views.activities.train.GetCityTrainMabdaActivity;
 import com.eligasht.reservation.views.activities.train.GetCityTrainMaghsadActivity;
+//import com.eligasht.reservation.views.activities.train.SearchTrainActivity;
+import com.eligasht.reservation.views.activities.train.SearchTrainActivity;
 import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
 import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
@@ -157,17 +159,12 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         Utility.sendTag("F", true, false);
         Geo = Prefs.getBoolean("geo", false);
 
-        /*Prefs.putString("Value_Mabda_Train", current.getText());
-        Prefs.putString("Value_Mabda_Key_Train", current.getValue());
-        Prefs.putString("Value_Maghsad_Train", current.getText());
-                Prefs.putString("Value_Maghsad_Key_Train", current.getValue());*/
+
         //get
         if (Prefs.getString("Value_Mabda_Train", "") != null && Prefs.getString("Value_Mabda_Train", "").length() > 1) {
             tvStart.setText(Prefs.getString("Value_Mabda_Train", ""));
-           // lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
         }
         if (Prefs.getString("Value_Maghsad_Train", "") != null && Prefs.getString("Value_Maghsad_Train", "").length() > 1) {
-          //  lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
             tvMaghsad.setText(Prefs.getString("Value_Maghsad_Train", ""));
         }//return rootView;
         if (Prefs.getString("bargashtfa", "null").equals("null")) {
@@ -463,12 +460,71 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                 }
                 break;
             case R.id.searchTrain:
-                boolean ok = true;
-                Prefs.getString("Value_Pass_CountB","");
-                Prefs.getString("Value_Pass_CountK", "");
-                Prefs.getString("Value_Pass_CountN", "");
+
+                String tripRaft="";
+                String tripBargasht="";
+                String trip="";
+                Intent intent1 = new Intent(getActivity(), SearchTrainActivity.class);
+                    if (Prefs.getString("Value_Mabda_Train", "") != null && Prefs.getString("Value_Mabda_Train", "").length() > 0 && Prefs.getString("Value_Maghsad_Key_Train", "") != null && Prefs.getString("Value_Maghsad_Key_Train", "").length() > 0) {
+                        System.out.println("not default" + Prefs.getString("Value-Mabda-City-Train", ""));
+
+                        //cityName & value
+                        intent1.putExtra("Value_Mabda_Train", Prefs.getString("Value_Mabda_Train", ""));
+                        intent1.putExtra("Value_Mabda_Key_Train", Prefs.getString("Value_Mabda_Key_Train", ""));
+                        intent1.putExtra("Value_Maghsad_Train", Prefs.getString("Value_Maghsad_Train", ""));
+                        intent1.putExtra("Value_Maghsad_Key_Train", Prefs.getString("Value_Maghsad_Key_Train", ""));
+                        //passenger Count
+                        intent1.putExtra("Value_Pass_CountB", Prefs.getString("Value_Pass_CountB",""));
+                        intent1.putExtra("Value_Pass_CountK", Prefs.getString("Value_Pass_CountK",""));
+                        intent1.putExtra("Value_Pass_CountN", Prefs.getString("Value_Pass_CountN",""));
+
+                        tripRaft=Prefs.getString("Value_Mabda_Key_Train", "")+"-"+Prefs.getString("Value_Maghsad_Key_Train", "");
+                        tripBargasht=Prefs.getString("Value_Maghsad_Key_Train", "")+"-"+Prefs.getString("Value_Mabda_Key_Train", "");
+                        //////////////recent date
+                        if (Prefs.getString("bargashtfa", "null").equals("null")) {
+                            intent1.putExtra("Value-ArrivalDate", bargasht.replace("/", "-"));//2017-11-29
+                            tripBargasht=tripBargasht+"-"+bargasht;
+                        } else {
+                            picker_be_format = Prefs.getString("bargashtfa", "null");
+                            bargasht = Prefs.getString("bargasht", "null");
+                            intent1.putExtra("Value-ArrivalDate", bargasht.replace("/", "-"));//2017-11-29
+                            tripBargasht=tripBargasht+"-"+bargasht;
+                        }
+                        if (Prefs.getString("raftfa", "null").equals("null")) {
+                            intent1.putExtra("Value-DepartureDate", raft.replace("/", "-"));//2017-11-24
+                            tripRaft=tripRaft+"-"+raft;
+                        } else {
+                            picker_az_format = Prefs.getString("raftfa", "null");
+                            raft = Prefs.getString("raft", "null");
+                            intent1.putExtra("Value-DepartureDate", raft.replace("/", "-"));//2017-11-24
+                            tripRaft=tripRaft+"-"+raft;
+                        }
+
+                        //////////////////////end recent date
+                        if(flagOneTwo==1){
+                            trip=tripRaft;
+                        }if(flagOneTwo==2){
+                            trip=tripRaft+"|"+tripBargasht;
+                        }
+                        intent1.putExtra("Value_Trip", trip.replace("/", "-"));//THR-MHD-2019-03-08|MHD-THR-2019-03-15
+
+                        intent1.putExtra("Value_PType", flagTypePass);
+                        intent1.putExtra("Value_ExclusiveTrain", Darbast);
+                        intent1.putExtra("Value_FlagOneTwo", flagOneTwo);
+
+                        intent1.putExtra("Value_DepartureDate_format", picker_az_format);//2017-December-24
+                        intent1.putExtra("Value_ArrivalDate_format", picker_be_format);//2017-December-29
+                        intent1.putExtra("Geo", Geo);//2017-11-24
+
+                        startActivity(intent1);
+                    }else {//default
+                        AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity(), false,false);
+                        AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin), getString(R.string.massege));
+
+                    }
+                break;
                /* try {
-                    Intent intent1 = new Intent(getActivity(), SearchFlightActivity.class);
+                    Intent intent1 = new Intent(getActivity(), SearchTrainActivity.class);
                     if (Prefs.getString("Value-Mabda-City-Train", "") != null && Prefs.getString("Value-Mabda-City-Train", "").length() > 0 && Prefs.getString("Value-Maghsad-Airport-Code-Train", "") != null && Prefs.getString("Value-Maghsad-Airport-Code-Train", "").length() > 0) {
                         System.out.println("not default" + Prefs.getString("Value-Mabda-City-Train", ""));
 
@@ -507,7 +563,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                 } catch (Exception e) {
                     Toast.makeText(getActivity(), getString(R.string.something_went_wron), Toast.LENGTH_SHORT).show();
                 }*/
-                break;
+
         }
     }
 
@@ -524,7 +580,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                 .playOn(llButton);
         ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#ffffff"));
         ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
-        //  linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
+
         linear_picker = rootView.findViewById(R.id.linear_picker);
         tarikh_be.setVisibility(View.VISIBLE);
         linear_picker.setVisibility(View.VISIBLE);
@@ -708,10 +764,6 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                 }
 /////////////////////////
 
-                String airportMaghsad = Prefs.getString("Value-Maghsad-Airport-Code-Train", "");
-                String airPortMabda = Prefs.getString("Value-Mabda-Airport-Code-Train", "");
-                Prefs.putString("Value_Mabda_Key_Train", airportMaghsad);
-                Prefs.putString("Value_Maghsad_Key_Train", airPortMabda);
                 String mabdaCity = Prefs.getString("Value_Mabda_Train", "");
                 String mabdaAirPort = Prefs.getString("Value_Mabda_Key_Train", "");
                 String maghsadCity = Prefs.getString("Value_Maghsad_Train", "");

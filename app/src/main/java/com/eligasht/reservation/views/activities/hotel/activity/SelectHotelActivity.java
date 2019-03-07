@@ -104,15 +104,10 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_hotel);
- /*     SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
-        helper.setEdgeMode(true)
-                .setParallaxMode(true)
-                .setParallaxRatio(3)
-                .setNeedBackgroundShadow(true)
-                .init(this);*/
+
         window = getWindow();
          service = ServiceGenerator.createService(ClientService.class);
-       // list = findViewById(R.id.lvHoteResult);
+
         rvHotelResult = findViewById(R.id.rvHotelResult);
         rlList = findViewById(R.id.rlList);
         tvLoading = findViewById(R.id.tvLoading);

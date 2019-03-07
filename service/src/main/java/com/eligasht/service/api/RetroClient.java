@@ -96,6 +96,8 @@ import com.eligasht.service.model.newModel.insurance.request.purchase.PurchasePa
 import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
 import com.eligasht.service.model.newModel.insurance.response.ResponseInsuranceSearchResult;
 import com.eligasht.service.model.newModel.insurance.response.purchase.ResponseInsurancePurchase;
+import com.eligasht.service.model.newModel.train.domesticSearch.Request.RequestDomesticTrainAPI;
+import com.eligasht.service.model.newModel.train.domesticSearch.response.ResponseDomesticTrainAPI;
 import com.eligasht.service.model.newModel.train.trainStation.response.ResponseTrainStation;
 import com.eligasht.service.model.newModel.xpackage.packageBasket.request.GetPackageBasketParameterModel;
 import com.eligasht.service.model.newModel.xpackage.packageBasket.response.ResponseGetPackageBasket;
@@ -479,6 +481,11 @@ public interface RetroClient {
     @POST(Const.GetNewTrainStat)
     Observable<Response<List<ResponseTrainStation>>> responseGetStatTrainObservable(
             @Body com.eligasht.service.model.newModel.train.trainStation.request.AutoCompleteParameterModel reqTrainState
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewTrainSearch)
+    Observable<Response<ResponseDomesticTrainAPI>> responseGetDTrainObservable(
+            @Body RequestDomesticTrainAPI requestDomesticTrainAPI
     );
     //**************************
     @Headers("Content-Type: application/json")

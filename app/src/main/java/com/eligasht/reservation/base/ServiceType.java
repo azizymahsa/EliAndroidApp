@@ -10,6 +10,7 @@ public enum ServiceType {
     INSURANCE,
     PACKAGE,
    Purchase,
+   Train,
 
 
 }

@@ -64,6 +64,9 @@
     <style name="IconFonts4" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello-all-icons.ttf</item>
     </style>
+    <style name="IconFontsTrain" parent="android:TextAppearance">
+        <item name="fontPath">fonts/train.ttf</item>
+    </style>
 
     <style name="Arrow" parent="android:TextAppearance">
         <item name="fontPath">fonts/fontello_up_and_down.ttf</item>

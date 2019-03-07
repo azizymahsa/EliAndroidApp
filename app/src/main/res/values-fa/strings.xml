@@ -2412,4 +2412,7 @@
     <string name="_not_found">مورد یافت شد</string>
     <string name="please_wait">لطفا کمی صبر کنید ...</string>
     <string name="not_register_user">کاربری با این مشخصات ثبت نشده است</string>
+    <string name="air_conditioner_ic">&#99;</string>
+    <string name="media_ic">&#100;</string>
+    <string name="arrow_left_por">&#97;</string>
 </resources>

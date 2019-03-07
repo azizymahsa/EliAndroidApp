@@ -2433,5 +2433,8 @@
     <string name="_not_found">Ürün bulundu</string>
     <string name="please_wait">Lütfen biraz bekleyin ...</string>
     <string name="not_register_user">User has not been registered</string>
+    <string name="air_conditioner_ic">&#99;</string>
+    <string name="media_ic">&#100;</string>
+    <string name="arrow_left_por">&#97;</string>
 </resources>
 

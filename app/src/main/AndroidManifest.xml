@@ -116,6 +116,7 @@
         <activity
             android:name=".reservation.views.ui.SearchFlightActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".reservation.views.ui.GetAirportMabdaActivity"
             android:screenOrientation="portrait" />
@@ -124,6 +125,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".reservation.views.activities.train.GetCityTrainMaghsadActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reservation.views.activities.train.SearchTrainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".reservation.views.ui.GetAirportMaghsadActivity"

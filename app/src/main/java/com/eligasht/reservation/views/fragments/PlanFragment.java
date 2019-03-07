@@ -631,27 +631,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         .duration(200)
                         .playOn(linear_picker);
                 break;
-            // case R.id.tarikh_be_picker:
-            /*case R.id.linear_picker:
-                SingletonDate.getInstance().checkConflictDate();
-                calendarDialog.create(getActivity(), getContext(), new ICallbackCalendarDialog() {
-                    @Override
-                    public void onDateSelected(CustomDate start, CustomDate end, boolean isGeo) {
-                        if (CustomDate.isOlderThan(SingletonDate.getInstance().getStartDate().getCalendar(), start.getCalendar())) {
-                            SingletonDate.getInstance().setEndDate(start);
-                            tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
-                        } else {
-                            Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }, SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
-                tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
-                tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
-                raft = SingletonDate.getInstance().getStartDate().getFullGeo();
-                bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
 
-
-                break;*/
             //case R.id.tarikh_az_picker:
             case R.id.linear_tarikh_az_picker:
                 SingletonDate.getInstance().checkConflictDate();
