@@ -1,11 +1,12 @@
 
-package com.eligasht.service.model.newModel.insurance.response.purchase;
+package com.eligasht.service.model.newModel.train.purchase.response;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseInsurancePurchase {
+import java.util.List;
+
+public class ResponseTrainPurchase {
 
     @SerializedName("BookingMessageFa")
     @Expose

@@ -90,6 +90,8 @@ public class Const {
     //*************Train*****************
     public final static String GetNewTrainStat = "api/LoadAndFillAPI/TrainStations";
     public final static String GetNewTrainSearch = "api/DomesticTrainAPI/Search";
+    public final static String GetNewTrainGetPrice = "api/DomesticTrainAPI/DomesticTrainGetPrice";
+    public final static String GetNewTrainPurchase = "api/DomesticTrainAPI/Purchase";
     //*************Insurance*****************
     public final static String GetNewInsuranceCountries = "api/LoadAndFillAPI/InsuranceCountries";
     public final static String GetNewInsuranceSearchResult = "api/InsuranceAPI/InsuranceSearchResultViewModel";

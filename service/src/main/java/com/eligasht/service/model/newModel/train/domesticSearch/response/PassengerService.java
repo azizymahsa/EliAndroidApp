@@ -1,6 +1,7 @@
 
 package com.eligasht.service.model.newModel.train.domesticSearch.response;
 
+import com.eligasht.service.model.newModel.train.domesticTrainGetPrice.response.Cost;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -17,7 +18,7 @@ public class PassengerService {
     private String name;
     @SerializedName("Price")
     @Expose
-    private Object price;
+    private Cost price;
 
     public String getCode() {
         return code;
@@ -43,11 +44,11 @@ public class PassengerService {
         this.name = name;
     }
 
-    public Object getPrice() {
+    public Cost getPrice() {
         return price;
     }
 
-    public void setPrice(Object price) {
+    public void setPrice(Cost price) {
         this.price = price;
     }
 

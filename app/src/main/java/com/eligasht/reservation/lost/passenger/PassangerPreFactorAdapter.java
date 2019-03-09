@@ -56,7 +56,7 @@ public class PassangerPreFactorAdapter extends RecyclerView.Adapter<PassangerPre
         holder.tvGender.setText(item.getGender().contains("false") ? context.getString(R.string.female) : context.getString(R.string.male));//item.getGender());
         holder.tvPassangerName.setText(item.getRqPassenger_name());
 
-        if (item.getNational_Code() != null){
+        if (item.getNational_Code() != null && item.getRqPassenger_PassNo() != null){
         if (item.getRqPassenger_PassNo().trim().equals(item.getNational_Code().trim())){
             holder.tvPassNo.setVisibility(View.GONE);
             holder.tvPass.setVisibility(View.GONE);

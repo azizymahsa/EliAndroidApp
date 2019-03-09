@@ -35,12 +35,13 @@ public class SelectTrainModel {
     private String SaloonName;
     private Boolean HotelIsIncluded;
     private String TextButton;
+    private String TrainId;
 
 
 
 
     public SelectTrainModel(String privateID, String ID, Integer trainlineID, Integer trainlineCode, String trainlineNameEn, String trainlineNameFa, String sourceText, String destinationText, String trainTime, String trainArrivalTime, String trainNumber, Integer totalFare, TrainFacility facilities, Boolean hasAirConditioning, Boolean hasMedia,
-                            Integer seatsRemaining, Integer seatAvailable, Integer compartmentCapacity, String saloonName,Boolean hotelIsIncluded,Boolean IsDepartureSegment,String TextButton) {
+                            Integer seatsRemaining, Integer seatAvailable, Integer compartmentCapacity, String saloonName,Boolean hotelIsIncluded,Boolean IsDepartureSegment,String TextButton,String TrainId) {
         this.PrivateID = privateID;
         this.ID = ID;
         this.TrainlineID = trainlineID;
@@ -63,6 +64,15 @@ public class SelectTrainModel {
         this.HotelIsIncluded = hotelIsIncluded;
         this.IsDepartureSegment =  IsDepartureSegment;
         this.TextButton =  TextButton;
+        this.TrainId =  TrainId;
+    }
+
+    public String getTrainId() {
+        return TrainId;
+    }
+
+    public void setTrainId(String trainId) {
+        TrainId = trainId;
     }
 
     public String getTextButton() {

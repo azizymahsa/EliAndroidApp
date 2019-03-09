@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.eligasht.R;
 import com.eligasht.reservation.models.ServicePreFactorModel;
+import com.eligasht.reservation.models.train.ServicePreFactorTrainModel;
 import com.eligasht.reservation.tools.Utility;
 import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
@@ -26,13 +27,25 @@ import java.util.List;
 
 public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFactorAdapter.ViewHolder> {
 
-    private final List<ServicePreFactorModel> data;
+    private  List<ServicePreFactorModel> data = null;
+    private List<ServicePreFactorTrainModel> train_data= null;
     private Context context;
+    private boolean flagTrain;
     private SparseBooleanArray expandState = new SparseBooleanArray();
 
+
     public ServicePreFactorAdapter(final List<ServicePreFactorModel> data) {
+        this.train_data =null;
         this.data = data;
         for (int i = 0; i < data.size(); i++) {
+            expandState.append(i, false);
+        }
+    }
+    public ServicePreFactorAdapter(final List<ServicePreFactorTrainModel> train_data,boolean flagTrain) {
+        this.data =null;
+        this.train_data = train_data;
+        this.flagTrain = flagTrain;
+        for (int i = 0; i < train_data.size(); i++) {
             expandState.append(i, false);
         }
     }
@@ -40,14 +53,88 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
     @Override
     public ServicePreFactorAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
         this.context = parent.getContext();
-        return new ServicePreFactorAdapter.ViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.recycler_view_list_row_service, parent, false));
+        ServicePreFactorAdapter.ViewHolder view;
+        if (flagTrain) {
+            view= new ViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_view_list_row_service_train, parent, false));
+            return  view;
+        }else{
+            view= new ViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_view_list_row_service, parent, false));
+            return  view;
+        }
+
+
+
     }
 
 
     @Override
     public void onBindViewHolder(final ServicePreFactorAdapter.ViewHolder holder, final int position) {
+        if (flagTrain) {
+            setDataServiceTrain(holder,position);
 
+        }else{
+            setDataService(holder,position);
+        }
+
+    }
+
+    private void setDataServiceTrain(ViewHolder holder, int position) {
+        final ServicePreFactorTrainModel item = train_data.get(position);
+        holder.setIsRecyclable(false);
+        holder.tvServicName.setText(item.getServiceNameEn());
+        holder.tvServiceFa.setText(item.getServiceNameFa());
+        holder.tvCityName.setText(item.getCityFa());
+        holder.tvTypeService.setText(item.getServiceType());
+
+        holder.tvCountPass.setText(item.getCountPass());
+        holder.tvDescription.setText(item.getDescription());
+
+        if(item.getServicePrice().equals("0"))
+            holder.tvPrice.setText(R.string.calculated);
+        else
+            holder.tvPrice.setText(Utility.priceFormat(item.getServicePrice())+"");
+
+        if (item.getServiceNameFa().contains("بیمه")) {
+            holder.tvServiceCityUi.setText(context.getString(R.string.country));
+            holder.tvCityName.setVisibility(View.VISIBLE);
+
+        } else {
+
+            holder.tvServiceCityUi.setVisibility(View.VISIBLE);
+            holder.tvServiceCityUi.setText(context.getString(R.string.city));
+
+            holder.tvCityName.setVisibility(View.VISIBLE);
+
+
+        }
+
+        holder.expandableLayout.setInRecyclerView(true);
+
+        holder.expandableLayout.setExpanded(expandState.get(position));
+        holder.expandableLayout.setListener(new ExpandableLayoutListenerAdapter() {
+            @Override
+            public void onPreOpen() {
+                createRotateAnimator(holder.tvArrow, 0f, 180f).start();
+                expandState.put(position, true);
+            }
+
+            @Override
+            public void onPreClose() {
+                createRotateAnimator(holder.tvArrow, 180f, 0f).start();
+                expandState.put(position, false);
+            }
+        });
+
+        holder.tvArrow.setRotation(expandState.get(position) ? 180f : 0f);
+        holder.buttonLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                onClickButton(holder.expandableLayout);
+            }
+        });
+    }
+
+    private void setDataService(ViewHolder holder, int position) {
         final ServicePreFactorModel item = data.get(position);
         holder.setIsRecyclable(false);
         holder.tvServicName.setText(item.getServiceNameEn());
@@ -58,7 +145,7 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
         if(item.getServicePrice().equals("0"))
             holder.tvPrice.setText(R.string.calculated);
         else
-        holder.tvPrice.setText(Utility.priceFormat(item.getServicePrice())+"");
+            holder.tvPrice.setText(Utility.priceFormat(item.getServicePrice())+"");
 
         if (item.getServiceNameFa().contains("بیمه")) {
             holder.tvServiceCityUi.setText(context.getString(R.string.country));
@@ -103,13 +190,18 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
         });
     }
 
+
     private void onClickButton(final ExpandableLayout expandableLayout) {
         expandableLayout.toggle();
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        if (flagTrain) {
+            return train_data.size();
+        }else{
+            return data.size();
+        }
     }
 
     public ObjectAnimator createRotateAnimator(final View target, final float from, final float to) {
@@ -120,7 +212,7 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvServicName, tvServiceFa, tvCityName, tvTypeService, tvArrow, tvServiceCityUi,tvPrice;
+        public TextView tvServicName, tvServiceFa, tvCityName, tvTypeService, tvArrow, tvServiceCityUi,tvPrice,tvDescription,tvCountPass;
         /**
          * You must use the ExpandableLinearLayout in the recycler view.
          * The ExpandableRelativeLayout doesn't work.
@@ -131,6 +223,9 @@ public class ServicePreFactorAdapter extends RecyclerView.Adapter<ServicePreFact
 
         public ViewHolder(View v) {
             super(v);
+            tvDescription = v.findViewById(R.id.tvDescription);
+            tvCountPass = v.findViewById(R.id.tvCountPass);
+
             tvServicName = v.findViewById(R.id.tvServicName);
             tvServiceFa = v.findViewById(R.id.tvServiceFa);
             tvCityName = v.findViewById(R.id.tvCityName);

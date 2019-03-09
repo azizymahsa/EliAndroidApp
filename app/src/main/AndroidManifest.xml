@@ -130,6 +130,9 @@
             android:name=".reservation.views.activities.train.SearchTrainActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".reservation.views.activities.train.PassengerTrainActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".reservation.views.ui.GetAirportMaghsadActivity"
             android:screenOrientation="portrait" />
         <activity

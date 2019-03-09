@@ -98,6 +98,10 @@ import com.eligasht.service.model.newModel.insurance.response.ResponseInsuranceS
 import com.eligasht.service.model.newModel.insurance.response.purchase.ResponseInsurancePurchase;
 import com.eligasht.service.model.newModel.train.domesticSearch.Request.RequestDomesticTrainAPI;
 import com.eligasht.service.model.newModel.train.domesticSearch.response.ResponseDomesticTrainAPI;
+import com.eligasht.service.model.newModel.train.domesticTrainGetPrice.request.RequestDomesticTrainGetPrice;
+import com.eligasht.service.model.newModel.train.domesticTrainGetPrice.response.ResponseDomesticTrainGetPrice;
+import com.eligasht.service.model.newModel.train.purchase.request.RequestTrainPurchase;
+import com.eligasht.service.model.newModel.train.purchase.response.ResponseTrainPurchase;
 import com.eligasht.service.model.newModel.train.trainStation.response.ResponseTrainStation;
 import com.eligasht.service.model.newModel.xpackage.packageBasket.request.GetPackageBasketParameterModel;
 import com.eligasht.service.model.newModel.xpackage.packageBasket.response.ResponseGetPackageBasket;
@@ -486,6 +490,16 @@ public interface RetroClient {
     @POST(Const.GetNewTrainSearch)
     Observable<Response<ResponseDomesticTrainAPI>> responseGetDTrainObservable(
             @Body RequestDomesticTrainAPI requestDomesticTrainAPI
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewTrainGetPrice)
+    Observable<Response<ResponseDomesticTrainGetPrice>> responseGetDTrainPriceObservable(
+            @Body RequestDomesticTrainGetPrice requestDomesticTrainGetPrice
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewTrainPurchase)
+    Observable<Response<ResponseTrainPurchase>> responsenewTrainPurchase(
+            @Body RequestTrainPurchase requestTrainPurchase
     );
     //**************************
     @Headers("Content-Type: application/json")
