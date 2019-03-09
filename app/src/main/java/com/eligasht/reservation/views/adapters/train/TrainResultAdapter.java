@@ -2,6 +2,7 @@ package com.eligasht.reservation.views.adapters.train;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -72,8 +73,8 @@ public class TrainResultAdapter extends RecyclerView.Adapter<TrainResultAdapter.
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        String imageUri = "https://cdn.elicdn.com" +"/Content/Images/Train/TrainLine/"+ data.get(position).getTrainlineNameEn()+".png";//imgTrainlineNameEn
 
+       String imageUri=createImgURL(position);
         GlideApp
                 .with(context)
                 .load(imageUri)
@@ -88,7 +89,9 @@ public class TrainResultAdapter extends RecyclerView.Adapter<TrainResultAdapter.
         holder.txtSourceText.setText(data.get(position).getSourceText());
         holder.txtTrainArrivalTime.setText(data.get(position).getTrainArrivalTime());
         holder.txtTrainTime.setText(data.get(position).getTrainTime());
-        holder.txtSeatsRemaining.setText(" ظرفیت "+data.get(position).getSeatAvailable()+" نفر ");
+        String count=seatRemaining(data.get(position).getSeatAvailable(),holder);
+        //holder.txtSeatsRemaining.setText(" ظرفیت "+count+" بلیط ");
+        
         holder.txtCompartmentCapacity.setText("کوپه ی"+data.get(position).getCompartmentCapacity()+"نفره");
         holder.txtSaloonName.setText(data.get(position).getSaloonName()+"");
         holder.txtNameTrain.setText(" قطار "+data.get(position).getTrainlineNameFa()+"");
@@ -138,6 +141,69 @@ public class TrainResultAdapter extends RecyclerView.Adapter<TrainResultAdapter.
 
     }
 
+    private String createImgURL(int position) {
+        String imageUri="";
+        String LogoName=data.get(position).getTrainlineNameEn();
+        if (data.get(position).getTrainlineNameEn().equals("Raja"))
+        {
+            // LogoName=data.get(position).getTrainlineNameEn();
+        } else if (data.get(position).getTrainlineNameEn().equals("Fadak")&& data.get(position).getSaloonName().contains("هتل"))
+        {
+            LogoName = LogoName + "-purple";
+        }else if (data.get(position).getTrainlineNameEn().equals("Fadak") && data.get(position).getSaloonName().contains("بيزينس"))
+        {
+            LogoName = LogoName + "-blue";
+        }else if (data.get(position).getTrainlineNameEn().equals("Fadak") && data.get(position).getSaloonName().contains("اکونومی"))
+        {
+            LogoName = LogoName + "-silver";
+        }else if (data.get(position).getTrainlineNameEn().equals("Fadak")){
+            LogoName = LogoName + "-gold";
+        }
+
+        return   "https://cdn.elicdn.com" +"/Content/Images/Train/TrainLine/"+LogoName +".png";//imgTrainlineNameEn
+        //Log.d("imageUri:", "imageUri: "+imageUri);
+    }
+
+    private String seatRemaining(Integer count, ViewHolder holder) {
+        String attributeStr ="";
+        if (count > 20 ){
+             attributeStr = "+20";
+            holder.txtSeatsRemaining.setText(" ظرفیت "+attributeStr+" بلیط ");
+            holder.txtSeatsRemaining.setTextColor(Color.GREEN);
+           /* let range = NSRange(location: 0, length: attributeStr.string.count)
+            attributeStr.addAttribute(.foregroundColor, value:  colorLiteral(red: 0.3411764706, green: 0.7176470588, blue: 0.4980392157, alpha: 1), range: range)
+            attributeStr.addAttribute(.font, value: EligashtCommonAppearance.getFontBold(size: 11), range: range)*/
+            return attributeStr;
+
+        } else if (count > 5) {
+             attributeStr = count.toString();
+            holder.txtSeatsRemaining.setText(" ظرفیت "+attributeStr+" بلیط ");
+            holder.txtSeatsRemaining.setTextColor(Color.BLUE);
+           /* let range = NSRange(location: 0, length: attributeStr.string.count)
+            attributeStr.addAttribute(.foregroundColor, value:  colorLiteral(red: 0.1725490196, green: 0.3254901961, blue: 0.5607843137, alpha: 1), range: range)
+            attributeStr.addAttribute(.font, value: EligashtCommonAppearance.getFontBold(size: 11), range: range)*/
+            return attributeStr;
+
+        } else if (count > 0 ){
+            attributeStr = count.toString();
+            holder.txtSeatsRemaining.setText(" ظرفیت "+attributeStr+" بلیط ");
+            holder.txtSeatsRemaining.setTextColor(Color.YELLOW);
+            /*let range = NSRange(location: 0, length: attributeStr.string.count)
+            attributeStr.addAttribute(.foregroundColor, value:  colorLiteral(red: 0.9137254902, green: 0.5960784314, blue: 0.2431372549, alpha: 1), range: range)
+            attributeStr.addAttribute(.font, value: EligashtCommonAppearance.getFontBold(size: 11), range: range)*/
+            return attributeStr;
+
+        } else {
+            attributeStr = " تکمیل";
+            holder.txtSeatsRemaining.setText(" ظرفیت "+attributeStr+" ");
+            holder.txtSeatsRemaining.setTextColor(Color.RED);
+            /*let range = NSRange(location: 0, length: attributeStr.string.count)
+            attributeStr.addAttribute(.foregroundColor, value:  colorLiteral(red: 0.9294117647, green: 0.462745098, blue: 0.4941176471, alpha: 1), range: range)
+            attributeStr.addAttribute(.font, value: EligashtCommonAppearance.getFontBold(size: 11), range: range)*/
+            return attributeStr;
+        }
+
+    }
 
 
     @Override

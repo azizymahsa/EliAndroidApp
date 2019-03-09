@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.tools.Prefs;
+import com.eligasht.reservation.views.fragments.train.TrainFragment;
 import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -97,6 +98,7 @@ public class DialogPassCount implements View.OnClickListener {
                     Prefs.putString("Value_Pass_CountB", txtCountB.getText().toString().trim());
                     Prefs.putString("Value_Pass_CountK", txtCountK.getText().toString().trim());
                     Prefs.putString("Value_Pass_CountN", txtCountN.getText().toString().trim());
+                    TrainFragment.updateCount();
                 dialog.cancel();
                 }
                 break;

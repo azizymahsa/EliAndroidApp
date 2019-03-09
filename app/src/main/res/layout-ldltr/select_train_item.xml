@@ -389,8 +389,8 @@
 
                 <ImageView
                     android:id="@+id/imgTrainlineNameEn"
-                    android:layout_width="@dimen/_40dp_f"
-                    android:layout_height="@dimen/_40dp_f"
+                    android:layout_width="@dimen/toolbar_height_70dp"
+                    android:layout_height="@dimen/toolbar_height_70dp"
 
 
                     android:layout_centerInParent="true"

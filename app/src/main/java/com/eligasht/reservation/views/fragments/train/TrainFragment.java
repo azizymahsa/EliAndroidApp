@@ -103,8 +103,17 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
     private LottieAnimationView lottieCheckin, lottieCheckout;
     private ClientService service;
     public TextView txtPassNat,txtPassWom,txtPassMen;
+    public static TextView txtPassAdult;
+    public static  TextView txtPassChild;
+    public static  TextView txtPassInf;
     private CheckBox rd_darbast;
     private int flagRd=0;
+
+    public static void updateCount() {
+        txtPassAdult.setText(Prefs.getString("Value_Pass_CountB", "1")+" بزرگسال ");
+        txtPassChild.setText(Prefs.getString("Value_Pass_CountK", "0")+" کودک ");
+        txtPassInf.setText(Prefs.getString("Value_Pass_CountN", "0")+" نوزاد ");
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -232,6 +241,10 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         tarikh_be = rootView.findViewById(R.id.tarikh_be);
         ivImage = rootView.findViewById(R.id.ivImage);
 
+        txtPassAdult = rootView.findViewById(R.id.txtPassAdult);
+        txtPassChild = rootView.findViewById(R.id.txtPassChild);
+        txtPassInf = rootView.findViewById(R.id.txtPassInf);
+
         lnr_pass_count = rootView.findViewById(R.id.lnr_pass_count);
 
         txtPassNat = rootView.findViewById(R.id.txtPassNat);
@@ -270,7 +283,9 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         rd_darbast = (CheckBox) rootView.findViewById(R.id.rd_darbast);
         rd_darbast.setOnClickListener(this);
 
-
+        txtPassAdult.setText("1"+" بزرگسال ");
+        txtPassChild.setText("0"+" کودک ");
+        txtPassInf.setText("0"+" نوزاد ");
 
 
 
@@ -317,12 +332,16 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         if (Prefs.getString("Value_Maghsad_Train", "") != null && Prefs.getString("Value_Maghsad_Train", "").length() > 1) {
             tvMaghsad.setText(Prefs.getString("Value_Maghsad_Train", ""));
         }
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         Prefs.putBoolean("geo", Geo);
+        txtPassAdult.setText(Prefs.getString("Value_Pass_CountB", "1")+" بزرگسال ");
+        txtPassChild.setText(Prefs.getString("Value_Pass_CountK", "0")+" کودک ");
+        txtPassInf.setText(Prefs.getString("Value_Pass_CountN", "0")+" نوزاد ");
     }
 
     @Override
@@ -331,6 +350,9 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         Prefs.putString("Value-Flight-City-Fa", "");
         Prefs.putString("Value-Flight-City-En", "");
         Prefs.putString("Value-Flight-City-Code", "");
+        txtPassAdult.setText(Prefs.getString("Value_Pass_CountB", "1")+" بزرگسال ");
+        txtPassChild.setText(Prefs.getString("Value_Pass_CountK", "0")+" کودک ");
+        txtPassInf.setText(Prefs.getString("Value_Pass_CountN", "0")+" نوزاد ");
     }
 
     public boolean isInRange(int a, int b, int c) {
@@ -390,6 +412,9 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                     try {
                         DialogPassCount dialogPassCount = new DialogPassCount(getActivity(),false,false);
                         dialogPassCount.setText( "لطفا تعداد را وارد کنید");
+
+
+
                     }catch (Exception e){
                         e.getMessage();
                     }
