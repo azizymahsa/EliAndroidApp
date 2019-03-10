@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -69,6 +70,8 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -494,40 +497,40 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
 //Sort
     @Override
     public void onReturnValue(int type) {
-        /*tvSort.setTextColor(ContextCompat.getColor(this, R.color.red));
+       tvSort.setTextColor(ContextCompat.getColor(this, R.color.red));
         tvSortIcon.setTextColor(ContextCompat.getColor(this, R.color.red));
         switch (type) {
             case 1:
-                Collections.sort(selectTrainModelArrayList, new Comparator<SelectTrainModel>() {
+                Collections.sort(selectTrainModelArrayListTrue, new Comparator<SelectTrainModel>() {
                     @Override
                     public int compare(SelectTrainModel p1, SelectTrainModel p2) {
-                        return Integer.valueOf(p2.getPrice().intValue()) - Integer.valueOf(p1.getPrice().intValue()); // Ascending
+                        return p2.getTotalFare() - p1.getTotalFare(); // Ascending
                     }
                 });
-                Collections.sort(selectTrainModelArrayListFilter, new Comparator<SelectTrainModel>() {
+                Collections.sort(selectTrainModelArrayListFalseNew, new Comparator<SelectTrainModel>() {
                     @Override
                     public int compare(SelectTrainModel p1, SelectTrainModel p2) {
-                        return Integer.valueOf(p2.getPrice().intValue()) - Integer.valueOf(p1.getPrice().intValue()); // Ascending
+                        return p2.getTotalFare() - p1.getTotalFare(); // Ascending
                     }
                 });
                 trainResultAdapter.notifyDataSetChanged();
                 break;
             case 2:
-                Collections.sort(selectTrainModelArrayList, new Comparator<SelectTrainModel>() {
+                Collections.sort(selectTrainModelArrayListTrue, new Comparator<SelectTrainModel>() {
                     @Override
                     public int compare(SelectTrainModel p1, SelectTrainModel p2) {
-                        return Integer.valueOf(p1.getPrice().intValue()) - Integer.valueOf(p2.getPrice().intValue()); // Ascending
+                        return p1.getTotalFare() - p2.getTotalFare(); // Ascending
                     }
                 });
-                Collections.sort(selectTrainModelArrayListFilter, new Comparator<SelectTrainModel>() {
+                Collections.sort(selectTrainModelArrayListFalseNew, new Comparator<SelectTrainModel>() {
                     @Override
                     public int compare(SelectTrainModel p1, SelectTrainModel p2) {
-                        return Integer.valueOf(p1.getPrice().intValue()) - Integer.valueOf(p2.getPrice().intValue()); // Ascending
+                        return p1.getTotalFare() - p2.getTotalFare(); // Ascending
                     }
                 });
                 trainResultAdapter.notifyDataSetChanged();
                 break;
-        }*/
+        }
     }
 
     public void train_request() {
@@ -551,8 +554,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
         QueryModel request = new QueryModel();
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            // raft = extras.getString("Value-DepartureDate");
-            // bargasht = extras.getString("Value-ArrivalDate");
+
             flagOneTwo = extras.getInt("Value_FlagOneTwo");
 
             String valueTrip=createTrip(raft.replaceAll("/", "-"),bargasht.replaceAll("/", "-"),flagOneTwo);
@@ -741,18 +743,18 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
 
 
                        // tvCount.setText("(" + selectTrainModelArrayList.size() + getString(R.string._not_found) + ")");
-                      /*  Collections.sort(selectTrainModelArrayList, new Comparator<SelectTrainModel>() {
+                       Collections.sort(selectTrainModelArrayListTrue, new Comparator<SelectTrainModel>() {
                             @Override
                             public int compare(SelectTrainModel p1, SelectTrainModel p2) {
-                                return Integer.valueOf(p1.getPrice().intValue()) - Integer.valueOf(p2.getPrice().intValue()); // Ascending
+                                return p1.getTotalFare() - p2.getTotalFare(); // Ascending
                             }
                         });
-                        Collections.sort(selectTrainModelArrayListFilter, new Comparator<SelectTrainModel>() {
+                        Collections.sort(selectTrainModelArrayListFalse, new Comparator<SelectTrainModel>() {
                             @Override
                             public int compare(SelectTrainModel p1, SelectTrainModel p2) {
-                                return Integer.valueOf(p1.getPrice().intValue()) - Integer.valueOf(p2.getPrice().intValue()); // Ascending
+                                return p1.getTotalFare() - p2.getTotalFare(); // Ascending
                             }
-                        });*/
+                        });
                     }
                     trainResultAdapter.notifyDataSetChanged();
                 } catch (Exception e) {
@@ -845,7 +847,8 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
          txtSourceText.setText( selectTrainModel.getSourceText());
          txtTrainArrivalTime.setText( selectTrainModel.getTrainArrivalTime());
          txtTrainTime.setText( selectTrainModel.getTrainTime());
-         txtSeatsRemaining.setText(" ظرفیت "+ selectTrainModel.getSeatAvailable()+" نفر ");
+        seatRemainingRaft(selectTrainModel.getSeatAvailable());
+        // txtSeatsRemaining.setText(" ظرفیت "+ selectTrainModel.getSeatAvailable()+" نفر ");
          txtCompartmentCapacity.setText("کوپه ی"+ selectTrainModel.getCompartmentCapacity()+"نفره");
          txtSaloonName.setText( selectTrainModel.getSaloonName()+"");
          txtNameTrain.setText(" قطار "+ selectTrainModel.getTrainlineNameFa()+"");
@@ -874,6 +877,9 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
         Prefs.putString("Segmengt_Id_True", selectTrainModel.getID());
 
     }
+
+
+
     private static void showSegmentBargasht(SelectTrainModel selectTrainModel, Context context, Activity activity) {
         String imageUri=createImgURL(selectTrainModel);
         // String imageUri = "https://cdn.elicdn.com" +"/Content/Images/Train/TrainLine/"+ selectTrainModel.getTrainlineNameEn()+".png";//imgTrainlineNameEn
@@ -892,7 +898,8 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
         txtSourceTextB.setText( selectTrainModel.getSourceText());
         txtTrainArrivalTimeB.setText( selectTrainModel.getTrainArrivalTime());
         txtTrainTimeB.setText( selectTrainModel.getTrainTime());
-        txtSeatsRemainingB.setText(" ظرفیت "+ selectTrainModel.getSeatAvailable()+" نفر ");
+       // txtSeatsRemainingB.setText(" ظرفیت "+ selectTrainModel.getSeatAvailable()+" نفر ");
+        seatRemainingBargasht(selectTrainModel.getSeatAvailable());
         txtCompartmentCapacityB.setText("کوپه ی"+ selectTrainModel.getCompartmentCapacity()+"نفره");
         txtSaloonNameB.setText( selectTrainModel.getSaloonName()+"");
         txtNameTrainB.setText(" قطار "+ selectTrainModel.getTrainlineNameFa()+"");
@@ -912,6 +919,71 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
         else
             lblAirConditioningB.setVisibility(View.GONE);
         Prefs.putString("Segmengt_Id_False", selectTrainModel.getID());
+    }
+
+    private static String seatRemainingRaft(Integer count) {
+        String attributeStr ="";
+        if (count > 20 ){
+            attributeStr = "+20";
+            txtSeatsRemaining.setText(" ظرفیت "+attributeStr+" بلیط ");
+            txtSeatsRemaining.setTextColor(Color.parseColor("#0EBB79"));//green
+
+            return attributeStr;
+
+        } else if (count > 5) {
+            attributeStr = count.toString();
+           txtSeatsRemaining.setText(" ظرفیت "+attributeStr+" بلیط ");
+           txtSeatsRemaining.setTextColor(Color.parseColor("#1D5394"));//blue
+
+            return attributeStr;
+
+        } else if (count > 0 ){
+            attributeStr = count.toString();
+           txtSeatsRemaining.setText(" ظرفیت "+attributeStr+" بلیط ");
+           txtSeatsRemaining.setTextColor(Color.parseColor("#F7941D"));//yellow
+
+            return attributeStr;
+
+        } else {
+            attributeStr = " تکمیل";
+           txtSeatsRemaining.setText(" ظرفیت "+attributeStr+" ");
+           txtSeatsRemaining.setTextColor(Color.parseColor("#FF6D7B"));//red
+
+            return attributeStr;
+        }
+
+    }
+    private static String seatRemainingBargasht(Integer count) {
+        String attributeStr ="";
+        if (count > 20 ){
+            attributeStr = "+20";
+            txtSeatsRemainingB.setText(" ظرفیت "+attributeStr+" بلیط ");
+            txtSeatsRemainingB.setTextColor(Color.parseColor("#0EBB79"));//green
+
+            return attributeStr;
+
+        } else if (count > 5) {
+            attributeStr = count.toString();
+            txtSeatsRemainingB.setText(" ظرفیت "+attributeStr+" بلیط ");
+            txtSeatsRemainingB.setTextColor(Color.parseColor("#1D5394"));//blue
+
+            return attributeStr;
+
+        } else if (count > 0 ){
+            attributeStr = count.toString();
+            txtSeatsRemainingB.setText(" ظرفیت "+attributeStr+" بلیط ");
+            txtSeatsRemainingB.setTextColor(Color.parseColor("#F7941D"));//yellow
+
+            return attributeStr;
+
+        } else {
+            attributeStr = " تکمیل";
+            txtSeatsRemainingB.setText(" ظرفیت "+attributeStr+" ");
+            txtSeatsRemainingB.setTextColor(Color.parseColor("#FF6D7B"));//red
+
+            return attributeStr;
+        }
+
     }
     private static void createListDepartureFalse(Integer trainlineCodeListTrue) {
         selectTrainModelArrayListFalseNew.clear();

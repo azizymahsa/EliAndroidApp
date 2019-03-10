@@ -2,30 +2,17 @@ package com.eligasht.reservation.views.ui.dialog.train;
 
 import android.app.Activity;
 import android.app.ListActivity;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.eligasht.R;
 import com.eligasht.reservation.models.train.PassengerServiceModel;
-
-import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.activities.train.PassengerTrainActivity;
-import com.eligasht.reservation.views.adapters.CountryListArrayAdapter;
 import com.eligasht.reservation.views.adapters.train.TrainServiceListArrayAdapter;
-import com.eligasht.reservation.views.fragments.train.TrainFragment;
-import com.eligasht.reservation.views.ticker.TickerView;
-import com.eligasht.reservation.views.ui.CountrycodeActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
-
 import java.util.List;
-
 import mehdi.sakout.fancybuttons.FancyButton;
 
 /**

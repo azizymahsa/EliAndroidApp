@@ -89,7 +89,7 @@ public class TrainResultAdapter extends RecyclerView.Adapter<TrainResultAdapter.
         holder.txtSourceText.setText(data.get(position).getSourceText());
         holder.txtTrainArrivalTime.setText(data.get(position).getTrainArrivalTime());
         holder.txtTrainTime.setText(data.get(position).getTrainTime());
-        String count=seatRemaining(data.get(position).getSeatAvailable(),holder);
+        seatRemaining(data.get(position).getSeatAvailable(),holder,position);
         //holder.txtSeatsRemaining.setText(" ظرفیت "+count+" بلیط ");
         
         holder.txtCompartmentCapacity.setText("کوپه ی"+data.get(position).getCompartmentCapacity()+"نفره");
@@ -111,8 +111,13 @@ public class TrainResultAdapter extends RecyclerView.Adapter<TrainResultAdapter.
         else
             holder.lblAirConditioning.setVisibility(View.GONE);
 
-
-        holder.txt_select.setText(data.get(position).getTextButton());
+       /* if (holder.txtSeatsRemaining.getText().toString() .contains("تکمیل")) {
+            holder.txt_select.setText("ظرفیت تکمیل");
+            holder.txt_select.setEnabled(false);
+            holder.txt_select.setBackgroundResource(R.drawable.background_strock_gray_pur);
+        }else{*/
+            holder.txt_select.setText(data.get(position).getTextButton());
+        //}
         holder.txt_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,6 +146,7 @@ public class TrainResultAdapter extends RecyclerView.Adapter<TrainResultAdapter.
 
     }
 
+
     private String createImgURL(int position) {
         String imageUri="";
         String LogoName=data.get(position).getTrainlineNameEn();
@@ -164,42 +170,37 @@ public class TrainResultAdapter extends RecyclerView.Adapter<TrainResultAdapter.
         //Log.d("imageUri:", "imageUri: "+imageUri);
     }
 
-    private String seatRemaining(Integer count, ViewHolder holder) {
+    private String seatRemaining(Integer count, ViewHolder holder,int position) {
         String attributeStr ="";
         if (count > 20 ){
              attributeStr = "+20";
             holder.txtSeatsRemaining.setText(" ظرفیت "+attributeStr+" بلیط ");
-            holder.txtSeatsRemaining.setTextColor(Color.GREEN);
-           /* let range = NSRange(location: 0, length: attributeStr.string.count)
-            attributeStr.addAttribute(.foregroundColor, value:  colorLiteral(red: 0.3411764706, green: 0.7176470588, blue: 0.4980392157, alpha: 1), range: range)
-            attributeStr.addAttribute(.font, value: EligashtCommonAppearance.getFontBold(size: 11), range: range)*/
+            holder.txtSeatsRemaining.setTextColor(Color.parseColor("#0EBB79"));//green
+
             return attributeStr;
 
         } else if (count > 5) {
              attributeStr = count.toString();
             holder.txtSeatsRemaining.setText(" ظرفیت "+attributeStr+" بلیط ");
-            holder.txtSeatsRemaining.setTextColor(Color.BLUE);
-           /* let range = NSRange(location: 0, length: attributeStr.string.count)
-            attributeStr.addAttribute(.foregroundColor, value:  colorLiteral(red: 0.1725490196, green: 0.3254901961, blue: 0.5607843137, alpha: 1), range: range)
-            attributeStr.addAttribute(.font, value: EligashtCommonAppearance.getFontBold(size: 11), range: range)*/
+            holder.txtSeatsRemaining.setTextColor(Color.parseColor("#1D5394"));//blue
+
             return attributeStr;
 
         } else if (count > 0 ){
             attributeStr = count.toString();
             holder.txtSeatsRemaining.setText(" ظرفیت "+attributeStr+" بلیط ");
-            holder.txtSeatsRemaining.setTextColor(Color.YELLOW);
-            /*let range = NSRange(location: 0, length: attributeStr.string.count)
-            attributeStr.addAttribute(.foregroundColor, value:  colorLiteral(red: 0.9137254902, green: 0.5960784314, blue: 0.2431372549, alpha: 1), range: range)
-            attributeStr.addAttribute(.font, value: EligashtCommonAppearance.getFontBold(size: 11), range: range)*/
+            holder.txtSeatsRemaining.setTextColor(Color.parseColor("#F7941D"));//yellow
+
+
             return attributeStr;
 
         } else {
             attributeStr = " تکمیل";
             holder.txtSeatsRemaining.setText(" ظرفیت "+attributeStr+" ");
-            holder.txtSeatsRemaining.setTextColor(Color.RED);
-            /*let range = NSRange(location: 0, length: attributeStr.string.count)
-            attributeStr.addAttribute(.foregroundColor, value:  colorLiteral(red: 0.9294117647, green: 0.462745098, blue: 0.4941176471, alpha: 1), range: range)
-            attributeStr.addAttribute(.font, value: EligashtCommonAppearance.getFontBold(size: 11), range: range)*/
+            holder.txtSeatsRemaining.setTextColor(Color.parseColor("#FF6D7B"));//red
+
+
+
             return attributeStr;
         }
 

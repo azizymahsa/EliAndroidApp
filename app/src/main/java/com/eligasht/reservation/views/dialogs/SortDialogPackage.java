@@ -49,7 +49,7 @@ public class SortDialogPackage implements View.OnClickListener {
                 dialog.cancel();
                 break;
                 case R.id.tvMin:
-                    sortHotelDialogListener.onReturnValue(2);
+                sortHotelDialogListener.onReturnValue(2);
                 dialog.cancel();
                 break;
         }

@@ -45,6 +45,7 @@
             fancy:fb_text=" "
             fancy:fb_textColor="#FFFFFF"
             fancy:fb_textSize="@dimen/_25dp_normal_iconSize"
+            android:visibility="invisible"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -586,7 +587,8 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:visibility="invisible">
 
                     <TextView
                         android:id="@+id/tvFilter"
