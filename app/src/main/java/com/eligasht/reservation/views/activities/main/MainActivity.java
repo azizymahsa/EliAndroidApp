@@ -430,7 +430,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     void closeDrawer() {
         try {
             final Configuration config = getResources().getConfiguration();
-            if (Prefs.getString("lang", "fa").equals("fa") || Prefs.getString("lang", "fa").equals("ar")) {
+            if (Prefs.getString("lang", "fa").contains("fa") || Prefs.getString("lang", "fa").contains("ar")) {
 
                 if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
                     drawerLayout.closeDrawer(Gravity.END);
@@ -456,7 +456,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     void openDrawer() {
         try {
             final Configuration config = getResources().getConfiguration();
-            if (Prefs.getString("lang", "fa").equals("fa") || Prefs.getString("lang", "fa").equals("ar")) {
+            if (Prefs.getString("lang", "fa").contains("fa") || Prefs.getString("lang", "fa").contains("ar")) {
                 if (config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL) {
                     drawerLayout.openDrawer(Gravity.END);
 

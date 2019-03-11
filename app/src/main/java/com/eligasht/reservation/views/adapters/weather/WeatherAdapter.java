@@ -51,7 +51,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
             holder.tvDate.setText(R.string.tomorrow);
 
         }else{
-            if (Prefs.getString("lang", "fa").equals("fa")) {
+            if (Prefs.getString("lang", "fa").contains("fa")) {
                 holder.tvDate.setText(DateUtil.getLongStringDateWeather(item.getDate(), "dd MMMM yyyy", true));
             } else {
                 holder.tvDate.setText(item.getDay());

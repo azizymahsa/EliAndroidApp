@@ -176,7 +176,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
                 countPassenger = countPassenger + " + " + infCount +" "+ context.getString(R.string.BabyPackage)+" ";
             }
             String title;
-            if (Prefs.getString("lang","fa").equals("fa")){
+            if (Prefs.getString("lang","fa").contains("fa")){
                  title = context.getString(R.string.room) +" "+getStringPosition( Integer.parseInt(feedItemList.get(sectionIndex).getTitle())) + " : " + context.getString(R.string.OfferTo)  +" "+ countPassenger ;
 
             }else{

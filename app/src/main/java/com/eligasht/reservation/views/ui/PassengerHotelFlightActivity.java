@@ -1711,7 +1711,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
 
                                     if (rooms - 1 >= 0) {
 
-                                        if (Prefs.getString("lang", "fa").equals("fa")) {
+                                        if (Prefs.getString("lang", "fa").contains("fa")) {
                                             txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter) + getString(R.string.adult_));
                                             imgCount.setText(getString(R.string.room) + " " + getCounter(room + 1));
                                         } else {

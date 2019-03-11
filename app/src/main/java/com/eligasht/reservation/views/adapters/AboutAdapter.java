@@ -65,7 +65,7 @@ public class AboutAdapter extends RecyclerView.Adapter<AboutAdapter.ViewHolder> 
 
         holder.setIsRecyclable(false);
         Typeface face;
-        if(Prefs.getString("lang","fa").equals("fa")){
+        if(Prefs.getString("lang","fa").contains("fa")){
             face = Typeface.createFromAsset(context.getAssets(),"fonts/iran_sans_normal.ttf");
             holder.txtSectionNameEn.setVisibility(View.GONE);
             holder.txtDescriptionEn.setVisibility(View.GONE);

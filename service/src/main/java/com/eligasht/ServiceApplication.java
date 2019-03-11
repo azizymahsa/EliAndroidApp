@@ -24,12 +24,11 @@ public abstract class ServiceApplication extends Application {
         SingletonService.getInstance().setContext(this);
         mNetComponent = DaggerNetComponent.builder()
                 .appModule(new AppModule(this))
-                .netModule(new NetModule(Const.BASEURL))
+                .netModule(new NetModule(Const.BASEURL+"/"))
                 .build();
 
         SingletonService.getInstance().setNetComponent(mNetComponent).inject();
     }
-
 
 
 

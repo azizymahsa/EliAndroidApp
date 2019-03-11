@@ -122,9 +122,9 @@ public class PassengerPresenter implements PassengerContract.Presenter {
             return;
         }
         final BirthDateList passenger = getPassengers().get(position);
-        if (Prefs.getString("lang", "fa").equals("fa")) {
+        if (Prefs.getString("lang", "fa").contains("fa")) {
             holder.txt_passenger_title.setText(context.getString(R.string.Passanger) + " " + getStringPosition(position));
-        } else if (Prefs.getString("lang", "fa").equals("en")) {
+        } else if (Prefs.getString("lang", "fa").contains("en")) {
             holder.txt_passenger_title.setText(getStringPosition(position) + " " + context.getString(R.string.Passanger));
         } else {
             holder.txt_passenger_title.setText(getStringPosition(position) + " " + context.getString(R.string.Passanger));

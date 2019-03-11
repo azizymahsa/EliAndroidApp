@@ -546,7 +546,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
         filterHotelBestOffModels.clear();
         filterHotelStarsModels.clear();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(SearchTrainActivity.this, R.color.btn));
+            window.setStatusBarColor(ContextCompat.getColor(SearchTrainActivity.this, R.color.status_loading));
         }
         new InitUi().Loading(SearchTrainActivity.this, rlLoading, rlRoot, true, R.drawable.train_loading);
         Gson gson = new Gson();
@@ -581,7 +581,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
                 new InitUi().Loading(SearchTrainActivity.this, rlLoading, rlRoot, false, R.drawable.train_loading);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    window.setStatusBarColor(ContextCompat.getColor(SearchTrainActivity.this, R.color.colorPrimaryDark));
+                    window.setStatusBarColor(ContextCompat.getColor(SearchTrainActivity.this, R.color.status_loading));
                 }
                 selectTrainModelArrayListTrue.clear();
                 selectTrainModelArrayListFalse.clear();
@@ -786,7 +786,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
                 new InitUi().Loading(SearchTrainActivity.this, rlLoading, rlRoot, false, R.drawable.train_loading);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    window.setStatusBarColor(ContextCompat.getColor(SearchTrainActivity.this, R.color.colorPrimaryDark));
+                    window.setStatusBarColor(ContextCompat.getColor(SearchTrainActivity.this, R.color.status_loading));
                 }
                 lnrHeaderMsg.setVisibility(View.GONE);
                 rvTrainResult.setVisibility(View.GONE);
@@ -1073,7 +1073,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
         filterHotelBestOffModels.clear();
         filterHotelStarsModels.clear();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(SearchTrainActivity.this, R.color.btn));
+            window.setStatusBarColor(ContextCompat.getColor(SearchTrainActivity.this, R.color.status_loading));
         }
         new InitUi().Loading(SearchTrainActivity.this, rlLoading, rlRoot, true, R.drawable.train_loading);
         RequestHotelSearch hotelAvailReq = new RequestHotelSearch();

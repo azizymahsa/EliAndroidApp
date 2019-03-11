@@ -96,7 +96,7 @@ public class LstProwHotelAdapter extends RecyclerView.Adapter<LstProwHotelRowHol
         long checkout_milis = DateUtil.getMiliSecondFromJSONDate(item.getCheckOut().substring(0,10));*/
 
         long diferent_day = DateUtil.getTimeDifference(item.getCheckIn(), item.getCheckOut()).getDay();
-        if (Prefs.getString("lang", "fa").equals("fa")) {
+        if (Prefs.getString("lang", "fa").contains("fa")) {
             holder.txt_date.setText(context.getString(R.string.from) + " " +
                     DateUtil.getShortStringDate(item.getCheckIn().substring(0,10), "yyyy-MM-dd", true) + " " +
                     context.getString(R.string.to) + " " +

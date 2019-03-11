@@ -96,6 +96,10 @@ import com.eligasht.service.model.newModel.insurance.request.purchase.PurchasePa
 import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
 import com.eligasht.service.model.newModel.insurance.response.ResponseInsuranceSearchResult;
 import com.eligasht.service.model.newModel.insurance.response.purchase.ResponseInsurancePurchase;
+import com.eligasht.service.model.newModel.promotion.request.RequestPromotionCode;
+import com.eligasht.service.model.newModel.promotion.response.ResponsePromotionCode;
+import com.eligasht.service.model.newModel.startup.request.RequestStartup;
+import com.eligasht.service.model.newModel.startup.response.ResponseStartup;
 import com.eligasht.service.model.newModel.train.domesticSearch.Request.RequestDomesticTrainAPI;
 import com.eligasht.service.model.newModel.train.domesticSearch.response.ResponseDomesticTrainAPI;
 import com.eligasht.service.model.newModel.train.domesticTrainGetPrice.request.RequestDomesticTrainGetPrice;
@@ -141,6 +145,10 @@ public interface RetroClient {
     @POST(Const.StartUp)
     Observable<Response<StartupServiceResponse>> startUp(
             @Body StartupServiceRequest startupServiceRequest
+    );
+    @POST(Const.StartUp)
+    Observable<Response<ResponseStartup>> newstartUp(
+            @Body RequestStartup requestStartup
     );
 
     //*************hotel flight*************
@@ -393,6 +401,11 @@ public interface RetroClient {
     @POST(Const.GetNewPreFactServices)
     Observable<Response<ResponseGetPreFactor>> responseGetPreFactorObservable(
             @Body RequestGetPreFactor requestGetPreFactor
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewPromotionCode)
+    Observable<Response<ResponsePromotionCode>> responsePromotionCodeObservable(
+            @Body RequestPromotionCode requestGetPreFactor
     );
    // @FormUrlEncoded
     @Headers("Content-Type: application/json")

@@ -1216,7 +1216,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                 }
                                 if (countB != 0) {
 
-                                    if (Prefs.getString("lang", "fa").equals("fa")) {
+                                    if (Prefs.getString("lang", "fa").contains("fa")) {
                                         System.out.println("farsi:");
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.adult_));
@@ -1226,7 +1226,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                     }
                                 } else if (countK != 0) {
 
-                                    if (Prefs.getString("lang", "fa").equals("fa")) {
+                                    if (Prefs.getString("lang", "fa").contains("fa")) {
                                         System.out.println("farsi:");
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.child_));
@@ -1236,7 +1236,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                     }
                                 } else if (countN != 0) {
 
-                                    if (Prefs.getString("lang", "fa").equals("fa")) {
+                                    if (Prefs.getString("lang", "fa").contains("fa")) {
                                         System.out.println("farsi:");
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.Passenger_information) + getCounter(counter) + getString(R.string.baby_));
@@ -1298,7 +1298,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                 System.out.println("InsertMosafer:" + (counter - 1) + " " + txtTitleCountM.getText().toString() + " " + RqPassenger_FirstNameEn);
                                 if (countB >= 1) {
                                     System.out.println("countB:" + countB);
-                                    if (Prefs.getString("lang", "fa").equals("fa")) {
+                                    if (Prefs.getString("lang", "fa").contains("fa")) {
                                         System.out.println("farsi:");
 
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
@@ -1311,7 +1311,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                     countB--;
                                 } else if (countK >= 1) {
                                     System.out.println("countK:" + countK);
-                                    if (Prefs.getString("lang", "fa").equals("fa")) {
+                                    if (Prefs.getString("lang", "fa").contains("fa")) {
                                         System.out.println("farsi:");
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter - 1) + getString(R.string.child_));
@@ -1322,7 +1322,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                     countK--;
                                 } else if (countN >= 1) {
                                     System.out.println("countN:" + countN);
-                                    if (Prefs.getString("lang", "fa").equals("fa")) {
+                                    if (Prefs.getString("lang", "fa").contains("fa")) {
                                         System.out.println("farsi:");
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter - 1) + getString(R.string.baby_));
@@ -1334,7 +1334,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                 }
                                 if (countB != 0) {
 
-                                    if (Prefs.getString("lang", "fa").equals("fa")) {
+                                    if (Prefs.getString("lang", "fa").contains("fa")) {
                                         System.out.println("farsi:");
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter) + getString(R.string.adult_));
@@ -1344,7 +1344,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                     }
                                 } else if (countK != 0) {
 
-                                    if (Prefs.getString("lang", "fa").equals("fa")) {
+                                    if (Prefs.getString("lang", "fa").contains("fa")) {
                                         System.out.println("farsi:");
                                         System.out.println("farsi:");
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
@@ -1354,7 +1354,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                         txtTitleCountM.setText(getCounter(counter) + getString(R.string.info_passenger) + getString(R.string.child_));
                                     }
                                 } else if (countN != 0) {
-                                    if (Prefs.getString("lang", "fa").equals("fa")) {
+                                    if (Prefs.getString("lang", "fa").contains("fa")) {
                                         System.out.println("farsi:");
                                         imgCount.setText(getString(R.string.room) + " " + getCounter(room));
                                         txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter) + getString(R.string.baby_));
@@ -1365,7 +1365,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                 } else if (countB + countK + countN == 0) {
 
                                     if (rooms - 1 >= 0) {
-                                        if (Prefs.getString("lang", "fa").equals("fa")) {
+                                        if (Prefs.getString("lang", "fa").contains("fa")) {
                                             txtTitleCountM.setText(getString(R.string.info_passenger) + getCounter(counter) + getString(R.string.adult_));
                                             imgCount.setText(getString(R.string.room) + " " + getCounter(room + 1));
                                         } else {

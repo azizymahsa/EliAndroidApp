@@ -140,6 +140,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView txtTaxesR = convertView.findViewById(R.id.txtTaxesR);
         TextView txtTotalFareCostR = convertView.findViewById(R.id.txtTotalFareCostR);
 
+        TextView iconWeight = convertView.findViewById(R.id.iconWeight);
+        TextView iconPieces = convertView.findViewById(R.id.iconPieces);
+
         Button btnSelect = convertView.findViewById(R.id.btnSelect);
         Button btnFlight = convertView.findViewById(R.id.btnFlight);
         btnFlight.setOnClickListener(new View.OnClickListener() {
@@ -154,16 +157,34 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView txtWeight = convertView.findViewById(R.id.txtWeight);
         weightLinear.setVisibility(View.GONE);
         try {
-            if (item.weight.length() > 0) {
-                weightLinear.setVisibility(View.VISIBLE);
-                txtWeight.setText(item.weight + "");
-                if (Locale.getDefault().getLanguage().equals("en") || Locale.getDefault().getLanguage().equals("tr")) {
-                    // String text2 = "<font color=#0e874e>" + item.AirlineNameFaR + "" + "</font> ";
-                    txtPieces.setText(item.Pieces + "×");
-                } else {
-                    txtPieces.setText("×"+item.Pieces  );
+            if (item.weight.length() > 0 && item.Pieces.length()> 0){
+                if (Integer.parseInt(item.weight) > 0 && Integer.parseInt(item.Pieces)> 0) {
+                    iconPieces.setVisibility(View.VISIBLE);
+                    iconWeight.setVisibility(View.INVISIBLE);
+                    weightLinear.setVisibility(View.VISIBLE);
+                    txtWeight.setText(item.weight + "");
+                    if (Locale.getDefault().getLanguage().contains("en") || Locale.getDefault().getLanguage().contains("tr")) {
+                        // String text2 = "<font color=#0e874e>" + item.AirlineNameFaR + "" + "</font> ";
+                        txtPieces.setText(item.Pieces + "×");
+                    } else {
+                        txtPieces.setText("×"+item.Pieces  );
+
+                    }
+
+                }else{
+                    iconPieces.setVisibility(View.GONE);
+                    iconWeight.setVisibility(View.GONE);
+                    if (Integer.parseInt(item.weight) == 0 && Integer.parseInt(item.Pieces) == 0) {
+                        txtPieces.setText("NoBaggage");
+                    } else {
+                        txtPieces.setText("NotAnnounced");
+                    }
 
                 }
+            }else{
+                iconPieces.setVisibility(View.GONE);
+                iconWeight.setVisibility(View.GONE);
+                txtPieces.setText("NotAnnounced");
 
             }
         } catch (Exception e) {

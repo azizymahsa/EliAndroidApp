@@ -55,12 +55,12 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
         officeSpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, officeNames, false));
 
-        if (Prefs.getString("lang", "fa").equals("fa")) {
+        if (Prefs.getString("lang", "fa").contains("fa")) {
             curencyNames = new String[]{"IRR(iran)"};
             curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
             languageSpinner.setSelection(0);
 
-        } else if (Prefs.getString("lang", "fa").equals("en")) {
+        } else if (Prefs.getString("lang", "fa").contains("en")) {
 
             curencyNames = new String[]{"GB"};
             curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
@@ -68,7 +68,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             languageSpinner.setSelection(1);
 
 
-        } else if (Prefs.getString("lang", "fa").equals("tr")) {
+        } else if (Prefs.getString("lang", "fa").contains("tr")) {
             curencyNames = new String[]{"TRY", "EUR"};
             curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
             languageSpinner.setSelection(2);
@@ -89,7 +89,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.tvConfirm:
-                if (Prefs.getString("lang", "fa").equals(lang)) {
+                if (Prefs.getString("lang", "fa").contains(lang)) {
                     tvConfirm.setEnabled(false);
                     tvConfirm.setClickable(false);
                     tvConfirm.setTextColor(ContextCompat.getColor(this,R.color.focusColor));
@@ -121,7 +121,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onLanguageCLick(String lang) {
-        if (Prefs.getString("lang", "fa").equals(lang))
+        if (Prefs.getString("lang", "fa").contains(lang))
             return;
         Prefs.putString("lang", lang);
 

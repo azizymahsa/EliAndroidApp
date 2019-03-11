@@ -2023,13 +2023,15 @@ void getDataFaJson(com.eligasht.service.model.newModel.flight.searchFlight.respo
             //dakheli khareji
             //  new AsyncCheckFlight().execute();
           //  SendReqCheckFlight();
-           boolean IsDemostic = responsSearchFlight.getFlights().get(0).getIsDomestic();//false khareji true dakheli//false khareji true dakheli
-            if (IsDemostic)
-                Prefs.putBoolean("IsDemostic", true);
-            else
-                Prefs.putBoolean("IsDemostic", false);
+            if(responsSearchFlight.getFlights().size()>0){
+               boolean IsDemostic = responsSearchFlight.getFlights().get(0).getIsDomestic();//false khareji true dakheli//false khareji true dakheli
+                if (IsDemostic)
+                    Prefs.putBoolean("IsDemostic", true);
+                else
+                    Prefs.putBoolean("IsDemostic", false);
 
-            getAirLine();
+                getAirLine();
+            }
         }
     } catch (Exception e) {
         e.printStackTrace();

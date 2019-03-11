@@ -141,10 +141,10 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
         holder.txt_child.setText(String.valueOf(room.getCountK()));
 
 
-        if(Prefs.getString("lang","fa").equals("fa")){
+        if(Prefs.getString("lang","fa").contains("fa")){
             holder.room_title.setText(context.getString(R.string.room) + " " + getStringPosition(position));
         }
-        else if(Prefs.getString("lang","fa").equals("en")){
+        else if(Prefs.getString("lang","fa").contains("en")){
             holder.room_title.setText( getStringPosition(position) + " " +context.getString(R.string.room));
         }else{
             holder.room_title.setText( getStringPosition(position) + " " +context.getString(R.string.room));
@@ -185,11 +185,11 @@ public class RoomPresenter implements InfoRoomsContract.Presenter {
                 room.setCountK(room.getCountK() + 1);
                 holder.txt_child.setText(String.valueOf(room.getCountK()));
 
-                if(Prefs.getString("lang","fa").equals("fa")){
+                if(Prefs.getString("lang","fa").contains("fa")){
                     room.addChildModel(new ChildModel(context.getString(R.string.BabyPackage) + " " + getStringPosition(room.getChildModels().size()), true));
 
                 }
-                else if(Prefs.getString("lang","fa").equals("en")){
+                else if(Prefs.getString("lang","fa").contains("en")){
                     room.addChildModel(new ChildModel(getStringPosition(room.getChildModels().size())+ " " + context.getString(R.string.BabyPackage), true));
 
                 }else{

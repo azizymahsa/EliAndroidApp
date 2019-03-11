@@ -57,25 +57,25 @@ public class SelectLanguageDialog implements View.OnClickListener {
         dialogView.findViewById(R.id.txt_persian).setOnClickListener(this);
 
 
-        if (Prefs.getString("lang", "fa").equals("fa")) {
+        if (Prefs.getString("lang", "fa").contains("fa")) {
             england.setBackgroundResource(R.color.white);
             iran.setBackgroundResource(R.drawable.stroke_pruple);
             turkey.setBackgroundResource(R.color.white);
             arabia.setBackgroundResource(R.color.white);
             lang = "fa";
-        } else if (Prefs.getString("lang", "fa").equals("en")) {
+        } else if (Prefs.getString("lang", "fa").contains("en")) {
             england.setBackgroundResource(R.drawable.stroke_pruple);
             iran.setBackgroundResource(R.color.white);
             turkey.setBackgroundResource(R.color.white);
             arabia.setBackgroundResource(R.color.white);
             lang = "en";
-        } else if (Prefs.getString("lang", "fa").equals("tr")) {
+        } else if (Prefs.getString("lang", "fa").contains("tr")) {
             england.setBackgroundResource(R.color.white);
             iran.setBackgroundResource(R.color.white);
             arabia.setBackgroundResource(R.color.white);
             turkey.setBackgroundResource(R.drawable.stroke_pruple);
             lang = "tr";
-        } else if (Prefs.getString("lang", "fa").equals("ar")){
+        } else if (Prefs.getString("lang", "fa").contains("ar")){
             england.setBackgroundResource(R.color.white);
             iran.setBackgroundResource(R.color.white);
             turkey.setBackgroundResource(R.color.white);

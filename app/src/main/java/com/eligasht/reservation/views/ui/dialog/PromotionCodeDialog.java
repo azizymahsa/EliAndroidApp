@@ -16,11 +16,13 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.views.activities.login.LogInActivity;
+import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -31,7 +33,8 @@ import mehdi.sakout.fancybuttons.FancyButton;
  */
 @SuppressLint("ValidFragment")
 public class PromotionCodeDialog extends DialogFragment implements View.OnClickListener {
-    TextView tvAlert, tvTitle, tvRoomName;
+    TextView  tvTitle, tvRoomName;
+    EditText tvAlert;
     Activity activity;
     FancyButton btnOk, btnCancel;
     AVLoadingIndicatorView avi;
@@ -58,7 +61,7 @@ public class PromotionCodeDialog extends DialogFragment implements View.OnClickL
         btnOk = (FancyButton) dialog.findViewById(R.id.btnOk);
         btnCancel = (FancyButton) dialog.findViewById(R.id.btnCancel);
         avi = (AVLoadingIndicatorView) dialog.findViewById(R.id.avi);
-        tvAlert = (TextView) dialog.findViewById(R.id.tvAlert);
+        tvAlert = (EditText) dialog.findViewById(R.id.tvAlert);
         tvTitle = (TextView) dialog.findViewById(R.id.tvTitle);
         tvRoomName = (TextView) dialog.findViewById(R.id.tvRoomName);
         LottieAnimationView lottieAnimationView = (LottieAnimationView) dialog.findViewById(R.id.animation_view);
@@ -91,10 +94,12 @@ public class PromotionCodeDialog extends DialogFragment implements View.OnClickL
                 activity.startActivity(new Intent(activity, LogInActivity.class));
                 break;
             case R.id.btnCancel:
-               if (isFinish)
-                    activity.finish();
-                else
+               if (isFinish) {
+                   activity.finish();
+               }else{
                     dialog.cancel();
+                   PassengerActivity.updateFactorByPromotion(tvAlert.getText().toString().trim(),activity,getContext());
+               }
                 break;
         }
     }

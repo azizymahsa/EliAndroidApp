@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.eligasht.R;
 import com.eligasht.reservation.views.activities.main.MainActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.eligasht.reservation.views.ui.SplashActivity;
 
 import cn.refactor.library.SmoothCheckBox;
 import mehdi.sakout.fancybuttons.FancyButton;
@@ -69,13 +70,13 @@ public class UpdateAlert  {
                 try {
 
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("bazaar://details?id=" + packageName));
+                    intent.setData(Uri.parse(SplashActivity.UpdateUrl.get(0)));//"bazaar://details?id=" + packageName));
                     intent.setPackage("com.farsitel.bazaar");
                     activity.startActivity(intent);
                 } catch (Exception e) {
                     try {
                         Intent intent = new Intent(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + packageName));
+                        intent.setData(Uri.parse(SplashActivity.UpdateUrl.get(1)));//"https://play.google.com/store/apps/details?id=" + packageName));
                         activity.startActivity(intent);
                     }catch (Exception e2){}
 

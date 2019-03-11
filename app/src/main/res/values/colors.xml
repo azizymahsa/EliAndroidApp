@@ -20,7 +20,8 @@
     <color name="hotel_detail_background">#e6e6e6</color>
     <color name="blue">#4690ee</color>
     <color name="TRANSPARENT">#00ffffff</color>
-    <color name="flight_status">#8581b4</color>
+   <!-- top color fragment-->
+    <color name="flight_status">#A870F7</color>
     <color name="app_base_color">#928DC5</color>
     <color name="white">#fff</color>
     <color name="textColorR">#131313</color>
@@ -68,8 +69,8 @@
     <color name="hf">#c141fc</color>
     <color name="strokeGray">#aaaaaa</color>
     <color name="floating_button_color">#b194ff</color>
-    <color name="button_end_gradiant">#f26e7a</color>
-    <color name="button_start_gradiant">#f69043</color>
+    <color name="button_start_gradiant">#f78c4f</color>
+    <color name="button_end_gradiant">#f6621f</color>
     <color name="orang_opacity">#a2f69043</color>
     <color name="dark_orang">#f15a24</color>
     <color name="light_orang">#D88F17</color>

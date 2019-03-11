@@ -560,7 +560,8 @@
                 android:text="@string/soon"
                 android:textAppearance="@style/IrsansBold"
                 android:textColor="@color/red"
-                android:textSize="@dimen/_12dp_normal_textSize" />
+                android:textSize="@dimen/_12dp_normal_textSize"
+                android:visibility="invisible"/>
 
             <TextView
                 android:id="@+id/tvTrain"

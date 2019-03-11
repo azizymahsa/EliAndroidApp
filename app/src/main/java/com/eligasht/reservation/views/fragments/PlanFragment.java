@@ -338,42 +338,10 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
         service = ServiceGenerator.createService(ClientService.class);
-        Auth_request();
+
         return rootView;
     }//end oncreat
-    private void Auth_request() {
-       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.status_loading));
-        }
-        new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);*/
 
-
-        try {
-            JSONObject paramObject = new JSONObject();
-            paramObject.put("grant_type", "password");
-            paramObject.put("username", "eli_gasht_1397");
-            paramObject.put("password", "Eli@accesstoken");
-
-            Call<ResponseAuth> call = service.getAuthResult("password","eli_gasht_1397","Eli@accesstoken");
-            call.enqueue(new Callback<ResponseAuth>() {
-                @Override
-                public void onResponse(Call<ResponseAuth> call, Response<ResponseAuth> response) {
-                    Log.d("ResponseToken: ","res:"+response.body().getTokenType()+" "+response.body().getAccessToken());
-                    Const.TOKEN=response.body().getTokenType()+" "+response.body().getAccessToken();
-                    //hotel_request();
-                }
-                @Override
-                public void onFailure(Call<ResponseAuth> call, Throwable t)  {
-                    Log.d("requestSearchPackage: ","error");
-
-                }
-            });
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
     @Override
     public void onResume() {
         Prefs.putBoolean("geo", Geo);

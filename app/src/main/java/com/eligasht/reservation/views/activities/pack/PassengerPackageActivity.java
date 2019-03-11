@@ -1129,7 +1129,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                                     }
                                 } else if (countB + countK + countN == 0) {
                                     if (rooms - 1 >= 0) {
-                                        if (Prefs.getString("lang", "fa").equals("fa")) {
+                                        if (Prefs.getString("lang", "fa").contains("fa")) {
                                             txtTitleCountM.setText(getString(R.string.Passenger_information) + " " + getCounter(counter) + getString(R.string.adult_));
                                             imgCount.setText(getString(R.string.room) + " " + getCounter(room + 1));
                                         } else {

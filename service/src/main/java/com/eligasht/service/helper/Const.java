@@ -10,14 +10,16 @@ public class Const {
 
     public static Boolean TEST=false;
 
-// public final static String BASEURL = "http://mobilews.eligasht.com/LightServices/Rest/";
- public final static String BASEURL = "http://192.168.1.82:120/";
- public  static String TOKEN = "";
+      // public final static String BASEURL = "http://mobilews.eligasht.com/LightServices/Rest/";
+      public static String BASEURL = "http://192.168.1.82:120";
+      public  static String TOKEN = "";
 
-    public final static String BaseGitLab="https://gitlab.com/api/v4/projects/6147852/";
+      public final static String BaseGitLab="https://gitlab.com/api/v4/projects/6147852/";
 
-    //*************start up*************
-    public final static String StartUp = "Common/StaticDataService.svc/MobileAppStartupService";
+
+
+    //*************start up new*************
+    public final static String StartUp = "api/ApplicationStartUp/Post";
     //*************profile & login*************
     public final static String Login = "Common/StaticDataService.svc/Login";
     //*************hotel*************
@@ -70,6 +72,7 @@ public class Const {
     public final static String GetNewServices = "api/ServicesServiceAPI/GetServices";
     public final static String GetNewPurchaseServices = "api/ServicesServiceAPI/PurchaseServices";
     public final static String GetNewPreFactServices = "api/Prefactory/GetPreFactor";
+    public final static String GetNewPromotionCode = "api/Prefactory/DiscountCodeControlller";
 
     //*************Hotel*****************
     public final static String GetNewHotelCities = "api/LoadAndFillAPI/HotelCities";

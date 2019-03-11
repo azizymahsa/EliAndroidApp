@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
@@ -68,16 +69,6 @@ import com.eligasht.reservation.views.activities.newFlight.PurchaseFlightService
 import com.eligasht.reservation.views.ui.dialog.PromotionCodeDialog;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.flight.request.PreFactorDetails.RequestPreFactorDetails;
-
-import com.eligasht.service.model.flight.response.PreFactorDetails.FactorSummary;
-import com.eligasht.service.model.flight.response.PreFactorDetails.GetPreFactorDetailsResult;
-import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactor;
-import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorFlight;
-import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorHotel;
-import com.eligasht.service.model.flight.response.PreFactorDetails.PreFactorService;
-import com.eligasht.service.model.flight.response.PreFactorDetails.RequestPassenger;
-import com.eligasht.service.model.flight.response.PreFactorDetails.ResponsePreFactorDetails;
 
 import com.eligasht.service.model.newModel.flight.confirmFlightPrice.request.RequestConfirmFlightPrice;
 
@@ -97,6 +88,8 @@ import com.eligasht.service.model.newModel.flight.services.request.RequestGetSer
 import com.eligasht.service.model.newModel.flight.services.response.ExcursionDetails;
 import com.eligasht.service.model.newModel.flight.services.response.ResponseGetServices;
 import com.eligasht.service.model.newModel.flight.services.response.Service;
+import com.eligasht.service.model.newModel.promotion.request.RequestPromotionCode;
+import com.eligasht.service.model.newModel.promotion.response.ResponsePromotionCode;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
@@ -115,13 +108,11 @@ import com.eligasht.reservation.lost.passenger.PassangerPreFactorAdapter;
 import com.eligasht.reservation.models.PassengerPreFactorModel;
 import com.eligasht.reservation.lost.service.ServicePreFactorAdapter;
 import com.eligasht.reservation.models.ServicePreFactorModel;
-import com.eligasht.reservation.models.model.PurchaseFlightResult;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.WebUserTools;
 import com.eligasht.reservation.tools.db.local.PassengerMosaferItems_Table;
 import com.eligasht.reservation.tools.db.local.PassengerPartnerInfo_Table;
 import com.eligasht.reservation.tools.db.main.CursorManager;
-import com.eligasht.reservation.views.adapters.GetKhadmatAdapter;
 import com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView;
 import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
@@ -139,9 +130,17 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	Handler handler;
 	ProgressDialog progressBar;
 	public FancyButton btnBack;
-	public ImageView btn_saler,btn_mosaferan,btn_khadamat,btn_pish_factor;//,escanImage;
+	public static ImageView btn_saler;
+	public static ImageView btn_mosaferan;
+	public static ImageView btn_khadamat;
+	public static ImageView btn_pish_factor;//,escanImage;
 	public TextView txtfamilyP,txtkodemeliP,txtemeliP,txtmobileP,txtMore;
-	public Button btnAddsabad,btn_pardakht_factor,txtSaler,txtMasaferan,txtKhadamat,txtPishfactor;
+	public Button btnAddsabad;
+	public static Button btn_pardakht_factor;
+	public static Button txtSaler;
+	public static Button txtMasaferan;
+	public static Button txtKhadamat;
+	public static Button txtPishfactor;
 	public EditText txtnamem,txtfamilym,txt_NationalCode_m;
 	public  TextView txttavalodm;
 	public EditText txtnumber_passport,txtnameP;
@@ -161,10 +160,15 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	GetNewKhadmatAdapter mAdapter;
 	ScrollView myScrollView;
 	private EditText searchtxt;
-	public TextView txt_shomare_factor,tvPrice,tvfactorNumber;
+	public TextView txt_shomare_factor;
+	public static TextView tvPrice;
+	public static TextView tvfactorNumber;
 
 	public ImageView txt_hom;
-	LinearLayout llDetailHotel,llDetailPassanger,llDetailService,llDetailFlight;
+	static LinearLayout llDetailHotel;
+	static LinearLayout llDetailPassanger;
+	static LinearLayout llDetailService;
+	static LinearLayout llDetailFlight;
 	private String Gensiyat="";
 
 	public int countB= SearchFlightActivity.COUNT_B;
@@ -175,22 +179,76 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public List<PurchaseFlightServices> data;
 	int counter=2;
 	private ImageView textView4;
-	String paymentUrl;
+	static String paymentUrl;
 	private boolean FlagTab=false;
 	private boolean FlagMosaferan=true;
 	private RadioButton btnzan,btnmard,btnzanS,btnmardS;
-	RelativeLayout rlLoading,rlRoot;
+	static RelativeLayout rlLoading;
+	static RelativeLayout rlRoot;
 	com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
 	com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
 	com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
 	com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog2;
-	private TextView btnPromotionCode;
+	private static TextView btnPromotionCode;
+
+	static  RecyclerView recyclerViewFlight = null;
+	static  RecyclerView recyclerViewService = null;
+	static  RecyclerView recyclerViewPassenger = null;
+	static  RecyclerView recyclerViewHotel  = null;
+
+	public static void updateFactorByPromotion(String promotionCode, Activity activity, Context context) {
+		rlLoading.setVisibility(View.VISIBLE);
+		Utility.disableEnableControls(false,rlRoot);
+		try {
+
+
+			RequestPromotionCode requestPromotionCode = new RequestPromotionCode();
+
+			requestPromotionCode.setPrefactorNum(tvfactorNumber.getText().toString());
+			requestPromotionCode.setDiscountCode(promotionCode);
+			Log.d("RequestPromotionCode: ",new Gson().toJson(requestPromotionCode));
+
+			SingletonService.getInstance().getFlight().newGetPromotionCodeAvail(new OnServiceStatus<ResponsePromotionCode>() {
+				@Override
+				public void onReady(ResponsePromotionCode responsePromotionCode) {
+					Log.e("ResponsePromotionCode:", new Gson().toJson(responsePromotionCode) );
+					rlLoading.setVisibility(View.GONE);
+					Utility.disableEnableControls(true,rlRoot);
+					if(responsePromotionCode.getDisounctAmount()>0)
+						btnPromotionCode.setVisibility(View.GONE);
+					//retry call preFactor
+					RequestPreFactorDetails(context,activity);
+				}
+
+				@Override
+				public void onError(String message) {
+					System.out.println("PurchesFlightError: "+message);
+					rlLoading.setVisibility(View.GONE);
+					Utility.disableEnableControls(true,rlRoot);
+					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(activity,true,true);
+					AlertDialogPassenger.setText(R.string.Error_getting_information_from_eli+"",context.getString(R.string.massege));
+
+				}
+			},requestPromotionCode);
+
+		}catch (Exception e){
+			e.getMessage();
+		}
+
+	}
+
+
 
 	@SuppressLint("WrongViewCast")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_flight_passenger);
+
+		  recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
+		  recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
+		  recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
+		  recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
 		sendRequestConfirmFlight();
 		SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
 		helper.setEdgeMode(false)
@@ -1968,7 +2026,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			FlagTab=true;
 			//call api GetPreFactorDetails
 
-			RequestPreFactorDetails();
+			RequestPreFactorDetails(getBaseContext(),this);
 
 		} catch (Exception e) {
 			AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
@@ -1977,7 +2035,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		}
 	}
 	//list pishfactor
-	private void RequestPreFactorDetails() {
+	private static void RequestPreFactorDetails(Context baseContext,Activity activity) {
 
 		//this method will be running on UI thread
 		rlLoading.setVisibility(View.VISIBLE);
@@ -2020,11 +2078,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					//////////////////////////////
 					long totalprice = jFact.getTotalPrice().getAmount();//TotalPrice();
 
-					tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+getString(R.string.Rial) : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
+					tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+baseContext.getString(R.string.Rial) : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
 //for hotel==========================================================================================
-					final RecyclerView recyclerViewHotel = (RecyclerView) findViewById(R.id.recyclerView);
-					recyclerViewHotel.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
-					recyclerViewHotel.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
+
+					recyclerViewHotel.addItemDecoration(new DividerItemDecoration(baseContext, 1));
+					recyclerViewHotel.setLayoutManager(new LinearLayoutManager(baseContext));
 					ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
 
 					List<Hotel> jArray2 = jArray.getHotels();//PreFactorHotels();//PreFactorHotels();
@@ -2044,9 +2102,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 //for passenger======================================================================================
 
-					final RecyclerView recyclerViewPassenger = (RecyclerView) findViewById(R.id.recyclerViewPassenger);
-					recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
-					recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
+
+					recyclerViewPassenger.addItemDecoration(new DividerItemDecoration(baseContext, 1));
+					recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(baseContext));
 					ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
 
 					List<com.eligasht.service.model.newModel.flight.prefactor.response.Passenger> jArray3 = jArray.getPassengers();//RequestPassenger();//RequestPassenger");
@@ -2067,9 +2125,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 
 					//for Services=============================================================================
-					final RecyclerView recyclerViewService = (RecyclerView) findViewById(R.id.recyclerViewService);
-					recyclerViewService.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
-					recyclerViewService.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
+
+					recyclerViewService.addItemDecoration(new DividerItemDecoration(baseContext, 1));
+					recyclerViewService.setLayoutManager(new LinearLayoutManager(baseContext));
 					ArrayList<ServicePreFactorModel> servicePreFactorModels = new ArrayList<>();
 					//List<PreFactorService> jArray4 = jArray.getPreFactorServices();
 					List<com.eligasht.service.model.newModel.flight.prefactor.response.Service> jArray4 = jArray.getServices();
@@ -2091,9 +2149,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					}
 					//for flight==================================================================================
-					final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
-					recyclerViewFlight.addItemDecoration(new DividerItemDecoration(PassengerActivity.this, 1));
-					recyclerViewFlight.setLayoutManager(new LinearLayoutManager(PassengerActivity.this));
+					//final RecyclerView recyclerViewFlight = (RecyclerView) findViewById(R.id.recyclerViewFlight);
+					recyclerViewFlight.addItemDecoration(new DividerItemDecoration(baseContext, 1));
+					recyclerViewFlight.setLayoutManager(new LinearLayoutManager(baseContext));
 					ArrayList<FlightPreFactorModel> flightPreFactorModels = new ArrayList<>();
 					//List<PreFactorFlight> jArray5 = jArray.getPreFactorFlights();
 					List<Flight> jArray5 = jArray.getFlights();
@@ -2131,8 +2189,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					}
 					setAnimation();
 				} catch (Exception e) {
-					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
-					AlertDialogPassenger.setText(getString(R.string.Error_getting_information_from_eli),getString(R.string.massege)+"fff");
+					AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(activity,true,true);
+					AlertDialogPassenger.setText(baseContext.getString(R.string.Error_getting_information_from_eli),baseContext.getString(R.string.massege)+"fff");
 				}
 			}
 
@@ -2153,7 +2211,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 	}
 
-	private void setAnimation() {
+	private static void setAnimation() {
 		YoYo.with(Techniques.BounceInRight)
 				.duration(600)
 				.playOn(btn_saler);

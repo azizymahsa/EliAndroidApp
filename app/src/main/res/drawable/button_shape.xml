@@ -3,5 +3,5 @@
     <gradient
         android:endColor="@color/button_end_gradiant"
         android:startColor="@color/button_start_gradiant" />
-
+    <corners android:radius="190dp" />
 </shape>

@@ -198,6 +198,7 @@
                     android:layout_marginLeft="@dimen/_10dp_margin"
                     android:layout_marginRight="@dimen/_10dp_margin"
                     android:layout_marginTop="1dp"
+                    card_view:cardCornerRadius="@dimen/_10_flight_dp"
                     card_view:cardBackgroundColor="#ffffff">
 
                     <LinearLayout
@@ -350,7 +351,7 @@
                     android:layout_marginRight="@dimen/_10dp_margin"
                     android:layout_marginTop="@dimen/_7_flight_dp"
                     android:background="@color/hotel_detail_background"
-
+                    card_view:cardCornerRadius="@dimen/_10_flight_dp"
 
                     card_view:cardBackgroundColor="#ffffff">
 

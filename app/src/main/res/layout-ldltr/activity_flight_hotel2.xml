@@ -163,6 +163,7 @@
             android:layout_marginRight="@dimen/_10dp_margin"
             android:layout_marginTop="@dimen/_10dp_margin"
             android:layout_weight="0.8"
+            card_view:cardCornerRadius="@dimen/_10_flight_dp"
             card_view:cardBackgroundColor="#ffffff">
 
             <LinearLayout
@@ -304,6 +305,7 @@
             android:layout_marginRight="@dimen/_10dp_margin"
             android:layout_marginTop="@dimen/_10dp_margin"
             android:layout_weight="0.8"
+            card_view:cardCornerRadius="@dimen/_10_flight_dp"
             card_view:cardBackgroundColor="#ffffff">
 
             <LinearLayout

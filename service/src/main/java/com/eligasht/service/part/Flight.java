@@ -28,6 +28,8 @@ import com.eligasht.service.model.newModel.flight.purchaseServices.request.Reque
 import com.eligasht.service.model.newModel.flight.purchaseServices.response.ResponsePurchaseServices;
 import com.eligasht.service.model.newModel.flight.services.request.RequestGetServices;
 import com.eligasht.service.model.newModel.flight.services.response.ResponseGetServices;
+import com.eligasht.service.model.newModel.promotion.request.RequestPromotionCode;
+import com.eligasht.service.model.newModel.promotion.response.ResponsePromotionCode;
 
 
 import java.util.List;
@@ -101,7 +103,10 @@ public class Flight extends BasePart {
     public void newGetPreFactorServiceAvail(OnServiceStatus<ResponseGetPreFactor> listener, RequestGetPreFactor requestGetPreFactor) {
         start(getServiceGenerator().createService().responseGetPreFactorObservable(requestGetPreFactor), listener);
     }
-
+    //*************PromotionCode*****************
+    public void newGetPromotionCodeAvail(OnServiceStatus<ResponsePromotionCode> listener, RequestPromotionCode requestPromotionCode) {
+        start(getServiceGenerator().createService().responsePromotionCodeObservable(requestPromotionCode), listener);
+    }
 
     public void newGetAuthAvail(OnServiceStatus<ResponseAuth> listener, RequestAuth reqAuth) {
         start(getServiceGenerator().createService().responseGetAuthObservable(reqAuth), listener);
