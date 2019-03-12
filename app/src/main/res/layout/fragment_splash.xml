@@ -4,7 +4,7 @@
     android:id="@+id/page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3d3f4e">
+    android:background="#4D5173">
 
     <ImageView
         android:id="@+id/ivSplash"

@@ -1,28 +1,20 @@
 package com.eligasht.reservation.views.ui;
 
-import android.Manifest;
 import android.animation.Animator;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.adjust.sdk.Adjust;
 import com.adjust.sdk.AdjustEvent;
@@ -32,18 +24,12 @@ import com.eligasht.R;
 import com.eligasht.ServiceApplication;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
-import com.eligasht.reservation.base.SingletonAnalysis;
-import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
-import com.eligasht.reservation.views.activities.loginMVP.view.LoginActivity;
-import com.eligasht.service.di.component.DaggerNetComponent;
-import com.eligasht.service.di.module.AppModule;
-import com.eligasht.service.di.module.NetModule;
+import com.eligasht.reservation.conf.APIConf;
 import com.eligasht.service.helper.Const;
 import com.eligasht.service.model.newModel.auth.response.ResponseAuth;
 import com.eligasht.service.model.newModel.startup.request.RequestStartup;
 import com.eligasht.service.model.newModel.startup.response.Branch;
 import com.eligasht.service.model.newModel.startup.response.ResponseStartup;
-import com.eligasht.service.model.startup.response.SearchNote;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.main.MainActivity;
@@ -52,13 +38,9 @@ import com.eligasht.reservation.views.ui.dialog.app.SplashDialog;
 import com.eligasht.reservation.views.ui.dialog.app.UpdateAlert;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.startup.request.Request;
-import com.eligasht.service.model.startup.request.StartupServiceRequest;
-import com.eligasht.service.model.startup.response.StartupServiceResponse;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
 import com.jaeger.library.StatusBarUtil;
 import com.orhanobut.hawk.Hawk;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -103,7 +85,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
 
     @Override
     public void onReturnValue() {
-        Auth_request();
+        Auth_request(false);
     }
 
 
@@ -169,8 +151,9 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     protected void onStart() {
         super.onStart();
     }
-    private void Auth_request() {
+    private void Auth_request(boolean flagUpdate) {
            try {
+            service = ServiceGenerator.createService(ClientService.class);
             JSONObject paramObject = new JSONObject();
             paramObject.put("grant_type", "password");
             paramObject.put("username", "eli_gasht_1397");
@@ -182,7 +165,8 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                 public void onResponse(Call<ResponseAuth> call, Response<ResponseAuth> response) {
                     Log.d("ResponseToken: ","res:"+response.body().getTokenType()+" "+response.body().getAccessToken());
                     Const.TOKEN=response.body().getTokenType()+" "+response.body().getAccessToken();
-                    startUpRequest();
+                   if(!flagUpdate)
+                     startUpRequest();
                 }
                 @Override
                 public void onFailure(Call<ResponseAuth> call, Throwable t)  {
@@ -312,22 +296,41 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                          if(!Prefs.getBoolean("isChangeBranch", false))
                                 Prefs.putString("BranchDef", branchesDef.get(0).getName());
 
+                        if(!Prefs.getBoolean("isChangeUrl", false)){
+                                Prefs.putString("BASEURL",branchesDef.get(0).getUrl());
+                                Const.BASEURL=branchesDef.get(0).getUrl();
+                                  /* ServiceApplication serviceApplication=new ServiceApplication() {
+                                        @Override
+                                        public void onCreate() {
+                                            super.onCreate();
+
+                                        }
+                                    };
+                            serviceApplication.onCreate();*/
+                        }else{
+                            APIConf apiConf=new APIConf();
+                            ServiceGenerator.changeApiBaseUrl( Prefs.getString("BASEURL",""));
+                           // Prefs.putString("BASEURL", Prefs.getString("BASEURL","");
+                            Const.BASEURL=Prefs.getString("BASEURL","");
+                            ServiceApplication serviceApplication=new ServiceApplication() {
+                                        @Override
+                                        public void onCreate() {
+                                            super.onCreate();
+
+                                        }
+                                    };
+                            serviceApplication.onCreate();
+                            Auth_request(true);
+                        }
+
                          if(!Prefs.getBoolean("isChangeCurrency", false))
                              Prefs.putString("CurrencyDef", branchesDef.get(0).getCurrency());
 
 
 
 
-                          Prefs.putString("BASEURL", branchesDef.get(0).getUrl());
-                          Const.BASEURL=branchesDef.get(0).getUrl();
-                              /* ServiceApplication serviceApplication=new ServiceApplication() {
-                                    @Override
-                                    public void onCreate() {
-                                        super.onCreate();
+                         // Prefs.putString("BASEURL", Prefs.getString("UrlDef",""));
 
-                                    }
-                                };
-                          serviceApplication.onCreate();*/
 
 
 
@@ -441,7 +444,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
 
     @Override
     public void onPermissionGranted() {
-        Auth_request();
+        Auth_request(false);
     }
 
     @Override
@@ -507,7 +510,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     @Override
     public void onAnimationEnd(Animator animation) {
         if (Utility.isNetworkAvailable(SplashActivity.this)) {
-            Auth_request();
+            Auth_request(false);
         }
     }
 
@@ -521,7 +524,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
 
     @Override
     public void onCancel(DialogInterface dialog) {
-        Auth_request();
+        Auth_request(false);
     }
 }
 

@@ -1,6 +1,8 @@
 package com.eligasht.reservation.api.retro;
 
 
+import android.util.Log;
+
 import com.eligasht.reservation.conf.APIConf;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.service.generator.SingletonService;
@@ -46,6 +48,7 @@ public class ServiceGenerator {
 
         builder = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(SingletonService.getInstance().getOkHttpClient())
                 .baseUrl(apiBaseUrl);
     }
 
@@ -97,7 +100,11 @@ public class ServiceGenerator {
         @Override
         public Response
         intercept(Interceptor.Chain chain) throws IOException {
-
+            Log.d("onClick4: ",apiBaseUrl);
+            builder = new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(SingletonService.getInstance().getOkHttpClient())
+                    .baseUrl(apiBaseUrl);
             Request.Builder builder = chain.request().newBuilder();
             builder.addHeader("Authorization", Const.TOKEN);//"bearer mpdjYhla4nncC-1L2z_CFx5TpzC-VEcJ_dLoEgL28svnEpVGe7xlUyLVVV2aa23cXKiZWYQYLrBS0VRQHb3KPU2GGvs8pE2ZB0dqHwPEAp7nvpGDQudOhySmiZTwgMNXpx1SRNwn-1AYgw1rxfF58nPzSyhwtc7v5MVmNyiRrk_7e6gojEsuG_iSGViww_fELBJC6zRy6ob2Pd-yhA-dr1m6U7d9CX_y7Cf7PZq72uQ8u_dVPNBYh5eFnKjsLS6m");
 

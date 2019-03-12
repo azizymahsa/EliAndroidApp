@@ -126,7 +126,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
         service = ServiceGenerator.createService(ClientService.class);
-        Auth_request();
+     //   Auth_request();
         return rootView;
     }//end oncreate
 

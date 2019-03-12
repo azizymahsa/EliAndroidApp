@@ -46,7 +46,6 @@ import com.eligasht.reservation.views.adapters.weather.WeatherAdapter;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.InitUi;
 
-import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelTypeModel;
 import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
@@ -56,7 +55,7 @@ import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.hotel.hotelAvail.request.Room;
 
 import com.eligasht.service.model.newModel.hotel.preSearch.response.ResponseHotelPreSearch;
-import com.eligasht.service.model.newModel.hotel.purchase.request.Passenger;
+
 import com.eligasht.service.model.newModel.hotel.search.request.RequestHotelSearch;
 import com.eligasht.service.model.newModel.hotel.search.request.UserAgentObject;
 import com.eligasht.service.model.newModel.hotel.search.response.ResponseHotelSearch;
@@ -581,7 +580,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
                 new InitUi().Loading(SearchTrainActivity.this, rlLoading, rlRoot, false, R.drawable.train_loading);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    window.setStatusBarColor(ContextCompat.getColor(SearchTrainActivity.this, R.color.status_loading));
+                    window.setStatusBarColor(ContextCompat.getColor(SearchTrainActivity.this, R.color.toolbar_color));
                 }
                 selectTrainModelArrayListTrue.clear();
                 selectTrainModelArrayListFalse.clear();
@@ -589,7 +588,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
                 selectTrainModelArrayListFilter.clear();
                 try {
                     globalResultUniqID= responseDomesticTrainAPI.getSearchKey();
-                    if (responseDomesticTrainAPI.getErrors().size() > 0) {
+                    if (responseDomesticTrainAPI.getErrors().size() > 0 && responseDomesticTrainAPI.getTrains().isEmpty()) {
                         elNotFound.setVisibility(View.VISIBLE);
                         tvAlert.setText(responseDomesticTrainAPI.getErrors().get(0).getMessage());
                         rvTrainResult.setVisibility(View.GONE);

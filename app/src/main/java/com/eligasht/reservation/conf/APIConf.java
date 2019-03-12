@@ -1,6 +1,9 @@
 package com.eligasht.reservation.conf;
 
+import android.util.Log;
+
 import com.eligasht.reservation.tools.Prefs;
+import com.eligasht.service.helper.Const;
 
 /**
  * Authors:
@@ -9,7 +12,12 @@ import com.eligasht.reservation.tools.Prefs;
  */
 public class APIConf extends BaseConf {
     private final String TAG = "__" + this.getClass().getSimpleName().toUpperCase().toString();
-    public static final String CORE_REST_API_URI;
+    public static String CORE_REST_API_URI;
+
+    public APIConf() {
+        CORE_REST_API_URI = Prefs.getString("BASEURL", "")+"/";
+        Log.d("onClick APIConf ",CORE_REST_API_URI);
+    }
 
     static {
 
@@ -19,6 +27,7 @@ public class APIConf extends BaseConf {
         else
             CORE_REST_API_URI = Prefs.getString("BASEURL", "")+"/";
 
+        Log.d("onClick3: ",CORE_REST_API_URI);
     //  CORE_REST_API_URI = "http://192.168.103.74/api/";
     }
 }

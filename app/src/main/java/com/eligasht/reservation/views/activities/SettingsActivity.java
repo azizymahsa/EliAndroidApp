@@ -8,18 +8,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import com.eligasht.R;
+import com.eligasht.ServiceApplication;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.adapters.SpinnerCustomAdapter;
 import com.eligasht.reservation.views.dialogs.SelectLanguageDialog;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SplashActivity;
+import com.eligasht.service.helper.Const;
+import com.eligasht.service.model.newModel.startup.response.Branch;
+
+import java.util.List;
 
 /**
  * Created by Ahmad.nemati on 3/3/2018.
@@ -27,13 +33,20 @@ import com.eligasht.reservation.views.ui.SplashActivity;
 
 public class SettingsActivity extends BaseActivity implements View.OnClickListener, SelectLanguageDialog.LanguageClick, AdapterView.OnItemSelectedListener {
     String[] countryNames = {"ایران (IR)", "(UK)England", "(TR) Türkiye"};
+    String[] cultureList = null;
     int flags[] = {R.drawable.iran, R.drawable.united_kingdom, R.drawable.turkey};
     String[] curencyNames = {"IRR(iran)"};
-    String[] officeNames = {"Eligasht-IR", "Eligasht-UK", "Eligasht-TK"};
+
+   // String[] officeNames = {"Eligasht-IR", "Eligasht-UK", "Eligasht-TK"};
+    String[] officeNames = null;
+    String[] officeUrl = null;
+
+
     Spinner languageSpinner, curencySpinner, officeSpinner;
     Button tvConfirm;
     String lang;
     boolean isChange=false;
+    boolean isChangeOff=false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +54,8 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_settings);
         InitUi.Toolbar(this, false, R.color.toolbar_color, getResources().getString(R.string.settings));
         tvConfirm = findViewById(R.id.tvConfirm);
+
+        getOfficeNames();
 
         curencySpinner = findViewById(R.id.curencySpinner);
         languageSpinner = findViewById(R.id.languageSpinner);
@@ -51,32 +66,68 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         tvConfirm.setOnClickListener(this);
 
 
-        languageSpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, countryNames, true));
-        curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
-        officeSpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, officeNames, false));
+        languageSpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, countryNames,officeUrl,cultureList, true));
+        curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames,officeUrl,cultureList, false));
+        officeSpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, officeNames,officeUrl,cultureList, false));
 
+        setDefaultLangSpinner();
+        setDefaultUrlSpinner();
+
+        tvConfirm.setEnabled(false);
+        tvConfirm.setClickable(false);
+        tvConfirm.setTextColor(ContextCompat.getColor(this,R.color.focusColor));
+    }
+
+    private void setDefaultUrlSpinner() {
+          if (Prefs.getString("BranchDef", "").contains("UK")) {
+
+
+            officeSpinner.setSelection(1);
+
+
+        } else if (Prefs.getString("BranchDef", "").contains("TR")) {
+
+            officeSpinner.setSelection(2);
+
+        }else{
+
+            officeSpinner.setSelection(0);
+        }
+    }
+
+    private void setDefaultLangSpinner() {
         if (Prefs.getString("lang", "fa").contains("fa")) {
             curencyNames = new String[]{"IRR(iran)"};
-            curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
+           // officeSpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, officeNames,officeUrl,cultureList, false));
             languageSpinner.setSelection(0);
 
         } else if (Prefs.getString("lang", "fa").contains("en")) {
 
             curencyNames = new String[]{"GB"};
-            curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
+          //  officeSpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, officeNames,officeUrl,cultureList, false));
 
             languageSpinner.setSelection(1);
 
 
         } else if (Prefs.getString("lang", "fa").contains("tr")) {
             curencyNames = new String[]{"TRY", "EUR"};
-            curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
+          //  officeSpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, officeNames,officeUrl,cultureList, false));
             languageSpinner.setSelection(2);
 
         }
-        tvConfirm.setEnabled(false);
-        tvConfirm.setClickable(false);
-        tvConfirm.setTextColor(ContextCompat.getColor(this,R.color.focusColor));
+    }
+
+    private void getOfficeNames() {
+        List<Branch> branchs=SplashActivity.branches;
+        officeNames=new String[branchs.size()];
+        officeUrl=new String[branchs.size()];
+        cultureList=new String[branchs.size()];
+
+        for (int i = 0; i <branchs.size() ; i++) {
+            officeNames[i]=branchs.get(i).getName();
+            officeUrl[i]=branchs.get(i).getUrl();
+            cultureList[i]=branchs.get(i).getDefaultCulture();
+        }
     }
 
     @Override
@@ -89,26 +140,43 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
 
             case R.id.tvConfirm:
-                if (Prefs.getString("lang", "fa").contains(lang)) {
-                    tvConfirm.setEnabled(false);
-                    tvConfirm.setClickable(false);
-                    tvConfirm.setTextColor(ContextCompat.getColor(this,R.color.focusColor));
-                    return;
-                }
-                Prefs.putString("lang", lang);
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent mStartActivity = new Intent(SettingsActivity.this, SplashActivity.class);
-                        int mPendingIntentId = 123456;
-                        PendingIntent mPendingIntent = PendingIntent.getActivity(SettingsActivity.this, mPendingIntentId, mStartActivity,
-                                PendingIntent.FLAG_CANCEL_CURRENT);
-                        AlarmManager mgr = (AlarmManager) SettingsActivity.this.getSystemService(Context.ALARM_SERVICE);
-                        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
-                        System.exit(0);
+                if (isChange) {
+                    if (Prefs.getString("lang", "fa").contains(lang)) {
+                        tvConfirm.setEnabled(false);
+                        tvConfirm.setClickable(false);
+                        tvConfirm.setTextColor(ContextCompat.getColor(this, R.color.focusColor));
+                      //  return;
                     }
-                }, 100);
+                    Prefs.putString("lang", lang);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent mStartActivity = new Intent(SettingsActivity.this, SplashActivity.class);
+                            int mPendingIntentId = 123456;
+                            PendingIntent mPendingIntent = PendingIntent.getActivity(SettingsActivity.this, mPendingIntentId, mStartActivity,
+                                    PendingIntent.FLAG_CANCEL_CURRENT);
+                            AlarmManager mgr = (AlarmManager) SettingsActivity.this.getSystemService(Context.ALARM_SERVICE);
+                            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                            System.exit(0);
+                        }
+                    }, 100);
+                }
+                if (isChangeOff){
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent mStartActivity = new Intent(SettingsActivity.this, SplashActivity.class);
+                            int mPendingIntentId = 123456;
+                            PendingIntent mPendingIntent = PendingIntent.getActivity(SettingsActivity.this, mPendingIntentId, mStartActivity,
+                                    PendingIntent.FLAG_CANCEL_CURRENT);
+                            AlarmManager mgr = (AlarmManager) SettingsActivity.this.getSystemService(Context.ALARM_SERVICE);
+                            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                            System.exit(0);
+                        }
+                    }, 100);
+                }
                 break;
         }
     }
@@ -152,21 +220,59 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 isChange=true;
                 switch (position) {
                     case 0:
-                        lang = "fa";
+                       // lang = "fa";
+
+                        Prefs.putBoolean("isChangeCulture", true);
+                        Prefs.putString("CultureDef", cultureList[position]);
+                       // languageSpinner.setSelection(position);
+                        if(cultureList[position].contains("-")) {
+                          ////  Prefs.putString("lang", cultureList[position].split("-")[0]);
+                            lang=cultureList[position].split("-")[0];
+                        } else {
+                           // Prefs.putString("lang", cultureList[position]);
+                            lang=cultureList[position];
+                        }
+
                         curencyNames = new String[]{"IRR(iran)"};
-                        curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
+                        curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames,officeUrl,cultureList, false));
 
                         break;
                     case 1:
-                        lang = "en";
+                      //  lang = "en";
+
+                        Prefs.putBoolean("isChangeCulture", true);
+                        Prefs.putString("CultureDef", cultureList[position]);
+                       // languageSpinner.setSelection(position);
+                        if(cultureList[position].contains("-")) {
+                            ////  Prefs.putString("lang", cultureList[position].split("-")[0]);
+                            lang=cultureList[position].split("-")[0];
+                        } else {
+                            // Prefs.putString("lang", cultureList[position]);
+                            lang=cultureList[position];
+                        }
+
+
                         curencyNames = new String[]{"GB"};
-                        curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
+                        curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames,officeUrl,cultureList, false));
 
                         break;
                     case 2:
-                        lang = "tr";
+                      //  lang = "tr";
+
+                        Prefs.putBoolean("isChangeCulture", true);
+                        Prefs.putString("CultureDef", cultureList[position]);
+                       // languageSpinner.setSelection(position);
+                        if(cultureList[position].contains("-")) {
+                            ////  Prefs.putString("lang", cultureList[position].split("-")[0]);
+                            lang=cultureList[position].split("-")[0];
+                        } else {
+                            // Prefs.putString("lang", cultureList[position]);
+                            lang=cultureList[position];
+                        }
+
+
                         curencyNames = new String[]{"TRY", "EUR"};
-                        curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames, false));
+                        curencySpinner.setAdapter(new SpinnerCustomAdapter(getApplicationContext(), flags, curencyNames,officeUrl,cultureList, false));
 
                         break;
                 }
@@ -176,6 +282,74 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             case R.id.curencySpinner:
                 break;
             case R.id.officeSpinner:
+                if (isChangeOff){
+                    tvConfirm.setEnabled(true);
+                    tvConfirm.setClickable(true);
+                    tvConfirm.setTextColor(ContextCompat.getColor(this,R.color.white));
+
+                }
+
+                switch (position) {
+                    case 0:
+                       // officeSpinner.setSelection(position);
+                        Prefs.putBoolean("isChangeBranch", true);
+                        Prefs.putString("BranchDef", countryNames[position]);
+                        Prefs.putBoolean("isChangeUrl", true);
+                        Prefs.putString("BASEURL",officeUrl[position]);
+                        Const.BASEURL=officeUrl[position];
+                        Log.d("onClick:1 ",Const.BASEURL);
+                        //update url base
+                        ServiceApplication serviceApplication=new ServiceApplication() {
+                            @Override
+                            public void onCreate() {
+                                super.onCreate();
+
+                            }
+                        };
+                        serviceApplication.onCreate();
+                        isChangeOff=true;
+
+
+                        break;
+                    case 1:
+                      //  officeSpinner.setSelection(position);
+                        Prefs.putBoolean("isChangeBranch", true);
+                        Prefs.putString("BranchDef", countryNames[position]);
+                        Prefs.putBoolean("isChangeUrl", true);
+                        Prefs.putString("BASEURL",officeUrl[position]);
+                        Const.BASEURL=officeUrl[position];
+                        Log.d("onClick:1 ",Const.BASEURL);
+                        //update url base
+                        ServiceApplication serviceApplication1=new ServiceApplication() {
+                            @Override
+                            public void onCreate() {
+                                super.onCreate();
+
+                            }
+                        };
+                        serviceApplication1.onCreate();
+                        isChangeOff=true;
+                        break;
+                    case 2:
+                       // officeSpinner.setSelection(position);
+                        Prefs.putBoolean("isChangeBranch", true);
+                        Prefs.putString("BranchDef", countryNames[position]);
+                        Prefs.putBoolean("isChangeUrl", true);
+                        Prefs.putString("BASEURL",officeUrl[position]);
+                        Const.BASEURL=officeUrl[position];
+                        Log.d("onClick:1 ",Const.BASEURL);
+                        //update url base
+                        ServiceApplication serviceApplication2=new ServiceApplication() {
+                            @Override
+                            public void onCreate() {
+                                super.onCreate();
+
+                            }
+                        };
+                        serviceApplication2.onCreate();
+                        isChangeOff=true;
+                        break;
+                }
                 break;
         }
     }

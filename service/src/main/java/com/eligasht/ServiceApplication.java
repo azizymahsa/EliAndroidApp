@@ -1,6 +1,7 @@
 package com.eligasht;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.eligasht.service.di.component.DaggerNetComponent;
 import com.eligasht.service.di.component.NetComponent;
@@ -22,6 +23,7 @@ public abstract class ServiceApplication extends Application {
     public void onCreate() {
         super.onCreate();
         SingletonService.getInstance().setContext(this);
+        Log.d("onClick ServiceApplication: ",Const.BASEURL);
         mNetComponent = DaggerNetComponent.builder()
                 .appModule(new AppModule(this))
                 .netModule(new NetModule(Const.BASEURL+"/"))
