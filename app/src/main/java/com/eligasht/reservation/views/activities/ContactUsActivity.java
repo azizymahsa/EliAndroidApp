@@ -13,12 +13,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
+import com.eligasht.reservation.views.ui.SplashActivity;
 import com.eligasht.service.generator.SingletonService;
+import com.eligasht.service.helper.Const;
 import com.eligasht.service.listener.OnServiceStatus;
 import com.eligasht.service.model.flight.request.contactUs.RequestContactUs;
 import com.eligasht.service.model.flight.response.contactUs.GetContactUsWithCutureResult;
 import com.eligasht.service.model.flight.response.contactUs.ResponseContactUs;
+import com.eligasht.service.model.newModel.startup.response.Branch;
+import com.eligasht.service.model.newModel.startup.response.ContactUs;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -39,7 +44,7 @@ import java.util.List;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class ContactUsActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback , OnServiceStatus<ResponseContactUs> {
+public class ContactUsActivity extends BaseActivity implements View.OnClickListener, OnMapReadyCallback  {
 
 
     private FancyButton btnBack;
@@ -51,10 +56,13 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     private GoogleMap map;
     ExpandableRelativeLayout expandableLayout;
     public ImageView txtInstagram,txtAparat,txtTweeter,txtPintrest,txtLinkdin,txtGoogleP,txtFacebook,txtTelegram;
+    public String strInstagram,strAparat,strTweeter,strPintrest,strLinkdin,strGoogleP,strFacebook,strTelegram;
+    public String strPhone;
     ProgressDialog pdLoading;
     LatLng location;
     private ResponseContactUs responseContactUs;
-
+    private List<Branch> branchesDef;
+    ContactUs contactUs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,28 +106,76 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
         initMap();
 
-        SendRequestContactUs();
+        SetDataContactUs();
 
         findViewById(R.id.txt_hom).setVisibility(View.INVISIBLE);
 
+
     }
 
-    private void SendRequestContactUs() {
-        pdLoading = new ProgressDialog(ContactUsActivity.this);
-        try {
-            //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
+    private void SetDataContactUs() {
+
+        contactUs=new ContactUs();
+        branchesDef=new ArrayList<>();
+
+        branchesDef= SplashActivity.branchesDef;
+
+        if (branchesDef.get(0).getIsDefault()){
+            if(Prefs.getBoolean("isChangeUrl", false)){
+                branchesDef.clear();
+                branchesDef=new ArrayList<>();
+
+                branchesDef=SplashActivity.branches;
+
+                for (int i = 0; i < branchesDef.size(); i++) {
+                    if(Prefs.getString("BASEURL", "").equals(branchesDef.get(i).getUrl())){
+                        contactUs= branchesDef.get(i).getContactUs();
+                    }
+                }
+
+            }else {
+                contactUs= branchesDef.get(0).getContactUs();
+            }
         }
-        catch (Exception e)
-        {
-            e.printStackTrace();
+        setUrlSocialNet();
+        setDatainTxt();
+    }
+
+    private void setDatainTxt() {
+        txtAddres.setText(contactUs.getAddress());//GetAirportsResult.getAddress().replaceAll("\t","").replaceAll("\r"," ").replaceAll("\n"," "));
+        txtPhone.setText(contactUs.getPhoneNumber());
+        try{
+            map.clear();
+
+            location=new LatLng(Double.parseDouble(contactUs.getLatitude()),Double.parseDouble(contactUs.getLongitude()));
+
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+            map.addMarker(new MarkerOptions().position(location).title(getString(R.string.eligasht)));
+        } catch (Exception e) {
+            Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
         }
-        RequestContactUs requestContactUs = new RequestContactUs();
-        com.eligasht.service.model.flight.request.contactUs.RequestContactUs request = new com.eligasht.service.model.flight.request.contactUs.RequestContactUs();
-        request.setCulture(getString(R.string.culture));
-        SingletonService.getInstance().getContactUs().contactUsAvail(this,request);
+    }
+
+    private void setUrlSocialNet() {
+
+        for (int i = 0; i <contactUs.getContactInfo().size() ; i++) {
+            if (contactUs.getContactInfo().get(i).contains("instagram"))
+                strInstagram=contactUs.getContactInfo().get(i);
+            if (contactUs.getContactInfo().get(i).contains("aparat"))
+                strAparat=contactUs.getContactInfo().get(i);
+            if (contactUs.getContactInfo().get(i).contains("twitter"))
+                strTweeter=contactUs.getContactInfo().get(i);
+            if (contactUs.getContactInfo().get(i).contains("pinterest"))
+                strPintrest=contactUs.getContactInfo().get(i);
+            if (contactUs.getContactInfo().get(i).contains("linkedin"))
+                strLinkdin=contactUs.getContactInfo().get(i);
+            if (contactUs.getContactInfo().get(i).contains("plus"))
+                strGoogleP=contactUs.getContactInfo().get(i);
+            if (contactUs.getContactInfo().get(i).contains("facebook"))
+                strFacebook=contactUs.getContactInfo().get(i);
+            if (contactUs.getContactInfo().get(i).contains("telegram"))
+                strTelegram=contactUs.getContactInfo().get(i);
+        }
     }
 
     @Override
@@ -137,42 +193,42 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         switch (v.getId()) {
 
             case R.id.txtInstagram:
-                Uri uri = Uri.parse("https://instagram.com/eligashtco/");
+                Uri uri = Uri.parse(strInstagram);
                 Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
                 likeIng.setPackage("com.instagram.android");
                 try {
                     startActivity(likeIng);
                 } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/eligashtco/")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(strInstagram)));
                 }
                 break;
             case R.id.txtAparat:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.aparat.com/eligasht")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(strAparat)));
                 break;
             case R.id.txtTweeter:
                 Intent intent = null;
-                intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/eligasht"));
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(strTweeter));
                 this.startActivity(intent);
                 break;
             case R.id.txtPintrest:
                 try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.pinterest.com/eligasht/")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(strPintrest)));
                 } catch (Exception e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.pinterest.com/eligasht/")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(strPintrest)));
                 }
                 break;
             case R.id.txtLinkdin:
-                startActivity( new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/company/eligasht")));
+                startActivity( new Intent(Intent.ACTION_VIEW, Uri.parse(strLinkdin)));
                 break;
             case R.id.txtGoogleP:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://plus.google.com/+Eligasht")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(strGoogleP)));
                 break;
             case R.id.txtFacebook:
 
-                startActivity( new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/eligashtco")));
+                startActivity( new Intent(Intent.ACTION_VIEW, Uri.parse(strFacebook)));
                 break;
             case R.id.txtTelegram:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/eligashtco")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(strTelegram)));
                 break;
             case R.id.btnBack:
                 finish();
@@ -194,7 +250,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.txtPhone:
                 if (responseContactUs == null) {
-                    Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "۰۲۱-۸۵۴۰", null));
+                    Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", contactUs.getPhoneNumber(), null));
                     startActivity(intent2);
                 }else {
                     String[] phone = responseContactUs.getGetContactUsWithCutureResult().getPhoneNumber().split("\r\n");
@@ -247,70 +303,18 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         googleMap.getUiSettings().setZoomGesturesEnabled(false);
         googleMap.getUiSettings().setZoomControlsEnabled(true);
         map.clear();
-        if (responseContactUs != null) {
-            location=new LatLng(responseContactUs.getGetContactUsWithCutureResult().getLatitude(),responseContactUs.getGetContactUsWithCutureResult().getLongitude());
-        }else{
+        //if (responseContactUs != null) {
+            location=new LatLng(Double.parseDouble(contactUs.getLatitude()),Double.parseDouble(contactUs.getLongitude()));
+        /*}else{
              location=new LatLng(35.737595,51.413388);
-        }
+        }*/
 
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
         map.addMarker(new MarkerOptions().position(location).title(getString(R.string.eligasht)));
 
     }
 
-    @Override
-    public void onReady(ResponseContactUs responseContactUs) {
 
-         this.responseContactUs=responseContactUs;
-            try {
-                pdLoading.dismiss();
-                List<ContactInfo> data=new ArrayList<ContactInfo>();
-
-                pdLoading.dismiss();
-
-                // Getting JSON Array node
-                GetContactUsWithCutureResult GetAirportsResult = responseContactUs.getGetContactUsWithCutureResult();//
-                String jsonAddress = GetAirportsResult.getAddress();
-
-                List<com.eligasht.service.model.flight.response.contactUs.ContactInfo> jArray = GetAirportsResult.getContactInfos();
-
-                // Extract data from json and store into ArrayList as class objects
-                for(int i=0;i<jArray.size();i++){
-                    com.eligasht.service.model.flight.response.contactUs.ContactInfo json_data = jArray.get(i);
-                    ContactInfo sectionModel = new ContactInfo();
-                    sectionModel.setDescription(json_data.getDescription());
-                    sectionModel.setIcon(json_data.getIcon());
-                    sectionModel.setIconNumber(json_data.getIconNumber());
-                    sectionModel.setTitle(json_data.getTitle());
-
-                    data.add(sectionModel);
-                }
-
-                System.out.println("Image:"+GetAirportsResult.getAddress());//r\n\t\
-                txtAddres.setText(GetAirportsResult.getAddress().replaceAll("\t","").replaceAll("\r"," ").replaceAll("\n"," "));
-                txtPhone.setText(""+GetAirportsResult.getPhoneNumber());
-
-                map.clear();
-                if (responseContactUs != null) {
-                    location=new LatLng(responseContactUs.getGetContactUsWithCutureResult().getLatitude(),responseContactUs.getGetContactUsWithCutureResult().getLongitude());
-                    Log.i("Location1",location.toString() );
-                }else{
-                    location=new LatLng(35.737595,51.413388);
-                    Log.i("Location2",location.toString() );
-                }
-
-                map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
-                map.addMarker(new MarkerOptions().position(location).title(getString(R.string.eligasht)));
-            } catch (Exception e) {
-                Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
-            }
-
-    }
-
-    @Override
-    public void onError(String message) {
-        Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
-    }
 
 
 }
