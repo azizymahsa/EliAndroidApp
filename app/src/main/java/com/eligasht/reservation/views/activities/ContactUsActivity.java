@@ -152,7 +152,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
             map.addMarker(new MarkerOptions().position(location).title(getString(R.string.eligasht)));
         } catch (Exception e) {
-            Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
+           // Toast.makeText(ContactUsActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
         }
     }
 
