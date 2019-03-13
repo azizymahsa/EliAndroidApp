@@ -79,7 +79,7 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         imgHeader = (ImageView) findViewById(R.id.backdrop);
 
-        // initializing toolbar
+        // initializing toolbar0
         initCollapsingToolbar();
 
 

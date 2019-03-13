@@ -321,8 +321,9 @@
 
 
             </RelativeLayout>
-
+            <!--RvFlight-->
             <RelativeLayout
+                android:id="@+id/RvFlight"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="2dp"
@@ -370,8 +371,9 @@
 
 
             </RelativeLayout>
-
+            <!--RvHotel-->
             <RelativeLayout
+                android:id="@+id/RvHotel"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
@@ -413,8 +415,9 @@
                     android:textSize="@dimen/_30dp_normal_iconSize" />
 
             </RelativeLayout>
-
+            <!--RvHotelFlight-->
             <RelativeLayout
+                android:id="@+id/RvHotelFlight"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
@@ -457,8 +460,9 @@
 
             </RelativeLayout>
 
-
+            <!--RvPackage-->
             <RelativeLayout
+                android:id="@+id/RvPackage"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
@@ -501,8 +505,9 @@
 
             </RelativeLayout>
 
-
+            <!--RvInsurance-->
             <RelativeLayout
+                android:id="@+id/RvInsurance"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
@@ -544,8 +549,9 @@
                     android:textSize="@dimen/_30dp_normal_iconSize" />
 
             </RelativeLayout>
-
+            <!--RvGhatar-->
             <RelativeLayout
+                android:id="@+id/RvGhatar"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
@@ -600,8 +606,9 @@
                     android:textSize="@dimen/_30dp_normal_iconSize" />
 
             </RelativeLayout>
-
+            <!--RvCondition-->
             <RelativeLayout
+                android:id="@+id/RvCondition"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
@@ -704,8 +711,9 @@
                     android:textSize="@dimen/_25dp_normal_iconSize" />
 
             </RelativeLayout>
-
+            <!--RvSetting-->
             <RelativeLayout
+                android:id="@+id/RvSetting"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
@@ -746,8 +754,9 @@
                     android:textSize="@dimen/_30dp_normal_iconSize" />
 
             </RelativeLayout>
-
+            <!--RvContactUs-->
             <RelativeLayout
+                android:id="@+id/RvContactUs"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
@@ -790,8 +799,9 @@
 
             </RelativeLayout>
 
-
+            <!--RvAbout-->
             <RelativeLayout
+                android:id="@+id/RvAbout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="70">
@@ -837,7 +847,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="2dp"
-                android:layout_weight="70">
+                android:layout_weight="70"
+                android:visibility="gone">
 
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/survey"

@@ -52,8 +52,11 @@ import com.eligasht.reservation.views.fragments.pack.PackageFragment;
 import com.eligasht.reservation.views.fragments.train.TrainFragment;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.eligasht.reservation.views.ui.SplashActivity;
 import com.eligasht.reservation.views.ui.dialog.GiftDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPolicy;
+import com.eligasht.service.model.newModel.startup.response.Branch;
+import com.eligasht.service.model.newModel.startup.response.CommonUrl;
 import com.github.aakira.expandablelayout.ExpandableWeightLayout;
 import com.onesignal.shortcutbadger.ShortcutBadger;
 import com.sdsmdg.tastytoast.TastyToast;
@@ -61,6 +64,9 @@ import com.sdsmdg.tastytoast.TastyToast;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -80,7 +86,8 @@ public class MainActivity extends Base implements View.OnClickListener {
     private FancyButton btnMenu;
     private DrawerLayout drawerLayout;
     private TextView tvTitle, tvArrow, tvBadge;
-    private FancyButton btnGhatar,btnFlight, btnHotel, btnPackage, btnTour, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting, gift, map, btn_message,survey;
+    private FancyButton btnGhatar,btnFlight, btnHotel, btnPackage, btnInsurance, btnHotelFlight, btnAbout, btnContactUs, btn_condition, btnLastBuy, btnSetting, gift, map, btn_message,survey;
+    private RelativeLayout RvGhatar,RvFlight, RvHotel, RvPackage, RvInsurance, RvHotelFlight, RvAbout, RvContactUs, RvCondition, RvSetting;
     private FragmentManager manager;
     private BroadcastReceiver sendFinish;
     private BroadcastReceiver sendStartTimer, sendDetailFinish;
@@ -116,12 +123,37 @@ public class MainActivity extends Base implements View.OnClickListener {
         InitUi.Toolbar(this, true, R.color.TRANSPARENT, "صفحه اصلی");
 
         initViews();
+        ActiveOperation();
     }
 
 
     public void initViews() {
+
+        RvGhatar = findViewById(R.id.RvGhatar);
+        RvFlight = findViewById(R.id.RvFlight);
+        RvHotel = findViewById(R.id.RvHotel);
+        RvPackage = findViewById(R.id.RvPackage);
+        RvInsurance = findViewById(R.id.RvInsurance);
+        RvHotelFlight = findViewById(R.id.RvHotelFlight);
+        RvAbout = findViewById(R.id.RvAbout);
+        RvContactUs = findViewById(R.id.RvContactUs);
+        RvCondition = findViewById(R.id.RvCondition);
+        RvSetting = findViewById(R.id.RvSetting);
+
+        RvGhatar.setVisibility(View.GONE);
+        RvFlight.setVisibility(View.GONE);
+        RvHotel.setVisibility(View.GONE);
+        RvPackage.setVisibility(View.GONE);
+        RvInsurance.setVisibility(View.GONE);
+        RvHotelFlight.setVisibility(View.GONE);
+        RvAbout.setVisibility(View.GONE);
+        RvContactUs.setVisibility(View.GONE);
+        RvCondition.setVisibility(View.GONE);
+        RvSetting.setVisibility(View.GONE);
+
         //findView==================================================================================
         btnMenu = findViewById(R.id.btnMenu);
+        btnMenu.setVisibility(View.GONE);
         drawerLayout = findViewById(R.id.drawerLayout);
         tvTitle = findViewById(R.id.tvTitle);
         tvBadge = findViewById(R.id.tvBadge);
@@ -203,6 +235,86 @@ public class MainActivity extends Base implements View.OnClickListener {
 
             }
         });
+    }
+
+    private void ActiveOperation() {
+
+        List<Branch>  branchesDef=new ArrayList<>();
+        List<Integer> activeOperation=new ArrayList<>();
+        try {
+
+
+
+            branchesDef= SplashActivity.branchesDef;
+            if (branchesDef != null){
+                if (branchesDef.get(0).getIsDefault()){
+                    if(Prefs.getBoolean("isChangeUrl", false)){
+                        // branchesDef.clear();
+                        branchesDef=new ArrayList<>();
+
+                        branchesDef=SplashActivity.branches;
+
+                        for (int i = 0; i < branchesDef.size(); i++) {
+                            if(Prefs.getString("BASEURL", "").equals(branchesDef.get(i).getUrl())){
+
+                             activeOperation=branchesDef.get(i).getActiveOperations();
+
+
+                            }
+                        }
+
+                    }else {//default branch
+
+                        activeOperation=branchesDef.get(0).getActiveOperations();
+
+                    }
+                }
+
+              //  setUrlInWebView();
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < activeOperation.size() ; i++) {
+            if (activeOperation.get(i)==0) {
+              btnMenu.setVisibility(View.VISIBLE);
+            }else
+            if (activeOperation.get(i)==1) {
+                RvFlight.setVisibility(View.VISIBLE);
+            }else
+            if (activeOperation.get(i)==2) {
+                RvHotel.setVisibility(View.VISIBLE);
+            }else
+            if (activeOperation.get(i)==3) {
+                RvHotelFlight.setVisibility(View.VISIBLE);
+            }else
+            if (activeOperation.get(i)==4) {
+                RvPackage.setVisibility(View.VISIBLE);
+            }else
+            if (activeOperation.get(i)==5) {
+                RvInsurance.setVisibility(View.VISIBLE);
+            }else
+            if (activeOperation.get(i)==6) {
+                RvGhatar.setVisibility(View.VISIBLE);
+            }else
+            if (activeOperation.get(i)==7) {
+                RvSetting.setVisibility(View.VISIBLE);
+            }else
+            if (activeOperation.get(i)==8) {
+                RvContactUs.setVisibility(View.VISIBLE);
+            }else
+            if (activeOperation.get(i)==9) {
+                RvAbout.setVisibility(View.VISIBLE);
+            }else
+            if (activeOperation.get(i)==10) {
+                RvCondition.setVisibility(View.VISIBLE);
+            }
+
+        }
+
     }
 
     @Override
