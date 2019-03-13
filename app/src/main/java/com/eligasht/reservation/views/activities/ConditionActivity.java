@@ -5,11 +5,17 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.eligasht.R;
@@ -17,8 +23,12 @@ import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.model.SectionModel;
 import com.eligasht.reservation.tools.JustifiedTextView;
 import com.eligasht.reservation.tools.NonScrollRecyclerView;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.adapters.AboutAdapter;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.eligasht.reservation.views.ui.SplashActivity;
+import com.eligasht.service.model.newModel.startup.response.Branch;
+import com.eligasht.service.model.newModel.startup.response.CommonUrl;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -51,26 +61,30 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
 
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
-    Handler handler;
-    ProgressDialog progressBar;
-    ArrayList<HashMap<String, String>> mylist = null;
-    AboutAdapter mAdapter;
-    private FancyButton btnBack;
-    private Handler progressBarHandler = new Handler();
-    private JustifiedTextView textView12;
+    private WebView webView;
+    private ProgressBar progressBar;
+    private ImageView imgHeader;
+
+    private String postUrl;
+
+    private List<Branch> branchesDef;
+    CommonUrl commonUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_condition);
 
-        btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(this);
-        btnBack.setCustomTextFont("fonts/icomoon.ttf");
-        btnBack.setText(getString(R.string.search_back_right));
+        webView = (WebView) findViewById(R.id.webView);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        imgHeader = (ImageView) findViewById(R.id.backdrop);
 
-        new GetAboutAsync().execute();
+        // initializing toolbar
+        initCollapsingToolbar();
 
+
+
+        setDataCommonUrl();
     }
 
     @Override
@@ -96,184 +110,98 @@ public class ConditionActivity extends BaseActivity implements View.OnClickListe
     }
 
 
-    private class GetAboutAsync extends AsyncTask<String, Void, String> {
+    private void initCollapsingToolbar() {
+        final CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle(" ");
+        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+        appBarLayout.setExpanded(true);
 
-        ProgressDialog pdLoading = new ProgressDialog(ConditionActivity.this);
-        HttpURLConnection conn;
-        URL url = null;
-        private NonScrollRecyclerView listAirPort;
+        // hiding & showing the txtPostTitle when toolbar expanded & collapsed
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = false;
+            int scrollRange = -1;
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.setCancelable(false);
-            pdLoading.show();
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                url = new URL("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetTermsAndConditions");
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return e.toString();
-            }
-            try {
-                // Setup HttpURLConnection class to send and receive data from php and mysql
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                // conn.setRequestMethod("GET");
-                conn.setRequestMethod("POST");
-                // setDoOutput to true as we recieve data from json file
-                conn.setDoOutput(true);
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-                return e1.toString();
-            }
-
-            try {
-                int response_code = conn.getResponseCode();
-                String serial = null;
-                JSONObject errorObj = new JSONObject();
-                try {
-                    errorObj.put("Success", false);
-
-                    Class<?> c = Class.forName("android.os.SystemProperties");
-                    Method get = c.getMethod("get", String.class);
-                    serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-                } catch (Exception ignored) {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
                 }
-                String data = "";
-                try {
-                    errorObj.put("Success", false);
-                    Class<?> c = Class.forName("android.os.SystemProperties");
-                    Method get = c.getMethod("get", String.class);
-                    serial = (String) get.invoke(c, "ro.serialno");//31007a81d4b22300
-                } catch (Exception ignored) {
+                if (scrollRange + verticalOffset == 0) {
+                    collapsingToolbar.setTitle("Web View");
+                    isShow = true;
+                } else if (isShow) {
+                    collapsingToolbar.setTitle(" ");
+                    isShow = false;
                 }
-                try {
+            }
+        });
 
-                    if (Locale.getDefault().getLanguage().equals("en")) {
-                        JSONObject jsone = new JSONObject();
-                        JSONObject manJson = new JSONObject();
-                        manJson.put("culture", "en-");
-                        // jsone.put("", manJson);
-                        data = manJson.toString();
-                    } else if (Locale.getDefault().getLanguage().equals("fa")) {
-                        JSONObject jsone = new JSONObject();
-                        JSONObject manJson = new JSONObject();
-                        manJson.put("culture", "fa-");
-                        // jsone.put("", manJson);
-                        data = manJson.toString();
-                    } else if (Locale.getDefault().getLanguage().equals("tr")) {
-                        JSONObject jsone = new JSONObject();
-                        JSONObject manJson = new JSONObject();
-                        manJson.put("culture", "tr-TR");
-                        // jsone.put("", manJson);
-                        data = manJson.toString();
-                    } else if (Locale.getDefault().getLanguage().equals("ar")) {
-                        JSONObject jsone = new JSONObject();
-                        JSONObject manJson = new JSONObject();
-                        manJson.put("culture", "ar-");
-                        //jsone.put("", manJson);
-                        data = manJson.toString();
+    /*    // loading toolbar header image
+        Glide.with(getApplicationContext()).load("https://api.androidhive.info/webview/nougat.jpg")
+                .thumbnail(0.5f)
+                //.crossFade()
+               // .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imgHeader);*/
+    }
+
+    //////////////////////////////
+    private void setDataCommonUrl() {
+        try {
+
+            commonUrl=new CommonUrl();
+            branchesDef=new ArrayList<>();
+
+            branchesDef= SplashActivity.branchesDef;
+            if (branchesDef != null){
+                if (branchesDef.get(0).getIsDefault()){
+                    if(Prefs.getBoolean("isChangeUrl", false)){
+                        // branchesDef.clear();
+                        branchesDef=new ArrayList<>();
+
+                        branchesDef=SplashActivity.branches;
+
+                        for (int i = 0; i < branchesDef.size(); i++) {
+                            if(Prefs.getString("BASEURL", "").equals(branchesDef.get(i).getUrl())){
+                                for (int j = 0; j < branchesDef.get(i).getCommonUrl().size(); j++) {
+                                    if(branchesDef.get(i).getCommonUrl().get(j).getTitle().contains("Termsconditions")){
+                                        commonUrl=branchesDef.get(i).getCommonUrl().get(j);
+                                    }
+                                }
+
+                            }
+                        }
+
+                    }else {//default branch
+                        for (int z = 0; z < branchesDef.get(0).getCommonUrl().size(); z++) {
+                            if(branchesDef.get(0).getCommonUrl().get(z).getTitle().contains("Termsconditions")){
+                                commonUrl=branchesDef.get(0).getCommonUrl().get(z);
+                            }
+                        }
+                        // commonUrl= branchesDef.get(0).getCommonUrl();
                     }
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
                 }
-                System.out.println("culture:" + data);
 
-                HttpClient client = new DefaultHttpClient();
-
-                HttpPost post = new HttpPost();
-                post = new HttpPost("https://mobilews.eligasht.com/LightServices/Rest/Common/StaticDataService.svc/GetTermsAndConditions");
-                post.setHeader("Content-Type", "application/json; charset=UTF-8");
-                post.setHeader("Accept", "application/json; charset=UTF-8");
-
-                StringEntity se = null;
-                try {
-                    se = new StringEntity(data, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                post.setEntity(se);
-                ByteArrayOutputStream os = new ByteArrayOutputStream();
-
-                HashMap<String, String> airport = null;
-                mylist = new ArrayList<HashMap<String, String>>();
-                HttpResponse res = client.execute(post);
-                String retSrc = EntityUtils.toString(res.getEntity(), HTTP.UTF_8);
-
-                return (retSrc);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return e.toString();
-            } finally {
-                conn.disconnect();
+                setUrlInWebView();
             }
         }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            //this method will be running on UI thread
-
-            pdLoading.dismiss();
-            List<SectionModel> data = new ArrayList<SectionModel>();
-
-            pdLoading.dismiss();
-            try {
-
-                JSONObject jsonObj = new JSONObject(result);
-
-                // Getting JSON Array node
-                JSONObject GetAirportsResult = jsonObj.getJSONObject("GetTermsAndConditionsResult");
-                JSONArray jArray = GetAirportsResult.getJSONArray("Sections");
-
-                // Extract data from json and store into ArrayList as class objects
-                for (int i = 0; i < jArray.length(); i++) {
-                    JSONObject json_data = jArray.getJSONObject(i);
-                    SectionModel sectionModel = new SectionModel();
-                    sectionModel.setDescription(json_data.getString("Description"));
-                    sectionModel.setSectionName(json_data.getString("SectionName"));
-                    sectionModel.setImageAddress(json_data.getString("ImageAddress"));
-
-                    data.add(sectionModel);
-                }
-
-                listAirPort = findViewById(R.id.lvExp);
-                listAirPort.addItemDecoration(new DividerItemDecoration(ConditionActivity.this, 1));
-                listAirPort.setLayoutManager(new LinearLayoutManager(ConditionActivity.this));
-                mAdapter = new AboutAdapter(data);
-
-                listAirPort.setAdapter(mAdapter);
-                listAirPort.setClickable(false);
-                listAirPort.setEnabled(false);
-                listAirPort.setScrollContainer(false);
-                listAirPort.setOnFlingListener(new RecyclerView.OnFlingListener() {
-                    @Override
-                    public boolean onFling(int velocityX, int velocityY) {
-                        listAirPort.dispatchNestedFling(velocityX, velocityY, false);
-                        return false;
-                    }
-                });
-
-            } catch (JSONException e) {
-                Toast.makeText(ConditionActivity.this, getString(R.string.error_in_connection), Toast.LENGTH_LONG).show();
-            }
-
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
 
-    }//end asynTask
 
+    }
+
+    private void setUrlInWebView() {
+        postUrl = commonUrl.getUrl();
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(postUrl);
+        webView.setHorizontalScrollBarEnabled(false);
+
+        // webView.loadUrl("http://www.google.com");
+        Log.d( "setUrlInWebView: ",commonUrl.getUrl());
+        //webView.loadUrl(commonUrl.getUrl());
+    }
 
 }

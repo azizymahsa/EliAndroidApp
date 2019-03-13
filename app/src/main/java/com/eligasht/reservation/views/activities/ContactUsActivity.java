@@ -60,16 +60,24 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
     public String strPhone;
     ProgressDialog pdLoading;
     LatLng location;
-    private ResponseContactUs responseContactUs;
+
     private List<Branch> branchesDef;
     ContactUs contactUs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
+        initView();
 
+        initMap();
+
+        SetDataContactUs();
+
+    }
+
+    private void initView() {
         expandableLayout = findViewById(R.id.expandableLayout);
-
+        findViewById(R.id.txt_hom).setVisibility(View.INVISIBLE);
         btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
@@ -103,42 +111,38 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
         txtTweeter.setOnClickListener(this);
         txtAparat = findViewById(R.id.txtAparat);
         txtAparat.setOnClickListener(this);
-
-        initMap();
-
-        SetDataContactUs();
-
-        findViewById(R.id.txt_hom).setVisibility(View.INVISIBLE);
-
-
     }
 
     private void SetDataContactUs() {
+        try {
+            contactUs = new ContactUs();
+            branchesDef = new ArrayList<>();
 
-        contactUs=new ContactUs();
-        branchesDef=new ArrayList<>();
+            branchesDef = SplashActivity.branchesDef;
+            if (branchesDef != null)
+                if (branchesDef.get(0).getIsDefault()) {
+                    if (Prefs.getBoolean("isChangeUrl", false)) {
+                        // branchesDef.clear();
+                        branchesDef = new ArrayList<>();
 
-        branchesDef= SplashActivity.branchesDef;
+                        branchesDef = SplashActivity.branches;
 
-        if (branchesDef.get(0).getIsDefault()){
-            if(Prefs.getBoolean("isChangeUrl", false)){
-                branchesDef.clear();
-                branchesDef=new ArrayList<>();
+                        for (int i = 0; i < branchesDef.size(); i++) {
+                            if (Prefs.getString("BASEURL", "").equals(branchesDef.get(i).getUrl())) {
+                                contactUs = branchesDef.get(i).getContactUs();
+                            }
+                        }
 
-                branchesDef=SplashActivity.branches;
-
-                for (int i = 0; i < branchesDef.size(); i++) {
-                    if(Prefs.getString("BASEURL", "").equals(branchesDef.get(i).getUrl())){
-                        contactUs= branchesDef.get(i).getContactUs();
+                    } else {
+                        contactUs = branchesDef.get(0).getContactUs();
                     }
                 }
-
-            }else {
-                contactUs= branchesDef.get(0).getContactUs();
+            setUrlSocialNet();
+            setDatainTxt();
+        }catch (Exception e)
+            {
+                e.printStackTrace();
             }
-        }
-        setUrlSocialNet();
-        setDatainTxt();
     }
 
     private void setDatainTxt() {
@@ -249,16 +253,16 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
 
                 break;
             case R.id.txtPhone:
-                if (responseContactUs == null) {
+                //if (responseContactUs == null) {
                     Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", contactUs.getPhoneNumber(), null));
                     startActivity(intent2);
-                }else {
+               /* }else {
                     String[] phone = responseContactUs.getGetContactUsWithCutureResult().getPhoneNumber().split("\r\n");
                     String phoneCall = phone[0];
                     Log.e("phone", phoneCall+"" );
                     Intent intent2 = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel",phoneCall, null));
                     startActivity(intent2);
-                }
+                }*/
 
         }
     }
