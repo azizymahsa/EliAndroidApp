@@ -612,15 +612,16 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
             String valueTrip=createTrip(raft.replaceAll("/", "-"),bargasht.replaceAll("/", "-"),flagOneTwo);
 
         request.setTrip(valueTrip);
-        request.setInfant(extras.getString("Value_Pass_CountN"));
+        request.setInfant((extras.getString("Value_Pass_CountN").length()>0) ? extras.getString("Value_Pass_CountN") : "0");
         request.setExclusiveTrain(extras.getBoolean("Value_ExclusiveTrain"));
         request.setCategory("DomesticTrain");
-        request.setAdult(extras.getString("Value_Pass_CountB"));
+
+        request.setAdult((extras.getString("Value_Pass_CountB").length()>0) ? extras.getString("Value_Pass_CountB") : "1");
+
         request.setCurrentCulture(getString(R.string.culture));
-        request.setChild(extras.getString("Value_Pass_CountK"));
+
+        request.setChild((extras.getString("Value_Pass_CountK").length()>0) ? extras.getString("Value_Pass_CountK") : "0");
         request.setPType(extras.getString("Value_PType"));
-
-
 
         requestHotelPreSearch.setQueryModel(request);
 
