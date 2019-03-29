@@ -46,6 +46,7 @@ import com.eligasht.reservation.views.adapters.weather.WeatherAdapter;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.ui.InitUi;
 
+import com.eligasht.reservation.views.ui.SplashActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelDialog;
 import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelTypeModel;
 import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
@@ -59,6 +60,7 @@ import com.eligasht.service.model.newModel.hotel.preSearch.response.ResponseHote
 import com.eligasht.service.model.newModel.hotel.search.request.RequestHotelSearch;
 import com.eligasht.service.model.newModel.hotel.search.request.UserAgentObject;
 import com.eligasht.service.model.newModel.hotel.search.response.ResponseHotelSearch;
+import com.eligasht.service.model.newModel.startup.response.Branch;
 import com.eligasht.service.model.newModel.train.domesticSearch.Request.QueryModel;
 import com.eligasht.service.model.newModel.train.domesticSearch.Request.RequestDomesticTrainAPI;
 import com.eligasht.service.model.newModel.train.domesticSearch.response.ResponseDomesticTrainAPI;
@@ -205,8 +207,8 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
         rvWeather = findViewById(R.id.rvWeather);
         slidingDrawer = findViewById(R.id.slidingDrawer);
         weatherCity = findViewById(R.id.weatherCity);
-        btnBack.setText(getString(R.string.search_back_right));
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
+        btnBack.setText(getString(R.string.search_back_right));
         btnChangeView.setCustomTextFont("fonts/icomoon2.ttf");
         btnChangeView.setText(getString(R.string.icon_grid));
         btnOk.setCustomTextFont(getResources().getString(R.string.iran_sans_normal_ttf));
@@ -275,11 +277,62 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
     public boolean needTerminate() {
         return true;
     }
+    private void ActiveOperation() {
 
+        List<Branch>  branchesDef=new ArrayList<>();
+        List<Integer> activeOperation=new ArrayList<>();
+        try {
+
+
+
+            branchesDef= SplashActivity.branchesDef;
+            if (branchesDef != null){
+                if (branchesDef.get(0).getIsDefault()){
+                    if(Prefs.getBoolean("isChangeUrl", false)){
+                        // branchesDef.clear();
+                        branchesDef=new ArrayList<>();
+
+                        branchesDef=SplashActivity.branches;
+
+                        for (int i = 0; i < branchesDef.size(); i++) {
+                            if(Prefs.getString("BASEURL", "").equals(branchesDef.get(i).getUrl())){
+
+                                activeOperation=branchesDef.get(i).getActiveOperations();
+
+
+                            }
+                        }
+
+                    }else {//default branch
+
+                        activeOperation=branchesDef.get(0).getActiveOperations();
+
+                    }
+                }
+
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < activeOperation.size() ; i++) {
+            if (activeOperation.get(i)==61) {
+                btnReserv.setVisibility(View.VISIBLE);
+                btnReserv.setEnabled(true);
+            }
+
+
+        }
+
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnReserv:
+                btnReserv.setEnabled(false);
+                ActiveOperation();
                 Prefs.putString("Value_TrainId", selectTrainModelArrayListFalseNew.get(0).getTrainId());
                 Intent intent1 = new Intent(getApplicationContext(), PassengerTrainActivity.class);
                /* Prefs.putString("Segmengt_Id_False", selectTrainModel.getID());
@@ -291,7 +344,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
 ///cTrainActivity
                 break;
             case R.id.txt_select://تغییر بلیط رفت
-                txtHeaderMsg.setText("لطفا ابتدا بلیط رفت را انتخاب کنید");
+                txtHeaderMsg.setText(getString(R.string._please_select_departure_ticket));
                 txtHeaderMsg.setVisibility(View.VISIBLE);
                 lnrHeaderMsg.setVisibility(View.VISIBLE);
                 btnReserv.setVisibility(View.GONE);
@@ -304,7 +357,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
                 llFilter.setVisibility(View.VISIBLE);
                 break;
                 case R.id.txt_selectB://تغییر بلیط برگشت
-                txtHeaderMsg.setText("لطفا بلیط برگشت را انتخاب کنید");
+                txtHeaderMsg.setText(R.string._please_select_return_ticket);
                 txtHeaderMsg.setVisibility(View.VISIBLE);
                 lnrHeaderMsg.setVisibility(View.VISIBLE);
                 btnReserv.setVisibility(View.GONE);
@@ -649,8 +702,8 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
                                             trains.getSegmentList().get(j).getCompartmentCapacity(),
                                             trains.getSegmentList().get(j).getSaloon().getName(),
                                             trains.getSegmentList().get(j).getHotelIsIncluded(),
-                                            trains.getSegmentList().get(j).getIsDepartureSegment(),
-                                            "انتخاب بلیط رفت",
+                                            trains.getSegmentList().get(j).getIsDepartureSegment(),getString(R.string._reserve_departure),
+                                            //"انتخاب بلیط رفت",
                                             trains.getTrainID()
                                     ));
                                 }else{
@@ -676,7 +729,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
                                             trains.getSegmentList().get(j).getSaloon().getName(),
                                             trains.getSegmentList().get(j).getHotelIsIncluded(),
                                             trains.getSegmentList().get(j).getIsDepartureSegment(),
-                                            "انتخاب بلیط برگشت",
+                                            getString(R.string._reserve_return),
                                             trains.getTrainID()
                                     ));
                                 }
@@ -810,7 +863,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
 
         if (FLAG_SELECT_TRAIN ) {
             showSegmentRaft(selectTrainModel,context,activity);
-            txtHeaderMsg.setText("لطفا بلیط برگشت را انتخاب کنید");
+            txtHeaderMsg.setText(context.getString(R.string._please_select_return_ticket));
             txtHeaderMsg.setVisibility(View.VISIBLE);
             lnrHeaderMsg.setVisibility(View.VISIBLE);
             btnReserv.setVisibility(View.GONE);
@@ -868,8 +921,8 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
              lblAirConditioning.setVisibility(View.GONE);
 
         txt_select.setBackgroundResource(R.drawable.background_strock_blue);
-        txt_select.setText("تغییر بلیط رفت");
-        createListDepartureFalse(selectTrainModel.getTrainlineCode());
+        txt_select.setText(R.string._change_ticket);
+        createListDepartureFalse(selectTrainModel.getTrainlineCode(),context);
         trainResultAdapter = new TrainResultAdapter(selectTrainModelArrayListFalseNew,activity,tvDate,isGrid);
         rvTrainResult.setAdapter(trainResultAdapter);
         trainResultAdapter.notifyDataSetChanged();
@@ -984,7 +1037,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
         }
 
     }
-    private static void createListDepartureFalse(Integer trainlineCodeListTrue) {
+    private static void createListDepartureFalse(Integer trainlineCodeListTrue, Context context) {
         selectTrainModelArrayListFalseNew.clear();
         for (int j = 0; j < selectTrainModelArrayListFalse.size(); j++) {
             if (selectTrainModelArrayListFalse.get(j).getTrainlineCode()== trainlineCodeListTrue){
@@ -1008,8 +1061,8 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
                         selectTrainModelArrayListFalse.get(j).getCompartmentCapacity(),
                         selectTrainModelArrayListFalse.get(j).getSaloonName(),
                         selectTrainModelArrayListFalse.get(j).getHotelIsIncluded(),
-                        selectTrainModelArrayListFalse.get(j).getDepartureSegment(),
-                        "انتخاب بلیط برگشت",
+                        selectTrainModelArrayListFalse.get(j).getDepartureSegment(),context.getString(R.string._reserve_return),
+                        //"انتخاب بلیط برگشت",
                         selectTrainModelArrayListFalse.get(j).getTrainId()
                 ));
             }
