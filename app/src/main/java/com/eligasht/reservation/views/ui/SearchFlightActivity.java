@@ -396,6 +396,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 String adlCount = extras.getString("Value-AdlCount");
                 String chdCount = extras.getString("Value-ChdCount");
                 String infCount = extras.getString("Value-InfCount");
+                int flagTwo = Integer.parseInt(extras.getString("Value-Flag-Two"));
                 //Global variable count mosafer
                 COUNT_B = Integer.parseInt(adlCount);
                 COUNT_K = Integer.parseInt(chdCount);
@@ -409,7 +410,13 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 request.setDestinationText(maghsadf);
                 request.setCheckIn(Utility.convertNumbersToEnglish(Raft));
                 request.setCheckOut(Utility.convertNumbersToEnglish(Bargasht));
-                request.setTrip(mabdaf+"-"+maghsadf+"-"+Utility.convertNumbersToEnglish(Raft).replace("/","-")+"|"+maghsadf+"-"+mabdaf+"-"+Utility.convertNumbersToEnglish(Bargasht).replace("/","-"));//THR-IST-2019-03-06|IST-THR-2019-03-12//OneWay(flagWay);// اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
+                if(flagTwo == 1){
+                    request.setTrip(mabdaf+"-"+maghsadf+"-"+Utility.convertNumbersToEnglish(Raft).replace("/","-"));//+"|"+maghsadf+"-"+mabdaf+"-"+Utility.convertNumbersToEnglish(Bargasht).replace("/","-"));//THR-IST-2019-03-06|IST-THR-2019-03-12//OneWay(flagWay);// اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
+
+                } else{
+                    request.setTrip(mabdaf+"-"+maghsadf+"-"+Utility.convertNumbersToEnglish(Raft).replace("/","-")+"|"+maghsadf+"-"+mabdaf+"-"+Utility.convertNumbersToEnglish(Bargasht).replace("/","-"));//THR-IST-2019-03-06|IST-THR-2019-03-12//OneWay(flagWay);// اگر فقط رفت باشد عدد یک و در صورت رفت و برگشت عدد 2 را ارسال بفرمایید
+
+                }
                 request.setPreferredClass("all");
                 request.setAdult(adlCount);
                 request.setChild(chdCount);
