@@ -240,7 +240,8 @@
 
                         android:layout_width="@dimen/_15_flight_dp"
                         android:layout_height="@dimen/_1dp_width"
-                        android:background="@color/gray_dark" />
+                        android:background="@color/gray_dark"
+                        android:visibility="gone"/>
 
                     <View
                         android:id="@+id/viewLineB"
@@ -452,7 +453,7 @@
                 android:layout_weight="0.3"
                 android:background="@drawable/background_strock_blue"
                 android:gravity="center"
-                android:text="تغییر بلیط برگشت"
+                android:text="@string/_change_ticket_return"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_10dp_textSize" />
 
