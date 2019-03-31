@@ -79,6 +79,7 @@ import mehdi.sakout.fancybuttons.FancyButton;
 
 public class SearchTrainActivity extends BaseActivity implements FilterHotelDialog.FilterHotelDialogListenerArray, View.OnClickListener, SortDialog.SortHotelDialogListener,
         OnServiceStatus<ResponseHotelSearch> {
+    private static String SelectTrainId = "";
     private RelativeLayout rlLoading, rlRoot;
     public static  RelativeLayout rlList;
     public static  LinearLayout btnReserv;
@@ -164,7 +165,15 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
         // Auth_request();
         train_request();
         // weather_request();
-        tvDate.setText(raftFa + " - " + bargashtFa);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+
+            int flag = extras.getInt("Value_FlagOneTwo");
+            if(flag==2)
+                tvDate.setText(raftFa + " - " + bargashtFa);
+            else
+                tvDate.setText(raftFa);
+        }
 
         rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         rvTrainResult.setLayoutManager(new LinearLayoutManager(this));
@@ -333,8 +342,16 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
             case R.id.btnReserv:
                 btnReserv.setEnabled(false);
                 ActiveOperation();
-                Prefs.putString("Value_TrainId", selectTrainModelArrayListFalseNew.get(0).getTrainId());
                 Intent intent1 = new Intent(getApplicationContext(), PassengerTrainActivity.class);
+                if(selectTrainModelArrayListFalseNew.size()>0) {
+                    Prefs.putString("Value_TrainId", selectTrainModelArrayListFalseNew.get(0).getTrainId());//for two way
+                    intent1.putExtra("Train_One_Way",false);
+                }else{
+                    Prefs.putString("Value_TrainId", SelectTrainId);//for one way
+                    intent1.putExtra("Train_One_Way",true);
+                 }
+
+
                /* Prefs.putString("Segmengt_Id_False", selectTrainModel.getID());
                 Prefs.putString("Segmengt_Id_True", selectTrainModel.getID());
                 Prefs.putString("Train_Searchkey_Search", responseDomesticTrainAPI.getSearchKey());*/
@@ -864,12 +881,22 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
 
         if (FLAG_SELECT_TRAIN ) {
             showSegmentRaft(selectTrainModel,context,activity);
-            txtHeaderMsg.setText(context.getString(R.string._please_select_return_ticket));
-            txtHeaderMsg.setVisibility(View.VISIBLE);
-            lnrHeaderMsg.setVisibility(View.VISIBLE);
-            btnReserv.setVisibility(View.GONE);
-            selectRaftInclud.setVisibility(View.VISIBLE);
-            llFilter.setVisibility(View.VISIBLE);
+            if (selectTrainModelArrayListFalse.size()>0){
+                txtHeaderMsg.setText(context.getString(R.string._please_select_return_ticket));
+                txtHeaderMsg.setVisibility(View.VISIBLE);
+                lnrHeaderMsg.setVisibility(View.VISIBLE);
+                btnReserv.setVisibility(View.GONE);
+                selectRaftInclud.setVisibility(View.VISIBLE);
+                llFilter.setVisibility(View.VISIBLE);
+            }else{//Error dare
+               // txtHeaderMsg.setText(context.getString(R.string._please_select_return_ticket));
+                txtHeaderMsg.setVisibility(View.GONE);
+                lnrHeaderMsg.setVisibility(View.GONE);
+                rlList.setVisibility(View.INVISIBLE);
+                btnReserv.setVisibility(View.VISIBLE);
+                selectRaftInclud.setVisibility(View.VISIBLE);
+                llFilter.setVisibility(View.GONE);
+            }
         }else{
             showSegmentBargasht(selectTrainModel,context,activity);
             txtHeaderMsg.setVisibility(View.GONE);
@@ -928,7 +955,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
         rvTrainResult.setAdapter(trainResultAdapter);
         trainResultAdapter.notifyDataSetChanged();
         Prefs.putString("Segmengt_Id_True", selectTrainModel.getID());
-
+        SelectTrainId=selectTrainModel.getTrainId();//for OneWay
     }
 
 

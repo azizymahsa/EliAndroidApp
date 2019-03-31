@@ -72,6 +72,7 @@ import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.CountrycodeActivity;
 import com.eligasht.reservation.views.ui.NationalitycodeActivity;
 import com.eligasht.reservation.views.ui.SearchFlightActivity;
+import com.eligasht.reservation.views.ui.SplashActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 import com.eligasht.reservation.views.ui.dialog.train.DialogPassCount;
@@ -87,6 +88,7 @@ import com.eligasht.service.model.newModel.flight.prefactor.response.ResponseGet
 import com.eligasht.service.model.newModel.flight.prefactor.response.Summary;
 
 import com.eligasht.service.model.newModel.insurance.response.purchase.ResponseInsurancePurchase;
+import com.eligasht.service.model.newModel.startup.response.Branch;
 import com.eligasht.service.model.newModel.train.domesticSearch.response.PassengerService;
 import com.eligasht.service.model.newModel.train.domesticTrainGetPrice.request.RequestDomesticTrainGetPrice;
 import com.eligasht.service.model.newModel.train.domesticTrainGetPrice.response.ResponseDomesticTrainGetPrice;
@@ -391,7 +393,56 @@ public class PassengerTrainActivity extends BaseActivity implements Header.onSea
         spinnerMosafer.setAdapter(dataAdapter);
 
     }
+    private void ActiveOperation() {
 
+        List<Branch>  branchesDef=new ArrayList<>();
+        List<Integer> activeOperation=new ArrayList<>();
+        try {
+
+
+
+            branchesDef= SplashActivity.branchesDef;
+            if (branchesDef != null){
+                if (branchesDef.get(0).getIsDefault()){
+                    if(Prefs.getBoolean("isChangeUrl", false)){
+                        // branchesDef.clear();
+                        branchesDef=new ArrayList<>();
+
+                        branchesDef=SplashActivity.branches;
+
+                        for (int i = 0; i < branchesDef.size(); i++) {
+                            if(Prefs.getString("BASEURL", "").equals(branchesDef.get(i).getUrl())){
+
+                                activeOperation=branchesDef.get(i).getActiveOperations();
+
+
+                            }
+                        }
+
+                    }else {//default branch
+
+                        activeOperation=branchesDef.get(0).getActiveOperations();
+
+                    }
+                }
+
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < activeOperation.size() ; i++) {
+            if (activeOperation.get(i)==62) {
+                btn_pardakht_factor.setVisibility(View.VISIBLE);
+                btn_pardakht_factor.setEnabled(true);
+            }
+
+
+        }
+
+    }
     private void initViews() {
         llAddPassenger = (LinearLayout) findViewById(R.id.llAddPassenger);
         llAddPassenger.setOnClickListener(this);
@@ -471,15 +522,15 @@ public class PassengerTrainActivity extends BaseActivity implements Header.onSea
         imgCount = findViewById(R.id.imgCount);
         txtfamilym = findViewById(R.id.txtfamilym);
         txt_NationalCode_m= (EditText) findViewById(R.id.txt_NationalCode_m);
-        txt_typt_service_raft= (TextView) findViewById(R.id.txt_typt_service_raft);
+     //   txt_typt_service_raft= (TextView) findViewById(R.id.txt_typt_service_raft);
         txt_NationalCode_m.setOnClickListener(this);
         txt_NationalCode_m.setImeOptions(EditorInfo.IME_ACTION_DONE);
         //txt_NationalCode_m.addTextChangedListener(new GenericTextWatcher(txt_NationalCode_m));
         txt_NationalCode_m.setOnFocusChangeListener(this);
 
-        txt_typt_service_raft = (TextView) findViewById(R.id.txt_typt_service_raft);
-        txt_typt_service_raft.setOnClickListener(this);
-       // txt_typt_service_raft.setImeOptions(EditorInfo.IME_ACTION_NEXT);
+       // txt_typt_service_raft = (TextView) findViewById(R.id.txt_typt_service_raft);
+      // txt_typt_service_raft.setOnClickListener(this);
+      // // txt_typt_service_raft.setImeOptions(EditorInfo.IME_ACTION_NEXT);
         //txt_typt_service_raft.addTextChangedListener(new GenericTextWatcher(txt_typt_service_raft));
       //  txt_typt_service_raft.setOnFocusChangeListener(this);
 
@@ -494,6 +545,9 @@ public class PassengerTrainActivity extends BaseActivity implements Header.onSea
         linear_typt_service_bargasht = findViewById(R.id.linear_typt_service_bargasht);
         linear_typt_service_raft = findViewById(R.id.linear_typt_service_raft);
         btn_pardakht_factor = findViewById(R.id.btn_pardakht_factor);
+        btn_pardakht_factor.setEnabled(false);
+        btn_pardakht_factor.setVisibility(View.GONE);
+        ActiveOperation();
         btn_saler = findViewById(R.id.btn_saler);
         btn_mosaferan = findViewById(R.id.btn_mosaferan);
         btn_khadamat = findViewById(R.id.btn_khadamat);
@@ -808,8 +862,13 @@ public class PassengerTrainActivity extends BaseActivity implements Header.onSea
         try {
             requestDomesticTrainGetPrice.setSearchKey(Prefs.getString("Train_Searchkey_Search", ""));
             requestDomesticTrainGetPrice.setTrainID(Prefs.getString("Value_TrainId", ""));
+            Bundle extras = getIntent().getExtras();
+            if (extras != null)
+                if (extras.getBoolean("Train_One_Way"))
+                     requestDomesticTrainGetPrice.setTrainSegmentIds(  Prefs.getString("Segmengt_Id_True", ""));//perches service
+                else
+                    requestDomesticTrainGetPrice.setTrainSegmentIds( Prefs.getString("Segmengt_Id_False", ""), Prefs.getString("Segmengt_Id_True", ""));//perches service
 
-            requestDomesticTrainGetPrice.setTrainSegmentIds( Prefs.getString("Segmengt_Id_False", ""), Prefs.getString("Segmengt_Id_True", ""));//perches service
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -1321,7 +1380,7 @@ private void  RequestPurchaseTrain(){
                     }
 
                    if (passSeviceListRaft != null && passSeviceListRaft.size() >0) {
-                        if (RqPassenger_PassNo.trim().length() > 4 && txt_typt_service_raft.getText().toString() != null) {
+                        if (RqPassenger_PassNo.trim().length() > 0 && txt_typt_service_raft.getText().toString() != null) {
                             ((TextView) findViewById(R.id.txt_typt_service_raft)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {

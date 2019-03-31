@@ -47,4 +47,9 @@ public class RequestDomesticTrainGetPrice {
         trainSegmentIds.add(segmengt_id_false);
         trainSegmentIds.add(segmengt_id_true);
     }
+    public void setTrainSegmentIds( String segmengt_id_true) {
+        trainSegmentIds=new ArrayList<>();
+       // trainSegmentIds.add(segmengt_id_false);
+        trainSegmentIds.add(segmengt_id_true);
+    }
 }
