@@ -136,7 +136,7 @@ public class PassengerTrainActivity extends BaseActivity implements Header.onSea
 
     public FancyButton btnBack;
     public ImageView txt_hom;
-    public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber;
+    public TextView txtfamilyP, txtkodemeliP, txtemeliP, txtmobileP, txtMore, tvfactorNumber,txtTelP ,txtaddressP;
     public ImageView btn_saler, btn_mosaferan, btn_khadamat, btn_pish_factor;
     public Button btnAddsabad, btn_pardakht_factor, txtSaler, txtMasaferan, txtKhadamat, txtPishfactor;
     public EditText txtnamem, txtfamilym;
@@ -458,7 +458,7 @@ public class PassengerTrainActivity extends BaseActivity implements Header.onSea
         btnBack.setText(getString(R.string.search_back_right));
         btnBack.setVisibility(View.VISIBLE);
 
-//kharidar
+        //kharidar
         btnzanS = findViewById(R.id.zanS);
         btnzanS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -570,6 +570,8 @@ public class PassengerTrainActivity extends BaseActivity implements Header.onSea
         txtmobileP = (EditText) findViewById(R.id.txtmobileP);
         txtkodemeliP = (EditText) findViewById(R.id.txtkodemeliP);
         txtemeliP = (EditText) findViewById(R.id.txtemeliP);
+        txtTelP = (EditText) findViewById(R.id.txtTelP);
+        txtaddressP = (EditText) findViewById(R.id.txtaddressP);
         txtmeliyatm = findViewById(R.id.txtmeliyatm);
         txtmahale_eghamat = findViewById(R.id.txtmahale_eghamat);
         txt_shomare_factor = findViewById(R.id.txt_shomare_factor);
@@ -585,10 +587,13 @@ public class PassengerTrainActivity extends BaseActivity implements Header.onSea
         txtmobileP.setOnFocusChangeListener(this);
         txtkodemeliP.setOnFocusChangeListener(this);
         txtemeliP.setOnFocusChangeListener(this);
+        txtTelP .setOnFocusChangeListener(this);
         txtfamilym.setOnFocusChangeListener(this);
-
         txtnamem.setOnFocusChangeListener(this);
+
         txtemeliP.addTextChangedListener(new GenericTextWatcher(txtemeliP));
+        txtTelP.addTextChangedListener(new GenericTextWatcher(txtTelP));
+        txtaddressP.addTextChangedListener(new GenericTextWatcher(txtaddressP));
         txtkodemeliP.addTextChangedListener(new GenericTextWatcher(txtkodemeliP));
         txtmobileP.addTextChangedListener(new GenericTextWatcher(txtmobileP));
         txtfamilyP.addTextChangedListener(new GenericTextWatcher(txtfamilyP));
@@ -907,7 +912,9 @@ public class PassengerTrainActivity extends BaseActivity implements Header.onSea
                         if (passSeviceListRaft == null) {
                             linear_typt_service_raft.setVisibility(View.GONE);
                         }
-                        if (passSeviceListBargasht == null) {
+                        Bundle extras = getIntent().getExtras();
+                        if (extras != null)
+                        if (passSeviceListBargasht == null || extras.getBoolean("Train_One_Way")) {//one way not service for return
                             linear_typt_service_bargasht.setVisibility(View.GONE);
                         }
 
@@ -1016,7 +1023,15 @@ private void  RequestPurchaseTrain(){
         requestTrainPurchase.setSelectedTrainID(Prefs.getString("Value_TrainId", ""));
 
         requestTrainPurchase.setSearchKey(Prefs.getString("Train_Searchkey_Search", ""));
-        requestTrainPurchase.setSelectedTrainSegmentIDs(Prefs.getString("Segmengt_Id_False", ""),Prefs.getString("Segmengt_Id_True", ""));
+        Bundle extras = getIntent().getExtras();
+        if (extras != null)
+            if (extras.getBoolean("Train_One_Way")){
+                requestTrainPurchase.setSelectedTrainSegmentIDs(Prefs.getString("Segmengt_Id_True", ""));//for One Way
+
+            }else{
+                requestTrainPurchase.setSelectedTrainSegmentIDs(Prefs.getString("Segmengt_Id_False", ""),Prefs.getString("Segmengt_Id_True", ""));
+
+            }
 
         Log.e("RequestTrainPurchase:", new Gson().toJson(requestTrainPurchase));
 
@@ -1126,14 +1141,15 @@ private void  RequestPurchaseTrain(){
                         PassengerMosaferItems_Table db = new PassengerMosaferItems_Table(PassengerTrainActivity.this);
                         db.dropTable();
                         ////////////////////////Validate
-                        String RqPartner_Address = "No.7,23rd St.,Khaled Eslamboli St.,Tehran,Iran";
+                        String RqPartner_Address = txtaddressP.getText().toString();
                         String RqPartner_Email = txtemeliP.getText().toString();
                         String RqPartner_FirstNameFa = txtnameP.getText().toString();
                         String RqPartner_Gender = Gensiyat;
                         String RqPartner_LastNameFa = txtfamilyP.getText().toString();
                         String RqPartner_Mobile = txtmobileP.getText().toString();
                         String RqPartner_NationalCode = txtkodemeliP.getText().toString();
-                        String RqPartner_Tel = "21587632";
+                        String RqPartner_Tel = txtTelP.getText().toString();
+
                         String AgcUser_ID = "-1";
 
                         String errorMessage = "";
@@ -1193,7 +1209,20 @@ private void  RequestPurchaseTrain(){
                             flagMosafer = flagMosafer + "F";
                             errorMessage = errorMessage + "\n" + "* " + getString(R.string.Enter_the_correct_mobile_format);
                         }
-
+                        if (RqPartner_Tel != null && RqPartner_Tel.length() == 11 && RqPartner_Tel.matches("[0-9]+")) {
+                            ((EditText) findViewById(R.id.txtTelP)).setTextColor(Color.parseColor("#4d4d4d"));
+                            flagMosafer = flagMosafer + "T";
+                        } else {
+                            flagMosafer = flagMosafer + "F";
+                            errorMessage = errorMessage + "\n" + "* " +getString(R.string._enter_the_correct_tel_format);//getString(R.string.Enter_the_correct_mobile_format);
+                        }
+                        if (RqPartner_Address != null && RqPartner_Address.length() > 10 ) {
+                            ((EditText) findViewById(R.id.txtaddressP)).setTextColor(Color.parseColor("#4d4d4d"));
+                            flagMosafer = flagMosafer + "T";
+                        } else {
+                            flagMosafer = flagMosafer + "F";
+                            errorMessage = errorMessage + "\n" + "* " + getString(R.string._please_enter_the_full_address);//getString(R.string.Enter_the_correct_mobile_format);
+                        }
                         if (RqPartner_NationalCode != null)
                             if (RqPartner_NationalCode.length() == 10 && RqPartner_NationalCode.matches("[0-9]+")) {
                                 ((EditText) findViewById(R.id.txtkodemeliP)).setTextColor(Color.parseColor("#4d4d4d"));

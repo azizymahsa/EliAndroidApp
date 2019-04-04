@@ -139,7 +139,7 @@ public class SearchTrainActivity extends BaseActivity implements FilterHotelDial
     public static  TextView txt_selectB;
     public static  TextView txtTotalFareB;
     public static  TextView txtDestinationTextB;
-    public static TextView txtSourceTextB;
+    public static  TextView txtSourceTextB;
     public static  TextView txtTrainArrivalTimeB;
     public static  AVLoadingIndicatorView aviB;
     public static  TextView txtTrainTimeB,lblHasMediaB,lblAirConditioningB,txtSeatsRemainingB,txtCompartmentCapacityB,txtSaloonNameB,txtHotelB,txtNameTrainB;
