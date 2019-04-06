@@ -55,6 +55,11 @@ public class RequestTrainPurchase {
         selectedTrainSegmentIDs.add(segmengt_id_false);
         selectedTrainSegmentIDs.add(segmengt_id_true);
     }
+    public void setSelectedTrainSegmentIDs( String segmengt_id_true) {
+        selectedTrainSegmentIDs=new ArrayList<>();
+
+        selectedTrainSegmentIDs.add(segmengt_id_true);
+    }
     public Customer getCustomer() {
         return customer;
     }

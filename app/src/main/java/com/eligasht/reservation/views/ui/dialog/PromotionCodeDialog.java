@@ -21,8 +21,13 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
+import com.eligasht.reservation.views.activities.insurance.PassengerInsuranceActivity;
 import com.eligasht.reservation.views.activities.login.LogInActivity;
+import com.eligasht.reservation.views.activities.pack.PassengerPackageActivity;
+import com.eligasht.reservation.views.activities.train.PassengerTrainActivity;
 import com.eligasht.reservation.views.ui.PassengerActivity;
+import com.eligasht.reservation.views.ui.PassengerHotelActivity;
+import com.eligasht.reservation.views.ui.PassengerHotelFlightActivity;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -31,8 +36,10 @@ import mehdi.sakout.fancybuttons.FancyButton;
 /**
  * Created by Reza Nejati on 12,May,2018
  */
+
 @SuppressLint("ValidFragment")
 public class PromotionCodeDialog extends DialogFragment implements View.OnClickListener {
+    private static int flagActivity;
     TextView  tvTitle, tvRoomName;
     EditText tvAlert;
     Activity activity;
@@ -41,8 +48,9 @@ public class PromotionCodeDialog extends DialogFragment implements View.OnClickL
     Dialog dialog;
     Boolean isFinish=false;
 
-    public static PromotionCodeDialog newInstance(final Activity activity,Boolean isFinish) {
+    public static PromotionCodeDialog newInstance(final Activity activity,Boolean isFinish,int flagActivityy) {
        isFinish=isFinish;
+        flagActivity=flagActivityy;
         PromotionCodeDialog resultGiftDialog = new PromotionCodeDialog();
         resultGiftDialog.initialize(activity);
         return resultGiftDialog;
@@ -98,7 +106,25 @@ public class PromotionCodeDialog extends DialogFragment implements View.OnClickL
                    activity.finish();
                }else{
                     dialog.cancel();
-                   PassengerActivity.updateFactorByPromotion(tvAlert.getText().toString().trim(),activity,getContext());
+                   if (flagActivity == 1) {
+                       PassengerActivity.updateFactorByPromotion(tvAlert.getText().toString().trim(),activity,getContext());
+
+                }else if (flagActivity==2){
+                       PassengerHotelActivity.updateFactorByPromotion(tvAlert.getText().toString().trim(),activity,getContext());
+
+                 }else if (flagActivity==3){
+                       PassengerHotelFlightActivity.updateFactorByPromotion(tvAlert.getText().toString().trim(),activity,getContext());
+
+                  }else if (flagActivity==4){
+                       PassengerPackageActivity.updateFactorByPromotion(tvAlert.getText().toString().trim(),activity,getContext());
+
+                   }else if (flagActivity==5){
+                       PassengerInsuranceActivity.updateFactorByPromotion(tvAlert.getText().toString().trim(),activity,getContext());
+
+                   }else if (flagActivity==6){
+                       PassengerTrainActivity.updateFactorByPromotion(tvAlert.getText().toString().trim(),activity,getContext());
+
+                   }
                }
                 break;
         }
