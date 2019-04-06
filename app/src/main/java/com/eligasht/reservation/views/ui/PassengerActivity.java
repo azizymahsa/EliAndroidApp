@@ -90,6 +90,7 @@ import com.eligasht.service.model.newModel.flight.services.response.ResponseGetS
 import com.eligasht.service.model.newModel.flight.services.response.Service;
 import com.eligasht.service.model.newModel.promotion.request.RequestPromotionCode;
 import com.eligasht.service.model.newModel.promotion.response.ResponsePromotionCode;
+import com.eligasht.service.model.newModel.startup.response.Branch;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
@@ -565,6 +566,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 		btn_pardakht_factor=(Button)findViewById(R.id.btn_pardakht_factor);
 		btn_pardakht_factor.setOnClickListener(this);
+		btn_pardakht_factor.setEnabled(false);
+		btn_pardakht_factor.setVisibility(View.GONE);
+		ActiveOperation();
 
 		textView4 = (ImageView) findViewById(R.id.textView4);
 
@@ -748,7 +752,56 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			e.getMessage();
 		}
 	}
+	private void ActiveOperation() {
 
+		List<Branch>  branchesDef=new ArrayList<>();
+		List<Integer> activeOperation=new ArrayList<>();
+		try {
+
+
+
+			branchesDef= SplashActivity.branchesDef;
+			if (branchesDef != null){
+				if (branchesDef.get(0).getIsDefault()){
+					if(Prefs.getBoolean("isChangeUrl", false)){
+						// branchesDef.clear();
+						branchesDef=new ArrayList<>();
+
+						branchesDef=SplashActivity.branches;
+
+						for (int i = 0; i < branchesDef.size(); i++) {
+							if(Prefs.getString("BASEURL", "").equals(branchesDef.get(i).getUrl())){
+
+								activeOperation=branchesDef.get(i).getActiveOperations();
+
+
+							}
+						}
+
+					}else {//default branch
+
+						activeOperation=branchesDef.get(0).getActiveOperations();
+
+					}
+				}
+
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < activeOperation.size() ; i++) {
+			if (activeOperation.get(i)==12) {
+				btn_pardakht_factor.setVisibility(View.VISIBLE);
+				btn_pardakht_factor.setEnabled(true);
+			}
+
+
+		}
+
+	}
 	@Override
 	public void onFocusChange(View v, boolean hasFocus) {
 		switch (v.getId()){
@@ -2089,9 +2142,11 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 
 					for (int i = 0; i < jArray2.size(); i++) {
+						String Chekin[] = jArray2.get(i).getHotelChekin().split("T");
+						String Chekout[] = jArray2.get(i).getHotelChekout().split("T");
 						hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
-								Utility.dateShow(jArray2.get(i).getHotelChekin())
-								, Utility.dateShow(jArray2.get(i).getHotelChekout()),
+								Utility.dateShow(Chekin[0].replaceAll("-","/")+" "+Chekin[1])//"2019/04/2400:00:00")
+								, Utility.dateShow(Chekout[0].replaceAll("-","/")+" "+Chekout[1]),
 								jArray2.get(i).getAdlCount()+"",
 								jArray2.get(i).getChdCount()+"",jArray2.get(i).getRoomTitleFa(),jArray2.get(i).getCityEn()));
 
@@ -2111,8 +2166,9 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 					System.out.println("json detail mossfaer:"+jArray3);
 					for (int i = 0; i < jArray3.size(); i++) {
+						String Birthday[] = jArray3.get(i).getBirthday().split("T");
 						passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.get(i).getGender()+"",jArray3.get(i).getNationality()+"",
-								jArray3.get(i).getBirthday()//RqPassengerBirthdate()
+								Birthday[0].replaceAll("-","/")
 								,jArray3.get(i).getPassportNo()//RqPassengerPassNo()
 								,jArray3.get(i).getName()//RqPassengerName()
 								,jArray3.get(i).getNationalCode()+""));//RqPassengerNationalCode()+""));
@@ -2157,11 +2213,12 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					List<Flight> jArray5 = jArray.getFlights();
 
 					for (int i = 0; i < jArray5.size(); i++) {
+						String FltDate[] = jArray5.get(i).getFltDate().split("T");
 						if (Locale.getDefault().getLanguage().equals("fa")) {
 							flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameFa(),
 									jArray5.get(i).getDepAirPortFa() + "",//String("DepAirPortFa"),
 									jArray5.get(i).getArrAirPortFa() + "",//String("ArrAirPortFa"),
-									Utility.dateShow(jArray5.get(i).getFltDate()) + "",//String("FltDate")),
+									Utility.dateShow(FltDate[0].replaceAll("-","/")+" "+FltDate[1]) + "",//String("FltDate")),
 									jArray5.get(i).getFltTime() + "",//String("FltTime"),
 									//Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
 									jArray5.get(i).getFltCheckinTime() + "",//;//String("FltCheckinTime"),

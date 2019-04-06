@@ -72,6 +72,7 @@ import com.eligasht.reservation.views.components.Header;
 import com.eligasht.reservation.views.ui.CountrycodeActivity;
 import com.eligasht.reservation.views.ui.NationalitycodeActivity;
 import com.eligasht.reservation.views.ui.SearchFlightActivity;
+import com.eligasht.reservation.views.ui.SplashActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassengerFlight;
 import com.eligasht.service.generator.SingletonService;
@@ -98,6 +99,7 @@ import com.eligasht.service.model.newModel.insurance.request.purchase.Customer;
 import com.eligasht.service.model.newModel.insurance.request.purchase.Passenger;
 import com.eligasht.service.model.newModel.insurance.request.purchase.PurchaseParameterModel;
 import com.eligasht.service.model.newModel.insurance.response.purchase.ResponseInsurancePurchase;
+import com.eligasht.service.model.newModel.startup.response.Branch;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
@@ -489,6 +491,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
         btn_nextm = findViewById(R.id.btn_nextm);
         btn_taeed_khadamat = findViewById(R.id.btn_taeed_khadamat);
         btn_pardakht_factor = findViewById(R.id.btn_pardakht_factor);
+        btn_pardakht_factor.setEnabled(false);
+        btn_pardakht_factor.setVisibility(View.GONE);
+        ActiveOperation();
         btn_saler = findViewById(R.id.btn_saler);
         btn_mosaferan = findViewById(R.id.btn_mosaferan);
         btn_khadamat = findViewById(R.id.btn_khadamat);
@@ -667,10 +672,12 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     ArrayList<HotelPreFactorModel> hotelPreFactorModels = new ArrayList<>();
                     List<Hotel> jArray2 = jArray.getHotels();
                     for (int i = 0; i < jArray2.size(); i++) {
+                        String Chekin[] = jArray2.get(i).getHotelChekin().split("T");
+                        String Chekout[] = jArray2.get(i).getHotelChekout().split("T");
                         if (Locale.getDefault().getLanguage().equals("fa")) {
                             hotelPreFactorModels.add(new HotelPreFactorModel(jArray2.get(i).getHotelNameE(),
-                                    Utility.dateShow(jArray2.get(i).getHotelChekin()),
-                                    Utility.dateShow(jArray2.get(i).getHotelChekout()),
+                                    Utility.dateShow(Chekin[0].replaceAll("-","/")+" "+Chekin[1])//"2019/04/2400:00:00")
+                                    , Utility.dateShow(Chekout[0].replaceAll("-","/")+" "+Chekout[1]),
                                     jArray2.get(i).getAdlCount() + "",
                                     jArray2.get(i).getChdCount() + "", jArray2.get(i).getRoomTitleFa(), jArray2.get(i).getCityEn()));
                         }else{
@@ -692,8 +699,9 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     ArrayList<PassengerPreFactorModel> passengerPreFactorModels = new ArrayList<>();
                     List<com.eligasht.service.model.newModel.flight.prefactor.response.Passenger> jArray3 = jArray.getPassengers();
                     for (int i = 0; i < jArray3.size(); i++) {
+                        String Birthday[] = jArray3.get(i).getBirthday().split("T");
                         passengerPreFactorModels.add(new PassengerPreFactorModel(jArray3.get(i).getGender() + "", jArray3.get(i).getNationality(),
-                                jArray3.get(i).getBirthday(), jArray3.get(i).getPassportNo(),
+                                Birthday[0].replaceAll("-","/"), jArray3.get(i).getPassportNo(),
                                 jArray3.get(i).getName(), (String) jArray3.get(i).getNationalCode()));
                     }
                     if (!passengerPreFactorModels.isEmpty()) {
@@ -732,11 +740,12 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
                     //List<PreFactorFlight> jArray5 = jArray.getPreFactorFlights();
                     List<Flight> jArray5 = jArray.getFlights();
                     for (int i = 0; i < jArray5.size(); i++) {
+                        String FltDate[] = jArray5.get(i).getFltDate().split("T");
                         if (Locale.getDefault().getLanguage().equals("fa")) {
                             flightPreFactorModels.add(new FlightPreFactorModel(jArray5.get(i).getAirlineNameFa(),
                                     jArray5.get(i).getDepAirPortFa(),
                                     jArray5.get(i).getArrAirPortFa(),
-                                    Utility.dateShow(jArray5.get(i).getFltDate()),
+                                    Utility.dateShow(FltDate[0].replaceAll("-","/")+" "+FltDate[1]) + "",
                                     jArray5.get(i).getFltTime(),
                                     //Utility.dateShow(jArray5.getJSONObject(i).getString("FltCheckinTime")),
                                     jArray5.get(i).getFltCheckinTime(),
@@ -2155,6 +2164,56 @@ private void RequestPurchaseInsurance(){
             }
         });
         scroll_partner.clearFocus();
+
+    }
+    private void ActiveOperation() {
+
+        List<Branch>  branchesDef=new ArrayList<>();
+        List<Integer> activeOperation=new ArrayList<>();
+        try {
+
+
+
+            branchesDef= SplashActivity.branchesDef;
+            if (branchesDef != null){
+                if (branchesDef.get(0).getIsDefault()){
+                    if(Prefs.getBoolean("isChangeUrl", false)){
+                        // branchesDef.clear();
+                        branchesDef=new ArrayList<>();
+
+                        branchesDef=SplashActivity.branches;
+
+                        for (int i = 0; i < branchesDef.size(); i++) {
+                            if(Prefs.getString("BASEURL", "").equals(branchesDef.get(i).getUrl())){
+
+                                activeOperation=branchesDef.get(i).getActiveOperations();
+
+
+                            }
+                        }
+
+                    }else {//default branch
+
+                        activeOperation=branchesDef.get(0).getActiveOperations();
+
+                    }
+                }
+
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < activeOperation.size() ; i++) {
+            if (activeOperation.get(i)==52) {
+                btn_pardakht_factor.setVisibility(View.VISIBLE);
+                btn_pardakht_factor.setEnabled(true);
+            }
+
+
+        }
 
     }
 }
