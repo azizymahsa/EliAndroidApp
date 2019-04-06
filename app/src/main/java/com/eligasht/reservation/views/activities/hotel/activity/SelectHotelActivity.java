@@ -718,7 +718,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 llFilter.setVisibility(View.GONE);
             } else {
                 SingletonTimer.getInstance().start();
-
+                Prefs.putBoolean("IsDemosticHotel",hotelAvailRes.getIsDomestic());
                 if (rvWeather.getAdapter()!=null){
                     rvWeather.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
                     slidingDrawer.setVisibility(View.VISIBLE);

@@ -230,6 +230,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
     com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
     private static TextView btnPromotionCode;
+    private boolean checkDomestic=false;
+    private LinearLayout linear_number_passport,linear_expdate;
+
     //ExpandableLayoutListView lvFactor;
     @SuppressLint("WrongViewCast")
     @Override
@@ -669,6 +672,21 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         }
         //////////////
         data=new ArrayList<PurchaseFlightServices>();
+        linear_number_passport=(LinearLayout)findViewById(R.id.linear_number_passport);
+        linear_number_passport.setOnClickListener(this);
+
+        linear_expdate=(LinearLayout)findViewById(R.id.linear_expdate);
+        linear_expdate.setOnClickListener(this);
+        checkDomestic=Prefs.getBoolean("IsDemosticHotel",false);
+        if(checkDomestic){
+            //linear_code_meli.setVisibility(View.VISIBLE);
+            linear_number_passport.setVisibility(View.GONE);
+            linear_expdate.setVisibility(View.GONE);
+        }else{
+            //linear_code_meli.setVisibility(View.GONE);
+            linear_number_passport.setVisibility(View.VISIBLE);
+            linear_expdate.setVisibility(View.VISIBLE);
+        }
     }//end oncreate
 
 
@@ -1138,14 +1156,15 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     String errorMessagePartner = "";
                     ///Validate
 
-                    // if(linear_number_passport.getVisibility()==View.VISIBLE){
-                    if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
-                        ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
-                        flagMosafer = flagMosafer + "T";
-                    } else {
-                        //((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
-                        flagMosafer = flagMosafer + "F";
-                        errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_number_correctly);
+                    if(linear_number_passport.getVisibility()==View.VISIBLE) {
+                        if (RqPassenger_PassNo.trim().length() > 6 && RqPassenger_PassNo.trim().length() < 10 && (RqPassenger_PassNo.trim().substring(0, 1).matches("^[a-zA-Z]+(\\s[a-zA-Z]+)?$")) && RqPassenger_PassNo.trim().substring(1, RqPassenger_PassNo.length() - 1).matches("[0-9]+")) {
+                            ((EditText) findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+                            flagMosafer = flagMosafer + "T";
+                        } else {
+                            //((EditText)findViewById(R.id.txtnumber_passport)).setTextColor(Color.parseColor("#ff3300"));
+                            flagMosafer = flagMosafer + "F";
+                            errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_number_correctly);
+                        }
                     }
                     if (RqPassenger_NationalCode.trim().length() == 10) {
                         ((EditText) findViewById(R.id.txt_NationalCode_m)).setTextColor(Color.parseColor("#4d4d4d"));
@@ -1205,13 +1224,15 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                             flagMosafer = flagMosafer + "F";
                             errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.The_last_name_is_at_least_2_characters_and_a_maximum_of_100_characters);
                         }
-                    if (RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length() > 4) {
-                        ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
-                        flagMosafer = flagMosafer + "T";
-                    } else {
-                        //((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
-                        flagMosafer = flagMosafer + "F";
-                        errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_expiration_date);
+                    if(linear_expdate.getVisibility()==View.VISIBLE){
+                        if (RqPassenger_PassExpDate != null && RqPassenger_PassExpDate.length() > 4) {
+                            ((TextView) findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#4d4d4d"));
+                            flagMosafer = flagMosafer + "T";
+                        } else {
+                            //((TextView)findViewById(R.id.txtexp_passport)).setTextColor(Color.parseColor("#ff3300"));
+                            flagMosafer = flagMosafer + "F";
+                            errorMessagePartner = errorMessagePartner + "\n" + "* " + getString(R.string.Enter_the_passport_expiration_date);
+                        }
                     }
                     if (Gensiyat.contains("true") || Gensiyat.contains("false")) {
                         flagMosafer = flagMosafer + "T";
