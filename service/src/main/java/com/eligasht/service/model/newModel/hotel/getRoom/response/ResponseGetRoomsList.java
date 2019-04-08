@@ -24,7 +24,7 @@ public class ResponseGetRoomsList {
     private String title;
     @SerializedName("SourcePrice")
     @Expose
-    private Integer sourcePrice;
+    private Double sourcePrice;
     @SerializedName("OldPrice")
     @Expose
     private Integer oldPrice;
@@ -108,11 +108,11 @@ public class ResponseGetRoomsList {
         this.title = title;
     }
 
-    public Integer getSourcePrice() {
+    public Double getSourcePrice() {
         return sourcePrice;
     }
 
-    public void setSourcePrice(Integer sourcePrice) {
+    public void setSourcePrice(Double sourcePrice) {
         this.sourcePrice = sourcePrice;
     }
 

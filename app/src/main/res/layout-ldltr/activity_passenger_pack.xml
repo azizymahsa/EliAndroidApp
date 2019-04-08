@@ -1352,7 +1352,7 @@
                 android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/textView1"
+                    android:id="@+id/txtCurrencyCode"
                     android:text="@string/sum_khadamat"
                     android:textAppearance="@style/IrsansBold"
                     android:textSize="@dimen/_15dp_khadamat"

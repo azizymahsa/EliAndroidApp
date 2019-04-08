@@ -2415,4 +2415,22 @@
     <string name="air_conditioner_ic">&#99;</string>
     <string name="media_ic">&#100;</string>
     <string name="arrow_left_por">&#97;</string>
+    <string name="type_of_service_went">نوع خدمات رفت</string>
+    <string name="service_type_back">نوع خدمات برگشت</string>
+    <string name="number_train"> شماره قطار </string>
+    <string name="_people"> نفره </string>
+    <string name="_Compartment">کوپه ی</string>
+    <string name="_train">قطار</string>
+    <string name="_reserve_departure">انتخاب بلیط رفت</string>
+    <string name="_please_select_departure_ticket">لطفا بلیط رفت را انتخاب کنید</string>
+    <string name="_please_select_return_ticket">لطفا بلیط برگشت را انتخاب کنید</string>
+    <string name="_change_ticket">تغییر بلیط رفت</string>
+    <string name="_reserve_return">انتخاب بلیط برگشت</string>
+    <string name="_change_ticket_return">تغییر بلیط برگشت</string>
+    <string name="_accept_resrve">انتخاب و رزرو</string>
+    <string name="_phone">تلفن ثابت</string>
+    <string name="_address">آدرس</string>
+    <string name="_please_enter_the_full_address">لطفا آدرس را کامل وارد کنید</string>
+    <string name="_enter_the_correct_tel_format">تلفن با  فرمت صحیح وارد شود(مانند ...02188888888)</string>
+    <string name="_promotion_code">کد تخفیف</string>
 </resources>

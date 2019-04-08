@@ -106,6 +106,7 @@ public class HotelResultAdapter extends RecyclerView.Adapter<HotelResultAdapter.
         holder.title.setText(data.get(position).getTitle());
         holder.board.setText(data.get(position).getBoard());
         holder.tvPrice.setText(Utility.priceFormat(Integer.valueOf(data.get(position).getPrice().intValue()).toString()));
+        holder.tvCurrencyCode.setText(data.get(position).getCurrencyCode());
 
 
 
@@ -221,7 +222,7 @@ public class HotelResultAdapter extends RecyclerView.Adapter<HotelResultAdapter.
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView name, location, title, board, tvOff, ivIsBestseler, txt_lable_hotel;
-        TextView  tvPrice;
+        TextView  tvPrice,tvCurrencyCode;
         ImageView ivHotelPic, ivRate;
         CardView cvHotel;
         RelativeLayout rlListItem;
@@ -236,6 +237,7 @@ public class HotelResultAdapter extends RecyclerView.Adapter<HotelResultAdapter.
             title = v.findViewById(R.id.title);
             board = v.findViewById(R.id.board);
             tvPrice = v.findViewById(R.id.tvPrice);
+            tvCurrencyCode = v.findViewById(R.id.tvRial);
             tvOff = v.findViewById(R.id.tvOff);
             txt_lable_hotel = v.findViewById(R.id.txt_lable_hotel);
             cvHotel = v.findViewById(R.id.cvHotel);

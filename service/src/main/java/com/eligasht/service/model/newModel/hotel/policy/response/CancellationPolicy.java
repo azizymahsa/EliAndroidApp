@@ -8,7 +8,7 @@ public class CancellationPolicy {
 
     @SerializedName("ReturnAmount")
     @Expose
-    private Integer returnAmount;
+    private Double returnAmount;
     @SerializedName("Currency")
     @Expose
     private Object currency;
@@ -43,11 +43,11 @@ public class CancellationPolicy {
     @Expose
     private String timeStamp;
 
-    public Integer getReturnAmount() {
+    public Double getReturnAmount() {
         return returnAmount;
     }
 
-    public void setReturnAmount(Integer returnAmount) {
+    public void setReturnAmount(Double returnAmount) {
         this.returnAmount = returnAmount;
     }
 

@@ -137,7 +137,6 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
             if (responseGetCountry == null ||  responseGetCountry.size()<1) {//.getCountries() == null ) {
                 return;
             }
-
             GetCountriesForInsuranceAdapter adapter = new GetCountriesForInsuranceAdapter(GetCountriesForInsuranceActivity.this, responseGetCountry, GetCountriesForInsuranceActivity.this);
             onPostExecute(adapter);
 

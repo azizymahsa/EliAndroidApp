@@ -2471,5 +2471,23 @@ eyJzY29wZSI6WyJBTEwiXSwicGxhdGZvcm0iOlsiaU9TIiwiQW5kcm9pZCIsIldpbmRvd3MiXSwidmFs
     <string name="media_ic">&#100;</string>
     <string name="arrow_left_por">&#97;</string>
     <string name="train_ic">&#98;</string>
+    <string name="type_of_service_went">Type of service went</string>
+    <string name="service_type_back">Service type back</string>
+    <string name="number_train">Train NO</string>
+    <string name="_people">Peaple</string>
+    <string name="_Compartment">Compartment</string>
+    <string name="_train">Train</string>
+    <string name="_reserve_departure">Reserve departure</string>
+    <string name="_please_select_departure_ticket">Please select departure ticket</string>
+    <string name="_please_select_return_ticket">Please select return ticket</string>
+    <string name="_change_ticket">Change ticket</string>
+    <string name="_reserve_return">Reserve return</string>
+    <string name="_change_ticket_return">Change ticket</string>
+    <string name="_accept_resrve">Accept and reserve</string>
+    <string name="_phone">Phone</string>
+    <string name="_address">Address</string>
+    <string name="_please_enter_the_full_address">Please enter the full address</string>
+    <string name="_enter_the_correct_tel_format">Enter the correct Tel format (like ... 02188888888)</string>
+    <string name="_promotion_code">Promotion Code</string>
 </resources>
 

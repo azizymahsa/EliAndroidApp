@@ -239,7 +239,7 @@ public class DetailHotelActivity extends BaseActivity implements View.OnClickLis
                 for (ResponseGetRoomsList roomList : getRoomResponse){//getGetRoomsListResult().getRoomList()) {
            // for (int i = 0; i < getRoomResponse.size(); i++) {
                  roomsModels.add(new RoomsModel(roomList.getBoard(), roomList.getTitle(), roomList.getDescription(), roomList.getPrice().toString(),
-                            roomList.getOfferId(), roomList.getHotelId(), getIntent().getExtras().getString("ResultUniqID")+""));//getRoomResponse.getGetRoomsListResult().getSearchKey()));
+                            roomList.getOfferId(), roomList.getHotelId(), getIntent().getExtras().getString("ResultUniqID")+"",roomList.getCurrencyCode()));//getRoomResponse.getGetRoomsListResult().getSearchKey()));
                 }
                 EventBus.getDefault().post(new RoomsModelBus(roomsModels));
                 getHotelDetailRequest();

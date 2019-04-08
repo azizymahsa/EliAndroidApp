@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.CardView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,7 @@ import com.eligasht.reservation.models.hotel.api.hotelPolicy.request.RequestPoli
 import com.eligasht.reservation.models.hotel.api.rooms.call.IdentityRooms;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.Utility;
+import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.PassengerHotelActivity;
@@ -106,6 +108,7 @@ public class RoomsAdapter extends BaseAdapter implements OnServiceStatus<List<Re
             holder.tvBoard = convertView.findViewById(R.id.tvBoard);
             holder.tvTitle = convertView.findViewById(R.id.tvTitle);
             holder.tvPrice = convertView.findViewById(R.id.tvPrice);
+            holder.txtCurrencyCode = convertView.findViewById(R.id.txtCurrencyCode);
             holder.tvDesc = convertView.findViewById(R.id.tvDesc);
             holder.btnPolicy = convertView.findViewById(R.id.btnPolicy);
             holder.llSelectHotel = convertView.findViewById(R.id.llSelectHotel);
@@ -117,6 +120,7 @@ public class RoomsAdapter extends BaseAdapter implements OnServiceStatus<List<Re
         holder.tvTitle.setText(roomsModels.get(position).getTitle());
         holder.tvPrice.setText("");
         holder.tvPrice.setText(Utility.priceFormat(roomsModels.get(position).getPrice()) + "");
+        holder.txtCurrencyCode.setText(roomsModels.get(position).getCurrencyCode()+ "");
         holder.tvDesc.setText(roomsModels.get(position).getDesc());
         holder.btnPolicy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,45 +154,23 @@ public class RoomsAdapter extends BaseAdapter implements OnServiceStatus<List<Re
 
         Log.e("ResponseHotelPolicy:", new Gson().toJson(hotelPolicyResponse));
         try {
-            /*if (hotelPolicyResponse.getGetHotelPolicyResult().getErrors() != null) {
-                alertDialogPolicy.setText(hotelPolicyResponse.getGetHotelPolicyResult().getErrors().get(0).getDetailedMessage());
+            if (hotelPolicyResponse != null) {
+           /*     alertDialogPolicy.setText(hotelPolicyResponse.getGetHotelPolicyResult().getErrors().get(0).getDetailedMessage());
             } else if (hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().size() == 0) {
                 alertDialogPolicy.setText(activity.getResources().getString(R.string.NoResult));
             } else {
                 Log.d("TAGGGG", "onPostExecute: " +
-                        hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().get(0).getHCancellationPolicy().get(0).getToDate());
-                if (Prefs.getString("lang", "fa").equals("fa")) {
-                    alertDialogPolicy.setText(activity.getString(R.string.room) +
-                            " " +
-                            hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().get(0).getHCancellationPolicy().get(0).getRoomNo()
-                            + " : " +
-                            activity.getString(R.string.departTo)
-                            + " " +
-                            CustomDate.longToString(hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().get(0).getHCancellationPolicy().get(0).getFromDateD())
-                            + " " + activity.getString(R.string.departFrom) + " " +
-                            CustomDate.longToString(hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().get(0).getHCancellationPolicy().get(0).getToDateD())
-                            + " " + activity.getString(R.string.Contains) + " " +
-                            hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().get(0).getHCancellationPolicy().get(0).getReturnAmount()
-                            + " " +
-                            hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().get(0).getHCancellationPolicy().get(0).getCurrency()
-                            + " " +
-                            activity.getString(R.string.penalty));
+                        hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().get(0).getHCancellationPolicy().get(0).getToDate());*/
+
+           if (Prefs.getString("lang", "fa").equals("fa")) {
+
+               alertDialogPolicy.setText(GetTextPolicyFa(hotelPolicyResponse));
                 } else {
-                    alertDialogPolicy.setText(activity.getString(R.string.room) +
-                            " " +
-                            hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().get(0).getHCancellationPolicy().get(0).getRoomNo()
-                            + " : " +
-                            "Cancellation" + " from"
-                            + " " +
-                            CustomDate.longToString(hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().get(0).getHCancellationPolicy().get(0).getFromDateD())
-                            + " " + "to" + " " +
-                            CustomDate.longToString(hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().get(0).getHCancellationPolicy().get(0).getToDateD())
-                            + " " + "will be penalized" + " " +
-                            hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().get(0).getHCancellationPolicy().get(0).getReturnAmount()
-                            + " " +
-                            hotelPolicyResponse.getGetHotelPolicyResult().getHCancellationPolicies().get(0).getHCancellationPolicy().get(0).getCurrency() + ".");
+
+                    alertDialogPolicy.setText(GetTextPolicy(hotelPolicyResponse));
+
                 }
-            }*/
+            }
         } catch (Exception e) {
             e.printStackTrace();
             if (!Utility.isNetworkAvailable(activity)) {
@@ -199,6 +181,71 @@ public class RoomsAdapter extends BaseAdapter implements OnServiceStatus<List<Re
         }
     }
 
+    private String GetTextPolicyFa(List<ResponseHotelPolicy> hotelPolicyResponse) {
+        String policy="";
+        for (int i = 0; i <hotelPolicyResponse.size() ; i++) {
+            if(hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getDescriptionEn()== null ){
+                policy= policy+Html.fromHtml(hotelPolicyResponse.get(i).getKey()+" : "+"\n"+
+                  /*  activity.getString(R.string.room) +
+                    " " +*/
+
+                        (hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getRoomNo()!= null ?  activity.getString(R.string.room) +" " +hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getRoomNo() : "").toString()
+                        + " : " +
+                        activity.getString(R.string.departTo)
+                        + " " +
+                        converToPersian(CustomDate.DateServerToSimple(hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getFromDate()))
+                        + " " + activity.getString(R.string.departFrom) + " " +
+                        converToPersian(CustomDate.DateServerToSimple(hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getToDate()))
+                        + " " + activity.getString(R.string.Contains) + " " +
+                        hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getReturnAmount()
+                        + " " +
+                        hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getCurrency()
+                        + " " +
+                        activity.getString(R.string.penalty)).toString()+"\n";
+            }else {
+                policy = policy + hotelPolicyResponse.get(i).getKey() + "\n" + Html.fromHtml(hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getDescriptionEn()).toString()+"\n";
+            }
+        }
+
+        return policy;
+    }
+
+    private String GetTextPolicy(List<ResponseHotelPolicy> hotelPolicyResponse) {
+        String policy="";
+        for (int i = 0; i <hotelPolicyResponse.size() ; i++) {
+            if(hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getDescriptionEn()== null ){
+                policy= policy+Html.fromHtml(hotelPolicyResponse.get(i).getKey()+" : "+"\n"+
+                       /* activity.getString(R.string.room) +
+                        " " +*/
+                       ( hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getRoomNo()!= null ?  activity.getString(R.string.room) +" " +hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getRoomNo() : ""
+                ).toString()
+                        + " : " +
+                        "Cancellation" + " from"
+                        + " " +
+                        CustomDate.DateServerToSimple(hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getFromDate())
+                        + " " + "to" + " " +
+                        CustomDate.DateServerToSimple(hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getToDate())
+                        + " " + "will be penalized" + " " +
+                        hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getReturnAmount()
+                        + " " +
+                        hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getCurrency() + ".").toString()+"\n";
+            }else {
+                policy = policy + hotelPolicyResponse.get(i).getKey() + "\n" + Html.fromHtml(hotelPolicyResponse.get(i).getCancellationPolicies().get(0).getDescriptionEn()).toString()+"\n";
+            }
+        }
+
+    return policy;
+    }
+
+    private String converToPersian(String date) {
+        String[] dateSplite2 = date.split("-");
+
+        String dayMF = dateSplite2[2];
+        String monthMF = dateSplite2[1];
+        String yearMF = dateSplite2[0];
+        String datePersian = SolarCalendar.calSolarCalendar(Integer.parseInt(yearMF), Integer.parseInt(monthMF), Integer.parseInt(dayMF));// + 1);
+    return datePersian;
+    }
 
 
     @Override
@@ -212,34 +259,18 @@ public class RoomsAdapter extends BaseAdapter implements OnServiceStatus<List<Re
 
     public class ViewHolder {
         TextView tvBoard, tvTitle, tvDesc;
-        TextView tvPrice;
+        TextView tvPrice,txtCurrencyCode;
         FancyButton btnPolicy;
         CardView llSelectHotel;
     }
 
     private void hotelPolicyRequest() {
-        /*HotelPolicyRequest hotelPolicyRequest = new HotelPolicyRequest();
-        HotelPolicySubRequest hotelPolicySubRequest = new HotelPolicySubRequest();
-        hotelPolicySubRequest.setCulture(activity.getString(R.string.culture));
-        hotelPolicySubRequest.setEHotelId(EHotelId);
-        com.eligasht.service.model.hotelpolicy.request.Identity identity = new com.eligasht.service.model.hotelpolicy.request.Identity();
-        identity.setPassword("123qwe!@#QWE");
-        identity.setUserName("EligashtMlb");
-        identity.setTermianlId("Mobile");
-        hotelPolicySubRequest.setIdentity(identity);
-        hotelPolicySubRequest.setOfferId(OfferId);
-        hotelPolicySubRequest.setTranslteToPersian(false);
-        hotelPolicySubRequest.setSearchKey(SearchKey);
-        hotelPolicyRequest.setRequest(hotelPolicySubRequest);*/
+
         RequestHotelPolicy holdRoomRequest = new RequestHotelPolicy();
-        // HoldRoomReq roomReq = new HoldRoomReq();
+
         holdRoomRequest.setCultureName(activity.getString(R.string.culture));
         holdRoomRequest.setEHotelId(EHotelId);
-        /*"eHotelId": "string",
-                "offerId": "string",
-                "searchKey": "string",
-                "translteToPersian": true,
-                "cultureName": "string"*/
+
         holdRoomRequest.setOfferId(OfferId);
         holdRoomRequest.setSearchKey(SearchKey);
         holdRoomRequest.setTranslteToPersian(false);

@@ -11,7 +11,7 @@ public class InfTotalFare {
     private String currencyCode;
     @SerializedName("Amount")
     @Expose
-    private Integer amount;
+    private Double amount;
 
     public String getCurrencyCode() {
         return currencyCode;
@@ -21,11 +21,11 @@ public class InfTotalFare {
         this.currencyCode = currencyCode;
     }
 
-    public Integer getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

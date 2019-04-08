@@ -157,6 +157,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         , com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener, OnServiceStatus<ResponsePurchaseServices> {
 
+    private static  String GlobalCurrencyCode ="" ;
     public static boolean flag;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
@@ -184,7 +185,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
     public EditText txtnumber_passport, txtnameP, txt_NationalCode_m;
     public static TextView txtexp_passport;
     public TextView txtTitle, txtmeliyatm, txtmahale_eghamat, txtTitleCountM;
-    public static TextView txtSumKhadamat;
+    public static TextView txtSumKhadamat,txtCurrencyCode;
     public LinearLayout linear_saler, linear_mosaferan, linear_list_khadamat, linear_pish_factor, linearMahaleeghamat, linearMeliyat, btn_next_partnerInfo, btn_nextm, btn_taeed_khadamat;
     private Handler progressBarHandler = new Handler();
     public ListView list_airport, listKhadamat;
@@ -514,6 +515,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
         txtMore.setOnClickListener(this);
 
         txtSumKhadamat = findViewById(R.id.txtSumKhadamat);
+        txtCurrencyCode = findViewById(R.id.txtCurrencyCode);
         tvPrice = findViewById(R.id.tvPrice);
         txtSumKhadamat.setOnClickListener(this);
         txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
@@ -1819,7 +1821,9 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                                     excursionData.getHotelID(),excursionData.getHotelNameEn(),excursionData.getPassengerList(),excursionData.getLoadDB()));
 
                             purchaseFlightResult.setFlag(false);
+                            purchaseFlightResult.setCurrencyCode(services.getCurrencyCode());
                             data.add(purchaseFlightResult);
+
                         }
 
                         // Setup and Handover data to recyclerview
@@ -1833,6 +1837,12 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                         ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
                         ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
                         txtTitle.setText(getString(R.string.Add_to_cart_services));
+                        try{
+                            txtCurrencyCode.setText(jArray.get(0).getCurrencyCode());
+                            GlobalCurrencyCode=jArray.get(0).getCurrencyCode();
+                        }catch (Exception e){
+
+                        }
 
                         mAdapter = new GetHotelKhadmatAdapter(PassengerHotelActivity.this, data, PassengerHotelActivity.this, 0);
                         //mAdapter.setAdapter(mAdapter);
@@ -2008,7 +2018,7 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                 //////////////////////////////
                 long totalprice = jFact.getTotalPrice().getAmount();//TotalPrice();
 
-                tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+activity.getString(R.string.Rial) : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
+                tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+GlobalCurrencyCode : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
 //for hotel==========================================================================================
                 final RecyclerView recyclerViewHotel = (RecyclerView) activity.findViewById(R.id.recyclerView);
                 recyclerViewHotel.addItemDecoration(new DividerItemDecoration(activity, 1));

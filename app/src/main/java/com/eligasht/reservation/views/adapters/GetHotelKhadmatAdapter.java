@@ -40,6 +40,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 	List<String> selectId = new ArrayList<String>();
 	List<Long> gheymat = new ArrayList<Long>();
 	public long Tprice=0;
+
 	//public List<StrictMath> SegmentListtrueAvali = new ArrayList<FlightSegmentTrue>();
 	public Activity activity;
 
@@ -51,6 +52,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 		inflater= LayoutInflater.from(context);
 		this.data=data;
 		this.Tprice=Tprice;
+
 		myInflater = LayoutInflater.from(activity);
 
 
@@ -108,6 +110,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 			holder.img_khadmat_row= convertView.findViewById(R.id.img_khadmat_row);
 
 			holder.txtServiceTotalPrice= convertView.findViewById(R.id.txtServiceTotalPrice);
+			holder.txtCurrencyCode= convertView.findViewById(R.id.txtCurrencyCode);
 
 			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
 			convertView.setTag(holder);
@@ -126,6 +129,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 			holder.txtServiceNameFa.setText(current.getServiceNameEn());
 		}
 		holder.txtServiceTotalPrice.setText(current.getServiceTotalPrice() > 0 ? String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice())) : "It");//String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice()))+"");
+		holder.txtCurrencyCode.setText(current.getCurrencyCode());//String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice()))+"");
 		if(current.getServiceTypeID().equals("4"))
 			holder.imageView1.setBackgroundResource(R.drawable.cip_service_khadamat);
 
@@ -265,7 +269,7 @@ public class GetHotelKhadmatAdapter extends BaseAdapter {
 	}
 
 	static class ViewHolder {
-		TextView txtServiceTotalPrice;
+		TextView txtServiceTotalPrice,txtCurrencyCode;
 		TextView txtDescription;
 		TextView txtServiceNameFa;
 		ImageView imageView1;

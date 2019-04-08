@@ -12,8 +12,9 @@ public class RoomsModel {
     public String offerId;
     public String hotelId;
     public String SearchKey;
+    public String CurrencyCode;
 
-    public RoomsModel(String board, String title, String desc, String price, String offerId, String hotelId, String searchKey) {
+    public RoomsModel(String board, String title, String desc, String price, String offerId, String hotelId, String searchKey,String CurrencyCode) {
         this.board = board;
         this.title = title;
         this.desc = desc;
@@ -21,6 +22,15 @@ public class RoomsModel {
         this.offerId = offerId;
         this.hotelId = hotelId;
         SearchKey = searchKey;
+        this.CurrencyCode = CurrencyCode;
+    }
+
+    public String getCurrencyCode() {
+        return CurrencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        CurrencyCode = currencyCode;
     }
 
     public String getBoard() {

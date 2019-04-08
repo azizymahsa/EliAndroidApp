@@ -1336,7 +1336,7 @@
                     android:padding="10dp">
 
                     <TextView
-                        android:id="@+id/textView1"
+                        android:id="@+id/txtCurrencyCode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#fff"
@@ -1477,8 +1477,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_20dp"
-            android:layout_marginRight="@dimen/_20dp"
             android:layout_marginTop="1dp"
+            android:layout_marginRight="@dimen/_20dp"
             android:background="#ffffff"
             android:orientation="vertical"
 
@@ -1841,9 +1841,9 @@
                 android:id="@+id/btn_pardakht_factor"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35dp_normal"
-                android:layout_marginBottom="10dp"
-
                 android:layout_marginTop="5dp"
+
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/btngravity_big"
                 android:text="@string/Registration_and_payment"
                 android:textColor="#ffff"

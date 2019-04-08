@@ -50,7 +50,18 @@ public class CustomDate {
         System.out.println(te);
         return generateLongToString(Long.parseLong(te));
     }
+    public static String DateServerToSimple(String time) {
+        String te = time;
+       try{
+           te = te.split("T")[0];
+       }catch (Exception e){
 
+       }
+
+
+        System.out.println(te);
+        return te;
+    }
     private static String generateLongToString(long time) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(time);

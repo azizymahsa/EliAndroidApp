@@ -75,7 +75,7 @@ public class TrainResultAdapter extends RecyclerView.Adapter<TrainResultAdapter.
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
        String imageUri=createImgURL(position);
-        GlideApp
+       GlideApp
                 .with(context)
                 .load(imageUri)
                 .centerCrop()
@@ -83,7 +83,7 @@ public class TrainResultAdapter extends RecyclerView.Adapter<TrainResultAdapter.
                 .into(holder.imgTrainlineNameEn);
         holder.avi.setVisibility(View.GONE);
 
-        holder.lblTrainNumber.setText(data.get(position).getTrainNumber()+" شماره قطار ");
+        holder.lblTrainNumber.setText(data.get(position).getTrainNumber()+activity.getString(R.string.number_train));
         holder.txtTotalFare.setText(NumberFormat.getInstance().format(data.get(position).getTotalFare())+"");
         holder.txtDestinationText.setText(data.get(position).getDestinationText());
         holder.txtSourceText.setText(data.get(position).getSourceText());
@@ -92,9 +92,9 @@ public class TrainResultAdapter extends RecyclerView.Adapter<TrainResultAdapter.
         seatRemaining(data.get(position).getSeatAvailable(),holder,position);
         //holder.txtSeatsRemaining.setText(" ظرفیت "+count+" بلیط ");
         
-        holder.txtCompartmentCapacity.setText("کوپه ی"+data.get(position).getCompartmentCapacity()+"نفره");
+        holder.txtCompartmentCapacity.setText(activity.getString(R.string._Compartment)+data.get(position).getCompartmentCapacity()+activity.getString(R.string._people));
         holder.txtSaloonName.setText(data.get(position).getSaloonName()+"");
-        holder.txtNameTrain.setText(" قطار "+data.get(position).getTrainlineNameFa()+"");
+        holder.txtNameTrain.setText(activity.getString(R.string._train)+data.get(position).getTrainlineNameFa()+"");
         //holder.txtHotel.setText(data.get(position).getSaloonName()+"");
         if(data.get(position).getHotelIsIncluded())
         holder.txtHotel.setVisibility(View.VISIBLE);
@@ -234,7 +234,7 @@ public class TrainResultAdapter extends RecyclerView.Adapter<TrainResultAdapter.
 
 
             //Train
-             lblTrainNumber = v.findViewById(R.id.lblTrainNumber);
+            lblTrainNumber = v.findViewById(R.id.lblTrainNumber);
             txt_select = v.findViewById(R.id.txt_select);
             txtTotalFare = v.findViewById(R.id.txtTotalFare);
             txtDestinationText = v.findViewById(R.id.txtDestinationText);

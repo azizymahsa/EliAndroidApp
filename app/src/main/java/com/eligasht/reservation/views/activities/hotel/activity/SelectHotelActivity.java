@@ -538,7 +538,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     selectHotelModelArrayList.get(i).isBestSell(), selectHotelModelArrayList.get(i).isOff(),
                     selectHotelModelArrayList.get(i).getOff(), selectHotelModelArrayList.get(i).getTypeText(),
                     selectHotelModelArrayList.get(i).getFacilities(), selectHotelModelArrayList.get(i).getDiff(),
-                    selectHotelModelArrayList.get(i).getOfferId(), selectHotelModelArrayList.get(i).getLocations());
+                    selectHotelModelArrayList.get(i).getOfferId(), selectHotelModelArrayList.get(i).getLocations(),
+                    selectHotelModelArrayListFilter.get(i).getCurrencyCode());
         } else {
             selectHotelModel = new SelectHotelModel(selectHotelModelArrayListFilter.get(i).getName(),
                     selectHotelModelArrayListFilter.get(i).getCity(), selectHotelModelArrayListFilter.get(i).getTitle(),
@@ -549,7 +550,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     selectHotelModelArrayListFilter.get(i).isBestSell(), selectHotelModelArrayListFilter.get(i).isOff(),
                     selectHotelModelArrayListFilter.get(i).getOff(), selectHotelModelArrayListFilter.get(i).getTypeText(),
                     selectHotelModelArrayListFilter.get(i).getFacilities(), selectHotelModelArrayListFilter.get(i).getDiff(),
-                    selectHotelModelArrayListFilter.get(i).getOfferId(), selectHotelModelArrayListFilter.get(i).getLocations());
+                    selectHotelModelArrayListFilter.get(i).getOfferId(), selectHotelModelArrayListFilter.get(i).getLocations(),
+                    selectHotelModelArrayListFilter.get(i).getCurrencyCode());
         }
         return selectHotelModel;
     }
@@ -786,7 +788,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                             hotels.getBestSell(), isOff,
                             off, hotels.getTypeText(), hotels.getFacilities(),
                             xiff, hotels.getAvailability().getRoomLists().get(i).getOfferId(),
-                            hotelAvailRes.getLocations()));
+                            hotelAvailRes.getLocations(),
+                            hotels.getAvailability().getRoomLists().get(i).getCurrencyCode()));
                    // Log.e("keeey", hotelAvailRes.getHotelAvailResult().getResultUniqID() );
                 }
                 filterHotelStarsModels.add(new FilterStarModel(getString(R.string._1star), false, 1));
