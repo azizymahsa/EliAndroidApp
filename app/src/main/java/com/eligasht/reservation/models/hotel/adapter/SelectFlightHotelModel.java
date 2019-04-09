@@ -38,10 +38,11 @@ public class SelectFlightHotelModel {
     private String FlightId;
     private String FlightOfferId;
     private String FlightGUID;
+    private String CurrencyCode;
 
 
 
-    public SelectFlightHotelModel(String name, String city, String title, String board, Double price, String imageUrl, String location, Double oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, List<Facility> facilities, int diff, List<com.eligasht.service.model.newModel.hotelFlight.preSearch.response.FltList> flights, String arrRout, String depRout, String amount, List<Location> locations, String flightId, String FlightOfferId, Flights FlightList, String FlightGUID) {
+    public SelectFlightHotelModel(String name, String city, String title, String board, Double price, String imageUrl, String location, Double oldPrice, int star, int eHotelId, String resultUniqID, boolean bestSell, boolean isOff, String off, String typeText, List<Facility> facilities, int diff, List<com.eligasht.service.model.newModel.hotelFlight.preSearch.response.FltList> flights, String arrRout, String depRout, String amount, List<Location> locations, String flightId, String FlightOfferId, Flights FlightList, String FlightGUID, String CurrencyCode) {
         this.name = name;
         this.city = city;
         this.title = title;
@@ -71,8 +72,16 @@ public class SelectFlightHotelModel {
         this.FlightOfferId = FlightOfferId;
         this.FlightList = FlightList;
         this.FlightGUID = FlightGUID;
+        this.CurrencyCode = CurrencyCode;
     }
 
+    public String getCurrencyCode() {
+        return CurrencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        CurrencyCode = currencyCode;
+    }
 
     public String getFlightGUID() {
         return FlightGUID;

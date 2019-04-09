@@ -121,6 +121,7 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
         holder.location.setText(data.get(position).getLocation() + "،" + data.get(position).getCity());
         holder.title.setText(data.get(position).getTitle());
         holder.board.setText(data.get(position).getBoard());
+        holder.tvRial.setText(data.get(position).getCurrencyCode());
         holder.tvPrice.setText(Utility.priceFormat(String.valueOf(Integer.valueOf(data.get(position).getPrice().intValue()) + Integer.valueOf(data.get(position).getAmount()))));
         if (data.get(position).getTypeText().contains("آپارتمان") || data.get(position).getTypeText().toLowerCase().contains("apart")) {
             holder.txt_lable_hotel.setText(R.string.ApartmenHotel);
@@ -338,7 +339,7 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name, location, title, board, tvOff, tvRaft, tvBargasht, tvBargashtTime, tvRaftTime, tvRaftTimeWait, tvBargashtTimeWait, tvAirLines, nonStop, ivIsBestseler, txt_lable_hotel, tvBargashtTime2, tvBargashtTime1;
         ImageView ivHotelPic, ivRate, ivLogo;
-        TextView  tvPrice;
+        TextView  tvPrice,tvRial;
         CardView cvHotel;
         LinearLayout linear_1, linear_2, linear_3;
         TextView tvANRaft2_1, tvANRaft2_2, tvANRaft2_3;
@@ -365,6 +366,7 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
             title = v.findViewById(R.id.title);
             board = v.findViewById(R.id.board);
             tvPrice = v.findViewById(R.id.tvPrice);
+            tvRial = v.findViewById(R.id.tvRial);
             tvOff = v.findViewById(R.id.tvOff);
             cvHotel = v.findViewById(R.id.cvHotel);
             tvRaft = v.findViewById(R.id.tvRaft);

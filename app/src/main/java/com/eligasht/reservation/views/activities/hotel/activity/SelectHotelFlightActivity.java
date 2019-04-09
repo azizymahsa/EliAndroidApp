@@ -610,7 +610,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                         selectHotelModelArrayList.get(j).getLocations(), selectHotelModelArrayList.get(j).getFlightId(),
                         selectHotelModelArrayList.get(j).getFlightList().getOfferId(),
                         selectHotelModelArrayList.get(j).getFlightList(),
-                        selectHotelModelArrayList.get(j).getFlightList().getFlightGUID() );
+                        selectHotelModelArrayList.get(j).getFlightList().getFlightGUID(),
+                        selectHotelModelArrayList.get(j).getCurrencyCode());
             } else {
                 selectHotelModel = new SelectFlightHotelModel(selectHotelModelArrayListFilter.get(j).getName(),
                         selectHotelModelArrayListFilter.get(j).getCity(), selectHotelModelArrayListFilter.get(j).getTitle(),
@@ -626,7 +627,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                         selectHotelModelArrayListFilter.get(j).getAmount(), selectHotelModelArrayListFilter.get(j).getLocations(), selectHotelModelArrayList.get(j).getFlightId(),
                         selectHotelModelArrayList.get(j).getFlightList().getOfferId(),
                         selectHotelModelArrayList.get(j).getFlightList(),
-                        selectHotelModelArrayList.get(j).getFlightList().getFlightGUID() );
+                        selectHotelModelArrayList.get(j).getFlightList().getFlightGUID(),
+                        selectHotelModelArrayList.get(j).getCurrencyCode()
+                        );
             }
         } catch (Exception e) {
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
@@ -668,6 +671,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
         Log.e("ResponseHotelFlight:", new Gson().toJson(hotelFlightResponse ));
 
        this.hotelFlightResponse = hotelFlightResponse;
+
+
         new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.colorPrimaryDark));
@@ -759,7 +764,8 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                             hotelFlightResponse.getFlights().getFlightID()
                     ,hotelFlightResponse.getFlights().getOfferId(),//FlightOfferId
                             hotelFlightResponse.getFlights(),
-                            hotelFlightResponse.getFlights().getFlightGUID()));
+                            hotelFlightResponse.getFlights().getFlightGUID(),
+                            hotelFlightResponse.getHotels().get(i).getAvailability().getRoomLists().get(0).getCurrencyCode()));
                     hotelFlightResponse.getFlights().getFlightID();
                 }
                 filterHotelStarsModels.add(new FilterStarModel(getString(R.string._1star), false, 1));

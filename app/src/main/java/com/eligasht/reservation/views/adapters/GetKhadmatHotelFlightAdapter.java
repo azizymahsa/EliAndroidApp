@@ -104,6 +104,7 @@ public long sumTprice=0;
 			holder.img_khadmat_row= convertView.findViewById(R.id.img_khadmat_row);
 
 			holder.txtServiceTotalPrice= convertView.findViewById(R.id.txtServiceTotalPrice);
+			holder.txtCurrencyCode= convertView.findViewById(R.id.txtCurrencyCode);
 
 
 			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
@@ -123,6 +124,7 @@ public long sumTprice=0;
 			Log.e("testkhadamat",current.getExcursionData().getDepartureFltTime());//DepartureFltTime );
 			holder.txtServiceNameFa.setText(current.getServiceNameEn());
 		}
+		holder.txtCurrencyCode.setText(current.getCurrencyCode());//String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice()))+"");
 		holder.txtServiceTotalPrice.setText(current.getServiceTotalPrice() > 0 ? String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice())) : "IT");//String.valueOf(NumberFormat.getInstance().format(current.getServiceTotalPrice()))+"");
 		if(current.getServiceTypeID().equals("4"))
 			holder.imageView1.setBackgroundResource(R.drawable.cip_service_khadamat);

@@ -141,6 +141,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         OnClickListener, OnItemSelectedListener, View.OnFocusChangeListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener,
         com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener, OnServiceStatus<ResponsePurchaseServices> {
 
+    private static  String GlobalCurrencyCode ="" ;
     public static boolean flag;
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
@@ -168,7 +169,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
     public EditText txtnumber_passport, txtnameP,txt_NationalCode_m;
     public static TextView txtexp_passport;
     public TextView txtTitle, txtmeliyatm, txtmahale_eghamat, txtTitleCountM;
-    public static TextView txtSumKhadamat;
+    public static TextView txtSumKhadamat,txtCurrencyCode;
     public LinearLayout linear_saler, linear_mosaferan, linear_list_khadamat, linear_pish_factor, linearMahaleeghamat, linearMeliyat, btn_next_partnerInfo, btn_nextm, btn_taeed_khadamat,llAddPassenger;
     private Handler progressBarHandler = new Handler();
     public ListView list_airport, listKhadamat;
@@ -476,6 +477,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
         llAddPassenger = (LinearLayout) findViewById(R.id.llAddPassenger);
         llAddPassenger.setOnClickListener(this);
         txtSumKhadamat = findViewById(R.id.txtSumKhadamat);
+        txtCurrencyCode = findViewById(R.id.txtCurrencyCode);
         tvPrice = findViewById(R.id.tvPrice);
         txtSumKhadamat.setOnClickListener(PassengerHotelFlightActivity.this);
         txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
@@ -2040,6 +2042,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                                     excursionData.getHotelID(),excursionData.getHotelNameEn(),excursionData.getPassengerList(),excursionData.getLoadDB()));
 
                             purchaseFlightResult.setFlag(false);
+                            purchaseFlightResult.setCurrencyCode(responseGetServices.getServices().get(0).getCurrencyCode());
                             data.add(purchaseFlightResult);
                         }
 
@@ -2060,7 +2063,8 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                         mAdapter.setData(data);
                         listKhadamat.setAdapter(mAdapter);
                         setAnimation();//}
-
+                        txtCurrencyCode.setText(responseGetServices.getServices().get(0).getCurrencyCode());
+                        GlobalCurrencyCode=responseGetServices.getServices().get(0).getCurrencyCode();
                         //  setAnimation();
                     }
                 } catch (Exception e) {
@@ -2229,7 +2233,7 @@ public class PassengerHotelFlightActivity extends BaseActivity implements Header
                     //////////////////////////////
                     long totalprice = jFact.getTotalPrice().getAmount();//TotalPrice();
 
-                    tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+activity.getString(R.string.Rial) : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
+                    tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+GlobalCurrencyCode : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
 //for hotel==========================================================================================
                     final RecyclerView recyclerViewHotel = (RecyclerView) activity.findViewById(R.id.recyclerView);
                     recyclerViewHotel.addItemDecoration(new DividerItemDecoration(activity, 1));
