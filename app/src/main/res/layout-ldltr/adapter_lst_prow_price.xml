@@ -198,6 +198,7 @@
                         android:textColor="#000"
                         android:textSize="@dimen/_13dp_normal_textSize" />
                     <TextView
+                        android:id="@+id/txtCurrencyCode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

@@ -19,6 +19,7 @@ public class InsuranceRowHolder extends RecyclerView.ViewHolder {
     public TextView txtPlan;
     public TextView txtTitle;
     public TextView txtPrice;
+    public TextView txtCurrencyCode;
     public TextView btn_buy;
     public Button btn_details;
 //    public Button btnDetail;
@@ -31,6 +32,7 @@ public class InsuranceRowHolder extends RecyclerView.ViewHolder {
 
         txtPlan = itemView.findViewById(R.id.txt_plan);
         txtPrice = itemView.findViewById(R.id.txt_price);
+        txtCurrencyCode = itemView.findViewById(R.id.txtCurrencyCode);
         txtTitle = itemView.findViewById(R.id.txt_title);
         btn_buy = itemView.findViewById(R.id.btn_buy);
         btn_details = itemView.findViewById(R.id.btn_details);

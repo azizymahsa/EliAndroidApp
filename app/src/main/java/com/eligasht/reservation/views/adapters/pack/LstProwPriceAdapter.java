@@ -41,7 +41,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         private TextView nChildPrice;
         private TextView infantPrice;
         private TextView totalPrice;
-        public TextView total_price;
+        public TextView total_price,txtCurrencyCode;
         private TextView txt_hr_room_list;
         private TextView txt_hr_room_list2;
         private SmoothCheckBox chk_prow_price;
@@ -53,6 +53,7 @@ public class LstProwPriceAdapter extends SectioningAdapter {
             nChildPrice = itemView.findViewById(R.id.price_n_child);
             infantPrice = itemView.findViewById(R.id.price_infant);
             totalPrice = itemView.findViewById(R.id.total_price);
+            txtCurrencyCode = itemView.findViewById(R.id.txtCurrencyCode);
             //    total_price = itemView.findViewById(R.id.total_price);
             txt_hr_room_list = itemView.findViewById(R.id.txt_hr_room_list);
             txt_hr_room_list2 = itemView.findViewById(R.id.txt_hr_room_list2);
@@ -123,6 +124,8 @@ public class LstProwPriceAdapter extends SectioningAdapter {
         }
 
         holder.totalPrice.setText(Utility.priceFormat(String.valueOf(item.getSumPrice().getAmount())));
+        holder.txtCurrencyCode.setText(item.getSumPrice().getCurrencyCode());
+        Prefs.putString("Currency_Cod_Pack",item.getSumPrice().getCurrencyCode());
         if (Locale.getDefault().getLanguage().equals("fa")) {
             holder.txt_hr_room_list.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF()) ? item.getHRroomList() : item.getHRroomListF());
             holder.txt_hr_room_list2.setText(ValidationTools.isEmptyOrNull(item.getHRroomListF()) ? item.getHRroomList() : item.getHServiceF() + "(" + item.getHService() + ")");

@@ -121,7 +121,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
     @Override
     public void onReady(ResponseInsuranceSearchResult responseSearchInsurance) {
-        Log.e("onResponse", responseSearchInsurance+"");
+        Log.d("responseSearchInsurance: ",new Gson().toJson(responseSearchInsurance));
        /* {
             Gson gson2 = new Gson();
             gson2.toJson(responseSearchInsurance);

@@ -211,6 +211,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
     int rooms = 0;
     int room = 0;
     private static TextView btnPromotionCode;
+    public static String GlobalCurrencyCode="";
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -1722,7 +1723,7 @@ public class PassengerPackageActivity extends BaseActivity implements Header.onS
                         } else {
                             paymentUrl = jFact.getOnlinePaymentURL();
                         }
-                        tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " " + activity.getString(R.string.Rial));
+                        tvPrice.setText(String.valueOf(NumberFormat.getInstance().format(totalprice)) + " " +   Prefs.getString("Currency_Cod_Pack",""));
 //for hotel==========================================================================================
                         final RecyclerView recyclerViewHotel = (RecyclerView) activity.findViewById(R.id.recyclerView);
                         recyclerViewHotel.addItemDecoration(new DividerItemDecoration(activity, 1));
