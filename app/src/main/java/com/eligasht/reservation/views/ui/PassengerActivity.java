@@ -147,7 +147,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	public EditText txtnumber_passport,txtnameP;
 	public static TextView txtexp_passport;
 	public TextView txtTitle,txtmeliyatm,txtmahale_eghamat,txtTitleCountM;
-	public static TextView txtSumKhadamat;
+	public static TextView txtSumKhadamat,txtCurrencyCode;
 	public TextView imgCount;
 	public LinearLayout linear_expdate,linear_number_passport,linear_code_meli,btn_taeed_khadamat,btn_nextm,linear_saler,linear_mosaferan,linear_list_khadamat,linear_pish_factor,linearMahaleeghamat,linearMeliyat,btn_next_partnerInfo;
 	private Handler progressBarHandler = new Handler();
@@ -196,6 +196,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 	static  RecyclerView recyclerViewService = null;
 	static  RecyclerView recyclerViewPassenger = null;
 	static  RecyclerView recyclerViewHotel  = null;
+	private static String GlobalCurrencyCode="";
 
 	public static void updateFactorByPromotion(String promotionCode, Activity activity, Context context) {
 		rlLoading.setVisibility(View.VISIBLE);
@@ -515,6 +516,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 		imgCount=(TextView) findViewById(R.id.imgCount);
 		imgCount.setOnClickListener(this);
 
+		txtCurrencyCode = (TextView) findViewById(R.id.txtCurrencyCode);
 		txtSumKhadamat = (TextView) findViewById(R.id.txtSumKhadamat);
 		txtSumKhadamat.setOnClickListener(this);
 		txtSumKhadamat.setText(String.valueOf(NumberFormat.getInstance().format(GET_PRICE_KHADAMAT)));
@@ -1929,6 +1931,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 										excursionData.getHotelID(),excursionData.getHotelNameEn(),excursionData.getPassengerList(),excursionData.getLoadDB()));
 
 								purchaseFlightResult.setFlag(false);
+								purchaseFlightResult.setCurrencyCode(services.getCurrencyCode());
 								data.add(purchaseFlightResult);
 							}
 
@@ -1953,6 +1956,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 								listKhadamat.setVisibility(View.GONE);
 							}
 							setAnimation();
+							txtCurrencyCode.setText(responseGetServices.getServices().get(0).getCurrencyCode());
+							GlobalCurrencyCode=responseGetServices.getServices().get(0).getCurrencyCode();
 						}
 					} catch (Exception e) {
 						AlertDialogPassenger AlertDialogPassenger =  new AlertDialogPassenger(PassengerActivity.this,true,true);
@@ -2131,7 +2136,7 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					//////////////////////////////
 					long totalprice = jFact.getTotalPrice().getAmount();//TotalPrice();
 
-					tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+baseContext.getString(R.string.Rial) : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
+					tvPrice.setText(totalprice > 0 ? String.valueOf(NumberFormat.getInstance().format(totalprice))+" "+GlobalCurrencyCode : "It");//String.valueOf(NumberFormat.getInstance().format(totalprice)) + " ریال ");
 //for hotel==========================================================================================
 
 					recyclerViewHotel.addItemDecoration(new DividerItemDecoration(baseContext, 1));

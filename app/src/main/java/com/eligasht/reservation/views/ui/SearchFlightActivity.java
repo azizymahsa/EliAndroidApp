@@ -132,6 +132,8 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
     private ExpandableListAdapter listAdapterExpanding;
     private  RecyclerView recyclerViewHotel;
     String flagWay="";
+    private static String GlobalCurrencyCode="";
+
     public static void updateAdapterPin(List<PinModelDetail> pinModelDetails, List<PinModelHeader> pinModelHeaders, Context activity) {
         // TODO Auto-generated method stub
 
@@ -492,8 +494,11 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
 
                 }
                  searchKeyConfirm= responsSearchFlight.getFlightSearched().getSearchKey();
-                if (responsSearchFlight.getFlights().size() > 0)
+                if (responsSearchFlight.getFlights().size() > 0){
                     responsSearchFlight.getFlights().get(0).getBaseFare();
+                    GlobalCurrencyCode=responsSearchFlight.getFlights().get(0).getAdlBaseFare().getCurrencyCode();
+                    Prefs.putString("GlobalCurrencyCode", GlobalCurrencyCode);
+                }
                 if (Locale.getDefault().getLanguage().equals("fa")) {
                     getDataFaJson(responsSearchFlight);
                 } else if (Locale.getDefault().getLanguage().equals("en")) {

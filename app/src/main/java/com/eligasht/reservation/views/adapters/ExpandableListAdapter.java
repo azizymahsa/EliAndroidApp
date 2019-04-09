@@ -31,6 +31,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.model.PinModelDetail;
 import com.eligasht.reservation.models.model.PinModelHeader;
 import com.eligasht.reservation.tools.GlideApp;
+import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.activities.FlightSeatActivity;
 import com.eligasht.reservation.views.ui.PassengerActivity;
 import com.eligasht.reservation.views.ui.SearchFlightActivity;
@@ -194,6 +195,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (item.AdlBaseFare > 0) {
             txtAdlCostP.setText(String.valueOf(NumberFormat.getInstance().format(item.AdlBaseFare)));
             txtAdlCostPR.setVisibility(View.VISIBLE);
+            txtAdlCostPR.setText(Prefs.getString("GlobalCurrencyCode", ""));
+
         } else {
             txtAdlCostP.setText("IT");//
             txtAdlCostPR.setVisibility(View.GONE);
@@ -202,6 +205,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (item.Taxes > 0) {
             txtTaxes.setText(String.valueOf(NumberFormat.getInstance().format(item.Taxes)));
             txtTaxesR.setVisibility(View.VISIBLE);
+            txtTaxesR.setText(Prefs.getString("GlobalCurrencyCode", ""));
+
         } else {
             txtTaxes.setText("IT");
             txtTaxesR.setVisibility(View.GONE);
@@ -209,6 +214,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (item.TotalFare > 0) {
             txtTotalFareCost.setText(String.valueOf(NumberFormat.getInstance().format(item.TotalFare)));
             txtTotalFareCostR.setVisibility(View.VISIBLE);
+            txtTotalFareCostR.setText(Prefs.getString("GlobalCurrencyCode", ""));
         } else {
             txtTotalFareCost.setText("IT");
             txtTotalFareCostR.setVisibility(View.GONE);
@@ -365,6 +371,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         TextView lblAdlCost = convertView.findViewById(R.id.lblAdlCost);
 
+        TextView txtCurrencyCode = convertView.findViewById(R.id.txtCurrencyCode);
+
+        txtCurrencyCode.setText(Prefs.getString("GlobalCurrencyCode", ""));
         ImageView lblProductrow = convertView.findViewById(R.id.lblProductrow);
 
         TextView txt_economi = convertView.findViewById(R.id.txt_economi);
@@ -562,6 +571,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         } catch (Exception e) {
             e.getMessage();
         }
+        txtCurrencyCode.setText(Prefs.getString("GlobalCurrencyCode", ""));
+
         lblAdlCost.setText(item2.AdlCost + "");
         lblAdlCost.setText(String.valueOf(NumberFormat.getInstance().format(item2.AdlCost)));
 

@@ -658,7 +658,7 @@
                 android:gravity="right"
                 android:text="@string/Rial"
                 android:textAppearance="@style/IrsansBold"
-
+                android:id="@+id/txtCurrencyCode"
                 android:textColor="#0e874e"
                 android:textSize="@dimen/_13dp_normal_textSize" />
 
