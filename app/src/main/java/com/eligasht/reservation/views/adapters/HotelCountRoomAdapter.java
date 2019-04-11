@@ -88,7 +88,7 @@ public class HotelCountRoomAdapter extends BaseAdapter {
 	 //Country current=data.get(position);
 	long s =position+1;
 		//return data.getLong(Customers_Table.Columns.CUSTOMER_ID.value());
-		return s;
+	return s;
 	}
 
 	public View getView(final int position, View convertView, ViewGroup parent) {

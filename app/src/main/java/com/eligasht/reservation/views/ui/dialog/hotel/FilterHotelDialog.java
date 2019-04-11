@@ -164,9 +164,9 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (filterHotelPriceModel.get(position).isCheck()) {
-                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(), filterHotelPriceModel.get(position).getX(), false));
+                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(), filterHotelPriceModel.get(position).getX(), false,filterHotelPriceModel.get(position).getCurrencyCode()));
                 } else {
-                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(), filterHotelPriceModel.get(position).getX(), true));
+                    filterHotelPriceModel.set(position, new FilterPriceModel(filterHotelPriceModel.get(position).getDiff(), filterHotelPriceModel.get(position).getX(), true,filterHotelPriceModel.get(position).getCurrencyCode()));
                 }
                 priceFilterAdapter.notifyDataSetChanged();
             }
@@ -206,7 +206,7 @@ public class FilterHotelDialog extends DialogFragment implements View.OnClickLis
                 }
 
                 for (int i = 0; i < filterHotelPriceModel.size(); i++) {
-                    filterHotelPriceModel.set(i, new FilterPriceModel(filterHotelPriceModel.get(i).getDiff(), filterHotelPriceModel.get(i).getX(), false));
+                    filterHotelPriceModel.set(i, new FilterPriceModel(filterHotelPriceModel.get(i).getDiff(), filterHotelPriceModel.get(i).getX(), false,filterHotelPriceModel.get(i).getCurrencyCode()));
 
                 }
                 for (int i = 0; i < filterHotelLocationModels.size(); i++) {

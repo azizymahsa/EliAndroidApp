@@ -249,7 +249,7 @@ public class ContactUsActivity extends BaseActivity implements View.OnClickListe
                     layout_scroll.fullScroll(ScrollView.FOCUS_DOWN);*/
                 } else {
                     expandableLayout.expand();
-                     }
+                 }
 
                 break;
             case R.id.txtPhone:

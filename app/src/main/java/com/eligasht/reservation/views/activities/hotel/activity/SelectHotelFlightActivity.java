@@ -709,11 +709,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                 double  x3 = x2 + dif;
                 double  x4 = x3 + dif;
                 double  x5 = x4 + dif;
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x0)) + "-" + Utility.priceFormat(String.valueOf(x1)), 1, false));
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x1)) + "-" + Utility.priceFormat(String.valueOf(x2)), 2, false));
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x2)) + "-" + Utility.priceFormat(String.valueOf(x3)), 3, false));
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x3)) + "-" + Utility.priceFormat(String.valueOf(x4)), 4, false));
-                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x4)) + "-" + Utility.priceFormat(String.valueOf(x5)), 5, false));
+                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x0)) + "-" + Utility.priceFormat(String.valueOf(x1)), 1, false,hotelFlightResponse.getHotels().get(0).getAvailability().getRoomLists().get(0).getCurrencyCode()));
+                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x1)) + "-" + Utility.priceFormat(String.valueOf(x2)), 2, false,hotelFlightResponse.getHotels().get(0).getAvailability().getRoomLists().get(0).getCurrencyCode()));
+                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x2)) + "-" + Utility.priceFormat(String.valueOf(x3)), 3, false,hotelFlightResponse.getHotels().get(0).getAvailability().getRoomLists().get(0).getCurrencyCode()));
+                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x3)) + "-" + Utility.priceFormat(String.valueOf(x4)), 4, false,hotelFlightResponse.getHotels().get(0).getAvailability().getRoomLists().get(0).getCurrencyCode()));
+                filterHotelPriceModels.add(new FilterPriceModel(Utility.priceFormat(String.valueOf(x4)) + "-" + Utility.priceFormat(String.valueOf(x5)), 5, false,hotelFlightResponse.getHotels().get(0).getAvailability().getRoomLists().get(0).getCurrencyCode()));
                 Collections.reverse(filterHotelPriceModels);
                 int i = 0;
                 int j = 0;

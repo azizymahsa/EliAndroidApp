@@ -52,12 +52,16 @@ public class PriceFilterAdapter extends BaseAdapter {
             holder.tvTitle = convertView.findViewById(R.id.tvTitle);
             holder.checkbox = convertView.findViewById(R.id.checkbox);
 
+            holder.tvRial = convertView.findViewById(R.id.tvRial);
+
 
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         holder.tvTitle.setText(filterPriceModels.get(position).getDiff());
+
+        holder.tvRial.setText(filterPriceModels.get(position).getCurrencyCode());
 
         holder.checkbox.setEnabled(false);
         holder.checkbox.setClickable(false);
@@ -89,6 +93,7 @@ public class PriceFilterAdapter extends BaseAdapter {
 
     public class ViewHolder{
         TextView tvTitle;
+        TextView tvRial;
         SmoothCheckBox checkbox;
 
 
