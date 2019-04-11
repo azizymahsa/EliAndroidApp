@@ -103,6 +103,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
     private TextView txtFilter;
     private TextView txtIconFilter;
     private TextView txtNotFoundResualt;
+    private static String GlobalCurrencyCode="";
 
     @SuppressLint("NewApi")
     @Override
@@ -217,6 +218,7 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
 
                 pRowXfers = (ArrayList<PRowXfer>) response.body().getPRowXfers();
                 priceFilters = FilterPackTools.getPriceFilters(pRowXfers);
+                GlobalCurrencyCode = pRowXfers.get(0).getLstProwPrices().get(0).getSumPrice().getCurrencyCode();
                 placeFilters = FilterPackTools.getPlaceFilters(pRowXfers);
                 hotelTypeFilters = FilterPackTools.getHotelTypeFilters(pRowXfers);
                 degreeFilters = FilterPackTools.getDegreeFilters(pRowXfers);
@@ -338,11 +340,13 @@ public class SearchPackActivity extends BaseActivity implements View.OnClickList
                     return;
                 }
                 FilterPackageDialog filterPackageDialog = new FilterPackageDialog(SearchPackActivity.this);
+                filterPackageDialog.setCurrencyCode(GlobalCurrencyCode);
                 filterPackageDialog.setPrices(priceFilters);
                 filterPackageDialog.setDegrees(degreeFilters);
                 filterPackageDialog.setPlaces(placeFilters);
                 filterPackageDialog.setHotelTypess(hotelTypeFilters);
                 filterPackageDialog.setAmenities(amenityFilters);
+
                 filterPackageDialog.setOnFiltePackageListener(new FilterPackageDialog.OnFiltePackageListener() {
                     @Override
                     public void onConfirm(ArrayList<DegreeFilter> degreeFiltersSelected,

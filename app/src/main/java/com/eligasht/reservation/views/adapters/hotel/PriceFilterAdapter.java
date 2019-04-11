@@ -70,21 +70,10 @@ public class PriceFilterAdapter extends BaseAdapter {
         if (filterPriceModels.get(position).isCheck()){
             holder.checkbox.setChecked(true);
 
-
-
-
-
         }else{
             holder.checkbox.setChecked(false);
 
         }
-
-
-
-
-
-
-
 
 
         return convertView;

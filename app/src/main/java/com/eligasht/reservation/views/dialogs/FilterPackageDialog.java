@@ -53,6 +53,7 @@ public class FilterPackageDialog implements View.OnClickListener {
     private HotelTypeFilterAdapter hotelTypeFilterAdapter;
     private PlaceFilterAdapter placeFilterAdapter;
     private DegreeFilterAdapter degreeFilterAdapter;
+    private String currencyCode;
 
     public FilterPackageDialog(Context context){
 
@@ -127,7 +128,7 @@ public class FilterPackageDialog implements View.OnClickListener {
 
         rcl_price.setVisibility(View.VISIBLE);
 
-        priceFilterAdapter = new PriceFilterAdapter(context,priceFilters).setOnPriceFilterListener(new PriceFilterAdapter.OnPriceFilterListener() {
+        priceFilterAdapter = new PriceFilterAdapter(context,priceFilters,currencyCode).setOnPriceFilterListener(new PriceFilterAdapter.OnPriceFilterListener() {
             @Override
             public void onChangeFilters(ArrayList<PriceFilter> priceFiltersSelected) {
                 FilterPackageDialog.this.priceFiltersSelected = priceFiltersSelected;
@@ -135,7 +136,9 @@ public class FilterPackageDialog implements View.OnClickListener {
         });
         rcl_price.showList(priceFilterAdapter);
     }
-
+    public void setCurrencyCode(String currencyCode){
+       this.currencyCode=currencyCode;
+    }
     public void setPlaces(ArrayList<PlaceFilter> placeFilters){
         if(ValidationTools.isEmptyOrNull(placeFilters)){
             rcl_place.setVisibility(View.GONE);

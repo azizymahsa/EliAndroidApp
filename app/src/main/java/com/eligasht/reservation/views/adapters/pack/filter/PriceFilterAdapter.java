@@ -25,6 +25,7 @@ public class PriceFilterAdapter extends RecyclerView.Adapter<PriceFilterRowHolde
     private Context context;
     private ArrayList<PriceFilter> priceFilters;
     private OnPriceFilterListener onPriceFilterListener;
+    private String currencyCode;
 
 
     public PriceFilterAdapter setOnPriceFilterListener(OnPriceFilterListener onPriceFilterListener) {
@@ -36,9 +37,10 @@ public class PriceFilterAdapter extends RecyclerView.Adapter<PriceFilterRowHolde
         void onChangeFilters(ArrayList<PriceFilter> priceFiltersSelected);
     }
 
-    public PriceFilterAdapter(Context context, ArrayList<PriceFilter> priceFilters) {
+    public PriceFilterAdapter(Context context, ArrayList<PriceFilter> priceFilters,String currencyCode) {
         this.priceFilters = priceFilters;
         this.context = context;
+        this.currencyCode = currencyCode;
 
     }
 
@@ -63,6 +65,7 @@ public class PriceFilterAdapter extends RecyclerView.Adapter<PriceFilterRowHolde
         holder.chk_price_filter.setOnCheckedChangeListener(null);
         holder.chk_price_filter.setChecked(priceFilter.isSelected());
         holder.txt_price_filter.setText(priceFilter.getMaxPrice() + " - " + priceFilter.getMinPrice());
+        holder.txtCurrencyCode.setText(currencyCode);
 
         holder.layout_price_filter.setOnClickListener(new View.OnClickListener() {
             @Override

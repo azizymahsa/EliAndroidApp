@@ -16,6 +16,7 @@ import cn.refactor.library.SmoothCheckBox;
 public class PriceFilterRowHolder extends RecyclerView.ViewHolder {
 
 
+     public TextView txtCurrencyCode;
      public TextView txt_price_filter;
      public SmoothCheckBox chk_price_filter;
      public ViewGroup layout_price_filter;
@@ -26,6 +27,7 @@ public class PriceFilterRowHolder extends RecyclerView.ViewHolder {
        this.layout_price_filter = itemView.findViewById(R.id.layout_price_filter);
        this.txt_price_filter = itemView.findViewById(R.id.txt_price_filter);
        this.chk_price_filter = itemView.findViewById(R.id.chk_price_filter);
+       this.txtCurrencyCode = itemView.findViewById(R.id.txtCurrencyCode);
 
     }
 
