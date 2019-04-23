@@ -25,6 +25,8 @@ import com.eligasht.ServiceApplication;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.conf.APIConf;
+import com.eligasht.reservation.tools.db.RsaFunction;
+import com.eligasht.reservation.tools.db.StringCryptor;
 import com.eligasht.service.helper.Const;
 import com.eligasht.service.model.newModel.auth.response.ResponseAuth;
 import com.eligasht.service.model.newModel.startup.request.RequestStartup;
@@ -50,10 +52,18 @@ import com.zplesac.connectionbuddy.models.ConnectivityEvent;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -78,8 +88,11 @@ public class SplashActivity extends ConnectionBuddyActivity implements
     private TextView tvVer;
     private ClientService service;
 
-    public static List<Branch> branches = new ArrayList<Branch>();
-    public static List<Branch> branchesDef = new ArrayList<Branch>();
+    public static List<Branch> branches;
+    public static List<Branch> branchesDef ;
+
+    public static List<Branch> branchesBk;
+    public static List<Branch> branchesDefBk ;
 
     public static List<String> UpdateUrl=new ArrayList<>() ;
 
@@ -128,6 +141,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         } catch (Exception e) {
         }
         setContentView(R.layout.fragment_splash);
+        Log.d( "RUN_ACTIVITY: ","9999999999999999"+"SPLASH");
         StatusBarUtil.setTranslucent(this, 2);
 
         splashDialog = new SplashDialog(SplashActivity.this, this);
@@ -152,8 +166,26 @@ public class SplashActivity extends ConnectionBuddyActivity implements
         super.onStart();
     }
     private void Auth_request(boolean flagUpdate) {
-           try {
-            service = ServiceGenerator.createService(ClientService.class);
+        String Password = "Eli",UserName="123456";
+        String encryptedPassword="";
+        try {
+            Const.TOKEN= encryptedPassword = StringCryptor.Encrypt("", "");//MD5
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        }
+        if(!flagUpdate)
+            startUpRequest();
+          /*     service = ServiceGenerator.createService(ClientService.class);
             JSONObject paramObject = new JSONObject();
             paramObject.put("grant_type", "password");
             paramObject.put("username", "eli_gasht_1397");
@@ -173,11 +205,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                     Log.d("requestSearchPackage: ","error");
 
                 }
-            });
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            });*/
 
     }
     public void startUpRequest() {
@@ -240,8 +268,11 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                 }
              }else{
                 Utility.sendTag("Splash", true, true);
-                UpdateUrl.clear();
-                branchesDef.clear();
+                branches = new ArrayList<Branch>();
+                branchesDef = new ArrayList<Branch>();
+               // UpdateUrl.clear();
+                //branchesDef.clear();
+              //  Log.d( "ActiveOperationSplash: ",branchesDef.size()+"");
                 for (int i = 0; i < startupServiceResponse.getUpdateUrl().size(); i++) {
 
                    UpdateUrl.add(startupServiceResponse.getUpdateUrl().get(i));
@@ -312,6 +343,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                             ServiceGenerator.changeApiBaseUrl( Prefs.getString("BASEURL",""));
                            // Prefs.putString("BASEURL", Prefs.getString("BASEURL","");
                             Const.BASEURL=Prefs.getString("BASEURL","");
+                            Log.d( "ActiveOperationSPASH_RESPONSE: ","100");
                             ServiceApplication serviceApplication=new ServiceApplication() {
                                         @Override
                                         public void onCreate() {
@@ -326,7 +358,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                          if(!Prefs.getBoolean("isChangeCurrency", false))
                              Prefs.putString("CurrencyDef", branchesDef.get(0).getCurrency());
 
-
+                    Log.d( "ActiveOperationSPASH_RESPONSE: ","200");
 
 
                          // Prefs.putString("BASEURL", Prefs.getString("UrlDef",""));
@@ -426,6 +458,15 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                     updateAlert.isForce(true);
                 }
             }*/
+            Log.d( "ActiveOperationSplash: ",branches.size()+"");
+            branchesBk = new ArrayList<Branch>();
+            branchesDefBk = new ArrayList<Branch>();
+            branchesBk=branches;
+            branchesDefBk=branchesDef;
+            Log.d( "ActiveOperationSPASH_RESPONSE: ","300");
+            Log.d( "ActiveOperationSPASH_RESPONSE: ",branchesBk.size()+"");
+            Log.d( "ActiveOperationSPASH_RESPONSE: ",branchesDefBk.size()+"");
+            Log.d( "ActiveOperationSplash: ",branchesBk.size()+"");
         } catch (Exception e) {
             e.printStackTrace();
             splashDialog.showAlert();
