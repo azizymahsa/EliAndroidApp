@@ -41,12 +41,14 @@ import com.eligasht.reservation.views.ui.dialog.hotel.FilterHotelTypeModel;
 import com.eligasht.reservation.views.ui.dialog.hotel.SortDialog;
 import com.eligasht.service.listener.OnServiceStatus;
 
-import com.eligasht.service.model.loadflight.request.LoadFlightRequest;
-import com.eligasht.service.model.loadflight.request.LoadFlightSubRequest;
-import com.eligasht.service.model.loadflight.response.LoadFlightResponse;
+
+import com.eligasht.service.model.newModel.flight.searchFlight.response.Flight;
+import com.eligasht.service.model.newModel.hotelFlight.loadFlight.request.RequestLoadFlight;
+import com.eligasht.service.model.newModel.hotelFlight.loadFlight.response.ResponseLoadFlight;
 import com.eligasht.service.model.newModel.hotelFlight.preSearch.request.QueryModel;
 import com.eligasht.service.model.newModel.hotelFlight.preSearch.request.RequestHotelFlight;
 import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Facility;
+import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.FltList;
 import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.HotelType;
 import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Location;
 import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.ResponseHotelFlight;
@@ -628,8 +630,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                         selectHotelModelArrayList.get(j).getFlightList().getOfferId(),
                         selectHotelModelArrayList.get(j).getFlightList(),
                         selectHotelModelArrayList.get(j).getFlightList().getFlightGUID(),
-                        selectHotelModelArrayList.get(j).getCurrencyCode()
-                        );
+                        selectHotelModelArrayList.get(j).getCurrencyCode());
             }
         } catch (Exception e) {
             tvFilter.setTextColor(ContextCompat.getColor(this, R.color.text_color_4d));
@@ -748,6 +749,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     if ((hotelPrice >= x4) && (hotelPrice <= x5)) {
                         xiff = 5;
                     }
+                    Prefs.putBoolean("IsDemostic", hotelFlightResponse.getIsDomestic());
                     selectHotelModelArrayList.add(new SelectFlightHotelModel(hotels.getName(), hotels.getCity(), hotels.getAvailability().getRoomLists().get(i).getTitle(),
                             hotels.getAvailability().getRoomLists().get(i).getBoard(), hotels.getAvailability().getRoomLists().get(i).getPrice() , hotels.getMainImage(), hotels.getLocation(),
                             hotels.getAvailability().getRoomLists().get(i).getOldPrice(), hotels.getStarRating(),
@@ -811,7 +813,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
             rlList.setVisibility(View.GONE);
             llFilter.setVisibility(View.GONE);
         }
-        requestCheckFlt();
+       // requestCheckFlt();
     }
 
     @Override
@@ -858,34 +860,31 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
             window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.hf));
         }
         new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
-        LoadFlightRequest loadFlightRequest = new LoadFlightRequest();
-        LoadFlightSubRequest loadFlightSubRequest = new LoadFlightSubRequest();
-        loadFlightSubRequest.setFlightId(flId);
-        loadFlightSubRequest.setCulture(getString(R.string.culture));
-        com.eligasht.service.model.loadflight.request.Identity identity = new com.eligasht.service.model.loadflight.request.Identity();
-        identity.setPassword("123qwe!@#QWE");
-        identity.setUserName("EligashtMlb");
-        identity.setTermianlId("Mobile");
-        loadFlightSubRequest.setIdentity(identity);
-        loadFlightSubRequest.setSearchKey(searchKey);
-        loadFlightRequest.setRequest(loadFlightSubRequest);
-        Log.e("loadFlightRequest", new Gson().toJson(loadFlightRequest));
-        SingletonService.getInstance().getHotelService().loadFlight(new OnServiceStatus<LoadFlightResponse>() {
+        RequestLoadFlight loadFlightRequest = new RequestLoadFlight();
+
+        loadFlightRequest.setToFlightId(flId);
+
+        loadFlightRequest.setPreSearchUniqueId(searchKey);
+
+        Log.e("loadFlightRequest:", new Gson().toJson(loadFlightRequest));
+        SingletonService.getInstance().getFlight().newGetLoadFlight(new OnServiceStatus<ResponseLoadFlight>() {
             @Override
-            public void onReady(LoadFlightResponse loadFlightResponse) {
-                /*new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
+            public void onReady(ResponseLoadFlight loadFlightResponse) {
+                Log.e("loadFlightResponse:", new Gson().toJson(loadFlightResponse));
+                new InitUi().Loading(SelectHotelFlightActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     window.setStatusBarColor(ContextCompat.getColor(SelectHotelFlightActivity.this, R.color.colorPrimaryDark));
                 }
                 try {
 
                     selectHotelModelArrayList.clear();
-                    if (loadFlightResponse.getLoadFlightResult().getErrors() != null) {
+                   if(loadFlightResponse.getErrors().size()>0){
                         elNotFound.setVisibility(View.VISIBLE);
-                        tvAlert.setText(loadFlightResponse.getLoadFlightResult().getErrors().get(0).getDetailedMessage());
+                        tvAlert.setText(loadFlightResponse.getErrors().get(0).getDetailedMessage());
                         rvHotelResult.setVisibility(View.GONE);
                         llFilter.setVisibility(View.GONE);
-                    } else if (loadFlightResponse.getLoadFlightResult().getHFlight().getFltList().isEmpty()) {
+
+                    } else if (loadFlightResponse.getHFlight().getFltList().isEmpty()) {
                         elNotFound.setVisibility(View.VISIBLE);
                         tvAlert.setText(R.string.NoResult);
                         rvHotelResult.setVisibility(View.GONE);
@@ -893,9 +892,9 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     } else {
                         maxPrice = hotelFlightResponse.getMaxPrice();
                         minPrice = hotelFlightResponse.getMinPrice();
-                        int dif = maxPrice - minPrice;
+                        int dif = (int)maxPrice - (int)minPrice;
                         dif = dif / 5;
-                        int x0 = minPrice;
+                        int x0 = (int)minPrice;
                         int x1 = x0 + dif;
                         int x2 = x1 + dif;
                         int x3 = x2 + dif;
@@ -907,12 +906,12 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                             String off = "";
                             boolean isOff = false;
                             int xiff = 0;
-                            int hotelPrice = Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getPrice());
-                            if ((hotels.getAvailability().getRoomLists().get(i).getOldPrice() > 0) &&
-                                    (hotels.getAvailability().getRoomLists().get(i).getOldPrice() > Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getPrice()))) {
-                                int p1 = hotels.getAvailability().getRoomLists().get(i).getOldPrice() - Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getPrice());
+                            int hotelPrice = Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getPrice().intValue());
+                            if ((hotels.getAvailability().getRoomLists().get(i).getOldPrice().intValue() > 0) &&
+                                    (hotels.getAvailability().getRoomLists().get(i).getOldPrice().intValue() > Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getPrice().intValue()))) {
+                                int p1 = hotels.getAvailability().getRoomLists().get(i).getOldPrice().intValue() - Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getPrice().intValue());
                                 int p2 = p1 * 100;
-                                int p3 = p2 / hotels.getAvailability().getRoomLists().get(i).getOldPrice();
+                                int p3 = p2 / hotels.getAvailability().getRoomLists().get(i).getOldPrice().intValue();
                                 if (p3 > 0) {
                                     // negative
                                     isOff = true;
@@ -934,11 +933,105 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                             if ((hotelPrice >= x4) && (hotelPrice <= x5)) {
                                 xiff = 5;
                             }
-                            selectHotelModelArrayList.add(new SelectFlightHotelModel(hotels.getName(),
+                            com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Flights flight=new com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Flights();
+                            flight.setAccountID(loadFlightResponse.getHFlight().getAccountID());
+                            flight.setAmount(loadFlightResponse.getHFlight().getAmount());
+                            flight.setArrRout(loadFlightResponse.getHFlight().getArrRout());
+                            flight.setDepRout(loadFlightResponse.getHFlight().getDepRout());
+                            flight.setEAccountId(loadFlightResponse.getHFlight().getEAccountId());
+                            flight.setEFlightId(loadFlightResponse.getHFlight().getEFlightId());
+                            flight.setFlightGUID(loadFlightResponse.getHFlight().getFlightGUID());
+                            flight.setFlightID(loadFlightResponse.getHFlight().getFlightID());
+                            flight.setFlightId(loadFlightResponse.getHFlight().getFlightId());
+                            flight.setFlightTypeID(loadFlightResponse.getHFlight().getFlightTypeID());
+
+                            //list
+                            List<com.eligasht.service.model.newModel.hotelFlight.preSearch.response.FltList> fltList=new ArrayList<>();
+
+                            for (int k = 0; k < loadFlightResponse.getHFlight().getFltList().size(); k++) {
+
+                                com.eligasht.service.model.newModel.hotelFlight.preSearch.response.FltList fltList1=new FltList();
+                                fltList1.setAirlineCode(loadFlightResponse.getHFlight().getFltList().get(k).getAirlineCode());
+                                fltList1.setAirlineID(loadFlightResponse.getHFlight().getFltList().get(k).getAirlineID());
+
+                                fltList1.setAirlineNameEn(loadFlightResponse.getHFlight().getFltList().get(k).getAirlineNameEn());
+                                fltList1.setAirlineNameFa(loadFlightResponse.getHFlight().getFltList().get(k).getAirlineNameFa());
+
+                                fltList1.setArrivalAirportCode(loadFlightResponse.getHFlight().getFltList().get(k).getArrivalAirportCode());
+                                fltList1.setArrivalAirportNameEn(loadFlightResponse.getHFlight().getFltList().get(k).getArrivalAirportNameEn());
+
+                                fltList1.setArrivalAirportNameFa(loadFlightResponse.getHFlight().getFltList().get(k).getArrivalAirportNameFa());
+                                fltList1.setArrivalCityCode(loadFlightResponse.getHFlight().getFltList().get(k).getArrivalCityCode());
+
+                                fltList1.setArrivalCityNameEn(loadFlightResponse.getHFlight().getFltList().get(k).getArrivalCityNameEn());
+                                fltList1.setArrivalCityNameFa(loadFlightResponse.getHFlight().getFltList().get(k).getArrivalCityNameFa());
+
+                                fltList1.setArrivalCountryNameEn(loadFlightResponse.getHFlight().getFltList().get(k).getArrivalCountryNameEn());
+                                fltList1.setArrivalCountryNameFa(loadFlightResponse.getHFlight().getFltList().get(k).getArrivalCountryNameFa());
+
+                                fltList1.setArrivalDate(loadFlightResponse.getHFlight().getFltList().get(k).getArrivalDate());
+                                fltList1.setDepartureAirportCode(loadFlightResponse.getHFlight().getFltList().get(k).getDepartureAirportCode());
+
+                                fltList1.setDepartureAirportNameEn(loadFlightResponse.getHFlight().getFltList().get(k).getDepartureAirportNameEn());
+                                fltList1.setDepartureAirportNameFa(loadFlightResponse.getHFlight().getFltList().get(k).getDepartureAirportNameFa());
+
+                                fltList1.setDepartureCityCode(loadFlightResponse.getHFlight().getFltList().get(k).getDepartureCityCode());
+                                fltList1.setDepartureCityNameEn(loadFlightResponse.getHFlight().getFltList().get(k).getDepartureCityNameEn());
+
+                                fltList1.setDepartureCityNameFa(loadFlightResponse.getHFlight().getFltList().get(k).getDepartureCityNameFa());
+                                fltList1.setDepartureCountryNameEn(loadFlightResponse.getHFlight().getFltList().get(k).getDepartureCountryNameEn());
+
+                                fltList1.setDepartureCountryNameFa(loadFlightResponse.getHFlight().getFltList().get(k).getDepartureCountryNameFa());
+                                fltList1.setDepartureDate(loadFlightResponse.getHFlight().getFltList().get(k).getDepartureDate());
+
+                                fltList1.setDepartureDateShamsi(loadFlightResponse.getHFlight().getFltList().get(k).getDepartureDateShamsi());
+                                fltList1.setFlightArrivalTime(loadFlightResponse.getHFlight().getFltList().get(k).getFlightArrivalTime());
+
+                                fltList1.setFlightNumber(loadFlightResponse.getHFlight().getFltList().get(k).getFlightNumber());
+                                fltList1.setFlightTime(loadFlightResponse.getHFlight().getFltList().get(k).getFlightTime());
+
+                                fltList1.setFltDurationH(loadFlightResponse.getHFlight().getFltList().get(k).getFltDurationH());
+                                fltList1.setFltDurationM(loadFlightResponse.getHFlight().getFltList().get(k).getFltDurationM());
+
+                                fltList1.setIsDepartureSegment(loadFlightResponse.getHFlight().getFltList().get(k).getIsDepartureSegment());
+                                fltList1.setOperatingAirlineID(loadFlightResponse.getHFlight().getFltList().get(k).getOperatingAirlineID());
+
+
+
+                                fltList.add(fltList1);
+                            }
+
+                           flight.setFltList(fltList);
+
+                            hotelFlightResponse.setFlights(flight);
+                            selectHotelModelArrayList.add(
+                                    new SelectFlightHotelModel(hotels.getName(), hotels.getCity(), hotels.getAvailability().getRoomLists().get(i).getTitle(),
+                                            hotels.getAvailability().getRoomLists().get(i).getBoard(), hotels.getAvailability().getRoomLists().get(i).getPrice() , hotels.getMainImage(), hotels.getLocation(),
+                                            hotels.getAvailability().getRoomLists().get(i).getOldPrice(), hotels.getStarRating(),
+                                            Integer.valueOf(hotels.getAvailability().getRoomLists().get(i).getEHotelId()),
+                                            hotelFlightResponse.getSearchKey()+""//getResultUniqID()
+                                            ,hotels.getBestSell(), isOff,
+                                            off, hotels.getTypeText(), hotels.getFacilities(),
+                                            xiff,
+
+                                            flight.getFltList(),
+                                            loadFlightResponse.getHFlight().getArrRout(),
+                                            loadFlightResponse.getHFlight().getDepRout(),
+                                            loadFlightResponse.getHFlight().getAmount()+"" + "",
+                                            hotelFlightResponse.getLocations(),
+                                            loadFlightResponse.getHFlight().getFlightID()
+                                            ,loadFlightResponse.getHFlight().getOfferId(),//FlightOfferId
+
+                                            flight,
+                                            loadFlightResponse.getHFlight().getFlightGUID(),
+                                            //loadFlightResponse.getHFlight().getFltList().get(0).getAirlineCode(),//
+                                            hotelFlightResponse.getHotels().get(i).getAvailability().getRoomLists().get(0).getCurrencyCode()));
+
+                                    /*new SelectFlightHotelModel(hotels.getName(),
                                     hotels.getCity(),
                                     hotels.getAvailability().getRoomLists().get(i).getTitle(),
                                     hotels.getAvailability().getRoomLists().get(i).getBoard(),
-                                    hotels.getAvailability().getRoomLists().get(i).getPrice() + "",
+                                    hotels.getAvailability().getRoomLists().get(i).getPrice(),
                                     hotels.getMainImage(), hotels.getLocation(),
                                     hotels.getAvailability().getRoomLists().get(i).getOldPrice(),
                                     hotels.getStarRating(),
@@ -946,12 +1039,11 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                                     hotelFlightResponse.getSearchKey()//getResultUniqID()
                                     , hotels.getBestSell(), isOff,
                                     off, hotels.getTypeText(), hotels.getFacilities(),
-                                    xiff, loadFlightResponse.getLoadFlightResult().getHFlight().getFltList(),
-                                    loadFlightResponse.getLoadFlightResult().getHFlight().getArrRout(),
-                                    loadFlightResponse.getLoadFlightResult().getHFlight().getDepRout(),
-                                    loadFlightResponse.getLoadFlightResult().getHFlight().getAmount() + "",
-                                    hotelFlightResponse.getLocations(),
-                                    loadFlightResponse.getLoadFlightResult().getHFlight().getFlightID()));
+                                    xiff, loadFlightResponse.getHFlight().getFltList(),
+                                    loadFlightResponse.getHFlight().getArrRout(),
+                                    loadFlightResponse.getHFlight().getDepRout(),
+                                    loadFlightResponse.getHFlight().getAmount()+"",
+                                    loadFlightResponse.getHFlight().getFlightID()));*/
                             //  i++;
                         }
 
@@ -962,7 +1054,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
                     }
                 } catch (Exception e) {
                     onErrors();
-                }*/
+                }
             }
 
             @Override
@@ -992,7 +1084,7 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
     }
 
     public void requestCheckFlt() {
-        RequestDomesticFlight requestDomesticFlight = new RequestDomesticFlight();
+      /*  RequestDomesticFlight requestDomesticFlight = new RequestDomesticFlight();
         com.eligasht.service.model.flight.request.DomesticFlight.Request request = new com.eligasht.service.model.flight.request.DomesticFlight.Request();
         request.setUserName("EligashtMlb");
         request.setPassword("123qwe!@#QWE");
@@ -1017,6 +1109,6 @@ public class SelectHotelFlightActivity extends BaseActivity implements View.OnCl
             public void onError(String message) {
                 Toast.makeText(SelectHotelFlightActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
             }
-        }, requestDomesticFlight);
+        }, requestDomesticFlight);*/
     }
 }

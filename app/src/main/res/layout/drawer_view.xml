@@ -193,7 +193,7 @@
 
 
             </com.github.aakira.expandablelayout.ExpandableWeightLayout>
-
+            <!--gift-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -257,7 +257,7 @@
 
 
             </RelativeLayout>
-
+            <!--map-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -376,7 +376,8 @@
                 android:id="@+id/RvHotel"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="70">
+                android:layout_weight="70"
+                android:visibility="gone">
 
                 <mehdi.sakout.fancybuttons.FancyButton
                     android:id="@+id/btnHotel"

@@ -323,20 +323,21 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
 
 
     public void initValues() {
+        try{
         DepurtureAirport = getIntent().getExtras().getString("ArrialAirportName");
         ReturnFlt = getIntent().getExtras().getString("ArrivalFltNo");
         DepurtureFlt = getIntent().getExtras().getString("DepartureFltNo");
         DepurtureTime = getIntent().getExtras().getString("DepartureFltTime");
         ReturnTime = getIntent().getExtras().getString("ArrivalFltTime");
-        ReturnAirportDate = getIntent().getExtras().getString("ArrivalFltDate");
-        DepurtureDate = getIntent().getExtras().getString("DepartureFltDate");
+        ReturnAirportDate = getIntent().getExtras().getString("ArrivalFltDate");//2019-05-29T00:00:00
+        DepurtureDate = getIntent().getExtras().getString("DepartureFltDate");//2019-05-26T00:00:00
         Hotel = getIntent().getExtras().getString("HotelNameEn");
-        Log.e("hotelTest", Hotel);
+       /* Log.e("hotelTest", Hotel);
         Log.e("hotelTest1", DepurtureFlt);
         Log.e("hotelTest2", ReturnFlt);
         Log.e("hotelTest3", ReturnAirportDate);
         Log.e("hotelTest4", DepurtureTime);
-        Log.e("hotelTest4", DepurtureDate);
+        Log.e("hotelTest4", DepurtureDate);*/
         CityId = getIntent().getExtras().getString("CityID");
         Hotelcode = getIntent().getExtras().getString("HotelID");
         getIntent().getExtras().getString("HotelNameEn");
@@ -415,6 +416,9 @@ public class TransferActivity extends BaseActivity implements View.OnClickListen
             tvReturnDate.setText(getString(R.string.please_select_one));
             tvReturnDate.setClickable(true);
             tvReturnDate.setEnabled(true);
+        }
+        }catch (Exception e){
+            e.getMessage();
         }
     }
 

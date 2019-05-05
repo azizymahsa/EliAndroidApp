@@ -65,6 +65,14 @@ public class HotelFlightResultAdapter extends RecyclerView.Adapter<HotelFlightRe
                     .inflate(R.layout.select_flight_hotel_item_grid, parent, false));
         }else{
 
+
+
+
+
+
+
+
+
             return new ViewHolder(LayoutInflater.from(context)
                     .inflate(R.layout.select_flight_hotel_item, parent, false));
 

@@ -1,14 +1,23 @@
 package com.eligasht.service.di.module;
 
+import android.util.Log;
+
 import com.eligasht.service.BuildConfig;
 import com.eligasht.service.helper.Const;
+import com.eligasht.service.tools.StringCryptor;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.util.concurrent.TimeUnit;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -56,7 +65,8 @@ public class NetModule {
     public class AddHeaderInterceptor implements Interceptor {
         @Override
         public Response intercept(Chain chain) throws IOException {
-
+            createToken();
+            Log.d("TOKEN: ", Const.TOKEN);
             Request.Builder builder = chain.request().newBuilder();
             builder.addHeader("Authorization", Const.TOKEN);
             /*builder.addHeader("grant_type","password");
@@ -65,6 +75,25 @@ public class NetModule {
             return chain.proceed(builder.build());
         }
     }
+
+    private void createToken() {
+        try {
+            Const.TOKEN= StringCryptor.Encrypt("", "");//MD5
+        } catch (NoSuchPaddingException e) {
+            e.printStackTrace();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (IllegalBlockSizeException e) {
+            e.printStackTrace();
+        } catch (BadPaddingException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Provides
     @Singleton
     Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {

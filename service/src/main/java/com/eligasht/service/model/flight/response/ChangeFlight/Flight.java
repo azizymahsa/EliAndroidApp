@@ -79,6 +79,11 @@ public class Flight {
     @SerializedName("RemainSeats")
     @Expose
     private Integer remainSeats;
+
+    @SerializedName("NonRefundable")
+    @Expose
+    private Boolean NonRefundable;
+
     @SerializedName("SegmentList")
     @Expose
     private List<SegmentList> segmentList = null;
@@ -91,6 +96,15 @@ public class Flight {
     @SerializedName("TotalFareCost")
     @Expose
     private TotalFareCost totalFareCost;
+
+
+    public Boolean getNonRefundable() {
+        return NonRefundable;
+    }
+
+    public void setNonRefundable(Boolean nonRefundable) {
+        NonRefundable = nonRefundable;
+    }
 
     public String getAccountID() {
         return accountID;

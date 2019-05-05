@@ -4,14 +4,20 @@ package com.eligasht.reservation.api.retro;
 import android.util.Log;
 
 import com.eligasht.reservation.conf.APIConf;
+import com.eligasht.reservation.tools.db.StringCryptor;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.helper.Const;
 
 import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.cert.CertificateException;
 import java.util.concurrent.TimeUnit;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
@@ -101,6 +107,21 @@ public class ServiceGenerator {
         public Response
         intercept(Interceptor.Chain chain) throws IOException {
             Log.d("onClick4: ",apiBaseUrl);
+
+            try {
+                Const.TOKEN= StringCryptor.Encrypt("", "");//MD5
+            } catch (NoSuchPaddingException e) {
+                e.printStackTrace();
+            } catch (InvalidKeyException e) {
+                e.printStackTrace();
+            } catch (InvalidAlgorithmParameterException e) {
+                e.printStackTrace();
+            } catch (IllegalBlockSizeException e) {
+                e.printStackTrace();
+            } catch (BadPaddingException e) {
+                e.printStackTrace();
+            }
+            Log.d("TOKEN: ", Const.TOKEN);
             builder = new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(SingletonService.getInstance().getOkHttpClient())

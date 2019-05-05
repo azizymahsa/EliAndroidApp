@@ -28,6 +28,8 @@ import com.eligasht.service.model.newModel.flight.purchaseServices.request.Reque
 import com.eligasht.service.model.newModel.flight.purchaseServices.response.ResponsePurchaseServices;
 import com.eligasht.service.model.newModel.flight.services.request.RequestGetServices;
 import com.eligasht.service.model.newModel.flight.services.response.ResponseGetServices;
+import com.eligasht.service.model.newModel.hotelFlight.loadFlight.request.RequestLoadFlight;
+import com.eligasht.service.model.newModel.hotelFlight.loadFlight.response.ResponseLoadFlight;
 import com.eligasht.service.model.newModel.promotion.request.RequestPromotionCode;
 import com.eligasht.service.model.newModel.promotion.response.ResponsePromotionCode;
 
@@ -110,5 +112,12 @@ public class Flight extends BasePart {
 
     public void newGetAuthAvail(OnServiceStatus<ResponseAuth> listener, RequestAuth reqAuth) {
         start(getServiceGenerator().createService().responseGetAuthObservable(reqAuth), listener);
+    }
+
+    public void newGetChangeFlight(OnServiceStatus<com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.ResponseChangeFlight> listener, com.eligasht.service.model.newModel.hotelFlight.changeFlight.request.RequestChangeFlight requestChangeFlight) {
+        start(getServiceGenerator().createService().responseChangeFlighObs(requestChangeFlight), listener);
+    }
+    public void newGetLoadFlight(OnServiceStatus<ResponseLoadFlight> listener, RequestLoadFlight requestLoadFlight) {
+        start(getServiceGenerator().createService().responseLoadFlight(requestLoadFlight), listener);
     }
 }

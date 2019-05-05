@@ -63,8 +63,19 @@ public class Flight {
     private List<FlightSegmentFalse> SegmentListFalse ;
 
     private boolean IsCharter;
+
     private int RemainSeats ;
-    public String getAccountID() {
+	private boolean nonRefundable;
+
+	public boolean isNonRefundable() {
+		return nonRefundable;
+	}
+
+	public void setNonRefundable(boolean nonRefundable) {
+		this.nonRefundable = nonRefundable;
+	}
+
+	public String getAccountID() {
 		return AccountID;
 	}
 

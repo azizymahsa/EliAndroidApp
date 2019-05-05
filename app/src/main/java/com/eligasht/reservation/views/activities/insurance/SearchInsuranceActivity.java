@@ -59,12 +59,10 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
     private String culture;
     private int accomodationDays;
     private Gson gson;
-   /* private List<com.eligasht.service.model.insurance.response.SearchInsurance.TravelInsurance_> travelInsurances;
-    private List<com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan_> insurancePlans;*/
+
     private List<com.eligasht.service.model.newModel.insurance.response.Insurance> Insurances;
     private List<com.eligasht.service.model.newModel.insurance.response.TravelInsuranceCoverage> travelInsuranceCoverages;//detailInsurance
 
-  //  private com.eligasht.service.model.insurance.response.SearchInsurance.InsurancePlan insurancePlan;
     private com.eligasht.service.model.newModel.insurance.response.InsuranceSearchResult insurancePlan;
     private RelativeLayout error_layout;
     private TextView txt_error;
@@ -238,7 +236,7 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
       //  request.setPassCount(passCount);
       //  Log.d("TAG", "showInsurance: " + passCount);
 
-        queryModel.setBirthDay(birthDateString.substring(1, birthDateString.length() ));
+        queryModel.setBirthDay(birthDateString.substring(1, birthDateString.length()));
         Log.d("TAG", "showInsurance: " + birthDateString);
         request.setQueryModel(queryModel);
 
@@ -302,7 +300,6 @@ public class SearchInsuranceActivity extends BaseActivity implements View.OnClic
 
     private void hideLoading() {
         Utility.disableEnableControls(true, rlRoot);
-
         rlLoading2.setVisibility(View.GONE);
         txt.setVisibility(View.GONE);
     }

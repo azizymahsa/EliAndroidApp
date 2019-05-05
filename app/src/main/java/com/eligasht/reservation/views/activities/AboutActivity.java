@@ -57,16 +57,12 @@ public class AboutActivity extends BaseActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_new);
 
-
-
         webView = (WebView) findViewById(R.id.webView);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         imgHeader = (ImageView) findViewById(R.id.backdrop);
 
         // initializing toolbar
         initCollapsingToolbar();
-
-
 
        setDataCommonUrl();
     }

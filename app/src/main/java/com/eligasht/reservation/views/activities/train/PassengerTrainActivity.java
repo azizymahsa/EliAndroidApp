@@ -1284,7 +1284,7 @@ private void  RequestPurchaseTrain(){
                             flagMosafer = flagMosafer + "F";
                             errorMessage = errorMessage + "\n" + "* " + getString(R.string.Enter_the_correct_mobile_format);
                         }
-                        if (RqPartner_Tel != null && RqPartner_Tel.length() == 11 && RqPartner_Tel.matches("[0-9]+")) {
+                        if (RqPartner_Tel != null && RqPartner_Tel.length()< 5 && RqPartner_Tel.matches("[0-9]+")) {
                             ((EditText) findViewById(R.id.txtTelP)).setTextColor(Color.parseColor("#4d4d4d"));
                             flagMosafer = flagMosafer + "T";
                         } else {

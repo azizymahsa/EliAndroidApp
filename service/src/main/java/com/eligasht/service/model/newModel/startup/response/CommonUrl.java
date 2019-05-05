@@ -12,6 +12,9 @@ public class CommonUrl {
     @SerializedName("Url")
     @Expose
     private String url;
+    @SerializedName("Language")
+    @Expose
+    private String language;
 
     public String getTitle() {
         return title;
@@ -27,6 +30,14 @@ public class CommonUrl {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
 }

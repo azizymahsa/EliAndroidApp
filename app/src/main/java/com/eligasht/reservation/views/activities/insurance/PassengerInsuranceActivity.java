@@ -209,6 +209,7 @@ public class PassengerInsuranceActivity extends BaseActivity implements Header.o
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_insurance);
+        FlagMosaferan = true;
         llAddPassenger = (LinearLayout) findViewById(R.id.llAddPassenger);
         llAddPassenger.setOnClickListener(this);
         ScrollView scroll_partner = findViewById(R.id.scroll_partner);
@@ -1101,7 +1102,7 @@ private void RequestPurchaseInsurance(){
 
        // request.setCulture(getString(R.string.culture));
         //requestPurchaseInsurance.setRequest(request);
-        Log.e("PurchaseInsurance:", new Gson().toJson(requestPurchaseInsurance));
+        Log.e("RequestPurchaseInsurance:", new Gson().toJson(requestPurchaseInsurance));
 
         SingletonService.getInstance().getInsurance().newInsurancePurchaseAvail(this, requestPurchaseInsurance);
     } catch (Exception e) {

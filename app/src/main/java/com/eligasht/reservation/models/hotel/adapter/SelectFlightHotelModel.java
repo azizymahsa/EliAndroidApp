@@ -1,4 +1,6 @@
 package com.eligasht.reservation.models.hotel.adapter;
+import com.eligasht.service.model.newModel.hotelFlight.loadFlight.response.FltList;
+import com.eligasht.service.model.newModel.hotelFlight.loadFlight.response.HFlight;
 import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Facility;
 import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Flights;
 import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.Location;
@@ -38,7 +40,11 @@ public class SelectFlightHotelModel {
     private String FlightId;
     private String FlightOfferId;
     private String FlightGUID;
+    private String AirlineCode;
     private String CurrencyCode;
+
+
+
 
 
 
@@ -73,6 +79,16 @@ public class SelectFlightHotelModel {
         this.FlightList = FlightList;
         this.FlightGUID = FlightGUID;
         this.CurrencyCode = CurrencyCode;
+    }
+
+
+
+    public String getAirlineCode() {
+        return AirlineCode;
+    }
+
+    public void setAirlineCode(String airlineCode) {
+        AirlineCode = airlineCode;
     }
 
     public String getCurrencyCode() {

@@ -7,127 +7,46 @@ import com.google.gson.annotations.SerializedName;
 
 public class Branch {
 
-    @SerializedName("UserCulture")
+    @SerializedName("ActiveOperations")
     @Expose
-    private Object userCulture;
-    @SerializedName("Name")
-    @Expose
-    private String name;
-    @SerializedName("AdjustEnabled")
-    @Expose
-    private Boolean adjustEnabled;
-    @SerializedName("AdjustKey")
-    @Expose
-    private Object adjustKey;
-    @SerializedName("Url")
-    @Expose
-    private String url;
-    @SerializedName("DefaultCulture")
-    @Expose
-    private String defaultCulture;
-    @SerializedName("Currency")
-    @Expose
-    private String currency;
-    @SerializedName("PaymentMethod")
-    @Expose
-    private Object paymentMethod;
-    @SerializedName("ConditionUrl")
-    @Expose
-    private Object conditionUrl;
-    @SerializedName("SearchNotes")
-    @Expose
-    private Object searchNotes;
+    private List<Integer> activeOperations = null;
     @SerializedName("CommonUrl")
     @Expose
     private List<CommonUrl> commonUrl = null;
     @SerializedName("ContactUs")
     @Expose
     private ContactUs contactUs;
-    @SerializedName("ActiveOperations")
+    @SerializedName("DefaultCulture")
     @Expose
-    private List<Integer> activeOperations = null;
+    private String defaultCulture;
     @SerializedName("IsDefault")
     @Expose
     private Boolean isDefault;
+    @SerializedName("Name")
+    @Expose
+    private String name;
+    @SerializedName("Url")
+    @Expose
+    private String url;
+    @SerializedName("AvailabelLanguageList")
+    @Expose
+    private List<String> availabelLanguageList = null;
+    @SerializedName("AdjustTrackerId")
+    @Expose
+    private Object adjustTrackerId;
+    @SerializedName("AdtraceTrackerID")
+    @Expose
+    private Object adtraceTrackerID;
+    @SerializedName("OneSignalTrackerID")
+    @Expose
+    private Object oneSignalTrackerID;
 
-    public Object getUserCulture() {
-        return userCulture;
+    public List<Integer> getActiveOperations() {
+        return activeOperations;
     }
 
-    public void setUserCulture(Object userCulture) {
-        this.userCulture = userCulture;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Boolean getAdjustEnabled() {
-        return adjustEnabled;
-    }
-
-    public void setAdjustEnabled(Boolean adjustEnabled) {
-        this.adjustEnabled = adjustEnabled;
-    }
-
-    public Object getAdjustKey() {
-        return adjustKey;
-    }
-
-    public void setAdjustKey(Object adjustKey) {
-        this.adjustKey = adjustKey;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getDefaultCulture() {
-        return defaultCulture;
-    }
-
-    public void setDefaultCulture(String defaultCulture) {
-        this.defaultCulture = defaultCulture;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public Object getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(Object paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public Object getConditionUrl() {
-        return conditionUrl;
-    }
-
-    public void setConditionUrl(Object conditionUrl) {
-        this.conditionUrl = conditionUrl;
-    }
-
-    public Object getSearchNotes() {
-        return searchNotes;
-    }
-
-    public void setSearchNotes(Object searchNotes) {
-        this.searchNotes = searchNotes;
+    public void setActiveOperations(List<Integer> activeOperations) {
+        this.activeOperations = activeOperations;
     }
 
     public List<CommonUrl> getCommonUrl() {
@@ -146,12 +65,12 @@ public class Branch {
         this.contactUs = contactUs;
     }
 
-    public List<Integer> getActiveOperations() {
-        return activeOperations;
+    public String getDefaultCulture() {
+        return defaultCulture;
     }
 
-    public void setActiveOperations(List<Integer> activeOperations) {
-        this.activeOperations = activeOperations;
+    public void setDefaultCulture(String defaultCulture) {
+        this.defaultCulture = defaultCulture;
     }
 
     public Boolean getIsDefault() {
@@ -160,6 +79,54 @@ public class Branch {
 
     public void setIsDefault(Boolean isDefault) {
         this.isDefault = isDefault;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public List<String> getAvailabelLanguageList() {
+        return availabelLanguageList;
+    }
+
+    public void setAvailabelLanguageList(List<String> availabelLanguageList) {
+        this.availabelLanguageList = availabelLanguageList;
+    }
+
+    public Object getAdjustTrackerId() {
+        return adjustTrackerId;
+    }
+
+    public void setAdjustTrackerId(Object adjustTrackerId) {
+        this.adjustTrackerId = adjustTrackerId;
+    }
+
+    public Object getAdtraceTrackerID() {
+        return adtraceTrackerID;
+    }
+
+    public void setAdtraceTrackerID(Object adtraceTrackerID) {
+        this.adtraceTrackerID = adtraceTrackerID;
+    }
+
+    public Object getOneSignalTrackerID() {
+        return oneSignalTrackerID;
+    }
+
+    public void setOneSignalTrackerID(Object oneSignalTrackerID) {
+        this.oneSignalTrackerID = oneSignalTrackerID;
     }
 
 }

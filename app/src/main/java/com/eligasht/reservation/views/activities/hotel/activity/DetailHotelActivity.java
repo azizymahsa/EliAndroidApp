@@ -31,10 +31,7 @@ import com.eligasht.reservation.models.eventbus.HotelProprtiesBus;
 import com.eligasht.reservation.models.eventbus.RoomsModelBus;
 import com.eligasht.service.model.newModel.hotel.hotelDetail.response.HotelImage;
 import com.eligasht.service.generator.SingletonService;
-import com.eligasht.service.model.hotel.detail.request.HotelDetailReq;
-import com.eligasht.service.model.hotel.detail.request.HotelDetailRequest;
-import com.eligasht.service.model.hotel.detail.response.HotelDetailResponse;
-import com.eligasht.service.model.hotel.room.response.RoomList;
+
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.adapters.hotel.hotelDetail.HotelDetailViewPager;
 import com.eligasht.reservation.views.adapters.hotel.rooms.ImageModel;
@@ -43,11 +40,7 @@ import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SingletonContext;
 import com.eligasht.reservation.views.ui.ViewPagerAttention;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.hotel.hotelAvail.response.HotelAvailRes;
-import com.eligasht.service.model.hotel.room.request.GetRoomReq;
-import com.eligasht.service.model.hotel.room.request.GetRoomRequest;
-import com.eligasht.service.model.hotel.room.response.GetRoomResponse;
-import com.eligasht.service.model.identity.Identity;
+
 import com.eligasht.service.model.newModel.hotel.getRoom.request.RequestGetRoomsList;
 import com.eligasht.service.model.newModel.hotel.getRoom.response.ResponseGetRoomsList;
 import com.eligasht.service.model.newModel.hotel.getRoom.response.Room;

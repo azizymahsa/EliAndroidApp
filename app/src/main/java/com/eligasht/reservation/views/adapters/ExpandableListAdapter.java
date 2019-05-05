@@ -144,6 +144,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView iconWeight = convertView.findViewById(R.id.iconWeight);
         TextView iconPieces = convertView.findViewById(R.id.iconPieces);
 
+        TextView txtNonRef = convertView.findViewById(R.id.txtNonRef);
         Button btnSelect = convertView.findViewById(R.id.btnSelect);
         Button btnFlight = convertView.findViewById(R.id.btnFlight);
         btnFlight.setOnClickListener(new View.OnClickListener() {
@@ -265,6 +266,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             linearTableNerkh.setVisibility(View.VISIBLE);
             linearButton.setVisibility(View.VISIBLE);
         }
+        if(item.nonRefundable){
+            txtNonRef.setVisibility(View.VISIBLE);
+        }else {
+            txtNonRef.setVisibility(View.GONE);
+        }
+
 
         btnSelect.setTag(childPosition);
 

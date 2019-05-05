@@ -89,6 +89,8 @@ import com.eligasht.service.model.newModel.hotel.reserve.response.ResponseReserv
 import com.eligasht.service.model.newModel.hotel.review.request.RequestAddHotelReview;
 import com.eligasht.service.model.newModel.hotel.search.request.RequestHotelSearch;
 import com.eligasht.service.model.newModel.hotel.search.response.ResponseHotelSearch;
+import com.eligasht.service.model.newModel.hotelFlight.loadFlight.request.RequestLoadFlight;
+import com.eligasht.service.model.newModel.hotelFlight.loadFlight.response.ResponseLoadFlight;
 import com.eligasht.service.model.newModel.hotelFlight.preSearch.request.RequestHotelFlight;
 import com.eligasht.service.model.newModel.hotelFlight.preSearch.response.ResponseHotelFlight;
 import com.eligasht.service.model.newModel.insurance.request.searchInsurance.RequestInsuranceSearchResultViewModel;
@@ -412,6 +414,16 @@ public interface RetroClient {
     @POST(Const.GetToken)
     Observable<Response<ResponseAuth>> responseGetAuthObservable(
             @Body RequestAuth requestAuth
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewChangeFlight)
+    Observable<Response<com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.ResponseChangeFlight>> responseChangeFlighObs(
+            @Body com.eligasht.service.model.newModel.hotelFlight.changeFlight.request.RequestChangeFlight requestChangeFlight
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetNewLoadFlight)
+    Observable<Response<ResponseLoadFlight>> responseLoadFlight(
+            @Body RequestLoadFlight requestLoadFlight
     );
     //*************Insurance*************
 

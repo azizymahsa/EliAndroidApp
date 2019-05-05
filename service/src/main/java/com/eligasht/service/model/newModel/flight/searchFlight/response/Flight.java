@@ -40,6 +40,32 @@ public class Flight {
     @Expose
     private Integer childs;
 
+
+    @SerializedName("NonRefundable")
+    @Expose
+    private boolean NonRefundable;
+
+    @SerializedName("TarifNotes")
+    @Expose
+    private String TarifNotes;
+
+
+    public boolean isNonRefundable() {
+        return NonRefundable;
+    }
+
+    public void setNonRefundable(boolean nonRefundable) {
+        NonRefundable = nonRefundable;
+    }
+
+    public String getTarifNotes() {
+        return TarifNotes;
+    }
+
+    public void setTarifNotes(String tarifNotes) {
+        TarifNotes = tarifNotes;
+    }
+
     public void setError(Error error) {
         this.error = error;
     }

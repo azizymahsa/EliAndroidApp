@@ -498,6 +498,20 @@
                 android:textSize="@dimen/_12dp_normal_textSize"
                 android:visibility="visible"
                 />
+            <TextView
+                android:id="@+id/txtNonRef"
+                android:layout_width="@dimen/_123dp"
+                android:layout_height="@dimen/_28dp_f"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="@dimen/_10dpTabletSize"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="غیر قابل استرداد"
+                android:background="@drawable/background_strock_light_blue"
+                android:textColor="#51b1cf"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/_12dp_normal_textSize" />
             <Button
                 android:id="@+id/btnFlight"
                 android:layout_width="@dimen/_123dp"

@@ -56,9 +56,9 @@ import com.eligasht.reservation.views.ui.dialog.flight.SortFlightDialog;
 
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
-import com.eligasht.service.model.flight.request.ChangeFlight.RequestChangeFlight;
+import com.eligasht.service.model.newModel.hotelFlight.changeFlight.request.RequestChangeFlight;
 
-import com.eligasht.service.model.flight.response.ChangeFlight.ResponseChangeFlight;
+import com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.ResponseChangeFlight;
 
 import com.eligasht.service.model.newModel.flight.searchFlight.response.ResponseSearchFlight;
 
@@ -1069,6 +1069,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                             item.FltDurationM = SegmentList.get(j).getFltDurationM();
                             item.weight = SegmentList.get(j).getWeight();
                             item.Pieces = SegmentList.get(j).getPieces();
+                            item.nonRefundable = flightsList.get(i).isNonRefundable();
                             parentItem.Items.add(item);
                         }
                         dataExpandingList.add(parentItem);
@@ -1458,6 +1459,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
         public String FltDurationM;
         public String weight;
         public String Pieces;
+        public Boolean nonRefundable;
 
         public ItemExpandingPlan() {
             // TODO Auto-generated constructor stub
@@ -1470,14 +1472,15 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
         }
         new InitUi().Loading(SearchFlightActivity.this, rlLoading, rlRoot, true, R.drawable.flight_loading);
         RequestChangeFlight requestChangeFlight = new RequestChangeFlight();
-        com.eligasht.service.model.flight.request.ChangeFlight.Request request = new com.eligasht.service.model.flight.request.ChangeFlight.Request();
+       /* com.eligasht.service.model.flight.request.ChangeFlight.Request request = new com.eligasht.service.model.flight.request.ChangeFlight.Request();
         com.eligasht.service.model.flight.request.ChangeFlight.Identity identity = new com.eligasht.service.model.flight.request.ChangeFlight.Identity();
-        request.setIdentity(identity);
-        request.setCulture(getString(R.string.culture));
-        request.setFlightId(FlightId);
-        request.setSearchKey(searchKey);
-        requestChangeFlight.setRequest(request);
-        SingletonService.getInstance().getFlight().ChangeFlightAvail(new OnServiceStatus<ResponseChangeFlight>() {
+        request.setIdentity(identity);*/
+        //requestChangeFlight.setCulture(getString(R.string.culture));
+        requestChangeFlight.setCurrentFlight(FlightId);
+        requestChangeFlight.setFligthId(searchKey);
+        //requestChangeFlight.setRequest(request);
+        Log.e("requestChangeFlight: ",new Gson().toJson(requestChangeFlight)+"" );
+        SingletonService.getInstance().getFlight().newGetChangeFlight(new OnServiceStatus<ResponseChangeFlight>() {
             @Override
             public void onReady(ResponseChangeFlight responsSearchFlight) {
                 recyclerViewHotel.setLayoutManager(new LinearLayoutManager(SearchFlightActivity.this,LinearLayoutManager.HORIZONTAL,false));
@@ -1488,9 +1491,9 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 }
                 try {
                     String GetError = "";
-                    if (responsSearchFlight.getHotelPlusFlightChangeFltResult().getErrors() != null) {
+                    if (responsSearchFlight.getErrors() != null) {
                         // if (!GetAirportsResult.getString("Errors").equals("null")) {
-                        GetError = responsSearchFlight.getHotelPlusFlightChangeFltResult().getErrors().get(0).getDetailedMessage();
+                        GetError = responsSearchFlight.getErrors().get(0).getDetailedMessage();
                     }
                     if (GetError.length() > 1) {
                         if (GetError.contains("|")) {
@@ -1551,17 +1554,22 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
 
     private void getFlightEn(ResponseChangeFlight responsSearchFlight) {
         //Flights
-        for (int i = 0; i < responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().size(); i++) {
-            com.eligasht.service.model.flight.response.ChangeFlight.Flight jPricedItinerary = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i);//jArray.getJSONObject(i);//
+        for (int i = 0; i < responsSearchFlight.getFlights().size(); i++) {
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.Flight jPricedItinerary = responsSearchFlight.getFlights().get(i);//jArray.getJSONObject(i);//
             Flight flight = new Flight();
+            flight.setNonRefundable(jPricedItinerary.getNonRefundable());
+            flight.setRemainSeats(jPricedItinerary.getRemainSeats());
             //SegmentList
-            List<com.eligasht.service.model.flight.response.ChangeFlight.SegmentList> ss = jPricedItinerary.getSegmentList();
+            List<com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.SegmentList> ss = jPricedItinerary.getSegmentList();
             List<FlightSegment> SegmentList = new ArrayList<FlightSegment>();
             List<FlightSegmentTrue> SegmentListTrue = new ArrayList<FlightSegmentTrue>();
             List<FlightSegmentFalse> SegmentListFalse = new ArrayList<FlightSegmentFalse>();
             for (int i1 = 0; i1 < ss.size(); i1++) {
-                com.eligasht.service.model.flight.response.ChangeFlight.SegmentList jPricedIfdgtinerary = ss.get(i1);//
+                com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.SegmentList jPricedIfdgtinerary = ss.get(i1);//
                 FlightSegment flightSegment = new FlightSegment();
+
+
+
                 flightSegment.setAirlineCode(jPricedIfdgtinerary.getAirlineCode());
                 flightSegment.setAirlineID(jPricedIfdgtinerary.getAirlineID());
                 flightSegment.setAirlineNameEn(jPricedIfdgtinerary.getAirlineNameEn());
@@ -1699,94 +1707,98 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
             ///////////////////////////////////////
             //  Flight flight =new Flight();
             flight.setAdults(jPricedItinerary.getAdults()); //int Adults ;
-            flight.setRemainSeats(jPricedItinerary.getRemainSeats()); //int Adults ;
-            flight.setIsCharter(jPricedItinerary.getIsCharter()); //int Adults ;
+            flight.setRemainSeats(jPricedItinerary.getRemainSeats());
+            flight.setNonRefundable(jPricedItinerary.getNonRefundable());
+            flight.setIsCharter(jPricedItinerary.getIsCharter());
             flight.setAccountID(jPricedItinerary.getAccountID());// AccountID;
             flight.setChilds(jPricedItinerary.getChilds());//AdlBaseFare
             flight.setFlightGUID(jPricedItinerary.getFlightGUID());
-            com.eligasht.service.model.flight.response.ChangeFlight.AdlBaseFare jAdlBaseFare = jPricedItinerary.getAdlBaseFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.AdlBaseFare jAdlBaseFare = jPricedItinerary.getAdlBaseFare();
             PriceField priceField = new PriceField();
             priceField.setAmount(jAdlBaseFare.getAmount());
             priceField.setCurrencyCode(jAdlBaseFare.getCurrencyCode());
             flight.setAdlBaseFare(priceField);//AdlCost
-            com.eligasht.service.model.flight.response.ChangeFlight.AdlCost AdlCost = jPricedItinerary.getAdlCost();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.AdlCost AdlCost = jPricedItinerary.getAdlCost();
             PriceField priceField2 = new PriceField();
             priceField2.setAmount(AdlCost.getAmount());
             priceField2.setCurrencyCode(AdlCost.getCurrencyCode());
             flight.setAdlCost(priceField2);//AdlTotalFare
-            com.eligasht.service.model.flight.response.ChangeFlight.AdlTotalFare AdlTotalFare = jPricedItinerary.getAdlTotalFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.AdlTotalFare AdlTotalFare = jPricedItinerary.getAdlTotalFare();
             PriceField priceField3 = new PriceField();
             priceField3.setAmount(AdlTotalFare.getAmount());
             priceField3.setCurrencyCode(AdlTotalFare.getCurrencyCode());
             flight.setAdlTotalFare(priceField3);//BaseFare
-            com.eligasht.service.model.flight.response.ChangeFlight.BaseFare BaseFare = jPricedItinerary.getBaseFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.BaseFare BaseFare = jPricedItinerary.getBaseFare();
             PriceField priceField4 = new PriceField();
             priceField4.setAmount(BaseFare.getAmount());
             priceField4.setCurrencyCode(BaseFare.getCurrencyCode());
             flight.setBaseFare(priceField4);//ChdBaseFare
-            com.eligasht.service.model.flight.response.ChangeFlight.ChdBaseFare ChdBaseFare = jPricedItinerary.getChdBaseFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.ChdBaseFare ChdBaseFare = jPricedItinerary.getChdBaseFare();
             PriceField priceField5 = new PriceField();
             priceField5.setAmount(ChdBaseFare.getAmount());
             priceField5.setCurrencyCode(ChdBaseFare.getCurrencyCode());
             flight.setChdBaseFare(priceField5);//BaseFare
             //  ChdCost  ChdTotalFare InfBaseFare InfCost InfTotalFare
-            com.eligasht.service.model.flight.response.ChangeFlight.ChdCost ChdCost = jPricedItinerary.getChdCost();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.ChdCost ChdCost = jPricedItinerary.getChdCost();
             PriceField priceField6 = new PriceField();
             priceField6.setAmount(ChdCost.getAmount());
             priceField6.setCurrencyCode(ChdCost.getCurrencyCode());
             flight.setChdCost(priceField6);//
-            com.eligasht.service.model.flight.response.ChangeFlight.ChdTotalFare ChdTotalFare = jPricedItinerary.getChdTotalFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.ChdTotalFare ChdTotalFare = jPricedItinerary.getChdTotalFare();
             PriceField priceField7 = new PriceField();
             priceField7.setAmount(ChdTotalFare.getAmount());
             priceField7.setCurrencyCode(ChdTotalFare.getCurrencyCode());
             flight.setChdTotalFare(priceField7);//
-            com.eligasht.service.model.flight.response.ChangeFlight.InfBaseFare InfBaseFare = jPricedItinerary.getInfBaseFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.InfBaseFare InfBaseFare = jPricedItinerary.getInfBaseFare();
             PriceField priceField8 = new PriceField();
             priceField8.setAmount(InfBaseFare.getAmount());
             priceField8.setCurrencyCode(InfBaseFare.getCurrencyCode());
             flight.setInfBaseFare(priceField8);//
-            com.eligasht.service.model.flight.response.ChangeFlight.InfCost InfCost = jPricedItinerary.getInfCost();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.InfCost InfCost = jPricedItinerary.getInfCost();
             PriceField priceField9 = new PriceField();
             priceField9.setAmount(InfCost.getAmount());
             priceField9.setCurrencyCode(InfCost.getCurrencyCode());
             flight.setInfCost(priceField9);//
-            com.eligasht.service.model.flight.response.ChangeFlight.InfTotalFare InfTotalFare = jPricedItinerary.getInfTotalFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.InfTotalFare InfTotalFare = jPricedItinerary.getInfTotalFare();
             PriceField priceField10 = new PriceField();
             priceField10.setAmount(InfTotalFare.getAmount());
             priceField10.setCurrencyCode(InfTotalFare.getCurrencyCode());
             flight.setInfTotalFare(priceField10);//
             // Taxes TotalFare TotalFareCost
-            com.eligasht.service.model.flight.response.ChangeFlight.Taxes Taxes = jPricedItinerary.getTaxes();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.Taxes Taxes = jPricedItinerary.getTaxes();
             PriceField priceField11 = new PriceField();
             priceField11.setAmount(Taxes.getAmount());
             priceField11.setCurrencyCode(Taxes.getCurrencyCode());
             flight.setTaxes(priceField11);//
-            com.eligasht.service.model.flight.response.ChangeFlight.TotalFare TotalFare = jPricedItinerary.getTotalFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.TotalFare TotalFare = jPricedItinerary.getTotalFare();
             PriceField priceField12 = new PriceField();
             priceField12.setAmount(TotalFare.getAmount());
             priceField12.setCurrencyCode(TotalFare.getCurrencyCode());
             flight.setTotalFare(priceField12);//
-            com.eligasht.service.model.flight.response.ChangeFlight.TotalFareCost TotalFareCost = jPricedItinerary.getTotalFareCost();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.TotalFareCost TotalFareCost = jPricedItinerary.getTotalFareCost();
             PriceField priceField13 = new PriceField();
             priceField13.setAmount(TotalFareCost.getAmount());
             priceField13.setCurrencyCode(TotalFareCost.getCurrencyCode());
             flight.setTotalFareCost(priceField13);//
+
             flightsList.add(flight);
         }
     }
 
     private void GetFlightFa(ResponseChangeFlight responsSearchFlight) {
         //Flights
-        for (int i = 0; i < responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().size(); i++) {
+        for (int i = 0; i < responsSearchFlight.getFlights().size(); i++) {
             Flight flight = new Flight();
+            flight.setNonRefundable(responsSearchFlight.getFlights().get(i).getNonRefundable());
+            flight.setRemainSeats(responsSearchFlight.getFlights().get(i).getRemainSeats());
             //SegmentList
             //  JSONArray ss = jPricedItinerary.getJSONArray("SegmentList");
             List<FlightSegment> SegmentList = new ArrayList<FlightSegment>();
             List<FlightSegmentTrue> SegmentListTrue = new ArrayList<FlightSegmentTrue>();
             List<FlightSegmentFalse> SegmentListFalse = new ArrayList<FlightSegmentFalse>();
-            for (int i1 = 0; i1 < responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getSegmentList().size(); i1++) {
+            for (int i1 = 0; i1 < responsSearchFlight.getFlights().get(i).getSegmentList().size(); i1++) {
                 //SONObject jPricedIfdgtinerary = ss.getJSONObject(i1);//
-                com.eligasht.service.model.flight.response.ChangeFlight.SegmentList jPricedIfdgtinerary = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getSegmentList().get(i1);
+                com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.SegmentList jPricedIfdgtinerary = responsSearchFlight.getFlights().get(i).getSegmentList().get(i1);
                 FlightSegment flightSegment = new FlightSegment();
                 flightSegment.setAirlineCode(jPricedIfdgtinerary.getAirlineCode());
                 flightSegment.setAirlineID(jPricedIfdgtinerary.getAirlineID());
@@ -1924,75 +1936,76 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
             }//for segment parvazha
             ///////////////////////////////////////
             //  Flight flight =new Flight();
-            flight.setAdults(responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getAdults()); //int Adults ;
-            flight.setRemainSeats(responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getRemainSeats()); //int Adults ;
-            flight.setIsCharter(responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getIsCharter()); //int Adults ;
-            flight.setAccountID(responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getAccountID());// AccountID;
-            flight.setChilds(responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getChilds());//AdlBaseFare
-            flight.setFlightGUID(responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getFlightGUID());
-            com.eligasht.service.model.flight.response.ChangeFlight.AdlBaseFare jAdlBaseFare = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getAdlBaseFare();
+            flight.setAdults(responsSearchFlight.getFlights().get(i).getAdults()); //int Adults ;
+            flight.setRemainSeats(responsSearchFlight.getFlights().get(i).getRemainSeats()); //int Adults ;
+            flight.setNonRefundable(responsSearchFlight.getFlights().get(i).getNonRefundable()); //int Adults ;
+            flight.setIsCharter(responsSearchFlight.getFlights().get(i).getIsCharter()); //int Adults ;
+            flight.setAccountID(responsSearchFlight.getFlights().get(i).getAccountID());// AccountID;
+            flight.setChilds(responsSearchFlight.getFlights().get(i).getChilds());//AdlBaseFare
+            flight.setFlightGUID(responsSearchFlight.getFlights().get(i).getFlightGUID());
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.AdlBaseFare jAdlBaseFare = responsSearchFlight.getFlights().get(i).getAdlBaseFare();
             PriceField priceField = new PriceField();
             priceField.setAmount(jAdlBaseFare.getAmount());
             priceField.setCurrencyCode(jAdlBaseFare.getCurrencyCode());
             flight.setAdlBaseFare(priceField);//AdlCost
-            com.eligasht.service.model.flight.response.ChangeFlight.AdlCost AdlCost = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getAdlCost();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.AdlCost AdlCost = responsSearchFlight.getFlights().get(i).getAdlCost();
             PriceField priceField2 = new PriceField();
             priceField2.setAmount(AdlCost.getAmount());
             priceField2.setCurrencyCode(AdlCost.getCurrencyCode());
             flight.setAdlCost(priceField2);//AdlTotalFare
-            com.eligasht.service.model.flight.response.ChangeFlight.AdlTotalFare AdlTotalFare = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getAdlTotalFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.AdlTotalFare AdlTotalFare = responsSearchFlight.getFlights().get(i).getAdlTotalFare();
             PriceField priceField3 = new PriceField();
             priceField3.setAmount(AdlTotalFare.getAmount());
             priceField3.setCurrencyCode(AdlTotalFare.getCurrencyCode());
             flight.setAdlTotalFare(priceField3);//BaseFare
-            com.eligasht.service.model.flight.response.ChangeFlight.BaseFare BaseFare = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getBaseFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.BaseFare BaseFare = responsSearchFlight.getFlights().get(i).getBaseFare();
             PriceField priceField4 = new PriceField();
             priceField4.setAmount(BaseFare.getAmount());
             priceField4.setCurrencyCode(BaseFare.getCurrencyCode());
             flight.setBaseFare(priceField4);//ChdBaseFare
-            com.eligasht.service.model.flight.response.ChangeFlight.ChdBaseFare ChdBaseFare = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getChdBaseFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.ChdBaseFare ChdBaseFare = responsSearchFlight.getFlights().get(i).getChdBaseFare();
             PriceField priceField5 = new PriceField();
             priceField5.setAmount(ChdBaseFare.getAmount());
             priceField5.setCurrencyCode(ChdBaseFare.getCurrencyCode());
             flight.setChdBaseFare(priceField5);//BaseFare
             //  ChdCost  ChdTotalFare InfBaseFare InfCost InfTotalFare
-            com.eligasht.service.model.flight.response.ChangeFlight.ChdCost ChdCost = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getChdCost();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.ChdCost ChdCost = responsSearchFlight.getFlights().get(i).getChdCost();
             PriceField priceField6 = new PriceField();
             priceField6.setAmount(ChdCost.getAmount());
             priceField6.setCurrencyCode(ChdCost.getCurrencyCode());
             flight.setChdCost(priceField6);//
-            com.eligasht.service.model.flight.response.ChangeFlight.ChdTotalFare ChdTotalFare = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getChdTotalFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.ChdTotalFare ChdTotalFare = responsSearchFlight.getFlights().get(i).getChdTotalFare();
             PriceField priceField7 = new PriceField();
             priceField7.setAmount(ChdTotalFare.getAmount());
             priceField7.setCurrencyCode(ChdTotalFare.getCurrencyCode());
             flight.setChdTotalFare(priceField7);//
-            com.eligasht.service.model.flight.response.ChangeFlight.InfBaseFare InfBaseFare = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getInfBaseFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.InfBaseFare InfBaseFare = responsSearchFlight.getFlights().get(i).getInfBaseFare();
             PriceField priceField8 = new PriceField();
             priceField8.setAmount(InfBaseFare.getAmount());
             priceField8.setCurrencyCode(InfBaseFare.getCurrencyCode());
             flight.setInfBaseFare(priceField8);//
-            com.eligasht.service.model.flight.response.ChangeFlight.InfCost InfCost = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getInfCost();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.InfCost InfCost = responsSearchFlight.getFlights().get(i).getInfCost();
             PriceField priceField9 = new PriceField();
             priceField9.setAmount(InfCost.getAmount());
             priceField9.setCurrencyCode(InfCost.getCurrencyCode());
             flight.setInfCost(priceField9);//
-            com.eligasht.service.model.flight.response.ChangeFlight.InfTotalFare InfTotalFare = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getInfTotalFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.InfTotalFare InfTotalFare = responsSearchFlight.getFlights().get(i).getInfTotalFare();
             PriceField priceField10 = new PriceField();
             priceField10.setAmount(InfTotalFare.getAmount());
             priceField10.setCurrencyCode(InfTotalFare.getCurrencyCode());
             flight.setInfTotalFare(priceField10);//
             // Taxes TotalFare TotalFareCost
-            com.eligasht.service.model.flight.response.ChangeFlight.Taxes Taxes = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getTaxes();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.Taxes Taxes = responsSearchFlight.getFlights().get(i).getTaxes();
             PriceField priceField11 = new PriceField();
             priceField11.setAmount(Taxes.getAmount());
             priceField11.setCurrencyCode(Taxes.getCurrencyCode());
             flight.setTaxes(priceField11);//
-            com.eligasht.service.model.flight.response.ChangeFlight.TotalFare TotalFare = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getTotalFare();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.TotalFare TotalFare = responsSearchFlight.getFlights().get(i).getTotalFare();
             PriceField priceField12 = new PriceField();
             priceField12.setAmount(TotalFare.getAmount());
             priceField12.setCurrencyCode(TotalFare.getCurrencyCode());
             flight.setTotalFare(priceField12);//
-            com.eligasht.service.model.flight.response.ChangeFlight.TotalFareCost TotalFareCost = responsSearchFlight.getHotelPlusFlightChangeFltResult().getFlights().get(i).getTotalFareCost();
+            com.eligasht.service.model.newModel.hotelFlight.changeFlight.response.TotalFareCost TotalFareCost = responsSearchFlight.getFlights().get(i).getTotalFareCost();
             PriceField priceField13 = new PriceField();
             priceField13.setAmount(TotalFareCost.getAmount());
             priceField13.setCurrencyCode(TotalFareCost.getCurrencyCode());
@@ -2204,6 +2217,7 @@ void getDataFaJson(com.eligasht.service.model.newModel.flight.searchFlight.respo
             //  Flight flight =new Flight();
             flight.setAdults(responsSearchFlight.getFlights().get(i).getAdults()); //int Adults ;
             flight.setRemainSeats(responsSearchFlight.getFlights().get(i).getRemainSeats()); //int Adults ;
+            flight.setNonRefundable(responsSearchFlight.getFlights().get(i).isNonRefundable()); //int Adults ;
             flight.setIsCharter(responsSearchFlight.getFlights().get(i).getIsCharter()); //int Adults ;
             flight.setAccountID(responsSearchFlight.getFlights().get(i).getAccountID());// AccountID;
             flight.setChilds(responsSearchFlight.getFlights().get(i).getChilds());//AdlBaseFare
@@ -2478,6 +2492,7 @@ void getDataFaJson(com.eligasht.service.model.newModel.flight.searchFlight.respo
             //  Flight flight =new Flight();
             flight.setAdults(jPricedItinerary.getAdults()); //int Adults ;
             flight.setRemainSeats(jPricedItinerary.getRemainSeats()); //int Adults ;
+            flight.setNonRefundable(jPricedItinerary.isNonRefundable()); //int Adults ;
             flight.setIsCharter(jPricedItinerary.getIsCharter()); //int Adults ;
             flight.setAccountID(jPricedItinerary.getAccountID());// AccountID;
             flight.setChilds(jPricedItinerary.getChilds());//AdlBaseFare
