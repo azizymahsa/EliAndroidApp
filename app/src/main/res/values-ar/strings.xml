@@ -2435,5 +2435,16 @@
     <string name="_please_enter_the_full_address">Please enter the full address</string>
     <string name="_enter_the_correct_tel_format">Enter the correct Tel format (like ... 02188888888)</string>
     <string name="_promotion_code">Promotion Code</string>
+    <string name="_phone_number">Phone Number</string>
+    <string name="_privacy_condition">Privacy and Terms and conditions I study the terms an conditions of Eligasht services and agree with all of its items.</string>
+    <string name="_Please_enter_your_mobile">Please enter your mobile number</string>
+    <string name="_please_read">Please read and accept the terms and conditions</string>
+    <string name="_activation_code">Activation Code</string>
+    <string name="_resend_activ_code">Resend activation code</string>
+    <string name="_edit_mobile">Edit mobile number</string>
+    <string name="_your_number">your number</string>
+    <string name="_send_activation_code">Send activation code</string>
+    <string name="_complete_registration">Complete registration</string>
+    <string name="_enter_activation_code">Enter activation code</string>
 
 </resources>

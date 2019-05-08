@@ -299,8 +299,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         call.enqueue(new Callback<WebUserUpdateProfileRes>() {
             @Override
             public void onResponse(Call<WebUserUpdateProfileRes> call, Response<WebUserUpdateProfileRes> response) {
-                needHideProgressDialog();
-                if (response == null
+                needHideProgressDialog();//movaghatan bardashtam
+               /* if (response == null
                         || response.body() == null
                         || response.body().getWebUserUpdateProfilerResult() == null) {
 
@@ -323,7 +323,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
                 WebUserTools.getInstance().setUser(webUserLogin);
                 Toast.makeText(ProfileActivity.this, getString(R.string.success), Toast.LENGTH_SHORT).show();
-
+*/
             }
 
             @Override

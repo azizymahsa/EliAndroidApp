@@ -411,11 +411,11 @@
     <string name="my_profile">پروفایل من</string>
     <string name="text20">در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد</string>
     <string name="text21">در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد</string>
-    <string name="text22">ایمیل وارد شده در حال حاضر در سیستم وجود دارد .</string>
-    <string name="text24">لینک فعال سازی به ایمیل شما ارسال شده است.</string>
+    <string name="text22">شماره موبایل وارد شده در حال حاضر در سیستم وجود دارد .</string>
+    <string name="text24">کد فعال سازی به موبایل شما ارسال شده است.</string>
     <string name="text25">در حال حاضر پاسخگویی به درخواست شما امکان پذیر نمیباشد</string>
     <string name="text26">لطفا ایمیل خود را وارد کنید</string>
-    <string name="text27">ایمیل وارد شده صحیح نمی باشد</string>
+    <string name="text27">موبایل وارد شده صحیح نمی باشد</string>
     <string name="text28">لطفا رمز عبور خود را وارد کنید</string>
     <string name="text29">لطفا تکرار رمز عبور را وارد کنید</string>
     <string name="text30">رمز عبور و تکرار آن با هم مطابقت ندارد .</string>
@@ -2433,4 +2433,15 @@
     <string name="_please_enter_the_full_address">لطفا آدرس را کامل وارد کنید</string>
     <string name="_enter_the_correct_tel_format">تلفن با  فرمت صحیح وارد شود(مانند ...02188888888)</string>
     <string name="_promotion_code">کد تخفیف</string>
+    <string name="_phone_number">شماره موبایل</string>
+    <string name="_privacy_condition">قوانین عضویت در الی گشت را می پذیرم</string>
+    <string name="_Please_enter_your_mobile">لطفا شماره موبایل خود را وارد کنید</string>
+    <string name="_please_read">لطفا قوانین و مقررات را مطالعه و بپذیرید</string>
+    <string name="_activation_code">کد فعال سازی</string>
+    <string name="_resend_activ_code">ارسال مجدد کد فعال سازی</string>
+    <string name="_edit_mobile">ویرایش شماره موبایل</string>
+    <string name="_your_number">شماره شما</string>
+    <string name="_send_activation_code">ارسال کد فعال سازی</string>
+    <string name="_complete_registration">تکمیل ثبت نام</string>
+    <string name="_enter_activation_code">کد فعال سازی را وارد نمایید</string>
 </resources>

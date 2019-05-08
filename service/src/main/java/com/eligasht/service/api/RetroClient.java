@@ -98,6 +98,10 @@ import com.eligasht.service.model.newModel.insurance.request.purchase.PurchasePa
 import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
 import com.eligasht.service.model.newModel.insurance.response.ResponseInsuranceSearchResult;
 import com.eligasht.service.model.newModel.insurance.response.purchase.ResponseInsurancePurchase;
+import com.eligasht.service.model.newModel.login.reSendActivation.request.RequestReSendActivation;
+import com.eligasht.service.model.newModel.login.registerActivation.request.RequestRegisterActivation;
+import com.eligasht.service.model.newModel.login.registerUser.request.RequestRegisterUser;
+import com.eligasht.service.model.newModel.login.registerUser.response.ResponseWebUserLogin;
 import com.eligasht.service.model.newModel.promotion.request.RequestPromotionCode;
 import com.eligasht.service.model.newModel.promotion.response.ResponsePromotionCode;
 import com.eligasht.service.model.newModel.startup.request.RequestStartup;
@@ -531,5 +535,23 @@ public interface RetroClient {
     @POST(Const.GetNewHotelNames)
     Observable<Response<String>> responseNewHotelNamesObservable(
             @Body AutoCompleteParameterModel requestAutoCompleteParameterModel
+    );
+
+
+    //*************Register*************
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetRegisterUser)
+    Observable<Response<ResponseWebUserLogin>> responseWebUserLogin(
+            @Body RequestRegisterUser requestRegisterUser
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetRegisterActivation)
+    Observable<Response<ResponseWebUserLogin>> responseWebUserActivation(
+            @Body RequestRegisterActivation requestRegisterActivation
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetReSendActivation)
+    Observable<Response<ResponseWebUserLogin>> responseWebUserResend(
+            @Body RequestReSendActivation reSendActivation
     );
 }

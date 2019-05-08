@@ -112,4 +112,9 @@ public class Const {
 
    //*************Auth*****************
    public final static String GetToken = "token";
+
+   //*************Login Contact*****************
+   public final static String GetRegisterUser = "api/UserAutentication/RegisterUser";
+   public final static String GetRegisterActivation = "api/UserAutentication/RegisterActivation";
+   public final static String GetReSendActivation = "api/UserAutentication/ReSendActivation";
 }

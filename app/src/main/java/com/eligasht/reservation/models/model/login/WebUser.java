@@ -8,8 +8,37 @@ import com.eligasht.reservation.tools.ValidationTools;
  */
 
 public class WebUser {
+    public WebUser(Identity identity, String culture, String activationCode, String bankCardNo, String bull, String demosticCityFa, int demosticCityID, String demosticPrivinceFa, int demosticPrivinceID, String encryptWebUserID, String imgURL, int msgCount, String password, String username, String webUserAddress, String webUserBirthDayMiladi, String webUserBirthDayShamsi, String webUserFatherName, String webUserFnameE, String webUserFnameF, boolean webUserGender, int webUserID) {
+        this.identity = identity;
+        Culture = culture;
+        ActivationCode = activationCode;
+        BankCardNo = bankCardNo;
+        Bull = bull;
+        DemosticCityFa = demosticCityFa;
+        DemosticCityID = demosticCityID;
+        DemosticPrivinceFa = demosticPrivinceFa;
+        DemosticPrivinceID = demosticPrivinceID;
+        EncryptWebUserID = encryptWebUserID;
+        ImgURL = imgURL;
+        MsgCount = msgCount;
+        Password = password;
+        Username = username;
+        WebUserAddress = webUserAddress;
+        WebUserBirthDayMiladi = webUserBirthDayMiladi;
+        WebUserBirthDayShamsi = webUserBirthDayShamsi;
+        WebUserFatherName = webUserFatherName;
+        WebUserFnameE = webUserFnameE;
+        WebUserFnameF = webUserFnameF;
+        WebUserGender = webUserGender;
+        WebUserID = webUserID;
+    }
 
     private Identity identity;
+
+    public WebUser() {
+
+    }
+
     public final Identity getidentity()
     {
         return identity;

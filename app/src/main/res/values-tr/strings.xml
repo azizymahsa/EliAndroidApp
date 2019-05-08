@@ -2262,11 +2262,11 @@
     <string name="my_profile"> Profilim </string>
     <string name="text20"> Şu anda isteğinize cevap vermek mümkün değil </string>
     <string name="text21"> Şu anda isteğinize yanıt vermek mümkün değil </string>
-    <string name="text22"> Alınan e-posta zaten sistemde. </string>
-    <string name="text24"> Etkinleştirme bağlantısı e-postanıza gönderildi. </string>
+    <string name="text22"> Alınan mobile zaten sistemde. </string>
+    <string name="text24"> Etkinleştirme bağlantısı mobile gönderildi. </string>
     <string name="text25"> Şu anda isteğinize cevap vermek mümkün değil </string>
     <string name="text26"> Lütfen e-postanızı girin </string>
-    <string name="text27"> Girilen e-posta doğru değil </string>
+    <string name="text27"> Girilen cep numarası doğru değil </string>
     <string name="text28"> Lütfen şifrenizi girin </string>
     <string name="text29"> Lütfen şifreyi tekrar giriniz </string>
     <string name="text30"> Parola ve eşleşmiyor. </string>
@@ -2454,5 +2454,16 @@
     <string name="_please_enter_the_full_address">Lütfen tam adresi giriniz</string>
     <string name="_enter_the_correct_tel_format">Enter the correct Tel format (like ... 02188888888)</string>
     <string name="_promotion_code">Promotion Code</string>
+    <string name="_phone_number">Phone Number</string>
+    <string name="_privacy_condition">Eligasht in Şartlar ve Koşullarını okudum ve kabul ediyorum</string>
+    <string name="_Please_enter_your_mobile">Lütfen cep telefon numaranızı giriniz</string>
+    <string name="_please_read">Lütfen şartları ve koşulları okuyup kabul edin</string>
+    <string name="_activation_code">Aktivasyon kodu</string>
+    <string name="_resend_activ_code">Aktivasyon kodunu tekrar gönder</string>
+    <string name="_edit_mobile">Cep telefonu numarasını düzenle</string>
+    <string name="_your_number">Numaran</string>
+    <string name="_send_activation_code">Aktivasyon kodunu gönder</string>
+    <string name="_complete_registration">Tam kayıt</string>
+    <string name="_enter_activation_code">Aktivasyon kodunu girin</string>
 </resources>
 

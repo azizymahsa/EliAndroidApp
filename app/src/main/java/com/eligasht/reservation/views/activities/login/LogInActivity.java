@@ -20,6 +20,8 @@ import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
 import com.eligasht.reservation.base.BaseActivity;
 import com.eligasht.reservation.models.hotel.api.hotelAvail.call.Identity;
+import com.eligasht.reservation.models.model.login.Contract;
+import com.eligasht.reservation.models.model.login.WebUser;
 import com.eligasht.reservation.models.model.login.WebUserLogin;
 import com.eligasht.reservation.models.model.login.call.LoginListReq;
 import com.eligasht.reservation.models.model.login.call.LoginRequestModel;
@@ -35,6 +37,8 @@ import com.eligasht.service.model.newModel.login.loginUser.response.ResponseLogi
 import com.eligasht.service.model.newModel.login.loginUser.response.WebUserProperties;
 import com.google.gson.Gson;
 import com.jaeger.library.StatusBarUtil;
+
+import java.util.ArrayList;
 
 import mehdi.sakout.fancybuttons.FancyButton;
 import retrofit2.Call;
@@ -86,8 +90,8 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
 
         RequestLoginUser loginListReq = new RequestLoginUser();
         //loginListReq.setIdentity(new Identity("EligashtMlb", "123qwe!@#QWE", "Mobile"));
-       // loginListReq.setCulture(getString(R.string.culture));
-        loginListReq.setUserMailOrMobile(txtEmail.getText().toString());
+        loginListReq.setCulture(getString(R.string.culture));
+        loginListReq.setUserMobile(txtEmail.getText().toString());
         loginListReq.setUserPassword(txtPassword.getText().toString());
 
         needShowProgressDialog();
@@ -106,17 +110,72 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
                         return;
                     }
 
-                    if (response.body().getErrors() != null) {
+                    if (response.body().getErrors().size()>0) {
                         Toast.makeText(LogInActivity.this, response.body().getErrors().get(0).getMessage(), Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    WebUserProperties webUserLogin = response.body().getWebUserProperties();//WebUserLogin();
+                    WebUserLogin webUserLogin =new WebUserLogin();// response.body().getWebUserProperties().get);//WebUserLogin();
+                    webUserLogin.setLoginStatus(response.body().getLoginStatus());
+                    WebUser webUser=new WebUser();
+                    webUser.setActivationCode(response.body().getWebUserProperties().getActivationCode());
+                    webUser.setCulture(response.body().getWebUserProperties().getCulture());
+                    webUser.setActivationCode(response.body().getWebUserProperties().getActivationCode());
+                    webUser.setBankCardNo(response.body().getWebUserProperties().getBankCardNo());
+                    webUser.setBull(response.body().getWebUserProperties().getBull());
+                    webUser.setDemosticCityFa(response.body().getWebUserProperties().getDemosticCityFa());
+                    webUser.setDemosticCityID(response.body().getWebUserProperties().getDemosticCityID());
+                    webUser.setDemosticPrivinceFa (response.body().getWebUserProperties().getDemosticPrivinceFa());
+                    webUser.setDemosticPrivinceID(response.body().getWebUserProperties().getDemosticPrivinceID());
+                    webUser.setEncryptWebUserID(response.body().getWebUserProperties().getEncryptWebUserID());
+                    webUser.setImgURL(response.body().getWebUserProperties().getImgURL());
+                    webUser.setMsgCount(response.body().getWebUserProperties().getMsgCount());
+                    webUser.setPassword(response.body().getWebUserProperties().getPassword());
+                    webUser.setUsername(response.body().getWebUserProperties().getUsername());
+                    webUser.setWebUserAddress(response.body().getWebUserProperties().getWebUserAddress());
+                    webUser.setWebUserBirthDayMiladi(response.body().getWebUserProperties().getWebUserBirthDayMiladi());
+                    webUser.setWebUserBirthDayShamsi(response.body().getWebUserProperties().getWebUserBirthDayShamsi());
+                    webUser.setWebUserFatherName(response.body().getWebUserProperties().getWebUserFatherName());
+                    webUser.setWebUserFnameE(response.body().getWebUserProperties().getWebUserFnameE());
+                    webUser.setWebUserFnameF(response.body().getWebUserProperties().getWebUserFnameF());
+                    webUser.setWebUserGender(response.body().getWebUserProperties().getWebUserGender());
+                    webUser.setWebUserID(response.body().getWebUserProperties().getWebUserID());
+                    webUser.setWebUserLnameE(response.body().getWebUserProperties().getWebUserLnameE());
+                    webUser.setWebUserLnameF(response.body().getWebUserProperties().getWebUserLnameF());
+                    webUser.setWebUserMail(response.body().getWebUserProperties().getWebUserMail());
+                    webUser.setWebUserTel(response.body().getWebUserProperties().getWebUserTel());
+                    webUser.setWebUserMobile(response.body().getWebUserProperties().getWebUserMobile());
+                    webUser.setWebUserNationalCode(response.body().getWebUserProperties().getWebUserNationalCode());
+
+
+                    webUserLogin.setWebUserProperties(webUser);
+
+                    ArrayList<Contract> contracts=new ArrayList<>();
+                    //قراردادها
+                    for (int i = 0; i < response.body().getPreviousContracts().size(); i++) {
+                        Contract contract=new Contract();
+                        contract.setRqBaseID(response.body().getPreviousContracts().get(i).getRqBaseID());
+                        contract.setDateFa(response.body().getPreviousContracts().get(i).getDateFa());
+                        contract.setDate(response.body().getPreviousContracts().get(i).getDate());
+                        contract.setPathNames(response.body().getPreviousContracts().get(i).getPathNames());
+                        contract.setDeparture(response.body().getPreviousContracts().get(i).getDeparture());
+                        contract.setCheckin(response.body().getPreviousContracts().get(i).getCheckin());
+                        contract.setRemained(response.body().getPreviousContracts().get(i).getRemained());
+                        contract.setFollowerName(response.body().getPreviousContracts().get(i).getFollowerName());
+                        contract.setVisaConfirm(response.body().getPreviousContracts().get(i).getVisaConfirm());
+                        contract.setTicketConfirm(response.body().getPreviousContracts().get(i).getTicketConfirm());
+                        contract.setHotelConfirm(response.body().getPreviousContracts().get(i).getHotelConfirm());
+                        contract.setCntDocDeliver(response.body().getPreviousContracts().get(i).getCntDocDeliver());
+                        contract.setFinalPrice(response.body().getPreviousContracts().get(i).getFinalPrice());
+                        contracts.add(contract);
+                    }
+                    webUserLogin.setPreviousContracts(contracts);
+                   //////////////////////
                     if (webUserLogin == null) {
                         Toast.makeText(LogInActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-
+/*
                     if (response.body().getLoginStatus().equals("NotRegistered")) {//ino khodam ezafe kardam
                         Toast.makeText(LogInActivity.this,R.string.not_register_user, Toast.LENGTH_SHORT).show();
                         return;
@@ -129,18 +188,33 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
                     if (response.body().getLoginStatus().equals("ACT")) {
                         Toast.makeText(LogInActivity.this, R.string.activation_link_has_been_sent_to_your_email, Toast.LENGTH_SHORT).show();
                         return;
+                    }*/
+
+                    if (response.body().getLoginCode()> 0)
+                    {
+                    //کد مثبت به معنی موفق.
+                        Toast.makeText(LogInActivity.this, response.body().getLoginStatus(), Toast.LENGTH_SHORT).show();
+                        WebUserTools.getInstance().setUser(webUserLogin);//movaghatan pak kardam
+                        String username=WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF();
+                        String lasrName=WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF();
+
+                        MainActivity.setUserName(username + " " + lasrName);
+
+                        Intent intent = new Intent(LogInActivity.this, ProfileActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                    {
+                        //خطایی رخ داده
+                        Toast.makeText(LogInActivity.this, response.body().getLoginStatus(), Toast.LENGTH_SHORT).show();
                     }
 
 
-                    //WebUserTools.getInstance().setUser(webUserLogin);//movaghatan pak kardam
-                    MainActivity.setUserName(WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserFnameF() + " " + WebUserTools.getInstance().getUser().getWebUserProperties().getWebUserLnameF());
-                }catch (Exception e){
+                   }catch (Exception e){
                     e.getMessage();
                 }
-                //  Log.e("contract" , response.body().getLoginResult().getWebUserLogin().getPreviousContracts().get(0).getCntID() +"");
-                Intent intent = new Intent(LogInActivity.this, ProfileActivity.class);
-                startActivity(intent);
-                finish();
+
 
 
             }
@@ -194,8 +268,10 @@ public class LogInActivity extends BaseActivity implements View.OnClickListener 
                     return;
                 }
 
-                if (!ValidationTools.isEmailValid(txtEmail.getText().toString())) {
-                    txtEmail.setError(getString(R.string.email_address_is_not_valid));
+               // if (!ValidationTools.isEmailValid(txtEmail.getText().toString())) {
+                if (txtEmail.getText().toString().trim().length() != 11) {
+                  //  Toast.makeText(this, R.string.text27, Toast.LENGTH_SHORT).show();
+                    txtEmail.setError(getString(R.string.text27));
                     return;
                 }
                 if (txtPassword.length() == 0) {

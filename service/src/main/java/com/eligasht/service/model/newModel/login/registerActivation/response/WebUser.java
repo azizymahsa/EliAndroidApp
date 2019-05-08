@@ -1,14 +1,12 @@
-
-package com.eligasht.service.model.newModel.login.loginUser.response;
+package com.eligasht.service.model.newModel.login.registerActivation.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class WebUserProperties {
-
+public class WebUser {
     @SerializedName("ActivationCode")
     @Expose
-    private String activationCode;
+    private Object activationCode;
     @SerializedName("BankCardNo")
     @Expose
     private String bankCardNo;
@@ -17,7 +15,7 @@ public class WebUserProperties {
     private String bull;
     @SerializedName("Culture")
     @Expose
-    private String culture;
+    private Object culture;
     @SerializedName("DemosticCityFa")
     @Expose
     private String demosticCityFa;
@@ -44,7 +42,7 @@ public class WebUserProperties {
     private String password;
     @SerializedName("Username")
     @Expose
-    private String username;
+    private Object username;
     @SerializedName("WebUserAddress")
     @Expose
     private String webUserAddress;
@@ -101,13 +99,13 @@ public class WebUserProperties {
     private String webUserTel;
     @SerializedName("identity")
     @Expose
-    private String identity;
+    private Object identity;
 
-    public String getActivationCode() {
+    public Object getActivationCode() {
         return activationCode;
     }
 
-    public void setActivationCode(String activationCode) {
+    public void setActivationCode(Object activationCode) {
         this.activationCode = activationCode;
     }
 
@@ -127,11 +125,11 @@ public class WebUserProperties {
         this.bull = bull;
     }
 
-    public String getCulture() {
+    public Object getCulture() {
         return culture;
     }
 
-    public void setCulture(String culture) {
+    public void setCulture(Object culture) {
         this.culture = culture;
     }
 
@@ -199,11 +197,11 @@ public class WebUserProperties {
         this.password = password;
     }
 
-    public String getUsername() {
+    public Object getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(Object username) {
         this.username = username;
     }
 
@@ -351,11 +349,11 @@ public class WebUserProperties {
         this.webUserTel = webUserTel;
     }
 
-    public String getIdentity() {
+    public Object getIdentity() {
         return identity;
     }
 
-    public void setIdentity(String identity) {
+    public void setIdentity(Object identity) {
         this.identity = identity;
     }
 }

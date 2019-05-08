@@ -3,12 +3,15 @@ package com.eligasht.service.model.newModel.login.loginUser.response;
 
 import java.util.List;
 
+import com.eligasht.service.model.login.response.PreviousContract;
 import com.eligasht.service.model.newModel.hotel.search.response.Error;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ResponseLoginUser {
-
+    @SerializedName("LoginCode")
+    @Expose
+    private int LoginCode ;
     @SerializedName("WebUserProperties")
     @Expose
     private WebUserProperties webUserProperties;
@@ -17,7 +20,7 @@ public class ResponseLoginUser {
     private String loginStatus;
     @SerializedName("PreviousContracts")
     @Expose
-    private List<Object> previousContracts = null;
+    private List<PreviousContract> previousContracts ;
     @SerializedName("Errors")
     @Expose
     private List<Error> errors = null;
@@ -33,6 +36,22 @@ public class ResponseLoginUser {
     @SerializedName("TimeStamp")
     @Expose
     private String timeStamp;
+
+    public int getLoginCode() {
+        return LoginCode;
+    }
+
+    public void setLoginCode(int loginCode) {
+        LoginCode = loginCode;
+    }
+
+    public List<PreviousContract> getPreviousContracts() {
+        return previousContracts;
+    }
+
+    public void setPreviousContracts(List<PreviousContract> previousContracts) {
+        this.previousContracts = previousContracts;
+    }
 
     public WebUserProperties getWebUserProperties() {
         return webUserProperties;
@@ -50,13 +69,6 @@ public class ResponseLoginUser {
         this.loginStatus = loginStatus;
     }
 
-    public List<Object> getPreviousContracts() {
-        return previousContracts;
-    }
-
-    public void setPreviousContracts(List<Object> previousContracts) {
-        this.previousContracts = previousContracts;
-    }
 
     public List<Error> getErrors() {
         return errors;
