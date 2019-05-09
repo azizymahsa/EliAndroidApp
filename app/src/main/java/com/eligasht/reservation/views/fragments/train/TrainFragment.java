@@ -2,6 +2,7 @@ package com.eligasht.reservation.views.fragments.train;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -109,10 +110,11 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
     private CheckBox rd_darbast;
     private int flagRd=0;
 
-    public static void updateCount() {
-        txtPassAdult.setText(Prefs.getString("Value_Pass_CountB", "1")+" بزرگسال ");
-        txtPassChild.setText(Prefs.getString("Value_Pass_CountK", "0")+" کودک ");
-        txtPassInf.setText(Prefs.getString("Value_Pass_CountN", "0")+" نوزاد ");
+    public static void updateCount(Context context) {
+        txtPassAdult.setText(Prefs.getString("Value_Pass_CountB", "1")+" "+context.getString(R.string.adault)+" ");
+        txtPassChild.setText(Prefs.getString("Value_Pass_CountK", "0")+" "+context.getString(R.string.baby)+" ");
+        txtPassInf.setText(Prefs.getString("Value_Pass_CountN", "0")+" "+context.getString(R.string.newborn)+" ");
+
     }
 
     @Override
@@ -283,9 +285,9 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         rd_darbast = (CheckBox) rootView.findViewById(R.id.rd_darbast);
         rd_darbast.setOnClickListener(this);
 
-        txtPassAdult.setText("1"+" بزرگسال ");
-        txtPassChild.setText("0"+" کودک ");
-        txtPassInf.setText("0"+" نوزاد ");
+        txtPassAdult.setText("1"+" "+getString(R.string.adault)+" ");
+        txtPassChild.setText("0"+" "+getString(R.string.baby)+" ");
+        txtPassInf.setText("0"+" "+getString(R.string.newborn)+" ");
 
 
 
@@ -410,7 +412,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                 case R.id.lnr_pass_count:
 
                     try {
-                        DialogPassCount dialogPassCount = new DialogPassCount(getActivity(),false,false);
+                        DialogPassCount dialogPassCount = new DialogPassCount(getActivity(),false,false,true);
                         dialogPassCount.setText( "لطفا تعداد را وارد کنید");
 
 
@@ -418,6 +420,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                     }catch (Exception e){
                         e.getMessage();
                     }
+                    TrainFragment.updateCount(getContext());
                 break;
                 case R.id.rd_darbast:
                     if (((CheckBox) v).isChecked()) {
@@ -654,9 +657,9 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
             txtPassMen.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
             txtPassWom.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
 
-            txtPassNat.setTextColor(Color.parseColor(getString(R.color.white)));
-            txtPassMen.setTextColor(Color.parseColor(getString(R.color.grayBB)));
-            txtPassWom.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassNat.setTextColor(Color.parseColor(getContext().getString(R.color.white)));
+            txtPassMen.setTextColor(Color.parseColor(getContext().getString(R.color.grayBB)));
+            txtPassWom.setTextColor(Color.parseColor(getContext().getString(R.color.grayBB)));
             YoYo.with(Techniques.Pulse)
                     .duration(200)
                     .playOn(txtPassNat);

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.eligasht.R;
 import com.eligasht.reservation.tools.Prefs;
+import com.eligasht.reservation.views.fragments.PlanFragment;
 import com.eligasht.reservation.views.fragments.train.TrainFragment;
 import com.eligasht.reservation.views.ticker.TickerView;
 import com.eligasht.reservation.views.ui.SingletonContext;
@@ -35,11 +36,13 @@ public class DialogPassCount implements View.OnClickListener {
     public static int countNafar = 1;
     public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     private TickerView txtCountB, txtCountK, txtCountN;
+    boolean flag;
 
-    public DialogPassCount(final Activity activity, boolean warning, boolean isFinish) {
+    public DialogPassCount(final Activity activity, boolean warning, boolean isFinish,boolean flag) {
          type = Typeface.createFromAsset(activity.getAssets(), "fonts/iran_sans_normal.ttf");
         this.activity = activity;
         this.isFinish = isFinish;
+        this.flag = flag;
         builder = new android.app.AlertDialog.Builder(activity);
         inflater = LayoutInflater.from(activity);
         dialogView = inflater.inflate(R.layout.dialog_pass_count, null);
@@ -98,7 +101,11 @@ public class DialogPassCount implements View.OnClickListener {
                     Prefs.putString("Value_Pass_CountB", txtCountB.getText().toString().trim());
                     Prefs.putString("Value_Pass_CountK", txtCountK.getText().toString().trim());
                     Prefs.putString("Value_Pass_CountN", txtCountN.getText().toString().trim());
-                    TrainFragment.updateCount();
+                  if(flag) {
+                    TrainFragment.updateCount(activity);
+                  }else{
+                    PlanFragment.updateCount(activity);
+                  }
                 dialog.cancel();
                 }
                 break;

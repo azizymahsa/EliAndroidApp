@@ -1,5 +1,7 @@
 package com.eligasht.reservation.views.fragments;
 import android.animation.Animator;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -44,6 +46,7 @@ import com.eligasht.reservation.views.ui.GetAirportMaghsadActivity;
 import com.eligasht.reservation.views.ui.InitUi;
 import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
+import com.eligasht.reservation.views.ui.dialog.train.DialogPassCount;
 import com.eligasht.service.helper.Const;
 import com.eligasht.service.model.newModel.auth.response.ResponseAuth;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
@@ -67,9 +70,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     public static boolean flag;
     public static TextView tarikh_az_picker;
     public static TextView tarikh_be_picker;
-    private TickerView txtCountB, txtCountK, txtCountN;
+   // private TickerView txtCountB, txtCountK, txtCountN;
     public TextView tvStart, tvEnd, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne, searchPlan;
-    public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
+    //public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
     private LinearLayout linear_picker_title;
     public int flagOneTwo = 2;
     private static String picker_be = "2017-12-29";
@@ -103,6 +106,23 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     public CalendarDialog calendarDialog;
     private LottieAnimationView lottieCheckin, lottieCheckout;
     private ClientService service;
+    //counter
+    LinearLayout lnr_pass_count;
+
+    TextView txtPassNat ,txtPassWom,txtPassMen;
+    public static TextView txtPassAdult;
+    public static  TextView txtPassChild;
+    public static  TextView txtPassInf;
+
+    public String flagTypePass = "Economy";
+
+    public static void updateCount(Context context) {
+        txtPassAdult.setText(Prefs.getString("Value_Pass_CountB", "1")+" "+context.getString(R.string.adault)+" ");
+        txtPassChild.setText(Prefs.getString("Value_Pass_CountK", "0")+" "+context.getString(R.string.baby)+" ");
+        txtPassInf.setText(Prefs.getString("Value_Pass_CountN", "0")+" "+context.getString(R.string.newborn)+" ");
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_plane, container, false);
@@ -110,6 +130,26 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         SingletonDate.getInstance().checkConflictDate();
         Utility.sendTag("F", true, false);
         Geo = Prefs.getBoolean("geo", false);
+
+        //counter
+        lnr_pass_count = rootView.findViewById(R.id.lnr_pass_count);
+
+        txtPassNat = rootView.findViewById(R.id.txtPassNat);
+        txtPassWom = rootView.findViewById(R.id.txtPassWom);
+        txtPassMen = rootView.findViewById(R.id.txtPassMen);
+        txtPassAdult = rootView.findViewById(R.id.txtPassAdult);
+        txtPassChild = rootView.findViewById(R.id.txtPassChild);
+        txtPassInf = rootView.findViewById(R.id.txtPassInf);
+        txtPassAdult.setText("1"+" "+getString(R.string.adault)+" ");
+        txtPassChild.setText("0"+" "+getString(R.string.baby)+" ");
+        txtPassInf.setText("0"+" "+getString(R.string.newborn)+" ");
+
+        lnr_pass_count.setOnClickListener(this);
+
+        txtPassNat.setOnClickListener(this);
+        txtPassWom.setOnClickListener(this);
+        txtPassMen.setOnClickListener(this);
+        ///
         llButton = rootView.findViewById(R.id.llButton);
         // linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
         linear_tarikh_az_picker = rootView.findViewById(R.id.linear_tarikh_az_picker);
@@ -126,12 +166,12 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         tarikh_az = rootView.findViewById(R.id.tarikh_az);
         tarikh_be = rootView.findViewById(R.id.tarikh_be);
         ivImage = rootView.findViewById(R.id.ivImage);
-        btnPlusB = rootView.findViewById(R.id.btnPlusB);
+        /*btnPlusB = rootView.findViewById(R.id.btnPlusB);
         btnMinesB = rootView.findViewById(R.id.btnMinesB);
         btnPlusK = rootView.findViewById(R.id.btnPlusK);
         btnMinesK = rootView.findViewById(R.id.btnMinesK);
         btnPlusN = rootView.findViewById(R.id.btnPlusN);
-        btnMinesN = rootView.findViewById(R.id.btnMinesN);
+        btnMinesN = rootView.findViewById(R.id.btnMinesN);*/
         btntwo = rootView.findViewById(R.id.btntwo);
         btnOne = rootView.findViewById(R.id.btnOne);
         searchPlan = rootView.findViewById(R.id.searchPlan);
@@ -139,9 +179,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         txtKO = rootView.findViewById(R.id.txtKO);
         txtNO = rootView.findViewById(R.id.txtNO);
         textView3 = rootView.findViewById(R.id.textView3);
-        txtCountB = rootView.findViewById(R.id.txtCountB);
+       /* txtCountB = rootView.findViewById(R.id.txtCountB);
         txtCountK = rootView.findViewById(R.id.txtCountK);
-        txtCountN = rootView.findViewById(R.id.txtCountN);
+        txtCountN = rootView.findViewById(R.id.txtCountN);*/
         tvStart = rootView.findViewById(R.id.tvStart);
         txtOption = rootView.findViewById(R.id.txtOption);
         tvEnd = rootView.findViewById(R.id.tvEnd);
@@ -151,12 +191,12 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         //linear_picker.setOnClickListener(this);
         // tarikh_az_picker.setOnClickListener(this);
         // tarikh_be_picker.setOnClickListener(this);
-        btnPlusB.setOnClickListener(this);
+       /* btnPlusB.setOnClickListener(this);
         btnMinesB.setOnClickListener(this);
         btnPlusK.setOnClickListener(this);
         btnMinesK.setOnClickListener(this);
         btnPlusN.setOnClickListener(this);
-        btnMinesN.setOnClickListener(this);
+        btnMinesN.setOnClickListener(this);*/
         linearLayout_mabda.setOnClickListener(this);
         linearLayout_maghsad.setOnClickListener(this);
         txtOption.setOnClickListener(this);
@@ -415,12 +455,92 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         lottieCheckin.playAnimation();
         lottieCheckout.playAnimation();
     }
+    private void clickPassNat() {
+        try {
 
+            txtPassNat.setBackgroundResource(R.drawable.background_strock_purple_mat);
+            txtPassMen.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+            txtPassWom.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+
+            txtPassNat.setTextColor(Color.parseColor(getString(R.color.white)));
+            txtPassMen.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassWom.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            YoYo.with(Techniques.Pulse)
+                    .duration(200)
+                    .playOn(txtPassNat);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+    private void clickPassWo() {
+        try {
+
+            txtPassNat.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+            txtPassMen.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+            txtPassWom.setBackgroundResource(R.drawable.background_strock_purple_mat);
+
+            txtPassNat.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassMen.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassWom.setTextColor(Color.parseColor(getString(R.color.white)));
+            YoYo.with(Techniques.Pulse)
+                    .duration(200)
+                    .playOn(txtPassWom);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+    private void clickPassMen() {
+        try {
+
+            txtPassNat.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+            txtPassMen.setBackgroundResource(R.drawable.background_strock_purple_mat);
+            txtPassWom.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+
+            txtPassNat.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassMen.setTextColor(Color.parseColor(getString(R.color.white)));
+            txtPassWom.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            YoYo.with(Techniques.Pulse)
+                    .duration(200)
+                    .playOn(txtPassMen);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
         switch (v.getId()) {
-            case R.id.btnPlusB:
+            case R.id.txtPassNat:
+                flagTypePass="Economy";
+                clickPassNat();
+
+                break;
+            case R.id.txtPassMen:
+                flagTypePass="First";
+                clickPassMen();
+
+                break;
+            case R.id.txtPassWom:
+                flagTypePass="Business";
+                clickPassWo();
+
+                break;
+            case R.id.lnr_pass_count:
+
+                try {
+                    DialogPassCount dialogPassCount = new DialogPassCount(getActivity(),false,false,false);
+                    dialogPassCount.setText( getString(R.string._please_enter_number));
+
+
+
+                }catch (Exception e){
+                    e.getMessage();
+                }
+                break;
+           /* case R.id.btnPlusB:
                 countNafar = Integer.parseInt(txtCountB.getText().toString()) + Integer.parseInt(txtCountK.getText().toString()) + Integer.parseInt(txtCountN.getText().toString());
                 if (countNafar < 9) {
                     try {
@@ -506,7 +626,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                     e.printStackTrace();
                     // Toast.makeText(getActivity(), "Some errors :(", 2000).show();
                 }
-                break;
+                break;*/
             case R.id.linearLayout_maghsad:
                 Intent i3 = new Intent(getActivity(), GetAirportMaghsadActivity.class);
                 // Bundle bundle = getActivity().getIntent().getExtras();
@@ -637,9 +757,10 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
                         intent1.putExtra("Value-Maghsad-City", tvEnd.getText().toString());
                         intent1.putExtra("Value-Flag-Two", Integer.toString(flagOneTwo));
-                        intent1.putExtra("Value-AdlCount", txtCountB.getText().toString());
-                        intent1.putExtra("Value-ChdCount", txtCountK.getText().toString());
-                        intent1.putExtra("Value-InfCount", txtCountN.getText().toString());
+                        intent1.putExtra("Value-AdlCount", Prefs.getString("Value_Pass_CountB",""));
+                        intent1.putExtra("Value-ChdCount", Prefs.getString("Value_Pass_CountK",""));
+                        intent1.putExtra("Value-InfCount", Prefs.getString("Value_Pass_CountN",""));
+
                         //////////////recent date
                         if (Prefs.getString("bargashtfa", "null").equals("null")) {
                             intent1.putExtra("Value-ArrivalDate", bargasht);//2017-11-29
@@ -659,6 +780,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         intent1.putExtra("Value-DepartureDate-format", picker_az_format);//2017-December-24
                         intent1.putExtra("Value-ArrivalDate-format", picker_be_format);//2017-December-29
                         intent1.putExtra("Geo", Geo);//2017-11-24
+                        intent1.putExtra("Value_flightClass", flagTypePass);//2017-11-24
                        /* if(startDate != null && endDate != null)
                              SingletonDate.getInstance().setReverseDate(startDate, endDate);*/
                        /* SwipeBackActivityHelper.activityBuilder(getActivity())

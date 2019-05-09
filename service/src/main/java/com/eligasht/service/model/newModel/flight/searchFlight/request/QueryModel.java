@@ -4,6 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class QueryModel {
+    @SerializedName("flightClass")
+    @Expose
+    private String flightClass;
     @SerializedName("IsSearchRequest")
     @Expose
     private Boolean isSearchRequest;
@@ -121,6 +124,14 @@ public class QueryModel {
     @SerializedName("ExclusiveTrain")
     @Expose
     private Boolean exclusiveTrain;
+
+    public String getFlightClass() {
+        return flightClass;
+    }
+
+    public void setFlightClass(String flightClass) {
+        this.flightClass = flightClass;
+    }
 
     public Boolean getIsSearchRequest() {
         return isSearchRequest;

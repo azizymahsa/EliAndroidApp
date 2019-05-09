@@ -436,7 +436,7 @@
                                 android:layout_weight="0.8"
 
                                 android:gravity="center"
-                                android:text="نوزاد "
+                                android:text="@string/newborn"
                                 android:textColor="@color/grayTxt"
                                 android:textSize="@dimen/_12dp_normal_textSize"
 
@@ -448,7 +448,7 @@
                                 android:layout_weight="0.8"
 
                                 android:gravity="center"
-                                android:text="کودک "
+                                android:text="@string/baby"
                                 android:textColor="@color/grayTxt"
                                 android:textSize="@dimen/_12dp_normal_textSize"
 
@@ -460,7 +460,7 @@
                                 android:layout_weight="0.8"
 
                                 android:gravity="center"
-                                android:text="بزرگسال "
+                                android:text="@string/adault"
                                 android:textColor="@color/grayTxt"
                                 android:textSize="@dimen/_12dp_normal_textSize"
 

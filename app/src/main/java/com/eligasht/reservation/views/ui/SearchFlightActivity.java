@@ -133,6 +133,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
     private  RecyclerView recyclerViewHotel;
     String flagWay="";
     private static String GlobalCurrencyCode="";
+    private String flightClass="Economy";
 
     public static void updateAdapterPin(List<PinModelDetail> pinModelDetails, List<PinModelHeader> pinModelHeaders, Context activity) {
         // TODO Auto-generated method stub
@@ -261,6 +262,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
             } catch (Exception e) {
             }
         }
+        flightClass=getIntent().getExtras().getString("Value_flightClass");
         if (extras.getBoolean("isChangeFlight", false)) {
             FlightId = getIntent().getExtras().getString("FlightId");
             searchKey = getIntent().getExtras().getString("SearchKey");
@@ -408,6 +410,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 //com.eligasht.service.model.flight.request.searchFlight.Identity identity = new com.eligasht.service.model.flight.request.searchFlight.Identity();
                 //identity":{"Password":"123qwe!@#QWE","TermianlId":"Mobile","jUserName":"EligashtMlb"}
                // request.setIdentity(identity);
+                request.setFlightClass(flightClass);
                 request.setSourceText(mabdaf);
                 request.setDestinationText(maghsadf);
                 request.setCheckIn(Utility.convertNumbersToEnglish(Raft));
