@@ -2056,7 +2056,7 @@
     <string name="departure"> Tek Yön </string>
     <string name="departure_and_return"> Gidiş-Dönüş </string>
     <string name="name_en"> Ad (En) * </string>
-    <string name="please_enter_your_mobile_number"> Cep numarasını giriniz </string>
+    <string name="please_enter_your_mobile_number"> Lütfen cep telefon numaranızı giriniz </string>
     <string name="SelectLanguage"> Uygulama </string>
     <string name="Persian"> فارسی </string>
     <string name="English"> İngilizce </string>
@@ -2465,5 +2465,6 @@
     <string name="_send_activation_code">Aktivasyon kodunu gönder</string>
     <string name="_complete_registration">Tam kayıt</string>
     <string name="_enter_activation_code">Aktivasyon kodunu girin</string>
+    <string name="_password_incorrect">Şifre yanlış</string>
 </resources>
 

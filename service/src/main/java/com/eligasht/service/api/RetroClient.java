@@ -98,6 +98,9 @@ import com.eligasht.service.model.newModel.insurance.request.purchase.PurchasePa
 import com.eligasht.service.model.newModel.insurance.response.InsuranceCountry.ResponseInsuranceCountry;
 import com.eligasht.service.model.newModel.insurance.response.ResponseInsuranceSearchResult;
 import com.eligasht.service.model.newModel.insurance.response.purchase.ResponseInsurancePurchase;
+import com.eligasht.service.model.newModel.login.forgetPassword.request.RequestForgetPassword;
+import com.eligasht.service.model.newModel.login.forgetPasswordActivation.request.RequestForgetPasswordActivation;
+import com.eligasht.service.model.newModel.login.forgetPasswordChangePassword.request.RequestForgetPasswordChangePassword;
 import com.eligasht.service.model.newModel.login.reSendActivation.request.RequestReSendActivation;
 import com.eligasht.service.model.newModel.login.registerActivation.request.RequestRegisterActivation;
 import com.eligasht.service.model.newModel.login.registerUser.request.RequestRegisterUser;
@@ -553,5 +556,21 @@ public interface RetroClient {
     @POST(Const.GetReSendActivation)
     Observable<Response<ResponseWebUserLogin>> responseWebUserResend(
             @Body RequestReSendActivation reSendActivation
+    );
+
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetForgetPassword)
+    Observable<Response<ResponseWebUserLogin>> responseForgetPassword(
+            @Body RequestForgetPassword requestForgetPassword
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetForgetPasswordActivation)
+    Observable<Response<ResponseWebUserLogin>> responseForgetPasswordActivation(
+            @Body RequestForgetPasswordActivation requestForgetPasswordActivation
+    );
+    @Headers("Content-Type: application/json")
+    @POST(Const.GetForgetPasswordChangePassword)
+    Observable<Response<ResponseWebUserLogin>> responseForgetPasswordChangePassword(
+            @Body RequestForgetPasswordChangePassword forgetPasswordChangePassword
     );
 }

@@ -1,5 +1,6 @@
 package com.eligasht.service.model.newModel.login.registerUser.response;
 
+import com.eligasht.service.model.newModel.hotel.purchase.request.Warnings;
 import com.eligasht.service.model.newModel.hotel.search.response.Error;
 import com.eligasht.service.model.newModel.login.loginUser.response.WebUserProperties;
 import com.google.gson.annotations.Expose;
@@ -34,9 +35,19 @@ public class ResponseWebUserLogin {
     private List<Error> errors = null;
     @SerializedName("Warningss")
     @Expose
-    private Object warningss;
+    private List<Warnings> warningss;
+
+    public List<Warnings> getWarningss() {
+        return warningss;
+    }
+
+    public void setWarningss(List<Warnings> warningss) {
+        this.warningss = warningss;
+    }
+
     @SerializedName("Comments")
     @Expose
+
     private Object comments;
 
     public List<Error> getErrors() {
@@ -47,13 +58,9 @@ public class ResponseWebUserLogin {
         this.errors = errors;
     }
 
-    public Object getWarningss() {
-        return warningss;
-    }
 
-    public void setWarningss(Object warningss) {
-        this.warningss = warningss;
-    }
+
+
 
     public Object getComments() {
         return comments;

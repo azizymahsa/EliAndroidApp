@@ -117,4 +117,8 @@ public class Const {
    public final static String GetRegisterUser = "api/UserAutentication/RegisterUser";
    public final static String GetRegisterActivation = "api/UserAutentication/RegisterActivation";
    public final static String GetReSendActivation = "api/UserAutentication/ReSendActivation";
+
+   public final static String GetForgetPassword = "api/UserAutentication/ForgetPassword";
+   public final static String GetForgetPasswordActivation = "api/UserAutentication/ForgetPasswordActivation";
+   public final static String GetForgetPasswordChangePassword = "api/UserAutentication/ForgetPasswordChangePassword";
 }

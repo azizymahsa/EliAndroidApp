@@ -2444,4 +2444,5 @@
     <string name="_send_activation_code">ارسال کد فعال سازی</string>
     <string name="_complete_registration">تکمیل ثبت نام</string>
     <string name="_enter_activation_code">کد فعال سازی را وارد نمایید</string>
+    <string name="_password_incorrect">رمز عبور اشتباه است</string>
 </resources>
