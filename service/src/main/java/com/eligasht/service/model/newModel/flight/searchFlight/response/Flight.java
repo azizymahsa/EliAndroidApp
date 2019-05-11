@@ -47,8 +47,15 @@ public class Flight {
 
     @SerializedName("TarifNotes")
     @Expose
-    private String TarifNotes;
+    private List<String> TarifNotes;
 
+    public List<String> getTarifNotes() {
+        return TarifNotes;
+    }
+
+    public void setTarifNotes(List<String> tarifNotes) {
+        TarifNotes = tarifNotes;
+    }
 
     public boolean isNonRefundable() {
         return NonRefundable;
@@ -58,13 +65,7 @@ public class Flight {
         NonRefundable = nonRefundable;
     }
 
-    public String getTarifNotes() {
-        return TarifNotes;
-    }
 
-    public void setTarifNotes(String tarifNotes) {
-        TarifNotes = tarifNotes;
-    }
 
     public void setError(Error error) {
         this.error = error;

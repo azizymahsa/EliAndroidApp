@@ -143,6 +143,9 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         txtPassAdult.setText("1"+" "+getString(R.string.adault)+" ");
         txtPassChild.setText("0"+" "+getString(R.string.baby)+" ");
         txtPassInf.setText("0"+" "+getString(R.string.newborn)+" ");
+        Prefs.putString("Value_Pass_CountB", "1");
+        Prefs.putString("Value_Pass_CountK", "0");
+        Prefs.putString("Value_Pass_CountN", "0");
 
         lnr_pass_count.setOnClickListener(this);
 

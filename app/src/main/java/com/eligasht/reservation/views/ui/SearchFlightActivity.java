@@ -1021,6 +1021,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                             item.OperatingAirlineNameEn = SegmentList.get(j).getOperatingAirlineNameEn();
                             item.weight = SegmentList.get(j).getWeight();
                             item.Pieces = SegmentList.get(j).getPieces();
+                            item.nonRefundable = flightsList.get(i).isNonRefundable();
                             parentItem.Items.add(item);
                         }
                         dataExpandingList.add(parentItem);
