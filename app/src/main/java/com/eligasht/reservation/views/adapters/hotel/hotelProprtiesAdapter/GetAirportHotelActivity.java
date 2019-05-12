@@ -53,7 +53,7 @@ import java.util.TimerTask;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 
-public class GetAirportHotelActivity extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener {
+public class GetAirportHotelActivity {/*extends BaseActivity implements Header.onSearchTextChangedListener, OnClickListener {
     public static final int CONNECTION_TIMEOUT = 10000;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
@@ -413,8 +413,8 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                         RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, com.eligasht.reservation.tools.Prefs.getString("lang","fa"));
-        /*        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                        "لطفا مکان مورد نظر را اعلام نمایید...");*/
+        *//*        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                        "لطفا مکان مورد نظر را اعلام نمایید...");*//*
                 try {
                     startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
                 } catch (ActivityNotFoundException a) {
@@ -448,10 +448,10 @@ public class GetAirportHotelActivity extends BaseActivity implements Header.onSe
 
     @Override
     public void searchTextChanged(String searchText) {
-            /*this.searchText = searchText;
+            *//*this.searchText = searchText;
 			if(searchText.length()>2)
-			new AsyncFetch().execute();*/
+			new AsyncFetch().execute();*//*
         //mAdapter.setData(searchText);
 
     }
-}
+*/}

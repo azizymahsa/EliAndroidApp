@@ -18,7 +18,7 @@ import com.eligasht.reservation.tools.db.local.RecentCity_Table;
 import java.util.List;
 
 
-public class GetAirPortHotelAdapter extends BaseAdapter {
+public class GetAirPortHotelAdapter {/*extends BaseAdapter {
 	private Context context;
 	private LayoutInflater myInflater;
 	//public CursorManager cursor;
@@ -86,12 +86,12 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 		this.data = data;
 		notifyDataSetChanged();
 	}
-	/*
+	*//*
 	public void setData(String searchText) {
 		this.cursor = new Customers_Table().getCustomersFilter(searchText);
 		//initiated = true;
 		notifyDataSetChanged();
-	}*/
+	}*//*
 	@Override
 	public int getCount() {
 		return data == null ? 0 : data.size();
@@ -123,7 +123,7 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 			holder.AirportName = convertView.findViewById(R.id.text1);
 			holder.CityName = convertView.findViewById(R.id.text2);
 			holder.llContentLayout = convertView.findViewById(R.id.llContentLayout);
-			holder.llLayoutSubTitle = convertView.findViewById(R.id.llContentLayout);//mavaghar
+			holder.llLayoutSubTitle = convertView.findViewById(R.id.llLayoutSubTitle);
 
 			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
 			convertView.setTag(holder);
@@ -142,7 +142,7 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 		holder.AirportName.setText(current.getAirportName()+ "");
 
 		holder.CityName.setText(current.getCityName());
-		
+
 		holder.AirportName.setTag(current.getAirportName());
 
 		holder.CityName.setTag(current.getCityName());
@@ -161,10 +161,10 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 				//	Prefs.putString("Value-Hotel-en",current.getCityNameEn());
 
 
-							/*Prefs.putString("Value-Hotel-City-Fa-HF-Raft",value_Maghsad_City);
+							*//*Prefs.putString("Value-Hotel-City-Fa-HF-Raft",value_Maghsad_City);
 							Prefs.putString("Value-Hotel-City-En-HF-Raft",value_Maghsad_Airport);
 							Prefs.putString("Value-Hotel-City-Code-HF-Raft",value_Maghsad_Airport_Code);
-*/
+*//*
 				}
 				if (type==2){
 					RecentCity_Table recentCity_table=new RecentCity_Table(activity);
@@ -174,10 +174,10 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 					Prefs.putString("Value-Hotel-City-En-HF-Source",current.getAirportName());
 					Prefs.putString("Value-Hotel-City-Code-HF-Source",current.getAirportCode());
 				//	Prefs.putString("Value-Hotel-en",current.getCityNameEn());
-/*
+*//*
 							Prefs.putString("Value-Hotel-City-Fa-HF-Source",value_Maghsad_City);
 							Prefs.putString("Value-Hotel-City-En-HF-Source",value_Maghsad_Airport);
-							Prefs.putString("Value-Hotel-City-Code-HF-Source",value_Maghsad_Airport_Code);*/
+							Prefs.putString("Value-Hotel-City-Code-HF-Source",value_Maghsad_Airport_Code);*//*
 
 
 				}
@@ -198,4 +198,4 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 	}
 
 
-}
+*/}

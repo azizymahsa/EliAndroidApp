@@ -36,6 +36,8 @@ import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarD
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
+import com.eligasht.reservation.views.ui.GetAirportMabdaActivity;
+import com.eligasht.reservation.views.ui.GetAirportMaghsadActivity;
 import com.eligasht.reservation.views.ui.dialog.app.CountTimeAlert;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
@@ -55,7 +57,7 @@ import java.util.List;
 public class HotelFlightFragment extends android.support.v4.app.Fragment implements View.OnClickListener, CountTimeAlert.TimerDialogListener
         , ICallbackCalendarDialog {
 
-    public TextView txtCity, lbl_city_english, tvMabda, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult, tvMabdaEn, searchHotel;
+    public TextView  tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult, searchHotel;
     public List<ModelRowCountRoom> data;
     LinearLayout btn_add_room, llRoom;
     HotelCountRoomAdapter mAdapter;
@@ -69,7 +71,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     private View rootView;
     private ArrayList<ModelRowCountRoom> roomsSelected;
     private LottieAnimationView lottieCheckin, lottieCheckout;
-
+    public TextView tvStart, tvEnd, lbl_forudgah_maghsad, lbl_forudgah_mabda;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,10 +84,19 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             SingletonDate.getInstance().getEndDate().addOneDay();
         }
 
+        /*tvMabda = rootView.findViewById(R.id.tvMabda);
+        tvMabdaEn = rootView.findViewById(R.id.tvMabdaEn);*/
+        tvStart = rootView.findViewById(R.id.tvStart);
+        lbl_forudgah_mabda = rootView.findViewById(R.id.lbl_forudgah_mabda);
+        /*lbl_city_english = rootView.findViewById(R.id.lbl_city_english);
+        txtCity = rootView.findViewById(R.id.txtCity);*/
+        tvEnd = rootView.findViewById(R.id.tvEnd);
+        lbl_forudgah_maghsad = rootView.findViewById(R.id.lbl_forudgah_maghsad);
+
+
 
         tarikh_be = rootView.findViewById(R.id.tarikh_be);
-        tvMabda = rootView.findViewById(R.id.tvMabda);
-        tvMabdaEn = rootView.findViewById(R.id.tvMabdaEn);
+
         linearLayout_mabda = rootView.findViewById(R.id.linearLayout_mabda);
         lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
         lottieCheckout = rootView.findViewById(R.id.lottie_checkout);
@@ -109,8 +120,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         llRoom.setOnClickListener(this);
         linearLayout_mabda.setOnClickListener(this);
         citySearch = rootView.findViewById(R.id.citySearch);
-        lbl_city_english = rootView.findViewById(R.id.lbl_city_english);
-        txtCity = rootView.findViewById(R.id.txtCity);
+
         citySearch.setOnClickListener(this);
         //lbl_city_english.setOnClickListener(this);
         searchHotel = rootView.findViewById(R.id.searchHotel);
@@ -128,6 +138,15 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
         tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+
+        if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 1) {
+            tvStart.setText(Prefs.getString("Value-Mabda-City", "")+" , "+Prefs.getString("Value-Mabda-Airport-Code",""));
+            lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
+        }
+        if (Prefs.getString("Value-Maghsad-Airport", "") != null && Prefs.getString("Value-Maghsad-Airport", "").length() > 1) {
+            lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
+            tvEnd.setText(Prefs.getString("Value-Maghsad-City", "")+" , "+Prefs.getString("Value-Maghsad-Airport-Code",""));
+        }
         return rootView;
     }
 
@@ -146,10 +165,21 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         } catch (Exception e) {
         }
 
-        txtCity.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", getString(R.string.select_destination_city_or_airport)));
-        lbl_city_english.setText(Prefs.getString("Value-Hotel-City-En-HF-Raft", ""));
-        tvMabda.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", getString(R.string.select_origin_city_or_airport)));
-        tvMabdaEn.setText(Prefs.getString("Value-Hotel-City-En-HF-Source", ""));
+        /*tvEnd.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Raft", getString(R.string.select_destination_city_or_airport)));
+        lbl_forudgah_maghsad.setText(Prefs.getString("Value-Hotel-City-En-HF-Raft", ""));
+        tvStart.setText(Prefs.getString("Value-Hotel-City-Fa-HF-Source", getString(R.string.select_origin_city_or_airport)));
+        lbl_forudgah_mabda.setText(Prefs.getString("Value-Hotel-City-En-HF-Source", ""));
+     */
+        if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 1) {
+            // tvStart.setText(Prefs.getString("Value-Mabda-City", ""));
+            tvStart.setText(Prefs.getString("Value-Mabda-City", "")+" , "+Prefs.getString("Value-Mabda-Airport-Code",""));
+            lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
+        }
+        if (Prefs.getString("Value-Maghsad-Airport", "") != null && Prefs.getString("Value-Maghsad-Airport", "").length() > 1) {
+            lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
+            //  tvEnd.setText(Prefs.getString("Value-Maghsad-City", ""));
+            tvEnd.setText(Prefs.getString("Value-Maghsad-City", "")+" , "+Prefs.getString("Value-Maghsad-Airport-Code",""));
+        }
     }
 
     @Override
@@ -215,15 +245,17 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         switch (v.getId()) {
 
             case R.id.linearLayout_mabda:
-                Intent intent2 = new Intent(getActivity(), GetAirportHotelActivity.class);
+               /* Intent intent2 = new Intent(getActivity(), GetAirportHotelActivity.class);
                 intent2.putExtra("type", 1);
                 intent2.putExtra("position", "HF");
+                startActivity(intent2);*/
+                Intent intent2 = new Intent(getActivity(), GetAirportMabdaActivity.class);
                 startActivity(intent2);
                 break;
 
             case R.id.searchHotel:
                 try {
-                    if (tvMabda.getText().toString().contains(getString(R.string.select_origin_city_or_airport)) || txtCity.getText().toString().contains(getString(R.string.select_destination_city_or_airport))) {
+                    if (tvStart.getText().toString().contains(getString(R.string.select_origin_city_or_airport)) || tvEnd.getText().toString().contains(getString(R.string.select_destination_city_or_airport))) {
                         AlertDialogPassenger AlertDialogPassenger = new AlertDialogPassenger(getActivity(),false,false);
                         AlertDialogPassenger.setText(getString(R.string.please_select_destination_and_origin),getString(R.string.massege));
                     } else {
@@ -272,9 +304,12 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
                 break;
             case R.id.linearLayout_maghsad:
-                Intent intent = new Intent(getActivity(), GetAirportHotelActivity.class);
+               /* Intent intent = new Intent(getActivity(), GetAirportHotelActivity.class);
                 intent.putExtra("type", 2);
                 intent.putExtra("position", "HF");
+                startActivity(intent); */
+                Intent intent = new Intent(getActivity(), GetAirportMaghsadActivity.class);
+
                 startActivity(intent);
 
                 break;
@@ -378,13 +413,13 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             public void onAnimationStart(Animator animation) {
                 YoYo.with(Techniques.SlideOutDown)
                         .duration(500)
-                        .playOn(tvMabdaEn);
+                        .playOn(lbl_forudgah_mabda);
                 YoYo.with(Techniques.SlideOutUp)
                         .duration(500)
-                        .playOn(lbl_city_english);
+                        .playOn(lbl_forudgah_maghsad);
                 YoYo.with(Techniques.SlideOutUp)
                         .duration(500)
-                        .playOn(txtCity);
+                        .playOn(tvEnd);
 
             }
 
@@ -396,29 +431,29 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 String startF = "";
                 String endF = "";
 
-                start = tvMabda.getText().toString();//رفت
-                end = txtCity.getText().toString();//برگشت
+                start = tvStart.getText().toString();//رفت
+                end = tvEnd.getText().toString();//برگشت
 
-                startF = tvMabdaEn.getText().toString();
-                endF = lbl_city_english.getText().toString();
+                startF = lbl_forudgah_mabda.getText().toString();
+                endF = lbl_forudgah_maghsad.getText().toString();
 
-                tvMabda.setText(end);
-                txtCity.setText(start);
+                tvStart.setText(end);
+                tvEnd.setText(start);
 
-                tvMabdaEn.setText(endF);
-                lbl_city_english.setText(startF);
+                lbl_forudgah_mabda.setText(endF);
+                lbl_forudgah_maghsad.setText(startF);
 
                 if (start.contains(getString(R.string.origin)) && end.contains(getString(R.string.destination))) {
-                    tvMabda.setText(getString(R.string.select_origin_city_or_airport));
-                    txtCity.setText(getString(R.string.select_destination_city_or_airport));
+                    tvStart.setText(getString(R.string.select_origin_city_or_airport));
+                    tvEnd.setText(getString(R.string.select_destination_city_or_airport));
                 } else if (start.contains(getString(R.string.origin))) {
-                    txtCity.setText(getString(R.string.select_destination_city_or_airport));
-                    lbl_city_english.setText("");
+                    tvEnd.setText(getString(R.string.select_destination_city_or_airport));
+                    lbl_forudgah_maghsad.setText("");
 
                 } else if (end.contains(getString(R.string.destination))) {
 
-                    tvMabda.setText(getString(R.string.select_origin_city_or_airport));
-                    tvMabdaEn.setText("");
+                    tvStart.setText(getString(R.string.select_origin_city_or_airport));
+                    lbl_forudgah_mabda.setText("");
                 }
                 String m3 = Prefs.getString("Value-Hotel-City-Code-HF-Raft", "");
                 String m4 = Prefs.getString("Value-Hotel-City-Code-HF-Source", "");
@@ -430,17 +465,17 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 Prefs.putString("Value-Hotel-City-En-HF-Source", endF);
                 YoYo.with(Techniques.SlideInUp)
                         .duration(500)
-                        .playOn(tvMabdaEn);
+                        .playOn(lbl_forudgah_mabda);
                 YoYo.with(Techniques.SlideInDown)
                         .duration(500)
-                        .playOn(lbl_city_english);
+                        .playOn(lbl_forudgah_maghsad);
 
                 YoYo.with(Techniques.SlideInUp)
                         .duration(500)
-                        .playOn(tvMabda);
+                        .playOn(tvStart);
                 YoYo.with(Techniques.SlideInDown)
                         .duration(500)
-                        .playOn(txtCity);
+                        .playOn(tvEnd);
             }
 
             @Override
@@ -449,7 +484,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             @Override
             public void onAnimationRepeat(Animator animation) {
             }
-        }).playOn(tvMabda);
+        }).playOn(tvStart);
         final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_around_center_point);
         ivImage.startAnimation(animation);
     }

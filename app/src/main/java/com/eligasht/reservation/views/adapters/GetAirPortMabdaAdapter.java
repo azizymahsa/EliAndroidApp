@@ -188,12 +188,19 @@ public class GetAirPortMabdaAdapter extends RecyclerView.Adapter<GetAirPortMabda
                     Prefs.putString("Value-Mabda-Airport", current.getTesxt());
                     Prefs.putString("Value-Mabda-Airport-Code", current.getShortDes());
                     Prefs.putString("Value-Mabda-Airport-Code2", current.getValue());
+                    //H+F
+                   /* Prefs.putString("Value-Hotel-City-Fa-HF-Raft", current.getTesxt()+" , "+current.getShortDes());
+                    Prefs.putString("Value-Hotel-City-En-HF-Raft", current.getTesxt());*/
+                    Prefs.putString("Value-Hotel-City-Code-HF-Source", current.getValue());
 
                     Prefs.putString("Value-Maghsad-City", value_Maghsad_City);
                     Prefs.putString("Value-Maghsad-Airport", value_Maghsad_Airport);
                     Prefs.putString("Value-Maghsad-Airport-Code", value_Maghsad_Airport_Code);
                     Prefs.putString("Value-Maghsad-Airport-Code2", value_Maghsad_Airport_Code2);
-
+                    //H+F
+                   /* Prefs.putString("Value-Hotel-City-Fa-HF-Source", value_Maghsad_City);
+                    Prefs.putString("Value-Hotel-City-En-HF-Source", value_Maghsad_Airport_Code);*/
+                    Prefs.putString("Value-Hotel-City-Code-HF-Raft", value_Maghsad_Airport_Code2);
 
 
                     activity.finish();
@@ -223,11 +230,19 @@ public class GetAirPortMabdaAdapter extends RecyclerView.Adapter<GetAirPortMabda
                 Prefs.putString("Value-Mabda-Airport", current.getTesxt());
                 Prefs.putString("Value-Mabda-Airport-Code", current.getShortDes());
                 Prefs.putString("Value-Mabda-Airport-Code2", current.getValue());
+               /* //H+F
+                Prefs.putString("Value-Hotel-City-Fa-HF-Raft", current.getTesxt()+" , "+current.getShortDes());
+                Prefs.putString("Value-Hotel-City-En-HF-Raft", current.getTesxt());*/
+                Prefs.putString("Value-Hotel-City-Code-HF-Source", current.getValue());
 
                 Prefs.putString("Value-Maghsad-City", value_Maghsad_City);
                 Prefs.putString("Value-Maghsad-Airport", value_Maghsad_Airport);
                 Prefs.putString("Value-Maghsad-Airport-Code", value_Maghsad_Airport_Code);
                 Prefs.putString("Value-Maghsad-Airport-Code2", value_Maghsad_Airport_Code2);
+             /*   //H+F
+                Prefs.putString("Value-Hotel-City-Fa-HF-Source", value_Maghsad_City);
+                Prefs.putString("Value-Hotel-City-En-HF-Source", value_Maghsad_Airport_Code);*/
+                Prefs.putString("Value-Hotel-City-Code-HF-Raft", value_Maghsad_Airport_Code2);
 
               /*  Prefs.putString("Value-Maghsad-Airport-Code2", value_Maghsad_Airport_Code);
                 Prefs.putString("Value-Maghsad-Airport-Code2", current.getShortDes());*/

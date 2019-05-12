@@ -178,12 +178,19 @@ public class GetAirPortMaghsadAdapter extends RecyclerView.Adapter<GetAirPortMag
 				Prefs.putString("Value-Maghsad-Airport",current.getTesxt());
 				Prefs.putString("Value-Maghsad-Airport-Code",current.getShortDes());
 				Prefs.putString("Value-Maghsad-Airport-Code2",current.getValue());
+				//H+F
+				/*Prefs.putString("Value-Hotel-City-Fa-HF-Source", current.getTesxt());
+				Prefs.putString("Value-Hotel-City-En-HF-Source", current.getShortDes());*/
+				Prefs.putString("Value-Hotel-City-Code-HF-Raft", current.getValue());
 
 				Prefs.putString("Value-Mabda-City",value_Mabda_City);
 				Prefs.putString("Value-Mabda-Airport",value_Mabda_Airport);
 				Prefs.putString("Value-Mabda-Airport-Code",value_Mabda_Airport_Code);
 				Prefs.putString("Value-Mabda-Airport-Code2",value_Mabda_Airport_Code2);
-
+				//H+F
+				/*Prefs.putString("Value-Hotel-City-Fa-HF-Raft", value_Mabda_City);
+				Prefs.putString("Value-Hotel-City-En-HF-Raft", value_Mabda_Airport_Code);//shortDes*/
+				Prefs.putString("Value-Hotel-City-Code-HF-Source",value_Mabda_Airport_Code2);//value
 
 				activity.finish();
 			}
@@ -211,11 +218,19 @@ public class GetAirPortMaghsadAdapter extends RecyclerView.Adapter<GetAirPortMag
 				Prefs.putString("Value-Maghsad-Airport",current.getTesxt());
 				Prefs.putString("Value-Maghsad-Airport-Code",current.getShortDes());
 				Prefs.putString("Value-Maghsad-Airport-Code2",current.getValue());
+				//H+F
+				/*Prefs.putString("Value-Hotel-City-Fa-HF-Source", current.getTesxt());
+				Prefs.putString("Value-Hotel-City-En-HF-Source", current.getShortDes());*/
+				Prefs.putString("Value-Hotel-City-Code-HF-Raft", current.getValue());
 
 				Prefs.putString("Value-Mabda-City",value_Mabda_City);
 				Prefs.putString("Value-Mabda-Airport",value_Mabda_Airport);
 				Prefs.putString("Value-Mabda-Airport-Code",value_Mabda_Airport_Code);
 				Prefs.putString("Value-Mabda-Airport-Code2",value_Mabda_Airport_Code2);
+				//H+F
+				/*Prefs.putString("Value-Hotel-City-Fa-HF-Raft", value_Mabda_City);
+				Prefs.putString("Value-Hotel-City-En-HF-Raft", value_Mabda_Airport_Code);//shortDes*/
+				Prefs.putString("Value-Hotel-City-Code-HF-Source",value_Mabda_Airport_Code2);//value
 
 				activity.finish();
 			}
