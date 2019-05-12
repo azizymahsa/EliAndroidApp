@@ -322,12 +322,12 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         //set value bundle
         //get
         if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 1) {
-            tvStart.setText(Prefs.getString("Value-Mabda-City", ""));
+            tvStart.setText(Prefs.getString("Value-Mabda-City", "")+" , "+Prefs.getString("Value-Mabda-Airport-Code",""));
             lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
         }
         if (Prefs.getString("Value-Maghsad-Airport", "") != null && Prefs.getString("Value-Maghsad-Airport", "").length() > 1) {
             lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
-            tvEnd.setText(Prefs.getString("Value-Maghsad-City", ""));
+            tvEnd.setText(Prefs.getString("Value-Maghsad-City", "")+" , "+Prefs.getString("Value-Maghsad-Airport-Code",""));
         }//return rootView;
         if (Prefs.getString("bargashtfa", "null").equals("null")) {
             tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
@@ -391,12 +391,14 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         Log.e("DEBUG", "onResume of PlanFragment");
         super.onResume();
         if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 1) {
-            tvStart.setText(Prefs.getString("Value-Mabda-City", ""));
+           // tvStart.setText(Prefs.getString("Value-Mabda-City", ""));
+            tvStart.setText(Prefs.getString("Value-Mabda-City", "")+" , "+Prefs.getString("Value-Mabda-Airport-Code",""));
             lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
         }
         if (Prefs.getString("Value-Maghsad-Airport", "") != null && Prefs.getString("Value-Maghsad-Airport", "").length() > 1) {
             lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
-            tvEnd.setText(Prefs.getString("Value-Maghsad-City", ""));
+          //  tvEnd.setText(Prefs.getString("Value-Maghsad-City", ""));
+            tvEnd.setText(Prefs.getString("Value-Maghsad-City", "")+" , "+Prefs.getString("Value-Maghsad-Airport-Code",""));
         }//return rootView;
     }
 
@@ -737,21 +739,21 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 boolean ok = true;
                 try {
                     Intent intent1 = new Intent(getActivity(), SearchFlightActivity.class);
-                    if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 0 && Prefs.getString("Value-Maghsad-Airport-Code", "") != null && Prefs.getString("Value-Maghsad-Airport-Code", "").length() > 0) {
+                    if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 0 && Prefs.getString("Value-Maghsad-Airport-Code2", "") != null && Prefs.getString("Value-Mabda-Airport-Code2", "").length() > 0) {
                         System.out.println("not default" + Prefs.getString("Value-Mabda-City", ""));
-                        if (Prefs.getString("Value-Mabda-Airport-Code", "") != null && Prefs.getString("Value-Mabda-Airport-Code", "").length() > 0) {
+                        if (Prefs.getString("Value-Mabda-Airport-Code", "") != null && Prefs.getString("Value-Mabda-Airport-Code2", "").length() > 0) {
                             intent1.putExtra("Value-Mabda-City", Prefs.getString("Value-Mabda-City", ""));
                             intent1.putExtra("Value-Mabda-Airport", Prefs.getString("Value-Mabda-Airport", ""));
-                            intent1.putExtra("Value-Mabda-Airport-Code", Prefs.getString("Value-Mabda-Airport-Code", ""));//*THR
+                            intent1.putExtra("Value-Mabda-Airport-Code", Prefs.getString("Value-Mabda-Airport-Code2", ""));//*THR
                         } else {
                             intent1.putExtra("Value-Mabda-City", tvStart.getText().toString());
                             intent1.putExtra("Value-Mabda-Airport", lbl_forudgah_mabda.getText().toString());
                             intent1.putExtra("Value-Mabda-Airport-Code", "THR");//*THR
                         }
-                        if (Prefs.getString("Value-Maghsad-Airport-Code", "") != null && Prefs.getString("Value-Maghsad-Airport-Code", "").length() > 0) {
+                        if (Prefs.getString("Value-Maghsad-Airport-Code", "") != null && Prefs.getString("Value-Maghsad-Airport-Code2", "").length() > 0) {
                             intent1.putExtra("Value-Maghsad-City", Prefs.getString("Value-Maghsad-City", ""));
                             intent1.putExtra("Value-Maghsad-Airport", Prefs.getString("Value-Maghsad-Airport", ""));
-                            intent1.putExtra("Value-Maghsad-Airport-Code", Prefs.getString("Value-Maghsad-Airport-Code", ""));//*
+                            intent1.putExtra("Value-Maghsad-Airport-Code", Prefs.getString("Value-Maghsad-Airport-Code2", ""));//*
                         } else {
                             intent1.putExtra("Value-Maghsad-City", tvEnd.getText().toString());
                             intent1.putExtra("Value-Maghsad-Airport", lbl_forudgah_maghsad.getText().toString());

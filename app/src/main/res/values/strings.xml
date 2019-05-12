@@ -2270,6 +2270,7 @@
     <string name="iran_sans_bold.ttf">fonts/times.ttf</string>
     <string name="iran_sans_normal.ttf">fonts/times.ttf</string>
     <string name="irsans.ttf">fonts/times.ttf</string>
+    <string name="icomoon.ttf">fonts/icomoon.ttf</string>
     <string name="mitra.ttf">fonts/times.ttf</string>
     <string name="select">choose</string>
     <string name="my_profile">My Profile</string>
@@ -2502,5 +2503,8 @@ eyJzY29wZSI6WyJBTEwiXSwicGxhdGZvcm0iOlsiaU9TIiwiQW5kcm9pZCIsIldpbmRvd3MiXSwidmFs
     <string name="_enter_activation_code">Enter activation code</string>
     <string name="_password_incorrect">The password is incorrect</string>
     <string name="_please_enter_number">Please enter the number</string>
+    <string name="_HIcon">=</string>
+    <string name="_flight_poor"><![CDATA[&#47;]]></string>
+    <string name="_Popular">Popular</string>
 </resources>
 

@@ -1,85 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
-    android:orientation="vertical"
-    android:padding="10dp" 
-    android:background="#ffffff"
-    android:id="@+id/llLayout"
-    android:gravity="center">
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_below="@+id/cv1"
+    android:layout_gravity="center"
+    android:layout_marginBottom="10dp"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
+    android:visibility="visible"
+    card_view:cardBackgroundColor="#ffffff"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardElevation="1dp"
+
+    >
+
+
+    <LinearLayout
+       android:id="@+id/lnrAll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
   <LinearLayout
-      android:id="@+id/llContentLayout"
+      android:id="@+id/linear_all"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:layout_marginBottom="1dp"
+      android:layout_marginLeft="1dp"
+      android:layout_marginTop="4dp"
+      android:layout_weight="0.02"
       android:orientation="vertical">
+
+
     <LinearLayout
+        android:id="@+id/fronttop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="right">
-      <TextView
-          android:id="@+id/text1"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:minHeight="40dp"
+        android:orientation="horizontal">
+
+
+      <LinearLayout
           android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="20"
+          android:gravity="center"
+          android:orientation="vertical">
+      <!--top-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5_flight_dp"
+            android:layout_marginRight="3dp">
+
+
+          <LinearLayout
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1.5"
+              android:gravity="left">
+
+            <TextView
+                android:id="@+id/txtTag"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5_flight_dp"
+                android:padding="@dimen/_1dp_flight"
+                android:gravity="center"
+                android:text="@string/_Popular"
+
+                android:textColor="@color/train_gray"
+                android:background="@drawable/background_strock_white"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize"
+                android:visibility="invisible" />
+
+
+          </LinearLayout>
+
+          <!--<TextView
+
+              android:id="@+id/txtShortDes"
+              android:layout_width="0dp"
+              android:layout_height="match_parent"
+              android:layout_gravity="center|center_vertical"
+              android:layout_weight="1"
+              android:gravity="center"
+              android:layout_marginLeft="@dimen/_10dpTabletSize"
+              android:text="1h 55 m"
+              android:textColor="@color/train_gray"
+              android:textAppearance="@style/IrsansBold"
+              android:visibility="invisible"
+              android:textSize="@dimen/_14dp_txtSize" />-->
+
+          <LinearLayout
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_alignParentBottom="true"
+              android:layout_alignParentEnd="true"
+              android:layout_alignParentRight="true"
+              android:layout_gravity="right|center_vertical"
+              android:layout_weight="4"
+              android:gravity="right">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="right|center_vertical"
+                android:gravity="right"
+                android:text="dsdsf"
+                android:textColor="#000000"
+                android:maxLines="1"
+                android:textAppearance="@style/IrsansBold"
+                android:textSize="@dimen/_14dp_txtSize" />
+
+
+          </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+      <!--bottom-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:layout_margin="@dimen/_5_flight_dp">
+
+
+
+
+
+          <LinearLayout
+              android:layout_width="@dimen/_10dp"
+              android:layout_height="wrap_content"
+              android:layout_alignParentEnd="true"
+              android:layout_alignParentRight="true"
+              android:layout_alignParentBottom="true"
+              android:layout_gravity="right|center_vertical"
+              android:layout_weight="2"
+              android:gravity="right">
+            <TextView
+
+                android:id="@+id/txtLongdes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center|center_vertical"
+                android:layout_weight="1.75"
+                android:gravity="right"
+                android:text="fish name"
+                android:textColor="@color/train_gray"
+                android:textSize="@dimen/_14dp_txtSize"
+                android:visibility="gone" />
+            <TextView
+                android:id="@+id/txtIcon"
+                android:layout_width="0dp"
+                android:layout_weight="0.2"
+                android:layout_height="match_parent"
+                android:gravity="right|center"
+                android:text="&#46;"
+                android:textAppearance="@style/IconMenuFantastic"
+                android:textColor="@color/train_gray"
+                android:textSize="20dp"
+                android:visibility="gone"/>
+
+
+          </LinearLayout>
+
+        </LinearLayout>
+
+      </LinearLayout>
+
+      <RelativeLayout
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_marginLeft="1dp"
+          android:layout_marginRight="1dp"
           android:layout_weight="5"
-          android:layout_height="match_parent"
-          android:text="fish name"
-          android:gravity="right"
-          android:textColor="#000000"
-          android:textAppearance="@style/IrsansBold"
-          android:textSize="@dimen/_14dp_txtSize"/>
-      <TextView
-          android:layout_width="0dp"
-          android:layout_weight="0.5"
-          android:layout_height="match_parent"
-          android:gravity="right"
-          android:text="@string/icon_location2"
-          android:textAppearance="@style/IconFonts"
-          android:textColor="@color/app_base_color"
-          android:textSize="@dimen/icon_size_25dp" />
 
+          >
 
+        <TextView
+            android:id="@+id/txtIconBaseFantastic"
+            android:layout_width="@dimen/_40dp_f"
+            android:layout_height="@dimen/_40dp_f"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textAppearance="@style/IconMenuFantastic"
+            android:textColor="@color/train_gray"
+            android:textSize="@dimen/_30dp_flight" />
+        <TextView
+            android:id="@+id/txtIconBaseLocation"
+            android:layout_width="@dimen/_40dp_f"
+            android:layout_height="@dimen/_40dp_f"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/icon_location2"
+            android:textAppearance="@style/IconFonts"
+            android:textColor="@color/train_gray"
+            android:textSize="@dimen/_30dp_flight"
+            android:visibility="gone"
+            />
 
+        <!--</RelativeLayout>-->
+      </RelativeLayout>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/llLayoutSubTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="right">
-      <TextView
-          android:id="@+id/text2"
-          android:layout_width="0dp"
-          android:layout_weight="5"
-          android:gravity="right"
-          android:layout_height="match_parent"
-          android:text="fish name"
-          android:textColor="#000000"
-          android:textSize="@dimen/_14dp_txtSize"/>
-      <TextView
-          android:id="@+id/txtIcon"
-          android:layout_width="0dp"
-          android:layout_weight="0.5"
-          android:layout_height="match_parent"
-          android:gravity="right"
-          android:text="@string/icon_location2"
-          android:textAppearance="@style/IconFonts"
-          android:textColor="@color/app_base_color"
-          android:textSize="20dp"
-          android:visibility="invisible"
-          />
+    <!-- ////////////////////////////front bottom///////////////////////////////////// -->
 
-
-
-    </LinearLayout>
 
   </LinearLayout>
-
-
-
-
-
-
-
-</LinearLayout>
+    </LinearLayout>
+  </android.support.v7.widget.CardView>

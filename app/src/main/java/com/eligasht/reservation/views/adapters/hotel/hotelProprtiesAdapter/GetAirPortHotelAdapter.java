@@ -123,7 +123,7 @@ public class GetAirPortHotelAdapter extends BaseAdapter {
 			holder.AirportName = convertView.findViewById(R.id.text1);
 			holder.CityName = convertView.findViewById(R.id.text2);
 			holder.llContentLayout = convertView.findViewById(R.id.llContentLayout);
-			holder.llLayoutSubTitle = convertView.findViewById(R.id.llLayoutSubTitle);
+			holder.llLayoutSubTitle = convertView.findViewById(R.id.llContentLayout);//avazesh kardam
 
 			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
 			convertView.setTag(holder);

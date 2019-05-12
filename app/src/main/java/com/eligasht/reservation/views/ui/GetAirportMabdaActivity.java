@@ -14,6 +14,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 
@@ -23,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.eligasht.reservation.models.Airport;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.service.generator.SingletonService;
 import com.eligasht.service.listener.OnServiceStatus;
@@ -56,7 +60,7 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
     Handler handler;
     ProgressDialog progressBar;
     private Handler progressBarHandler = new Handler();
-    public ListView list_airport;
+    public RecyclerView listAirPort;
     ArrayList<HashMap<String, String>> mylist = null;
     public static String searchText = "";
     GetAirPortMabdaAdapter mAdapter;
@@ -86,36 +90,59 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
         btnMic.setText(getString(R.string.icon_mic));
         btnBack.setOnClickListener(this);
         btnMic.setOnClickListener(this);
+        if(getString(R.string.culture).contains("fa")){
+            sendRequest("+++");
+        }else{
+            sendRequest("***");
+        }
         //////////////////show recent
-        ListView listAirPort = findViewById(R.id.listAirPort);
-        List<Country> data = new ArrayList<>();
+         listAirPort = findViewById(R.id.listAirPort);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        listAirPort.setLayoutManager(mLayoutManager);
+        listAirPort.setItemAnimator(new DefaultItemAnimator());
+
+        List<Airport> data = new ArrayList<>();
         RecentCity_Table recentCity_table = new RecentCity_Table(this);
         CursorManager cursorManager = recentCity_table.getAll(1);//mabda
         if (cursorManager != null) {
             for (int i = 0; i < cursorManager.getCount(); i++) {
                 cursorManager.moveToPosition(i);
-                Country fishData = new Country();
-                fishData.setCityName(cursorManager.getString(RecentCity_Table.Columns.CityName.value()));
+                Airport airport = new Airport();
+                /*fishData.setCityName(cursorManager.getString(RecentCity_Table.Columns.CityName.value()));
                 fishData.setAirportName(cursorManager.getString(RecentCity_Table.Columns.AirPortName.value()));
                 fishData.setAirportCode(cursorManager.getString(RecentCity_Table.Columns.AirPortCode.value()));
                 fishData.setAirportID(cursorManager.getString(RecentCity_Table.Columns.AirPortCode.value()));
-                fishData.setParentId(cursorManager.getString(RecentCity_Table.Columns.CityName.value()));
+                fishData.setParentId(cursorManager.getString(RecentCity_Table.Columns.CityName.value()));*/
 
-                data.add(fishData);
+                airport.setTextFa(cursorManager.getString(RecentCity_Table.Columns.TextFa.value()));
+                airport.setTesxt(cursorManager.getString(RecentCity_Table.Columns.Tesxt.value()));
+                airport.setShortDes(cursorManager.getString(RecentCity_Table.Columns.ShortDes.value()));
+                airport.setTag(cursorManager.getString(RecentCity_Table.Columns.Tag.value()));
+                airport.setLongDes(cursorManager.getString(RecentCity_Table.Columns.LongDes.value()));
+               airport.setIcon(cursorManager.getString(RecentCity_Table.Columns.Icon.value()));
+               airport.setValue(cursorManager.getString(RecentCity_Table.Columns.AirPortCode.value()));
+               if(cursorManager.getInt(RecentCity_Table.Columns.IsSelectable.value())==1)
+                    airport.setSelectable(true);
+               else
+                   airport.setSelectable(false);
+
+                data.add(airport);
             }
         }
         String Value_Maghsad_City = "";
         String Value_Maghsad_Airport = "";
         String Value_Maghsad_Airport_Code = "";
+        String Value_Maghsad_Airport_Code2 = "";
         ////
         if (Prefs.getString("Value-Maghsad-City", "") != null) {
             Value_Maghsad_City = Prefs.getString("Value-Maghsad-City", "");
             Value_Maghsad_Airport = Prefs.getString("Value-Maghsad-Airport", "");
             Value_Maghsad_Airport_Code = Prefs.getString("Value-Maghsad-Airport-Code", "");
+            Value_Maghsad_Airport_Code2 = Prefs.getString("Value-Maghsad-Airport-Code2", "");
         }
         ////
         listAirPort = findViewById(R.id.listAirPort);
-        mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportMabdaActivity.this);
+        mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code,Value_Maghsad_Airport_Code2, GetAirportMabdaActivity.this);
 
         mAdapter.setData(data);
         listAirPort.setAdapter(mAdapter);
@@ -130,16 +157,25 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                 RecentCity_Table db = new RecentCity_Table(this);
                 db.dropTable();
                 db.openDB();
+               // (String Tesxt, String TextFa, String ShortDes,String LongDes, String Tag, String Icon, String IconDown,int IsSelectable,int flag)
                 if (cursorType1 != null)
                     for (int e = cursorType1.getCount() - 1; e >= 0; e--) {
                         cursorType1.moveToPosition(e);
-                        db.insertData(cursorType1.getString(RecentCity_Table.Columns.AirPortName.value()), cursorType1.getString(RecentCity_Table.Columns.CityName.value()), cursorType1.getString(RecentCity_Table.Columns.AirPortCode.value()), 1);//mabda
+                        //db.insertData(cursorType1.getString(RecentCity_Table.Columns.AirPortName.value()), cursorType1.getString(RecentCity_Table.Columns.CityName.value()), cursorType1.getString(RecentCity_Table.Columns.AirPortCode.value()), 1);//mabda
+                        db.insertData(cursorType1.getString(RecentCity_Table.Columns.Tesxt.value()), cursorType1.getString(RecentCity_Table.Columns.TextFa.value()), cursorType1.getString(RecentCity_Table.Columns.ShortDes.value())
+                                , cursorType1.getString(RecentCity_Table.Columns.LongDes.value()), cursorType1.getString(RecentCity_Table.Columns.Tag.value()), cursorType1.getString(RecentCity_Table.Columns.Icon.value())
+                                , cursorType1.getString(RecentCity_Table.Columns.IconDown.value()), cursorType1.getInt(RecentCity_Table.Columns.IsSelectable.value())
+                                , cursorType1.getString(RecentCity_Table.Columns.AirPortCode.value()),1);//mabda
                     }
                 if (cursorType2 != null)
                     for (int t = cursorType2.getCount() - 1; t >= 0; t--) {
                         cursorType2.moveToPosition(t);
-                        db.insertData(cursorType2.getString(RecentCity_Table.Columns.AirPortName.value()), cursorType2.getString(RecentCity_Table.Columns.CityName.value()), cursorType2.getString(RecentCity_Table.Columns.AirPortCode.value()), 2);//maghsad
-                    }
+                       // db.insertData(cursorType2.getString(RecentCity_Table.Columns.AirPortName.value()), cursorType2.getString(RecentCity_Table.Columns.CityName.value()), cursorType2.getString(RecentCity_Table.Columns.AirPortCode.value()), 2);//maghsad
+                        db.insertData(cursorType1.getString(RecentCity_Table.Columns.Tesxt.value()), cursorType1.getString(RecentCity_Table.Columns.TextFa.value()), cursorType1.getString(RecentCity_Table.Columns.ShortDes.value())
+                                , cursorType1.getString(RecentCity_Table.Columns.LongDes.value()), cursorType1.getString(RecentCity_Table.Columns.Tag.value()), cursorType1.getString(RecentCity_Table.Columns.Icon.value())
+                                , cursorType1.getString(RecentCity_Table.Columns.IconDown.value()), cursorType1.getInt(RecentCity_Table.Columns.IsSelectable.value())
+                                , cursorType1.getString(RecentCity_Table.Columns.AirPortCode.value()),2);//maghsad
+                }
                 db.closeDB();
 
             }
@@ -180,10 +216,15 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
                                                     sendRequest(GetAirportMabdaActivity.searchText);
 
                                                 } else {
+                                                    if(getString(R.string.culture).contains("fa")){
+                                                    sendRequest("+++");
+                                                    }else{
+                                                     sendRequest("***");
+                                                    }
                                                     if (d.length() < 0 || d.length() == 0) {
                                                         ////
-                                                        ListView listAirPort = findViewById(R.id.listAirPort);
-                                                        List<Country> data = null;
+                                                         listAirPort = findViewById(R.id.listAirPort);
+                                                        List<Airport> data = null;
                                                         mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, GetAirportMabdaActivity.this);
 
                                                         mAdapter.setData(data);
@@ -231,34 +272,43 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
 
         Type listType = new TypeToken<List<ResponseAirport>>(){}.getType();
         List<ResponseAirport> responsAirports = gson.fromJson(responsAirport, listType);*/
-        List<Country> data = new ArrayList<Country>();
+        List<Airport> data = new ArrayList<Airport>();
         if (responsAirports !=null){
             for (int i = 0; i < responsAirports.size(); i++) {
-                Country fishData = new Country();
-                fishData.setCityName(responsAirports.get(i).getTextFa());
-                fishData.setAirportName(responsAirports.get(i).getText());//.getAirports().get(i).getAirportName());
-                fishData.setAirportCode(responsAirports.get(i).getValue()); //.get(i).getAirportCode());
+                Airport airport = new Airport();
+                airport.setTextFa(responsAirports.get(i).getTextFa());
+                airport.setTesxt(responsAirports.get(i).getText());//.getAirports().get(i).getAirportName());
+                airport.setShortDes(responsAirports.get(i).getShortDescription()); //.get(i).getAirportCode());
+                airport.setTag(responsAirports.get(i).getTag()); //.get(i).getAirportCode());
+                airport.setLongDes(responsAirports.get(i).getLongDescription()); //.get(i).getAirportCode());
+                airport.setIcon(responsAirports.get(i).getIcon()); //.get(i).getAirportCode());
+                airport.setSelectable(responsAirports.get(i).getIsSelectable()); //.get(i).getAirportCode());
+                airport.setValue(responsAirports.get(i).getValue()); //.get(i).getAirportCode());
+
               //  fishData.setAirportID(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getAirportID());
                // fishData.setParentId(responsAirports.getGetAirportWithParentsWithCultureResult().getAirports().get(i).getParentId());
 
-                data.add(fishData);
+                data.add(airport);
             }
         }
         String Value_Maghsad_City = "";
         String Value_Maghsad_Airport = "";
         String Value_Maghsad_Airport_Code = "";
+        String Value_Maghsad_Airport_Code2 = "";
 
         if (Prefs.getString("Value-Maghsad-City", "") != null) {
             Value_Maghsad_City = Prefs.getString("Value-Maghsad-City", "");
             Value_Maghsad_Airport = Prefs.getString("Value-Maghsad-Airport", "");
             Value_Maghsad_Airport_Code = Prefs.getString("Value-Maghsad-Airport-Code", "");
+            Value_Maghsad_Airport_Code2 = Prefs.getString("Value-Maghsad-Airport-Code2", "");
         }
 
-        ListView listAirPort = findViewById(R.id.listAirPort);
-        mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport, Value_Maghsad_Airport_Code, GetAirportMabdaActivity.this);
+         listAirPort = findViewById(R.id.listAirPort);
+        mAdapter = new GetAirPortMabdaAdapter(GetAirportMabdaActivity.this, data, Value_Maghsad_City, Value_Maghsad_Airport,Value_Maghsad_Airport_Code, Value_Maghsad_Airport_Code2, GetAirportMabdaActivity.this);
 
         mAdapter.setData(data);
         listAirPort.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
       /*  String GetError = "";
         List<Country> data = new ArrayList<Country>();
         ListView listAirPort;

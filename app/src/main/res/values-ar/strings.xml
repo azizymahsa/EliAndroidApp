@@ -2448,5 +2448,8 @@
     <string name="_enter_activation_code">Enter activation code</string>
     <string name="_password_incorrect">The password is incorrect</string>
     <string name="_please_enter_number">Please enter the number</string>
+    <string name="_HIcon">=</string>
+    <string name="_flight_poor"><![CDATA[&#47;]]></string>
+    <string name="_Popular">Popular</string>
 
 </resources>

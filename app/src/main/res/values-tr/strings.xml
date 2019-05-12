@@ -2467,5 +2467,8 @@
     <string name="_enter_activation_code">Aktivasyon kodunu girin</string>
     <string name="_password_incorrect">Şifre yanlış</string>
     <string name="_please_enter_number">Lütfen numarayı giriniz</string>
+    <string name="_HIcon">=</string>
+    <string name="_flight_poor"><![CDATA[&#47;]]></string>
+    <string name="_Popular">teklif</string>
 </resources>
 

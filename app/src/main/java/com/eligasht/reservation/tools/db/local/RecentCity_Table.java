@@ -16,9 +16,16 @@ public class RecentCity_Table extends MainLocalDB {
 	public enum Columns {
 
 		Id(integer), AirPortName(text), CityName(text)
-		,AirPortCode(text),flag(integer);
-
-		public static boolean firstIsPrimery = true;
+		,AirPortCode(text),flag(integer)
+		  ,Tesxt(text)
+		,  TextFa(text)
+		 , ShortDes(text)
+		 , LongDes(text)
+		 , Tag(text)
+		 , Icon(text)
+		 , IconDown(text)
+		 , IsSelectable(integer);
+		 static boolean firstIsPrimery = true;
 		private String parameterValue;
 
 		Columns(String value) {
@@ -56,6 +63,26 @@ public class RecentCity_Table extends MainLocalDB {
 		cv.put(Columns.AirPortCode.value(), AirPortCode);
 		cv.put(Columns.flag.value(), flag);
 
+
+
+		openDB();
+		return (int) db.insert(TABLE_NAME, null, cv);
+	}
+	public int insertData(String Tesxt, String TextFa, String ShortDes,String LongDes, String Tag, String Icon, String IconDown,int IsSelectable,String AirPortCode,int flag) {
+		ContentValues cv = new ContentValues();
+
+		cv.put(Columns.Tesxt.value(), Tesxt);
+		cv.put(Columns.TextFa.value(), TextFa);
+		cv.put(Columns.ShortDes.value(), ShortDes);
+
+		cv.put(Columns.LongDes.value(), LongDes);
+		cv.put(Columns.Tag.value(), Tag);
+		cv.put(Columns.Icon.value(), Icon);
+		cv.put(Columns.IconDown.value(), IconDown);
+		cv.put(Columns.IsSelectable.value(), IsSelectable);
+		cv.put(Columns.flag.value(), flag);
+		cv.put(Columns.AirPortCode.value(), AirPortCode);
+
 		openDB();
 		return (int) db.insert(TABLE_NAME, null, cv);
 	}
@@ -71,9 +98,18 @@ public class RecentCity_Table extends MainLocalDB {
 		DELETE_FROM_DB(TABLE_NAME,String.format("%s='%s'", Columns.Id, uuID+""));
 	}
 	/*****************************************************************************************/
-	public CursorManager getAll(int typeFlag) {
+	/*public CursorManager getAll(int typeFlag) {
 		//return SELECT_FROM_DB("*", TABLE_NAME,Columns.flag + "=" + typeFlag, Columns.Id+"  desc", 0, 0);
 		String query = String.format("SELECT  DISTINCT  "+Columns.AirPortCode+","+Columns.AirPortName+","+Columns.CityName +" FROM %s WHERE %s=%s  order by %s desc  LIMIT 5",TABLE_NAME, Columns.flag,typeFlag,Columns.Id);
+		//String query = String.format("SELECT  TOP 3 * FROM %s WHERE %s=%s  order by %s desc ",TABLE_NAME, Columns.flag,typeFlag,Columns.Id);
+
+		System.out.println("guery:"+query);
+		return QUERY(query);
+	}*/
+	/*****************************************************************************************/
+	public CursorManager getAll(int typeFlag) {
+		//return SELECT_FROM_DB("*", TABLE_NAME,Columns.flag + "=" + typeFlag, Columns.Id+"  desc", 0, 0);
+		String query = String.format("SELECT  DISTINCT  "+Columns.ShortDes+","+Columns.Tesxt+","+Columns.LongDes+","+Columns.IsSelectable+","+Columns.Icon+","+Columns.Tag+","+Columns.AirPortCode +" FROM %s WHERE %s=%s  order by %s desc  LIMIT 5",TABLE_NAME, Columns.flag,typeFlag,Columns.Id);
 		//String query = String.format("SELECT  TOP 3 * FROM %s WHERE %s=%s  order by %s desc ",TABLE_NAME, Columns.flag,typeFlag,Columns.Id);
 
 		System.out.println("guery:"+query);

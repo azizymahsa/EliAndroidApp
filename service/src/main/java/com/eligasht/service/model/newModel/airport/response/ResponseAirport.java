@@ -18,68 +18,18 @@ public class ResponseAirport {
     @SerializedName("Text")
     @Expose
     private String text;
-
-    public String getiD() {
-        return iD;
-    }
-
-    public void setiD(String iD) {
-        this.iD = iD;
-    }
-
-    public String geteValue() {
-        return eValue;
-    }
-
-    public void seteValue(String eValue) {
-        this.eValue = eValue;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public String getpItem() {
-        return pItem;
-    }
-
-    public void setpItem(String pItem) {
-        this.pItem = pItem;
-    }
-
-    public Boolean getPersian() {
-        return isPersian;
-    }
-
-    public void setPersian(Boolean persian) {
-        isPersian = persian;
-    }
-
-    public Boolean getPopular() {
-        return isPopular;
-    }
-
-    public void setPopular(Boolean popular) {
-        isPopular = popular;
-    }
-
     @SerializedName("TextFa")
     @Expose
-
     private String textFa;
-    @SerializedName("EValue")
-    @Expose
-    private String eValue;
     @SerializedName("Value")
     @Expose
     private String value;
+    @SerializedName("EValue")
+    @Expose
+    private String eValue;
     @SerializedName("PItem")
     @Expose
-    private String pItem;
+    private Object pItem;
     @SerializedName("CityCode")
     @Expose
     private String cityCode;
@@ -88,13 +38,25 @@ public class ResponseAirport {
     private Object additionalCode;
     @SerializedName("ParentCode")
     @Expose
-    private String parentCode;
+    private Object parentCode;
     @SerializedName("IsPersian")
     @Expose
     private Boolean isPersian;
     @SerializedName("IsPopular")
     @Expose
     private Boolean isPopular;
+    @SerializedName("IsSelectable")
+    @Expose
+    private Boolean isSelectable;
+    @SerializedName("ShortDescription")
+    @Expose
+    private String shortDescription;
+    @SerializedName("LongDescription")
+    @Expose
+    private String longDescription;
+    @SerializedName("Tag")
+    @Expose
+    private String tag;
 
     public String getID() {
         return iD;
@@ -144,6 +106,14 @@ public class ResponseAirport {
         this.textFa = textFa;
     }
 
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
     public String getEValue() {
         return eValue;
     }
@@ -152,11 +122,11 @@ public class ResponseAirport {
         this.eValue = eValue;
     }
 
-    public String getPItem() {
+    public Object getPItem() {
         return pItem;
     }
 
-    public void setPItem(String pItem) {
+    public void setPItem(Object pItem) {
         this.pItem = pItem;
     }
 
@@ -176,11 +146,11 @@ public class ResponseAirport {
         this.additionalCode = additionalCode;
     }
 
-    public String getParentCode() {
+    public Object getParentCode() {
         return parentCode;
     }
 
-    public void setParentCode(String parentCode) {
+    public void setParentCode(Object parentCode) {
         this.parentCode = parentCode;
     }
 
@@ -200,4 +170,36 @@ public class ResponseAirport {
         this.isPopular = isPopular;
     }
 
+    public Boolean getIsSelectable() {
+        return isSelectable;
     }
+
+    public void setIsSelectable(Boolean isSelectable) {
+        this.isSelectable = isSelectable;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getLongDescription() {
+        return longDescription;
+    }
+
+    public void setLongDescription(String longDescription) {
+        this.longDescription = longDescription;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+}

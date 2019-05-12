@@ -2446,4 +2446,7 @@
     <string name="_enter_activation_code">کد فعال سازی را وارد نمایید</string>
     <string name="_password_incorrect">رمز عبور اشتباه است</string>
     <string name="_please_enter_number">لطفا تعداد را وارد کنید</string>
+    <string name="_HIcon">=</string>
+    <string name="_flight_poor"><![CDATA[&#47;]]></string>
+    <string name="_Popular">پرطرفدار</string>
 </resources>
