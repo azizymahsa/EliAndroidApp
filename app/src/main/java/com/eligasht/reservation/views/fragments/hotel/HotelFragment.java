@@ -184,8 +184,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
         }
 
         if (!Prefs.getString("Value-Hotel-City-Fa", "").equals("")) {
-            txtCity.setText(Prefs.getString("Value-Hotel-City-Fa", ""));
-            lbl_city_english.setText(Prefs.getString("Value-Hotel-City-En", ""));
+            txtCity.setText(Prefs.getString("Value-Hotel-City-En", ""));
+           // lbl_city_english.setText(Prefs.getString("Value-Hotel-City-En", ""));
+            lbl_city_english.setText(Prefs.getString("Value-Hotel-Country-Code", ""));
 
         }
     }

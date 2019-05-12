@@ -2451,5 +2451,6 @@
     <string name="_HIcon">=</string>
     <string name="_flight_poor"><![CDATA[&#47;]]></string>
     <string name="_Popular">Popular</string>
+    <string name="_popular">Popular</string>
 
 </resources>

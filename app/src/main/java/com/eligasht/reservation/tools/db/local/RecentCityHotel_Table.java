@@ -15,8 +15,15 @@ public class RecentCityHotel_Table extends MainLocalDB {
 	public enum Columns {
 
 		Id(integer), CityNameFa(text), CityNameEn(text)
-		,CityCode(text);
-
+		,CityCode(text)
+ ,Tesxt(text)
+		,  TextFa(text)
+		 , ShortDes(text)
+		 , LongDes(text)
+		 , Tag(text)
+		 , Icon(text)
+		 , IconDown(text)
+		 , IsSelectable(integer);
 		public static boolean firstIsPrimery = true;
 		private String parameterValue;
 
@@ -47,7 +54,7 @@ public class RecentCityHotel_Table extends MainLocalDB {
 		return SELECT_FROM_DB("*", TABLE_NAME, "*", "", 0, 0);
 	}
 	/*****************************************************************************************/
-	public int insertData(String CityNameFa, String CityNameEn, String CityCode) {
+	/*public int insertData(String CityNameFa, String CityNameEn, String CityCode) {
 		ContentValues cv = new ContentValues();
 
 		cv.put(Columns.CityNameFa.value(), CityNameFa);
@@ -60,18 +67,42 @@ public class RecentCityHotel_Table extends MainLocalDB {
 		
 		openDB();
 		return (int) db.insert(TABLE_NAME, null, cv);
-	}
+	}*/
+	public int insertData(String Tesxt, String TextFa, String ShortDes,String LongDes, String Tag, String Icon, String IconDown,int IsSelectable,String CityCode) {
+		ContentValues cv = new ContentValues();
 
+		cv.put(Columns.Tesxt.value(), Tesxt);
+		cv.put(Columns.TextFa.value(), TextFa);
+		cv.put(Columns.ShortDes.value(), ShortDes);
+
+		cv.put(Columns.LongDes.value(), LongDes);
+		cv.put(Columns.Tag.value(), Tag);
+		cv.put(Columns.Icon.value(), Icon);
+		cv.put(Columns.IconDown.value(), IconDown);
+		cv.put(Columns.IsSelectable.value(), IsSelectable);
+
+		cv.put(Columns.CityCode.value(), CityCode);
+
+		openDB();
+		return (int) db.insert(TABLE_NAME, null, cv);
+	}
 	/*****************************************************************************************/
-	public CursorManager getAll() {
+	/*public CursorManager getAll() {
 		//return SELECT_FROM_DB("*", TABLE_NAME,Columns.flag + "=" + typeFlag, Columns.Id+"  desc", 0, 0);
 		String query = String.format("SELECT  DISTINCT  "+ Columns.CityCode+","+ Columns.CityNameFa+","+ Columns.CityNameEn +" FROM %s   order by %s desc  LIMIT 5",TABLE_NAME, Columns.Id);
 		//String query = String.format("SELECT  TOP 3 * FROM %s WHERE %s=%s  order by %s desc ",TABLE_NAME, Columns.flag,typeFlag,Columns.Id);
 
 		System.out.println("guery:"+query);
 		return QUERY(query);
-	}
+	}*/
+	public CursorManager getAll() {
+		//return SELECT_FROM_DB("*", TABLE_NAME,Columns.flag + "=" + typeFlag, Columns.Id+"  desc", 0, 0);
+		String query = String.format("SELECT  DISTINCT  "+Columns.ShortDes+","+Columns.Tesxt+","+Columns.LongDes+","+Columns.IsSelectable+","+Columns.Icon+","+Columns.Tag +","+Columns.CityCode +" FROM %s   order by %s desc  LIMIT 5",TABLE_NAME, Columns.Id);
+		//String query = String.format("SELECT  TOP 3 * FROM %s WHERE %s=%s  order by %s desc ",TABLE_NAME, Columns.flag,typeFlag,Columns.Id);
 
+		System.out.println("guery:"+query);
+		return QUERY(query);
+	}
 	@Override
 	public void create() {
 		String params = "";

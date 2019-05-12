@@ -11,7 +11,7 @@ import com.eligasht.reservation.tools.db.local.PassengerPartnerInfo_Table;
 
 public abstract class MainLocalDB extends SQLiteOpenHelper {
 	protected SQLiteDatabase db;
-	private final static int DATABASE_VERSION = 5;
+	private final static int DATABASE_VERSION = 6;
 	protected static String text = "TEXT";
 	protected static String integer = "INTEGER";
 	protected static String longType = "LONG";

@@ -9,7 +9,25 @@ public class Airport {
     private String Tag;
     private String Icon;
     private String IconDown;
+    private String CityCode;//for hotel
     private boolean IsSelectable;
+    private boolean IsPopular;
+
+    public boolean isPopular() {
+        return IsPopular;
+    }
+
+    public void setPopular(boolean popular) {
+        IsPopular = popular;
+    }
+
+    public String getCityCode() {
+        return CityCode;
+    }
+
+    public void setCityCode(String cityCode) {
+        CityCode = cityCode;
+    }
 
     public String getValue() {
         return Value;

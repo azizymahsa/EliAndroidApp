@@ -7,6 +7,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -19,9 +22,11 @@ import android.widget.Toast;
 
 import com.eligasht.R;
 import com.eligasht.reservation.base.BaseActivity;
+import com.eligasht.reservation.models.Airport;
 import com.eligasht.reservation.models.model.HotelCity;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.tools.db.local.RecentCityHotel_Table;
+import com.eligasht.reservation.tools.db.local.RecentCity_Table;
 import com.eligasht.reservation.tools.db.main.CursorManager;
 import com.eligasht.reservation.views.adapters.GetHotelCityAdapter;
 import com.eligasht.reservation.views.components.Header;
@@ -79,7 +84,7 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
     private EditText searchtxt;
     AVLoadingIndicatorView avLoadingIndicatorView;
     private final int REQ_CODE_SPEECH_INPUT = 100;
-    ListView listAirPort;
+    RecyclerView listAirPort;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,21 +107,37 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
         btnBack.setOnClickListener(this);
         btnMic.setOnClickListener(this);
 
+
         //////////////////show recent
-        ListView listAirPort = findViewById(R.id.listCityHotel);
-        List<HotelCity> data = new ArrayList<>();
+         listAirPort = findViewById(R.id.listCityHotel);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        listAirPort.setLayoutManager(mLayoutManager);
+        listAirPort.setItemAnimator(new DefaultItemAnimator());
+
+        List<Airport> data = new ArrayList<>();
         RecentCityHotel_Table recentCity_table = new RecentCityHotel_Table(this);
         CursorManager cursorManager = recentCity_table.getAll();
         if (cursorManager != null) {
             for (int i = 0; i < cursorManager.getCount(); i++) {
                 cursorManager.moveToPosition(i);
-                HotelCity hotelCity = new HotelCity();
+                Airport hotelCity = new Airport();
 
-                hotelCity.setCityCode(cursorManager.getString(RecentCityHotel_Table.Columns.CityCode.value()));
+                /*hotelCity.setCityCode(cursorManager.getString(RecentCityHotel_Table.Columns.CityCode.value()));
                 hotelCity.setCityID(cursorManager.getInt(RecentCityHotel_Table.Columns.CityCode.value()));
                 hotelCity.setCityNameEn(cursorManager.getString(RecentCityHotel_Table.Columns.CityNameEn.value()));
                 hotelCity.setCityNameFa(cursorManager.getString(RecentCityHotel_Table.Columns.CityNameFa.value()));
-                hotelCity.setCountryID(cursorManager.getInt(RecentCityHotel_Table.Columns.CityCode.value()));
+                hotelCity.setCountryID(cursorManager.getInt(RecentCityHotel_Table.Columns.CityCode.value()));*/
+                hotelCity.setTextFa(cursorManager.getString(RecentCityHotel_Table.Columns.TextFa.value()));
+                hotelCity.setTesxt(cursorManager.getString(RecentCityHotel_Table.Columns.Tesxt.value()));
+                hotelCity.setShortDes(cursorManager.getString(RecentCityHotel_Table.Columns.ShortDes.value()));
+                hotelCity.setTag(cursorManager.getString(RecentCityHotel_Table.Columns.Tag.value()));
+                hotelCity.setLongDes(cursorManager.getString(RecentCityHotel_Table.Columns.LongDes.value()));
+                hotelCity.setIcon(cursorManager.getString(RecentCityHotel_Table.Columns.Icon.value()));
+                hotelCity.setValue(cursorManager.getString(RecentCityHotel_Table.Columns.CityCode.value()));
+                if(cursorManager.getInt(RecentCity_Table.Columns.IsSelectable.value())==1)
+                    hotelCity.setSelectable(true);
+                else
+                    hotelCity.setSelectable(false);
 
                 data.add(hotelCity);
             }
@@ -126,7 +147,11 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
         listAirPort.setAdapter(mAdapter);
 
         //////////////////////////
-
+        if(getString(R.string.culture).contains("fa")){
+            request("+++");
+        }else{
+            request("***");
+        }
         searchtxt = findViewById(R.id.searchtxt);
         searchtxt.addTextChangedListener(
                 new TextWatcher() {
@@ -157,9 +182,14 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
                                                     request(searchtxt.getText().toString());
 
                                                 } else {
+                                                    if(getString(R.string.culture).contains("fa")){
+                                                        request("+++");
+                                                    }else{
+                                                        request("***");
+                                                    }
                                                     if (d.length() < 0 || d.length() == 0) {
-                                                        List<HotelCity> data = null;
-                                                        ListView listAirPort = findViewById(R.id.listCityHotel);
+                                                        List<Airport> data = null;
+                                                         listAirPort = findViewById(R.id.listCityHotel);
                                                         mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, data, GetHotelCityActivity.this);
                                                         mAdapter.setData(data);
                                                         listAirPort.setAdapter(mAdapter);
@@ -185,7 +215,7 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
     public void onReady(List<ResponseAirport> getHotelListResponse) {
 
         avLoadingIndicatorView.setVisibility(View.INVISIBLE);
-        List<HotelCity> data = new ArrayList<HotelCity>();
+        List<Airport> data = new ArrayList<Airport>();
         try {
             Log.e("responseHotelCity: ", new Gson().toJson(getHotelListResponse));
 
@@ -193,12 +223,18 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
               //  for (City city : getHotelListResponse.getCities() ) {
                  for (int i = 0; i <getHotelListResponse.size() ; i++) {
 
-                    HotelCity hotelCity = new HotelCity();
-                    hotelCity.setCityCode(getHotelListResponse.get(i).getCityCode());
-                   // hotelCity.setCityID(getHotelListResponse.get(i).geteValue());//t//getCityID());
+                     Airport hotelCity = new Airport();
+                   /* hotelCity.setCityCode(getHotelListResponse.get(i).getCityCode());
                     hotelCity.setCityNameEn(getHotelListResponse.get(i).getText());
-                    hotelCity.setCityNameFa(getHotelListResponse.get(i).getTextFa());
-                    //hotelCity.setCountryID(getHotelListResponse.get(i).getEValue());
+                    hotelCity.setCityNameFa(getHotelListResponse.get(i).getTextFa());*/
+                     hotelCity.setTextFa(getHotelListResponse.get(i).getTextFa());
+                     hotelCity.setTesxt(getHotelListResponse.get(i).getText());
+                     hotelCity.setShortDes(getHotelListResponse.get(i).getShortDescription());
+                     hotelCity.setTag(getHotelListResponse.get(i).getTag());
+                     hotelCity.setLongDes(getHotelListResponse.get(i).getLongDescription());
+                     hotelCity.setIcon(getHotelListResponse.get(i).getIcon());
+                     hotelCity.setSelectable(getHotelListResponse.get(i).getIsSelectable());
+                     hotelCity.setValue(getHotelListResponse.get(i).getValue());
 
                     data.add(hotelCity);
                 }
@@ -207,6 +243,7 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
                 mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, GetHotelCityActivity.this, data, getIntent().getExtras().getInt("type"));
                 mAdapter.setData(data);
                 listAirPort.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
             }
         } catch (Exception e) {
             Toast.makeText(GetHotelCityActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_LONG).show();

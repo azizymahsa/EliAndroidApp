@@ -5,6 +5,7 @@
     xmlns:swipe="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#ffffff"
     android:orientation="vertical">
 
@@ -98,7 +99,7 @@
         android:background="@drawable/shadow" />
 
 
-    <ListView
+    <!--<ListView
         android:id="@+id/listCityHotel"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -107,5 +108,26 @@
 
 
         />
+-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="100"
+        android:dividerHeight="1dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/listCityHotel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                tools:listitem="@layout/row_airport"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>
