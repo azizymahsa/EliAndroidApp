@@ -1072,6 +1072,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 					txtTitle.setText(R.string.passneger_info);
 					((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
 					((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
+					btn_khadamat.setVisibility(View.GONE);
+					txtKhadamat.setVisibility(View.GONE);
 					////////////////////bazyabi atelaate akharin mosafer
 					PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerActivity.this);
 					CursorManager cursorM=items_Table.getMosaferById(counter-1);
@@ -1946,6 +1948,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 
 							((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
 							((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+							btn_khadamat.setVisibility(View.GONE);
+							txtKhadamat.setVisibility(View.GONE);
 							txtTitle.setText(R.string.Add_to_cart_services);
 
 							mAdapter = new GetNewKhadmatAdapter(PassengerActivity.this, data, PassengerActivity.this,0);
@@ -2447,6 +2451,8 @@ public class PassengerActivity extends BaseActivity implements Header.onSearchTe
 			txtTitle.setText(getString(R.string.passneger_info));
 			((ImageView)findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
 			((Button)findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
+			btn_khadamat.setVisibility(View.GONE);
+			txtKhadamat.setVisibility(View.GONE);
 			////////////////////bazyabi atelaate akharin mosafer
 			PassengerMosaferItems_Table items_Table=new PassengerMosaferItems_Table(PassengerActivity.this);
 			CursorManager cursorM=items_Table.getMosaferById(counter-1);
