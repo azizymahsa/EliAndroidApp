@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class GetAirPortMabdaAdapter extends RecyclerView.Adapter<GetAirPortMabda
         public TextView AirportName, txtLongdes, txtTag;
         public TextView txtIconBaseFantastic, txtIconBaseLocation, txtIcon;
         public LinearLayout lnrAll;
+        public RelativeLayout rvSpace;
 
         public MyViewHolder(View view) {
             super(view);
@@ -56,6 +58,7 @@ public class GetAirPortMabdaAdapter extends RecyclerView.Adapter<GetAirPortMabda
             txtIconBaseLocation = (TextView)view.findViewById(R.id.txtIconBaseLocation);
             txtIcon = (TextView)view.findViewById(R.id.txtIcon);
             lnrAll = (LinearLayout)view.findViewById(R.id.lnrAll);
+            rvSpace = (RelativeLayout)view.findViewById(R.id.rvSpace);
         }
     }
     @Override
@@ -136,9 +139,11 @@ public class GetAirPortMabdaAdapter extends RecyclerView.Adapter<GetAirPortMabda
         holder.txtIconBaseFantastic.setTag("/");
         holder.txtIconBaseLocation.setTag(SingletonContext.getInstance().getContext().getResources().getString(R.string.icon_location2));
         if(current.getIcon().contains("fligh")){
+            holder.rvSpace.setVisibility(View.VISIBLE);
             holder.txtIconBaseFantastic.setVisibility(View.VISIBLE);
             holder.txtIconBaseFantastic.setText("/");//icon_flight
         }else if(current.getIcon().contains("hotel")){
+            holder.rvSpace.setVisibility(View.GONE);
             holder.txtIconBaseFantastic.setVisibility(View.VISIBLE);
             holder.txtIconBaseFantastic.setText("=");//icon_hotel
             holder.txtIcon.setVisibility(View.GONE);
@@ -149,6 +154,7 @@ public class GetAirPortMabdaAdapter extends RecyclerView.Adapter<GetAirPortMabda
            // tv1.setLayoutParams(params);
             //holder.lnrAll.set
         }else if(current.getIcon().contains("location")){
+            holder.rvSpace.setVisibility(View.GONE);
             holder.txtIconBaseLocation.setVisibility(View.VISIBLE);
             holder.txtIconBaseLocation.setText(SingletonContext.getInstance().getContext().getResources().getString(R.string.icon_location2));//icon_location
             if(current.isSelectable()==false){

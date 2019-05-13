@@ -85,10 +85,10 @@
                             android:gravity="center"
                             android:text="@string/_Popular"
 
-                            android:textColor="@color/train_gray"
-                            android:background="@drawable/background_strock_white"
+                            android:textColor="@color/gray_normal"
+                            android:background="@drawable/background_strock_gray"
                             android:textAppearance="@style/IrsansBold"
-                            android:textSize="@dimen/_14dp_txtSize"
+                            android:textSize="@dimen/_10dp_textSize"
                             android:visibility="invisible" />
 
 
@@ -171,7 +171,7 @@
                             android:layout_weight="1.75"
                             android:gravity="right"
                             android:text="fish name"
-                            android:textColor="@color/train_gray"
+                            android:textColor="@color/gray_normal"
                             android:textSize="@dimen/_14dp_txtSize"
                             android:visibility="gone" />
                         <TextView
@@ -182,7 +182,7 @@
                             android:gravity="right|center"
                             android:text="&#46;"
                             android:textAppearance="@style/IconMenuFantastic"
-                            android:textColor="@color/train_gray"
+                            android:textColor="@color/gray_normal"
                             android:textSize="20dp"
                             android:visibility="gone"/>
 
@@ -226,6 +226,42 @@
                     />
 
                 <!--</RelativeLayout>-->
+            </RelativeLayout>
+            <!--space in child-->
+            <RelativeLayout
+                android:id="@+id/rvSpace"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_weight="5"
+
+                >
+
+                <TextView
+
+                    android:layout_width="@dimen/_40dp_f"
+                    android:layout_height="@dimen/_40dp_f"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textAppearance="@style/IconMenuFantastic"
+                    android:textColor="@color/train_gray"
+                    android:textSize="@dimen/_30dp_flight" />
+                <TextView
+
+                    android:layout_width="@dimen/_40dp_f"
+                    android:layout_height="@dimen/_40dp_f"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/icon_location2"
+                    android:textAppearance="@style/IconFonts"
+                    android:textColor="@color/train_gray"
+                    android:textSize="@dimen/_30dp_flight"
+                    android:visibility="gone"
+                    />
+
+
             </RelativeLayout>
         </LinearLayout>
         <!-- ////////////////////////////front bottom///////////////////////////////////// -->

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eligasht.reservation.models.Airport;
@@ -18,11 +19,13 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.Airport;
 import com.eligasht.reservation.tools.db.local.RecentCity_Table;
 import com.eligasht.reservation.views.ui.SingletonContext;
+import com.eligasht.service.model.weather.response.Atmosphere;
 
 import java.util.List;
 
 
 public class GetAirPortMaghsadAdapter extends RecyclerView.Adapter<GetAirPortMaghsadAdapter.MyViewHolder> {
+
 	private Context context;
 
 	private LayoutInflater myInflater;
@@ -41,6 +44,7 @@ public class GetAirPortMaghsadAdapter extends RecyclerView.Adapter<GetAirPortMag
 	public class MyViewHolder extends RecyclerView.ViewHolder {
 		public TextView AirportName, txtLongdes, txtTag;
 		public TextView txtIconBaseFantastic, txtIconBaseLocation, txtIcon;
+		public RelativeLayout rvSpace;
 
 		public MyViewHolder(View view) {
 			super(view);
@@ -52,6 +56,7 @@ public class GetAirPortMaghsadAdapter extends RecyclerView.Adapter<GetAirPortMag
 			txtIconBaseFantastic = (TextView)view.findViewById(R.id.txtIconBaseFantastic);
 			txtIconBaseLocation = (TextView)view.findViewById(R.id.txtIconBaseLocation);
 			txtIcon = (TextView)view.findViewById(R.id.txtIcon);
+			rvSpace = (RelativeLayout)view.findViewById(R.id.rvSpace);
 		}
 	}
 	@Override
@@ -136,13 +141,16 @@ public class GetAirPortMaghsadAdapter extends RecyclerView.Adapter<GetAirPortMag
 			holder.txtLongdes.setText(Html.fromHtml(current.getLongDes().toString()));
 		}
 		if(current.getIcon().contains("fligh")){
+			holder.rvSpace.setVisibility(View.VISIBLE);
 			holder.txtIconBaseFantastic.setVisibility(View.VISIBLE);
 			holder.txtIconBaseFantastic.setText("/");//icon_flight
 		}else if(current.getIcon().contains("hotel")){
+			holder.rvSpace.setVisibility(View.GONE);
 			holder.txtIconBaseFantastic.setVisibility(View.VISIBLE);
 			holder.txtIconBaseFantastic.setText("=");//icon_hotel
 			holder.txtIcon.setVisibility(View.GONE);
 		}else if(current.getIcon().contains("location")){
+			holder.rvSpace.setVisibility(View.GONE);
 			holder.txtIconBaseLocation.setVisibility(View.VISIBLE);
 			holder.txtIconBaseLocation.setText(SingletonContext.getInstance().getContext().getResources().getString(R.string.icon_location2));//icon_location
 			if(current.isSelectable()==false){
