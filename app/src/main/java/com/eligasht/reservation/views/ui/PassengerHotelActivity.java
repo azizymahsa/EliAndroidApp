@@ -789,6 +789,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
                     txtTitle.setText(getString(R.string.passneger_info));
                     ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
                     ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
+                    btn_khadamat.setVisibility(View.GONE);
+                    txtKhadamat.setVisibility(View.GONE);
                     ////////////////////bazyabi atelaate akharin mosafer
                     PassengerMosaferItems_Table items_Table = new PassengerMosaferItems_Table(PassengerHotelActivity.this);
                     CursorManager cursorM = items_Table.getMosaferById(counter - 1);
@@ -1836,6 +1838,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
 
                         ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_on);
                         ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#000000"));
+                        btn_khadamat.setVisibility(View.GONE);
+                        txtKhadamat.setVisibility(View.GONE);
                         txtTitle.setText(getString(R.string.Add_to_cart_services));
                         try{
                             txtCurrencyCode.setText(jArray.get(0).getCurrencyCode());
@@ -2343,6 +2347,8 @@ public class PassengerHotelActivity extends BaseActivity implements Header.onSea
             txtTitle.setText(getString(R.string.passneger_info));
             ((ImageView) findViewById(R.id.btn_khadamat)).setImageResource(R.drawable.khadamat_passenger_off);
             ((Button) findViewById(R.id.txtKhadamat)).setTextColor(Color.parseColor("#4d4d4d"));
+            btn_khadamat.setVisibility(View.GONE);
+            txtKhadamat.setVisibility(View.GONE);
             ////////////////////bazyabi atelaate akharin mosafer
             PassengerMosaferItems_Table items_Table = new PassengerMosaferItems_Table(PassengerHotelActivity.this);
             CursorManager cursorM = items_Table.getMosaferById(counter - 1);
