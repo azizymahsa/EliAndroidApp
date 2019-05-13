@@ -59,7 +59,7 @@ public class GetCityTrainMabdaActivity extends BaseActivity implements Header.on
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_airport);
+        setContentView(R.layout.activity_get_train);
 
         SwipeBackActivityHelper helper = new SwipeBackActivityHelper();
         helper.setEdgeMode(false)

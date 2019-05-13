@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -62,8 +65,8 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
     public static final int CONNECTION_TIMEOUT = 10000;
     public static final int READ_TIMEOUT = 15000;
     public static String searchText = "";
-    public ListView list_airport;
-    public ListView listAirPort;
+  //  public ListView list_airport;
+    public RecyclerView listAirPort;
     Handler handler;
     ProgressDialog progressBar;
     ArrayList<HashMap<String, String>> mylist = null;
@@ -82,6 +85,9 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
         avi = findViewById(R.id.avi);
         btnBack = findViewById(R.id.btnBack);
         listAirPort = findViewById(R.id.listAirPort);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        listAirPort.setLayoutManager(mLayoutManager);
+        listAirPort.setItemAnimator(new DefaultItemAnimator());
         btnBack = findViewById(R.id.btnBack);
         btnMic = findViewById(R.id.btnMic);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
@@ -92,6 +98,12 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
         btnMic.setOnClickListener(this);
         service = ServiceGenerator.createService(ClientService.class);
         searchtxt = findViewById(R.id.searchtxt);
+
+        if(getString(R.string.culture).contains("fa")){
+            getCountries("+++");
+        }else{
+            getCountries("***");
+        }
         searchtxt.addTextChangedListener(
                 new TextWatcher() {
                     private final long DELAY = 10; // milliseconds
@@ -114,6 +126,12 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
                         String d = s.toString().trim();
                         if (d.length() > 2) {
                         getCountries(input);
+                        }else{
+                            if(getString(R.string.culture).contains("fa")){
+                                getCountries("+++");
+                            }else{
+                                getCountries("***");
+                            }
                         }
 
                     }
@@ -139,7 +157,7 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
             }
             GetCountriesForInsuranceAdapter adapter = new GetCountriesForInsuranceAdapter(GetCountriesForInsuranceActivity.this, responseGetCountry, GetCountriesForInsuranceActivity.this);
             onPostExecute(adapter);
-
+           // mAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -157,17 +175,7 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
     private void getCountries(String cityCode) {
         showLoading();
 
-       /* RequestGetCountry requestGetCountry = new RequestGetCountry();
-        com.eligasht.service.model.insurance.request.GetCountry.Request request = new com.eligasht.service.model.insurance.request.GetCountry.Request();
 
-        com.eligasht.service.model.insurance.request.GetCountry.Identity identity = new  com.eligasht.service.model.insurance.request.GetCountry.Identity();
-        identity.setCode(cityCode);
-        request.setIdentity(identity);
-
-        request.setCulture(getString(R.string.culture));
-        requestGetCountry.setRequest(request);
-        Log.e("getCountryInsurance: " , new Gson().toJson(requestGetCountry));
-        SingletonService.getInstance().getInsurance().getCountryInsuranceAvail(this, requestGetCountry);*/
         AutoCompleteParameterModel requestAutoCompleteParameterModel = new AutoCompleteParameterModel();
 
         requestAutoCompleteParameterModel.setPart(cityCode);

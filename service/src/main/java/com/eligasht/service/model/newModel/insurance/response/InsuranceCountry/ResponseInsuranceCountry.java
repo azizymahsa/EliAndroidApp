@@ -16,13 +16,16 @@ public class ResponseInsuranceCountry {
     private Object category;
     @SerializedName("Icon")
     @Expose
-    private Object icon;
+    private String icon;
     @SerializedName("Text")
     @Expose
     private String text;
     @SerializedName("TextFa")
     @Expose
     private String textFa;
+    @SerializedName("Value")
+    @Expose
+    private String value;
     @SerializedName("EValue")
     @Expose
     private String eValue;
@@ -44,6 +47,18 @@ public class ResponseInsuranceCountry {
     @SerializedName("IsPopular")
     @Expose
     private Boolean isPopular;
+    @SerializedName("IsSelectable")
+    @Expose
+    private Boolean isSelectable;
+    @SerializedName("ShortDescription")
+    @Expose
+    private Object shortDescription;
+    @SerializedName("LongDescription")
+    @Expose
+    private String longDescription;
+    @SerializedName("Tag")
+    @Expose
+    private String tag;
 
     public String getID() {
         return iD;
@@ -69,11 +84,11 @@ public class ResponseInsuranceCountry {
         this.category = category;
     }
 
-    public Object getIcon() {
+    public String getIcon() {
         return icon;
     }
 
-    public void setIcon(Object icon) {
+    public void setIcon(String icon) {
         this.icon = icon;
     }
 
@@ -91,6 +106,14 @@ public class ResponseInsuranceCountry {
 
     public void setTextFa(String textFa) {
         this.textFa = textFa;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public String getEValue() {
@@ -147,6 +170,38 @@ public class ResponseInsuranceCountry {
 
     public void setIsPopular(Boolean isPopular) {
         this.isPopular = isPopular;
+    }
+
+    public Boolean getIsSelectable() {
+        return isSelectable;
+    }
+
+    public void setIsSelectable(Boolean isSelectable) {
+        this.isSelectable = isSelectable;
+    }
+
+    public Object getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(Object shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getLongDescription() {
+        return longDescription;
+    }
+
+    public void setLongDescription(String longDescription) {
+        this.longDescription = longDescription;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
 }

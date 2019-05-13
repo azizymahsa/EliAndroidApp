@@ -81,7 +81,7 @@ public class GetTrainMabdaAdapter extends BaseAdapter {
         final ViewHolder holder;
 
         if (convertView == null) {
-            convertView = myInflater.inflate(R.layout.row_airport, null);
+            convertView = myInflater.inflate(R.layout.row_train, null);
             holder = new ViewHolder();
 
             holder.AirportName = convertView.findViewById(R.id.text1);
