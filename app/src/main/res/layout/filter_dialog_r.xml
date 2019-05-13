@@ -122,6 +122,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#1234"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_5dp"
+                    android:text="@string/Price"
+                    android:textAppearance="@style/IrsansBold"
+                    android:textSize="@dimen/_14dp_txtSize" />
+
+                <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
+                    android:id="@+id/lvPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -152,31 +166,20 @@
                     android:padding="@dimen/margin_5dp"
                     android:text="@string/FacilitiType"
                     android:textAppearance="@style/IrsansBold"
-                    android:textSize="@dimen/_14dp_txtSize" />
+                    android:textSize="@dimen/_14dp_txtSize"
+                    android:visibility="gone"/>
 
                 <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
                     android:id="@+id/lvFacilitiesTypes"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#000000" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#1234"
-                    android:gravity="center"
-                    android:padding="@dimen/margin_5dp"
-                    android:text="@string/Price"
-                    android:textAppearance="@style/IrsansBold"
-                    android:textSize="@dimen/_14dp_txtSize" />
 
-                <com.eligasht.reservation.views.adapters.hotel.rooms.NonScrollListView
-                    android:id="@+id/lvPrice"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"/>
 
 
 
