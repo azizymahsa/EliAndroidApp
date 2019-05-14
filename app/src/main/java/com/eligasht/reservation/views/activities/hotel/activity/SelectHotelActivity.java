@@ -100,6 +100,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     HotelResultAdapter hotelResultAdapter;
     private ClientService service;
     boolean isGrid=false;
+    private boolean flagDec=true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -217,7 +219,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                 filterHotelDialog.show(fm, "test");
                 break;
             case R.id.btnSort:
-                new SortDialog(SelectHotelActivity.this, this);
+               // new SortDialog(SelectHotelActivity.this, this);
+
+                sortPrice();
                 break;
             case R.id.btnBack:
                 finish();
@@ -246,6 +250,48 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
                     Toast.makeText(getApplicationContext(), R.string.DatePickerError2,Toast.LENGTH_SHORT).show();
                 }
                 break;
+        }
+    }
+
+    private void sortPrice() {
+       // flagDec=true;
+
+        if (flagDec == true) {
+            tvSort.setTextColor(ContextCompat.getColor(this, R.color.dark_blue));
+            tvSortIcon.setTextColor(ContextCompat.getColor(this, R.color.dark_blue));
+            tvSortIcon.setText(getString(R.string.icon_sort_up));
+            Collections.sort(selectHotelModelArrayList, new Comparator<SelectHotelModel>() {
+                @Override
+                public int compare(SelectHotelModel p1, SelectHotelModel p2) {
+                    return Integer.valueOf(p2.getPrice().intValue()) - Integer.valueOf(p1.getPrice().intValue()); // Ascending
+                }
+            });
+            Collections.sort(selectHotelModelArrayListFilter, new Comparator<SelectHotelModel>() {
+                @Override
+                public int compare(SelectHotelModel p1, SelectHotelModel p2) {
+                    return Integer.valueOf(p2.getPrice().intValue()) - Integer.valueOf(p1.getPrice().intValue()); // Ascending
+                }
+            });
+            hotelResultAdapter.notifyDataSetChanged();
+            flagDec=false;
+        } else if (flagDec == false) {
+            tvSort.setTextColor(ContextCompat.getColor(this, R.color.dark_blue));
+            tvSortIcon.setTextColor(ContextCompat.getColor(this, R.color.dark_blue));
+            tvSortIcon.setText(getString(R.string.icon_sort_down));
+            Collections.sort(selectHotelModelArrayList, new Comparator<SelectHotelModel>() {
+                @Override
+                public int compare(SelectHotelModel p1, SelectHotelModel p2) {
+                    return Integer.valueOf(p1.getPrice().intValue()) - Integer.valueOf(p2.getPrice().intValue()); // Ascending
+                }
+            });
+            Collections.sort(selectHotelModelArrayListFilter, new Comparator<SelectHotelModel>() {
+                @Override
+                public int compare(SelectHotelModel p1, SelectHotelModel p2) {
+                    return Integer.valueOf(p1.getPrice().intValue()) - Integer.valueOf(p2.getPrice().intValue()); // Ascending
+                }
+            });
+            hotelResultAdapter.notifyDataSetChanged();
+            flagDec=true;
         }
     }
 

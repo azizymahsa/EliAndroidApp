@@ -2452,5 +2452,7 @@
     <string name="_flight_poor"><![CDATA[&#47;]]></string>
     <string name="_Popular">Popular</string>
     <string name="_popular">Popular</string>
+    <string name="_rating">Rating</string>
+    <string name="please_wating">please wating ...</string>
 
 </resources>

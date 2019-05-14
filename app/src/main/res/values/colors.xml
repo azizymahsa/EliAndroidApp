@@ -65,7 +65,7 @@
     <color name="text_color_2e">#2e3192</color>
     <color name="color_passenger_prefactor">#e6e6e6</color>
     <color name="sorati">#f5eeff</color>
-    <color name="status_loading">#c141fc</color>
+    <color name="status_loading">#ffffff</color>
     <color name="hf">#c141fc</color>
     <color name="strokeGray">#aaaaaa</color>
     <color name="floating_button_color">#b194ff</color>

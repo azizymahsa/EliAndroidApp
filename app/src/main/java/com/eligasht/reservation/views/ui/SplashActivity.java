@@ -270,14 +270,12 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                 Utility.sendTag("Splash", true, true);
                 branches = new ArrayList<Branch>();
                 branchesDef = new ArrayList<Branch>();
-               // UpdateUrl.clear();
-                //branchesDef.clear();
-              //  Log.d( "ActiveOperationSplash: ",branchesDef.size()+"");
-                for (int i = 0; i < startupServiceResponse.getUpdateUrl().size(); i++) {
+/*
+                for (int i = 0; i < startupServiceResponse.getLatestVersion()..size(); i++) {
 
                    UpdateUrl.add(startupServiceResponse.getUpdateUrl().get(i));
 
-                }
+                }*/
 
                 for(Branch branch : startupServiceResponse.getBranches()){
                     branches.add(branch);
@@ -288,7 +286,7 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                 }
 
                 //baraye avalin bar check shavaf
-                if (branchesDef.get(0).getAdjustEnabled()) {
+               /* if (branchesDef.get(0).getAdjustEnabled()) {
                     if (Prefs.getBoolean("isAdjustSend", true)) {
                         Prefs.putBoolean("isAdjustSend", false);
                         Hawk.put("adjust", true);
@@ -299,15 +297,16 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                             e.printStackTrace();
                         }
                     }
-                } else {
+                } else {*/
                     Hawk.put("adjust", false);
-                }
+               // }
 
 
                 if(startupServiceResponse.getIsUpdataMandatory()) {
                     updateAlert.show();
                     updateAlert.isForce(true);
-                }else  if (startupServiceResponse.getHasUpdate()) {//getUserEntranceResponse().getCanEnter()) {
+                }else  if (Integer.parseInt(BuildConfig.VERSION_NAME.replace(".","")) > Integer.parseInt(BuildConfig.VERSION_NAME.replace(".",""))) {//getUserEntranceResponse().getCanEnter()) {
+                //}else  if (Integer.parseInt(startupServiceResponse.getLatestVersion().toString().replaceAll(".","")) > Integer.parseInt(BuildConfig.VERSION_NAME.replaceAll(".",""))) {//getUserEntranceResponse().getCanEnter()) {
 
                     String app = BuildConfig.VERSION_NAME;
 
@@ -355,8 +354,8 @@ public class SplashActivity extends ConnectionBuddyActivity implements
                             Auth_request(true);
                         }
 
-                         if(!Prefs.getBoolean("isChangeCurrency", false))
-                             Prefs.putString("CurrencyDef", branchesDef.get(0).getCurrency());
+                        /* if(!Prefs.getBoolean("isChangeCurrency", false))
+                             Prefs.putString("CurrencyDef", branchesDef.get(0).getCurrency());*/
 
                     Log.d( "ActiveOperationSPASH_RESPONSE: ","200");
 

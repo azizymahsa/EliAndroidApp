@@ -22,6 +22,10 @@
     <string name="icon_pin">&#xe907;</string>
     <string name="icon_filter">&#xe90c;</string>
     <string name="icon_sort">&#xf160;</string>
+
+    <string name="icon_sort_down">&#63;</string>
+    <string name="icon_sort_up">&#120;</string>
+
     <string name="icon_arrow_left">&#xe314;</string>
     <string name="icon_arrow_right">&#xe315;</string>
     <string name="icon_user">&#xf2c0;</string>
@@ -2507,5 +2511,7 @@ eyJzY29wZSI6WyJBTEwiXSwicGxhdGZvcm0iOlsiaU9TIiwiQW5kcm9pZCIsIldpbmRvd3MiXSwidmFs
     <string name="_flight_poor"><![CDATA[&#47;]]></string>
     <string name="_Popular">Popular</string>
     <string name="_popular">Popular</string>
+    <string name="_rating">Rating</string>
+    <string name="please_wating">please wating ...</string>
 </resources>
 

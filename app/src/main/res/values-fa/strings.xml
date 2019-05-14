@@ -2450,4 +2450,6 @@
     <string name="_flight_poor"><![CDATA[&#47;]]></string>
     <string name="_Popular">پرطرفدار</string>
     <string name="_popular">Popular</string>
+    <string name="_rating">درجه مکان اقامتی</string>
+    <string name="please_wating">لطفا صبر کنید</string>
 </resources>

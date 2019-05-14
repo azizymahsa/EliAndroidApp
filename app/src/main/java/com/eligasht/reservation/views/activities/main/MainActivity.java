@@ -65,6 +65,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,6 +108,7 @@ public class MainActivity extends Base implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rmain);
+        Log.d( "RUN_ACTIVITY: ","9999999999999999"+"MAIN");
         EventBus.getDefault().register(this);
         Prefs.putString("raft", "null");
         Prefs.putString("raftfa", "null");
@@ -124,11 +126,12 @@ public class MainActivity extends Base implements View.OnClickListener {
 
         initViews();
         ActiveOperation();
+        addFragment(getString(R.string.searchFlight), new PlanFragment());
     }
 
 
     public void initViews() {
-
+        Log.d( "ActiveOperationSplashRR: ","555");
         RvGhatar = findViewById(R.id.RvGhatar);
         RvFlight = findViewById(R.id.RvFlight);
         RvHotel = findViewById(R.id.RvHotel);
@@ -139,7 +142,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         RvContactUs = findViewById(R.id.RvContactUs);
         RvCondition = findViewById(R.id.RvCondition);
         RvSetting = findViewById(R.id.RvSetting);
-
+        Log.d( "ActiveOperationSplashRR: ","556");
         RvGhatar.setVisibility(View.GONE);
         RvFlight.setVisibility(View.GONE);
         RvHotel.setVisibility(View.GONE);
@@ -150,14 +153,14 @@ public class MainActivity extends Base implements View.OnClickListener {
         RvContactUs.setVisibility(View.GONE);
         RvCondition.setVisibility(View.GONE);
         RvSetting.setVisibility(View.GONE);
-
+        Log.d( "ActiveOperationSplashRR: ","557");
         //findView==================================================================================
         btnMenu = findViewById(R.id.btnMenu);
         btnMenu.setVisibility(View.GONE);
         drawerLayout = findViewById(R.id.drawerLayout);
         tvTitle = findViewById(R.id.tvTitle);
         tvBadge = findViewById(R.id.tvBadge);
-
+        Log.d( "ActiveOperationSplashRR: ","558");
         btnFlight = findViewById(R.id.btnFlight);
         btnGhatar = findViewById(R.id.btnGhatar);
         survey = findViewById(R.id.survey);
@@ -178,11 +181,12 @@ public class MainActivity extends Base implements View.OnClickListener {
         btn_message = findViewById(R.id.btn_message);
         btnSetting = findViewById(R.id.btn_setting);
         map = findViewById(R.id.map);
+        Log.d( "ActiveOperationSplashRR: ","559");
         btnLastBuy = findViewById(R.id.btnLastBuy);
         lottieUserMenu = findViewById(R.id.lottieUserMenu);
         lottieUserMenu.setAnimation("lottie/user.json");
         lottieUserMenu.setSpeed(1.5f);
-
+        Log.d( "ActiveOperationSplashRR: ","560");
 
         //onClick===================================================================================
         btnMenu.setOnClickListener(this);
@@ -191,7 +195,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         btnHotel.setOnClickListener(this);
         btnPackage.setOnClickListener(this);
         map.setOnClickListener(this);
-//        btnTour.setOnClickListener(this);
+        Log.d( "ActiveOperationSplashRR: ","570");
         btnInsurance.setOnClickListener(this);
         btnHotelFlight.setOnClickListener(this);
         btnAbout.setOnClickListener(this);
@@ -208,8 +212,7 @@ public class MainActivity extends Base implements View.OnClickListener {
         survey.setOnClickListener(this);
         expandableLayout = findViewById(R.id.expandableLayout);
 
-        addFragment(getString(R.string.searchFlight), new PlanFragment());
-
+        Log.d( "ActiveOperationSplashRR: ","580");
 
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -235,24 +238,32 @@ public class MainActivity extends Base implements View.OnClickListener {
 
             }
         });
+        Log.d( "ActiveOperationSplashRR: ","590");
     }
 
     private void ActiveOperation() {
-
-        List<Branch>  branchesDef=new ArrayList<>();
+      /* Log.d( "ActiveOperation: ",SplashActivity.branchesDef.get(0).getUrl());
+        Prefs.getArray("BranchDef_value", (Type) SplashActivity.branchesDef);
+        Prefs.getArray("Branchs_value", (Type) SplashActivity.branches);*/
+        Log.d( "ActiveOperationSplashRR: ","600");
+        List<Branch>  branchesDef = new ArrayList<>();
+        Log.d( "ActiveOperationSplashRR: ","700");
         List<Integer> activeOperation=new ArrayList<>();
+        Log.d( "ActiveOperationSplashRR: ","800");
         try {
 
-
-
-            branchesDef= SplashActivity.branchesDef;
+            Log.d( "ActiveOperationSplashRR: ","900");
+            Log.d( "ActiveOperationSplashRR: ",SplashActivity.branchesDefBk.size()+"");
+            branchesDef= SplashActivity.branchesDefBk;
+            Log.d( "ActiveOperationSplashRR: ",branchesDef.size()+"");
+           // branchesDef= Prefs.getArray("BranchDef_value", SplashActivity.branchesDef);
             if (branchesDef != null){
                 if (branchesDef.get(0).getIsDefault()){
                     if(Prefs.getBoolean("isChangeUrl", false)){
                         // branchesDef.clear();
                         branchesDef=new ArrayList<>();
 
-                        branchesDef=SplashActivity.branches;
+                        branchesDef=SplashActivity.branchesBk;
 
                         for (int i = 0; i < branchesDef.size(); i++) {
                             if(Prefs.getString("BASEURL", "").equals(branchesDef.get(i).getUrl())){
@@ -275,9 +286,14 @@ public class MainActivity extends Base implements View.OnClickListener {
         }
         catch (Exception e)
         {
+            Log.e( "ActiveOperation: ","Error "+e.getMessage());
             e.printStackTrace();
         }
-
+      /*   activeOperation=new ArrayList<>();
+        activeOperation.add(0);
+      //  activeOperation.add(1);
+        activeOperation.add(4);
+       // activeOperation.add(8);*/
         for (int i = 0; i < activeOperation.size() ; i++) {
             if (activeOperation.get(i)==0) {
               btnMenu.setVisibility(View.VISIBLE);
@@ -478,6 +494,7 @@ public class MainActivity extends Base implements View.OnClickListener {
 
                 new Handler().postDelayed(() -> closeDrawer(), 200);
                 Intent intent5 = new Intent(this, SettingsActivity.class);
+                finish();
                 intent5.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent5);
                 break;
