@@ -109,11 +109,11 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
 
 
         //////////////////show recent
-         listAirPort = findViewById(R.id.listCityHotel);
+       listAirPort = findViewById(R.id.listCityHotel);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         listAirPort.setLayoutManager(mLayoutManager);
         listAirPort.setItemAnimator(new DefaultItemAnimator());
-
+ /*
         List<Airport> data = new ArrayList<>();
         RecentCityHotel_Table recentCity_table = new RecentCityHotel_Table(this);
         CursorManager cursorManager = recentCity_table.getAll();
@@ -122,11 +122,11 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
                 cursorManager.moveToPosition(i);
                 Airport hotelCity = new Airport();
 
-                /*hotelCity.setCityCode(cursorManager.getString(RecentCityHotel_Table.Columns.CityCode.value()));
+                *//*hotelCity.setCityCode(cursorManager.getString(RecentCityHotel_Table.Columns.CityCode.value()));
                 hotelCity.setCityID(cursorManager.getInt(RecentCityHotel_Table.Columns.CityCode.value()));
                 hotelCity.setCityNameEn(cursorManager.getString(RecentCityHotel_Table.Columns.CityNameEn.value()));
                 hotelCity.setCityNameFa(cursorManager.getString(RecentCityHotel_Table.Columns.CityNameFa.value()));
-                hotelCity.setCountryID(cursorManager.getInt(RecentCityHotel_Table.Columns.CityCode.value()));*/
+                hotelCity.setCountryID(cursorManager.getInt(RecentCityHotel_Table.Columns.CityCode.value()));*//*
                 hotelCity.setTextFa(cursorManager.getString(RecentCityHotel_Table.Columns.TextFa.value()));
                 hotelCity.setTesxt(cursorManager.getString(RecentCityHotel_Table.Columns.Tesxt.value()));
                 hotelCity.setShortDes(cursorManager.getString(RecentCityHotel_Table.Columns.ShortDes.value()));
@@ -144,7 +144,7 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
         }
         mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, data, GetHotelCityActivity.this);
         mAdapter.setData(data);
-        listAirPort.setAdapter(mAdapter);
+        listAirPort.setAdapter(mAdapter);*/
 
         //////////////////////////
         if(getString(R.string.culture).contains("fa")){
@@ -187,13 +187,13 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
                                                     }else{
                                                         request("***");
                                                     }
-                                                    if (d.length() < 0 || d.length() == 0) {
+                                                    /*if (d.length() < 0 || d.length() == 0) {
                                                         List<Airport> data = null;
                                                          listAirPort = findViewById(R.id.listCityHotel);
                                                         mAdapter = new GetHotelCityAdapter(GetHotelCityActivity.this, data, GetHotelCityActivity.this);
                                                         mAdapter.setData(data);
                                                         listAirPort.setAdapter(mAdapter);
-                                                    }
+                                                    }*/
                                                 }
                                             }
                                         });
@@ -219,7 +219,7 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
         try {
             Log.e("responseHotelCity: ", new Gson().toJson(getHotelListResponse));
 
-            if (!TextUtils.isEmpty(searchtxt.getText())) {
+           // if (!TextUtils.isEmpty(searchtxt.getText())) {
               //  for (City city : getHotelListResponse.getCities() ) {
                  for (int i = 0; i <getHotelListResponse.size() ; i++) {
 
@@ -244,7 +244,7 @@ public class GetHotelCityActivity extends BaseActivity implements  OnClickListen
                 mAdapter.setData(data);
                 listAirPort.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
-            }
+           // }
         } catch (Exception e) {
             Toast.makeText(GetHotelCityActivity.this, getString(R.string.ErrorServer), Toast.LENGTH_LONG).show();
         }

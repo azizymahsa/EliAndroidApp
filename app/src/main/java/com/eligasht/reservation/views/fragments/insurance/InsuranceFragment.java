@@ -68,7 +68,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     private TextView btnSearchInsurance;
     private int accomodationDays;
     CalendarDialog dialog;
-    private LottieAnimationView lottieCheckin, lottieCheckout;
+   // private LottieAnimationView lottieCheckin, lottieCheckout;
 
 
     public static InsuranceFragment instance() {
@@ -146,10 +146,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         String currentDateTime = DateUtil.getDateTime(String.valueOf(System.currentTimeMillis()), "yyyy-MM-dd");
         departureDate = SingletonDate.getInstance().getStartDate().getFullGeo();
         txt_depart_date.setText(SingletonDate.getInstance().getStartDate().getDescription());
-        lottieCheckin = view.findViewById(R.id.lottie_checkin);
-        lottieCheckout = view.findViewById(R.id.lottie_checkout);
-        lottieCheckin.setSpeed(2f);
-        lottieCheckout.setSpeed(2f);
+
 
         layout_depart_date.setOnClickListener(this);
         layout_duringTrip.setOnClickListener(this);
@@ -158,7 +155,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         txtCity.setOnClickListener(this);
     }
 
-    private void initCheckInCheckOutAnim() {
+    private void initCheckInCheckOutAnim(){} /*{
         lottieCheckin.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -182,7 +179,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
         });
 
         lottieCheckin.playAnimation();
-    }
+    }*/
 
     @Override
     public void onClick(View v) {
@@ -252,7 +249,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
     public void onReturnValue(String type, int duration) {
         txt_during_trip.setText(type);
         accomodationDays = duration;
-        lottieCheckout.addAnimatorListener(new Animator.AnimatorListener() {
+      /*  lottieCheckout.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
 
@@ -274,7 +271,7 @@ public class InsuranceFragment extends Fragment implements View.OnClickListener,
             }
         });
 
-        lottieCheckout.playAnimation();
+        lottieCheckout.playAnimation();*/
     }
 
     @Override

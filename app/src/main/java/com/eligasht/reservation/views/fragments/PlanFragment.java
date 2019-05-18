@@ -1,13 +1,15 @@
 package com.eligasht.reservation.views.fragments;
 import android.animation.Animator;
-import android.annotation.SuppressLint;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
+
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +18,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
+
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -29,26 +31,24 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.eligasht.R;
 import com.eligasht.reservation.api.retro.ClientService;
 import com.eligasht.reservation.api.retro.ServiceGenerator;
-import com.eligasht.reservation.base.ServiceType;
-import com.eligasht.reservation.base.SingletonAnalysis;
+
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.tools.datetools.SolarCalendar;
 import com.eligasht.reservation.tools.persian.Calendar.persian.util.PersianCalendarUtils;
-import com.eligasht.reservation.views.activities.hotel.activity.SelectHotelActivity;
+
 import com.eligasht.reservation.views.picker.global.enums.TypeUsageOfCalendar;
 import com.eligasht.reservation.views.picker.global.listeners.ICallbackCalendarDialog;
 import com.eligasht.reservation.views.picker.global.model.CustomDate;
 import com.eligasht.reservation.views.picker.global.model.SingletonDate;
 import com.eligasht.reservation.views.picker.utils.CalendarDialog;
-import com.eligasht.reservation.views.ticker.TickerView;
+
 import com.eligasht.reservation.views.ui.GetAirportMabdaActivity;
 import com.eligasht.reservation.views.ui.GetAirportMaghsadActivity;
-import com.eligasht.reservation.views.ui.InitUi;
+
 import com.eligasht.reservation.views.ui.SearchFlightActivity;
 import com.eligasht.reservation.views.ui.dialog.hotel.AlertDialogPassenger;
 import com.eligasht.reservation.views.ui.dialog.train.DialogPassCount;
-import com.eligasht.service.helper.Const;
-import com.eligasht.service.model.newModel.auth.response.ResponseAuth;
+
 import com.github.bluzwong.swipeback.SwipeBackActivityHelper;
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.time.RadialPickerLayout;
@@ -56,35 +56,24 @@ import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog;
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar;
 import com.eligasht.reservation.tools.Prefs;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class PlanFragment extends Fragment implements OnClickListener, TimePickerDialog.OnTimeSetListener, com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.OnDateSetListener, ICallbackCalendarDialog {
     public static boolean flag;
-    public static TextView tarikh_az_picker;
-    public static TextView tarikh_be_picker;
-   // private TickerView txtCountB, txtCountK, txtCountN;
-    public TextView tvStart, tvEnd, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne, searchPlan;
-    //public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
-    private LinearLayout linear_picker_title;
+    public static TextView tarikh_az_picker,tarikh_az_picker_day;
+    public static TextView tarikh_be_picker,tarikh_be_picker_day;
+    public TextView tvStart, tvEnd, lbl_forudgah_maghsad, lbl_forudgah_mabda, txtKO, txtBO, txtNO, textView3, tarikh_az, btntwo, btnOne, searchPlan;
+
     public int flagOneTwo = 2;
-    private static String picker_be = "2017-12-29";
-    private static String picker_az = "2017-12-25";
+
     private static String picker_az_format = "29 December 2017";
     private static String picker_be_format = "25 December 2017";
-    public static int picker_az_year;
-    public static int picker_az_month;
-    public static int picker_az_day;
+
     private View rootView;
     public boolean Geo = false;
-    public RelativeLayout txtOption;
+   public TextView txtOption;
     public int month;
     public int year_;
     public int day;
@@ -94,15 +83,15 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
     public String raft, bargasht;
     public LinearLayout linearLayout_mabda, linearLayout_maghsad;
     public ImageView ivImage;
-    public LinearLayout linear_tarikh_az_picker, linear_picker;
-    public static int countNafar = 1;
-    public LinearLayout llButton;
+    public LinearLayout linear_tarikh_az_picker;
+    public CardView linear_picker,linear_picker_raft;
+
+   // public LinearLayout llButton;
     public com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog;
     public com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog datePickerDialog2;
     public com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
     public com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
-    /*com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
-   com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;*/
+
     public CalendarDialog calendarDialog;
     private LottieAnimationView lottieCheckin, lottieCheckout;
     private ClientService service;
@@ -125,87 +114,27 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_plane, container, false);
+        rootView = inflater.inflate(R.layout.fragment_flight, container, false);
         calendarDialog = new CalendarDialog();
         SingletonDate.getInstance().checkConflictDate();
         Utility.sendTag("F", true, false);
         Geo = Prefs.getBoolean("geo", false);
 
-        //counter
-        lnr_pass_count = rootView.findViewById(R.id.lnr_pass_count);
+        initView();
+        datePicker();
 
-        txtPassNat = rootView.findViewById(R.id.txtPassNat);
-        txtPassWom = rootView.findViewById(R.id.txtPassWom);
-        txtPassMen = rootView.findViewById(R.id.txtPassMen);
-        txtPassAdult = rootView.findViewById(R.id.txtPassAdult);
-        txtPassChild = rootView.findViewById(R.id.txtPassChild);
-        txtPassInf = rootView.findViewById(R.id.txtPassInf);
-        txtPassAdult.setText("1"+" "+getString(R.string.adault)+" ");
-        txtPassChild.setText("0"+" "+getString(R.string.baby)+" ");
-        txtPassInf.setText("0"+" "+getString(R.string.newborn)+" ");
-        Prefs.putString("Value_Pass_CountB", "1");
-        Prefs.putString("Value_Pass_CountK", "0");
-        Prefs.putString("Value_Pass_CountN", "0");
 
-        lnr_pass_count.setOnClickListener(this);
+        tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        tarikh_be_picker_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
+        bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+        tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        tarikh_az_picker_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak());
+        raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+        service = ServiceGenerator.createService(ClientService.class);
+        return rootView;
+    }//end oncreat
 
-        txtPassNat.setOnClickListener(this);
-        txtPassWom.setOnClickListener(this);
-        txtPassMen.setOnClickListener(this);
-        ///
-        llButton = rootView.findViewById(R.id.llButton);
-        // linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
-        linear_tarikh_az_picker = rootView.findViewById(R.id.linear_tarikh_az_picker);
-        tarikh_az_picker = rootView.findViewById(R.id.tarikh_az_picker);
-        tarikh_be_picker = rootView.findViewById(R.id.tarikh_be_picker);
-        linearLayout_mabda = rootView.findViewById(R.id.linearLayout_mabda);
-        linearLayout_maghsad = rootView.findViewById(R.id.linearLayout_maghsad);
-        /*tarikh_az_picker.setTypeface(face);
-        tarikh_be_picker.setTypeface(face);*/
-        lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
-        lottieCheckout = rootView.findViewById(R.id.lottie_checkout);
-        lottieCheckin.setSpeed(2f);
-        lottieCheckout.setSpeed(2f);
-        tarikh_az = rootView.findViewById(R.id.tarikh_az);
-        tarikh_be = rootView.findViewById(R.id.tarikh_be);
-        ivImage = rootView.findViewById(R.id.ivImage);
-        /*btnPlusB = rootView.findViewById(R.id.btnPlusB);
-        btnMinesB = rootView.findViewById(R.id.btnMinesB);
-        btnPlusK = rootView.findViewById(R.id.btnPlusK);
-        btnMinesK = rootView.findViewById(R.id.btnMinesK);
-        btnPlusN = rootView.findViewById(R.id.btnPlusN);
-        btnMinesN = rootView.findViewById(R.id.btnMinesN);*/
-        btntwo = rootView.findViewById(R.id.btntwo);
-        btnOne = rootView.findViewById(R.id.btnOne);
-        searchPlan = rootView.findViewById(R.id.searchPlan);
-        txtBO = rootView.findViewById(R.id.txtBO);
-        txtKO = rootView.findViewById(R.id.txtKO);
-        txtNO = rootView.findViewById(R.id.txtNO);
-        textView3 = rootView.findViewById(R.id.textView3);
-       /* txtCountB = rootView.findViewById(R.id.txtCountB);
-        txtCountK = rootView.findViewById(R.id.txtCountK);
-        txtCountN = rootView.findViewById(R.id.txtCountN);*/
-        tvStart = rootView.findViewById(R.id.tvStart);
-        txtOption = rootView.findViewById(R.id.txtOption);
-        tvEnd = rootView.findViewById(R.id.tvEnd);
-        lbl_forudgah_mabda = rootView.findViewById(R.id.lbl_forudgah_mabda);
-        lbl_forudgah_maghsad = rootView.findViewById(R.id.lbl_forudgah_maghsad);
-        linear_tarikh_az_picker.setOnClickListener(this);
-        //linear_picker.setOnClickListener(this);
-        // tarikh_az_picker.setOnClickListener(this);
-        // tarikh_be_picker.setOnClickListener(this);
-       /* btnPlusB.setOnClickListener(this);
-        btnMinesB.setOnClickListener(this);
-        btnPlusK.setOnClickListener(this);
-        btnMinesK.setOnClickListener(this);
-        btnPlusN.setOnClickListener(this);
-        btnMinesN.setOnClickListener(this);*/
-        linearLayout_mabda.setOnClickListener(this);
-        linearLayout_maghsad.setOnClickListener(this);
-        txtOption.setOnClickListener(this);
-        btntwo.setOnClickListener(this);
-        btnOne.setOnClickListener(this);
-        searchPlan.setOnClickListener(this);
+    private void datePicker() {
         //==================================================================================================
         PersianCalendar persianCalendarDatePicker = new PersianCalendar();
         //  Date currentTime = Calendar.getInstance().getTime();
@@ -214,20 +143,16 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         PersianCalendar persianCalendar = new PersianCalendar();
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
         ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
-        tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
+        tarikh_az_picker.setText(persianCalendar.getPersianMonthName() + " " + persianCalendar.getPersianYear());
+        tarikh_az_picker_day.setText(persianCalendar.getPersianDay()+"" );
         picker_az_format = persianCalendarDatePicker.getPersianLongDate();
-        tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
+        tarikh_be_picker.setText(persianCalendar.getPersianMonthName() + " " + persianCalendar.getPersianYear());
+        tarikh_be_picker_day.setText( persianCalendar.getPersianDay()+"");
         picker_be_format = persianCalendarDatePicker.getPersianLongDate();
         month = persianCalendarDatePicker.getPersianMonth();//9
         year_ = persianCalendarDatePicker.getPersianYear();//1396
         day = persianCalendarDatePicker.getPersianDay();//24
-///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
-   /*     datePickerDialogGregorian1 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
-        datePickerDialogGregorian2 = new com.wdullaer.materialdatetimepicker.date.DatePickerDialog(2);
-//RRRRRRRRRRRRRRRRRRRRR
-        datePickerDialogGregorian1.setMinDate(persianCalendarDatePicker.toGregorianCalendar());
-        datePickerDialogGregorian2.setMinDate(persianCalendarDatePicker.toGregorianCalendar());*/
-        //RRRRRRRRRRRRRRRRRRRRRRRR
+
         datePickerDialog = com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog.newInstance(
                 this,
                 persianCalendarDatePicker.getPersianYear(),
@@ -245,89 +170,20 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
 
 
-       /* raft = date_server(persianCalendarDatePicker.getPersianYear(),
-                persianCalendarDatePicker.getPersianMonth(),
-                persianCalendarDatePicker.getPersianDay());
 
-        bargasht = date_server(persianCalendarDatePicker.getPersianYear(),
-                persianCalendarDatePicker.getPersianMonth(),
-                persianCalendarDatePicker.getPersianDay());*/
-//RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-        //=====================================================================================================
-      /*  datePickerDialog.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialogGregorian1.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianRaft");
-            }
-        });
-        datePickerDialogGregorian1.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialog.show(getActivity().getSupportFragmentManager(), "DatepickerdialogRaft");
-            }
-        });
-//=====================================================================================================
-        datePickerDialog2.setOnCalandarChangeListener(new DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialogGregorian2.show(getActivity().getFragmentManager(), "DatePickerDialogGregorianBargasht");
-            }
-        });
-        datePickerDialogGregorian2.setOnCalandarChangeListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnCalendarChangedListener() {
-            @Override
-            public void onCalendarChanged(boolean isGregorian) {
-                datePickerDialog2.show(getActivity().getSupportFragmentManager(), "DatepickerdialogBargasht");
-            }
-        });
-        datePickerDialog2.setTitle(getString(R.string.select_return_date));
-//=====================================================================================================
-        datePickerDialogGregorian1.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-                Geo = true;
-                Log.e("GGGGGGGRaft", year + "==" + monthOfYear + 1 + "==" + dayOfMonth);
-                String str_date = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;//2018-01-16
-                DateFormat formatter;
-                Date date;
-                formatter = new SimpleDateFormat("yyyy/MM/dd");
-                try {
-                    date = formatter.parse(str_date);
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(date);
-                    datePickerDialogGregorian2.setMinDate(cal);
-                    tarikh_az_picker.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
-                    raft = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
-                    Log.e("GGGGGGG", raft);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                tarikh_be_picker.setText(tarikh_az_picker.getText().toString());
-                Prefs.putString("bargashtfa", tarikh_az_picker.getText().toString());
-                Prefs.putString("raft", raft);
-                Prefs.putString("raftfa", tarikh_az_picker.getText().toString());
-            }
-        });
-        datePickerDialogGregorian2.setOnDateSetListener(new com.wdullaer.materialdatetimepicker.date.DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int endYear, int endMonth, int endDay) {
-                Log.e("GGGGGGGBar", year + "==" + (monthOfYear + 1) + "==" + dayOfMonth);
-                Geo = true;
-                tarikh_be_picker.setText(DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
-                bargasht = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
-                Prefs.putString("bargasht", bargasht);
-                Prefs.putString("bargashtfa", DateUtil.getLongStringDate(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth, "yyyy/MM/dd", false));
-            }
-        });*/
-        //RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRrr
         //set value bundle
         //get
         if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 1) {
             tvStart.setText(Prefs.getString("Value-Mabda-City", "")+" , "+Prefs.getString("Value-Mabda-Airport-Code",""));
-            lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
+            tvStart.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+            tvStart.setTypeface(tvEnd.getTypeface(), Typeface.BOLD);
+            lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport-Code2", ""));
         }
         if (Prefs.getString("Value-Maghsad-Airport", "") != null && Prefs.getString("Value-Maghsad-Airport", "").length() > 1) {
-            lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
+            lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport-Code2", ""));
             tvEnd.setText(Prefs.getString("Value-Maghsad-City", "")+" , "+Prefs.getString("Value-Maghsad-Airport-Code",""));
+            tvEnd.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+            tvEnd.setTypeface(tvEnd.getTypeface(), Typeface.BOLD);
         }//return rootView;
         if (Prefs.getString("bargashtfa", "null").equals("null")) {
             tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
@@ -354,7 +210,8 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             }
         }
         if (Prefs.getString("raftfa", "null").equals("null")) {
-            tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
+            tarikh_az_picker.setText(persianCalendar.getPersianMonthName() + " " + persianCalendar.getPersianYear());
+            tarikh_az_picker_day.setText( persianCalendar.getPersianDay()+"" );
             picker_az_format = persianCalendarDatePicker.getPersianLongDate();
         } else {
             try {
@@ -376,29 +233,122 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             } catch (Exception e) {
             }
         }
+
+
+    }
+
+    private void initView() {
+        lnr_pass_count = rootView.findViewById(R.id.lnr_pass_count);
+
+        txtPassNat = rootView.findViewById(R.id.txtPassNat);
+        txtPassWom = rootView.findViewById(R.id.txtPassWom);
+        txtPassMen = rootView.findViewById(R.id.txtPassMen);
+        txtPassAdult = rootView.findViewById(R.id.txtPassAdult);
+        txtPassChild = rootView.findViewById(R.id.txtPassChild);
+        txtPassInf = rootView.findViewById(R.id.txtPassInf);
+        txtPassAdult.setText("1"+" "+getString(R.string.adault)+" ");
+        txtPassChild.setText("0"+" "+getString(R.string.baby)+" ");
+        txtPassInf.setText("0"+" "+getString(R.string.newborn)+" ");
+        Prefs.putString("Value_Pass_CountB", "1");
+        Prefs.putString("Value_Pass_CountK", "0");
+        Prefs.putString("Value_Pass_CountN", "0");
+
+        lnr_pass_count.setOnClickListener(this);
+
+        txtPassNat.setOnClickListener(this);
+        txtPassWom.setOnClickListener(this);
+        txtPassMen.setOnClickListener(this);
+        ///
+      //  llButton = rootView.findViewById(R.id.llButton);
+        // linear_picker = (LinearLayout) rootView.findViewById(R.id.linear_picker);
+        linear_tarikh_az_picker = rootView.findViewById(R.id.linear_tarikh_az_picker);
+        tarikh_az_picker = rootView.findViewById(R.id.tarikh_az_picker);
+        tarikh_az_picker_day = rootView.findViewById(R.id.tarikh_az_picker_day);
+
+        tarikh_be_picker = rootView.findViewById(R.id.tarikh_be_picker);
+        tarikh_be_picker_day = rootView.findViewById(R.id.tarikh_be_picker_day);
+        linearLayout_mabda = rootView.findViewById(R.id.linearLayout_mabda);
+        linearLayout_maghsad = rootView.findViewById(R.id.linearLayout_maghsad);
+        /*tarikh_az_picker.setTypeface(face);
+        tarikh_be_picker.setTypeface(face);*/
+       /* lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
+        lottieCheckout = rootView.findViewById(R.id.lottie_checkout);
+        lottieCheckin.setSpeed(2f);
+        lottieCheckout.setSpeed(2f);*/
+        tarikh_az = rootView.findViewById(R.id.tarikh_az);
+        //tarikh_be = rootView.findViewById(R.id.tarikh_be);
+      //  ivImage = rootView.findViewById(R.id.ivImage);
+        /*btnPlusB = rootView.findViewById(R.id.btnPlusB);
+        btnMinesB = rootView.findViewById(R.id.btnMinesB);
+        btnPlusK = rootView.findViewById(R.id.btnPlusK);
+        btnMinesK = rootView.findViewById(R.id.btnMinesK);
+        btnPlusN = rootView.findViewById(R.id.btnPlusN);
+        btnMinesN = rootView.findViewById(R.id.btnMinesN);*/
+        btntwo = rootView.findViewById(R.id.btntwo);
+        btnOne = rootView.findViewById(R.id.btnOne);
+        searchPlan = rootView.findViewById(R.id.searchPlan);
+        txtBO = rootView.findViewById(R.id.txtBO);
+        txtKO = rootView.findViewById(R.id.txtKO);
+        txtNO = rootView.findViewById(R.id.txtNO);
+        textView3 = rootView.findViewById(R.id.textView3);
+       /* txtCountB = rootView.findViewById(R.id.txtCountB);
+        txtCountK = rootView.findViewById(R.id.txtCountK);
+        txtCountN = rootView.findViewById(R.id.txtCountN);*/
+        tvStart = rootView.findViewById(R.id.tvStart);
+        txtOption = rootView.findViewById(R.id.txtOption);
+        tvEnd = rootView.findViewById(R.id.tvEnd);
+        lbl_forudgah_mabda = rootView.findViewById(R.id.lbl_forudgah_mabda);
+        lbl_forudgah_maghsad = rootView.findViewById(R.id.lbl_forudgah_maghsad);
+       // linear_tarikh_az_picker.setOnClickListener(this);
+
+        // tarikh_az_picker.setOnClickListener(this);
+        // tarikh_be_picker.setOnClickListener(this);
+       /* btnPlusB.setOnClickListener(this);
+        btnMinesB.setOnClickListener(this);
+        btnPlusK.setOnClickListener(this);
+        btnMinesK.setOnClickListener(this);
+        btnPlusN.setOnClickListener(this);
+        btnMinesN.setOnClickListener(this);*/
+        linearLayout_mabda.setOnClickListener(this);
+        linearLayout_maghsad.setOnClickListener(this);
+        txtOption.setOnClickListener(this);
+        btntwo.setOnClickListener(this);
+        btnOne.setOnClickListener(this);
+        searchPlan.setOnClickListener(this);
+        //default one way
+        linear_picker = rootView.findViewById(R.id.linear_picker);
+        linear_picker_raft = rootView.findViewById(R.id.linear_picker_raft);
+        linear_picker.setOnClickListener(this);
+        linear_picker_raft.setOnClickListener(this);
+        //linear_picker.setVisibility(View.INVISIBLE);
+        SingletonDate.getInstance().checkConflictDate();
         tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        tarikh_be_picker_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak()+"");//faghat ruz
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
         tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        tarikh_az_picker_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak()+"");//faghat ruz
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
-        service = ServiceGenerator.createService(ClientService.class);
-
-        return rootView;
-    }//end oncreat
+        flagOneTwo = 1;
+    }
 
     @Override
     public void onResume() {
         Prefs.putBoolean("geo", Geo);
-        Log.e("DEBUG", "onResume of PlanFragment");
+        Log.e("DEBUG", "onResume of HomeFragment");
         super.onResume();
         if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 1) {
            // tvStart.setText(Prefs.getString("Value-Mabda-City", ""));
             tvStart.setText(Prefs.getString("Value-Mabda-City", "")+" , "+Prefs.getString("Value-Mabda-Airport-Code",""));
-            lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
+            tvStart.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+            tvStart.setTypeface(tvEnd.getTypeface(), Typeface.BOLD);
+            lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport-Code2", ""));
         }
         if (Prefs.getString("Value-Maghsad-Airport", "") != null && Prefs.getString("Value-Maghsad-Airport", "").length() > 1) {
-            lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
+            lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport-Code2", ""));
           //  tvEnd.setText(Prefs.getString("Value-Maghsad-City", ""));
             tvEnd.setText(Prefs.getString("Value-Maghsad-City", "")+" , "+Prefs.getString("Value-Maghsad-Airport-Code",""));
+            tvEnd.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+            tvEnd.setTypeface(tvEnd.getTypeface(), Typeface.BOLD);
         }//return rootView;
     }
 
@@ -420,7 +370,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         return b > a ? c >= a && c <= b : c >= b && c <= a;
     }
 
-    private void initCheckInCheckOutAnim() {
+    private void initCheckInCheckOutAnim(){} /*{
         lottieCheckin.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -459,17 +409,17 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         });
         lottieCheckin.playAnimation();
         lottieCheckout.playAnimation();
-    }
+    }*/
     private void clickPassNat() {
         try {
 
-            txtPassNat.setBackgroundResource(R.drawable.background_strock_purple_mat);
+            txtPassNat.setBackgroundResource(R.drawable.background_strock_blue_light);
             txtPassMen.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
             txtPassWom.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
 
             txtPassNat.setTextColor(Color.parseColor(getString(R.color.white)));
-            txtPassMen.setTextColor(Color.parseColor(getString(R.color.grayBB)));
-            txtPassWom.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassMen.setTextColor(Color.parseColor(getString(R.color.n_black_normal)));
+            txtPassWom.setTextColor(Color.parseColor(getString(R.color.n_black_normal)));
             YoYo.with(Techniques.Pulse)
                     .duration(200)
                     .playOn(txtPassNat);
@@ -483,10 +433,10 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
 
             txtPassNat.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
             txtPassMen.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
-            txtPassWom.setBackgroundResource(R.drawable.background_strock_purple_mat);
+            txtPassWom.setBackgroundResource(R.drawable.background_strock_blue_light);
 
-            txtPassNat.setTextColor(Color.parseColor(getString(R.color.grayBB)));
-            txtPassMen.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassNat.setTextColor(Color.parseColor(getString(R.color.n_black_normal)));
+            txtPassMen.setTextColor(Color.parseColor(getString(R.color.n_black_normal)));
             txtPassWom.setTextColor(Color.parseColor(getString(R.color.white)));
             YoYo.with(Techniques.Pulse)
                     .duration(200)
@@ -500,12 +450,12 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         try {
 
             txtPassNat.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
-            txtPassMen.setBackgroundResource(R.drawable.background_strock_purple_mat);
+            txtPassMen.setBackgroundResource(R.drawable.background_strock_blue_light);
             txtPassWom.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
 
-            txtPassNat.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassNat.setTextColor(Color.parseColor(getString(R.color.n_black_normal)));
             txtPassMen.setTextColor(Color.parseColor(getString(R.color.white)));
-            txtPassWom.setTextColor(Color.parseColor(getString(R.color.grayBB)));
+            txtPassWom.setTextColor(Color.parseColor(getString(R.color.n_black_normal)));
             YoYo.with(Techniques.Pulse)
                     .duration(200)
                     .playOn(txtPassMen);
@@ -662,32 +612,42 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                         .needBackgroundShadow(true)
                         .startActivity();
                 break;
-            case R.id.txtOption:
+          case R.id.txtOption:
                 anim();
                 break;
             case R.id.btntwo:
                 SingletonDate.getInstance().checkConflictDate();
                 tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                tarikh_be_picker_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
                 bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
                 tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
+                tarikh_az_picker_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak());
                 raft = SingletonDate.getInstance().getStartDate().getFullGeo();
                 flagOneTwo = 2;
-                llButton.setBackgroundResource(R.drawable.raftobargasht_button);
+              /*  llButton.setBackgroundResource(R.drawable.raftobargasht_button);
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
-                        .playOn(llButton);
+                        .playOn(llButton);*/
                 ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#ffffff"));
+                ((TextView) rootView.findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.background_strock_blue_light);
+
+
                 ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
+                ((TextView) rootView.findViewById(R.id.btnOne)).setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
                 //  linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
                 linear_picker = rootView.findViewById(R.id.linear_picker);
-                tarikh_be.setVisibility(View.VISIBLE);
+               // tarikh_be.setVisibility(View.VISIBLE);
+               // tarikh_be.setVisibility(View.VISIBLE);
                 linear_picker.setVisibility(View.VISIBLE);
+                ((TextView) rootView.findViewById(R.id.titledate)).setTextColor(Color.parseColor(getString(R.color.n_black_light)));
+                ((TextView) rootView.findViewById(R.id.tarikh_be_picker_day)).setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+                ((TextView) rootView.findViewById(R.id.tarikh_be_picker)).setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
                         .playOn(linear_picker);
-                YoYo.with(Techniques.Pulse)
+               /* YoYo.with(Techniques.Pulse)
                         .duration(200)
-                        .playOn(tarikh_be);
+                        .playOn(tarikh_be);*/
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
                         .playOn(linear_picker);
@@ -699,38 +659,57 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             case R.id.btnOne:
                 SingletonDate.getInstance().checkConflictDate();
                 tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                tarikh_be_picker_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
                 bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
                 tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
+                tarikh_az_picker_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak());
                 raft = SingletonDate.getInstance().getStartDate().getFullGeo();
                 flagOneTwo = 1;
-                llButton.setBackgroundResource(R.drawable.raft_button);
+               /* llButton.setBackgroundResource(R.drawable.raft_button);
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
-                        .playOn(llButton);
+                        .playOn(llButton);*/
                 //((Button) rootView.findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.raft_big);
+
+
                 ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#ffffff"));
+                ((TextView) rootView.findViewById(R.id.btnOne)).setBackgroundResource(R.drawable.background_strock_blue_light);
+
+
                 ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#d9d9d9"));
+                ((TextView) rootView.findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
                 //linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
                 linear_picker = rootView.findViewById(R.id.linear_picker);
-                tarikh_be.setVisibility(View.INVISIBLE);
-                linear_picker.setVisibility(View.INVISIBLE);
+              //  tarikh_be.setVisibility(View.INVISIBLE);
+              //  linear_picker.setVisibility(View.INVISIBLE);
+                ((TextView) rootView.findViewById(R.id.titledate)).setTextColor(Color.parseColor(getString(R.color.n_disable)));
+                ((TextView) rootView.findViewById(R.id.tarikh_be_picker_day)).setTextColor(Color.parseColor(getString(R.color.n_disable)));
+                ((TextView) rootView.findViewById(R.id.tarikh_be_picker)).setTextColor(Color.parseColor(getString(R.color.n_disable)));
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
                         .playOn(linear_picker);
-                YoYo.with(Techniques.Pulse)
+                /*YoYo.with(Techniques.Pulse)
                         .duration(400)
-                        .playOn(tarikh_be);
+                        .playOn(tarikh_be);*/
                 YoYo.with(Techniques.Pulse)
                         .duration(200)
                         .playOn(linear_picker);
                 break;
 
             //case R.id.tarikh_az_picker:
-            case R.id.linear_tarikh_az_picker:
+            case R.id.linear_picker_raft:
                 SingletonDate.getInstance().checkConflictDate();
                 if (flagOneTwo == 1) {
                     calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), TypeUsageOfCalendar.NationalFlight);
                 } else {
+                    //calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.NationalFlight);
+                    calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.NationalFlight);
+                }
+                break;
+                case R.id.linear_picker:
+                SingletonDate.getInstance().checkConflictDate();
+                if (flagOneTwo == 2) {
+
                     //calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.NationalFlight);
                     calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.NationalFlight);
                 }
@@ -848,28 +827,30 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
             bargasht = date_server(year, monthOfYear, dayOfMonth);//2018-02-9
             picker_be_format = persianCalendar.getPersianLongDate();//جمعه 20 بهمن 1396
-            Prefs.putString("bargashtfa", tarikh_be_picker.getText().toString());//پنج‌شنبه 19 بهمن 1396
+            Prefs.putString("bargashtfa", tarikh_be_picker_day.getText().toString()+" "+ tarikh_be_picker.getText().toString());//پنج‌شنبه 19 بهمن 1396
             Prefs.putString("bargasht", bargasht);//2018-02-11
         }
         if (view.getTag().equals("DatepickerdialogRaft")) {
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
+            tarikh_az_picker.setText(persianCalendar.getPersianMonthName() + " " + persianCalendar.getPersianYear());
+            tarikh_az_picker_day.setText( persianCalendar.getPersianDay()+"");
             //  tvBargasht.setText(persianCalendar.getPersianLongDate());
             raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
             if (Utility.campareDate(raft.replaceAll("-", "/"), bargasht.replaceAll("-", "/"))) {
-                tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
+                tarikh_be_picker.setText(persianCalendar.getPersianMonthName() + " " + persianCalendar.getPersianYear());
+                tarikh_be_picker_day.setText( persianCalendar.getPersianDay()+"");
                 datePickerDialog2.initialize(this, year_, month, day);
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
             } else {
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
             }
-            Prefs.putString("bargashtfa", tarikh_be_picker.getText().toString());
+            Prefs.putString("bargashtfa", tarikh_be_picker_day.getText().toString()+""+tarikh_be_picker.getText().toString());
             Prefs.putString("raft", raft);
-            Prefs.putString("raftfa", tarikh_az_picker.getText().toString());
+            Prefs.putString("raftfa", tarikh_az_picker_day.getText().toString()+""+tarikh_az_picker.getText().toString());
         }
     }
 
@@ -883,10 +864,10 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
             public void onAnimationStart(android.animation.Animator animation) {
                 YoYo.with(Techniques.SlideOutDown)
                         .duration(500)
-                        .playOn(lbl_forudgah_mabda);
+                        .playOn(tvStart);
                 YoYo.with(Techniques.SlideOutUp)
                         .duration(500)
-                        .playOn(lbl_forudgah_maghsad);
+                        .playOn(tvEnd);
                 YoYo.with(Techniques.SlideOutUp)
                         .duration(500)
                         .playOn(tvEnd);
@@ -907,20 +888,20 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
                 lbl_forudgah_mabda.setText(endF);
                 lbl_forudgah_maghsad.setText(startF);
                 if (start.contains(getString(R.string.origin)) && end.contains(getString(R.string.destination))) {
-                    tvStart.setText(getString(R.string.select_origin_city_or_airport));
-                    tvEnd.setText(getString(R.string.select_destination_city_or_airport));
+                    tvStart.setText(getString(R.string.select_origin_city));
+                    tvEnd.setText(getString(R.string.select_destination_city));
                 } else if (start.contains(getString(R.string.origin))) {
-                    tvEnd.setText(getString(R.string.select_destination_city_or_airport));
+                    tvEnd.setText(getString(R.string.select_destination_city));
                     lbl_forudgah_maghsad.setText("");
                 } else if (end.contains(getString(R.string.destination))) {
-                    tvStart.setText(getString(R.string.select_origin_city_or_airport));
+                    tvStart.setText(getString(R.string.select_origin_city));
                     lbl_forudgah_mabda.setText("");
                 }
 /////////////////////////
-                String airportMaghsad = Prefs.getString("Value-Maghsad-Airport-Code", "");
-                String airPortMabda = Prefs.getString("Value-Mabda-Airport-Code", "");
-                Prefs.putString("Value-Mabda-Airport-Code", airportMaghsad);
-                Prefs.putString("Value-Maghsad-Airport-Code", airPortMabda);
+                String airportMaghsad = Prefs.getString("Value-Maghsad-Airport-Code2", "");
+                String airPortMabda = Prefs.getString("Value-Mabda-Airport-Code2", "");
+                Prefs.putString("Value-Mabda-Airport-Code2", airportMaghsad);
+                Prefs.putString("Value-Maghsad-Airport-Code2", airPortMabda);
                 String mabdaCity = Prefs.getString("Value-Mabda-City", "");
                 String mabdaAirPort = Prefs.getString("Value-Mabda-Airport", "");
                 String maghsadCity = Prefs.getString("Value-Maghsad-City", "");
@@ -954,7 +935,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         })
                 .playOn(tvStart);
         final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_around_center_point);
-        ivImage.startAnimation(animation);
+        txtOption.startAnimation(animation);
     }
 
     @Override
@@ -962,15 +943,18 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         initCheckInCheckOutAnim();
         if (flagOneTwo == 1) {
             tarikh_az_picker.setText(startDate.getDescription());
+            tarikh_az_picker_day.setText(startDate.getDescriptionTak());
             SingletonDate.getInstance().setStartDate(startDate);
         } else {
             SingletonDate.getInstance().setReverseDate(startDate, endDate);
             tarikh_az_picker.setText(startDate.getDescription());
+            tarikh_az_picker_day.setText(startDate.getDescriptionTak());
             tarikh_be_picker.setText(endDate.getDescription());
+            tarikh_be_picker_day.setText(endDate.getDescriptionTak());
             Prefs.putString("bargasht", endDate.getFullGeo());
-            Prefs.putString("bargashtfa", endDate.getDescription());
+            Prefs.putString("bargashtfa", endDate.getDescriptionTak()+""+endDate.getDescription());
             Prefs.putString("raft", startDate.getFullGeo());
-            Prefs.putString("raftfa", startDate.getDescription());
+            Prefs.putString("raftfa", startDate.getDescriptionTak()+""+startDate.getDescription());
             raft = startDate.getFullGeo();
             bargasht = endDate.getFullGeo();
             Prefs.putBoolean("GeoFlight", isGeo);

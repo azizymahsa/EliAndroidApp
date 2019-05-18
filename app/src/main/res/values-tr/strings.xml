@@ -14,7 +14,7 @@
     <string name="app_name">Eligasht</string>
     <string name="accept">kabul etmek</string>
     <string name="empty_circle">&#xe627;</string>
-    <string name="icon_menu">&#xe901;</string>
+    <string name="icon_menu">&#68;</string>
     <string name="icon_bed">&#xe900;</string>
     <string name="icon_location">&#xe90b;</string>
     <string name="icon_location2">&#xe90b;</string>
@@ -2473,5 +2473,8 @@
     <string name="_popular">Popular</string>
     <string name="_rating">Rating</string>
     <string name="please_wating">please wating ...</string>
+    <string name="_destination_city">Destination city</string>
+    <string name="search_the_destination_city">Hedef şehri arayın</string>
+    <string name="_room_selection">Oda seçimi ve yolcular</string>
 </resources>
 

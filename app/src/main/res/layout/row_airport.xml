@@ -203,10 +203,10 @@
             android:layout_height="@dimen/_40dp_f"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:visibility="gone"
             android:textAppearance="@style/IconMenuFantastic"
             android:textColor="@color/train_gray"
-            android:textSize="@dimen/_30dp_flight" />
+            android:textSize="@dimen/_30dp_flight"
+            android:visibility="gone"/>
         <TextView
             android:id="@+id/txtIconBaseLocation"
             android:layout_width="@dimen/_40dp_f"

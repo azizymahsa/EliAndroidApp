@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eligasht.reservation.models.Airport;
@@ -66,7 +67,8 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
     GetAirPortMabdaAdapter mAdapter;
     private EditText searchtxt;
     AVLoadingIndicatorView avi;
-    FancyButton btnBack, btnMic;
+    FancyButton btnBack;
+    TextView btnMic;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
     @Override
@@ -85,11 +87,11 @@ public class GetAirportMabdaActivity extends BaseActivity implements Header.onSe
         btnBack = findViewById(R.id.btnBack);
         btnMic = findViewById(R.id.btnMic);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
-        btnMic.setCustomTextFont("fonts/icomoon.ttf");
+       // btnMic.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
-        btnMic.setText(getString(R.string.icon_mic));
+       // btnMic.setText(getString(R.string.icon_mic));
         btnBack.setOnClickListener(this);
-        btnMic.setOnClickListener(this);
+      //  btnMic.setOnClickListener(this);
         if(getString(R.string.culture).contains("fa")){
             sendRequest("+++");
         }else{

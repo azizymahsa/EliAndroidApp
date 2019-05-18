@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,16 +62,17 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     public List<ModelRowCountRoom> data;
     LinearLayout btn_add_room, llRoom;
     HotelCountRoomAdapter mAdapter;
-    RelativeLayout citySearch;
-    TextView tvRaft, tvBargasht;
+
+    TextView tvRaft, tvBargasht,tvRaft_day, tvBargasht_day;
     String raft, bargasht;
-    LinearLayout linearLayout_mabda, linearLayout_maghsad, llRaft, llBargasht;
-    ImageView ivImage;
+    LinearLayout linearLayout_mabda, linearLayout_maghsad, llBargasht;
+    CardView llRaft;
+  //  ImageView ivImage;
     boolean geo = false;
     CalendarDialog calendarDialog;
     private View rootView;
     private ArrayList<ModelRowCountRoom> roomsSelected;
-    private LottieAnimationView lottieCheckin, lottieCheckout;
+    //private LottieAnimationView lottieCheckin, lottieCheckout;
     public TextView tvStart, tvEnd, lbl_forudgah_maghsad, lbl_forudgah_mabda;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,18 +100,20 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         tarikh_be = rootView.findViewById(R.id.tarikh_be);
 
         linearLayout_mabda = rootView.findViewById(R.id.linearLayout_mabda);
-        lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
+       /* lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
         lottieCheckout = rootView.findViewById(R.id.lottie_checkout);
         lottieCheckin.setSpeed(2f);
-        lottieCheckout.setSpeed(2f);
+        lottieCheckout.setSpeed(2f);*/
         tarikh_be.setOnClickListener(this);
         txtRoomCount = rootView.findViewById(R.id.txtRoomCount);
         linearLayout_maghsad = rootView.findViewById(R.id.linearLayout_maghsad);
         tvRaft = rootView.findViewById(R.id.tvRaft);
         tvBargasht = rootView.findViewById(R.id.tvBargasht);
+        tvBargasht_day = rootView.findViewById(R.id.tvBargasht_day);
+        tvRaft_day = rootView.findViewById(R.id.tvRaft_day);
         tvAdult = rootView.findViewById(R.id.tvAdult);
         tvChild = rootView.findViewById(R.id.tvChild);
-        ivImage = rootView.findViewById(R.id.ivImage);
+     //   ivImage = rootView.findViewById(R.id.ivImage);
         llRaft = rootView.findViewById(R.id.llRaft);
         llBargasht = rootView.findViewById(R.id.llBargasht);
         llRaft.setOnClickListener(this);
@@ -119,13 +123,11 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         llRoom = rootView.findViewById(R.id.llRoom);
         llRoom.setOnClickListener(this);
         linearLayout_mabda.setOnClickListener(this);
-        citySearch = rootView.findViewById(R.id.citySearch);
 
-        citySearch.setOnClickListener(this);
         //lbl_city_english.setOnClickListener(this);
         searchHotel = rootView.findViewById(R.id.searchHotel);
         searchHotel.setOnClickListener(this);
-        ivImage.setOnClickListener(this);
+       // ivImage.setOnClickListener(this);
         data = new ArrayList<ModelRowCountRoom>();
         ModelRowCountRoom model = new ModelRowCountRoom();
         model.setCountB(1);
@@ -135,8 +137,11 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         mAdapter = new HotelCountRoomAdapter(getActivity(), data);
         mAdapter.setData(data);
         tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        tvBargasht_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
+
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
         tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        tvRaft_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak());
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
 
         if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 1) {
@@ -188,7 +193,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         Prefs.putBoolean("geo", geo);
     }
 
-    private void initCheckInCheckOutAnim() {
+    private void initCheckInCheckOutAnim(){} /*{
         lottieCheckin.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -234,7 +239,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         });
         lottieCheckin.playAnimation();
         lottieCheckout.playAnimation();
-    }
+    }*/
 
 
     @Override
@@ -263,8 +268,8 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                         Intent intent = new Intent(getActivity(), SelectHotelFlightActivity.class);
                         intent.putExtra("CheckInHF", raft);
                         intent.putExtra("CheckOutHF", bargasht);
-                        intent.putExtra("CheckOutFaHF", tvBargasht.getText().toString());
-                        intent.putExtra("CheckInFaHF", tvRaft.getText().toString());
+                        intent.putExtra("CheckOutFaHF", tvBargasht_day.getText().toString()+""+tvBargasht.getText().toString());
+                        intent.putExtra("CheckInFaHF", tvRaft_day.getText().toString()+""+tvRaft.getText().toString());
                         intent.putExtra("Rooms", getRoomList(roomsSelected));
                         intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
                         intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
@@ -289,7 +294,11 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             case R.id.llBargasht:
                 calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
                 tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
+                tvRaft_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak());
+
                 tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                tvBargasht_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
+
                 raft = SingletonDate.getInstance().getStartDate().getFullGeo();
                 bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
                 break;
@@ -313,9 +322,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 startActivity(intent);
 
                 break;
-            case R.id.ivImage:
+            /*case R.id.ivImage:
                 anim();
-                break;
+                break;*/
 
 
         }
@@ -486,7 +495,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             }
         }).playOn(tvStart);
         final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_around_center_point);
-        ivImage.startAnimation(animation);
+      //  ivImage.startAnimation(animation);
     }
 
 
@@ -494,7 +503,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
         SingletonDate.getInstance().setReverseDate(startDate, endDate);
         tvRaft.setText(startDate.getDescription());
+        tvRaft_day.setText(startDate.getDescriptionTak());
         tvBargasht.setText(endDate.getDescription());
+        tvBargasht_day.setText(endDate.getDescriptionTak());
         initCheckInCheckOutAnim();
         raft = startDate.getFullGeo();
         bargasht = endDate.getFullGeo();

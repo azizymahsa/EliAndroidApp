@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#152b5a"
+        android:background="@drawable/header_shadow"
         android:minHeight="?attr/actionBarSize">
 
         <mehdi.sakout.fancybuttons.FancyButton

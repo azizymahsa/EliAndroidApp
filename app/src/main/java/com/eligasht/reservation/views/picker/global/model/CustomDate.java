@@ -158,11 +158,20 @@ public class CustomDate {
         PersianCalendar persianCalendar = new PersianCalendar();
         persianCalendar.setPersianDate(persianDate.getYear(), persianDate.getMonth() - 1, persianDate.getDayOfMonth());
 
-        return persianCalendar.getPersianWeekDayName()
+      /*  return persianCalendar.getPersianWeekDayName()
                 + " " +
-                persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName();
+                persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName(); */
+        return persianCalendar.getPersianMonthName() + " " + persianCalendar.getPersianYear();
     }
+    private String getPersianDayNew() {
+        PersianCalendar persianCalendar = new PersianCalendar();
+        persianCalendar.setPersianDate(persianDate.getYear(), persianDate.getMonth() - 1, persianDate.getDayOfMonth());
 
+      /*  return persianCalendar.getPersianWeekDayName()
+                + " " +
+                persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName(); */
+        return persianCalendar.getPersianDay()+"";
+    }
     public boolean addOneDay() {
         if (anotherCustomDate == null) {
             addDay(1);
@@ -226,6 +235,11 @@ public class CustomDate {
                 + " " +
                 civilDate.getDayOfMonth() + " " + calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, locale);
     }
+    private String getDescriptionGeoOnlyDay(Locale locale) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(civilDate.getYear(), civilDate.getMonth() - 1, civilDate.getDayOfMonth());
+        return civilDate.getDayOfMonth() + "" ;
+    }
 
     public String getDescription() {
         SharedPreferences sharedPrefrences = SingletonContext.getInstance().getContext().getSharedPreferences("eligasht.com", 0);
@@ -233,6 +247,14 @@ public class CustomDate {
             return getDescriptionGeo(Locale.ENGLISH);
         if (Locale.getDefault().getLanguage().equals("fa") && !sharedPrefrences.getBoolean("isGregorian", false))
             return getDescriptionPersian();
+        return getDescriptionGeo(Locale.getDefault());
+    }
+    public String getDescriptionTak() {
+        SharedPreferences sharedPrefrences = SingletonContext.getInstance().getContext().getSharedPreferences("eligasht.com", 0);
+        if (sharedPrefrences.getBoolean("isGregorian", false) && !Locale.getDefault().getLanguage().equals("fa"))
+            return getDescriptionGeoOnlyDay(Locale.ENGLISH);
+        if (Locale.getDefault().getLanguage().equals("fa") && !sharedPrefrences.getBoolean("isGregorian", false))
+            return getPersianDayNew();
         return getDescriptionGeo(Locale.getDefault());
     }
 

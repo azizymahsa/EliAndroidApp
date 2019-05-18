@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@drawable/alert_header_background"
+        android:background="@color/n_blue_btn"
         android:orientation="horizontal"
         android:gravity="center">
         <TextView
@@ -164,7 +164,7 @@
         android:layout_height="@dimen/_50dp"
         android:padding="10dp"
         android:orientation="horizontal"
-        android:background="@drawable/alert_header_background"
+        android:background="@color/n_blue_btn"
         android:text="@string/SortFilter"
         android:textColor="@color/white"
         android:textSize="@dimen/_16dp_txtSize"

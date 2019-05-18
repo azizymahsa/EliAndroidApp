@@ -642,7 +642,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
     private void hotelPreSearchReq() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.status_loading));
+            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.flight_status));
         }
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
         RequestHotelPreSearch requestHotelPreSearch = new RequestHotelPreSearch();
@@ -685,7 +685,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         filterHotelBestOffModels.clear();
         filterHotelStarsModels.clear();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.status_loading));
+            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.flight_status));
         }
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, true, R.drawable.hotel_loading);
         RequestHotelSearch hotelAvailReq = new RequestHotelSearch();
@@ -740,7 +740,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.colorPrimaryDark));
+            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.flight_status));
         }
         selectHotelModelArrayList.clear();
         selectHotelModelArrayListFilter.clear();
@@ -899,7 +899,7 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         new InitUi().Loading(SelectHotelActivity.this, rlLoading, rlRoot, false, R.drawable.hotel_loading);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.colorPrimaryDark));
+            window.setStatusBarColor(ContextCompat.getColor(SelectHotelActivity.this, R.color.flight_status));
         }
         rvHotelResult.setVisibility(View.GONE);
         rlList.setVisibility(View.GONE);

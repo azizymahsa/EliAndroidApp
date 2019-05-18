@@ -30,7 +30,7 @@
             android:id="@+id/tvTitleM"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50dp"
-            android:background="@drawable/alert_header_background"
+            android:background="@color/n_blue_btn"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dp"

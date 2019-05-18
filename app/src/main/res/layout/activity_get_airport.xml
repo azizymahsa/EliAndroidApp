@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="15"
-        android:background="@color/toolbar_color"
+        android:background="@color/n_blue_btn"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -61,19 +61,16 @@
 
                 />
 
-            <mehdi.sakout.fancybuttons.FancyButton
+            <TextView
                 android:id="@+id/btnMic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center"
                 android:layout_marginBottom="1dp"
                 android:gravity="right"
-                fancy:fb_defaultColor="@android:color/transparent"
-                fancy:fb_focusColor="@color/focusColor"
-                fancy:fb_radius="200dp"
-                fancy:fb_text=" "
-                fancy:fb_textColor="@color/text_color_4d"
-                fancy:fb_textSize="@dimen/_14dp_txtSize" />
+                android:text="&#105;"
+                android:textAppearance="@style/FontsEli"
+               />
 
 
         </RelativeLayout>

@@ -1954,7 +1954,7 @@
 
     </string-array>
     <string name="no_results_found">No Results Found</string>
-    <string name="icon_menu">&#xe901;</string>
+    <string name="icon_menu">&#68;</string>
     <string name="icon_bed">&#xe900;</string>
     <string name="icon_location">&#xe90b;</string>
     <string name="icon_location2">&#xe90b;</string>
@@ -2452,4 +2452,7 @@
     <string name="_popular">Popular</string>
     <string name="_rating">درجه مکان اقامتی</string>
     <string name="please_wating">لطفا صبر کنید</string>
+    <string name="_destination_city">شهر مقصد</string>
+    <string name="search_the_destination_city">جستجوی شهر مقصد</string>
+    <string name="_room_selection">انتخاب اتاق و مسافران</string>
 </resources>

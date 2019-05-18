@@ -110,16 +110,12 @@ public class GetHotelCityAdapter extends RecyclerView.Adapter<GetHotelCityAdapte
 	public void onBindViewHolder(GetHotelCityAdapter.MyViewHolder holder, int position) {
 		Airport current = data.get(position);
 		holder.AirportName.setText(current.getTesxt());
-		// holder.txtShortDes.setVisibility(View.GONE);
 
 		if(current.isPopular()){
 			holder.txtTag.setVisibility(View.VISIBLE);
 			holder.txtTag.setText( current.isPopular()  ? context.getString(R.string._Popular) : "");
 		}
-        /*if(current.getShortDes().length()>0){
-        holder.txtShortDes.setVisibility(View.VISIBLE);
-            holder.txtShortDes.setText(current.getShortDes());
-        }*/
+
 		holder.txtLongdes.setTag(current.getLongDes());
 		if(current.getLongDes().length()>0 ){
 			holder.txtLongdes.setVisibility(View.VISIBLE);
@@ -127,20 +123,15 @@ public class GetHotelCityAdapter extends RecyclerView.Adapter<GetHotelCityAdapte
 			holder.txtLongdes.setText(Html.fromHtml(current.getLongDes().toString()));
 		}
 
-		holder.txtIconBaseFantastic.setTag("/");
-		holder.txtIconBaseLocation.setTag(SingletonContext.getInstance().getContext().getResources().getString(R.string.icon_location2));
-
 		if(current.getIcon().contains("hotel")){
 			holder.txtIconBaseFantastic.setVisibility(View.VISIBLE);
+			holder.txtIconBaseLocation.setVisibility(View.GONE);
+			holder.AirportName.setTextColor(Color.parseColor("#000000"));
 			holder.txtIconBaseFantastic.setText("=");//icon_hotel
 			holder.txtIcon.setVisibility(View.GONE);
-           /* LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)holder.lnrAll.getLayoutParams();
-            params.setMargins(0, 50, 50, 0);
 
-            holder.lnrAll.setLayoutParams(params);*/
-			// tv1.setLayoutParams(params);
-			//holder.lnrAll.set
 		}else if(current.getIcon().contains("location")){
+			holder.txtIconBaseFantastic.setVisibility(View.GONE);
 			holder.txtIconBaseLocation.setVisibility(View.VISIBLE);
 			holder.txtIconBaseLocation.setText(SingletonContext.getInstance().getContext().getResources().getString(R.string.icon_location2));//icon_location
 			if(current.isSelectable()==false){
@@ -153,7 +144,7 @@ public class GetHotelCityAdapter extends RecyclerView.Adapter<GetHotelCityAdapte
 
 			}
 		}
-		//  "IsSelectable": false,
+
 
 
 
@@ -214,52 +205,7 @@ public class GetHotelCityAdapter extends RecyclerView.Adapter<GetHotelCityAdapte
 			}
 		});
 	}
-	/*public View getView(int position, View convertView, ViewGroup parent) {
-		final ViewHolder holder;
 
-		if (convertView == null) {
-		//	Log.e("POSITION", "" + position);
-			convertView = myInflater.inflate(R.layout.row_airport, null);
-			holder = new ViewHolder();
-
-			holder.AirportName = convertView.findViewById(R.id.text1);
-			holder.CityName = convertView.findViewById(R.id.text2);
-			holder.llLayout = convertView.findViewById(R.id.llLayout);
-
-			//holder.btnSwip = (Button) convertView.findViewById(R.id.swipe_button);
-			convertView.setTag(holder);
-		} else {
-			holder = (ViewHolder) convertView.getTag();
-		}
-		//cursor.moveToPosition(position);
-		final Airport current=data.get(position);
-		holder.AirportName.setText(current.getCityNameFa()+ "");
-
-		holder.CityName.setText(current.getCityNameEn());
-
-		holder.AirportName.setTag(current.getCityNameFa());
-
-		holder.CityName.setTag(current.getCityNameFa());
-		holder.llLayout.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-
-				RecentCityHotel_Table recentCity_table=new RecentCityHotel_Table(activity);
-				recentCity_table.insertData(current.getCityNameFa(),current.getCityNameEn(),current.getCityCode());
-
-				if (type==0){
-					Prefs.putString("Value-Hotel-City-Fa",current.getCityNameFa());
-					Prefs.putString("Value-Hotel-City-En",current.getCityNameEn());
-					Prefs.putString("Value-Hotel-City-Code",current.getCityCode());
-				}
-
-				activity.finish();
-
-			}
-		});
-		return convertView;
-	}*/
 
 	static class ViewHolder {
 		TextView AirportName;

@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60dp_hight"
-        android:background="@color/TRANSPARENT" />
+        android:background="@drawable/header_shadow" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,7 +85,8 @@
         android:id="@+id/llHome"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_60dp_hight"
-        android:layout_gravity="right">
+        android:layout_gravity="right"
+        android:visibility="invisible">
 
         <mehdi.sakout.fancybuttons.FancyButton
             android:id="@+id/btnHome"

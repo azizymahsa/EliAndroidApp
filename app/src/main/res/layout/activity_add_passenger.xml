@@ -130,7 +130,7 @@
                 android:layout_marginLeft="@dimen/_10dp_margin"
                 android:layout_marginRight="@dimen/_10dp_margin"
                 android:layout_marginTop="@dimen/_10dp_margin"
-                android:background="@drawable/btngravity_big"
+                android:background="@drawable/button_shape"
                 android:text="@string/confirm"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_16dp_normal_textSize"

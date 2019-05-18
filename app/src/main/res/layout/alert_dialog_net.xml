@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50dp"
             android:orientation="horizontal"
-            android:background="@drawable/alert_header_background"
+            android:background="@color/n_blue_btn"
             android:text="@string/NoInternet"
             android:textColor="@color/white"
             android:textSize="@dimen/_16dp_txtSize"

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,8 +73,8 @@ import retrofit2.Response;
 public class TrainFragment extends Fragment implements OnClickListener, TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener, ICallbackCalendarDialog {
     private static Boolean Darbast = false;
     public static boolean flag;
-    public static TextView tarikh_az_picker;
-    public static TextView tarikh_be_picker;
+    public static TextView tarikh_az_picker,tarikh_az_picker_day;
+    public static TextView tarikh_be_picker,tarikh_be_picker_day;
     private TickerView txtCountB, txtCountK, txtCountN;
     public TextView tvStart, tvMaghsad, txtKO, txtBO, txtNO, textView3, tarikh_az, tarikh_be, btntwo, btnOne, searchTrain;
     public Button btnPlusB, btnMinesB, btnPlusK, btnMinesK, btnPlusN, btnMinesN;
@@ -83,7 +84,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
     private static String picker_be_format = "25 December 2017";
     private View rootView;
     public boolean Geo = false;
-    public RelativeLayout txtOption;
+   // public RelativeLayout txtOption;
     public int month;
     public int year_;
     public int day;
@@ -93,7 +94,8 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
     public String raft, bargasht;
     public LinearLayout linearLayout_mabda, linearLayout_maghsad;
     public ImageView ivImage;
-    public LinearLayout linear_tarikh_az_picker, linear_picker;
+    public LinearLayout linear_tarikh_az_picker;
+    public CardView linear_picker;
     public static int countNafar = 1;
     public LinearLayout llButton,lnr_pass_count;
     public DatePickerDialog datePickerDialog;
@@ -101,7 +103,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
     public com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
     public com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
     public CalendarDialog calendarDialog;
-    private LottieAnimationView lottieCheckin, lottieCheckout;
+    //private LottieAnimationView lottieCheckin, lottieCheckout;
     private ClientService service;
     public TextView txtPassNat,txtPassWom,txtPassMen;
     public static TextView txtPassAdult;
@@ -124,8 +126,10 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         initCalendar();
 
         tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        tarikh_be_picker_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
         tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        tarikh_az_picker_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak());
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
         service = ServiceGenerator.createService(ClientService.class);
      //   Auth_request();
@@ -141,10 +145,11 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         PersianCalendar persianCalendar = new PersianCalendar();
         persianCalendar.set(persianCalendarDatePicker.getPersianYear(), persianCalendarDatePicker.getPersianMonth(), persianCalendarDatePicker.getPersianDay());
         ///RRRRRRRRRRRRRRRRRRRRRRRRRRRR
-        tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
+        tarikh_az_picker.setText(persianCalendar.getPersianMonthName() + " " + persianCalendar.getPersianYear());
+        tarikh_az_picker_day.setText(persianCalendar.getPersianDay()+"" );
         picker_az_format = persianCalendarDatePicker.getPersianLongDate();
-        tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
-        picker_be_format = persianCalendarDatePicker.getPersianLongDate();
+        tarikh_be_picker.setText(persianCalendar.getPersianMonthName() + " " + persianCalendar.getPersianYear());
+        tarikh_be_picker_day.setText( persianCalendar.getPersianDay()+"");
         month = persianCalendarDatePicker.getPersianMonth();//9
         year_ = persianCalendarDatePicker.getPersianYear();//1396
         day = persianCalendarDatePicker.getPersianDay();//24
@@ -203,7 +208,8 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
             }
         }
         if (Prefs.getString("raftfa", "null").equals("null")) {
-            tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
+            tarikh_az_picker.setText(persianCalendar.getPersianMonthName() + " " + persianCalendar.getPersianYear());
+            tarikh_az_picker_day.setText( persianCalendar.getPersianDay()+"" );
             picker_az_format = persianCalendarDatePicker.getPersianLongDate();
         } else {
             try {
@@ -231,14 +237,17 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         llButton = rootView.findViewById(R.id.llButton);
         linear_tarikh_az_picker = rootView.findViewById(R.id.linear_tarikh_az_picker);
         tarikh_az_picker = rootView.findViewById(R.id.tarikh_az_picker);
+        tarikh_az_picker_day = rootView.findViewById(R.id.tarikh_az_picker_day);
+
         tarikh_be_picker = rootView.findViewById(R.id.tarikh_be_picker);
+        tarikh_be_picker_day = rootView.findViewById(R.id.tarikh_be_picker_day);
         linearLayout_mabda = rootView.findViewById(R.id.linearLayout_mabda);
         linearLayout_maghsad = rootView.findViewById(R.id.linearLayout_maghsad);
 
-        lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
+       /* lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
         lottieCheckout = rootView.findViewById(R.id.lottie_checkout);
         lottieCheckin.setSpeed(2f);
-        lottieCheckout.setSpeed(2f);
+        lottieCheckout.setSpeed(2f);*/
         tarikh_az = rootView.findViewById(R.id.tarikh_az);
         tarikh_be = rootView.findViewById(R.id.tarikh_be);
         ivImage = rootView.findViewById(R.id.ivImage);
@@ -264,7 +273,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         txtCountK = rootView.findViewById(R.id.txtCountK);
         txtCountN = rootView.findViewById(R.id.txtCountN);
         tvStart = rootView.findViewById(R.id.tvStart);
-        txtOption = rootView.findViewById(R.id.txtOption);
+       // txtOption = rootView.findViewById(R.id.txtOption);
         tvMaghsad = rootView.findViewById(R.id.tvMaghsad);
 
         linear_tarikh_az_picker.setOnClickListener(this);
@@ -272,7 +281,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
 
         linearLayout_mabda.setOnClickListener(this);
         linearLayout_maghsad.setOnClickListener(this);
-        txtOption.setOnClickListener(this);
+       // txtOption.setOnClickListener(this);
         btntwo.setOnClickListener(this);
         btnOne.setOnClickListener(this);
         searchTrain.setOnClickListener(this);
@@ -289,7 +298,17 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         txtPassChild.setText("0"+" "+getString(R.string.baby)+" ");
         txtPassInf.setText("0"+" "+getString(R.string.newborn)+" ");
 
-
+        //default one way
+        linear_picker = rootView.findViewById(R.id.linear_picker);
+        linear_picker.setVisibility(View.INVISIBLE);
+        SingletonDate.getInstance().checkConflictDate();
+        tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        tarikh_be_picker_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak()+"");//faghat ruz
+        bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
+        tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        tarikh_az_picker_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak()+"");//faghat ruz
+        raft = SingletonDate.getInstance().getStartDate().getFullGeo();
+        flagOneTwo = 1;
 
     }
 
@@ -361,7 +380,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         return b > a ? c >= a && c <= b : c >= b && c <= a;
     }
 
-    private void initCheckInCheckOutAnim() {
+    private void initCheckInCheckOutAnim(){} /*{
         lottieCheckin.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -400,7 +419,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         });
         lottieCheckin.playAnimation();
         lottieCheckout.playAnimation();
-    }
+    }*/
 
     @SuppressLint("ResourceType")
     @Override
@@ -466,9 +485,9 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                         .needBackgroundShadow(true)
                         .startActivity();
                 break;
-            case R.id.txtOption:
+           /* case R.id.txtOption:
                 anim();
-                break;
+                break;*/
             case R.id.btntwo:
                btnTwo();
 
@@ -598,26 +617,33 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
     private void btnTwo() {
         SingletonDate.getInstance().checkConflictDate();
         tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        tarikh_be_picker_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
         tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        tarikh_az_picker_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak());
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
         flagOneTwo = 2;
-        llButton.setBackgroundResource(R.drawable.raftobargasht_button);
-        YoYo.with(Techniques.Pulse)
-                .duration(200)
-                .playOn(llButton);
+              /*  llButton.setBackgroundResource(R.drawable.raftobargasht_button);
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(llButton);*/
         ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#ffffff"));
-        ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
+        ((TextView) rootView.findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.background_strock_blue_light);
 
+
+        ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#d9d9d9"));
+        ((TextView) rootView.findViewById(R.id.btnOne)).setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+        //  linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
         linear_picker = rootView.findViewById(R.id.linear_picker);
-        tarikh_be.setVisibility(View.VISIBLE);
+        // tarikh_be.setVisibility(View.VISIBLE);
+        // tarikh_be.setVisibility(View.VISIBLE);
         linear_picker.setVisibility(View.VISIBLE);
         YoYo.with(Techniques.Pulse)
                 .duration(200)
                 .playOn(linear_picker);
-        YoYo.with(Techniques.Pulse)
-                .duration(200)
-                .playOn(tarikh_be);
+               /* YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(tarikh_be);*/
         YoYo.with(Techniques.Pulse)
                 .duration(200)
                 .playOn(linear_picker);
@@ -626,25 +652,35 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
     private void btnOne() {
         SingletonDate.getInstance().checkConflictDate();
         tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        tarikh_be_picker_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
         tarikh_az_picker.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        tarikh_az_picker_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak());
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
         flagOneTwo = 1;
-        llButton.setBackgroundResource(R.drawable.raft_button);
-        YoYo.with(Techniques.Pulse)
-                .duration(200)
-                .playOn(llButton);
+               /* llButton.setBackgroundResource(R.drawable.raft_button);
+                YoYo.with(Techniques.Pulse)
+                        .duration(200)
+                        .playOn(llButton);*/
+        //((Button) rootView.findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.raft_big);
+
+
         ((TextView) rootView.findViewById(R.id.btnOne)).setTextColor(Color.parseColor("#ffffff"));
+        ((TextView) rootView.findViewById(R.id.btnOne)).setBackgroundResource(R.drawable.background_strock_blue_light);
+
+
         ((TextView) rootView.findViewById(R.id.btntwo)).setTextColor(Color.parseColor("#d9d9d9"));
+        ((TextView) rootView.findViewById(R.id.btntwo)).setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
+        //linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
         linear_picker = rootView.findViewById(R.id.linear_picker);
-        tarikh_be.setVisibility(View.INVISIBLE);
+        //  tarikh_be.setVisibility(View.INVISIBLE);
         linear_picker.setVisibility(View.INVISIBLE);
         YoYo.with(Techniques.Pulse)
                 .duration(200)
                 .playOn(linear_picker);
-        YoYo.with(Techniques.Pulse)
-                .duration(400)
-                .playOn(tarikh_be);
+                /*YoYo.with(Techniques.Pulse)
+                        .duration(400)
+                        .playOn(tarikh_be);*/
         YoYo.with(Techniques.Pulse)
                 .duration(200)
                 .playOn(linear_picker);
@@ -736,21 +772,22 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
             year_Min = year;
             monthMin = monthOfYear;
             dayMin = dayOfMonth;
-            tarikh_az_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
-            //  tvBargasht.setText(persianCalendar.getPersianLongDate());
+            tarikh_az_picker.setText(persianCalendar.getPersianMonthName() + " " + persianCalendar.getPersianYear());
+            tarikh_az_picker_day.setText( persianCalendar.getPersianDay()+"");
             raft = date_server(year, monthOfYear, dayOfMonth);
             PersianCalendar persianCalendarDatePicker2 = new PersianCalendar();
             persianCalendarDatePicker2.set(year_Min, monthMin, dayMin);
             if (Utility.campareDate(raft.replaceAll("-", "/"), bargasht.replaceAll("-", "/"))) {
-                tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
+                tarikh_be_picker.setText(persianCalendar.getPersianMonthName() + " " + persianCalendar.getPersianYear());
+                tarikh_be_picker_day.setText( persianCalendar.getPersianDay()+"");
                 datePickerDialog2.initialize(this, year_, month, day);
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
             } else {
                 datePickerDialog2.setMinDate(persianCalendarDatePicker2);
             }
-            Prefs.putString("bargashtfa", tarikh_be_picker.getText().toString());
+            Prefs.putString("bargashtfa", tarikh_be_picker_day.getText().toString()+""+tarikh_be_picker.getText().toString());
             Prefs.putString("raft", raft);
-            Prefs.putString("raftfa", tarikh_az_picker.getText().toString());
+            Prefs.putString("raftfa", tarikh_az_picker_day.getText().toString()+""+tarikh_az_picker.getText().toString());
         }
     }
 
@@ -828,15 +865,17 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         initCheckInCheckOutAnim();
         if (flagOneTwo == 1) {
             tarikh_az_picker.setText(startDate.getDescription());
-            SingletonDate.getInstance().setStartDate(startDate);
+            tarikh_az_picker_day.setText(startDate.getDescriptionTak());
         } else {
             SingletonDate.getInstance().setReverseDate(startDate, endDate);
             tarikh_az_picker.setText(startDate.getDescription());
+            tarikh_az_picker_day.setText(startDate.getDescriptionTak());
             tarikh_be_picker.setText(endDate.getDescription());
+            tarikh_be_picker_day.setText(endDate.getDescriptionTak());
             Prefs.putString("bargasht", endDate.getFullGeo());
-            Prefs.putString("bargashtfa", endDate.getDescription());
+            Prefs.putString("bargashtfa", endDate.getDescriptionTak()+""+endDate.getDescription());
             Prefs.putString("raft", startDate.getFullGeo());
-            Prefs.putString("raftfa", startDate.getDescription());
+            Prefs.putString("raftfa", startDate.getDescriptionTak()+""+startDate.getDescription());
             raft = startDate.getFullGeo();
             bargasht = endDate.getFullGeo();
             Prefs.putBoolean("GeoFlight", isGeo);

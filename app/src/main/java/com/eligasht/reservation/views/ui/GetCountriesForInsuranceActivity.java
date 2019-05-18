@@ -72,7 +72,8 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
     ArrayList<HashMap<String, String>> mylist = null;
     GetAirPortMabdaAdapter mAdapter;
     AVLoadingIndicatorView avi;
-    FancyButton btnBack,btnMic;
+    FancyButton btnBack;
+    TextView btnMic;
     private Handler progressBarHandler = new Handler();
     private ClientService service;
     private EditText searchtxt;
@@ -91,9 +92,10 @@ public class GetCountriesForInsuranceActivity extends BaseActivity implements  O
         btnBack = findViewById(R.id.btnBack);
         btnMic = findViewById(R.id.btnMic);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
-        btnMic.setCustomTextFont("fonts/icomoon.ttf");
+       // btnMic.setCustomTextFont("fonts/eligasht.ttf");
         btnBack.setText(getString(R.string.search_back_right));
-        btnMic.setText(getString(R.string.icon_mic));
+      //  btnMic.setText("&#105;");
+
         btnBack.setOnClickListener(this);
         btnMic.setOnClickListener(this);
         service = ServiceGenerator.createService(ClientService.class);

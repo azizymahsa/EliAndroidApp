@@ -60,11 +60,11 @@ public class AddRoomActivity extends BaseActivity implements View.OnClickListene
                 .init(this);
 
 
-        InitUi.Toolbar(this, false, R.color.toolbar_color, getString(R.string.room_information));
+        InitUi.Toolbar(this, false, R.color.flight_status, getString(R.string.room_information));
         Window window = getWindow();
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 
-            window.setStatusBarColor(ContextCompat.getColor(AddRoomActivity.this,R.color.colorPrimaryDark));
+            window.setStatusBarColor(ContextCompat.getColor(AddRoomActivity.this,R.color.flight_status));
         }
         initViews();
         roomPresenter = new RoomPresenter(this);

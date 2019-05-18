@@ -31,12 +31,13 @@ public class InitUi {
         FancyButton btnBack=activity.findViewById(R.id.btnBack);
         FancyButton btnMenu=activity.findViewById(R.id.btnMenu);
         FancyButton btnHome=activity.findViewById(R.id.btnHome);
+        btnHome.setVisibility(View.INVISIBLE);
         RelativeLayout llHome=activity.findViewById(R.id.llHome);
 
-        toolbar.setBackgroundColor(ContextCompat.getColor(activity,color));
+      //  toolbar.setBackgroundColor(ContextCompat.getColor(activity,color));
         tvTitle.setText(title);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
-        btnMenu.setCustomTextFont("fonts/icomoon.ttf");
+        btnMenu.setCustomTextFont("fonts/eligasht.ttf");
         btnMenu.setText(activity.getString(R.string.icon_menu));
         btnBack.setText(activity.getString(R.string.search_back_right));
 
@@ -46,7 +47,7 @@ public class InitUi {
             llHome.setVisibility(View.GONE);
         }else{
             btnMenu.setVisibility(View.GONE);
-            llHome.setVisibility(View.VISIBLE);
+            llHome.setVisibility(View.GONE);//VISIBLE);///avaz kardam
         }
 
         btnBack.setOnClickListener(new View.OnClickListener() {

@@ -55,13 +55,14 @@ import java.util.List;
 public class HotelFragment extends Fragment implements OnClickListener,
     CountTimeAlert.TimerDialogListener
         , ICallbackCalendarDialog {
-    public TextView txtCity, lbl_city_english, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult, searchHotel;
+    public TextView txtCity, txtTitle, tarikh_be, txtCountK, tvChild, lblRoomCount, txtRoomCount, tvAdult, searchHotel;
     public List<ModelRowCountRoom> data;
-    LinearLayout btn_add_room, llRaft, llBargasht;
-    CardView cvRoom;
+    LinearLayout btn_add_room, llBargasht;
+    CardView llRaft;
+    LinearLayout cvRoom;
     HotelCountRoomAdapter mAdapter;
-    RelativeLayout citySearch;
-    TextView tvRaft, tvBargasht;
+    LinearLayout citySearch;
+    TextView tvRaft, tvBargasht,tvBargasht_day,tvRaft_day;
     String raft, bargasht;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian1;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogGregorian2;
@@ -69,7 +70,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
     CalendarDialog calendarDialog;
     private View rootView;
     private ArrayList<ModelRowCountRoom> roomsSelected;
-    private LottieAnimationView lottieCheckin, lottieCheckout;
+  //  private LottieAnimationView lottieCheckin, lottieCheckout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,14 +84,17 @@ public class HotelFragment extends Fragment implements OnClickListener,
         Utility.sendTag("H", true, false);
         geo = Prefs.getBoolean("geo", false);
         tarikh_be = rootView.findViewById(R.id.tarikh_be);
-        lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
+       /* lottieCheckin = rootView.findViewById(R.id.lottie_checkin);
         lottieCheckout = rootView.findViewById(R.id.lottie_checkout);
         lottieCheckin.setSpeed(2f);
-        lottieCheckout.setSpeed(2f);
+        lottieCheckout.setSpeed(2f);*/
         tarikh_be.setOnClickListener(this);
         txtRoomCount = rootView.findViewById(R.id.txtRoomCount);
         tvRaft = rootView.findViewById(R.id.tvRaft);
         tvBargasht = rootView.findViewById(R.id.tvBargasht);
+
+        tvBargasht_day = rootView.findViewById(R.id.tvBargasht_day);
+        tvRaft_day = rootView.findViewById(R.id.tvRaft_day);
         tvAdult = rootView.findViewById(R.id.tvAdult);
         tvChild = rootView.findViewById(R.id.tvChild);
         llRaft = rootView.findViewById(R.id.llRaft);
@@ -101,10 +105,10 @@ public class HotelFragment extends Fragment implements OnClickListener,
         cvRoom = rootView.findViewById(R.id.cvRoom);
         cvRoom.setOnClickListener(this);
         citySearch = rootView.findViewById(R.id.citySearch);
-        lbl_city_english = rootView.findViewById(R.id.lbl_city_english);
+      //  lbl_city_english = rootView.findViewById(R.id.lbl_city_english);
         txtCity = rootView.findViewById(R.id.txtCity);
         citySearch.setOnClickListener(this);
-        lbl_city_english.setOnClickListener(this);
+       // lbl_city_english.setOnClickListener(this);
         searchHotel = rootView.findViewById(R.id.searchHotel);
         searchHotel.setOnClickListener(this);
         data = new ArrayList<ModelRowCountRoom>();
@@ -116,13 +120,17 @@ public class HotelFragment extends Fragment implements OnClickListener,
         mAdapter = new HotelCountRoomAdapter(getActivity(), data);
         mAdapter.setData(data);
         tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        tvBargasht_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
+
         bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
         tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        tvRaft_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak());
+
         raft = SingletonDate.getInstance().getStartDate().getFullGeo();
         return rootView;
 
     }//end oncreat
-    private void initCheckInCheckOutAnim() {
+    private void initCheckInCheckOutAnim(){} /*{
         lottieCheckin.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -166,7 +174,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
         });
         lottieCheckin.playAnimation();
         lottieCheckout.playAnimation();
-    }
+    }*/
 
     @Override
     public void onResume() {
@@ -186,7 +194,7 @@ public class HotelFragment extends Fragment implements OnClickListener,
         if (!Prefs.getString("Value-Hotel-City-Fa", "").equals("")) {
             txtCity.setText(Prefs.getString("Value-Hotel-City-En", ""));
            // lbl_city_english.setText(Prefs.getString("Value-Hotel-City-En", ""));
-            lbl_city_english.setText(Prefs.getString("Value-Hotel-Country-Code", ""));
+          //  lbl_city_english.setText(Prefs.getString("Value-Hotel-Country-Code", ""));
 
         }
     }
@@ -230,8 +238,8 @@ public class HotelFragment extends Fragment implements OnClickListener,
                         Intent intent = new Intent(getActivity(), SelectHotelActivity.class);
                         intent.putExtra("CheckIn", raft);
                         intent.putExtra("CheckOut", bargasht);
-                        intent.putExtra("CheckOutFa", tvBargasht.getText().toString());
-                        intent.putExtra("CheckInFa", tvRaft.getText().toString());
+                        intent.putExtra("CheckOutFa", tvBargasht_day.getText().toString()+""+tvBargasht.getText().toString());
+                        intent.putExtra("CheckInFa", tvRaft_day.getText().toString()+""+tvRaft.getText().toString());
                         intent.putExtra("Rooms", getRoomList(roomsSelected));
                         intent.putExtra("Adult", Integer.valueOf(tvAdult.getText().toString()));
                         intent.putExtra("Child", Integer.valueOf(tvChild.getText().toString()));
@@ -260,7 +268,10 @@ public class HotelFragment extends Fragment implements OnClickListener,
             case R.id.llBargasht:
                 calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
                 tvRaft.setText(SingletonDate.getInstance().getStartDate().getDescription());
+                tvRaft_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak());
+
                 tvBargasht.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                tvBargasht_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
                 raft = SingletonDate.getInstance().getStartDate().getFullGeo();
                 bargasht = SingletonDate.getInstance().getEndDate().getFullGeo();
                 break;
@@ -363,7 +374,9 @@ public class HotelFragment extends Fragment implements OnClickListener,
     public void onDateSelected(CustomDate startDate, CustomDate endDate, boolean isGeo) {
         SingletonDate.getInstance().setReverseDate(startDate, endDate);
         tvRaft.setText(startDate.getDescription());
+        tvRaft_day.setText(startDate.getDescriptionTak());
         tvBargasht.setText(endDate.getDescription());
+        tvBargasht_day.setText(endDate.getDescriptionTak());
         initCheckInCheckOutAnim();
         raft = startDate.getFullGeo();
         bargasht = endDate.getFullGeo();

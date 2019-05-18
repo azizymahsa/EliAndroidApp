@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -55,7 +56,8 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
     public RecyclerView listAirPort;
     ArrayList<HashMap<String, String>> mylist = null;
     public static String searchText = "";
-    FancyButton btnBack, btnMic;
+    FancyButton btnBack;
+    TextView btnMic;
 
     GetAirPortMaghsadAdapter mAdapter;
     private EditText searchtxt;
@@ -79,11 +81,11 @@ public class GetAirportMaghsadActivity extends BaseActivity implements Header.on
         btnBack = findViewById(R.id.btnBack);
         btnMic = findViewById(R.id.btnMic);
         btnBack.setCustomTextFont("fonts/icomoon.ttf");
-        btnMic.setCustomTextFont("fonts/icomoon.ttf");
+       // btnMic.setCustomTextFont("fonts/icomoon.ttf");
         btnBack.setText(getString(R.string.search_back_right));
-        btnMic.setText(getString(R.string.icon_mic));
+        //btnMic.setText(getString(R.string.icon_mic));
         btnBack.setOnClickListener(this);
-        btnMic.setOnClickListener(this);
+       // btnMic.setOnClickListener(this);
         //////////////////show recent
         if(getString(R.string.culture).contains("fa")){
             sendRequest("+++");

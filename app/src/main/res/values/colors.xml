@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FF938EC5</color>
-    <color name="colorPrimaryDark">#9075ed</color>
+    <color name="colorPrimaryDark">#504fd6</color>
     <color name="colorAccent">#928DC5</color>
 
     <!-- menu side color-->
@@ -21,7 +21,8 @@
     <color name="blue">#4690ee</color>
     <color name="TRANSPARENT">#00ffffff</color>
    <!-- top color fragment-->
-    <color name="flight_status">#A870F7</color>
+   <!-- <color name="flight_status">#A870F7</color>-->
+    <color name="flight_status">#504fd6</color>
     <color name="app_base_color">#928DC5</color>
     <color name="white">#fff</color>
     <color name="textColorR">#131313</color>
@@ -41,14 +42,14 @@
     <color name="gray900">#ff1f1f1f</color>
     <color name="grayBB">#BBBBBB</color>
     <color name="grayTxt">#56677A</color>
-    <color name="accent">#9d80ff</color>
-    <color name="primary">#9d80ff</color>
+    <color name="accent">#504fd6</color>
+    <color name="primary">#504fd6</color>
     <color name="primarydark">#ffff7d00</color>
     <color name="btn">#ff1369b3</color>
 
     <color name="test">#ff1369b3</color>
     <color name="color_tab">#6422F9</color>
-    <color name="stoke_c">#b388ff</color>
+
     <color name="test2">#000</color>
 
 
@@ -57,7 +58,7 @@
 
 
     <color name="dark_blue">#2E3192</color>
-    <color name="toolbar_color">#9d80ff</color>
+    <color name="toolbar_color">#504fd6</color>
     <color name="toolbar_color_press">#bba7fc</color>
     <color name="title_background">#1234</color>
     <color name="red_border">#e9545a</color>
@@ -77,6 +78,12 @@
     <color name="boardColor">#22b573</color>
     <color name="room_seperator">#c1c1c1</color>
     <color name="train_gray">#716F72</color>
+    <!--new-->
+    <color name="n_blue_btn">#2c68ff</color>
+    <color name="n_black_dark">#474747</color>
+    <color name="n_black_normal">#6a7997</color>
+    <color name="n_black_light">#8d8d8d</color>
+    <color name="n_disable">#e8e8e8</color>
 
 
 </resources>

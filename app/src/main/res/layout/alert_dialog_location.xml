@@ -22,7 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="@drawable/alert_header_background">
+            android:background="@color/n_blue_btn">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animation_view"

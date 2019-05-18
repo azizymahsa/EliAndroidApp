@@ -19,6 +19,8 @@ public class HotelProprtiesModels {
         CategoryID = categoryID;
     }
 
+
+
     public String getPropertyTitle() {
         return PropertyTitle;
     }
