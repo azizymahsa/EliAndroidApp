@@ -91,7 +91,7 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
     public ArrayList<ModelCheckBox> filterAirlines = new ArrayList<>();
     public ArrayList<String> airlineConstraint = new ArrayList<>();
     public TextView txtCityBargasht, txtCityRaft, txtCityBargashtt;
-    public FancyButton txtBack, btnHome;
+    public TextView txtBack, btnHome;
     public List<ParentItemExpandingPlan> dataExpandingList;
     public List<ParentItemExpandingPlan> dataExpandingListFilter = new ArrayList<>();
     public List<ParentItemExpandingPlan> dataExpandingListFilter2 = new ArrayList<>();
@@ -173,12 +173,12 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
         llSort = findViewById(R.id.llSort);
         llSort.setOnClickListener(this);
         txtBack = findViewById(R.id.txtBack);
-        txtBack.setOnClickListener(this);
-        txtBack.setCustomTextFont("fonts/icomoon.ttf");
-        txtBack.setText(getString(R.string.search_back_right));
-        btnHome = findViewById(R.id.btnHome);
+       txtBack.setOnClickListener(this);
+       // txtBack.setCustomTextFont("fonts/eligasht.ttf");
+      //  txtBack.setText("&#117;");
+       // btnHome = findViewById(R.id.btnHome);
         txticon = findViewById(R.id.txticon);
-        btnHome.setOnClickListener(this);
+      //  btnHome.setOnClickListener(this);
         txtNoResult = findViewById(R.id.txtNoResult);
         txtNoResult.setOnClickListener(this);
         RelativeLayout linear_no_result = findViewById(R.id.linear_no_result);
@@ -1147,10 +1147,10 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
             case R.id.txtBack:
                 finish();
                 break;
-            case R.id.btnHome:
+           /* case R.id.btnHome:
                 Intent intent = new Intent("sendFinish");
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-                break;
+                break;*/
             case R.id.llBottom:
                 new FilterFlightDialogNew(SearchFlightActivity.this, filterModels, this, filterAirlines);
                 break;

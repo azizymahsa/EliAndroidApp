@@ -37,39 +37,50 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginRight="@dimen/_15dp"
         android:layout_marginLeft="@dimen/_15dp"
       >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_purple"
+            android:layout_marginRight="@dimen/_50_flight_dp"
+            android:layout_marginLeft="@dimen/_50_flight_dp"
+            android:weightSum="2"
             android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
         >
-            <ImageView
+            <TextView
                 android:id="@+id/btn_remove"
-                android:layout_width="@dimen/_50dp_passenger"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/_30dp_passenger"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:padding="3sp"
-                android:src="@drawable/ic_remove_black_24dp"
-                android:tint="@color/colorPrimaryDark"
-                android:background="?attr/selectableItemBackground"/>
+                android:background="@drawable/background_strock_red_curv_narrow"
+             android:text="@string/delete_room"
+                android:textColor="#f13062"
+                />
 
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDark" />
-            <ImageView
+
+            <TextView
                 android:id="@+id/btn_add"
-                android:layout_width="@dimen/_50dp_passenger"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/_30dp_passenger"
-                android:src="@drawable/ic_add_black_24dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/background_strock_blue_curv_narrow"
+                android:text="@string/add_room"
                 android:padding="3sp"
-                android:tint="@color/colorPrimaryDark"
-                android:background="?attr/selectableItemBackground"/>
+               android:textColor="@color/n_blue_btn"
+                android:layout_marginLeft="@dimen/_5_flight_dp"
+                />
 
 
 
@@ -78,7 +89,8 @@
        <LinearLayout
            android:layout_width="match_parent"
            android:gravity="right"
-           android:layout_height="match_parent">
+           android:layout_height="match_parent"
+           android:visibility="gone">
            <com.eligasht.reservation.views.ticker.TickerView
                android:id="@+id/count_room"
                android:layout_width="wrap_content"

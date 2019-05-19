@@ -10,10 +10,10 @@
     <RelativeLayout
         android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_45_profile"
         android:layout_gravity="center"
-        android:background="@drawable/header_shadow"
-        android:minHeight="@dimen/_50dp_normal"
+        android:background="@drawable/header_bg"
+
         android:layout_alignParentTop="true">
 
 

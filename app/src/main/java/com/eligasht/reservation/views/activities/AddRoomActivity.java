@@ -39,8 +39,8 @@ import java.util.List;
 public class AddRoomActivity extends BaseActivity implements View.OnClickListener, InfoRoomsContract.View {
 
     public SimpleRecycleView rcl_room;
-    public ImageView btn_add;
-    public ImageView btn_remove;
+    public TextView btn_add;
+    public TextView btn_remove;
     public TickerView count_room;
     public RoomAdapter roomAdapter;
     public RoomPresenter roomPresenter;

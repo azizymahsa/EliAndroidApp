@@ -172,10 +172,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="2sp"
-                        android:textAppearance="@style/IconFonts"
-                        android:text="@string/icon_bed"
+                        android:textAppearance="@style/FontsEli"
+                        android:text="&#69;"
                         android:textSize="@dimen/_25dp_normal_iconSize"
-                        android:textColor="@color/pack_room_text"
+                        android:textColor="@color/n_blue_btn"
                         />
 
                 </LinearLayout>

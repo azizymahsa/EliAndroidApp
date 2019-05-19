@@ -2455,4 +2455,6 @@
     <string name="_destination_city">شهر مقصد</string>
     <string name="search_the_destination_city">جستجوی شهر مقصد</string>
     <string name="_room_selection">انتخاب اتاق و مسافران</string>
+    <string name="add_room">افزودن اتاق </string>
+    <string name="delete_room"> حذف اتاق</string>
 </resources>

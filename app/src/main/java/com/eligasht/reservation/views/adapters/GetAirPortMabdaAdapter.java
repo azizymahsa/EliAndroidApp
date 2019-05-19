@@ -40,6 +40,7 @@ public class GetAirPortMabdaAdapter extends RecyclerView.Adapter<GetAirPortMabda
     public String value_Maghsad_Airport_Code;
     public String value_Maghsad_Airport_Code2;
     public static String GET_FRAGMENT = null;
+    private boolean flag=false;
     Activity activity;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView AirportName, txtLongdes, txtTag;
@@ -79,7 +80,7 @@ public class GetAirPortMabdaAdapter extends RecyclerView.Adapter<GetAirPortMabda
         inflater = LayoutInflater.from(context);
         this.data = data;
         myInflater = LayoutInflater.from(context);
-
+        flag=false;
         this.value_Maghsad_City = value_Maghsad_City;
         this.value_Maghsad_Airport = value_Maghsad_Airport;
         this.value_Maghsad_Airport_Code = value_Maghsad_Airport_Code;
@@ -94,16 +95,19 @@ public class GetAirPortMabdaAdapter extends RecyclerView.Adapter<GetAirPortMabda
         inflater = LayoutInflater.from(context);
         this.data = data;
         myInflater = LayoutInflater.from(context);
+        flag=false;
         notifyDataSetChanged();
     }
 
     public void setData(List<Airport> data) {
         this.data = data;
+        flag=false;
         notifyDataSetChanged();
     }
 
     public void setData(String searchText) {
         this.data = data;
+        flag=false;
         notifyDataSetChanged();
     }
 
@@ -139,7 +143,12 @@ public class GetAirPortMabdaAdapter extends RecyclerView.Adapter<GetAirPortMabda
         holder.txtIconBaseFantastic.setTag("/");
         holder.txtIconBaseLocation.setTag(SingletonContext.getInstance().getContext().getResources().getString(R.string.icon_location2));
         if(current.getIcon().contains("fligh")){
-            holder.rvSpace.setVisibility(View.VISIBLE);
+            if(flag)
+                holder.rvSpace.setVisibility(View.GONE);
+            else
+                holder.rvSpace.setVisibility(View.VISIBLE);
+
+
             holder.txtIconBaseFantastic.setVisibility(View.VISIBLE);
             holder.txtIconBaseFantastic.setText("/");//icon_flight
         }else if(current.getIcon().contains("hotel")){
@@ -154,12 +163,13 @@ public class GetAirPortMabdaAdapter extends RecyclerView.Adapter<GetAirPortMabda
            // tv1.setLayoutParams(params);
             //holder.lnrAll.set
         }else if(current.getIcon().contains("location")){
+            flag=true;
             holder.rvSpace.setVisibility(View.GONE);
             holder.txtIconBaseLocation.setVisibility(View.VISIBLE);
             holder.txtIconBaseLocation.setText(SingletonContext.getInstance().getContext().getResources().getString(R.string.icon_location2));//icon_location
             if(current.isSelectable()==false){
-                holder.AirportName.setTextColor(Color.parseColor("#a9a9a9"));
-                holder.txtIconBaseLocation.setTextColor(Color.parseColor("#a9a9a9"));
+                holder.AirportName.setTextColor(Color.parseColor("#b3b3b3"));
+                holder.txtIconBaseLocation.setTextColor(Color.parseColor("#b3b3b3"));
                 holder.txtIconBaseLocation.setLongClickable(false);
                 holder.txtIconBaseLocation.setClickable(false);
                 holder.AirportName.setLongClickable(false);

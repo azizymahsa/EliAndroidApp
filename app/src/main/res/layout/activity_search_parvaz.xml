@@ -5,37 +5,60 @@
     android:id="@+id/rlRoot"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/new_back"
     android:orientation="vertical">
+    <!--header top-->
+    <FrameLayout
+
+        xmlns:fancy="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/khali"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60dp_hight">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="نتایج جستجو"
+            android:textSize="@dimen/_15dp_normal_textSize"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+        <RelativeLayout
+            android:id="@+id/llHome"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_60dp_hight"
+            android:layout_marginTop="@dimen/_20dp_normal_textSize"
+            android:layout_gravity="left">
+
+            <TextView
+                android:id="@+id/txtBack"
+                android:layout_width="@dimen/toolbar_bottom_width_50dp"
+                android:layout_height="@dimen/toolbar_bottom_width_50dp"
+                android:layout_gravity="right|center"
+                android:gravity="right"
+                android:textAppearance="@style/FontsEli"
+                android:text="&#117;"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_20dp_normal_textSize" />
 
 
+        </RelativeLayout>
+
+    </FrameLayout>
+<!--header bottom-->
     <FrameLayout
 
         xmlns:fancy="http://schemas.android.com/apk/res-auto"
         android:id="@+id/toolbarLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60dp_hight">
+        android:layout_height="@dimen/_60dp_hight"
+        android:layout_below="@+id/khali">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60dp_hight"
-            android:background="@color/toolbar_color" />
+             />
 
 
-        <!--<mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/txtBack"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            fancy:fb_defaultColor="@android:color/transparent"
-            fancy:fb_focusColor="@color/focusColor"
-            fancy:fb_radius="6dp"
-            fancy:fb_textColor="#FFFFFF"
-
-            android:layout_gravity="right"
-            fancy:fb_textSize="25dp"
-            fancy:fb_text=" "
-            android:gravity="right"
-            />-->
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -81,7 +104,21 @@
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/toolbar_title_16dp"
                         android:visibility="visible" />
+                    <TextView
 
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2"
+                        android:gravity="right|center"
+
+                        android:text=" . . . "
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/toolbar_title_16dp"
+                        android:visibility="visible"
+
+                        />
                     <TextView
                         android:id="@+id/txticon"
                         android:layout_width="0dp"
@@ -89,13 +126,28 @@
                         android:layout_gravity="center"
                         android:layout_weight="0.12"
                         android:gravity="center"
-                        android:text="@string/icon_plane"
-                        android:textAppearance="@style/IconMenu"
+                        android:text="&#66;"
+                        android:rotationY="180"
+                        android:textAppearance="@style/FontsEli"
                         android:textColor="@color/white"
                         android:visibility="visible"
 
                         />
+                    <TextView
 
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.2"
+                        android:gravity="left|center"
+
+                        android:text=" . . . "
+                        android:textColor="#FFFFFF"
+                        android:textSize="@dimen/toolbar_title_16dp"
+                        android:visibility="visible"
+
+                        />
                     <TextView
                         android:id="@+id/txtCityRaft"
                         android:layout_width="0dp"
@@ -190,222 +242,37 @@
                     android:textSize="@dimen/_12dp"
                     android:visibility="gone" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="100"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/toolbar_desc_12dp"
-                    android:visibility="gone" />
 
             </LinearLayout>
 
 
-            <RelativeLayout
-                android:id="@+id/llHome"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_60dp_hight"
-                android:layout_gravity="left">
-
-                <mehdi.sakout.fancybuttons.FancyButton
-                    android:id="@+id/btnHome"
-                    android:layout_width="@dimen/_60dp_hight"
-                    android:layout_height="@dimen/_60dp_hight"
-                    fancy:fb_defaultColor="@android:color/transparent"
-                    fancy:fb_focusColor="@color/focusColor"
-
-                    fancy:fb_radius="200dp"
-                    fancy:fb_text=" "
-                    fancy:fb_textColor="#FFFFFF"
-                    fancy:fb_textSize="25dp" />
-
-                <ImageView
-                    android:id="@+id/txt_hom"
-                    android:layout_width="@dimen/_30dp"
-                    android:layout_height="@dimen/_30dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/e_logo"
-
-                    />
-
-
-            </RelativeLayout>
         </RelativeLayout>
 
 
-        <mehdi.sakout.fancybuttons.FancyButton
-            android:id="@+id/txtBack"
-            android:layout_width="@dimen/toolbar_bottom_width_50dp"
-            android:layout_height="@dimen/toolbar_bottom_width_50dp"
-            android:layout_gravity="right|center"
-            android:gravity="right"
-            fancy:fb_defaultColor="@android:color/transparent"
-            fancy:fb_focusColor="@color/focusColor"
 
-            fancy:fb_radius="200dp"
-            fancy:fb_text=" "
-            fancy:fb_textColor="#FFFFFF"
-            fancy:fb_textSize="@dimen/_25dp_normal_iconSize" />
 
 
     </FrameLayout>
-
+<!--center-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbarLayout"
-        android:orientation="vertical">
-
-        <!-- //////////////////////PIN HEADER///////////////////////////////////-->
-        <!-- //////////////////////END PIN HEADER/////////////////////////////// -->
-
-        <!-- //////////////////////START PIN DETAIL/////////////////////////////// -->
-
-        <!-- //////////////////////END PIN DETAIL/////////////////////////////// -->
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerViewPassenger"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:visibility="visible" />
-        <!-- //////////////////////START LIST VIEW/////////////////////////////// -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="100"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/linear_expand"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_below="@+id/toolbarLayout"
-                android:background="#ffffff"
-                android:orientation="horizontal"
-                android:visibility="visible">
-
-                <com.eligasht.reservation.tools.ExpandableListViewE
-                    android:id="@+id/lvExp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:animateLayoutChanges="true"
-                    android:cacheColorHint="#00000000"
-                    android:divider="#ffffff"
-                    android:groupIndicator="@null"
-                    />
-
-                <com.scalified.fab.ActionButton
-                    android:id="@+id/action_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/linear_no_result"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/toolbarLayout"
-                android:visibility="gone">
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_margin="7dp"
-                    android:background="@color/hotel_detail_background"
-                    card_view:cardBackgroundColor="#ffffff"
-                    card_view:cardCornerRadius="3dp"
-                    card_view:cardElevation="2dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/txtNoResult"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/ivImageEr"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/_16dp_normal_textSize" />
-
-                        <TextView
-                            android:id="@+id/tvAlertDesc"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/txtNoResult"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:padding="10dp"
-                            android:textAppearance="@style/IrsansBold"
-                            android:textColor="@color/text_color_4d"
-                            android:textSize="@dimen/_12dp_normal_textSize" />
-
-                        <ImageView
-                            android:id="@+id/ivImageEr"
-                            android:layout_width="@dimen/_300dp"
-                            android:layout_height="@dimen/_200dp_normal"
-                            android:layout_centerHorizontal="true"
-                            android:src="@drawable/alert" />
-
-                        <RelativeLayout
-                            android:id="@+id/rlEr"
-                            android:layout_width="@dimen/_100dp"
-                            android:layout_height="@dimen/_40dp"
-                            android:layout_below="@+id/txtNoResult"
-                            android:layout_centerHorizontal="true"
-                            android:background="@drawable/btngravity_big"
-                            >
-
-                            <mehdi.sakout.fancybuttons.FancyButton
-                                android:id="@+id/btn_no_Result"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="center"
-                                android:elevation="4dp"
-                                android:paddingBottom="1dp"
-                                fancy:fb_defaultColor="@color/TRANSPARENT"
-                                fancy:fb_focusColor="@color/focusColor"
-                                fancy:fb_radius="0dp"
-                                fancy:fb_text="@string/return_"
-                                fancy:fb_textColor="#FFFFFF"
-                                fancy:fb_textSize="18dp" />
-                        </RelativeLayout>
-
-
-                    </RelativeLayout>
-
-
-                </android.support.v7.widget.CardView>
-
-
-            </RelativeLayout>
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:background="@drawable/shadow3" />
-
+        android:paddingLeft="@dimen/_20dp_normal_textSize"
+        android:orientation="vertical"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarLayout"
+        android:orientation="vertical"
+        android:background="@drawable/background_white_left_curve"       >
+        <!--filter-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="7"
-            android:background="#ffffff"
+
             android:gravity="center"
             android:orientation="horizontal"
 
@@ -416,6 +283,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="170"
+                android:background="@color/TRANSPARENT"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -424,7 +292,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="120"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:visibility="gone">
 
 
                     <mehdi.sakout.fancybuttons.FancyButton
@@ -471,7 +340,8 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="100">
+                    android:layout_weight="100"
+                    android:visibility="gone">
 
                     <mehdi.sakout.fancybuttons.FancyButton
                         android:id="@+id/btnLastDays"
@@ -585,22 +455,157 @@
 
 
         </LinearLayout>
+        <!--list-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewPassenger"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15dp_normal_textSize"
+            android:scrollbars="vertical"
+            android:visibility="visible" />
+        <!--no result-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/linear_expand"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@+id/toolbarLayout"
+
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <com.eligasht.reservation.tools.ExpandableListViewE
+                    android:id="@+id/lvExp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:animateLayoutChanges="true"
+                    android:cacheColorHint="#00000000"
+                    android:divider="#ffffff"
+                    android:groupIndicator="@null"
+                    />
+
+                <com.scalified.fab.ActionButton
+                    android:id="@+id/action_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/linear_no_result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/toolbarLayout"
+                android:visibility="gone">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="7dp"
+                    android:background="@color/hotel_detail_background"
+                    card_view:cardBackgroundColor="#ffffff"
+                    card_view:cardCornerRadius="3dp"
+                    card_view:cardElevation="2dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/txtNoResult"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ivImageEr"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_16dp_normal_textSize" />
+
+                        <TextView
+                            android:id="@+id/tvAlertDesc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtNoResult"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:textAppearance="@style/IrsansBold"
+                            android:textColor="@color/text_color_4d"
+                            android:textSize="@dimen/_12dp_normal_textSize" />
+
+                        <ImageView
+                            android:id="@+id/ivImageEr"
+                            android:layout_width="@dimen/_300dp"
+                            android:layout_height="@dimen/_200dp_normal"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/alert" />
+
+                        <RelativeLayout
+                            android:id="@+id/rlEr"
+                            android:layout_width="@dimen/_100dp"
+                            android:layout_height="@dimen/_40dp"
+                            android:layout_below="@+id/txtNoResult"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/btngravity_big"
+                            >
+
+                            <mehdi.sakout.fancybuttons.FancyButton
+                                android:id="@+id/btn_no_Result"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:elevation="4dp"
+                                android:paddingBottom="1dp"
+                                fancy:fb_defaultColor="@color/TRANSPARENT"
+                                fancy:fb_focusColor="@color/focusColor"
+                                fancy:fb_radius="0dp"
+                                fancy:fb_text="@string/return_"
+                                fancy:fb_textColor="#FFFFFF"
+                                fancy:fb_textSize="18dp" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:background="@drawable/shadow3" />
+
 
 
     </LinearLayout>
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/toolbarLayout"
-        android:background="@drawable/shadow" />
 
+<!--loading-->
     <include
         layout="@layout/loading_layout_parvaz"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone" />
+    <!--weather-->
     <SlidingDrawer
         android:id="@+id/slidingDrawer"
         android:layout_width="wrap_content"

@@ -40,6 +40,7 @@ public class GetAirPortMaghsadAdapter extends RecyclerView.Adapter<GetAirPortMag
 	public String value_Mabda_Airport_Code;
 	public String value_Mabda_Airport_Code2;
 	Activity activity;
+	private boolean flag=false;
 
 	public class MyViewHolder extends RecyclerView.ViewHolder {
 		public TextView AirportName, txtLongdes, txtTag;
@@ -90,14 +91,17 @@ public class GetAirPortMaghsadAdapter extends RecyclerView.Adapter<GetAirPortMag
 		inflater= LayoutInflater.from(context);
 		this.data=data;
 		myInflater = LayoutInflater.from(context);
+		flag=false;
 		notifyDataSetChanged();
 	}
 	public void setData(List<Airport> data) {
 		this.data = data;
+		flag=false;
 		notifyDataSetChanged();
 	}
 	public void setData(String searchText) {
 		this.data = data;
+		flag=false;
 		notifyDataSetChanged();
 	}
 
@@ -141,7 +145,11 @@ public class GetAirPortMaghsadAdapter extends RecyclerView.Adapter<GetAirPortMag
 			holder.txtLongdes.setText(Html.fromHtml(current.getLongDes().toString()));
 		}
 		if(current.getIcon().contains("fligh")){
-			holder.rvSpace.setVisibility(View.VISIBLE);
+			if(flag)
+				holder.rvSpace.setVisibility(View.GONE);
+			else
+				holder.rvSpace.setVisibility(View.VISIBLE);
+
 			holder.txtIconBaseFantastic.setVisibility(View.VISIBLE);
 			holder.txtIconBaseFantastic.setText("/");//icon_flight
 		}else if(current.getIcon().contains("hotel")){
@@ -150,12 +158,13 @@ public class GetAirPortMaghsadAdapter extends RecyclerView.Adapter<GetAirPortMag
 			holder.txtIconBaseFantastic.setText("=");//icon_hotel
 			holder.txtIcon.setVisibility(View.GONE);
 		}else if(current.getIcon().contains("location")){
+			flag=true;
 			holder.rvSpace.setVisibility(View.GONE);
 			holder.txtIconBaseLocation.setVisibility(View.VISIBLE);
 			holder.txtIconBaseLocation.setText(SingletonContext.getInstance().getContext().getResources().getString(R.string.icon_location2));//icon_location
 			if(current.isSelectable()==false){
-				holder.AirportName.setTextColor(Color.parseColor("#a9a9a9"));
-				holder.txtIconBaseLocation.setTextColor(Color.parseColor("#a9a9a9"));
+				holder.AirportName.setTextColor(Color.parseColor("#b3b3b3"));
+				holder.txtIconBaseLocation.setTextColor(Color.parseColor("#b3b3b3"));
 				holder.txtIconBaseLocation.setLongClickable(false);
 				holder.txtIconBaseLocation.setClickable(false);
 				holder.AirportName.setLongClickable(false);
