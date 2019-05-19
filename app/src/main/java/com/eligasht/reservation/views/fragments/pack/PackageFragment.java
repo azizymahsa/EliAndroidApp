@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,11 +69,12 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     public TextView txtCity;
     public TextView btnSearchPackage;
     public LinearLayout btn_return_date,linearLayout_mabda;
-    public LinearLayout btn_depart_date, linear_picker_depart, linear_picker_return;
+    public LinearLayout btn_depart_date, linear_picker_return;
+    public CardView linear_picker_depart;
     DatePickerDialog datePickerDialogDepart, datePickerDialogReturn;
     com.wdullaer.materialdatetimepicker.date.DatePickerDialog datePickerDialogDepartgGregorian, datePickerDialogReturnGregorian;
-    TextView txt_return_date;
-    TextView txt_depart_date;
+    TextView txt_return_date,txt_return_date_day;
+    TextView txt_depart_date,txt_depart_date_day;
     boolean geo = false;
     LottieAnimationView lottieAnimationView;
 
@@ -87,7 +89,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
     private ResponseGetPackageCity hotelCity;
     private String departureFrom;
     private String departureTo;
-    private LottieAnimationView lottieCheckin, lottieCheckout;
+   // private LottieAnimationView lottieCheckin, lottieCheckout;
 
     public static PackageFragment instance() {
         PackageFragment fragment = new PackageFragment();
@@ -207,7 +209,7 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
 
     }
 
-    private void initCheckInCheckOutAnim() {
+    private void initCheckInCheckOutAnim(){} /*{
         lottieCheckin.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -253,33 +255,39 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         });
         lottieCheckin.playAnimation();
         lottieCheckout.playAnimation();
-    }
+    }*/
 
     private void initViews() {
 
         layout_room = view.findViewById(R.id.layout_room);
         txtCity = view.findViewById(R.id.txtCity);
-        lottieCheckin = view.findViewById(R.id.lottie_checkin);
+      /*  lottieCheckin = view.findViewById(R.id.lottie_checkin);
         lottieCheckout = view.findViewById(R.id.lottie_checkout);
         lottieCheckin.setSpeed(2f);
-        lottieCheckout.setSpeed(2f);
+        lottieCheckout.setSpeed(2f);*/
         btnSearchPackage = view.findViewById(R.id.btnSearchPackage);
-        btn_return_date = view.findViewById(R.id.btn_return_date);
-        btn_depart_date = view.findViewById(R.id.btn_depart_date);
+      /*  btn_return_date = view.findViewById(R.id.btn_return_date);
+        btn_depart_date = view.findViewById(R.id.btn_depart_date);*/
         txt_count_adult = view.findViewById(R.id.txt_count_adult);
         txt_count_child = view.findViewById(R.id.txt_count_child);
         txt_count_room = view.findViewById(R.id.txt_count_room);
         txt_return_date = view.findViewById(R.id.txt_return_date);
         txt_depart_date = view.findViewById(R.id.txt_depart_date);
+        txt_return_date_day = view.findViewById(R.id.txt_return_date_day);
+        txt_depart_date_day = view.findViewById(R.id.txt_depart_date_day);
         linear_picker_depart = view.findViewById(R.id.linear_picker_depart);
         linear_picker_return = view.findViewById(R.id.linear_picker_return);
         linearLayout_mabda = view.findViewById(R.id.linearLayout_mabda);
 
-        lottieAnimationView = view.findViewById(R.id.animation_view);
+       lottieAnimationView = view.findViewById(R.id.animation_view);
         lottieAnimationView.setAnimation("lottie/circle-l.json");
         txt_return_date.setText(SingletonDate.getInstance().getEndDate().getDescription());
+        txt_return_date_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
+
         departureTo = SingletonDate.getInstance().getEndDate().getFullGeo();
         txt_depart_date.setText(SingletonDate.getInstance().getStartDate().getDescription());
+        txt_depart_date_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak());
+
         departureFrom = SingletonDate.getInstance().getStartDate().getFullGeo();
         gson = new GsonBuilder().create();
 
@@ -362,13 +370,16 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
                             initCheckInCheckOutAnim();
                             SingletonDate.getInstance().setEndDate(start);
                             txt_return_date.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                            txt_return_date_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
                         } else {
                             Toast.makeText(getActivity(), R.string.end_date_must_be_more_than_start_date, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.HOTEL);
                 txt_depart_date.setText(SingletonDate.getInstance().getStartDate().getDescription());
+                txt_depart_date_day.setText(SingletonDate.getInstance().getStartDate().getDescriptionTak());
                 txt_return_date.setText(SingletonDate.getInstance().getEndDate().getDescription());
+                txt_return_date_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak());
                 departureFrom = SingletonDate.getInstance().getStartDate().getFullGeo();
                 departureTo = SingletonDate.getInstance().getEndDate().getFullGeo();
 
@@ -506,7 +517,9 @@ public class PackageFragment extends Fragment implements View.OnClickListener,
         departureFrom = start.getFullGeo();
         departureTo = end.getFullGeo();
         txt_return_date.setText(end.getDescription());
+        txt_return_date_day.setText(end.getDescriptionTak());
         txt_depart_date.setText(start.getDescription());
+        txt_depart_date_day.setText(start.getDescriptionTak());
         initCheckInCheckOutAnim();
 
 

@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -84,6 +85,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
     private static String picker_be_format = "25 December 2017";
     private View rootView;
     public boolean Geo = false;
+    public TextView txtOption;
    // public RelativeLayout txtOption;
     public int month;
     public int year_;
@@ -179,9 +181,13 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         //get
         if (Prefs.getString("Value_Mabda_Train", "") != null && Prefs.getString("Value_Mabda_Train", "").length() > 1) {
             tvStart.setText(Prefs.getString("Value_Mabda_Train", ""));
+            tvStart.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+            tvStart.setTypeface(tvStart.getTypeface(), Typeface.BOLD);
         }
         if (Prefs.getString("Value_Maghsad_Train", "") != null && Prefs.getString("Value_Maghsad_Train", "").length() > 1) {
             tvMaghsad.setText(Prefs.getString("Value_Maghsad_Train", ""));
+            tvMaghsad.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+            tvMaghsad.setTypeface(tvMaghsad.getTypeface(), Typeface.BOLD);
         }//return rootView;
         if (Prefs.getString("bargashtfa", "null").equals("null")) {
             tarikh_be_picker.setText(persianCalendar.getPersianWeekDayName() + " " + persianCalendar.getPersianDay() + " " + persianCalendar.getPersianMonthName());
@@ -273,7 +279,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         txtCountK = rootView.findViewById(R.id.txtCountK);
         txtCountN = rootView.findViewById(R.id.txtCountN);
         tvStart = rootView.findViewById(R.id.tvStart);
-       // txtOption = rootView.findViewById(R.id.txtOption);
+        txtOption = rootView.findViewById(R.id.txtOption);
         tvMaghsad = rootView.findViewById(R.id.tvMaghsad);
 
         linear_tarikh_az_picker.setOnClickListener(this);
@@ -281,7 +287,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
 
         linearLayout_mabda.setOnClickListener(this);
         linearLayout_maghsad.setOnClickListener(this);
-       // txtOption.setOnClickListener(this);
+       txtOption.setOnClickListener(this);
         btntwo.setOnClickListener(this);
         btnOne.setOnClickListener(this);
         searchTrain.setOnClickListener(this);
@@ -300,7 +306,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
 
         //default one way
         linear_picker = rootView.findViewById(R.id.linear_picker);
-        linear_picker.setVisibility(View.INVISIBLE);
+     //   linear_picker.setVisibility(View.INVISIBLE);
         SingletonDate.getInstance().checkConflictDate();
         tarikh_be_picker.setText(SingletonDate.getInstance().getEndDate().getDescription());
         tarikh_be_picker_day.setText(SingletonDate.getInstance().getEndDate().getDescriptionTak()+"");//faghat ruz
@@ -349,9 +355,13 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
 
         if (Prefs.getString("Value_Mabda_Train", "") != null && Prefs.getString("Value_Mabda_Train", "").length() > 1) {
             tvStart.setText(Prefs.getString("Value_Mabda_Train", ""));
+            tvStart.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+            tvStart.setTypeface(tvStart.getTypeface(), Typeface.BOLD);
         }
         if (Prefs.getString("Value_Maghsad_Train", "") != null && Prefs.getString("Value_Maghsad_Train", "").length() > 1) {
             tvMaghsad.setText(Prefs.getString("Value_Maghsad_Train", ""));
+            tvMaghsad.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+            tvMaghsad.setTypeface(tvMaghsad.getTypeface(), Typeface.BOLD);
         }
 
     }
@@ -485,9 +495,9 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                         .needBackgroundShadow(true)
                         .startActivity();
                 break;
-           /* case R.id.txtOption:
+           case R.id.txtOption:
                 anim();
-                break;*/
+                break;
             case R.id.btntwo:
                btnTwo();
 
@@ -496,8 +506,24 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
                 btnOne();
 
                 break;
+            case R.id.linear_picker_raft:
+                SingletonDate.getInstance().checkConflictDate();
+                if (flagOneTwo == 1) {
+                    calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), TypeUsageOfCalendar.NationalFlight);
+                } else {
+                    //calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.NationalFlight);
+                    calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.NationalFlight);
+                }
+                break;
+            case R.id.linear_picker:
+                SingletonDate.getInstance().checkConflictDate();
+                if (flagOneTwo == 2) {
 
-            case R.id.linear_tarikh_az_picker:
+                    //calendarDialog.create(getActivity(), getContext(), this, startDate, endDate, TypeUsageOfCalendar.NationalFlight);
+                    calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.NationalFlight);
+                }
+                break;
+            /*case R.id.linear_tarikh_az_picker:
                 SingletonDate.getInstance().checkConflictDate();
                 if (flagOneTwo == 1) {
                     calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), TypeUsageOfCalendar.NationalFlight);
@@ -505,7 +531,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
 
                     calendarDialog.create(getActivity(), getContext(), this, SingletonDate.getInstance().getStartDate(), SingletonDate.getInstance().getEndDate(), TypeUsageOfCalendar.NationalFlight);
                 }
-                break;
+                break;*/
             case R.id.searchTrain:
 
                 String tripRaft="";
@@ -638,6 +664,9 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         // tarikh_be.setVisibility(View.VISIBLE);
         // tarikh_be.setVisibility(View.VISIBLE);
         linear_picker.setVisibility(View.VISIBLE);
+        ((TextView) rootView.findViewById(R.id.titledate)).setTextColor(Color.parseColor(getString(R.color.n_black_light)));
+        ((TextView) rootView.findViewById(R.id.tarikh_be_picker_day)).setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+        ((TextView) rootView.findViewById(R.id.tarikh_be_picker)).setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
         YoYo.with(Techniques.Pulse)
                 .duration(200)
                 .playOn(linear_picker);
@@ -674,7 +703,10 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         //linear_picker_title = (LinearLayout) rootView.findViewById(R.id.linear_picker_title);
         linear_picker = rootView.findViewById(R.id.linear_picker);
         //  tarikh_be.setVisibility(View.INVISIBLE);
-        linear_picker.setVisibility(View.INVISIBLE);
+        //linear_picker.setVisibility(View.INVISIBLE);
+        ((TextView) rootView.findViewById(R.id.titledate)).setTextColor(Color.parseColor(getString(R.color.n_disable)));
+        ((TextView) rootView.findViewById(R.id.tarikh_be_picker_day)).setTextColor(Color.parseColor(getString(R.color.n_disable)));
+        ((TextView) rootView.findViewById(R.id.tarikh_be_picker)).setTextColor(Color.parseColor(getString(R.color.n_disable)));
         YoYo.with(Techniques.Pulse)
                 .duration(200)
                 .playOn(linear_picker);
@@ -689,7 +721,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
     private void clickPassNat() {
         try {
 
-            txtPassNat.setBackgroundResource(R.drawable.background_strock_purple_mat);
+            txtPassNat.setBackgroundResource(R.drawable.background_strock_blue_light);
             txtPassMen.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
             txtPassWom.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
 
@@ -709,7 +741,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
 
             txtPassNat.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
             txtPassMen.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
-            txtPassWom.setBackgroundResource(R.drawable.background_strock_purple_mat);
+            txtPassWom.setBackgroundResource(R.drawable.background_strock_blue_light);
 
             txtPassNat.setTextColor(Color.parseColor(getString(R.color.grayBB)));
             txtPassMen.setTextColor(Color.parseColor(getString(R.color.grayBB)));
@@ -726,7 +758,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         try {
 
             txtPassNat.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
-            txtPassMen.setBackgroundResource(R.drawable.background_strock_purple_mat);
+            txtPassMen.setBackgroundResource(R.drawable.background_strock_blue_light);
             txtPassWom.setBackgroundResource(R.drawable.background_strock_gray_curv_narrow);
 
             txtPassNat.setTextColor(Color.parseColor(getString(R.color.grayBB)));
@@ -800,6 +832,12 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
             @Override
             public void onAnimationStart(Animator animation) {
 
+                YoYo.with(Techniques.SlideOutDown)
+                        .duration(500)
+                        .playOn(tvStart);
+                YoYo.with(Techniques.SlideOutUp)
+                        .duration(500)
+                        .playOn(tvMaghsad);
                 YoYo.with(Techniques.SlideOutUp)
                         .duration(500)
                         .playOn(tvMaghsad);
@@ -857,7 +895,7 @@ public class TrainFragment extends Fragment implements OnClickListener, TimePick
         })
                 .playOn(tvStart);
         final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_around_center_point);
-        ivImage.startAnimation(animation);
+        txtOption.startAnimation(animation);
     }
 
     @Override

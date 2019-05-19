@@ -2,6 +2,8 @@ package com.eligasht.reservation.views.fragments;
 
 import android.animation.Animator;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.CardView;
@@ -68,6 +70,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
     LinearLayout linearLayout_mabda, linearLayout_maghsad, llBargasht;
     CardView llRaft;
   //  ImageView ivImage;
+  public TextView txtOption;
     boolean geo = false;
     CalendarDialog calendarDialog;
     private View rootView;
@@ -114,6 +117,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         tvAdult = rootView.findViewById(R.id.tvAdult);
         tvChild = rootView.findViewById(R.id.tvChild);
      //   ivImage = rootView.findViewById(R.id.ivImage);
+       txtOption = rootView.findViewById(R.id.txtOption);
         llRaft = rootView.findViewById(R.id.llRaft);
         llBargasht = rootView.findViewById(R.id.llBargasht);
         llRaft.setOnClickListener(this);
@@ -127,7 +131,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         //lbl_city_english.setOnClickListener(this);
         searchHotel = rootView.findViewById(R.id.searchHotel);
         searchHotel.setOnClickListener(this);
-       // ivImage.setOnClickListener(this);
+       txtOption.setOnClickListener(this);
         data = new ArrayList<ModelRowCountRoom>();
         ModelRowCountRoom model = new ModelRowCountRoom();
         model.setCountB(1);
@@ -146,11 +150,15 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
         if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 1) {
             tvStart.setText(Prefs.getString("Value-Mabda-City", "")+" , "+Prefs.getString("Value-Mabda-Airport-Code",""));
+            tvStart.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+            tvStart.setTypeface(tvStart.getTypeface(), Typeface.BOLD);
             lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
         }
         if (Prefs.getString("Value-Maghsad-Airport", "") != null && Prefs.getString("Value-Maghsad-Airport", "").length() > 1) {
             lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
             tvEnd.setText(Prefs.getString("Value-Maghsad-City", "")+" , "+Prefs.getString("Value-Maghsad-Airport-Code",""));
+            tvEnd.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+            tvEnd.setTypeface(tvEnd.getTypeface(), Typeface.BOLD);
         }
         return rootView;
     }
@@ -178,12 +186,16 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
         if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 1) {
             // tvStart.setText(Prefs.getString("Value-Mabda-City", ""));
             tvStart.setText(Prefs.getString("Value-Mabda-City", "")+" , "+Prefs.getString("Value-Mabda-Airport-Code",""));
+            tvStart.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+            tvStart.setTypeface(tvStart.getTypeface(), Typeface.BOLD);
             lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport", ""));
         }
         if (Prefs.getString("Value-Maghsad-Airport", "") != null && Prefs.getString("Value-Maghsad-Airport", "").length() > 1) {
             lbl_forudgah_maghsad.setText(Prefs.getString("Value-Maghsad-Airport", ""));
             //  tvEnd.setText(Prefs.getString("Value-Maghsad-City", ""));
             tvEnd.setText(Prefs.getString("Value-Maghsad-City", "")+" , "+Prefs.getString("Value-Maghsad-Airport-Code",""));
+            tvEnd.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
+            tvEnd.setTypeface(tvEnd.getTypeface(), Typeface.BOLD);
         }
     }
 
@@ -322,9 +334,9 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
                 startActivity(intent);
 
                 break;
-            /*case R.id.ivImage:
+            case R.id.txtOption:
                 anim();
-                break;*/
+                break;
 
 
         }
@@ -451,19 +463,17 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
 
                 lbl_forudgah_mabda.setText(endF);
                 lbl_forudgah_maghsad.setText(startF);
-
                 if (start.contains(getString(R.string.origin)) && end.contains(getString(R.string.destination))) {
-                    tvStart.setText(getString(R.string.select_origin_city_or_airport));
-                    tvEnd.setText(getString(R.string.select_destination_city_or_airport));
+                    tvStart.setText(getString(R.string.select_origin_city));
+                    tvEnd.setText(getString(R.string.select_destination_city));
                 } else if (start.contains(getString(R.string.origin))) {
-                    tvEnd.setText(getString(R.string.select_destination_city_or_airport));
+                    tvEnd.setText(getString(R.string.select_destination_city));
                     lbl_forudgah_maghsad.setText("");
-
                 } else if (end.contains(getString(R.string.destination))) {
-
-                    tvStart.setText(getString(R.string.select_origin_city_or_airport));
+                    tvStart.setText(getString(R.string.select_origin_city));
                     lbl_forudgah_mabda.setText("");
                 }
+
                 String m3 = Prefs.getString("Value-Hotel-City-Code-HF-Raft", "");
                 String m4 = Prefs.getString("Value-Hotel-City-Code-HF-Source", "");
                 Prefs.putString("Value-Hotel-City-Code-HF-Raft", m4);
@@ -495,7 +505,7 @@ public class HotelFlightFragment extends android.support.v4.app.Fragment impleme
             }
         }).playOn(tvStart);
         final Animation animation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_around_center_point);
-      //  ivImage.startAnimation(animation);
+      txtOption.startAnimation(animation);
     }
 
 

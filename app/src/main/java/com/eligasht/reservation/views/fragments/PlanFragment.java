@@ -176,7 +176,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
         if (Prefs.getString("Value-Mabda-City", "") != null && Prefs.getString("Value-Mabda-City", "").length() > 1) {
             tvStart.setText(Prefs.getString("Value-Mabda-City", "")+" , "+Prefs.getString("Value-Mabda-Airport-Code",""));
             tvStart.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
-            tvStart.setTypeface(tvEnd.getTypeface(), Typeface.BOLD);
+            tvStart.setTypeface(tvStart.getTypeface(), Typeface.BOLD);
             lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport-Code2", ""));
         }
         if (Prefs.getString("Value-Maghsad-Airport", "") != null && Prefs.getString("Value-Maghsad-Airport", "").length() > 1) {
@@ -340,7 +340,7 @@ public class PlanFragment extends Fragment implements OnClickListener, TimePicke
            // tvStart.setText(Prefs.getString("Value-Mabda-City", ""));
             tvStart.setText(Prefs.getString("Value-Mabda-City", "")+" , "+Prefs.getString("Value-Mabda-Airport-Code",""));
             tvStart.setTextColor(Color.parseColor(getString(R.color.n_black_dark)));
-            tvStart.setTypeface(tvEnd.getTypeface(), Typeface.BOLD);
+            tvStart.setTypeface(tvStart.getTypeface(), Typeface.BOLD);
             lbl_forudgah_mabda.setText(Prefs.getString("Value-Mabda-Airport-Code2", ""));
         }
         if (Prefs.getString("Value-Maghsad-Airport", "") != null && Prefs.getString("Value-Maghsad-Airport", "").length() > 1) {
