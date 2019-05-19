@@ -46,7 +46,7 @@ public class SmoothCheckBox extends View implements Checkable {
 
     private static final int COLOR_TICK = Color.WHITE;
     private static final int COLOR_UNCHECKED = Color.WHITE;
-    private static final int COLOR_CHECKED = Color.parseColor("#FB4846");
+    private static final int COLOR_CHECKED = Color.parseColor("#2c68ff");
     private static final int COLOR_FLOOR_UNCHECKED = Color.parseColor("#DFDFDF");
 
     private static final int DEF_DRAW_SIZE = 25;
@@ -397,14 +397,14 @@ public class SmoothCheckBox extends View implements Checkable {
     }
 
     private static int getGradientColor(int startColor, int endColor, float percent) {
-        int startA = Color.alpha(startColor);
-        int startR = Color.red(startColor);
-        int startG = Color.green(startColor);
+        int startA = Color.blue(startColor);
+        int startR = Color.blue(startColor);
+        int startG = Color.blue(startColor);
         int startB = Color.blue(startColor);
 
-        int endA = Color.alpha(endColor);
-        int endR = Color.red(endColor);
-        int endG = Color.green(endColor);
+        int endA = Color.blue(endColor);
+        int endR = Color.blue(endColor);
+        int endG = Color.blue(endColor);
         int endB = Color.blue(endColor);
 
         int currentA = (int) (startA * (1 - percent) + endA * percent);

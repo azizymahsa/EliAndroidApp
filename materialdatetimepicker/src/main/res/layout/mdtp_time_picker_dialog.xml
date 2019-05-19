@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/gmdtp_accent_color" >
+        android:background="#2c68ff" >
 
         <include layout="@layout/mdtp_time_title_view" />
 

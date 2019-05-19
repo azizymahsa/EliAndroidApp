@@ -27,7 +27,7 @@
     <color name="mdtp_numbers_text_color">#ff212121</color>
 
     <color name="mdtp_transparent_black">#7f000000</color>
-    <color name="mdtp_accent_color">#928DC5</color>
+    <color name="mdtp_accent_color">#2c68ff</color>
     <color name="mdtp_accent_color_focused">#76ffffff</color>
     <color name="mdtp_accent_color_dark">#F16700</color>
     <color name="mdtp_date_picker_text_normal">#ff212121</color>
@@ -42,7 +42,7 @@
     <color name="mdtp_date_picker_text_disabled_dark_theme">#767676</color>
     <color name="mdtp_date_picker_text_highlighted_dark_theme">@color/mdtp_date_picker_text_normal_dark_theme</color>
 
-    <color name="mdtp_calendar_header">#928DC5</color>
+    <color name="mdtp_calendar_header">#2c68ff</color>
     <color name="mdtp_date_picker_view_animator">@android:color/white</color>
 
     <color name="mdtp_button_color">@color/mdtp_accent_color</color>

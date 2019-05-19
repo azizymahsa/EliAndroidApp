@@ -384,10 +384,15 @@ public class DatePickerDialog extends DialogFragment implements
             mAccentColor = Utils.getAccentColorFromThemeIfAvailable(getActivity());
         }
         if (mDayOfWeekView != null)
-            mDayOfWeekView.setBackgroundColor(Utils.darkenColor(mAccentColor));
-        view.findViewById(R.id.day_picker_selected_date_layout).setBackgroundColor(mAccentColor);
-        okButton.setTextColor(mAccentColor);
-        cancelButton.setTextColor(mAccentColor);
+            mDayOfWeekView.setBackgroundColor(Color.parseColor("#2c68ff"));
+          //  mDayOfWeekView.setBackgroundColor(Utils.darkenColor(mAccentColor));
+
+       // view.findViewById(R.id.day_picker_selected_date_layout).setBackgroundColor(mAccentColor);
+        view.findViewById(R.id.day_picker_selected_date_layout).setBackgroundColor(Color.parseColor("#2c68ff"));
+       // okButton.setTextColor(mAccentColor);
+        //cancelButton.setTextColor(mAccentColor);
+        okButton.setTextColor(Color.parseColor("#2c68ff"));
+        cancelButton.setTextColor(Color.parseColor("#2c68ff"));
 
         if (getDialog() == null) {
             view.findViewById(R.id.done_background).setVisibility(View.GONE);

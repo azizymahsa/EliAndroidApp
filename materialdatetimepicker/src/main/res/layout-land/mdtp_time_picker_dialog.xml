@@ -39,7 +39,7 @@
             android:layout_width="@dimen/mdtp_left_side_width"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/gmdtp_accent_color" >
+            android:background="#2c68ff" >
             <include
                 layout="@layout/mdtp_time_header_label"
                 android:layout_width="match_parent"

@@ -155,7 +155,7 @@ public class Utils {
             return typedValue.data;
         }
         // Return the value in mdtp_accent_color
-        return ContextCompat.getColor(context, R.color.gmdtp_accent_color);
+        return ContextCompat.getColor(context, Color.parseColor("#2c68ff"));
     }
 
     /**

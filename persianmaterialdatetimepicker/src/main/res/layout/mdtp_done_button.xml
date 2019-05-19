@@ -37,7 +37,8 @@
             android:layout_gravity="left|center_vertical"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:textColor="@color/mdtp_accent_color_dark"
+            android:textColor="#2c68ff"
+            android:background="@drawable/background_strock_gray_curv_narrow"
             android:maxLines="1"
             android:textSize="@dimen/mdtp_day_number_size"/>
     </LinearLayout>

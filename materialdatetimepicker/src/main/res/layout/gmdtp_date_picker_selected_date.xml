@@ -21,7 +21,7 @@
     android:layout_width="@dimen/gmdtp_date_picker_component_width"
     android:layout_height="@dimen/gmdtp_selected_date_height"
     android:layout_weight="1"
-    android:background="@color/gmdtp_accent_color"
+    android:background="#2c68ff"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -42,7 +42,7 @@
             android:duplicateParentState="true"
             android:gravity="center_horizontal|bottom"
             android:includeFontPadding="false"
-            android:textColor="@color/mdtp_date_picker_selector"
+            android:textColor="#cbd8f9"
             android:textSize="@dimen/gmdtp_selected_date_month_size"
             tools:text="May"/>
 
@@ -57,7 +57,7 @@
             android:duplicateParentState="true"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:textColor="@color/mdtp_date_picker_selector"
+            android:textColor="#cbd8f9"
             android:textSize="@dimen/gmdtp_selected_date_day_size"
             tools:text="15"
             />
@@ -69,7 +69,7 @@
             android:layout_gravity="center"
             android:gravity="center_horizontal|top"
             android:includeFontPadding="false"
-            android:textColor="@color/mdtp_date_picker_selector"
+            android:textColor="#cbd8f9"
             android:textSize="@dimen/gmdtp_selected_date_year_size"
             tools:text="2015"
             android:visibility="gone"/>
