@@ -78,7 +78,7 @@
                     android:layout_marginTop="@dimen/dp1"
                     android:layout_toLeftOf="@+id/tvTitle"
                     android:gravity="right"
-                    android:text="asfdasdasd"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12dp"
                     android:visibility="visible" />

@@ -67,7 +67,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_toRightOf="@+id/tvTitle"
                     android:gravity="center"
-                    android:text="asfdasdasd"
+                    android:text=""
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_12dp"
                     android:visibility="gone" />
