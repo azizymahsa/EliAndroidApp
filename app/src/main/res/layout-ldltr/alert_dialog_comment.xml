@@ -43,11 +43,11 @@
         android:layout_marginBottom="@dimen/_10dp_margin"
         android:elevation="4dp"
         android:paddingBottom="1dp"
-        fancy:fb_defaultColor="#1234"
+        fancy:fb_defaultColor="@color/n_blue_btn"
         fancy:fb_focusColor="@color/focusColor"
         fancy:fb_radius="100dp"
         fancy:fb_text="@string/IrOK"
-        fancy:fb_textColor="@color/text_color_4d"
+        fancy:fb_textColor="@color/white"
         fancy:fb_textSize="@dimen/_14dp_txtSize" />
 
 

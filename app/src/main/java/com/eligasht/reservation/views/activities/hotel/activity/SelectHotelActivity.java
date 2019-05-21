@@ -78,7 +78,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
     private TextView tvLoading, tvAlertDesc,weatherCity;
     private double  maxPrice, minPrice;
     private LinearLayout llFilter;
-    private FancyButton btnOk, btnBack, btnHome;
+    private FancyButton btnOk;
+    TextView txtBack;//, btnHome;
     private FancyButton btnNextDays, btnLastDays;
     private String raft, bargasht;
     private String raftFa, bargashtFa, searchIn;
@@ -118,9 +119,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         tvAlert = findViewById(R.id.tvAlert);
         tvTitle = findViewById(R.id.tvTitle);
         tvCount = findViewById(R.id.tvCount);
-        btnBack = findViewById(R.id.btnBack);
+        txtBack = findViewById(R.id.txtBack);
         tvFilterIcon = findViewById(R.id.tvFilterIcon);
-        btnHome = findViewById(R.id.btnHome);
+      //  btnHome = findViewById(R.id.btnHome);
         elNotFound = findViewById(R.id.elNotFound);
         tvSortIcon = findViewById(R.id.tvSortIcon);
         btnChangeView = findViewById(R.id.btnChangeView);
@@ -139,9 +140,9 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         slidingDrawer = findViewById(R.id.slidingDrawer);
         weatherCity = findViewById(R.id.weatherCity);
 
-        btnBack.setText(getString(R.string.search_back_right));
+        //txtBack.setText(getString(R.string.search_back_right));
 
-        btnBack.setCustomTextFont("fonts/icomoon.ttf");
+       // txtBack.setCustomTextFont("fonts/icomoon.ttf");
         btnChangeView.setCustomTextFont("fonts/icomoon2.ttf");
         btnChangeView.setText(getString(R.string.icon_grid));
         raftFa = SingletonDate.getInstance().getStartDate().getDescription();
@@ -157,8 +158,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
         btnSort.setOnClickListener(this);
         btnNextDays.setOnClickListener(this);
         btnLastDays.setOnClickListener(this);
-        btnHome.setOnClickListener(this);
-        btnBack.setOnClickListener(this);
+       // btnHome.setOnClickListener(this);
+        txtBack.setOnClickListener(this);
         btnOk.setOnClickListener(this);
         btnChangeView.setOnClickListener(this);
         Utility.setAnimLoading(this);
@@ -223,13 +224,13 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
 
                 sortPrice();
                 break;
-            case R.id.btnBack:
+            case R.id.txtBack:
                 finish();
                 break;
-            case R.id.btnHome:
+           /* case R.id.btnHome:
                 Intent intent = new Intent("sendFinish");
                 LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-                break;
+                break;*/
             case R.id.btnNextDays:
                 if (SingletonDate.getInstance().getStartDate().addOneDay()) {
                     tvDate.setText(SingletonDate.getInstance().getStartDate().getDescription() + " - " + SingletonDate.getInstance().getEndDate().getDescription());
@@ -257,8 +258,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
        // flagDec=true;
 
         if (flagDec == true) {
-            tvSort.setTextColor(ContextCompat.getColor(this, R.color.dark_blue));
-            tvSortIcon.setTextColor(ContextCompat.getColor(this, R.color.dark_blue));
+            tvSort.setTextColor(ContextCompat.getColor(this, R.color.n_blue_btn));
+            tvSortIcon.setTextColor(ContextCompat.getColor(this, R.color.n_blue_btn));
             tvSortIcon.setText(getString(R.string.icon_sort_up));
             Collections.sort(selectHotelModelArrayList, new Comparator<SelectHotelModel>() {
                 @Override
@@ -275,8 +276,8 @@ public class SelectHotelActivity extends BaseActivity implements FilterHotelDial
             hotelResultAdapter.notifyDataSetChanged();
             flagDec=false;
         } else if (flagDec == false) {
-            tvSort.setTextColor(ContextCompat.getColor(this, R.color.dark_blue));
-            tvSortIcon.setTextColor(ContextCompat.getColor(this, R.color.dark_blue));
+            tvSort.setTextColor(ContextCompat.getColor(this, R.color.n_blue_btn));
+            tvSortIcon.setTextColor(ContextCompat.getColor(this, R.color.n_blue_btn));
             tvSortIcon.setText(getString(R.string.icon_sort_down));
             Collections.sort(selectHotelModelArrayList, new Comparator<SelectHotelModel>() {
                 @Override

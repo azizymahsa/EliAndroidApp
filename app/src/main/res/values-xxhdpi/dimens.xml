@@ -138,6 +138,7 @@ values-xxhdpi           5.5"  1440x2560 xxhdpi-->
     <dimen name="_5dp_no_tablet">5dp</dimen>
     <dimen name="_5dp_flight_weight">1dp</dimen>
     <dimen name="_90dp_weather">100dp</dimen>
+    <dimen name="_100dp_hotel_image">120dp</dimen>
 
 
 </resources>

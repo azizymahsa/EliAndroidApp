@@ -446,8 +446,8 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:gravity="center"
-                        android:text="@string/icon_sort"
-                        android:textAppearance="@style/IconFonts"
+                        android:text="@string/icon_sort_down"
+                        android:textAppearance="@style/FontsEli"
                         android:textColor="#4d4d4d"
                         android:textSize="@dimen/_25dp_normal_iconSize" />
 

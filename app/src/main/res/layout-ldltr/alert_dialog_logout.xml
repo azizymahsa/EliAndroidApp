@@ -50,11 +50,11 @@
             android:layout_weight="0.5"
             android:elevation="1dp"
             android:paddingBottom="1dp"
-            fancy:fb_defaultColor="#1234"
+            fancy:fb_defaultColor="@color/n_blue_btn"
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="100dp"
             fancy:fb_text="@string/CancelAlert"
-            fancy:fb_textColor="#4d4d4d"
+            fancy:fb_textColor="#fff"
             fancy:fb_textSize="@dimen/_14dp_txtSize" />
 
         <mehdi.sakout.fancybuttons.FancyButton
@@ -67,11 +67,11 @@
             android:layout_weight="0.5"
             android:elevation="1dp"
             android:paddingBottom="1dp"
-            fancy:fb_defaultColor="#1234"
+            fancy:fb_defaultColor="@color/n_blue_btn"
             fancy:fb_focusColor="@color/focusColor"
             fancy:fb_radius="100dp"
             fancy:fb_text="@string/OkAlert"
-            fancy:fb_textColor="#4d4d4d"
+            fancy:fb_textColor="#fff"
             fancy:fb_textSize="@dimen/_14dp_txtSize" />
 
     </LinearLayout>

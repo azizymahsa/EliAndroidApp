@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -102,7 +103,7 @@ public class HotelResultAdapter extends RecyclerView.Adapter<HotelResultAdapter.
 
 
         holder.name.setText(data.get(position).getName());
-        holder.location.setText(data.get(position).getLocation() + "،" + data.get(position).getCity());
+        holder.location.setText(data.get(position).getLocation());// + "،" + data.get(position).getCity());
         holder.title.setText(data.get(position).getTitle());
         holder.board.setText(data.get(position).getBoard());
         holder.tvPrice.setText(Utility.priceFormat(Integer.valueOf(data.get(position).getPrice().intValue()).toString()));
@@ -225,7 +226,7 @@ public class HotelResultAdapter extends RecyclerView.Adapter<HotelResultAdapter.
         TextView  tvPrice,tvCurrencyCode;
         ImageView ivHotelPic, ivRate;
         CardView cvHotel;
-        RelativeLayout rlListItem;
+        LinearLayout rlListItem;
         public ViewHolder(View v) {
 
             super(v);

@@ -153,5 +153,6 @@
     <dimen name="_5dp_no_tablet">0dp</dimen>
     <dimen name="_5dp_flight_weight">5dp</dimen>
     <dimen name="_90dp_weather">130dp</dimen>
+    <dimen name="_100dp_hotel_image">220dp</dimen>
 
 </resources>

@@ -353,7 +353,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.list_group_expanding, parent, false);//list Group header//row_select_parvaz_two_header
         }
 
-        TextView btnExpand = convertView.findViewById(R.id.btnExpand);
+      //  TextView btnExpand = convertView.findViewById(R.id.btnExpand);
 
         final TextView txtPin = convertView.findViewById(R.id.txtPin);
 
@@ -383,15 +383,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         txtCurrencyCode.setText(Prefs.getString("GlobalCurrencyCode", ""));
         ImageView lblProductrow = convertView.findViewById(R.id.lblProductrow);
 
-        TextView txt_economi = convertView.findViewById(R.id.txt_economi);
+        //TextView txt_economi = convertView.findViewById(R.id.txt_economi);
 
         TextView txttedad = convertView.findViewById(R.id.txttedad);
 
         TextView lblFlightArrivalTimeLongB = convertView.findViewById(R.id.lblFlightArrivalTimeLongB);
         TextView lblFlightArrivalTimeLongR = convertView.findViewById(R.id.lblFlightArrivalTimeLongR);
 
-        TextView tvPlaneIcon2 = convertView.findViewById(R.id.tvPlaneIcon2);
-        TextView tvPlaneIcon = convertView.findViewById(R.id.tvPlaneIcon);
+
         View viewLine2 = convertView.findViewById(R.id.viewLine2);
         View viewLine = convertView.findViewById(R.id.viewLine);
         LinearLayout llRaft = convertView.findViewById(R.id.llRaft);
@@ -492,7 +491,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
         if (isExpanded) {
-            btnExpand.setText(_context.getString(R.string.icon_exp_up));
+           // btnExpand.setText(_context.getString(R.string.icon_exp_up));
             expListViewExpanding.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
             //moving tvPlaneIcon2 from right to left
            /* float right = llRaft.getRight();
@@ -521,7 +520,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             anim5.setInterpolator(new AccelerateDecelerateInterpolator());  // E.g. Linear, Accelerate, Decelerate
             anim5.start(); */
         } else {
-            btnExpand.setText(_context.getString(R.string.icon_exp_down));
+          //  btnExpand.setText(_context.getString(R.string.icon_exp_down));
 
             //linearKol.clearAnimation();
         /*	Animation scaleUpp = AnimationUtils.loadAnimation(_context, R.anim.anim_list);
@@ -543,7 +542,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             txtDepurtureFalseOne.setText(item2.ArrivalCityNameFaB);
 
            // num_flight_b.setText(item2.AirlineCode + item2.FlightNumberB);
-            num_flight_b.setText(item2.segmentListfalseAkhari.get(item2.segmentListfalseAkhari.size()-1).getAirlineCode() + item2.segmentListfalseAkhari.get(item2.segmentListfalseAkhari.size()-1).getFlightNumber());
+           num_flight_b.setText(item2.FlightArrivalTimeB);
+           // num_flight_b.setText(item2.segmentListfalseAkhari.get(item2.segmentListfalseAkhari.size()-1).getAirlineCode() + item2.segmentListfalseAkhari.get(item2.segmentListfalseAkhari.size()-1).getFlightNumber());
 
             ///////////////
             //lblArrivalCityNameFaB.setText(" برگشت به "+item2.DepartureCityNameFaB+"");
@@ -564,12 +564,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         txtDepurtureTrueOne.setText(item2.ArrivalCityNameFaR);
 
 
-       // num_flight_r.setText(item2.AirlineCode + item2.FlightNumberR);
-        num_flight_r.setText(item2.segmentListtrueAkhari.get(item2.segmentListtrueAkhari.size()-1).getAirlineCode() + item2.segmentListtrueAkhari.get(item2.segmentListtrueAkhari.size()-1).getFlightNumber());
+       num_flight_r.setText(item2.FlightArrivalTimeR );
+       // num_flight_r.setText(item2.segmentListtrueAkhari.get(item2.segmentListtrueAkhari.size()-1).getAirlineCode() + item2.segmentListtrueAkhari.get(item2.segmentListtrueAkhari.size()-1).getFlightNumber());
         //
         //	lblArrivalCityNameFaR.setText(" رفت به "+item2.DepartureCityNameFaR+"");
         System.out.println("raft:" + item2.FltDateDayOfWeek);
-        lblArrivalCityNameFaR.setText("" + GetDayWeek(item2.FltDateDayOfWeek));
+       // lblArrivalCityNameFaR.setText("" + GetDayWeek(item2.FltDateDayOfWeek));
         lblArrivalCityNameFaRTime.setText(item2.FlightArrivalTimeR);//+" , ");
         try {
             int tavaghofR = item2.SegmentTrueCount - 1;
@@ -585,14 +585,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         //lblAirline.setText(item2.AirlineNameFa);
 
-        txt_economi.setText(item2.CabinClassNameFa);
+       // txt_economi.setText(item2.CabinClassNameFa);
 
         if (item2.RemainSeats == 0) {
-            txttedad.setText(_context.getString(R.string.people) + item2.RemainSeats + _context.getString(R.string.just));
+            txttedad.setText(_context.getString(R.string._seat) + item2.RemainSeats );
             txttedad.setVisibility(View.INVISIBLE);
 
         } else {
-            txttedad.setText(_context.getString(R.string.just) + item2.RemainSeats + _context.getString(R.string.people));
+            txttedad.setText(item2.RemainSeats + _context.getString(R.string._seat));
             txttedad.setVisibility(View.VISIBLE);
         }
     /*	if(item2.get(0).IsCharter)

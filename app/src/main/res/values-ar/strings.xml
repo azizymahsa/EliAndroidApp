@@ -2459,5 +2459,7 @@
     <string name="_room_selection">Room selection and passengers</string>
     <string name="add_room">Add Room</string>
     <string name="delete_room">Delete Room</string>
+    <string name="_seat">Seat</string>
+    <string name="_sum">Sum</string>
 
 </resources>
