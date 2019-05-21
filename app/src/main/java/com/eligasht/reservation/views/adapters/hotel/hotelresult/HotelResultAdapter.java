@@ -24,6 +24,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.HotelPreFactorModel;
 import com.eligasht.reservation.models.hotel.adapter.SelectHotelModel;
 import com.eligasht.reservation.tools.GlideApp;
+import com.eligasht.reservation.tools.HandlerCurrency;
 import com.eligasht.reservation.tools.Utility;
 import com.eligasht.reservation.views.activities.hotel.activity.DetailHotelActivity;
 import com.github.aakira.expandablelayout.ExpandableLayout;
@@ -107,7 +108,7 @@ public class HotelResultAdapter extends RecyclerView.Adapter<HotelResultAdapter.
         holder.title.setText(data.get(position).getTitle());
         holder.board.setText(data.get(position).getBoard());
         holder.tvPrice.setText(Utility.priceFormat(Integer.valueOf(data.get(position).getPrice().intValue()).toString()));
-        holder.tvCurrencyCode.setText(data.get(position).getCurrencyCode());
+        holder.tvCurrencyCode.setText(HandlerCurrency.GetHandleCurrency(data.get(position).getCurrencyCode(),context)+"");
 
 
 

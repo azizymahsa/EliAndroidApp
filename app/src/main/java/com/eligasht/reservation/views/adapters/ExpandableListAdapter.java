@@ -31,6 +31,7 @@ import com.eligasht.R;
 import com.eligasht.reservation.models.model.PinModelDetail;
 import com.eligasht.reservation.models.model.PinModelHeader;
 import com.eligasht.reservation.tools.GlideApp;
+import com.eligasht.reservation.tools.HandlerCurrency;
 import com.eligasht.reservation.tools.Prefs;
 import com.eligasht.reservation.views.activities.FlightSeatActivity;
 import com.eligasht.reservation.views.ui.PassengerActivity;
@@ -363,6 +364,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView txtArrivelTrueLast = convertView.findViewById(R.id.txtArrivelTrueLast);
         TextView txtDepurtureTrueOne = convertView.findViewById(R.id.txtDepurtureTrueOne);
 
+        TextView txtNameAir = convertView.findViewById(R.id.txtNameAir);
+
         TextView num_flight_r = convertView.findViewById(R.id.num_flight_r);
         TextView num_flight_b = convertView.findViewById(R.id.num_flight_b);
         final AVLoadingIndicatorView avi = convertView.findViewById(R.id.avi);
@@ -380,12 +383,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         TextView txtCurrencyCode = convertView.findViewById(R.id.txtCurrencyCode);
 
-        txtCurrencyCode.setText(Prefs.getString("GlobalCurrencyCode", ""));
+        txtCurrencyCode.setText(HandlerCurrency.GetHandleCurrency(Prefs.getString("GlobalCurrencyCode", ""),_context)+"");
         ImageView lblProductrow = convertView.findViewById(R.id.lblProductrow);
 
         //TextView txt_economi = convertView.findViewById(R.id.txt_economi);
 
         TextView txttedad = convertView.findViewById(R.id.txttedad);
+        TextView tedadIcon = convertView.findViewById(R.id.tedadIcon);
 
         TextView lblFlightArrivalTimeLongB = convertView.findViewById(R.id.lblFlightArrivalTimeLongB);
         TextView lblFlightArrivalTimeLongR = convertView.findViewById(R.id.lblFlightArrivalTimeLongR);
@@ -532,7 +536,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (item2.SegmentFalseCount < 1 || item2.SegmentFalseCount == 0) {//yek tarafe
             linearBargashtOne.setVisibility(View.GONE);
             linearBargashtTwo.setVisibility(View.GONE);
-
+            lblFlightArrivalTimeB.setVisibility(View.GONE);
             linearBargashtTree.setVisibility(View.GONE);
 
         } else {//2tarafe
@@ -563,6 +567,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         txtArrivelTrueLast.setText(item2.DepartureCityNameFaR);
         txtDepurtureTrueOne.setText(item2.ArrivalCityNameFaR);
 
+        if(_context.getString(R.string.culture).contains("fa")){
+            txtNameAir.setText(item2.AirlineNameFa);
+        }else{
+            txtNameAir.setText(item2.AirlineNameEa);
+        }
 
        num_flight_r.setText(item2.FlightArrivalTimeR );
        // num_flight_r.setText(item2.segmentListtrueAkhari.get(item2.segmentListtrueAkhari.size()-1).getAirlineCode() + item2.segmentListtrueAkhari.get(item2.segmentListtrueAkhari.size()-1).getFlightNumber());
@@ -578,7 +587,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         } catch (Exception e) {
             e.getMessage();
         }
-        txtCurrencyCode.setText(Prefs.getString("GlobalCurrencyCode", ""));
+        txtCurrencyCode.setText(HandlerCurrency.GetHandleCurrency(Prefs.getString("GlobalCurrencyCode", ""),_context)+"");
 
         lblAdlCost.setText(item2.AdlCost + "");
         lblAdlCost.setText(String.valueOf(NumberFormat.getInstance().format(item2.AdlCost)));
@@ -590,10 +599,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (item2.RemainSeats == 0) {
             txttedad.setText(_context.getString(R.string._seat) + item2.RemainSeats );
             txttedad.setVisibility(View.INVISIBLE);
+            tedadIcon.setVisibility(View.INVISIBLE);
 
         } else {
             txttedad.setText(item2.RemainSeats + _context.getString(R.string._seat));
             txttedad.setVisibility(View.VISIBLE);
+            tedadIcon.setVisibility(View.VISIBLE);
         }
     /*	if(item2.get(0).IsCharter)
             textCharter.setText("چارتر"+"");

@@ -67,6 +67,8 @@ import com.eligasht.service.model.weather.response.WeatherApi;
 import com.google.gson.Gson;
 import com.eligasht.reservation.tools.Prefs;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -128,12 +130,14 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
     String searchKeyConfirm;
     String FlightId;
     LinearLayout llNextLastDays, llDateToolbar, llBottom, llSort;
+    TextView tvSortIcon, tvSort;
     private ArrayList<FilterModelّFlight> filterModels = new ArrayList<>();
     private ExpandableListAdapter listAdapterExpanding;
     private  RecyclerView recyclerViewHotel;
     String flagWay="";
     private static String GlobalCurrencyCode="";
     private String flightClass="Economy";
+    private boolean flagDec=true;
 
     public static void updateAdapterPin(List<PinModelDetail> pinModelDetails, List<PinModelHeader> pinModelHeaders, Context activity) {
         // TODO Auto-generated method stub
@@ -169,6 +173,8 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
         rlRoot = findViewById(R.id.rlRoot);
         iconFilter = findViewById(R.id.iconFilter);
         llBottom = findViewById(R.id.llBottom);
+        tvSortIcon = findViewById(R.id.tvSortIcon);
+        tvSort = findViewById(R.id.tvSort);
         llBottom.setOnClickListener(this);
         llSort = findViewById(R.id.llSort);
         llSort.setOnClickListener(this);
@@ -922,7 +928,42 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
         }
         listAdapterExpanding.notifyDataSetChanged();
     }
+    private void sortPrice() {
+        // flagDec=true;
 
+        if (flagDec == true) {
+            tvSort.setTextColor(ContextCompat.getColor(this, R.color.n_blue_btn));
+            tvSortIcon.setTextColor(ContextCompat.getColor(this, R.color.n_blue_btn));
+            tvSortIcon.setText(getString(R.string.icon_sort_up));
+            Collections.sort(dataExpandingList, new Comparator<ParentItemExpandingPlan>() {
+                @Override
+                public int compare(SearchFlightActivity.ParentItemExpandingPlan o1, SearchFlightActivity.ParentItemExpandingPlan o2) {
+
+                    return Double.compare(o2.Header.AdlCost, o1.Header.AdlCost);
+                }
+            });
+
+            listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding,searchKeyConfirm);
+
+            expListViewExpanding.setAdapter(listAdapterExpanding);
+            listAdapterExpanding.notifyDataSetChanged();
+            flagDec=false;
+        } else if (flagDec == false) {
+            tvSort.setTextColor(ContextCompat.getColor(this, R.color.n_blue_btn));
+            tvSortIcon.setTextColor(ContextCompat.getColor(this, R.color.n_blue_btn));
+            tvSortIcon.setText(getString(R.string.icon_sort_down));
+            Collections.sort(dataExpandingList, new Comparator<ParentItemExpandingPlan>() {
+                @Override
+                public int compare(SearchFlightActivity.ParentItemExpandingPlan o1, SearchFlightActivity.ParentItemExpandingPlan o2) {
+                    return Double.compare(o1.Header.AdlCost, o2.Header.AdlCost);
+                }
+            });
+            listAdapterExpanding = new ExpandableListAdapter(SearchFlightActivity.this, dataExpandingList, searchParvazPinAdapter, isChangeFlight, searchKey, FlightId, expListViewExpanding,searchKeyConfirm);
+            expListViewExpanding.setAdapter(listAdapterExpanding);
+            listAdapterExpanding.notifyDataSetChanged();
+            flagDec=true;
+        }
+    }
     @Override
     public void onReturnValueSort(int type) {
         switch (type) {
@@ -1156,7 +1197,8 @@ public class SearchFlightActivity extends BaseActivity implements SortFlightDial
                 break;
             case R.id.llSort://sort
                 // custom dialog
-                new SortFlightDialog(SearchFlightActivity.this, this, besetSeler, bestOff, remove);
+                sortPrice();
+               // new SortFlightDialog(SearchFlightActivity.this, this, besetSeler, bestOff, remove);
                 break;
             case R.id.txtRuzeBad:
                 if (SingletonDate.getInstance().getStartDate().addOneDay()) {

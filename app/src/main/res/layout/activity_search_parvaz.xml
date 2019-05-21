@@ -13,7 +13,7 @@
         xmlns:fancy="http://schemas.android.com/apk/res-auto"
         android:id="@+id/khali"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_60dp_hight">
+        android:layout_height="@dimen/_35dp_normal">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,8 +24,8 @@
         <RelativeLayout
             android:id="@+id/llHome"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_60dp_hight"
-            android:layout_marginTop="@dimen/_20dp_normal_textSize"
+            android:layout_height="@dimen/_40dp_f"
+            android:layout_marginTop="@dimen/_10_flight_dp"
             android:layout_gravity="left">
 
             <TextView
@@ -70,6 +70,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -78,6 +79,7 @@
                     android:layout_height="0dp"
                     android:layout_gravity="center"
                     android:layout_weight="100"
+
                     android:orientation="horizontal">
 
                     <TextView
@@ -99,10 +101,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="0.5"
-                        android:gravity="right|center"
+                        android:gravity="right|center|bottom"
                         android:text="tvTitle"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/toolbar_title_16dp"
+                        android:textSize="@dimen/_14dp_txtSize"
                         android:visibility="visible" />
                     <TextView
 
@@ -123,14 +125,15 @@
                         android:id="@+id/txticon"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_gravity="center|bottom"
                         android:layout_weight="0.12"
-                        android:gravity="center"
+                        android:gravity="center|bottom"
                         android:text="&#66;"
                         android:rotationY="180"
                         android:textAppearance="@style/FontsEli"
                         android:textColor="@color/white"
                         android:visibility="visible"
+                        android:layout_marginBottom="@dimen/_2dp_margin"
 
                         />
                     <TextView
@@ -155,11 +158,11 @@
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="center"
                         android:layout_weight="0.5"
-                        android:gravity="left|center"
+                        android:gravity="left|center|bottom"
 
                         android:text="tvTitle"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/toolbar_title_16dp"
+                        android:textSize="@dimen/_14dp_txtSize"
                         android:visibility="visible"
 
                         />
@@ -258,8 +261,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbarLayout"
-        android:paddingLeft="@dimen/_20dp_normal_textSize"
+        android:paddingLeft="@dimen/_8dp_normal_margin"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/_10dp_textSize"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -272,17 +276,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="7"
-
+                android:layout_marginTop="@dimen/_5dp_margin"
                 android:gravity="center"
                 android:orientation="horizontal"
 
                 >
-
+                <!--ruze bad va ruze ghabl-->
                 <LinearLayout
                     android:id="@+id/llNextLastDays"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="170"
+                    android:layout_weight="40"
                     android:background="@color/TRANSPARENT"
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -384,13 +388,14 @@
 
 
                 </LinearLayout>
-
+                <!--filter-->
                 <LinearLayout
                     android:id="@+id/llBottom"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="100"
-                    android:gravity="center">
+                    android:layout_weight="40"
+                    android:gravity="center"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/txtFilter"
@@ -411,47 +416,183 @@
                         android:layout_marginLeft="5dp"
                         android:gravity="center"
                         android:text="@string/icon_filter"
-                        android:textAppearance="@style/FontsEli"
+                        android:textAppearance="@style/IconFonts"
                         android:textColor="#4d4d4d"
                         android:textSize="@dimen/_25dp_normal_iconSize" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent" />
 
-                <LinearLayout
-                    android:id="@+id/llSort"
+                <!-- sortStop-->
+
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="@dimen/_5_flight_dp"
-                    android:layout_weight="100"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_weight="70"
 
-                    <TextView
-                        android:id="@+id/lblMoratabSazi"
-                        android:layout_width="wrap_content"
+                    >
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+
+                        android:id="@+id/btnSortStop"
+
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text="@string/Sort"
-                        android:textColor="@color/text_color_4d"
-                        android:textSize="@dimen/bottom_tab" />
+                        android:layout_gravity="right"
+                        android:gravity="right"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="@color/focusColor"
 
-                    <TextView
-                        android:id="@+id/tvSortIcon"
-                        android:layout_width="wrap_content"
+                        fancy:fb_radius="6dp"
+                        fancy:fb_text=" "
+                        fancy:fb_textColor="#FFFFFF"
+                        fancy:fb_textSize="25dp" />
+
+                    <LinearLayout
+                        android:id="@+id/llSortStop"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:gravity="center"
-                        android:text="@string/icon_sort_down"
-                        android:textAppearance="@style/FontsEli"
-                        android:textColor="#4d4d4d"
-                        android:textSize="@dimen/_25dp_normal_iconSize" />
+                        android:gravity="right"
+                        android:orientation="horizontal">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/tvSortStop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_5dp_margin"
+                            android:gravity="center"
+                            android:text="@string/stop"
+                            android:textColor="#6a7997"
+                            android:textSize="@dimen/bottom_tab" />
+
+                        <TextView
+                            android:id="@+id/tvSortIconStop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_5dp_margin"
+                            android:layout_margin="@dimen/_2dp_margin"
+                            android:gravity="center"
+                            android:padding="@dimen/dp1"
+                            android:text="&#106;"
+                            android:textAppearance="@style/FontsEli"
+                            android:textColor="#6a7997"
+                            android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+                <!-- sortTime-->
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+
+                    >
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+
+                        android:id="@+id/btnSortTime"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="right"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="@color/focusColor"
+
+                        fancy:fb_radius="6dp"
+                        fancy:fb_text=" "
+                        fancy:fb_textColor="#FFFFFF"
+                        fancy:fb_textSize="25dp" />
+
+                    <LinearLayout
+                        android:id="@+id/llSortTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvSortTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_5dp_margin"
+                            android:gravity="center"
+                            android:text="@string/_flight_time"
+                            android:textColor="#6a7997"
+                            android:textSize="@dimen/bottom_tab" />
+
+                        <TextView
+                            android:id="@+id/tvSortIconTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_5dp_margin"
+                            android:layout_margin="@dimen/_2dp_margin"
+                            android:gravity="center"
+                            android:padding="@dimen/dp1"
+                            android:text="&#106;"
+                            android:textAppearance="@style/FontsEli"
+                            android:textColor="#6a7997"
+                            android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+                <!-- sort Price-->
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="35"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_15dp_normal_textSize"
+                    >
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+
+                        android:id="@+id/btnSort"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:gravity="right"
+                        fancy:fb_defaultColor="@android:color/transparent"
+                        fancy:fb_focusColor="@color/focusColor"
+
+                        fancy:fb_radius="6dp"
+                        fancy:fb_text=" "
+                        fancy:fb_textColor="#FFFFFF"
+                        fancy:fb_textSize="25dp" />
+
+                    <LinearLayout
+                        android:id="@+id/llSort"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvSort"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_5dp_margin"
+                            android:gravity="center"
+                            android:text="@string/Price"
+                            android:textColor="#6a7997"
+                            android:textSize="@dimen/bottom_tab" />
+
+                        <TextView
+                            android:id="@+id/tvSortIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_2dp_margin"
+                            android:layout_marginLeft="@dimen/_5dp_margin"
+                            android:gravity="center"
+
+                            android:padding="@dimen/dp1"
+                            android:text="&#106;"
+                            android:textAppearance="@style/FontsEli"
+                            android:textColor="@color/n_blue_btn"
+                            android:textSize="@dimen/_15dp_normal_textSize" />
+
+                    </LinearLayout>
+                </RelativeLayout>
 
 
             </LinearLayout>

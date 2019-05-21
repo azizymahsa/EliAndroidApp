@@ -2480,5 +2480,6 @@
     <string name="delete_room">Delete Room</string>
     <string name="_seat">Seat</string>
     <string name="_sum">Sum</string>
+    <string name="_flight_time">Uçuş süresi</string>
 </resources>
 

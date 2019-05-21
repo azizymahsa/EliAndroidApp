@@ -2459,4 +2459,5 @@
     <string name="delete_room"> حذف اتاق</string>
     <string name="_seat">صندلی</string>
     <string name="_sum">مجموع</string>
+    <string name="_flight_time"> ساعت پرواز</string>
 </resources>

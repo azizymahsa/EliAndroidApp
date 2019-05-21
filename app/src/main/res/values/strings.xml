@@ -2520,5 +2520,6 @@ eyJzY29wZSI6WyJBTEwiXSwicGxhdGZvcm0iOlsiaU9TIiwiQW5kcm9pZCIsIldpbmRvd3MiXSwidmFs
     <string name="delete_room">Delete Room</string>
     <string name="_seat">Seat</string>
     <string name="_sum">Sum</string>
+    <string name="_flight_time">flight time</string>
 </resources>
 

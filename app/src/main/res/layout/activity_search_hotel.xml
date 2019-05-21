@@ -6,7 +6,7 @@
     android:id="@+id/rlRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/new_back"
+    android:background="@drawable/hotel_result_bg"
     android:orientation="vertical">
     <!--header top-->
     <FrameLayout
@@ -147,7 +147,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbarTitle"
-        android:paddingLeft="@dimen/_20dp_normal_textSize"
+        android:paddingLeft="@dimen/_10_flight_dp"
         android:layout_marginTop="@dimen/_10_flight_dp"
         android:orientation="vertical"
         >
