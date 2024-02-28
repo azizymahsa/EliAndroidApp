@@ -2,7 +2,7 @@ package com.eligasht.reservation.conf;
 
 /**
  * Authors:
- * Reza Nejati <reza.n.j.t.i@gmail.com>
+ * Mahsa Azizi
  * Copyright © 2017
  */
 public class BaseConf {
