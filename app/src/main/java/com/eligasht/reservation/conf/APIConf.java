@@ -23,11 +23,11 @@ public class APIConf extends BaseConf {
 
      // CORE_REST_API_URI = "https://mobilews.eligasht.com/LightServices/Rest/";
         if(Prefs.getString("BASEURL", "") !=null || Prefs.getString("BASEURL", "")!="")
-            CORE_REST_API_URI = "http://192.168.1.82:120/";
+            CORE_REST_API_URI = "";
         else
             CORE_REST_API_URI = Prefs.getString("BASEURL", "")+"/";
 
         Log.d("onClick3: ",CORE_REST_API_URI);
-    //  CORE_REST_API_URI = "http://192.168.103.74/api/";
+    //  CORE_REST_API_URI = ";
     }
 }
