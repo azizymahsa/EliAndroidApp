@@ -1,12 +1,1 @@
-include ':app', ':service', ':type'
-include ':materialdatetimepicker'
-include ':persianmaterialdatetimepicker'
-include ':library'
-include ':CircleProgressView'
-include ':connectionbuddy'
-include ':stepview'
-include ':trail'
-include ':pinentryedittext'
-include ':recyclerfab'
-//include ':library2'
 
